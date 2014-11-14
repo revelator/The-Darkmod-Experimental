@@ -150,11 +150,15 @@ static void R_TubeDeform( drawSurf_t *surf ) {
 		{ 5, 3 }
 	};
 	tri = surf->geo;
+	// no need to error out here,
+	// just dont draw stuff if it fails.
 	if( tri->numVerts & 3 ) {
-		common->Error( "R_AutospriteDeform: shader had odd vertex count" );
+		common->Warning( "R_AutospriteDeform: shader had odd vertex count" );
+		return;
 	}
 	if( tri->numIndexes != ( tri->numVerts >> 2 ) * 6 ) {
-		common->Error( "R_AutospriteDeform: autosprite had odd index count" );
+		common->Warning( "R_AutospriteDeform: autosprite had odd index count" );
+		return;
 	}
 	// we need the view direction to project the minor axis of the tube
 	// as the view changes
@@ -316,145 +320,6 @@ R_FlareDeform
 
 =====================
 */
-/*
-static void R_FlareDeform( drawSurf_t *surf ) {
-	const srfTriangles_t *tri;
-	srfTriangles_t		*newTri;
-	idPlane	plane;
-	float	dot;
-	idVec3	localViewer;
-	int		j;
-
-	tri = surf->geo;
-
-	if ( tri->numVerts != 4 || tri->numIndexes != 6 ) {
-		//FIXME: temp hack for flares on tripleted models
-		common->Warning( "R_FlareDeform: not a single quad" );
-		return;
-	}
-
-	// this srfTriangles_t and all its indexes and caches are in frame
-	// memory, and will be automatically disposed of
-	newTri = (srfTriangles_t *)R_ClearedFrameAlloc( sizeof( *newTri ) );
-	newTri->numVerts = 4;
-	newTri->numIndexes = 2*3;
-	newTri->indexes = (glIndex_t *)R_FrameAlloc( newTri->numIndexes * sizeof( newTri->indexes[0] ) );
-
-	idDrawVert *ac = (idDrawVert *)_alloca16( newTri->numVerts * sizeof( idDrawVert ) );
-
-	// find the plane
-	plane.FromPoints( tri->verts[tri->indexes[0]].xyz, tri->verts[tri->indexes[1]].xyz, tri->verts[tri->indexes[2]].xyz );
-
-	// if viewer is behind the plane, draw nothing
-	R_GlobalPointToLocal( surf->space->modelMatrix, tr.viewDef->renderView.vieworg, localViewer );
-	float distFromPlane = localViewer * plane.Normal() + plane[3];
-	if ( distFromPlane <= 0 ) {
-		newTri->numIndexes = 0;
-		surf->geo = newTri;
-		return;
-	}
-
-	idVec3	center;
-	center = tri->verts[0].xyz;
-	for ( j = 1 ; j < tri->numVerts ; j++ ) {
-		center += tri->verts[j].xyz;
-	}
-	center *= 1.0/tri->numVerts;
-
-	idVec3	dir = localViewer - center;
-	dir.Normalize();
-
-	dot = dir * plane.Normal();
-
-	// set vertex colors based on plane angle
-	int	color = (int)(dot * 8 * 256);
-	if ( color > 255 ) {
-		color = 255;
-	}
-	for ( j = 0 ; j < newTri->numVerts ; j++ ) {
-		ac[j].color[0] =
-		ac[j].color[1] =
-		ac[j].color[2] = color;
-		ac[j].color[3] = 255;
-	}
-
-	float	spread = surf->shaderRegisters[ surf->material->GetDeformRegister(0) ] * r_flareSize.GetFloat();
-	idVec3	edgeDir[4][3];
-	glIndex_t		indexes[MAX_TRI_WINDING_INDEXES];
-	int		numIndexes = R_WindingFromTriangles( tri, indexes );
-
-	surf->material = declManager->FindMaterial( "textures/smf/anamorphicFlare" );
-
-	// only deal with quads
-	if ( numIndexes != 4 ) {
-		return;
-	}
-
-	// compute centroid
-	idVec3 centroid, toeye, forward, up, left;
-	centroid.Set( 0, 0, 0 );
-	for ( int i = 0; i < 4; i++ ) {
-		centroid += tri->verts[ indexes[i] ].xyz;
-	}
-	centroid /= 4;
-
-	// compute basis vectors
-	up.Set( 0, 0, 1 );
-
-	toeye = centroid - localViewer;
-	toeye.Normalize();
-	left = toeye.Cross( up );
-	up = left.Cross( toeye );
-
-	left = left * 40 * 6;
-	up = up * 40;
-
-	// compute flares
-	struct flare_t {
-		float	angle;
-		float	length;
-	};
-
-	static flare_t flares[] = {
-		{ 0, 100 },
-		{ 90, 100 }
-	};
-
-	for ( int i = 0; i < 4; i++ ) {
-		memset( ac + i, 0, sizeof( ac[i] ) );
-	}
-
-	ac[0].xyz = centroid - left;
-	ac[0].st[0] = 0; ac[0].st[1] = 0;
-
-	ac[1].xyz = centroid + up;
-	ac[1].st[0] = 1; ac[1].st[1] = 0;
-
-	ac[2].xyz = centroid + left;
-	ac[2].st[0] = 1; ac[2].st[1] = 1;
-
-	ac[3].xyz = centroid - up;
-	ac[3].st[0] = 0; ac[3].st[1] = 1;
-
-	// setup colors
-	for ( j = 0 ; j < newTri->numVerts ; j++ ) {
-		ac[j].color[0] =
-		ac[j].color[1] =
-		ac[j].color[2] = 255;
-		ac[j].color[3] = 255;
-	}
-
-	// setup indexes
-	static glIndex_t	triIndexes[2*3] = {
-		0,1,2,  0,2,3
-	};
-
-	memcpy( newTri->indexes, triIndexes, sizeof( triIndexes ) );
-
-	R_FinishDeform( surf, newTri, ac );
-}
-*/
-
 static void R_FlareDeform( drawSurf_t *surf ) {
 	const srfTriangles_t *tri;
 	srfTriangles_t		*newTri;
@@ -582,18 +447,11 @@ static void R_FlareDeform( drawSurf_t *surf ) {
 		ac[i].st[0] = 0;
 		ac[i].st[1] = 0.5;
 	}
-#if 1
 	static glIndex_t	triIndexes[18 * 3] = {
 		0, 4, 5,  0, 5, 6, 0, 6, 7, 0, 7, 1, 1, 7, 8, 1, 8, 9,
 		15, 4, 0, 15, 0, 3, 3, 0, 1, 3, 1, 2, 2, 1, 9, 2, 9, 10,
 		14, 15, 3, 14, 3, 13, 13, 3, 2, 13, 2, 12, 12, 2, 11, 11, 2, 10
 	};
-#else
-	newTri->numIndexes = 12;
-	static glIndex_t triIndexes[4 * 3] = {
-		0, 1, 2, 0, 2, 3, 0, 4, 5, 0, 5, 6
-	};
-#endif
 	memcpy( newTri->indexes, triIndexes, sizeof( triIndexes ) );
 	R_FinishDeform( surf, newTri, ac );
 }
@@ -730,15 +588,15 @@ static void AddTriangleToIsland_r( const srfTriangles_t *tri, int triangleNum, b
 		if( usedList[i] ) {
 			continue;
 		}
-		if( tri->indexes[i * 3 + 0] == a
-				|| tri->indexes[i * 3 + 1] == a
-				|| tri->indexes[i * 3 + 2] == a
-				|| tri->indexes[i * 3 + 0] == b
-				|| tri->indexes[i * 3 + 1] == b
-				|| tri->indexes[i * 3 + 2] == b
-				|| tri->indexes[i * 3 + 0] == c
-				|| tri->indexes[i * 3 + 1] == c
-				|| tri->indexes[i * 3 + 2] == c ) {
+		if( tri->indexes[i * 3 + 0] == a || 
+			tri->indexes[i * 3 + 1] == a || 
+			tri->indexes[i * 3 + 2] == a || 
+			tri->indexes[i * 3 + 0] == b || 
+			tri->indexes[i * 3 + 1] == b || 
+			tri->indexes[i * 3 + 2] == b || 
+			tri->indexes[i * 3 + 0] == c || 
+			tri->indexes[i * 3 + 1] == c || 
+			tri->indexes[i * 3 + 2] == c ) {
 			AddTriangleToIsland_r( tri, i, usedList, island );
 		}
 	}
@@ -881,7 +739,7 @@ static void R_ParticleDeform( drawSurf_t *surf, bool useArea ) {
 	}
 #if 0
 	if( renderEntity->shaderParms[SHADERPARM_PARTICLE_STOPTIME] &&
-			viewDef->renderView.time * 0.001 >= renderEntity->shaderParms[SHADERPARM_PARTICLE_STOPTIME] ) {
+		viewDef->renderView.time * 0.001 >= renderEntity->shaderParms[SHADERPARM_PARTICLE_STOPTIME] ) {
 		// the entire system has faded out
 		return NULL;
 	}
@@ -967,7 +825,7 @@ static void R_ParticleDeform( drawSurf_t *surf, bool useArea ) {
 				}
 				int	inCycleTime = particleAge - particleCycle * stage->cycleMsec;
 				if( renderEntity->shaderParms[SHADERPARM_PARTICLE_STOPTIME] &&
-						g.renderView->time - inCycleTime >= renderEntity->shaderParms[SHADERPARM_PARTICLE_STOPTIME] * 1000 ) {
+					g.renderView->time - inCycleTime >= renderEntity->shaderParms[SHADERPARM_PARTICLE_STOPTIME] * 1000 ) {
 					// don't fire any more particles
 					continue;
 				}

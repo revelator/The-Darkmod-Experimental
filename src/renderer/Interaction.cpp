@@ -74,6 +74,7 @@ at the border we throw things out on the border, because if any one
 vertex is clearly inside, the entire triangle will be accepted.
 =====================
 */
+static const double	LIGHT_CLIP_EPSILON = 0.00001f; // double precision
 void R_CalcInteractionCullBits( const idRenderEntityLocal *ent, const srfTriangles_t *tri, const idRenderLightLocal *light, srfCullInfo_t &cullInfo ) {
 	int i, frontBits;
 	if( cullInfo.cullBits != NULL ) {
