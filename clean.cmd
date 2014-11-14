@@ -4,6 +4,7 @@ del *.exe /q
 del *.pdb /q
 del *.exp /q
 del *.lnk /q
+del *.lib /q
 
 del src\*.suo /q
 del src\*.user /q
