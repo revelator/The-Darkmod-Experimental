@@ -32,7 +32,6 @@ typedef struct {
 	char	mapname[256];
 } demoHeader_t;
 
-
 /*
 ==============
 StartWritingDemo
@@ -288,7 +287,6 @@ void	idRenderWorldLocal::WriteVisibleDefs( const viewDef_t *viewDef ) {
 		light->archived = true;
 	}
 }
-
 
 /*
 ================

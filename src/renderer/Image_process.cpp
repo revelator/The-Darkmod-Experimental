@@ -112,7 +112,6 @@ byte *R_Dropsample( const byte *in, int inwidth, int inheight,
 	return out;
 }
 
-
 /*
 ===============
 R_SetBorderTexels
@@ -486,7 +485,6 @@ byte *R_MipMap3D( const byte *in, int width, int height, int depth, bool preserv
 	return out;
 }
 
-
 /*
 ==================
 R_BlendOverTexture
@@ -508,7 +506,6 @@ void R_BlendOverTexture( byte *data, int pixelCount, const byte blend[4] ) {
 		data[2] = ( data[2] * inverseAlpha + premult[2] ) >> 9;
 	}
 }
-
 
 /*
 ==================
@@ -553,4 +550,3 @@ void R_RotatePic( byte *data, int width ) {
 	memcpy( data, temp, width * width * 4 );
 	R_StaticFree( temp );
 }
-

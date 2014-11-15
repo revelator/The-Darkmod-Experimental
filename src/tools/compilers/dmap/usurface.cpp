@@ -24,7 +24,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "dmap.h"
 
-
 #define	 TEXTURE_OFFSET_EQUAL_EPSILON	0.005
 #define	 TEXTURE_VECTOR_EQUAL_EPSILON	0.001
 
@@ -122,7 +121,6 @@ static void TexVecForTri( textureVectors_t *texVec, mapTri_t *tri ) {
 	texVec->v[1].ToVec3() = temp;
 	texVec->v[1][3] = tri->v[0].xyz * texVec->v[0].ToVec3() - tri->v[0].st[1];
 }
-
 
 /*
 =================
@@ -268,7 +266,6 @@ static void ClipSideByTree_r( idWinding *w, side_t *side, node_t *node ) {
 	return;
 }
 
-
 /*
 =====================
 ClipSidesByTree
@@ -311,8 +308,6 @@ void ClipSidesByTree( uEntity_t *e ) {
 	}
 }
 
-
-
 //=================================================================================
 
 /*
@@ -350,8 +345,6 @@ void ClipTriIntoTree_r( idWinding *w, mapTri_t *originalTri, uEntity_t *e, node_
 	delete w;
 	return;
 }
-
-
 
 //=============================================================
 
@@ -400,8 +393,6 @@ static int CheckWindingInAreas_r( const idWinding *w, node_t *node ) {
 	}
 	return node->area;
 }
-
-
 
 /*
 ====================
@@ -776,7 +767,6 @@ static void BuildLightShadows( uEntity_t *e, mapLight_t *light ) {
 	FreeOptimizeGroupList( shadowerGroups );
 }
 
-
 /*
 ====================
 CarveGroupsByLight
@@ -897,6 +887,3 @@ void Prelight( uEntity_t *e ) {
 		common->Printf( "%5.1f seconds for CarveGroupsByLight\n", ( end - start ) / 1000.0 );
 	}
 }
-
-
-

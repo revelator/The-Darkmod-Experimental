@@ -1854,8 +1854,6 @@ void CMainFrame::OnViewMediaBrowser() {
 	g_Inspectors->SetMode( W_MEDIA );
 }
 
-
-
 /*
  =======================================================================================================================
  =======================================================================================================================
@@ -2479,7 +2477,6 @@ LPCSTR String_ToLower( LPCSTR psString ) {
 	return sString[iIndex];
 }
 
-
 bool FindNextBrush( brush_t *pPrevFoundBrush ) {	// can be NULL for fresh search
 	bool bFoundSomething = false;
 	entity_t *pLastFoundEnt;
@@ -2622,7 +2619,6 @@ bool FindNextBrush( brush_t *pPrevFoundBrush ) {	// can be NULL for fresh search
 	}
 	return bFoundSomething;
 }
-
 
 void CMainFrame::OnMiscFindOrReplaceEntity() {
 	CEntKeyFindReplace FindReplace( &strFindKey, &strFindValue, &strReplaceKey, &strReplaceValue, &gbWholeStringMatchOnly, &gbSelectAllMatchingEnts );
@@ -3200,7 +3196,6 @@ void CMainFrame::OnUpdateAutocaulk( CCmdUI *pCmdUI ) {
 	pCmdUI->Enable( selected_brushes.next != &selected_brushes );
 }
 
-
 /*
  =======================================================================================================================
  =======================================================================================================================
@@ -3253,7 +3248,6 @@ void CMainFrame::OnViewCameraupdate() {
 	Select_InitializeRotation();
 	Sys_UpdateWindows( W_CAMERA | W_XY );
 }
-
 
 /*
  =======================================================================================================================
@@ -3440,7 +3434,6 @@ void CMainFrame::OnTogglecamera() {
 		m_pCamWnd->ShowWindow( SW_SHOW );
 	}
 }
-
 
 /*
  =======================================================================================================================
@@ -3719,7 +3712,6 @@ void CMainFrame::OnToggleToolbar() {
 void CMainFrame::OnToggleTextureBar() {
 	ShowControlBar( &m_wndTextureBar, !m_wndTextureBar.IsWindowVisible(), false );
 }
-
 
 /*
  =======================================================================================================================
@@ -4828,9 +4820,6 @@ void CMainFrame::OnSelectBrushesOnly() {
 	g_PrefsDlg.m_selectOnlyBrushes ^= 1;
 	m_wndToolBar.GetToolBarCtrl().CheckButton( ID_SELECT_BRUSHESONLY, ( g_PrefsDlg.m_selectOnlyBrushes ) ? TRUE : FALSE );
 }
-
-
-
 
 /*
  =======================================================================================================================
@@ -6182,7 +6171,6 @@ void CMainFrame::OnSelectionVisibleOff() {
 	Select_ForceVisible( false );
 }
 
-
 void CMainFrame::OnViewRenderselection() {
 	m_pCamWnd->ToggleSelectMode();
 	CheckMenuItem( ::GetMenu( GetSafeHwnd() ), ID_VIEW_RENDERSELECTION, MF_BYCOMMAND | ( m_pCamWnd->GetSelectMode() ) ? MF_CHECKED : MF_UNCHECKED );
@@ -6212,14 +6200,11 @@ void CMainFrame::OnViewShowNoDraw() {
 	Sys_UpdateWindows( W_XY | W_CAMERA );
 }
 
-
-
 void CMainFrame::OnViewRendersound() {
 	m_pCamWnd->ToggleSoundMode();
 	CheckMenuItem( ::GetMenu( GetSafeHwnd() ), ID_VIEW_RENDERSOUND, MF_BYCOMMAND | ( m_pCamWnd->GetSoundMode() ) ? MF_CHECKED : MF_UNCHECKED );
 	Sys_UpdateWindows( W_CAMERA );
 }
-
 
 void CMainFrame::OnSoundShowsoundvolumes() {
 	g_qeglobals.d_savedinfo.showSoundAlways ^= 1;
@@ -6255,7 +6240,6 @@ void CMainFrame::OnNurbEditor() {
 	}
 }
 
-
 void CMainFrame::OnSoundShowselectedsoundvolumes() {
 	g_qeglobals.d_savedinfo.showSoundWhenSelected ^= 1;
 	if( g_qeglobals.d_savedinfo.showSoundWhenSelected ) {
@@ -6269,7 +6253,6 @@ void CMainFrame::OnSoundShowselectedsoundvolumes() {
 void CMainFrame::OnSelectAlltargets() {
 	Select_AllTargets();
 }
-
 
 void CMainFrame::OnSelectCompleteEntity() {
 	brush_t *b = NULL;
@@ -6287,9 +6270,6 @@ void CMainFrame::OnSelectCompleteEntity() {
 	}
 	Sys_UpdateWindows( W_ALL );
 }
-
-
-
 
 //---------------------------------------------------------------------------
 // OnPrecisionCursorCycle
@@ -6343,7 +6323,6 @@ void CMainFrame::OnGenerateMaterialsList() {
 =======================================================================================================================
 =======================================================================================================================
 */
-
 
 void CMainFrame::OnSplinesAddPoints() {
 	g_Inspectors->entityDlg.AddCurvePoints();

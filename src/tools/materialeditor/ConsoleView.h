@@ -26,7 +26,6 @@
 * console commands to the engine.
 */
 class ConsoleView : public CFormView {
-
 public:
 	enum { IDD = IDD_CONSOLE_FORM };
 
@@ -47,7 +46,6 @@ public:
 	void			SetConsoleText( const idStr &text );
 	void			ExecuteCommand( const idStr &cmd = "" );
 
-
 protected:
 	ConsoleView();
 	DECLARE_DYNCREATE( ConsoleView )
@@ -63,6 +61,4 @@ protected:
 
 	//Protected Operations
 	const char		*TranslateString( const char *buf );
-
-
 };

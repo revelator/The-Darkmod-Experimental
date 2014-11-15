@@ -23,7 +23,6 @@
 extern void glBox( idVec4 &color, idVec3 &point, float size );
 extern void glLabeledPoint( idVec4 &color, idVec3 &point, float size, const char *label );
 
-
 class idPointListInterface {
 public:
 	idPointListInterface() {
@@ -56,7 +55,6 @@ public:
 protected:
 	idList<int>			selectedPoints;
 };
-
 
 class idSplineList {
 	friend class		idCamera;
@@ -511,7 +509,6 @@ protected:
 	idStr				paramStr;
 	long				time;
 	bool				triggered;
-
 };
 
 class idCameraDef {

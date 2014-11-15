@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 CLASS_DECLARATION( idPhysics_Base, idPhysics_Parametric )
 END_CLASS
 
-
 /*
 ================
 idPhysics_Parametric::Activate
@@ -452,7 +451,6 @@ void idPhysics_Parametric::	SetLocalAngles( idAngles curAngles ) {
 	Activate();
 }
 
-
 /*
 ================
 idPhysics_Parametric::SetClipModel
@@ -740,7 +738,6 @@ void idPhysics_Parametric::SetLocalOrigin( const idVec3 &newOrigin ) {
 	current.linearInterpolation.SetStartValue( current.localOrigin );
 	Activate();
 }
-
 
 /*
 ================

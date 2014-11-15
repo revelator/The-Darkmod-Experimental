@@ -24,7 +24,6 @@
 #include "../../MultiStateMover.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_CHASE_ENEMY "ChaseEnemy"
 
@@ -62,7 +61,6 @@ public:
 private:
 	CMultiStateMoverPosition *CanFetchElevator( CMultiStateMover *mover, idAI *owner );
 };
-
 } // namespace ai
 
 #endif /* __AI_CHASE_ENEMY_TASK_H__ */

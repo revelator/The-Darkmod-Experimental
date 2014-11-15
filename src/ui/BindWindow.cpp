@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "UserInterfaceLocal.h"
 #include "BindWindow.h"
 
-
 void idBindWindow::CommonInit() {
 	bindName = "";
 	waitingOnKey = false;
@@ -46,7 +45,6 @@ idBindWindow::idBindWindow( idUserInterfaceLocal *g ) : idWindow( g ) {
 
 idBindWindow::~idBindWindow() {
 }
-
 
 const char *idBindWindow::HandleEvent( const sysEvent_t *event, bool *updateVisuals ) {
 	static char ret[ 256 ];

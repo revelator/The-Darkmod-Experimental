@@ -32,7 +32,6 @@
 */
 
 namespace ai {
-
 #define STATE_AGITATED_SEARCHING "AgitatedSearching"
 
 class AgitatedSearchingState :
@@ -57,7 +56,6 @@ protected:
 
 	void DrawWeapon( idAI *owner ); // grayman #3507
 };
-
 } // namespace ai
 
 #endif /* __AI_AGITATED_SEARCHING_STATE_H__ */

@@ -30,7 +30,6 @@
 */
 
 class idPhysics_StaticMulti : public idPhysics {
-
 public:
 	CLASS_PROTOTYPE( idPhysics_StaticMulti );
 

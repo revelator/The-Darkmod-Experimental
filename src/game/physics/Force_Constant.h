@@ -29,13 +29,11 @@
 */
 
 class idForce_Constant : public idForce {
-
 public:
 	CLASS_PROTOTYPE( idForce_Constant );
 
 	idForce_Constant( void );
 	virtual				~idForce_Constant( void );
-
 
 	void				Save( idSaveGame *savefile ) const;
 	void				Restore( idRestoreGame *savefile );

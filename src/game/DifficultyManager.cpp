@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "Objectives/MissionData.h"
 
 namespace difficulty {
-
 // Constructor
 DifficultyManager::DifficultyManager() :
 	_difficulty( 0 ) {
@@ -207,5 +206,4 @@ void DifficultyManager::LoadMapDifficultySettings( idMapEntity *ent ) {
 		_cvarSettings[i].LoadFromMapEntity( ent );
 	}
 }
-
 } // namespace difficulty

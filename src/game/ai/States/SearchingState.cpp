@@ -35,7 +35,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "FleeState.h" // grayman #3317
 
 namespace ai {
-
 // Get the name of this state
 const idStr &SearchingState::GetName() const {
 	static idStr _name( STATE_SEARCHING );
@@ -607,5 +606,4 @@ StateLibrary::Registrar searchingStateRegistrar(
 	STATE_SEARCHING, // Task Name
 	StateLibrary::CreateInstanceFunc( &SearchingState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

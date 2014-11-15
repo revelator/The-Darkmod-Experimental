@@ -34,7 +34,6 @@ class idEntity;
 class idPhysics;
 
 class idForce : public idClass {
-
 public:
 	CLASS_PROTOTYPE( idForce );
 

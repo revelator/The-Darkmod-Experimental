@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 PathShowTask::PathShowTask() :
 	PathTask() {
 }
@@ -69,7 +68,6 @@ bool PathShowTask::Perform( Subsystem &subsystem ) {
 	return false;
 }
 
-
 PathShowTaskPtr PathShowTask::CreateInstance() {
 	return PathShowTaskPtr( new PathShowTask );
 }
@@ -79,5 +77,4 @@ TaskLibrary::Registrar pathShowTaskRegistrar(
 	TASK_PATH_SHOW, // Task Name
 	TaskLibrary::CreateInstanceFunc( &PathShowTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

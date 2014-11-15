@@ -35,7 +35,6 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CDialogThick dialog
 
-
 CDialogThick::CDialogThick( CWnd *pParent /*=NULL*/ )
 	: CDialog( CDialogThick::IDD, pParent ) {
 	//{{AFX_DATA_INIT(CDialogThick)
@@ -44,7 +43,6 @@ CDialogThick::CDialogThick( CWnd *pParent /*=NULL*/ )
 	//}}AFX_DATA_INIT
 }
 
-
 void CDialogThick::DoDataExchange( CDataExchange *pDX ) {
 	CDialog::DoDataExchange( pDX );
 	//{{AFX_DATA_MAP(CDialogThick)
@@ -52,7 +50,6 @@ void CDialogThick::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Text( pDX, IDC_EDIT_AMOUNT, m_nAmount );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CDialogThick, CDialog )
 	//{{AFX_MSG_MAP(CDialogThick)

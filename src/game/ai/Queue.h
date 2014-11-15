@@ -28,7 +28,6 @@
 #include "Library.h"
 
 namespace ai {
-
 /**
  * greebo: Templated queue containing shared ptrs of a certain type (Tasks and States).
  *
@@ -110,7 +109,6 @@ typedef Queue<State> StateQueue;
 
 class Task;
 typedef Queue<Task> TaskQueue;
-
 } // namespace ai
 
 #endif /* !__STATEQUEUE_H__ */

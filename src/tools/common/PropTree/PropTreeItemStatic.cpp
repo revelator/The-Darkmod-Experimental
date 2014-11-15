@@ -26,15 +26,12 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "PropTreeItemStatic.h"
 
-
 CPropTreeItemStatic::CPropTreeItemStatic() :
 	m_sAttribute( _T( "" ) ) {
 }
 
-
 CPropTreeItemStatic::~CPropTreeItemStatic() {
 }
-
 
 void CPropTreeItemStatic::DrawAttribute( CDC *pDC, const RECT &rc ) {
 	ASSERT( m_pProp != NULL );
@@ -45,11 +42,9 @@ void CPropTreeItemStatic::DrawAttribute( CDC *pDC, const RECT &rc ) {
 	pDC->DrawText( m_sAttribute, r, DT_SINGLELINE | DT_VCENTER );
 }
 
-
 LPARAM CPropTreeItemStatic::GetItemValue() {
 	return ( LPARAM )( LPCTSTR )m_sAttribute;
 }
-
 
 void CPropTreeItemStatic::SetItemValue( LPARAM lParam ) {
 	if( lParam == 0L ) {

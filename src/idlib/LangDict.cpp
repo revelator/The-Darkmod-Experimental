@@ -1,27 +1,25 @@
 // vim:ts=4:sw=4:cindent
 /*****************************************************************************
                     The Dark Mod GPL Source Code
- 
- This file is part of the The Dark Mod Source Code, originally based 
+
+ This file is part of the The Dark Mod Source Code, originally based
  on the Doom 3 GPL Source Code as published in 2011.
- 
- The Dark Mod Source Code is free software: you can redistribute it 
- and/or modify it under the terms of the GNU General Public License as 
- published by the Free Software Foundation, either version 3 of the License, 
+
+ The Dark Mod Source Code is free software: you can redistribute it
+ and/or modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation, either version 3 of the License,
  or (at your option) any later version. For details, see LICENSE.TXT.
- 
+
  Project: The Dark Mod (http://www.thedarkmod.com/)
- 
- $Revision$ (Revision of last commit) 
+
+ $Revision$ (Revision of last commit)
  $Date$ (Date of last commit)
  $Author$ (Author of last commit)
- 
+
 ******************************************************************************/
 
 #include "precompiled.h"
 #pragma hdrstop
-
-
 
 /*
 ============
@@ -60,11 +58,10 @@ idLangDict::Load
 ============
 */
 bool idLangDict::Load( const char *fileName, const bool clear /* _D3XP */, const unsigned int remapcount, const char *remap ) {
-	
 	if ( clear ) {
 		Clear();
 	}
-	
+
 	const char *buffer = NULL;
 	idLexer src( LEXFL_NOFATALERRORS | LEXFL_NOSTRINGCONCAT | LEXFL_ALLOWMULTICHARLITERALS | LEXFL_ALLOWBACKSLASHSTRINGCONCAT );
 
@@ -104,7 +101,7 @@ bool idLangDict::Load( const char *fileName, const bool clear /* _D3XP */, const
 	}
 	idLib::common->Printf( "I18N: %i strings read from %s\n", args.Num(), fileName );
 	idLib::fileSystem->FreeFile( (void*)buffer );
-	
+
 	return true;
 }
 
@@ -146,7 +143,6 @@ idLangDict::GetString
 ============
 */
 const char *idLangDict::GetString( const char *str, const bool dowarn ) const {
-
 	if ( str == NULL || str[0] == '\0' ) {
 		return "";
 	}
@@ -175,7 +171,6 @@ idLangDict::AddString
 ============
 */
 const char *idLangDict::AddString( const char *str ) {
-	
 	if ( ExcludeString( str ) ) {
 		return str;
 	}
@@ -266,7 +261,7 @@ bool idLangDict::ExcludeString( const char *str ) const {
 	if ( i == c ) {
 		return true;
 	}
-	
+
 	return false;
 }
 

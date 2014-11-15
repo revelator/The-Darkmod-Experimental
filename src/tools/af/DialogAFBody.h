@@ -21,7 +21,6 @@
 // DialogAFBody dialog
 
 class DialogAFBody : public CDialog {
-
 	DECLARE_DYNAMIC( DialogAFBody )
 
 public:

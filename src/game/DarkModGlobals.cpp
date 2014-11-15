@@ -349,7 +349,6 @@ CLightMaterial *CGlobal::GetMaterial( idStr const &mn ) {
 	return rc;
 }
 
-
 int CGlobal::AddImage( idStr const &Name, bool &Added ) {
 	int rc = -1;
 	Image *im;
@@ -391,7 +390,6 @@ Image *CGlobal::GetImage( idStr const &Name, int &Index ) {
 	return NULL;
 }
 
-
 CLightMaterial::CLightMaterial( idStr const &MaterialName, idStr const &TextureName, idStr const &MapName ) {
 	bool added;
 	m_MaterialName = MaterialName;
@@ -401,7 +399,6 @@ CLightMaterial::CLightMaterial( idStr const &MaterialName, idStr const &TextureN
 	m_FallOffIndex = g_Global.AddImage( TextureName, added );
 	m_MapIndex = g_Global.AddImage( MapName, added );
 }
-
 
 void CLightMaterial::Save( idSaveGame *savefile ) const {
 	savefile->WriteString( m_MaterialName );

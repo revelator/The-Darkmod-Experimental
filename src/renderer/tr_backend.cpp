@@ -59,7 +59,7 @@ void RB_SetDefaultGLState( void ) {
 	glCullFace( GL_FRONT_AND_BACK );
 	glShadeModel( GL_SMOOTH );
 	if( r_useScissor.GetBool() ) {
-		glScissor( 0, 0, glConfig.vidWidth, glConfig.vidHeight );
+		GL_Scissor( 0, 0, glConfig.vidWidth, glConfig.vidHeight );
 	}
 	for( int i = glConfig.maxTextureUnits - 1 ; i >= 0 ; i-- ) {
 		GL_SelectTexture( i );
@@ -149,6 +149,24 @@ void GL_Cull( const int cullType ) {
 		}
 	}
 	backEnd.glState.faceCulling = cullType;
+}
+
+/*
+====================
+GL_Scissor
+====================
+*/
+void GL_Scissor(int x /* left*/, int y /* bottom */, int w, int h) {
+	glScissor(x, y, w, h);
+}
+
+/*
+====================
+GL_Viewport
+====================
+*/
+void GL_Viewport(int x /* left */, int y /* bottom */, int w, int h) {
+	glViewport(x, y, w, h);
 }
 
 /*
@@ -345,6 +363,95 @@ void GL_State( const int stateBits ) {
 /*
 ============================================================================
 
+RENDER BACK END COLOR WRAPPERS
+
+============================================================================
+*/
+
+/*
+====================
+GL_Color
+====================
+*/
+void GL_Color(const idVec3 &color) {
+	GLfloat parm[4];
+	parm[0] = idMath::ClampFloat(0.0f, 1.0f, color[0]);
+	parm[1] = idMath::ClampFloat(0.0f, 1.0f, color[1]);
+	parm[2] = idMath::ClampFloat(0.0f, 1.0f, color[2]);
+	GL_Color(parm[0], parm[1], parm[2]);
+}
+
+/*
+====================
+GL_Color
+====================
+*/
+void GL_Color(const idVec4 &color) {
+	GLfloat parm[4];
+	parm[0] = idMath::ClampFloat(0.0f, 1.0f, color[0]);
+	parm[1] = idMath::ClampFloat(0.0f, 1.0f, color[1]);
+	parm[2] = idMath::ClampFloat(0.0f, 1.0f, color[2]);
+	parm[3] = idMath::ClampFloat(0.0f, 1.0f, color[3]);
+	glColor4f(parm[0], parm[1], parm[2], parm[3]);
+}
+
+/*
+====================
+GL_Color
+====================
+*/
+void GL_Color(float r, float g, float b) {
+	GLfloat parm[3];
+	parm[0] = idMath::ClampFloat(0.0f, 1.0f, r);
+	parm[1] = idMath::ClampFloat(0.0f, 1.0f, g);
+	parm[2] = idMath::ClampFloat(0.0f, 1.0f, b);
+	glColor3f(parm[0], parm[1], parm[2]);
+}
+
+/*
+====================
+GL_Color
+====================
+*/
+void GL_Color(float r, float g, float b, float a) {
+	GLfloat parm[4];
+	parm[0] = idMath::ClampFloat(0.0f, 1.0f, r);
+	parm[1] = idMath::ClampFloat(0.0f, 1.0f, g);
+	parm[2] = idMath::ClampFloat(0.0f, 1.0f, b);
+	parm[3] = idMath::ClampFloat(0.0f, 1.0f, a);
+	glColor4f(parm[0], parm[1], parm[2], parm[3]);
+}
+
+/*
+====================
+GL_Color
+====================
+*/
+void GL_Color(byte r, byte g, byte b) {
+	GLubyte parm[3];
+	parm[0] = idMath::ClampByte(0, 255, r);
+	parm[1] = idMath::ClampByte(0, 255, g);
+	parm[2] = idMath::ClampByte(0, 255, b);
+	glColor3ub(parm[0], parm[1], parm[2]);
+}
+
+/*
+====================
+GL_Color
+====================
+*/
+void GL_Color(byte r, byte g, byte b, byte a) {
+	GLubyte parm[4];
+	parm[0] = idMath::ClampByte(0, 255, r);
+	parm[1] = idMath::ClampByte(0, 255, g);
+	parm[2] = idMath::ClampByte(0, 255, b);
+	parm[3] = idMath::ClampByte(0, 255, a);
+	glColor4ub(parm[0], parm[1], parm[2], parm[3]);
+}
+
+/*
+============================================================================
+
 RENDER BACK END THREAD FUNCTIONS
 
 ============================================================================
@@ -361,7 +468,7 @@ void RB_SetGL2D( void ) {
 	// set 2D virtual screen size
 	glViewport( 0, 0, glConfig.vidWidth, glConfig.vidHeight );
 	if( r_useScissor.GetBool() ) {
-		glScissor( 0, 0, glConfig.vidWidth, glConfig.vidHeight );
+		GL_Scissor( 0, 0, glConfig.vidWidth, glConfig.vidHeight );
 	}
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity();

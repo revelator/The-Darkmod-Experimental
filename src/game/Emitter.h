@@ -101,6 +101,4 @@ private:
 	void				Event_Splat();
 };
 
-
 #endif /* !__GAME_TDM_EMITTER_H__ */
-

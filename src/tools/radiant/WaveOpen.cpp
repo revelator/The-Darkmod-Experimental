@@ -45,13 +45,11 @@ CWaveOpen::CWaveOpen( BOOL bOpenFileDialog, LPCTSTR lpszDefExt, LPCTSTR lpszFile
 	m_ofn.lpTemplateName = MAKEINTRESOURCE( IDD_PLAYWAVE );
 }
 
-
 BEGIN_MESSAGE_MAP( CWaveOpen, CFileDialog )
 	//{{AFX_MSG_MAP(CWaveOpen)
 	ON_BN_CLICKED( IDC_BTN_PLAY, OnBtnPlay )
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
 
 void CWaveOpen::OnFileNameChange() {
 	CString str = GetPathName();

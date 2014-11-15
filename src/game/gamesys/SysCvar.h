@@ -140,7 +140,6 @@ extern idCVar cv_pm_push_accel_time;
 extern idCVar cv_pm_push_heavy_threshold;
 extern idCVar cv_pm_push_max_mass;
 
-
 /**
 * TDM CVARs for controlling jumping
 */
@@ -192,7 +191,6 @@ extern idCVar cv_savegame_compress;
 extern idCVar cv_tdm_crouch_toggle;
 extern idCVar cv_tdm_crouch_toggle_hold_time;
 extern idCVar cv_tdm_reattach_delay;
-
 
 /**
 * TDM Leaning vars:
@@ -481,8 +479,6 @@ extern idCVar	g_vehicleTireFriction;
 
 extern idCVar	g_enablePortalSky;
 
-
-
 extern idCVar	ik_enable;
 extern idCVar	ik_debug;
 
@@ -621,9 +617,7 @@ extern idCVar	net_clientLagOMeter;
 
 extern const char *si_gameTypeArgs[];
 
-
 extern const char *ui_skinArgs[];
-
 
 #ifdef MOD_WATERPHYSICS
 
@@ -649,7 +643,6 @@ extern idCVar r_postprocess_debugMode;
 extern idCVar r_postprocess_bloomKernelSize;
 extern idCVar r_postprocess_bloomIntensity;
 extern idCVar r_postprocess_desaturation;
-
 
 // sikk---> PostProcess Effects
 extern idCVar	r_useSoftShadows;

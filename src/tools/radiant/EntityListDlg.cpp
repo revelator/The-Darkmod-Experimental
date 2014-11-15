@@ -50,7 +50,6 @@ CEntityListDlg::CEntityListDlg( CWnd *pParent /*=NULL*/ )
 	//}}AFX_DATA_INIT
 }
 
-
 void CEntityListDlg::DoDataExchange( CDataExchange *pDX ) {
 	CDialog::DoDataExchange( pDX );
 	//{{AFX_DATA_MAP(CEntityListDlg)

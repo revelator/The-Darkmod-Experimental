@@ -40,7 +40,6 @@ EVENT( EV_Activate,	   	idEntityFx::Event_Trigger )
 EVENT( EV_Fx_KillFx,	idEntityFx::Event_ClearFx )
 END_CLASS
 
-
 /*
 ================
 idEntityFx::Save
@@ -258,7 +257,6 @@ const int idEntityFx::Duration( void ) {
 	}
 	return max;
 }
-
 
 /*
 ================
@@ -625,7 +623,6 @@ void idEntityFx::Event_Trigger( idEntity *activator ) {
 	}
 	PostEventSec( &EV_Fx_Action, fxActionDelay, activator );
 }
-
 
 /*
 ================

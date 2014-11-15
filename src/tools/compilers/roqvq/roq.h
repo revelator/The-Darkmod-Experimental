@@ -54,7 +54,6 @@ private:
 	int					width;
 	int					height;
 	ID_TIME_T				timestamp;
-
 };
 
 class roq {
@@ -118,7 +117,6 @@ private:
 	int					previousSize;
 	byte 				codes[4096];
 	bool				dataStuff;
-
 };
 
 extern roq *theRoQ;				// current roq

@@ -57,7 +57,6 @@ typedef struct bitrate_manager_state {
 	/* unfortunately, we need to hold queued packet data somewhere */
 	oggpack_buffer *packetbuffers;
 	ogg_packet     *packets;
-
 } bitrate_manager_state;
 
 typedef struct bitrate_manager_info {
@@ -72,7 +71,6 @@ typedef struct bitrate_manager_info {
 
 	double avgfloat_downslew_max;
 	double avgfloat_upslew_max;
-
 } bitrate_manager_info;
 
 extern void vorbis_bitrate_init( vorbis_info *vi, bitrate_manager_state *bs );

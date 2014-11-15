@@ -68,7 +68,6 @@ const float	HUGE_DISTANCE = 100000;
 // the dec offsetof macro doesn't work very well...
 #define myoffsetof(type,identifier) ((size_t)&((type *)0)->identifier)
 
-
 void	Error( char *error, ... );
 void	Warning( char *error, ... );
 
@@ -195,7 +194,6 @@ typedef struct {
 	idSoundWorld	*sw;
 } QEGlobals_t;
 
-
 void Pointfile_Delete( void );
 void WINAPI Pointfile_Check( void );
 void Pointfile_Next( void );
@@ -239,7 +237,6 @@ extern	HANDLE	bsp_process;
 extern HANDLE g_hBSPOutput;
 extern HANDLE g_hBSPInput;
 
-
 char	*TranslateString( char *buf );
 
 void ProjectDialog( void );
@@ -254,12 +251,10 @@ BOOL CALLBACK Win_Dialog(
 	LPARAM lParam 	// second message parameter
 );
 
-
 //
 // win_cam.c
 //
 void WCam_Create( HINSTANCE hInstance );
-
 
 //
 // win_xy.c
@@ -275,7 +270,6 @@ void WZ_Create( HINSTANCE hInstance );
 // win_ent.c
 //
 
-
 //
 // win_main.c
 //
@@ -285,8 +279,6 @@ extern bool LoadWindowState( HWND hWnd, const char *pszName );
 
 extern bool SaveRegistryInfo( const char *pszName, void *pvBuf, long lSize );
 extern bool LoadRegistryInfo( const char *pszName, void *pvBuf, long *plSize );
-
-
 
 // win_dlg.c
 
@@ -309,7 +301,6 @@ bool	QE_KeyDown( int key, int nFlags = 0 );
 bool	QE_LoadProject( char *projectfile );
 bool	QE_SingleBrush( bool bQuiet = false, bool entityOK = false );
 
-
 // sys stuff
 void Sys_MarkMapModified( void );
 
@@ -326,7 +317,6 @@ extern int mapModified;		// for quit confirmation (0 = clean, 1 = unsaved,
 
 //++timo clean (moved into qertypes.h)
 //enum VIEWTYPE {YZ, XZ, XY};
-
 
 extern bool g_bAxialMode;
 extern int g_axialAnchor;
@@ -369,7 +359,6 @@ void BPMatRotate( float A[2][3], float theta );
 void BPMatDump( float A[2][3] );
 #endif
 
-
 //
 // eclass.cpp
 //
@@ -400,7 +389,6 @@ extern idCVar radiant_entityMode;
 #define QR_QE4 1
 #define QR_4WAY 2
 #define QR_SPLITZ 3
-
 
 // externs
 extern void AddSlash( CString & );

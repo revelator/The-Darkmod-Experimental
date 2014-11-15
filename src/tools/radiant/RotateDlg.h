@@ -44,7 +44,6 @@ public:
 	CString	m_strZ;
 	//}}AFX_DATA
 
-
 	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CRotateDlg)

@@ -62,9 +62,7 @@ extern "C" {
 		va_end( argptr );
 		common->Printf( "%s", msg );
 	}
-
 }
-
 
 /*
 ================
@@ -97,7 +95,6 @@ void R_WriteTGA( const char *filename, const byte *data, int width, int height, 
 	fileSystem->WriteFile( filename, buffer, bufferSize );
 	Mem_Free( buffer );
 }
-
 
 /*
 ================
@@ -139,11 +136,9 @@ void R_WritePalTGA( const char *filename, const byte *data, const byte *palette,
 	Mem_Free( buffer );
 }
 
-
 static void LoadBMP( const char *name, byte **pic, int *width, int *height, ID_TIME_T *timestamp );
 static void LoadTGA( const char *name, byte **pic, int *width, int *height, ID_TIME_T *timestamp );
 static void LoadJPG( const char *name, byte **pic, int *width, int *height, ID_TIME_T *timestamp );
-
 
 /*
 ========================================================================
@@ -169,7 +164,6 @@ typedef struct {
 	unsigned char	data;			// unbounded
 } pcx_t;
 
-
 /*
 ========================================================================
 
@@ -185,8 +179,6 @@ typedef struct _TargaHeader {
 	unsigned short	x_origin, y_origin, width, height;
 	unsigned char	pixel_size, attributes;
 } TargaHeader;
-
-
 
 /*
 =========================================================
@@ -351,7 +343,6 @@ static void LoadBMP( const char *name, byte **pic, int *width, int *height, ID_T
 	fileSystem->FreeFile( buffer );
 }
 
-
 /*
 =================================================================
 
@@ -359,7 +350,6 @@ PCX LOADING
 
 =================================================================
 */
-
 
 /*
 ==============
@@ -439,7 +429,6 @@ static void LoadPCX( const char *filename, byte **pic, byte **palette, int *widt
 	}
 	fileSystem->FreeFile( pcx );
 }
-
 
 /*
 ==============
@@ -734,7 +723,6 @@ static void jpeg_mem_src( j_decompress_ptr cinfo, void *buffer, long nbytes ) {
 	src->next_input_byte = ( JOCTET * )buffer;
 }
 
-
 #endif
 
 /*
@@ -981,7 +969,6 @@ void R_LoadImage( const char *cname, byte **pic, int *width, int *height, ID_TIM
 		}
 	}
 }
-
 
 /*
 =======================

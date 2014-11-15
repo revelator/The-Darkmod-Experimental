@@ -28,7 +28,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "DialogAFConstraint.h"
 #include "DialogAFConstraintSlider.h"
 
-
 // DialogAFConstraintSlider dialog
 
 toolTip_t DialogAFConstraintSlider::toolTips[] = {
@@ -196,7 +195,6 @@ int DialogAFConstraintSlider::OnToolHitTest( CPoint point, TOOLINFO *pTI ) const
 	return DefaultOnToolHitTest( toolTips, this, point, pTI );
 }
 
-
 BEGIN_MESSAGE_MAP( DialogAFConstraintSlider, CDialog )
 	ON_NOTIFY_EX_RANGE( TTN_NEEDTEXTW, 0, 0xFFFF, OnToolTipNotify )
 	ON_NOTIFY_EX_RANGE( TTN_NEEDTEXTA, 0, 0xFFFF, OnToolTipNotify )
@@ -209,7 +207,6 @@ BEGIN_MESSAGE_MAP( DialogAFConstraintSlider, CDialog )
 	ON_EN_CHANGE( IDC_EDIT_SLIDER_AXIS_YAW, OnEnChangeEditSliderAxisYaw )
 	ON_NOTIFY( UDN_DELTAPOS, IDC_SPIN_SLIDER_AXIS_YAW, OnDeltaposSpinSliderAxisYaw )
 END_MESSAGE_MAP()
-
 
 // DialogAFConstraintSlider message handlers
 

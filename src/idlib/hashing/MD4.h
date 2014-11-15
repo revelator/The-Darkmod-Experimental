@@ -22,14 +22,13 @@
  *
  * See md4.c for more information.
  */
- 
+
 #ifndef __MD4_H__
 #define __MD4_H__
 
- 
 /* Any 32-bit or wider unsigned integer data type will do */
 typedef unsigned int MD4_u32plus;
- 
+
 typedef struct {
 	MD4_u32plus lo, hi;
 	MD4_u32plus a, b, c, d;

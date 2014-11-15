@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 const float WANDER_RADIUS = 400;
 
 WanderInLocationTask::WanderInLocationTask() :
@@ -121,5 +120,4 @@ TaskLibrary::Registrar wanderInLocationTaskRegistrar(
 	TASK_WANDER_IN_LOCATION, // Task Name
 	TaskLibrary::CreateInstanceFunc( &WanderInLocationTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

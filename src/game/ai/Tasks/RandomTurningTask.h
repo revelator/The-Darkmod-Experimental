@@ -23,7 +23,6 @@
 #include "Task.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_RANDOM_TURNING "RandomTurning"
 
@@ -56,7 +55,6 @@ public:
 
 	// Class-specific methods
 };
-
 } // namespace ai
 
 #endif /* __AI_RANDOM_TURNING_TASK_H__ */

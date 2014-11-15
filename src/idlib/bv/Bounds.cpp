@@ -1,26 +1,24 @@
 /*****************************************************************************
                     The Dark Mod GPL Source Code
- 
- This file is part of the The Dark Mod Source Code, originally based 
+
+ This file is part of the The Dark Mod Source Code, originally based
  on the Doom 3 GPL Source Code as published in 2011.
- 
- The Dark Mod Source Code is free software: you can redistribute it 
- and/or modify it under the terms of the GNU General Public License as 
- published by the Free Software Foundation, either version 3 of the License, 
+
+ The Dark Mod Source Code is free software: you can redistribute it
+ and/or modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation, either version 3 of the License,
  or (at your option) any later version. For details, see LICENSE.TXT.
- 
+
  Project: The Dark Mod (http://www.thedarkmod.com/)
- 
- $Revision$ (Revision of last commit) 
+
+ $Revision$ (Revision of last commit)
  $Date$ (Date of last commit)
  $Author$ (Author of last commit)
- 
+
 ******************************************************************************/
 
 #include "precompiled.h"
 #pragma hdrstop
-
-
 
 idBounds bounds_zero( vec3_zero, vec3_zero );
 
@@ -360,7 +358,6 @@ void idBounds::FromPointRotation( const idVec3 &point, const idRotation &rotatio
 		(*this) = BoundsForPointRotation( point, rotation );
 	}
 	else {
-
 		radius = ( point - rotation.GetOrigin() ).Length();
 
 		// FIXME: these bounds are usually way larger
@@ -383,7 +380,6 @@ void idBounds::FromBoundsRotation( const idBounds &bounds, const idVec3 &origin,
 	idBounds rBounds;
 
 	if ( idMath::Fabs( rotation.GetAngle() ) < 180.0f ) {
-
 		(*this) = BoundsForPointRotation( bounds[0] * axis + origin, rotation );
 		for ( i = 1; i < 8; i++ ) {
 			point[0] = bounds[(i^(i>>1))&1][0];
@@ -393,7 +389,6 @@ void idBounds::FromBoundsRotation( const idBounds &bounds, const idVec3 &origin,
 		}
 	}
 	else {
-
 		point = (bounds[1] - bounds[0]) * 0.5f;
 		radius = (bounds[1] - point).Length() + (point - rotation.GetOrigin()).Length();
 
@@ -424,4 +419,3 @@ idBounds::ToString
 const char * idBounds::ToString( const int precision ) const {
 	return idStr( b[0].ToString( precision ) ) + " -> " + idStr( b[1].ToString( precision ) );
 }
-

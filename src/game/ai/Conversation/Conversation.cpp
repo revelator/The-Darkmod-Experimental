@@ -28,7 +28,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Memory.h"
 
 namespace ai {
-
 const int MAX_ALERT_LEVEL_TO_START_CONVERSATION = ESuspicious; // grayman #3449 - was '1'
 
 Conversation::Conversation() :
@@ -404,5 +403,4 @@ void Conversation::InitFromSpawnArgs( const idDict &dict, int index ) {
 	// Seems like we have everything we need
 	_isValid = true;
 }
-
 } // namespace ai

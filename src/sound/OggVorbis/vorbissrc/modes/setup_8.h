@@ -143,4 +143,3 @@ ve_setup_data_template ve_setup_8_uncoupled = {
 
 	_mapres_template_8_uncoupled
 };
-

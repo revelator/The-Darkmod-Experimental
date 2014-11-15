@@ -1768,7 +1768,6 @@ void Select_SetDefaultTexture( const idMaterial *mat, bool fitScale, bool setTex
 	g_pParentWnd->SetStatusText( 3, strTex );
 }
 
-
 void Select_UpdateTextureName( const char *name ) {
 	brush_t *b;
 	int		nCount = g_ptrSelectedFaces.GetSize();
@@ -1805,7 +1804,6 @@ void Select_UpdateTextureName( const char *name ) {
 	Sys_UpdateWindows( W_ALL );
 }
 
-
 /*
  =======================================================================================================================
  =======================================================================================================================
@@ -1830,9 +1828,6 @@ void Select_FlipTexture( bool y ) {
 	Undo_End();
 	Sys_UpdateWindows( W_CAMERA );
 }
-
-
-
 
 /*
  =======================================================================================================================
@@ -1866,7 +1861,6 @@ void Select_CopyPatchTextureCoords( patchMesh_t *p ) {
 		}
 	}
 }
-
 
 /*
  =======================================================================================================================
@@ -1903,7 +1897,6 @@ void Select_SetPatchFit( float dim1, float dim2, float srcWidth, float srcHeight
 
 void Select_SetPatchST( float s1, float t1, float s2, float t2 ) {
 }
-
 
 void Select_AllTargets() {
 	for( brush_t *b = selected_brushes.next; b && b != &selected_brushes; b = b->next ) {

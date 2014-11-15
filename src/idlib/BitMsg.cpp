@@ -1,25 +1,24 @@
 /*****************************************************************************
                     The Dark Mod GPL Source Code
- 
- This file is part of the The Dark Mod Source Code, originally based 
+
+ This file is part of the The Dark Mod Source Code, originally based
  on the Doom 3 GPL Source Code as published in 2011.
- 
- The Dark Mod Source Code is free software: you can redistribute it 
- and/or modify it under the terms of the GNU General Public License as 
- published by the Free Software Foundation, either version 3 of the License, 
+
+ The Dark Mod Source Code is free software: you can redistribute it
+ and/or modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation, either version 3 of the License,
  or (at your option) any later version. For details, see LICENSE.TXT.
- 
+
  Project: The Dark Mod (http://www.thedarkmod.com/)
- 
- $Revision$ (Revision of last commit) 
+
+ $Revision$ (Revision of last commit)
  $Date$ (Date of last commit)
  $Author$ (Author of last commit)
- 
+
 ******************************************************************************/
 
 #include "precompiled.h"
 #pragma hdrstop
-
 
 /*
 ==============================================================================
@@ -302,7 +301,6 @@ bool idBitMsg::WriteDeltaDict( const idDict &dict, const idDict *base ) {
 	bool changed = false;
 
 	if ( base != NULL ) {
-
 		for ( i = 0; i < dict.GetNumKeyVals(); i++ ) {
 			kv = dict.GetKeyVal( i );
 			basekv = base->FindKey( kv->GetKey() );
@@ -325,9 +323,7 @@ bool idBitMsg::WriteDeltaDict( const idDict &dict, const idDict *base ) {
 		}
 
 		WriteString( "" );
-
 	} else {
-
 		for ( i = 0; i < dict.GetNumKeyVals(); i++ ) {
 			kv = dict.GetKeyVal( i );
 			WriteString( kv->GetKey() );
@@ -337,7 +333,6 @@ bool idBitMsg::WriteDeltaDict( const idDict &dict, const idDict *base ) {
 		WriteString( "" );
 
 		WriteString( "" );
-
 	}
 
 	return changed;
@@ -414,7 +409,7 @@ idBitMsg::ReadString
 */
 int idBitMsg::ReadString( char *buffer, int bufferSize ) const {
 	int	l, c;
-	
+
 	ReadByteAlign();
 	l = 0;
 	while( 1 ) {
@@ -435,7 +430,7 @@ int idBitMsg::ReadString( char *buffer, int bufferSize ) const {
 			l++;
 		}
 	}
-	
+
 	buffer[l] = 0;
 	return l;
 }
@@ -473,7 +468,7 @@ idBitMsg::ReadNetadr
 */
 void idBitMsg::ReadNetadr( netadr_t *adr ) const {
 	int i;
- 
+
 	adr->type = NA_IP;
 	for ( i = 0; i < 4; i++ ) {
 		adr->ip[ i ] = ReadByte();
@@ -619,7 +614,6 @@ idVec3 idBitMsg::BitsToDir( int bits, int numBits ) {
 	dir.NormalizeFast();
 	return dir;
 }
-
 
 /*
 ==============================================================================

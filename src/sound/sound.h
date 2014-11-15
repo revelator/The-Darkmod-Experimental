@@ -57,7 +57,6 @@ typedef struct {
 	int						soundClass;				// for global fading of sounds
 } soundShaderParms_t;
 
-
 const int		SOUND_MAX_LIST_WAVS		= 32;
 
 // sound classes are used to fade most sounds down inside cinematics, leaving dialog
@@ -136,7 +135,6 @@ static const int SCHANNEL_ANY = 0;	// used in queries and commands to effect eve
 // startSound to have it not override any other channel
 static const int SCHANNEL_ONE = 1;	// any following integer can be used as a channel number
 typedef int s_channelType;	// the game uses its own series of enums, and we don't want to require casts
-
 
 class idSoundEmitter {
 public:
@@ -248,7 +246,6 @@ public:
 	virtual void			SetEnviroSuit( bool active ) = 0;
 };
 
-
 /*
 ===============================================================================
 
@@ -269,7 +266,6 @@ typedef struct {
 	int						start44kHzTime;
 	int						current44kHzTime;
 } soundDecoderInfo_t;
-
 
 class idSoundSystem {
 public:

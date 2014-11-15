@@ -381,7 +381,6 @@ void idWindow::MouseExit() {
 	RunScript( ON_MOUSEEXIT );
 }
 
-
 /*
 ================
 idWindow::RouteMouseCoords
@@ -1364,7 +1363,6 @@ void idWindow::ClearFlag( unsigned int f ) {
 	flags &= ~f;
 }
 
-
 /*
 ================
 idWindow::SetParent
@@ -1397,7 +1395,6 @@ idWindow *idWindow::GetFocusedChild() {
 	}
 	return NULL;
 }
-
 
 /*
 ================
@@ -2353,7 +2350,6 @@ void idWindow::AddTransition( idWinVar *dest, idVec4 from, idVec4 to, int time, 
 	transitions.Append( data );
 }
 
-
 /*
 ================
 idWindow::StartTransition
@@ -2398,7 +2394,6 @@ void idWindow::ResetTime( int t ) {
 		}
 	}
 }
-
 
 /*
 ================
@@ -2544,7 +2539,6 @@ int idWindow::ParseEmitOp( idParser *src, int a, wexpOpType_t opType, int priori
 	int b = ParseExpressionPriority( src, priority );
 	return EmitOp( a, b, opType, opp );
 }
-
 
 /*
 ================
@@ -3403,7 +3397,6 @@ int idWindow::NumTransitions() {
 	return c;
 }
 
-
 /*
 ===============
 idWindow::FixupTransitions
@@ -3460,7 +3453,6 @@ void idWindow::FixupTransitions() {
 		children[c]->FixupTransitions();
 	}
 }
-
 
 /*
 ===============
@@ -3598,7 +3590,6 @@ void idWindow::SetChildWinVarVal( const char *name, const char *var, const char 
 		wv->SetEval( false );
 	}
 }
-
 
 /*
 ================

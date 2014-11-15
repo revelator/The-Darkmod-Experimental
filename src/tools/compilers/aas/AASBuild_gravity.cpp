@@ -24,7 +24,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "AASBuild_local.h"
 
-
 /*
 ============
 idAASBuild::SetPortalFlags_r

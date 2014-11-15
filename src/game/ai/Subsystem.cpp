@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "States/State.h"
 
 namespace ai {
-
 Subsystem::Subsystem( SubsystemId subsystemId, idAI *owner ) :
 	_id( subsystemId ),
 	_initTask( false ),
@@ -213,5 +212,4 @@ void Subsystem::Restore( idRestoreGame *savefile ) {
 	_taskQueue.Restore( savefile );
 	_recycleBin.Restore( savefile );
 }
-
 } // namespace ai

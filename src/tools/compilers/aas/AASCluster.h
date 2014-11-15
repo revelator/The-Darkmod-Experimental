@@ -29,7 +29,6 @@
 */
 
 class idAASCluster {
-
 public:
 	bool					Build( idAASFileLocal *file );
 	bool					BuildSingleCluster( idAASFileLocal *file );

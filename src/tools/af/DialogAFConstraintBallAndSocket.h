@@ -21,7 +21,6 @@
 // DialogAFConstraintBallAndSocket dialog
 
 class DialogAFConstraintBallAndSocket : public CDialog {
-
 	DECLARE_DYNAMIC( DialogAFConstraintBallAndSocket )
 
 public:

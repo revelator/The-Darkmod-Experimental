@@ -23,7 +23,6 @@
 #include "Task.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_IDLE_ANIMATION "IdleAnimation"
 
@@ -82,7 +81,6 @@ protected:
 	// Returns true if the named anim is ok at this point
 	virtual bool AnimIsApplicable( idAI *owner, const idStr &animName );
 };
-
 } // namespace ai
 
 #endif /* __AI_IDLE_ANIMATION_TASK_H__ */

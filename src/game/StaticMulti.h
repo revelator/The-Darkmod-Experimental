@@ -132,4 +132,3 @@ private:
 };
 
 #endif /* !__DARKMOD_STATICMULTI_H__ */
-

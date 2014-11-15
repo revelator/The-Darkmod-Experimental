@@ -57,7 +57,6 @@ EVENT( EV_RespawnItem,		idItem::Event_Respawn )
 EVENT( EV_RespawnFx,		idItem::Event_RespawnFx )
 END_CLASS
 
-
 /*
 ================
 idItem::idItem
@@ -184,8 +183,6 @@ bool idItem::UpdateRenderEntity( renderEntity_s *renderEntity, const renderView_
 	// update every single time this is in view
 	return bRc;
 }
-
-
 
 /*
 ================
@@ -339,7 +336,6 @@ bool idItem::GiveToPlayer( idPlayer *player ) {
 	return false;//player->GiveItem( this );
 }
 
-
 /*
 ================
 TDM: Darkmod spawns an absence marker entity
@@ -386,7 +382,6 @@ bool idItem::spawnAbsenceMarkerEntity()
 
 	// Success
 	return true;
-
 }
 */
 /*
@@ -998,4 +993,3 @@ void idMoveableItem::Show( void ) {
 	physicsObj.SetContents( m_preHideContents );
 	trigger->SetContents( CONTENTS_FROBABLE );
 }
-

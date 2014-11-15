@@ -61,7 +61,6 @@ public:
 	};
 	void	SetCheckState( BOOL state );
 
-
 protected:
 	BOOL checkState;
 	CRect checkRect;

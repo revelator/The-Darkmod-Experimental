@@ -23,7 +23,6 @@
 #include "Task.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_RANDOM_HEADTURN "RandomHeadturn"
 
@@ -52,7 +51,6 @@ private:
 	void PerformHeadTurnCheck();
 	void SetNextHeadTurnCheckTime();
 };
-
 } // namespace ai
 
 #endif /* __AI_RANDOM_HEADTURN_TASK_H__ */

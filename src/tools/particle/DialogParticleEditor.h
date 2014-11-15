@@ -43,7 +43,6 @@ private:
 // CDialogParticleEditor dialog
 
 class CDialogParticleEditor : public CDialog {
-
 	DECLARE_DYNAMIC( CDialogParticleEditor )
 
 public:

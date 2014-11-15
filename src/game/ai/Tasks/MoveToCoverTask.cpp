@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 // Get the name of this task
 const idStr &MoveToCoverTask::GetName() const {
 	static idStr _name( TASK_MOVE_TO_COVER );
@@ -75,5 +74,4 @@ TaskLibrary::Registrar moveToCoverTaskRegistrar(
 	TASK_MOVE_TO_COVER, // Task Name
 	TaskLibrary::CreateInstanceFunc( &MoveToCoverTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

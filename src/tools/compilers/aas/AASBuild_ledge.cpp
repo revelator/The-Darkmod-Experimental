@@ -180,7 +180,6 @@ bool idLedge::PointBetweenBounds( const idVec3 &v ) const {
 	return ( planes[2].Distance( v ) < LEDGE_EPSILON ) && ( planes[3].Distance( v ) < LEDGE_EPSILON );
 }
 
-
 //===============================================================
 //
 //	idAASBuild

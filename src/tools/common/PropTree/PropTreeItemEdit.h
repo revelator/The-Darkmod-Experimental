@@ -56,7 +56,6 @@ public:
 	// Called to activate the item
 	virtual void OnActivate( int activateType, CPoint point );
 
-
 	enum ValueFormat {
 		ValueFormatText,
 		ValueFormatNumber,

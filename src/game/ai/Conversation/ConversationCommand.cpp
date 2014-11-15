@@ -28,7 +28,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../States/ConversationState.h"
 
 namespace ai {
-
 // These are the various command type strings, needed for parsing
 const char *const ConversationCommand::TypeNames[ConversationCommand::ENumCommands] = {
 	"WaitSeconds",
@@ -173,5 +172,4 @@ ConversationCommand::Type ConversationCommand::GetType( const idStr &cmdString )
 	}
 	return ENumCommands;
 }
-
 } // namespace ai

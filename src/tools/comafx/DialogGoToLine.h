@@ -23,7 +23,6 @@
 // DialogGoToLine dialog
 
 class DialogGoToLine : public CDialog {
-
 	DECLARE_DYNAMIC( DialogGoToLine )
 
 public:

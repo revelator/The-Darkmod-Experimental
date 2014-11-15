@@ -52,4 +52,3 @@ bool rvGEDeleteModifier::Undo( void ) {
 	mWrapper->SetDeleted( false );
 	return true;
 }
-

@@ -584,4 +584,3 @@ void idUserInterfaceLocal::SetCursor( float x, float y ) {
 	cursorX = x;
 	cursorY = y;
 }
-

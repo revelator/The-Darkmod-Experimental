@@ -53,4 +53,3 @@ void Undo_SetMaxMemorySize( int size );
 int  Undo_GetMaxMemorySize( void );
 //returns the amount of memory used by undo
 int  Undo_MemorySize( void );
-

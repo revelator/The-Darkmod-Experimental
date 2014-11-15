@@ -45,7 +45,6 @@ CPropertyList::CPropertyList() {
 CPropertyList::~CPropertyList() {
 }
 
-
 BEGIN_MESSAGE_MAP( CPropertyList, CListBox )
 	//{{AFX_MSG_MAP(CPropertyList)
 	ON_WM_CREATE()
@@ -93,7 +92,6 @@ void CPropertyList::MeasureItem( LPMEASUREITEMSTRUCT lpMeasureItemStruct ) {
 		lpMeasureItemStruct->itemHeight = 20; //pixels
 	}
 }
-
 
 void CPropertyList::DrawItem( LPDRAWITEMSTRUCT lpDIS ) {
 	CDC dc;
@@ -469,7 +467,6 @@ void CPropertyList::PreSubclassWindow() {
 	m_SSerif8Font.CreatePointFont( 80, _T( "MS Sans Serif" ) );
 }
 
-
 void CPropertyList::OnVScroll( UINT nSBCode, UINT nPos, CScrollBar *pScrollBar ) {
 	if( m_cmbBox ) {
 		m_cmbBox.ShowWindow( SW_HIDE );
@@ -483,4 +480,3 @@ void CPropertyList::OnVScroll( UINT nSBCode, UINT nPos, CScrollBar *pScrollBar )
 	Invalidate();
 	CListBox::OnVScroll( nSBCode, nPos, pScrollBar );
 }
-

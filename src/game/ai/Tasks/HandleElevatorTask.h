@@ -25,7 +25,6 @@
 #include "../../BinaryFrobMover.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_HANDLE_ELEVATOR "HandleElevator"
 
@@ -103,9 +102,7 @@ private:
 
 	// Lets the Ai move to the button
 	bool MoveToButton( idAI *owner, CMultiStateMoverButton *button );
-
 };
-
 } // namespace ai
 
 #endif /* __AI_HANDLE_ELEVATOR_TASK_H__ */

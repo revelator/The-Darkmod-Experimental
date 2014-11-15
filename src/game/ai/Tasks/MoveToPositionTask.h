@@ -23,7 +23,6 @@
 #include "Task.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_MOVE_TO_POSITION "MoveToPosition"
 
@@ -87,7 +86,6 @@ private:
 	// Refines the goal position, if appropriate
 	void UpdateTargetPosition( idAI *owner );
 };
-
 } // namespace ai
 
 #endif /* __AI_MOVE_TO_POSITION_H__ */

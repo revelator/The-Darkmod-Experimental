@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "TimerManager.h"
 
 namespace debugtools {
-
 void TimerManager::Save( idSaveGame *savefile ) const {
 	int num = _timers.size();
 	savefile->WriteInt( num );
@@ -67,7 +66,6 @@ void TimerManager::Restore( idRestoreGame *savefile ) {
 		_timers.insert( TimerMap::value_type( timerId, info ) );
 	}
 }
-
 
 int	TimerManager::CreateTimer( const idStr &entityname, const idStr &name ) {
 	int timerId = _timers.size() + 1;
@@ -173,7 +171,6 @@ TimerManager &TimerManager::Instance() {
 	static TimerManager _manager;
 	return _manager;
 }
-
 } // namespace debugtools
 
 #endif /* ifdef TIMING_BUILD */

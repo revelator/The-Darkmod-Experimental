@@ -80,7 +80,6 @@ private:
 	void				TeleportPlayer( idPlayer *player );
 };
 
-
 /*
 ===============================================================================
 
@@ -108,7 +107,6 @@ private:
 
 	void				Event_Activate( idEntity *activator );
 };
-
 
 /*
 ===============================================================================
@@ -178,7 +176,6 @@ private:
 	void				Event_RestoreDamagable( void );
 };
 
-
 /*
 ===============================================================================
 
@@ -196,7 +193,6 @@ public:
 private:
 	void				Event_Explode( idEntity *activator );
 };
-
 
 /*
 ===============================================================================
@@ -226,7 +222,6 @@ private:
 	void				Event_LinkSpring( void );
 };
 
-
 /*
 ===============================================================================
 
@@ -255,7 +250,6 @@ private:
 	void				Event_Toggle( void );
 	void				Event_FindTargets( void );
 };
-
 
 /*
 ===============================================================================
@@ -303,7 +297,6 @@ private:
 	void					Event_LaunchMissilesUpdate( int launchjoint, int targetjoint, int numshots, int framedelay );
 };
 
-
 /*
 ===============================================================================
 
@@ -345,7 +338,6 @@ private:
 	bool				runGui;
 };
 
-
 /*
 ===============================================================================
 
@@ -374,7 +366,6 @@ private:
 	bool					restart;
 };
 
-
 /*
 ===============================================================================
 
@@ -399,7 +390,6 @@ private:
 	bool				playerOriented;
 	bool				force; // grayman #3042
 };
-
 
 /*
 ===============================================================================
@@ -586,7 +576,6 @@ private:
 	idEntityPtr<idBeam>	master;
 };
 
-
 /*
 ===============================================================================
 
@@ -609,7 +598,6 @@ public:
 
 private:
 	void				Event_Touch( idEntity *other, trace_t *trace );
-
 
 	idRenderModelLiquid *model;
 };
@@ -641,7 +629,6 @@ private:
 	void					BeginShaking( void );
 	void					Event_Activate( idEntity *activator );
 };
-
 
 /*
 ===============================================================================
@@ -676,7 +663,6 @@ private:
 
 	void				Event_Activate( idEntity *activator );
 };
-
 
 /*
 ===============================================================================
@@ -777,7 +763,6 @@ private:
 	void				Event_Activate( idEntity *activator );
 };
 
-
 /*
 ===============================================================================
 
@@ -825,7 +810,6 @@ idPortalSky
 */
 
 class idPortalSky : public idEntity {
-
 public:
 
 	CLASS_PROTOTYPE( idPortalSky );
@@ -875,6 +859,4 @@ protected:
 	void	Event_ScaleVine( float factor );
 };
 
-
 #endif /* !__GAME_MISC_H__ */
-

@@ -57,7 +57,6 @@ protected:
 	const function_t 	*scriptFunction;
 };
 
-
 /*
 ===============================================================================
 
@@ -96,7 +95,6 @@ private:
 	void				Event_Trigger( idEntity *activator );
 	void				Event_Touch( idEntity *other, trace_t *trace );
 };
-
 
 /*
 ===============================================================================
@@ -166,7 +164,6 @@ private:
 	void				Event_Use( idEntity *activator );
 };
 
-
 /*
 ===============================================================================
 
@@ -194,7 +191,6 @@ private:
 	void				Event_Trigger( idEntity *activator );
 	void				Event_TriggerAction( idEntity *activator );
 };
-
 
 /*
 ===============================================================================
@@ -224,7 +220,6 @@ private:
 	void				Event_Toggle( idEntity *activator );
 };
 
-
 /*
 ===============================================================================
 
@@ -241,7 +236,6 @@ public:
 private:
 	void				Event_Trigger( idEntity *activator );
 };
-
 
 /*
 ===============================================================================

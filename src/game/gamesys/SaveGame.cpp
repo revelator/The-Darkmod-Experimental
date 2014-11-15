@@ -176,7 +176,6 @@ void idSaveGame::WriteJoint( const jointHandle_t value ) {
 	WriteInt( ( int )value );
 }
 
-
 void idSaveGame::WriteByte( const byte value ) {
 	WriteUnsignedChar( value );
 }
@@ -1084,4 +1083,3 @@ DEFINE_READWRITE_VECMAT( idVec5, Vec5 )
 DEFINE_READWRITE_VECMAT( idVec6, Vec6 )
 DEFINE_READWRITE_VECMAT( idMat3, Mat3 )
 DEFINE_READWRITE_VECMAT( idAngles, Angles )
-

@@ -567,7 +567,6 @@ bool idDeclAF::WriteSettings( idFile *f ) const {
 	return true;
 }
 
-
 /*
 ================
 idDeclAF::RebuildTextSource

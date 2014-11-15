@@ -17,7 +17,6 @@
 
 ******************************************************************************/
 
-
 #ifndef __PHYSICS_PLAYER_H__
 #define __PHYSICS_PLAYER_H__
 
@@ -59,7 +58,6 @@ typedef enum {
 
 #endif		// MOD_WATERPHYSICS
 
-
 #define	MAXTOUCH					32
 
 typedef struct playerPState_s {
@@ -72,7 +70,6 @@ typedef struct playerPState_s {
 	int						movementFlags;
 	int						movementTime;
 } playerPState_t;
-
 
 // This enumreation defines the phases of the mantling movement
 enum EMantlePhase {
@@ -292,7 +289,6 @@ private:
 	**/
 	idEntityPtr<idAFEntity_Base>	m_RopeEntTouched;
 
-
 	/**
 	* toggled based on whether the player should stay attached to rope
 	**/
@@ -396,7 +392,6 @@ private:
 
 #endif
 
-
 private:
 	float					CmdScale( const usercmd_t &cmd ) const;
 	void					Accelerate( const idVec3 &wishdir, const float wishspeed, const float accel );
@@ -443,8 +438,6 @@ public:
 		m_NextAttachTime = time;
 	}
 
-
-
 	//#####################################################
 	// Mantling handler
 	// by SophisticatedZombie (Damon Hill)
@@ -452,7 +445,6 @@ public:
 	//#####################################################
 
 public:
-
 
 	// This method returns
 	// true if the player is mantling, false otherwise

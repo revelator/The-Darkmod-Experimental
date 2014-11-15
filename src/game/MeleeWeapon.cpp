@@ -282,7 +282,6 @@ void CMeleeWeapon::DeactivateAttack( void ) {
 	}
 }
 
-
 void CMeleeWeapon::ActivateParry( idActor *ActOwner, const char *ParryName ) {
 	const idKeyValue *key;
 	if( ActOwner ) {
@@ -594,7 +593,6 @@ void CMeleeWeapon::CheckAttack( idVec3 OldOrigin, idMat3 OldAxis ) {
 
 				if( tr2.fraction < 1.0f && !bHitSwappedHead )
 				{
-
 					tr = tr2;
 					other = gameLocal.entities[ tr.c.entityNum ];
 					DM_LOG(LC_WEAPON,LT_DEBUG)LOGSTRING("MeleeWeapon: CONTENTS_CORPSE secondary trace hit entity %s\r", other->name.c_str());
@@ -640,7 +638,6 @@ void CMeleeWeapon::CheckAttack( idVec3 OldOrigin, idMat3 OldAxis ) {
 							(tr.c.point + 8.0f * vSpinDir), 3, 1000
 						);
 				}
-
 			}
 
 			// Direction of the velocity of point that hit (renamed it for brevity)

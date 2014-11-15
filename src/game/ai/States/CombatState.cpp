@@ -40,7 +40,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #define REACTION_TIME_MAX     1000	// grayman #3063 // grayman #3492
 
 namespace ai {
-
 const float s_DOOM_TO_METERS = 0.0254f; // grayman #3063
 const float MAX_TRAVEL_DISTANCE_WALKING = 300; // grayman #3848
 
@@ -950,5 +949,4 @@ StateLibrary::Registrar combatStateRegistrar(
 	STATE_COMBAT, // Task Name
 	StateLibrary::CreateInstanceFunc( &CombatState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

@@ -19,7 +19,6 @@
 
 #include "../../../renderer/tr_local.h"
 
-
 typedef struct primitive_s {
 	struct primitive_s *next;
 
@@ -27,7 +26,6 @@ typedef struct primitive_s {
 	struct bspbrush_s 	*brush;
 	struct mapTri_s 	*tris;
 } primitive_t;
-
 
 typedef struct {
 	struct optimizeGroup_s	*groups;
@@ -45,7 +43,6 @@ typedef struct {
 	uArea_t 			*areas;
 } uEntity_t;
 
-
 // chains of mapTri_t are the general unit of processing
 typedef struct mapTri_s {
 	struct mapTri_s 	*next;
@@ -60,12 +57,10 @@ typedef struct mapTri_s {
 	struct optVertex_s *optVert[3];
 } mapTri_t;
 
-
 typedef struct {
 	int					width, height;
 	idDrawVert 		*verts;
 } mesh_t;
-
 
 #define	MAX_PATCH_SIZE	32
 
@@ -100,7 +95,6 @@ typedef struct side_s {
 	idWinding 			*visibleHull;	// also clipped to the solid parts of the world
 } side_t;
 
-
 typedef struct bspbrush_s {
 	struct bspbrush_s 	*next;
 	struct bspbrush_s 	*original;	// chopped up brushes will reference the originals
@@ -119,12 +113,10 @@ typedef struct bspbrush_s {
 	side_t				sides[6];			// variably sized
 } uBrush_t;
 
-
 typedef struct drawSurfRef_s {
 	struct drawSurfRef_s 	*nextRef;
 	int						outputNumber;
 } drawSurfRef_t;
-
 
 typedef struct node_s {
 	// both leafs and nodes
@@ -149,7 +141,6 @@ typedef struct node_s {
 
 	struct uPortal_s 	*portals;	// also on nodes during construction
 } node_t;
-
 
 typedef struct uPortal_s {
 	idPlane		plane;
@@ -207,7 +198,6 @@ typedef struct optimizeGroup_s {
 // multiple optimizeGroups will be merged together into .proc surfaces, but no further optimization
 // is done on them
 
-
 //=============================================================================
 
 // dmap.cpp
@@ -263,7 +253,6 @@ extern dmapGlobals_t dmapGlobals;
 
 int FindFloatPlane( const idPlane &plane, bool *fixedDegeneracies = NULL );
 
-
 //=============================================================================
 
 // brush.cpp
@@ -295,7 +284,6 @@ void FilterBrushesIntoTree( uEntity_t *e );
 void SplitBrush( uBrush_t *brush, int planenum, uBrush_t **front, uBrush_t **back );
 node_t *AllocNode( void );
 
-
 //=============================================================================
 
 // map.cpp
@@ -318,8 +306,6 @@ void GLS_BeginScene( void );
 void GLS_Winding( const idWinding *w, int code );
 void GLS_Triangle( const mapTri_t *tri, int code );
 void GLS_EndScene( void );
-
-
 
 //=============================================================================
 
@@ -365,7 +351,6 @@ void FreeTree( tree_t *tree );
 void FreeTree_r( node_t *node );
 void FreeTreePortals_r( node_t *node );
 
-
 bspface_t	*MakeStructuralBspFaceList( primitive_t *list );
 bspface_t	*MakeVisibleBspFaceList( primitive_t *list );
 tree_t		*FaceBSP( bspface_t *list );
@@ -399,7 +384,6 @@ void	FixGlobalTjunctions( uEntity_t *e );
 // the shadow volume optimizer call internal optimizer routines, normal triangles
 // will just be done by OptimizeEntity()
 
-
 typedef struct optVertex_s {
 	idDrawVert	v;
 	idVec3	pv;					// projected against planar axis, third value is 0
@@ -432,7 +416,6 @@ typedef struct {
 	optEdge_t	*edges;
 	optTri_t	*tris;
 } optIsland_t;
-
 
 void	OptimizeEntity( uEntity_t *e );
 void	OptimizeGroupList( optimizeGroup_t *groupList );

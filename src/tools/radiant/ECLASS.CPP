@@ -75,7 +75,6 @@ void CleanEntityList( eclass_t *&pList ) {
 	pList = NULL;
 }
 
-
 void CleanUpEntities() {
 	CleanEntityList( eclass );
 	CleanEntityList( g_md3Cache );
@@ -131,7 +130,6 @@ eclass_t *EClass_Alloc( void ) {
 	e->next = NULL;
 	return e;
 }
-
 
 eclass_t *EClass_InitFromDict( const idDict *d, const char *name ) {
 	eclass_t			*e;
@@ -304,7 +302,6 @@ void Eclass_InsertAlphabetized( eclass_t *e ) {
 #endif
 }
 
-
 void Eclass_InitForSourceDirectory( const char *path ) {
 	int c = declManager->GetNumDecls( DECL_ENTITYDEF );
 	for( int i = 0; i < c; i++ ) {
@@ -354,7 +351,6 @@ eclass_t *Eclass_ForName( const char *name, bool has_brushes ) {
 	Eclass_InsertAlphabetized( e );
 	return e;
 }
-
 
 eclass_t *GetCachedModel( entity_t *pEntity, const char *pName, idVec3 &vMin, idVec3 &vMax ) {
 	eclass_t *e = NULL;

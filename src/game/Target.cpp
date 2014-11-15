@@ -47,7 +47,6 @@ idTarget
 CLASS_DECLARATION( idEntity, idTarget )
 END_CLASS
 
-
 /*
 ===============================================================================
 
@@ -77,7 +76,6 @@ void idTarget_Remove::Event_Activate( idEntity *activator ) {
 	// delete our self when done
 	PostEventMS( &EV_Remove, 0 );
 }
-
 
 /*
 ===============================================================================
@@ -109,7 +107,6 @@ void idTarget_Show::Event_Activate( idEntity *activator ) {
 	PostEventMS( &EV_Remove, 0 );
 }
 
-
 /*
 ===============================================================================
 
@@ -140,7 +137,6 @@ void idTarget_Damage::Event_Activate( idEntity *activator ) {
 	}
 }
 
-
 /*
 ===============================================================================
 
@@ -161,7 +157,6 @@ idTarget_SessionCommand::Event_Activate
 void idTarget_SessionCommand::Event_Activate( idEntity *activator ) {
 	gameLocal.sessionCommand = spawnArgs.GetString( "command" );
 }
-
 
 /*
 ===============================================================================
@@ -198,7 +193,6 @@ void idTarget_EndLevel::Event_Activate( idEntity *activator ) {
 	}
 	gameLocal.sessionCommand += nextMap;
 }
-
 
 /*
 ===============================================================================
@@ -245,7 +239,6 @@ void idTarget_WaitForButton::Think( void ) {
 		BecomeInactive( TH_ALL );
 	}
 }
-
 
 /*
 ===============================================================================
@@ -322,7 +315,6 @@ void idTarget_SetShaderParm::Event_Activate( idEntity *activator ) {
 		}
 	}
 }
-
 
 /*
 ===============================================================================
@@ -637,7 +629,6 @@ void idTarget_SetModel::Event_Activate( idEntity *activator ) {
 	}
 }
 
-
 /*
 ===============================================================================
 
@@ -793,7 +784,6 @@ void idTarget_SetInfluence::Event_Flash( float flash, int out ) {
 	}
 	PostEventSec( &EV_ClearFlash, flash, flash );
 }
-
 
 /*
 ================
@@ -1017,7 +1007,6 @@ void idTarget_SetInfluence::Think( void ) {
 	}
 }
 
-
 /*
 ================
 idTarget_SetInfluence::Event_RestoreInfluence
@@ -1160,7 +1149,6 @@ idTarget_SetFov
 CLASS_DECLARATION( idTarget, idTarget_SetFov )
 EVENT( EV_Activate,	idTarget_SetFov::Event_Activate )
 END_CLASS
-
 
 /*
 ================
@@ -1469,7 +1457,6 @@ void idTarget_PostScriptEvent::Event_Activate( idEntity *activator ) {
 	}	// end for all targets
 }
 
-
 /*
 ===============================================================================
 
@@ -1540,7 +1527,6 @@ void idTarget_RemoveWeapons::Event_Activate( idEntity *activator ) {
 		}
 	}
 }
-
 
 /*
 ===============================================================================

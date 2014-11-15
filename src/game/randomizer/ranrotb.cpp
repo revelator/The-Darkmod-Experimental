@@ -69,7 +69,6 @@ TRanrotBGenerator::TRanrotBGenerator( uint32 seed ) {
 	}
 }
 
-
 // returns a random number between 0 and 1:
 double TRanrotBGenerator::Random() {
 	uint32 x;
@@ -118,7 +117,6 @@ double TRanrotBGenerator::Random() {
 	return ( double )x * ( 1. / ( ( double )( uint32 )( -1L ) + 1. ) );
 }
 
-
 // returns integer random number in desired interval:
 int TRanrotBGenerator::IRandom( int min, int max ) {
 	int iinterval = max - min + 1;
@@ -131,7 +129,6 @@ int TRanrotBGenerator::IRandom( int min, int max ) {
 	}
 	return min + i;
 }
-
 
 void TRanrotBGenerator::RandomInit( uint32 seed ) {
 	// this function initializes the random number generator.
@@ -160,4 +157,3 @@ void TRanrotBGenerator::RandomInit( uint32 seed ) {
 		Random();
 	}
 }
-

@@ -18,7 +18,6 @@
 ******************************************************************************/
 #pragma once
 
-
 // CMediaPreviewDlg dialog
 
 class CMediaPreviewDlg : public CDialog {

@@ -113,7 +113,6 @@ typedef struct codebook {
 	ogg_uint32_t *dec_firsttable;
 	int           dec_firsttablen;
 	int           dec_maxlength;
-
 } codebook;
 
 extern void vorbis_staticbook_clear( static_codebook *b );
@@ -134,8 +133,6 @@ extern int vorbis_book_besterror( codebook *book, float *a, int step, int addmul
 extern long vorbis_book_codeword( codebook *book, int entry );
 extern long vorbis_book_codelen( codebook *book, int entry );
 
-
-
 extern int vorbis_staticbook_pack( const static_codebook *c, oggpack_buffer *b );
 extern int vorbis_staticbook_unpack( oggpack_buffer *b, static_codebook *c );
 
@@ -154,7 +151,5 @@ extern long vorbis_book_decodev_add( codebook *book, float *a,
 extern long vorbis_book_decodevv_add( codebook *book, float **a,
 									  long off, int ch,
 									  oggpack_buffer *b, int n );
-
-
 
 #endif

@@ -91,5 +91,4 @@ private:
 	bool			isScaleable;
 };
 
-
 #endif // roqParam

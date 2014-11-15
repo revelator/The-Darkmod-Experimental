@@ -1015,7 +1015,6 @@ void Cmd_Damage_f( const idCmdArgs &args ) {
 	ent->Damage( gameLocal.world, gameLocal.world, idVec3( 0, 0, 1 ), "damage_moverCrush", atoi( args.Argv( 2 ) ), INVALID_JOINT );
 }
 
-
 /*
 ==================
 Cmd_Remove_f
@@ -1981,7 +1980,6 @@ static void Cmd_SaveLights_f( const idCmdArgs &args ) {
 	mapFile->Write( mapName, ".map" );
 }
 
-
 /*
 ==================
 Cmd_SaveParticles_f
@@ -2026,7 +2024,6 @@ static void Cmd_SaveParticles_f( const idCmdArgs &args ) {
 	// write out the map file
 	mapFile->Write( mapName, ".map" );
 }
-
 
 /*
 ==================
@@ -2556,7 +2553,6 @@ void GetMaterialStageInfo( const char *a_strMatStageName, idLexer &a_lexSource, 
 	}
 }
 
-
 //-------------------------------------------------------------
 // FindBlockContainingWords
 //
@@ -2995,7 +2991,6 @@ void Cmd_BatchConvertMaterials_f( const idCmdArgs &args ) {
 	gameLocal.Printf( " %lu Materials processed and changed in total.\n", ulMaterialsProcessed );
 }
 
-
 void Cmd_updateCookedMathData_f( const idCmdArgs &args ) {
 	r_postprocess_colorCurveBias.SetModified();
 }
@@ -3033,7 +3028,7 @@ void Cmd_WriteTimerCSV_f( const idCmdArgs &args ) {
 void Cmd_ResetTimers_f( const idCmdArgs &args ) {
 	debugtools::TimerManager::Instance().ResetTimers();
 }
-#endif // TIMING_BUILD 
+#endif // TIMING_BUILD
 
 /*
 =================

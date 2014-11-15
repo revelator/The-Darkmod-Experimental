@@ -1,26 +1,24 @@
 /*****************************************************************************
                     The Dark Mod GPL Source Code
- 
- This file is part of the The Dark Mod Source Code, originally based 
+
+ This file is part of the The Dark Mod Source Code, originally based
  on the Doom 3 GPL Source Code as published in 2011.
- 
- The Dark Mod Source Code is free software: you can redistribute it 
- and/or modify it under the terms of the GNU General Public License as 
- published by the Free Software Foundation, either version 3 of the License, 
+
+ The Dark Mod Source Code is free software: you can redistribute it
+ and/or modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation, either version 3 of the License,
  or (at your option) any later version. For details, see LICENSE.TXT.
- 
+
  Project: The Dark Mod (http://www.thedarkmod.com/)
- 
- $Revision$ (Revision of last commit) 
+
+ $Revision$ (Revision of last commit)
  $Date$ (Date of last commit)
  $Author$ (Author of last commit)
- 
+
 ******************************************************************************/
 
 #include "precompiled.h"
 #pragma hdrstop
-
-
 
 idBox box_zero( vec3_zero, vec3_zero, mat3_identity );
 
@@ -175,7 +173,6 @@ static int boxPlaneBitsSilVerts[64][7] = {
 	{ 0, 0, 0, 0, 0, 0, 0 }, // 111110 = 62
 	{ 0, 0, 0, 0, 0, 0, 0 }, // 111111 = 63
 };
-
 
 /*
 ============
@@ -372,7 +369,7 @@ bool idBox::IntersectsBox( const idBox &a ) const {
     float d, e0, e1;	// distance between centers and projected extents
 
 	dir = a.center - center;
-    
+
     // axis C0 + t * A0
     c[0][0] = axis[0] * a.axis[0];
     c[0][1] = axis[0] * a.axis[1];
@@ -856,5 +853,3 @@ const char * idBox::ToString( const int precision ) const {
 	idVec3 max = center + extents;
 	return idStr( min.ToString( precision ) ) + " -> " + idStr( max.ToString( precision ) ) + " (" + idStr( axis.ToString() ) + ")";
 }
-
-

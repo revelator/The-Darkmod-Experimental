@@ -31,7 +31,6 @@ static idDynamicBlockAlloc < byte, 1 << 20, 1 << 10 >	soundCacheAllocator;
 static idDynamicAlloc < byte, 1 << 20, 1 << 10 >		soundCacheAllocator;
 #endif
 
-
 /*
 ===================
 idSoundCache::idSoundCache()
@@ -238,7 +237,6 @@ void idSoundCache::PrintMemInfo( MemInfo_t *mi ) {
 	fileSystem->CloseFile( f );
 	delete[] sortIndex;
 }
-
 
 /*
 ==========================================================================

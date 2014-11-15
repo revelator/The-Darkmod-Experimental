@@ -21,7 +21,6 @@
 // DialogAFView dialog
 
 class DialogAFView : public CDialog {
-
 	DECLARE_DYNAMIC( DialogAFView )
 
 public:

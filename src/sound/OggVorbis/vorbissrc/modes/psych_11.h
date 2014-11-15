@@ -31,7 +31,6 @@ static vp_adjblock _vp_tonemask_adj_11[3] = {
 	{{ -20, -20, -20, -20, -20, -16, -10, 0, 0, 0, 0, 0, 0, 0, 99, 99, 99}}, /* 2 */
 };
 
-
 static noise3 _psy_noisebias_11[3] = {
 	/*  63     125     250     500      1k       2k      4k      8k     16k*/
 	{	{	{ -10, -10, -10, -10, -5, -5, -5,  0,  4, 10, 10, 12, 12, 12, 99, 99, 99},
@@ -54,4 +53,3 @@ static noise3 _psy_noisebias_11[3] = {
 };
 
 static double _noise_thresh_11[3] = { .3, .5, .5 };
-

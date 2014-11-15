@@ -26,7 +26,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "Radiant.h"
 #include "CommentsDlg.h"
 
-
 // CCommentsDlg dialog
 
 IMPLEMENT_DYNAMIC( CCommentsDlg, CDialog )
@@ -47,9 +46,7 @@ void CCommentsDlg::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Text( pDX, IDC_EDIT_COMMENTS, strComments );
 }
 
-
 BEGIN_MESSAGE_MAP( CCommentsDlg, CDialog )
 END_MESSAGE_MAP()
-
 
 // CCommentsDlg message handlers

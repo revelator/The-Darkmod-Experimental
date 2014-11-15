@@ -30,7 +30,6 @@
 // The PVS to AAS mapping table
 #include "PVSToAASMapping.h"
 
-
 /*!
 * This structure tracks a light in relation to the area system
 */
@@ -56,7 +55,6 @@ typedef struct darkModLightRecord_s {
 	* A flag used to track if this light has been updated yet this frame
 	*/
 	unsigned int lastFrameUpdated;
-
 } darkModLightRecord_t;
 
 //---------------------------------------------------------------------------
@@ -168,7 +166,6 @@ public:
 	*/
 	void shutDown();
 
-
 	/*!
 	* add a light on light spawn
 	*/
@@ -248,8 +245,6 @@ public:
 private:
 	int queryLightingAlongLineTimer;
 #endif
-
-
 
 };
 

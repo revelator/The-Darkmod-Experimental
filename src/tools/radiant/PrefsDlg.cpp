@@ -107,7 +107,6 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CPrefsDlg dialog
 
-
 CPrefsDlg::CPrefsDlg( CWnd *pParent /*=NULL*/ )
 	: CDialog( CPrefsDlg::IDD, pParent ) {
 	//{{AFX_DATA_INIT(CPrefsDlg)
@@ -196,7 +195,6 @@ void CPrefsDlg::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Check( pDX, IDC_CHECK_NEWMAPFORMAT, m_bNewMapFormat );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CPrefsDlg, CDialog )
 	//{{AFX_MSG_MAP(CPrefsDlg)

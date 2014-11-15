@@ -26,7 +26,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #define CHECK_BOUNDS_EPSILON			1.0f
 
-
 /*
 ===========================================================================================
 
@@ -283,7 +282,6 @@ static void R_SpecularTexGen( drawSurf_t *surf, const idVec3 &globalLightOrigin,
 #endif
 	surf->dynamicTexCoords = vertexCache.AllocFrameTemp( texCoords, size );
 }
-
 
 //=======================================================================================================
 

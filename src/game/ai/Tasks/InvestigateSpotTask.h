@@ -23,7 +23,6 @@
 #include "Task.h"
 
 namespace ai {
-
 /**
 * greebo: This task requires memory.currentSearchSpot to be valid.
 *
@@ -90,7 +89,6 @@ public:
 	// Creates a new Instance of this task
 	static InvestigateSpotTaskPtr CreateInstance();
 };
-
 } // namespace ai
 
 #endif /* __AI_INVESTIGATE_SPOT_TASK_H__ */

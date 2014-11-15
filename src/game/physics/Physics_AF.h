@@ -74,7 +74,6 @@ typedef enum {
 	CONSTRAINT_SUSPENSION
 } constraintType_t;
 
-
 //===============================================================
 //
 //	idAFConstraint
@@ -83,7 +82,6 @@ typedef enum {
 
 // base class for all constraints
 class idAFConstraint {
-
 	friend class idPhysics_AF;
 	friend class idAFTree;
 
@@ -154,7 +152,6 @@ protected:
 // fixed or rigid joint which allows zero degrees of freedom
 // constrains body1 to have a fixed position and orientation relative to body2
 class idAFConstraint_Fixed : public idAFConstraint {
-
 public:
 	idAFConstraint_Fixed( const idStr &name, idAFBody *body1, idAFBody *body2 );
 	void					SetRelativeOrigin( const idVec3 &origin ) {
@@ -185,7 +182,6 @@ protected:
 // ball and socket or spherical joint which allows 3 degrees of freedom
 // constrains body1 relative to body2 with a ball and socket joint
 class idAFConstraint_BallAndSocketJoint : public idAFConstraint {
-
 public:
 	idAFConstraint_BallAndSocketJoint( const idStr &name, idAFBody *body1, idAFBody *body2 );
 	~idAFConstraint_BallAndSocketJoint( void );
@@ -223,7 +219,6 @@ protected:
 
 // ball and socket joint friction
 class idAFConstraint_BallAndSocketJointFriction : public idAFConstraint {
-
 public:
 	idAFConstraint_BallAndSocketJointFriction( void );
 	void					Setup( idAFConstraint_BallAndSocketJoint *cc );
@@ -242,7 +237,6 @@ protected:
 // universal, Cardan or Hooke joint which allows 2 degrees of freedom
 // like a ball and socket joint but also constrains the rotation about the cardan shafts
 class idAFConstraint_UniversalJoint : public idAFConstraint {
-
 public:
 	idAFConstraint_UniversalJoint( const idStr &name, idAFBody *body1, idAFBody *body2 );
 	~idAFConstraint_UniversalJoint( void );
@@ -289,7 +283,6 @@ protected:
 
 // universal joint friction
 class idAFConstraint_UniversalJointFriction : public idAFConstraint {
-
 public:
 	idAFConstraint_UniversalJointFriction( void );
 	void					Setup( idAFConstraint_UniversalJoint *cc );
@@ -308,7 +301,6 @@ protected:
 // cylindrical joint which allows 2 degrees of freedom
 // constrains body1 to lie on a line relative to body2 and allows only translation along and rotation about the line
 class idAFConstraint_CylindricalJoint : public idAFConstraint {
-
 public:
 	idAFConstraint_CylindricalJoint( const idStr &name, idAFBody *body1, idAFBody *body2 );
 	virtual void			DebugDraw( void );
@@ -325,7 +317,6 @@ protected:
 // hinge, revolute or pin joint which allows 1 degree of freedom
 // constrains all motion of body1 relative to body2 except the rotation about the hinge axis
 class idAFConstraint_Hinge : public idAFConstraint {
-
 public:
 	idAFConstraint_Hinge( const idStr &name, idAFBody *body1, idAFBody *body2 );
 	~idAFConstraint_Hinge( void );
@@ -373,7 +364,6 @@ protected:
 
 // hinge joint friction
 class idAFConstraint_HingeFriction : public idAFConstraint {
-
 public:
 	idAFConstraint_HingeFriction( void );
 	void					Setup( idAFConstraint_Hinge *cc );
@@ -391,7 +381,6 @@ protected:
 
 // constrains two bodies attached to each other with a hinge to get a specified relative orientation
 class idAFConstraint_HingeSteering : public idAFConstraint {
-
 public:
 	idAFConstraint_HingeSteering( void );
 	void					Setup( idAFConstraint_Hinge *cc );
@@ -425,7 +414,6 @@ protected:
 // slider, prismatic or translational constraint which allows 1 degree of freedom
 // constrains body1 to lie on a line relative to body2, the orientation is also fixed relative to body2
 class idAFConstraint_Slider : public idAFConstraint {
-
 public:
 	idAFConstraint_Slider( const idStr &name, idAFBody *body1, idAFBody *body2 );
 	void					SetAxis( const idVec3 &ax );
@@ -449,7 +437,6 @@ protected:
 // line constraint which allows 4 degrees of freedom
 // constrains body1 to lie on a line relative to body2, does not constrain the orientation.
 class idAFConstraint_Line : public idAFConstraint {
-
 public:
 	idAFConstraint_Line( const idStr &name, idAFBody *body1, idAFBody *body2 );
 	virtual void			DebugDraw( void );
@@ -466,7 +453,6 @@ protected:
 // plane constraint which allows 5 degrees of freedom
 // constrains body1 to lie in a plane relative to body2, does not constrain the orientation.
 class idAFConstraint_Plane : public idAFConstraint {
-
 public:
 	idAFConstraint_Plane( const idStr &name, idAFBody *body1, idAFBody *body2 );
 	void					SetPlane( const idVec3 &normal, const idVec3 &anchor );
@@ -489,7 +475,6 @@ protected:
 // spring constraint which allows 6 or 5 degrees of freedom based on the spring limits
 // constrains body1 relative to body2 with a spring
 class idAFConstraint_Spring : public idAFConstraint {
-
 public:
 	idAFConstraint_Spring( const idStr &name, idAFBody *body1, idAFBody *body2 );
 	void					SetAnchor( const idVec3 &worldAnchor1, const idVec3 &worldAnchor2 );
@@ -519,7 +504,6 @@ protected:
 
 // constrains body1 to either be in contact with or move away from body2
 class idAFConstraint_Contact : public idAFConstraint {
-
 public:
 	idAFConstraint_Contact( void );
 	~idAFConstraint_Contact( void );
@@ -543,7 +527,6 @@ protected:
 
 // contact friction
 class idAFConstraint_ContactFriction : public idAFConstraint {
-
 public:
 	idAFConstraint_ContactFriction( void );
 	void					Setup( idAFConstraint_Contact *cc );
@@ -562,7 +545,6 @@ protected:
 
 // constrains an axis attached to body1 to be inside a cone relative to body2
 class idAFConstraint_ConeLimit : public idAFConstraint {
-
 public:
 	idAFConstraint_ConeLimit( void );
 	void					Setup( idAFBody *b1, idAFBody *b2, const idVec3 &coneAnchor, const idVec3 &coneAxis,
@@ -595,7 +577,6 @@ protected:
 
 // constrains an axis attached to body1 to be inside a pyramid relative to body2
 class idAFConstraint_PyramidLimit : public idAFConstraint {
-
 public:
 	idAFConstraint_PyramidLimit( void );
 	void					Setup( idAFBody *b1, idAFBody *b2, const idVec3 &pyramidAnchor,
@@ -629,7 +610,6 @@ protected:
 
 // vehicle suspension
 class idAFConstraint_Suspension : public idAFConstraint {
-
 public:
 	idAFConstraint_Suspension( void );
 
@@ -679,7 +659,6 @@ protected:
 	virtual void			ApplyFriction( float invTimeStep );
 };
 
-
 //===============================================================
 //
 //	idAFBody
@@ -693,9 +672,7 @@ typedef struct AFBodyPState_s {
 	idVec6					externalForce;				// external force and torque applied to body
 } AFBodyPState_t;
 
-
 class idAFBody {
-
 	friend class idPhysics_AF;
 	friend class idAFTree;
 
@@ -880,7 +857,6 @@ private:
 	} fl;
 };
 
-
 //===============================================================
 //
 //	idAFTree
@@ -904,7 +880,6 @@ private:
 	idList<idAFBody *>		sortedBodies;
 };
 
-
 //===============================================================
 //
 //	idPhysics_AF
@@ -924,9 +899,7 @@ typedef struct AFCollision_s {
 	idAFBody 				*body;
 } AFCollision_t;
 
-
 class idPhysics_AF : public idPhysics_Base {
-
 public:
 	CLASS_PROTOTYPE( idPhysics_AF );
 
@@ -1045,7 +1018,6 @@ public:
 	void					SetFixedDensityBuoyancy( bool fixed ); // MOD_WATERPHYSICS
 	bool					GetFixedDensityBuoyancy() const; // MOD_WATERPHYSICS
 #endif		// MOD_WATERPHYSICS
-
 
 public:	// common physics interface
 	void					SetClipModel( idClipModel *model, float density, int id = 0, bool freeOld = true );

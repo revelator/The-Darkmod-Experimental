@@ -454,4 +454,3 @@ void rvGENavigator::Show( bool visible ) {
 	gApp.GetOptions().SetNavigatorVisible( visible );
 	ShowWindow( mWnd, visible ? SW_SHOW : SW_HIDE );
 }
-

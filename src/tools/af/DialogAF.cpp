@@ -56,9 +56,7 @@ toolTip_t DialogAF::toolTips[] = {
 	{ 0, NULL }
 };
 
-
 DialogAF *g_AFDialog = NULL;
-
 
 IMPLEMENT_DYNAMIC( DialogAF, CDialog )
 
@@ -252,7 +250,6 @@ BOOL DialogAF::OnInitDialog()  {
 	// EXCEPTION: OCX Property Pages should return FALSE
 }
 
-
 BEGIN_MESSAGE_MAP( DialogAF, CDialog )
 	ON_NOTIFY_EX_RANGE( TTN_NEEDTEXTW, 0, 0xFFFF, OnToolTipNotify )
 	ON_NOTIFY_EX_RANGE( TTN_NEEDTEXTA, 0, 0xFFFF, OnToolTipNotify )
@@ -270,7 +267,6 @@ BEGIN_MESSAGE_MAP( DialogAF, CDialog )
 	ON_BN_CLICKED( IDC_BUTTON_AF_KILL, OnBnClickedButtonAfKill )
 	ON_BN_CLICKED( IDC_BUTTON_AF_TPOSE, OnBnClickedButtonAfTpose )
 END_MESSAGE_MAP()
-
 
 /*
 ================
@@ -338,7 +334,6 @@ void AFEditorShutdown( void ) {
 	delete g_AFDialog;
 	g_AFDialog = NULL;
 }
-
 
 // DialogAF message handlers
 
@@ -561,7 +556,6 @@ void DialogAF::OnBnClickedCancel() {
 	InitAFList();
 	OnCancel();
 }
-
 
 // General convenience routines
 

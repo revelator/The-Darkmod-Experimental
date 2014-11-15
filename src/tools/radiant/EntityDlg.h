@@ -24,8 +24,6 @@
 
 // CEntityDlg dialog
 
-
-
 class CEntityDlg : public CDialog {
 	DECLARE_DYNAMIC( CEntityDlg )
 public:
@@ -79,7 +77,6 @@ public:
 	void UpdateKeyVal( const char *key, const char *val );
 	void SelectCurvePointByRay( const idVec3 &org, const idVec3 &dir, int buttons );
 	void UpdateEntityCurve();
-
 
 private:
 	entity_t *editEntity;
@@ -154,5 +151,4 @@ public:
 	afx_msg void OnBnClickedButtonParticle();
 	afx_msg void OnBnClickedButtonSkin();
 	afx_msg void OnBnClickedButtonCurve();
-
 };

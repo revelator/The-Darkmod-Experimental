@@ -64,11 +64,9 @@ bool CAbsenceMarker::initAbsenceReference( idEntity *owner, idBounds &startBound
 	return true;
 }
 
-
 const idDict &CAbsenceMarker::GetRefSpawnargs() const {
 	return referenced_spawnArgs;
 }
-
 
 //-----------------------------------------------------------------------------------
 

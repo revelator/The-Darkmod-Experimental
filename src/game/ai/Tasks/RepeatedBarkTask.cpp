@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 // Default constructor
 RepeatedBarkTask::RepeatedBarkTask() :
 	CommunicationTask( "" ),
@@ -148,5 +147,4 @@ TaskLibrary::Registrar repeatedBarkTaskRegistrar(
 	TASK_REPEATED_BARK, // Task Name
 	TaskLibrary::CreateInstanceFunc( &RepeatedBarkTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

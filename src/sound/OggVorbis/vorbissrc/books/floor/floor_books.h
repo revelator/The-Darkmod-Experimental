@@ -1452,4 +1452,3 @@ static static_codebook _huff_book_line_512x17_class3 = {
 	NULL,
 	0
 };
-

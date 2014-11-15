@@ -33,7 +33,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 // Get the name of this state
 const idStr &ObservantState::GetName() const {
 	static idStr _name( STATE_OBSERVANT );
@@ -171,5 +170,4 @@ StateLibrary::Registrar observantStateRegistrar(
 	STATE_OBSERVANT, // Task Name
 	StateLibrary::CreateInstanceFunc( &ObservantState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

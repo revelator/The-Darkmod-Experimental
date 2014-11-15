@@ -28,7 +28,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "DialogAFConstraint.h"
 #include "DialogAFConstraintFixed.h"
 
-
 // DialogAFConstraintFixed dialog
 
 toolTip_t DialogAFConstraintFixed::toolTips[] = {
@@ -143,12 +142,10 @@ int DialogAFConstraintFixed::OnToolHitTest( CPoint point, TOOLINFO *pTI ) const 
 	return DefaultOnToolHitTest( toolTips, this, point, pTI );
 }
 
-
 BEGIN_MESSAGE_MAP( DialogAFConstraintFixed, CDialog )
 	ON_NOTIFY_EX_RANGE( TTN_NEEDTEXTW, 0, 0xFFFF, OnToolTipNotify )
 	ON_NOTIFY_EX_RANGE( TTN_NEEDTEXTA, 0, 0xFFFF, OnToolTipNotify )
 END_MESSAGE_MAP()
-
 
 // DialogAFConstraintFixed message handlers
 

@@ -50,7 +50,6 @@ class idLocationEntity;
 const float s_DOOM_TO_METERS = 0.0254f;					// doom to meters
 const float s_METERS_TO_DOOM = ( 1.0f / DOOM_TO_METERS );	// meters to doom
 
-
 const float s_DBM_TO_M = 1.0 / ( 10 * log10( idMath::E ) ); // convert between dB/m and 1/m
 
 void SsndPGlobals::Save( idSaveGame *savefile ) const {
@@ -231,13 +230,11 @@ void CsndPropBase::UpdateGlobals( void ) {
 	// link console vars to globals here
 }
 
-
 /*********************************************************
 *
 *	CsndPropLoader Implementation
 *
 **********************************************************/
-
 
 CsndPropLoader::CsndPropLoader( void ) {
 	m_PortData = NULL;
@@ -387,7 +384,6 @@ void CsndPropLoader::ExpandBoundsMinAxis( idBounds *bounds, float percent ) {
 	bounds->AddPoint( addpoints[0] );
 	bounds->AddPoint( addpoints[1] );
 }
-
 
 void CsndPropLoader::ParseMapEntities( idMapFile *MapFile ) {
 	int			i;
@@ -576,7 +572,6 @@ Quit:
 	return;
 }
 
-
 void CsndPropLoader::WritePortLosses( void ) {
 	DM_LOG( LC_SOUND, LT_DEBUG )LOGSTRING( "Writing portal losses...\r" );
 	int row, col, area( 0 ), numPorts( 0 );
@@ -680,7 +675,6 @@ float CsndPropBase::GetPortalAILoss( int handle ) {
 	}
 	return returnval;
 }
-
 
 float CsndPropBase::GetPortalPlayerLoss( int handle ) {
 	float returnval = 0.0;

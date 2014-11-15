@@ -397,8 +397,6 @@ void idSessionLocal::ShowLoadingGui() {
 	}
 }
 
-
-
 /*
 ================
 idSessionLocal::ClearWipe
@@ -804,7 +802,6 @@ void idSessionLocal::TimeRenderDemo( const char *demoName, bool twice ) {
 	timeDemo = TD_YES;
 }
 
-
 /*
 ================
 idSessionLocal::BeginAVICapture
@@ -841,7 +838,6 @@ void idSessionLocal::EndAVICapture() {
 	common->Printf( "captured %i frames for %s.\n", ( int )aviDemoFrameCount, aviDemoShortName.c_str() );
 	aviCaptureMode = false;
 }
-
 
 /*
 ================
@@ -938,7 +934,6 @@ void idSessionLocal::CompressDemoFile( const char *scheme, const char *demoName 
 	common->Printf( "Done\n" );
 	common->SetRefreshOnPrint( false );
 }
-
 
 /*
 ===============

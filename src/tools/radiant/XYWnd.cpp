@@ -1372,7 +1372,7 @@ void CXYWnd::OnPaint() {
 		}
 		if( ClipMode() ) {
 			glPointSize( 4 );
-			glColor3fv( g_qeglobals.d_savedinfo.colors[COLOR_CLIPPER].ToFloatPtr() );
+			GL_Color( g_qeglobals.d_savedinfo.colors[COLOR_CLIPPER] );
 			glBegin( GL_POINTS );
 			if( g_Clip1.Set() ) {
 				glVertex3fv( g_Clip1 );
@@ -1409,7 +1409,7 @@ void CXYWnd::OnPaint() {
 				brush_t *pBrush;
 				brush_t *pList = ( ( m_nViewType == XZ ) ? !g_bSwitch : g_bSwitch ) ? &g_brBackSplits : &g_brFrontSplits;
 				for( pBrush = pList->next; pBrush != NULL && pBrush != pList; pBrush = pBrush->next ) {
-					glColor3f( 1, 1, 0 );
+					GL_Color( 1.0f, 1.0f, 0.0f );
 					face_t	*face;
 					int		order;
 					for( face = pBrush->brush_faces, order = 0; face; face = face->next, order++ ) {
@@ -1429,7 +1429,7 @@ void CXYWnd::OnPaint() {
 		}
 		if( PathMode() ) {
 			glPointSize( 4 );
-			glColor3fv( g_qeglobals.d_savedinfo.colors[COLOR_CLIPPER].ToFloatPtr() );
+			GL_Color( g_qeglobals.d_savedinfo.colors[COLOR_CLIPPER] );
 			glBegin( GL_POINTS );
 			int n;
 			for( n = 0; n < g_nPathCount; n++ ) {
@@ -2428,7 +2428,7 @@ void CXYWnd::XY_DrawGrid() {
 	}
 	ye = startPos * ceil( ye / startPos );
 	// draw major blocks
-	glColor3fv( g_qeglobals.d_savedinfo.colors[COLOR_GRIDMAJOR].ToFloatPtr() );
+	GL_Color( g_qeglobals.d_savedinfo.colors[COLOR_GRIDMAJOR] );
 	int stepSize = 64 * 0.1 / m_fScale;
 	if( stepSize < 64 ) {
 		stepSize = max( 64 , g_qeglobals.d_gridsize );
@@ -2455,7 +2455,7 @@ void CXYWnd::XY_DrawGrid() {
 			g_qeglobals.d_showgrid &&
 			g_qeglobals.d_gridsize * m_fScale >= 4 &&
 			!g_qeglobals.d_savedinfo.colors[COLOR_GRIDMINOR].Compare( g_qeglobals.d_savedinfo.colors[COLOR_GRIDBACK] ) ) {
-		glColor3fv( g_qeglobals.d_savedinfo.colors[COLOR_GRIDMINOR].ToFloatPtr() );
+		GL_Color( g_qeglobals.d_savedinfo.colors[COLOR_GRIDMAJOR] );
 		glBegin( GL_LINES );
 		for( x = xb; x < xe; x += g_qeglobals.d_gridsize ) {
 			if( !( ( int )x & ( startPos - 1 ) ) ) {
@@ -2478,7 +2478,7 @@ void CXYWnd::XY_DrawGrid() {
 	if( m_nViewType == XZ || m_nViewType == YZ ) {
 		if( g_pParentWnd->GetZWnd()->m_pZClip ) {	// should always be the case at this point I think, but this is safer
 			if( g_pParentWnd->GetZWnd()->m_pZClip->IsEnabled() ) {
-				glColor3f( ZCLIP_COLOUR );
+				GL_Color( ZCLIP_COLOUR );
 				glLineWidth( 2 );
 				glBegin( GL_LINES );
 				glVertex2f( xb, g_pParentWnd->GetZWnd()->m_pZClip->GetTop() );
@@ -2492,8 +2492,7 @@ void CXYWnd::XY_DrawGrid() {
 	}
 	// draw coordinate text if needed
 	if( g_qeglobals.d_savedinfo.show_coordinates ) {
-		// glColor4f(0, 0, 0, 0);
-		glColor3fv( g_qeglobals.d_savedinfo.colors[COLOR_GRIDTEXT].ToFloatPtr() );
+		GL_Color( g_qeglobals.d_savedinfo.colors[COLOR_GRIDTEXT] );
 		float	lastRaster = xb;
 		for( x = xb; x < xe; x += stepSize ) {
 			glRasterPos2f( x, m_vOrigin[nDim2] + h - 10 / m_fScale );
@@ -2506,7 +2505,7 @@ void CXYWnd::XY_DrawGrid() {
 			glCallLists( strlen( text ), GL_UNSIGNED_BYTE, text );
 		}
 		if( Active() ) {
-			glColor3fv( g_qeglobals.d_savedinfo.colors[COLOR_VIEWNAME].ToFloatPtr() );
+			GL_Color( g_qeglobals.d_savedinfo.colors[COLOR_VIEWNAME] );
 		}
 		glRasterPos2f( m_vOrigin[nDim1] - w + 35 / m_fScale, m_vOrigin[nDim2] + h - 20 / m_fScale );
 		char	cView[20];
@@ -2520,7 +2519,7 @@ void CXYWnd::XY_DrawGrid() {
 		glCallLists( strlen( cView ), GL_UNSIGNED_BYTE, cView );
 	}
 	/*
-	 * if (true) { glColor3f(g_qeglobals.d_savedinfo.colors[COLOR_GRIDMINOR]);
+	 * if (true) { GL_Color(g_qeglobals.d_savedinfo.colors[COLOR_GRIDMINOR]);
 	 * glBegin (GL_LINES); glVertex2f (x, yb); glVertex2f (x, ye); glEnd(); }
 	 */
 }
@@ -2559,7 +2558,7 @@ void CXYWnd::XY_DrawBlockGrid() {
 	}
 	ye = 1024 * ceil( ye / 1024 );
 	// draw major blocks
-	glColor3fv( g_qeglobals.d_savedinfo.colors[COLOR_GRIDBLOCK].ToFloatPtr() );
+	GL_Color( g_qeglobals.d_savedinfo.colors[COLOR_GRIDBLOCK] );
 	glLineWidth( 0.5 );
 	glBegin( GL_LINES );
 	for( x = xb; x <= xe; x += 1024 ) {
@@ -2674,7 +2673,7 @@ void CXYWnd::DrawCameraIcon() {
 		a = g_pParentWnd->GetCamera()->Camera().angles[PITCH] * idMath::M_DEG2RAD;
 	}
 	float scale = 1.0 / m_fScale;	//jhefty - keep the camera icon proportionally the same size
-	glColor3f( 0.0, 0.0, 1.0 );
+	GL_Color( 0.0f, 0.0f, 1.0f );
 	glBegin( GL_LINE_STRIP );
 	glVertex3f( x - 16 * scale, y, 0 );
 	glVertex3f( x, y + 8 * scale, 0 );
@@ -2915,7 +2914,7 @@ void DrawPathLines( void ) {
 			s2[0] = dir[1] * 8 + dir[0] * 8;
 			s1[1] = dir[0] * 8 + dir[1] * 8;
 			s2[1] = -dir[0] * 8 + dir[1] * 8;
-			glColor3f( se->eclass->color[0], se->eclass->color[1], se->eclass->color[2] );
+			GL_Color( se->eclass->color[0], se->eclass->color[1], se->eclass->color[2] );
 			glBegin( GL_LINES );
 			glVertex3fv( mid.ToFloatPtr() );
 			glVertex3fv( mid1.ToFloatPtr() );
@@ -2942,11 +2941,11 @@ void DrawPathLines( void ) {
 void CXYWnd::PaintSizeInfo( int nDim1, int nDim2, idVec3 vMinBounds, idVec3 vMaxBounds ) {
 	idVec3	vSize;
 	VectorSubtract( vMaxBounds, vMinBounds, vSize );
-	glColor3f
+	GL_Color
 	(
-		g_qeglobals.d_savedinfo.colors[COLOR_SELBRUSHES][0] * .65,
-		g_qeglobals.d_savedinfo.colors[COLOR_SELBRUSHES][1] * .65,
-		g_qeglobals.d_savedinfo.colors[COLOR_SELBRUSHES][2] * .65
+		g_qeglobals.d_savedinfo.colors[COLOR_SELBRUSHES][0] * 0.65f,
+		g_qeglobals.d_savedinfo.colors[COLOR_SELBRUSHES][1] * 0.65f,
+		g_qeglobals.d_savedinfo.colors[COLOR_SELBRUSHES][2] * 0.65f
 	);
 	if( m_nViewType == XY ) {
 		glBegin( GL_LINES );
@@ -3045,8 +3044,8 @@ void CXYWnd::XY_Draw() {
 	// clear
 	m_bDirty = false;
 	GL_State( GLS_DEFAULT );
-	glViewport( 0, 0, m_nWidth, m_nHeight );
-	glScissor( 0, 0, m_nWidth, m_nHeight );
+	GL_Viewport( 0, 0, m_nWidth, m_nHeight );
+	GL_Scissor( 0, 0, m_nWidth, m_nHeight );
 	glClearColor
 	(
 		g_qeglobals.d_savedinfo.colors[COLOR_GRIDBACK][0],
@@ -3099,9 +3098,9 @@ void CXYWnd::XY_Draw() {
 		}
 		drawn++;
 		if( brush->owner != e && brush->owner ) {
-			glColor3fv( brush->owner->eclass->color.ToFloatPtr() );
+			GL_Color( brush->owner->eclass->color );
 		} else {
-			glColor3fv( g_qeglobals.d_savedinfo.colors[COLOR_BRUSHES].ToFloatPtr() );
+			GL_Color( g_qeglobals.d_savedinfo.colors[COLOR_BRUSHES] );
 		}
 		Brush_DrawXY( brush, m_nViewType );
 	}
@@ -3134,11 +3133,11 @@ void CXYWnd::XY_Draw() {
 		g_qeglobals.d_select_translate[2]
 	);
 	if( RotateMode() ) {
-		glColor3f( 0.8f, 0.1f, 0.9f );
+		GL_Color( 0.8f, 0.1f, 0.9f );
 	} else if( ScaleMode() ) {
-		glColor3f( 0.1f, 0.8f, 0.1f );
+		GL_Color( 0.1f, 0.8f, 0.1f );
 	} else {
-		glColor3fv( g_qeglobals.d_savedinfo.colors[COLOR_SELBRUSHES].ToFloatPtr() );
+		GL_Color( g_qeglobals.d_savedinfo.colors[COLOR_SELBRUSHES] );
 	}
 	if( g_PrefsDlg.m_bNoStipple == FALSE ) {
 		glEnable( GL_LINE_STIPPLE );
@@ -3180,7 +3179,7 @@ void CXYWnd::XY_Draw() {
 	// edge / vertex flags
 	if( g_qeglobals.d_select_mode == sel_vertex ) {
 		glPointSize( 4 );
-		glColor3f( 0, 1, 0 );
+		GL_Color( 0.0f, 1.0f, 0.0f );
 		glBegin( GL_POINTS );
 		for( i = 0; i < g_qeglobals.d_numpoints; i++ ) {
 			glVertex3fv( g_qeglobals.d_points[i].ToFloatPtr() );
@@ -3190,7 +3189,7 @@ void CXYWnd::XY_Draw() {
 	} else if( g_qeglobals.d_select_mode == sel_edge ) {
 		float	*v1, *v2;
 		glPointSize( 4 );
-		glColor3f( 0, 0, 1 );
+		GL_Color( 0.0f, 0.0f, 1.0f );
 		glBegin( GL_POINTS );
 		for( i = 0; i < g_qeglobals.d_numedges; i++ ) {
 			v1 = g_qeglobals.d_points[g_qeglobals.d_edges[i].p1].ToFloatPtr();
@@ -3204,7 +3203,7 @@ void CXYWnd::XY_Draw() {
 	if( g_pParentWnd->GetNurbMode() && g_pParentWnd->GetNurb()->GetNumValues() ) {
 		int maxage = g_pParentWnd->GetNurb()->GetNumValues();
 		int time = 0;
-		glColor3f( 0, 0, 1 );
+		GL_Color( 0.0f, 0.0f, 1.0f );
 		glPointSize( 1 );
 		glBegin( GL_POINTS );
 		g_pParentWnd->GetNurb()->SetOrder( 3 );
@@ -3215,7 +3214,7 @@ void CXYWnd::XY_Draw() {
 		}
 		glEnd();
 		glPointSize( 4 );
-		glColor3f( 0, 0, 1 );
+		GL_Color( 0.0f, 0.0f, 1.0f );
 		glBegin( GL_POINTS );
 		for( i = 0; i < maxage; i++ ) {
 			idVec2 v = g_pParentWnd->GetNurb()->GetValue( i );
@@ -3249,7 +3248,7 @@ void CXYWnd::XY_Draw() {
 		);
 		glDisable( GL_BLEND );
 		glPolygonMode( GL_FRONT_AND_BACK , GL_LINE );
-		glColor3f( 1.0f, 1.0f, 1.0f );
+		GL_Color( 1.0f, 1.0f, 1.0f );
 		glRectf
 		(
 			g_qeglobals.d_vAreaTL[nDim1],
@@ -3918,22 +3917,22 @@ void CXYWnd::DrawPrecisionCrosshair( void ) {
 	glBegin( GL_LINES );
 	{
 		/// Draw the horizontal precision line (in two pieces)
-		glColor4fv( crossEndColor.ToFloatPtr() );
+		GL_Color( crossEndColor[0], crossEndColor[1], crossEndColor[2], crossEndColor[3] );
 		glVertex2f( m_mcLeft, y );
-		glColor4fv( crossMidColor.ToFloatPtr() );
+		GL_Color( crossMidColor[0], crossMidColor[1], crossMidColor[2], crossMidColor[3] );
 		glVertex2f( x, y );
-		glColor4fv( crossMidColor.ToFloatPtr() );
+		GL_Color( crossMidColor[0], crossMidColor[1], crossMidColor[2], crossMidColor[3] );
 		glVertex2f( x, y );
-		glColor4fv( crossEndColor.ToFloatPtr() );
+		GL_Color( crossEndColor[0], crossEndColor[1], crossEndColor[2], crossEndColor[3] );
 		glVertex2f( m_mcRight, y );
 		/// Draw the vertical precision line (in two pieces)
-		glColor4fv( crossEndColor.ToFloatPtr() );
+		GL_Color( crossEndColor[0], crossEndColor[1], crossEndColor[2], crossEndColor[3] );
 		glVertex2f( x, m_mcTop );
-		glColor4fv( crossMidColor.ToFloatPtr() );
+		GL_Color( crossMidColor[0], crossMidColor[1], crossMidColor[2], crossMidColor[3] );
 		glVertex2f( x, y );
-		glColor4fv( crossMidColor.ToFloatPtr() );
+		GL_Color( crossMidColor[0], crossMidColor[1], crossMidColor[2], crossMidColor[3] );
 		glVertex2f( x, y );
-		glColor4fv( crossEndColor.ToFloatPtr() );
+		GL_Color( crossEndColor[0], crossEndColor[1], crossEndColor[2], crossEndColor[3] );
 		glVertex2f( x, m_mcBottom );
 	}
 	glEnd(); // GL_LINES

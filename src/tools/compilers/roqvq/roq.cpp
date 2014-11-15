@@ -183,7 +183,6 @@ typedef struct {
 
 typedef my_destination_mgr *my_dest_ptr;
 
-
 /*
  * Initialize destination --- called by jpeg_start_compress
  * before any data is actually written.
@@ -194,7 +193,6 @@ void roq::JPEGInitDestination( j_compress_ptr cinfo ) {
 	dest->pub.next_output_byte = dest->outfile;
 	dest->pub.free_in_buffer = dest->size;
 }
-
 
 /*
  * Empty the output buffer --- called whenever buffer fills up.
@@ -222,7 +220,6 @@ void roq::JPEGInitDestination( j_compress_ptr cinfo ) {
 boolean roq::JPEGEmptyOutputBuffer( j_compress_ptr cinfo ) {
 	return true;
 }
-
 
 /*
  * Compression initialization.
@@ -259,7 +256,6 @@ void roq::JPEGStartCompress( j_compress_ptr cinfo, bool write_all_tables ) {
 	cinfo->next_scanline = 0;
 	cinfo->global_state = ( cinfo->raw_data_in ? CSTATE_RAW_OK : CSTATE_SCANNING );
 }
-
 
 /*
  * Write some scanlines of data to the JPEG compressor.
@@ -325,7 +321,6 @@ void roq::JPEGTermDestination( j_compress_ptr cinfo ) {
 	size_t datacount = dest->size - dest->pub.free_in_buffer;
 	hackSize = datacount;
 }
-
 
 /*
  * Prepare for output to a stdio stream.

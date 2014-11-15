@@ -24,12 +24,10 @@
 #include "../common/registryoptions.h"
 #include "MaterialDef.h"
 
-
 /**
 * View that displays material and stage properties and allows the user to edit the properties.
 */
 class MaterialPropTreeView : public CPropTreeView, public MaterialView {
-
 public:
 	virtual				~MaterialPropTreeView();
 
@@ -61,5 +59,3 @@ protected:
 	rvRegistryOptions	registry;
 	bool				internalChange;
 };
-
-

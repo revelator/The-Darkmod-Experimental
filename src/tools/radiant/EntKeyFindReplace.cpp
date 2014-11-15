@@ -70,7 +70,6 @@ CEntKeyFindReplace::CEntKeyFindReplace(	CString *p_strFindKey,
 	//}}AFX_DATA_INIT
 }
 
-
 void CEntKeyFindReplace::DoDataExchange( CDataExchange *pDX ) {
 	CDialog::DoDataExchange( pDX );
 	//{{AFX_DATA_MAP(CEntKeyFindReplace)
@@ -82,7 +81,6 @@ void CEntKeyFindReplace::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Check( pDX, IDC_CHECK_SELECTALLMATCHING, m_bSelectAllMatchingEnts );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CEntKeyFindReplace, CDialog )
 	//{{AFX_MSG_MAP(CEntKeyFindReplace)
@@ -153,7 +151,6 @@ void CEntKeyFindReplace::CopyFields() {
 	*m_pbSelectAllMatchingEnts = m_bSelectAllMatchingEnts != 0;
 }
 
-
 void CEntKeyFindReplace::OnKeycopy() {
 	UpdateData( DIALOG_TO_DATA );
 	m_strReplaceKey = m_strFindKey;
@@ -165,4 +162,3 @@ void CEntKeyFindReplace::OnValuecopy() {
 	m_strReplaceValue = m_strFindValue;
 	UpdateData( DATA_TO_DIALOG );
 }
-

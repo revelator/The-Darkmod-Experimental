@@ -153,5 +153,3 @@ void rvGEOptions::SnapRectToGrid( idRectangle &rect, bool snapLeft, bool snapTop
 		rect.h += offset;
 	}
 }
-
-

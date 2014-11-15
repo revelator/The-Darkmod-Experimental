@@ -124,7 +124,6 @@ public:
 
 	/// Key/value data parsed from the xdata decl.
 	idDict					m_data;
-
 };
 
 #endif /* __DARKMOD_DECLXDATA_H__ */

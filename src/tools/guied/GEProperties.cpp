@@ -249,5 +249,3 @@ LRESULT CALLBACK rvGEProperties::WndProc( HWND hWnd, UINT msg, WPARAM wParam, LP
 	}
 	return DefWindowProc( hWnd, msg, wParam, lParam );
 }
-
-

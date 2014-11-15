@@ -28,7 +28,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 // Get the name of this task
 const idStr &MeleeCombatTask::GetName() const {
 	static idStr _name( TASK_MELEE_COMBAT );
@@ -424,5 +423,4 @@ TaskLibrary::Registrar meleeCombatTaskRegistrar(
 	TASK_MELEE_COMBAT, // Task Name
 	TaskLibrary::CreateInstanceFunc( &MeleeCombatTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

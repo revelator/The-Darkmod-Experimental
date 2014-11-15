@@ -35,7 +35,6 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CMapInfo dialog
 
-
 CMapInfo::CMapInfo( CWnd *pParent /*=NULL*/ )
 	: CDialog( CMapInfo::IDD, pParent ) {
 	//{{AFX_DATA_INIT(CMapInfo)
@@ -44,7 +43,6 @@ CMapInfo::CMapInfo( CWnd *pParent /*=NULL*/ )
 	m_nTotalEntities = 0;
 	//}}AFX_DATA_INIT
 }
-
 
 void CMapInfo::DoDataExchange( CDataExchange *pDX ) {
 	CDialog::DoDataExchange( pDX );
@@ -55,7 +53,6 @@ void CMapInfo::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Text( pDX, IDC_EDIT_TOTALENTITIES, m_nTotalEntities );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CMapInfo, CDialog )
 	//{{AFX_MSG_MAP(CMapInfo)

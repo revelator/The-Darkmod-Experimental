@@ -23,7 +23,6 @@
 #include "State.h"
 
 namespace ai {
-
 #define STATE_TAKE_COVER "TakeCover"
 
 class TakeCoverState :
@@ -40,7 +39,6 @@ public:
 
 	static StatePtr CreateInstance();
 };
-
 } // namespace ai
 
 #endif /* __AI_TAKE_COVER_STATE_H__ */

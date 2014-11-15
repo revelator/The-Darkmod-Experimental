@@ -26,7 +26,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "Radiant.h"
 #include "mediapreviewdlg.h"
 
-
 // CMediaPreviewDlg dialog
 
 IMPLEMENT_DYNAMIC( CMediaPreviewDlg, CDialog )
@@ -65,7 +64,6 @@ void CMediaPreviewDlg::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Control( pDX, IDC_PREVIEW, wndPreview );
 }
 
-
 BEGIN_MESSAGE_MAP( CMediaPreviewDlg, CDialog )
 	ON_WM_SIZE()
 	ON_WM_DESTROY()
@@ -73,7 +71,6 @@ BEGIN_MESSAGE_MAP( CMediaPreviewDlg, CDialog )
 	ON_WM_LBUTTONUP()
 	ON_WM_MOUSEMOVE()
 END_MESSAGE_MAP()
-
 
 // CMediaPreviewDlg message handlers
 

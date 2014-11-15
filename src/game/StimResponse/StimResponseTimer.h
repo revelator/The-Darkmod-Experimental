@@ -64,7 +64,6 @@ public:
  * that it will reset itself infinitely (or until manually stopped).
  */
 class CStimResponseTimer {
-
 	friend class CStim;
 	friend class CStimResponseCollection;
 

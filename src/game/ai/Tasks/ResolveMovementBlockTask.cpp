@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 ResolveMovementBlockTask::ResolveMovementBlockTask() :
 	_blockingEnt( NULL ),
 	_preTaskContents( -1 ) {
@@ -450,5 +449,4 @@ TaskLibrary::Registrar resolveMovementBlockTaskRegistrar(
 	TASK_RESOLVE_MOVEMENT_BLOCK, // Task Name
 	TaskLibrary::CreateInstanceFunc( &ResolveMovementBlockTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

@@ -32,7 +32,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include <boost/algorithm/string/classification.hpp>
 
 namespace ai {
-
 IdleAnimationTask::IdleAnimationTask() :
 	_nextAnimationTime( -1 ),
 	_idleAnimationInterval( -1 ),
@@ -288,5 +287,4 @@ TaskLibrary::Registrar idleAnimationTaskRegistrar(
 	TASK_IDLE_ANIMATION, // Task Name
 	TaskLibrary::CreateInstanceFunc( &IdleAnimationTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

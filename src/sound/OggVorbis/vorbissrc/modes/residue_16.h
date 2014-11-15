@@ -175,7 +175,6 @@ static vorbis_residue_template _res_16u_2[] = {
 	}
 };
 
-
 static vorbis_mapping_template _mapres_template_16_uncoupled[3] = {
 	{ _map_nominal_u, _res_16u_0 }, /* 0 */
 	{ _map_nominal_u, _res_16u_1 }, /* 1 */

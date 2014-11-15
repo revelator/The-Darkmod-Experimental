@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "GuiScript.h"
 #include "UserInterfaceLocal.h"
 
-
 /*
 =========================
 Script_Set
@@ -249,7 +248,6 @@ guiCommandDef_t commandList[] = {
 };
 
 int	scriptCommandCount = sizeof( commandList ) / sizeof( guiCommandDef_t );
-
 
 /*
 =========================

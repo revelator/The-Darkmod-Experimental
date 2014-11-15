@@ -1588,14 +1588,3 @@ idStr MaterialTreeView::GetQuicktreePath( HTREEITEM item ) {
 	}
 	return qt;
 }
-
-
-
-
-
-
-
-
-
-
-

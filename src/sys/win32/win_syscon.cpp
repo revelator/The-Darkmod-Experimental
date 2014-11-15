@@ -82,7 +82,6 @@ typedef struct {
 	// will be <= nextHistoryLine
 
 	idEditField	consoleField;
-
 } WinConData;
 
 static WinConData s_wcd;

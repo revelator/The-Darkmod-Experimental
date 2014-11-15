@@ -44,7 +44,6 @@ public:
 idAASFileManagerLocal			AASFileManagerLocal;
 idAASFileManager 				*AASFileManager = &AASFileManagerLocal;
 
-
 /*
 ================
 idAASFileManagerLocal::LoadAAS

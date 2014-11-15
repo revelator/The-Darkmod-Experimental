@@ -24,7 +24,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "CPathTreeCtrl.h"
 
-
 /*
 ================
 CPathTreeCtrl::CPathTreeCtrl

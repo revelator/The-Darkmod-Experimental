@@ -143,8 +143,6 @@ private:
 
 	/** Human readable message of the last error that occured */
 	idStr					m_lastError;
-
 };
 
 #endif /* !__DARKMOD_IMAGEMAPMANAGER_H__ */
-

@@ -81,7 +81,6 @@ typedef struct {
 	int   coupling_prepointamp[PACKETBLOBS];
 	int   coupling_postpointamp[PACKETBLOBS];
 	int   sliding_lowpass[2][PACKETBLOBS];
-
 } vorbis_info_psy_global;
 
 typedef struct {
@@ -91,7 +90,6 @@ typedef struct {
 	vorbis_info_psy_global *gi;
 	int   coupling_pointlimit[2][P_NOISECURVES];
 } vorbis_look_psy_global;
-
 
 typedef struct {
 	int n;
@@ -172,4 +170,3 @@ extern int **_vp_quantize_couple_sort( vorbis_block *vb,
 									   float **mags );
 
 #endif
-

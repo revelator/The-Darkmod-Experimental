@@ -39,7 +39,6 @@ public:
 	CListBox	m_lstCommands;
 	//}}AFX_DATA
 
-
 	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CCommandsDlg)

@@ -62,7 +62,6 @@ void TRandomMersenne::RandomInit( uint32 seed ) {
 	}
 }
 
-
 void TRandomMersenne::RandomInitByArray( uint32 seeds[], int length ) {
 	// seed by more than 32 bits
 	int i, j, k;
@@ -95,7 +94,6 @@ void TRandomMersenne::RandomInitByArray( uint32 seeds[], int length ) {
 	mt[0] = 0x80000000UL;
 } // MSB is 1; assuring non-zero initial array
 
-
 uint32 TRandomMersenne::BRandom() {
 	// generate 32 random bits
 	uint32 y;
@@ -125,7 +123,6 @@ uint32 TRandomMersenne::BRandom() {
 	y ^=  y >> MERS_L;
 	return y;
 }
-
 
 double TRandomMersenne::Random() {
 	// output random float number in the interval 0 <= x < 1
@@ -161,7 +158,6 @@ double TRandomMersenne::Random() {
 	return ( double )r * ( 1. / ( ( double )( uint32 )( -1L ) + 1. ) );
 }
 
-
 int TRandomMersenne::IRandom( int min, int max ) {
 	// output random integer in the interval min <= x <= max
 	int r;
@@ -174,4 +170,3 @@ int TRandomMersenne::IRandom( int min, int max ) {
 	}
 	return r;
 }
-

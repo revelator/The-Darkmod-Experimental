@@ -193,7 +193,7 @@ void rvGEWorkspace::RenderGrid( void ) {
 	}
 	glEnd( );
 	glDisable( GL_BLEND );
-	glColor3f( color[0], color[1], color[2] );
+	GL_Color( color[0], color[1], color[2] );
 	glBegin( GL_LINES );
 	step = mApplication->GetOptions().GetGridWidth( ) * g_ZoomScales[mZoom];
 	for( x = mRect.x + mRect.w; x >= mRect.x ; x -= step * 4 ) {
@@ -228,8 +228,8 @@ void rvGEWorkspace::Render( HDC hdc ) {
 	}
 	// Prepare the view and clear it
 	GL_State( GLS_DEFAULT );
-	glViewport( 0, 0, mWindowWidth, mWindowHeight );
-	glScissor( 0, 0, mWindowWidth, mWindowHeight );
+	GL_Viewport( 0, 0, mWindowWidth, mWindowHeight );
+	GL_Scissor( 0, 0, mWindowWidth, mWindowHeight );
 	glClearColor( 0.75f, 0.75f, 0.75f, 0 );
 	glDisable( GL_DEPTH_TEST );
 	glDisable( GL_CULL_FACE );
@@ -240,7 +240,7 @@ void rvGEWorkspace::Render( HDC hdc ) {
 	glOrtho( 0, mWindowWidth, mWindowHeight, 0, -1, 1 );
 	glMatrixMode( GL_MODELVIEW );
 	glLoadIdentity();
-	glColor3f( mApplication->GetOptions().GetWorkspaceColor()[0], mApplication->GetOptions().GetWorkspaceColor()[1], mApplication->GetOptions().GetWorkspaceColor()[2] );
+	GL_Color( mApplication->GetOptions().GetWorkspaceColor()[0], mApplication->GetOptions().GetWorkspaceColor()[1], mApplication->GetOptions().GetWorkspaceColor()[2] );
 	glBegin( GL_QUADS );
 	glVertex2f( mRect.x, mRect.y );
 	glVertex2f( mRect.x + mRect.w, mRect.y );
@@ -273,8 +273,8 @@ void rvGEWorkspace::Render( HDC hdc ) {
 	glDisable( GL_TEXTURE_CUBE_MAP_EXT );
 	//	glDisable(GL_BLEND);
 	glDisable( GL_CULL_FACE );
-	glViewport( 0, 0, mWindowWidth, mWindowHeight );
-	glScissor( 0, 0, mWindowWidth, mWindowHeight );
+	GL_Viewport( 0, 0, mWindowWidth, mWindowHeight );
+	GL_Scissor( 0, 0, mWindowWidth, mWindowHeight );
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity();
 	glOrtho( 0, mWindowWidth, mWindowHeight, 0, -1, 1 );

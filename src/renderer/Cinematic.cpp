@@ -134,8 +134,6 @@ static unsigned short 	*vq2 = NULL;
 static unsigned short 	*vq4 = NULL;
 static unsigned short 	*vq8 = NULL;
 
-
-
 //===========================================
 
 /*
@@ -1285,7 +1283,6 @@ void idCinematicLocal::RoQReset() {
 	status = FMV_LOOPED;
 }
 
-
 typedef struct {
 	struct jpeg_source_mgr pub;	/* public fields */
 
@@ -1335,7 +1332,6 @@ struct jpeg_error_mgr jerr;
  * the front of the buffer rather than discarding it.
  */
 
-
 static boolean fill_input_buffer( j_decompress_ptr cinfo ) {
 	my_src_ptr src = ( my_src_ptr ) cinfo->src;
 	int nbytes;
@@ -1362,7 +1358,6 @@ static boolean fill_input_buffer( j_decompress_ptr cinfo ) {
  * Initialize source --- called by jpeg_read_header
  * before any data is actually read.
  */
-
 
 static void init_source( j_decompress_ptr cinfo ) {
 	my_src_ptr src = ( my_src_ptr ) cinfo->src;
@@ -1399,7 +1394,6 @@ skip_input_data( j_decompress_ptr cinfo, long num_bytes ) {
 	}
 }
 
-
 /*
  * An additional method that can be provided by data source modules is the
  * resync_to_restart method for error recovery in the presence of RST markers.
@@ -1407,7 +1401,6 @@ skip_input_data( j_decompress_ptr cinfo, long num_bytes ) {
  * provided by the JPEG library.  That method assumes that no backtracking
  * is possible.
  */
-
 
 /*
  * Terminate source --- called by jpeg_finish_decompress

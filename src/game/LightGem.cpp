@@ -42,17 +42,16 @@ public:																											\
 	gameLocal.Printf( #block_tag" : %lf \n\n", m_timeStamp.Milliseconds() );									\
 	}																											\
 }	_profile_blockInstance_##block_tag;																			\
- 
 
 #define PROFILE_BLOCK_START( block_tag )																		\
 	idTimer timer##block_tag;																					\
 	timer##block_tag.Start()																					\
- 
+
 // PROFILE_BLOCK_END requires PROFILE_BLOCK_START to be placed before it, to work.
 #define PROFILE_BLOCK_END( block_tag )																			\
 	timer##block_tag.Stop();																					\
 	gameLocal.Printf( #block_tag": %lf \n", timer##block_tag.Milliseconds() )									\
- 
+
 #else
 
 #define PROFILE_BLOCK( block_tag )
@@ -73,7 +72,6 @@ LightGem::~LightGem() {
 	Deinitialize();
 	free( m_LightgemImgBuffer );
 }
-
 
 //----------------------------------------------------
 // Initialization

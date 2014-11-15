@@ -35,7 +35,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "Game_local.h"
 #include "StimResponse/StimResponseCollection.h"
 
-
 /***********************************************************************
 
   idSecurityCamera
@@ -483,7 +482,6 @@ void idSecurityCamera::Killed( idEntity *inflictor, idEntity *attacker, int dama
 	physicsObj.DropToFloor();
 }
 
-
 /*
 ============
 idSecurityCamera::Pain
@@ -496,7 +494,6 @@ bool idSecurityCamera::Pain( idEntity *inflictor, idEntity *attacker, int damage
 	}
 	return true;
 }
-
 
 /*
 ================

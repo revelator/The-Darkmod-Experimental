@@ -36,7 +36,6 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CCommandsDlg dialog
 
-
 CCommandsDlg::CCommandsDlg( CWnd *pParent /*=NULL*/ )
 	: CDialog( CCommandsDlg::IDD, pParent ) {
 	//{{AFX_DATA_INIT(CCommandsDlg)
@@ -44,14 +43,12 @@ CCommandsDlg::CCommandsDlg( CWnd *pParent /*=NULL*/ )
 	//}}AFX_DATA_INIT
 }
 
-
 void CCommandsDlg::DoDataExchange( CDataExchange *pDX ) {
 	CDialog::DoDataExchange( pDX );
 	//{{AFX_DATA_MAP(CCommandsDlg)
 	DDX_Control( pDX, IDC_LIST_COMMANDS, m_lstCommands );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CCommandsDlg, CDialog )
 	//{{AFX_MSG_MAP(CCommandsDlg)
@@ -99,4 +96,3 @@ BOOL CCommandsDlg::OnInitDialog() {
 	fileout.Close();
 	return TRUE;
 }
-

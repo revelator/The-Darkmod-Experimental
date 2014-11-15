@@ -34,7 +34,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #define DEBUG_NEW new
 #endif
 
-
 typedef struct scriptEventInfo_s {
 	idStr		name;
 	idStr		parms;
@@ -54,7 +53,6 @@ toolTip_t DialogScriptEditor::toolTips[] = {
 	{ IDCANCEL, "cancel" },
 	{ 0, NULL }
 };
-
 
 IMPLEMENT_DYNAMIC( DialogScriptEditor, CDialog )
 
@@ -371,7 +369,6 @@ void ScriptEditorShutdown( void ) {
 	g_ScriptDialog = NULL;
 	scriptEvents.Clear();
 }
-
 
 // DialogScriptEditor message handlers
 

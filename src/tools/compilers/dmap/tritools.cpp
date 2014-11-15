@@ -51,7 +51,6 @@ void		FreeTri( mapTri_t *tri ) {
 	Mem_Free( tri );
 }
 
-
 /*
 ===============
 MergeTriLists
@@ -68,7 +67,6 @@ mapTri_t	*MergeTriLists( mapTri_t *a, mapTri_t *b ) {
 	*prev = b;
 	return a;
 }
-
 
 /*
 ===============
@@ -101,7 +99,6 @@ mapTri_t	*CopyTriList( const mapTri_t *a ) {
 	return testList;
 }
 
-
 /*
 =============
 CountTriList
@@ -116,7 +113,6 @@ int	CountTriList( const mapTri_t *tri ) {
 	}
 	return c;
 }
-
 
 /*
 ===============
@@ -188,7 +184,6 @@ void DrawTri( const mapTri_t *tri ) {
 	VectorCopy( tri->v[2].xyz, w[2] );
 	DrawWinding( &w );
 }
-
 
 /*
 ================
@@ -307,7 +302,6 @@ mapTri_t *WindingToTriList( const idWinding *w, const mapTri_t *originalTri ) {
 	}
 	return triList;
 }
-
 
 /*
 ==================

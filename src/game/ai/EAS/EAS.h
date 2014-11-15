@@ -36,7 +36,6 @@
 class idAASLocal;
 
 namespace eas {
-
 /**
  * greebo: The EAS ("Elevator Awareness System") provides some extended
  * routing functionality between AAS clusters for all AI which are able
@@ -142,7 +141,6 @@ private:
 	// Checks the route for redundancies, returns TRUE if the route is accepted
 	bool EvaluateRoute( int startCluster, int goalCluster, int forbiddenElevator, RouteInfoPtr route );
 };
-
 } // namespace eas
 
 #endif /* __AI_EAS_H__ */

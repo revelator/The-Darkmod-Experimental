@@ -1,29 +1,26 @@
 /*****************************************************************************
                     The Dark Mod GPL Source Code
- 
- This file is part of the The Dark Mod Source Code, originally based 
+
+ This file is part of the The Dark Mod Source Code, originally based
  on the Doom 3 GPL Source Code as published in 2011.
- 
- The Dark Mod Source Code is free software: you can redistribute it 
- and/or modify it under the terms of the GNU General Public License as 
- published by the Free Software Foundation, either version 3 of the License, 
+
+ The Dark Mod Source Code is free software: you can redistribute it
+ and/or modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation, either version 3 of the License,
  or (at your option) any later version. For details, see LICENSE.TXT.
- 
+
  Project: The Dark Mod (http://www.thedarkmod.com/)
- 
- $Revision$ (Revision of last commit) 
+
+ $Revision$ (Revision of last commit)
  $Date$ (Date of last commit)
  $Author$ (Author of last commit)
- 
+
 ******************************************************************************/
 
 #include "precompiled.h"
 #pragma hdrstop
 
-
-
 #include "TraceModel.h"
-
 
 /*
 ============
@@ -230,7 +227,6 @@ idTraceModel::InitOctahedron
 ============
 */
 void idTraceModel::InitOctahedron( void ) {
-
 	type = TRM_OCTAHEDRON;
 	numVerts = 6;
 	numEdges = 12;
@@ -404,7 +400,6 @@ idTraceModel::InitDodecahedron
 ============
 */
 void idTraceModel::InitDodecahedron( void ) {
-
 	type = TRM_DODECAHEDRON;
 	numVerts = 20;
 	numEdges = 30;
@@ -1165,7 +1160,7 @@ idTraceModel::Compare
 bool idTraceModel::Compare( const idTraceModel &trm ) const {
 	int i;
 
-	if ( type != trm.type || numVerts != trm.numVerts || 
+	if ( type != trm.type || numVerts != trm.numVerts ||
 			numEdges != trm.numEdges || numPolys != trm.numPolys ) {
 		return false;
 	}
@@ -1317,7 +1312,6 @@ int idTraceModel::GetParallelProjectionSilhouetteEdges( const idVec3 &projection
 	return GetOrderedSilhouetteEdges( edgeIsSilEdge, silEdges );
 }
 
-
 /*
 
   credits to Brian Mirtich for his paper "Fast and Accurate Computation of Polyhedral Mass Properties"
@@ -1366,7 +1360,7 @@ void idTraceModel::ProjectionIntegrals( int polyNum, int a, int b, struct projec
 		b0_3 = b0_2 * b0;
 		b0_4 = b0_3 * b0;
 		a1_2 = a1 * a1;
-		a1_3 = a1_2 * a1; 
+		a1_3 = a1_2 * a1;
 		b1_2 = b1 * b1;
 		b1_3 = b1_2 * b1;
 
@@ -1446,7 +1440,7 @@ void idTraceModel::PolygonIntegrals( int polyNum, int a, int b, int c, struct po
 
 	integrals.Faaa = k1 * pi.Paaa;
 	integrals.Fbbb = k1 * pi.Pbbb;
-	integrals.Fccc = -k4 * (Cube(n[a]) * pi.Paaa + 3 * Square(n[a]) * n[b] * pi.Paab 
+	integrals.Fccc = -k4 * (Cube(n[a]) * pi.Paaa + 3 * Square(n[a]) * n[b] * pi.Paab
 			+ 3 * n[a] * Square(n[b]) * pi.Pabb + Cube(n[b]) * pi.Pbbb
 			+ 3 * w * (Square(n[a]) * pi.Paa + 2 * n[a] * n[b] * pi.Pab + Square(n[b]) * pi.Pbb)
 			+ w * w * (3 * (n[a] * pi.Pa + n[b] * pi.Pb) + w * pi.P1));

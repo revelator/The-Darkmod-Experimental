@@ -30,7 +30,6 @@ const int SETUP_CONNECTION_RESEND_TIME	= 1000;
 const int EMPTY_RESEND_TIME				= 500;
 const int PREDICTION_FAST_ADJUST		= 4;
 
-
 /*
 ==================
 idAsyncClient::idAsyncClient

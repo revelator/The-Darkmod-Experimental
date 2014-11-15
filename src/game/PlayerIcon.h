@@ -46,9 +46,6 @@ public:
 	bool	CreateIcon( idPlayer *player, playerIconType_t type, const char *mtr, const idVec3 &origin, const idMat3 &axis );
 	bool	CreateIcon( idPlayer *player, playerIconType_t type, const idVec3 &origin, const idMat3 &axis );
 	void	UpdateIcon( idPlayer *player, const idVec3 &origin, const idMat3 &axis );
-
 };
 
-
 #endif	/* !_PLAYERICON_H_ */
-

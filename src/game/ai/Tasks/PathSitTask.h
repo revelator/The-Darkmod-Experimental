@@ -23,7 +23,6 @@
 #include "PathTask.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_PATH_SIT "PathSit"
 
@@ -57,7 +56,6 @@ public:
 	// Creates a new Instance of this task
 	static PathSitTaskPtr CreateInstance();
 };
-
 } // namespace ai
 
 #endif /* __AI_PATH_SIT_TASK_H__ */

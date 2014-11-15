@@ -122,9 +122,7 @@ const int EditEnableID[] = {
 
 const int EditIDCount = sizeof( EditEnableID ) / sizeof( const int );
 
-
 CDialogParticleEditor *g_ParticleDialog = NULL;
-
 
 /*
 ================
@@ -161,7 +159,6 @@ void ParticleEditorInit( const idDict *spawnArgs ) {
 	cvarSystem->SetCVarBool( "r_useCachedDynamicModels", false );
 }
 
-
 /*
 ================
 ParticleEditorRun
@@ -189,7 +186,6 @@ void ParticleEditorShutdown( void ) {
 	delete g_ParticleDialog;
 	g_ParticleDialog = NULL;
 }
-
 
 // CDialogParticleEditor dialog
 
@@ -313,7 +309,6 @@ void CDialogParticleEditor::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Control( pDX, IDC_BUTTON_VECTOR, vectorControl );
 }
 
-
 BEGIN_MESSAGE_MAP( CDialogParticleEditor, CDialog )
 	ON_BN_CLICKED( IDC_BUTTON_ADDSTAGE, OnBnClickedButtonAddstage )
 	ON_BN_CLICKED( IDC_BUTTON_REMOVESTAGE, OnBnClickedButtonRemovestage )
@@ -360,7 +355,6 @@ BEGIN_MESSAGE_MAP( CDialogParticleEditor, CDialog )
 	ON_WM_HSCROLL()
 END_MESSAGE_MAP()
 
-
 // CDialogParticleEditor message handlers
 
 void CDialogParticleEditor::OnBnClickedParticleMode() {
@@ -368,7 +362,6 @@ void CDialogParticleEditor::OnBnClickedParticleMode() {
 	cvarSystem->SetCVarInteger( "g_editEntityMode", ( particleMode ) ? 4 : 0 );
 	EnableEditControls();
 }
-
 
 void CDialogParticleEditor::OnBnClickedButtonSaveAs() {
 	idDeclParticle *idp = GetCurParticle();
@@ -406,7 +399,6 @@ void CDialogParticleEditor::OnBnClickedButtonSaveAs() {
 		}
 	}
 }
-
 
 void CDialogParticleEditor::OnBnClickedButtonSaveParticles() {
 	cmdSystem->BufferCommandText( CMD_EXEC_NOW, "saveParticles" );
@@ -559,7 +551,6 @@ void CDialogParticleEditor::OnCbnSelchangeComboParticles() {
 	UpdateParticleData();
 }
 
-
 void CDialogParticleEditor::OnCbnSelchangeComboPath() {
 	DlgVarsToCurStage();
 	CurStageToDlgVars();
@@ -678,7 +669,6 @@ void CDialogParticleEditor::OnBnClickedDoom() {
 	::SetFocus( win32.hWnd );
 }
 
-
 void CDialogParticleEditor::OnBnClickedTestModel() {
 	visualization = TESTMODEL;
 	SetParticleView();
@@ -775,7 +765,6 @@ void CDialogParticleEditor::SetSelectedModel( const char *val ) {
 	}
 }
 
-
 void CDialogParticleEditor::OnBnClickedButtonHidestage() {
 	HideStage();
 }
@@ -783,7 +772,6 @@ void CDialogParticleEditor::OnBnClickedButtonHidestage() {
 void CDialogParticleEditor::OnBnClickedButtonShowstage() {
 	ShowStage();
 }
-
 
 void CDialogParticleEditor::OnBnClickedWorldGravity() {
 	worldGravity = !worldGravity;
@@ -796,7 +784,6 @@ void CDialogParticleEditor::OnBnClickedEntityColor() {
 	DlgVarsToCurStage();
 	CurStageToDlgVars();
 }
-
 
 void CDialogParticleEditor::AddStage() {
 	idDeclParticle *idp = GetCurParticle();
@@ -1289,7 +1276,6 @@ void CDialogParticleEditor::OnHScroll( UINT nSBCode, UINT nPos, CScrollBar *pScr
 		CurStageToDlgVars();
 	}
 }
-
 
 BOOL CDialogParticleEditor::PreTranslateMessage( MSG *pMsg ) {
 	if( pMsg->message >= WM_MOUSEFIRST && pMsg->message <= WM_MOUSELAST ) {

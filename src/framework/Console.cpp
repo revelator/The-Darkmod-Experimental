@@ -25,7 +25,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 void SCR_DrawTextLeftAlign( int &y, const char *text, ... ) id_attribute( ( format( printf, 2, 3 ) ) );
 void SCR_DrawTextRightAlign( int &y, const char *text, ... ) id_attribute( ( format( printf, 2, 3 ) ) );
 
-
 #define CONSOLE_POOL			(524288/8) // PoT / sizeof(char) - while sizeof works in most preprocs, we cant assume that
 #define	LINE_WIDTH				(SCREEN_WIDTH / SMALLCHAR_WIDTH -1) // if there are more chars than space to display, they will not wrap
 #define	TOTAL_LINES				(CONSOLE_POOL / LINE_WIDTH) // number of lines in the console buffer
@@ -124,7 +123,6 @@ idCVar idConsoleLocal::con_noPrint( "con_noPrint", "0", CVAR_BOOL | CVAR_SYSTEM 
 #else
 idCVar idConsoleLocal::con_noPrint( "con_noPrint", "1", CVAR_BOOL | CVAR_SYSTEM | CVAR_NOCHEAT, "print on the console but not onscreen when console is pulled up" );
 #endif
-
 
 /*
 =============================================================================
@@ -488,7 +486,6 @@ void idConsoleLocal::Bottom( void ) {
 	display = current;
 }
 
-
 /*
 =============================================================================
 
@@ -739,7 +736,6 @@ void idConsoleLocal::Linefeed() {
 	}
 }
 
-
 /*
 ================
 Print
@@ -816,7 +812,6 @@ void idConsoleLocal::Print( const char *txt ) {
 	}
 }
 
-
 /*
 ==============================================================================
 
@@ -824,7 +819,6 @@ DRAWING
 
 ==============================================================================
 */
-
 
 /*
 ================
@@ -847,7 +841,6 @@ void idConsoleLocal::DrawInput() {
 	renderSystem->DrawSmallChar( 1 * SMALLCHAR_WIDTH, y, '>', localConsole.charSetShader );
 	consoleField.Draw( 2 * SMALLCHAR_WIDTH, y, SCREEN_WIDTH - 3 * SMALLCHAR_WIDTH, true, charSetShader );
 }
-
 
 /*
 ================
@@ -975,7 +968,6 @@ void idConsoleLocal::DrawSolidConsole( float frac ) {
 	DrawInput();
 	renderSystem->SetColor( colorCyan );
 }
-
 
 /*
 ==============

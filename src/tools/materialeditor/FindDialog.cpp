@@ -119,5 +119,3 @@ void FindDialog::SaveFindSettings() {
 	registry.SetWindowPlacement( "findDialog", GetSafeHwnd() );
 	registry.Save();
 }
-
-

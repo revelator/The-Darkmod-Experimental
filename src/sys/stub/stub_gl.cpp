@@ -42,7 +42,7 @@ void glColor3b( GLbyte red, GLbyte green, GLbyte blue ) {};
 void glColor3bv( const GLbyte *v ) {};
 void glColor3d( GLdouble red, GLdouble green, GLdouble blue ) {};
 void glColor3dv( const GLdouble *v ) {};
-void glColor3f( GLfloat red, GLfloat green, GLfloat blue ) {};
+void GL_Color( GLfloat red, GLfloat green, GLfloat blue ) {};
 void glColor3fv( const GLfloat *v ) {};
 void glColor3i( GLint red, GLint green, GLint blue ) {};
 void glColor3iv( const GLint *v ) {};

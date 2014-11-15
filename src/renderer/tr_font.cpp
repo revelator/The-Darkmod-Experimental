@@ -17,7 +17,6 @@
 
 ******************************************************************************/
 
-
 #include "precompiled_engine.h"
 #pragma hdrstop
 
@@ -38,7 +37,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 FT_Library ftLibrary = NULL;
 #endif
-
 
 #ifdef BUILD_FREETYPE
 

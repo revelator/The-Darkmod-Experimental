@@ -27,4 +27,3 @@ void	StartTokenParsing( const char *data );
 bool WINAPI GetToken( bool crossline );
 void WINAPI UngetToken( void );
 bool TokenAvailable( void );
-

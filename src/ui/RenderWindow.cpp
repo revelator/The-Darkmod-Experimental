@@ -56,7 +56,6 @@ void idRenderWindow::CommonInit() {
 	updateAnimation = true;
 }
 
-
 void idRenderWindow::BuildAnimation( int time ) {
 	if( !updateAnimation ) {
 		return;
@@ -125,9 +124,6 @@ void idRenderWindow::Render( int time ) {
 		world->UpdateEntityDef( modelDef, &worldEntity );
 	}
 }
-
-
-
 
 void idRenderWindow::Draw( int time, float x, float y ) {
 	PreRender();

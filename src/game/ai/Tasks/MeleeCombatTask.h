@@ -23,7 +23,6 @@
 #include "CombatTask.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_MELEE_COMBAT "MeleeCombat"
 
@@ -99,7 +98,6 @@ private:
 	void StartAttack( idAI *owner );
 	void StartParry( idAI *owner );
 };
-
 } // namespace ai
 
 #endif /* __AI_MELEE_COMBAT_TASK_H__ */

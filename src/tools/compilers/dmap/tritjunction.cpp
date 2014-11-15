@@ -40,7 +40,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
   Snaping verts can drag some triangles backwards or collapse them to points,
   which will cause them to be removed.
 
-
   When snapping to ints, a point can move a maximum of sqrt(3)/2 distance
   Two points that were an epsilon apart can then become sqrt(3) apart
 
@@ -53,7 +52,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
   Triangle ABC tests against point D and splits into triangles ADC and DBC
   Triangle DBC then tests against point A again and splits into ABC and ADB
   infinite recursive loop
-
 
   For a given source triangle
 	init the no-check list to hold the three triangle hashVerts
@@ -152,7 +150,6 @@ struct hashVert_s	*GetHashVert( idVec3 &v ) {
 	return hv;
 }
 
-
 /*
 ==================
 HashBlocksForTri
@@ -184,7 +181,6 @@ static void HashBlocksForTri( const mapTri_t *tri, int blocks[2][3] ) {
 		}
 	}
 }
-
 
 /*
 =================
@@ -259,7 +255,6 @@ void FreeTJunctionHash( void ) {
 	}
 	memset( hashVerts, 0, sizeof( hashVerts ) );
 }
-
 
 /*
 ==================
@@ -342,8 +337,6 @@ static mapTri_t *FixTriangleAgainstHashVert( const mapTri_t *a, const hashVert_t
 	return NULL;
 }
 
-
-
 /*
 ==================
 FixTriangleAgainstHash
@@ -395,7 +388,6 @@ static mapTri_t	*FixTriangleAgainstHash( const mapTri_t *tri ) {
 	}
 	return fixed;
 }
-
 
 /*
 ==================
@@ -452,7 +444,6 @@ void	FixAreaGroupsTjunctions( optimizeGroup_t *groupList ) {
 		common->Printf( "%6i triangles out\n", endCount );
 	}
 }
-
 
 /*
 ==================

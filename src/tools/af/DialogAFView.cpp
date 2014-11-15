@@ -175,7 +175,6 @@ BEGIN_MESSAGE_MAP( DialogAFView, CDialog )
 	ON_BN_CLICKED( IDC_CHECK_PHYSICS_SHOW_DRAG_SELECTION, OnBnClickedCheckPhysicsShowDragSelection )
 END_MESSAGE_MAP()
 
-
 // DialogAFView message handlers
 
 BOOL DialogAFView::OnToolTipNotify( UINT id, NMHDR *pNMHDR, LRESULT *pResult ) {

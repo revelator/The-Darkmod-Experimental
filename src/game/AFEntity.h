@@ -20,7 +20,6 @@
 #ifndef __GAME_AFENTITY_H__
 #define __GAME_AFENTITY_H__
 
-
 /*
 ===============================================================================
 
@@ -66,7 +65,6 @@ private:
 	idList<int>				modelDefHandles;
 };
 
-
 /*
 ===============================================================================
 
@@ -86,7 +84,6 @@ public:
 protected:
 	void					BuildChain( const idStr &name, const idVec3 &origin, float linkLength, float linkWidth, float density, int numLinks, bool bindToWorld = true );
 };
-
 
 /*
 ===============================================================================
@@ -173,7 +170,6 @@ protected:
 	void	CopyBodyTo( idAFAttachment *other );
 };
 
-
 /*
 ===============================================================================
 
@@ -199,7 +195,6 @@ typedef struct SAddedEnt_s {
 	int bodyContents; // AF body contents (for saving/restoring)
 	int bodyClipMask; // AF body clipmask (for saving/restoring)
 } SAddedEnt;
-
 
 class idAFEntity_Base : public idAnimatedEntity {
 public:
@@ -401,7 +396,6 @@ protected:
 	**/
 	void					Event_GetLinearVelocityB( int id );
 	void					Event_GetAngularVelocityB( int id );
-
 };
 
 /*
@@ -472,7 +466,6 @@ private:
 	bool					keepRunningPhysics;
 };
 
-
 /*
 ===============================================================================
 
@@ -514,7 +507,6 @@ private:
 	void					Event_Activate( idEntity *activator );
 };
 
-
 /*
 ===============================================================================
 
@@ -544,7 +536,6 @@ protected:
 	float					GetSteerAngle( void );
 };
 
-
 /*
 ===============================================================================
 
@@ -570,7 +561,6 @@ protected:
 	float					wheelAngles[4];
 };
 
-
 /*
 ===============================================================================
 
@@ -595,7 +585,6 @@ protected:
 	float					wheelAngles[4];
 };
 
-
 /*
 ===============================================================================
 
@@ -619,7 +608,6 @@ private:
 	jointHandle_t			wheelJoints[6];
 	float					wheelAngles[6];
 };
-
 
 /*
 ===============================================================================
@@ -652,6 +640,5 @@ private:
 
 	void					InitSteamRenderEntity( void );
 };
-
 
 #endif /* !__GAME_AFENTITY_H__ */

@@ -43,7 +43,6 @@ CPropTreeItemButton::CPropTreeItemButton() {
 CPropTreeItemButton::~CPropTreeItemButton() {
 }
 
-
 /////////////////////////////////////////////////////////////////////////////
 // CPropTreeItemButton message handlers
 
@@ -77,15 +76,12 @@ LONG CPropTreeItemButton::DrawItem( CDC *pDC, const RECT &rc, LONG x, LONG y ) {
 void CPropTreeItemButton::DrawAttribute( CDC *pDC, const RECT &rc ) {
 }
 
-
 LPARAM CPropTreeItemButton::GetItemValue() {
 	return ( LPARAM )0;
 }
 
-
 void CPropTreeItemButton::SetItemValue( LPARAM lParam ) {
 }
-
 
 BOOL CPropTreeItemButton::HitButton( const POINT &pt ) {
 	return hitTestRect.PtInRect( pt );

@@ -26,7 +26,6 @@ static bool versioned = RegisterVersionedFile( "$Id: HitByMoveableState.cpp 5363
 #include "HitByMoveableState.h"
 
 namespace ai {
-
 HitByMoveableState::HitByMoveableState() {
 }
 
@@ -315,5 +314,4 @@ StateLibrary::Registrar hitByMoveableStateRegistrar(
 	STATE_HIT_BY_MOVEABLE, // Task Name
 	StateLibrary::CreateInstanceFunc( &HitByMoveableState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

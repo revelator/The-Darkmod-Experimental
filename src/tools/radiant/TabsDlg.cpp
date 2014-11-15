@@ -151,7 +151,6 @@ void CTabsDlg::OnLButtonUp( UINT nFlags, CPoint point ) {
 	CDialog::OnLButtonUp( nFlags, point );
 }
 
-
 void CTabsDlg::HandleUndock() {
 	TCITEM item;
 	item.mask = TCIF_PARAM;
@@ -165,7 +164,6 @@ void CTabsDlg::HandleUndock() {
 void CTabsDlg::OnMouseMove( UINT nFlags, CPoint point ) {
 	CDialog::OnMouseMove( nFlags, point );
 }
-
 
 void CTabsDlg::AddDockedWindow( CWnd *wnd , int ID , int imageID , const CString &title , bool dock , pfnOnDockEvent dockCallback ) {
 	DockedWindowInfo *info = NULL;
@@ -228,7 +226,6 @@ void CTabsDlg::OnDestroy() {
 	}
 	CDialog::OnDestroy();
 }
-
 
 bool CTabsDlg::IsDocked( CWnd *wnd ) {
 	bool docked = false;

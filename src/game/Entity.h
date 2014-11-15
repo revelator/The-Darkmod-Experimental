@@ -240,7 +240,6 @@ typedef struct SDecalInfo {
 	float					decal_angle;
 } SDecalInfo;
 
-
 class idEntity : public idClass {
 public:
 	static const int		MAX_PVS_AREAS = 4;
@@ -630,7 +629,6 @@ public:
 	void					FreeSoundEmitter( bool immediate );
 
 	void					Event_PropSoundDirect( const char *soundName, float propVolMod, int msgTag ); // grayman #3355
-
 
 	// Returns the soundprop name for the given material (e.g. "sprS_bounce_small_hard_on_soft")
 	idStr					GetSoundPropNameForMaterial( const idStr &materialName );
@@ -1111,7 +1109,6 @@ public:
 	**/
 	virtual idEntity *GetAttachmentFromTeam( const char *AttName );
 
-
 	/**
 	* Returns a pointer to the attachment info structure for a given attachment.
 	* Returns NULL if no such named attachment exists on this entity.
@@ -1329,7 +1326,6 @@ public:
 	bool IsFriend( const idEntity *other ) const;
 	// As above, but checks for Neutral
 	bool IsNeutral( const idEntity *other ) const;
-
 
 	float					GetAbsenceNoticeability() const;
 
@@ -1566,7 +1562,6 @@ protected:
 	virtual void		ReapplyDecals();			  // Internal method, called at end of Think() or after LOD switch during Think()
 private:
 	void				SaveOverlayInfo( const idVec3 &origin, const idVec3 &dir, float size, const char *decal ); // Overlays are applied by an idEntity method so this can be private.
-
 
 private:
 	void				FixupLocalizedStrings();
@@ -1892,7 +1887,6 @@ public:
 	**/
 	virtual void			CacheAnimRates( void );
 
-
 	/**
 	* Tels: Return the position of the joint (by name) in world coordinates
 	**/
@@ -1927,7 +1921,6 @@ protected:
 	* Calls GetJointWorldTransform on idAnimated entities.
 	**/
 	virtual void GetAttachingTransform( jointHandle_t jointHandle, idVec3 &offset, idMat3 &axis );
-
 
 	/**
 	* Replace decal overlays after LOD switch, hiding, shouldering, save game loading. SteveL #3817

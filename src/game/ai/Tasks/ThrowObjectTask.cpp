@@ -28,7 +28,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 // Get the name of this task
 const idStr &ThrowObjectTask::GetName() const {
 	static idStr _name( TASK_THROW_OBJECT );
@@ -115,5 +114,4 @@ TaskLibrary::Registrar throwObjectTaskRegistrar(
 	TASK_THROW_OBJECT, // Task Name
 	TaskLibrary::CreateInstanceFunc( &ThrowObjectTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

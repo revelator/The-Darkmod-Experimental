@@ -143,7 +143,6 @@ protected:
 	idVec3 lastPress;
 	float radius;
 	idVec4 rect;
-
 };
 
 class idGLDrawableConsole : public idGLDrawable {
@@ -158,7 +157,6 @@ public:
 	virtual void setMedia( const char *name ) {
 	}
 
-
 	virtual void draw( int x, int y, int w, int h );
 
 	virtual int getRealTime() {
@@ -166,10 +164,7 @@ public:
 	};
 
 protected:
-
 };
-
-
 
 class idGLWidget : public CWnd {
 	// Construction
@@ -234,7 +229,6 @@ protected:
 	afx_msg void OnLButtonDown( UINT nFlags, CPoint point );
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
-
 };
 
 /////////////////////////////////////////////////////////////////////////////

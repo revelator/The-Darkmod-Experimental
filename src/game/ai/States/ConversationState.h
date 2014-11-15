@@ -24,7 +24,6 @@
 #include "../Conversation/ConversationCommand.h"
 
 namespace ai {
-
 #define STATE_CONVERSATION "Conversation"
 
 class ConversationState :
@@ -114,7 +113,6 @@ private:
 	void Wrapup( idAI *owner );
 };
 typedef boost::shared_ptr<ConversationState> ConversationStatePtr;
-
 } // namespace ai
 
 #endif /* __AI_CONVERSATION_STATE_H__ */

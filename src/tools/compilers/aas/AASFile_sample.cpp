@@ -25,7 +25,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "AASFile.h"
 #include "AASFile_local.h"
 
-
 //===============================================================
 //
 //	Environment Sampling

@@ -137,7 +137,6 @@ typedef enum {
 	UB_MAX_BUTTONS
 } UserCmdButton;
 
-
 // usercmd_t->button bits
 const int BUTTON_ATTACK			= BIT( 0 );
 const int BUTTON_RUN			= BIT( 1 );

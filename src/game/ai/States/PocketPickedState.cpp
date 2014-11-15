@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id: PocketPickedState.cpp 5363 
 #include "ConversationState.h" // grayman #3559
 
 namespace ai {
-
 PocketPickedState::PocketPickedState() {
 }
 
@@ -224,5 +223,4 @@ StateLibrary::Registrar pocketPickedStateRegistrar(
 	STATE_POCKET_PICKED, // Task Name
 	StateLibrary::CreateInstanceFunc( &PocketPickedState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

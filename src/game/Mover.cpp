@@ -38,7 +38,6 @@ static const char *guiBinaryMoverStates[] = {
 	"4"		// moving 2 to 1
 };
 
-
 /*
 ===============================================================================
 
@@ -412,7 +411,6 @@ void idMover::Killed( idEntity *inflictor, idEntity *attacker, int damage, const
 	}
 	gameLocal.m_MissionData->MissionEvent( COMP_DESTROY, this, bPlayerResponsible );
 }
-
 
 /*
 ================
@@ -1305,7 +1303,6 @@ void idMover::Event_ClosePortal( void ) {
 	ClosePortal();
 }
 
-
 /*
 ================
 idMover::OpenPortal
@@ -1331,9 +1328,6 @@ void idMover::ClosePortal() {
 		SetPortalState( false );
 	}
 }
-
-
-
 
 /*
 ================
@@ -1541,7 +1535,6 @@ bool idMover::SetCanPushPlayer( bool newSetting ) {
 	return !( physicsObj.pushFlagOverride( PUSHFL_NOPLAYER, !newSetting ) );
 }
 
-
 /*
 ===============================================================================
 
@@ -1568,7 +1561,6 @@ idSplinePath::Spawn
 */
 void idSplinePath::Spawn( void ) {
 }
-
 
 /*
 ===============================================================================
@@ -2704,7 +2696,6 @@ void idPlat::Event_PartBlocked( idEntity *blockingEntity ) {
 	}
 }
 
-
 /*
 ===============================================================================
 
@@ -2816,7 +2807,6 @@ void idMover_Periodic::ReadFromSnapshot( const idBitMsgDelta &msg ) {
 		UpdateVisuals();
 	}
 }
-
 
 /*
 ===============================================================================
@@ -3002,7 +2992,6 @@ void idBobber::Spawn( void ) {
 	SetPhysics( &physicsObj );
 }
 
-
 /*
 ===============================================================================
 
@@ -3058,7 +3047,6 @@ void idPendulum::Spawn( void ) {
 	physicsObj.SetAngularExtrapolation( extrapolation_t( EXTRAPOLATION_DECELSINE | EXTRAPOLATION_NOSTOP ), static_cast<int>( phase * 1000 ), static_cast<int>( 500 / freq ), GetPhysics()->GetAxis().ToAngles(), idAngles( 0, 0, speed * 2.0f ), ang_zero );
 	SetPhysics( &physicsObj );
 }
-
 
 /*
 ===============================================================================
@@ -3121,5 +3109,3 @@ void idRiser::Event_Activate( idEntity *activator ) {
 		physicsObj.SetLinearExtrapolation( EXTRAPOLATION_LINEAR, gameLocal.time, static_cast<int>( time * 1000 ), physicsObj.GetOrigin(), delta, vec3_origin );
 	}
 }
-
-

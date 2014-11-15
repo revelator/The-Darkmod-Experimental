@@ -52,7 +52,6 @@ void DisplayRealTimeString( const char *string, ... ) {
 	}
 }
 
-
 //===============================================================
 //
 //	idBrushSide
@@ -139,7 +138,6 @@ int idBrushSide::Split( const idPlane &splitPlane, idBrushSide **front, idBrushS
 	}
 }
 
-
 //===============================================================
 //
 //	idBrushSide
@@ -157,7 +155,6 @@ idBrush::idBrush( void ) {
 	sides.Clear();
 	windingsValid = false;
 }
-
 
 /*
 ============
@@ -877,7 +874,6 @@ idBrush *idBrush::Copy( void ) const {
 	return b;
 }
 
-
 //===============================================================
 //
 //	idBrushList
@@ -1226,7 +1222,6 @@ void idBrushList::Chop( bool ( *ChopAllowed )( idBrush *b1, idBrush *b2 ) ) {
 #endif
 }
 
-
 /*
 ============
 idBrushList::Merge
@@ -1316,7 +1311,6 @@ void idBrushList::WriteBrushMap( const idStr &fileName, const idStr &ext ) const
 	map->WriteBrushList( *this );
 	delete map;
 }
-
 
 //===============================================================
 //

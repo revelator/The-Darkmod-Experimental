@@ -25,7 +25,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "tr_local.h"
 #include "Model_local.h"
 
-
 /*
 
 A simple sprite model that always faces the view axis.

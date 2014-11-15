@@ -21,7 +21,6 @@
 // DialogAFConstraintSpring dialog
 
 class DialogAFConstraintSpring : public CDialog {
-
 	DECLARE_DYNAMIC( DialogAFConstraintSpring )
 
 public:

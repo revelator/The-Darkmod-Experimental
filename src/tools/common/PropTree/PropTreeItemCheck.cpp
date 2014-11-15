@@ -43,7 +43,6 @@ CPropTreeItemCheck::CPropTreeItemCheck() {
 CPropTreeItemCheck::~CPropTreeItemCheck() {
 }
 
-
 BEGIN_MESSAGE_MAP( CPropTreeItemCheck, CButton )
 	//{{AFX_MSG_MAP(CPropTreeItemCheck)
 	//}}AFX_MSG_MAP
@@ -75,16 +74,13 @@ void CPropTreeItemCheck::SetCheckState( BOOL state ) {
 	SetCheck( checkState ? BST_CHECKED : BST_UNCHECKED );
 }
 
-
 LPARAM CPropTreeItemCheck::GetItemValue() {
 	return ( LPARAM )GetCheckState();
 }
 
-
 void CPropTreeItemCheck::SetItemValue( LPARAM lParam ) {
 	SetCheckState( ( BOOL )lParam );
 }
-
 
 void CPropTreeItemCheck::OnMove() {
 	if( IsWindow( m_hWnd ) ) {
@@ -92,15 +88,12 @@ void CPropTreeItemCheck::OnMove() {
 	}
 }
 
-
 void CPropTreeItemCheck::OnRefresh() {
 }
-
 
 void CPropTreeItemCheck::OnCommit() {
 	ShowWindow( SW_HIDE );
 }
-
 
 void CPropTreeItemCheck::OnActivate( int activateType, CPoint point ) {
 	if( activateType == CPropTreeItem::ACTIVATE_TYPE_MOUSE ) {
@@ -117,7 +110,6 @@ void CPropTreeItemCheck::OnActivate( int activateType, CPoint point ) {
 		SetFocus();
 	}
 }
-
 
 bool CPropTreeItemCheck::CreateCheckBox() {
 	ASSERT( m_pProp != NULL );

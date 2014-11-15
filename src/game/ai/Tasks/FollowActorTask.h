@@ -23,7 +23,6 @@
 #include "Task.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_FOLLOW_ACTOR "FollowActor"
 
@@ -58,7 +57,6 @@ public:
 	// Creates a new Instance of this task
 	static FollowActorTaskPtr CreateInstance();
 };
-
 } // namespace ai
 
 #endif /* __AI_FOLLOW_ACTOR_TASK_H__ */

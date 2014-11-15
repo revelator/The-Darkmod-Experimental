@@ -298,4 +298,3 @@ void CAIVehicle::LinkScriptVariables( void ) {
 	idAI::LinkScriptVariables();
 	AI_CONTROLLED.LinkTo( scriptObject, "AI_CONTROLLED" );
 }
-

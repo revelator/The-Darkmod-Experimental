@@ -32,7 +32,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 ======================================================================
 */
 
-
 #define MA_VERBOSE( x ) { if ( maGlobal.verbose ) { common->Printf x ; } }
 
 // working variables used during parsing
@@ -43,7 +42,6 @@ typedef struct {
 } ma_t;
 
 static ma_t maGlobal;
-
 
 void MA_ParseNodeHeader( idParser &parser, maNodeHeader_t *header ) {
 	memset( header, 0, sizeof( maNodeHeader_t ) );
@@ -299,8 +297,6 @@ bool MA_ParseNormal( idParser &parser, maAttribHeader_t *header ) {
 	return true;
 }
 
-
-
 bool MA_ParseFace( idParser &parser, maAttribHeader_t *header ) {
 	maMesh_t *pMesh = &maGlobal.currentObject->mesh;
 	idToken token;
@@ -432,8 +428,6 @@ bool MA_ParseTVert( idParser &parser, maAttribHeader_t *header ) {
 	}
 	return true;
 }
-
-
 
 /*
 *	Quick check to see if the vert participates in a shared normal
@@ -649,7 +643,6 @@ void MA_ParseCreateNode( idParser &parser ) {
 	}
 }
 
-
 int MA_AddMaterial( const char *materialName ) {
 	maMaterialNode_t	**destNode;
 	maGlobal.model->materialNodes.Get( materialName, &destNode );
@@ -734,7 +727,6 @@ bool MA_ParseConnectAttr( idParser &parser ) {
 	}
 	return true;
 }
-
 
 void MA_BuildScale( idMat4 &mat, float x, float y, float z ) {
 	mat.Identity();

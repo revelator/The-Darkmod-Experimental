@@ -40,5 +40,4 @@ protected:
 	CString		m_sAttribute;
 };
 
-
 #endif // _PROPTREEITEMSTATIC_H

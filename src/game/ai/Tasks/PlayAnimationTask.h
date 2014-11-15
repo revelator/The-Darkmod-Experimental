@@ -23,7 +23,6 @@
 #include "Task.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_PLAY_ANIMATION "PlayAnimation"
 
@@ -67,7 +66,6 @@ private:
 	// Private helper
 	void StartAnim( idAI *owner );
 };
-
 } // namespace ai
 
 #endif /* __AI_PLAY_ANIMATION_TASK_H__ */

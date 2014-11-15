@@ -34,12 +34,12 @@
  * optimizations are not included to reduce source code size and avoid
  * compile-time configuration.
  */
- 
+
 #include "precompiled.h"
 #pragma hdrstop
 
 #include "hashing/MD4.h"
- 
+
 /*
  * The basic MD4 functions.
  *
@@ -49,14 +49,14 @@
 #define F(x, y, z)			((z) ^ ((x) & ((y) ^ (z))))
 #define G(x, y, z)			(((x) & ((y) | (z))) | ((y) & (z)))
 #define H(x, y, z)			((x) ^ (y) ^ (z))
- 
+
 /*
  * The MD4 transformation for all three rounds.
  */
 #define STEP(f, a, b, c, d, x, s) \
 	(a) += f((b), (c), (d)) + (x); \
 	(a) = (((a) << (s)) | (((a) & 0xffffffff) >> (32 - (s))));
- 
+
 /*
  * SET reads 4 input bytes in little-endian byte order and stores them
  * in a properly aligned word in host byte order.
@@ -80,7 +80,7 @@
 #define GET(n) \
 	(ctx->block[(n)])
 #endif
- 
+
 /*
  * This processes one or more 64-byte data blocks, but does NOT update
  * the bit counters.  There are no alignment requirements.
@@ -90,20 +90,20 @@ static void *body(MD4_CTX *ctx, void *data, unsigned long size)
 	unsigned char *ptr;
 	MD4_u32plus a, b, c, d;
 	MD4_u32plus saved_a, saved_b, saved_c, saved_d;
- 
+
 	ptr = (unsigned char *)data;
- 
+
 	a = ctx->a;
 	b = ctx->b;
 	c = ctx->c;
 	d = ctx->d;
- 
+
 	do {
 		saved_a = a;
 		saved_b = b;
 		saved_c = c;
 		saved_d = d;
- 
+
 /* Round 1 */
 		STEP(F, a, b, c, d, SET(0), 3)
 		STEP(F, d, a, b, c, SET(1), 7)
@@ -121,7 +121,7 @@ static void *body(MD4_CTX *ctx, void *data, unsigned long size)
 		STEP(F, d, a, b, c, SET(13), 7)
 		STEP(F, c, d, a, b, SET(14), 11)
 		STEP(F, b, c, d, a, SET(15), 19)
- 
+
 /* Round 2 */
 		STEP(G, a, b, c, d, GET(0) + 0x5a827999, 3)
 		STEP(G, d, a, b, c, GET(4) + 0x5a827999, 5)
@@ -139,7 +139,7 @@ static void *body(MD4_CTX *ctx, void *data, unsigned long size)
 		STEP(G, d, a, b, c, GET(7) + 0x5a827999, 5)
 		STEP(G, c, d, a, b, GET(11) + 0x5a827999, 9)
 		STEP(G, b, c, d, a, GET(15) + 0x5a827999, 13)
- 
+
 /* Round 3 */
 		STEP(H, a, b, c, d, GET(0) + 0x6ed9eba1, 3)
 		STEP(H, d, a, b, c, GET(8) + 0x6ed9eba1, 9)
@@ -157,87 +157,87 @@ static void *body(MD4_CTX *ctx, void *data, unsigned long size)
 		STEP(H, d, a, b, c, GET(11) + 0x6ed9eba1, 9)
 		STEP(H, c, d, a, b, GET(7) + 0x6ed9eba1, 11)
 		STEP(H, b, c, d, a, GET(15) + 0x6ed9eba1, 15)
- 
+
 		a += saved_a;
 		b += saved_b;
 		c += saved_c;
 		d += saved_d;
- 
+
 		ptr += 64;
 	} while (size -= 64);
- 
+
 	ctx->a = a;
 	ctx->b = b;
 	ctx->c = c;
 	ctx->d = d;
- 
+
 	return ptr;
 }
- 
+
 void MD4_Init(MD4_CTX *ctx)
 {
 	ctx->a = 0x67452301;
 	ctx->b = 0xefcdab89;
 	ctx->c = 0x98badcfe;
 	ctx->d = 0x10325476;
- 
+
 	ctx->lo = 0;
 	ctx->hi = 0;
 }
- 
+
 void MD4_Update(MD4_CTX *ctx, void *data, unsigned long size)
 {
 	MD4_u32plus saved_lo;
 	unsigned long used, free;
- 
+
 	saved_lo = ctx->lo;
 	if ((ctx->lo = (saved_lo + size) & 0x1fffffff) < saved_lo)
 		ctx->hi++;
 	ctx->hi += size >> 29;
- 
+
 	used = saved_lo & 0x3f;
- 
+
 	if (used) {
 		free = 64 - used;
- 
+
 		if (size < free) {
 			memcpy(&ctx->buffer[used], data, size);
 			return;
 		}
- 
+
 		memcpy(&ctx->buffer[used], data, free);
 		data = (unsigned char *)data + free;
 		size -= free;
 		body(ctx, ctx->buffer, 64);
 	}
- 
+
 	if (size >= 64) {
 		data = body(ctx, data, size & ~(unsigned long)0x3f);
 		size &= 0x3f;
 	}
- 
+
 	memcpy(ctx->buffer, data, size);
 }
- 
+
 void MD4_Final(unsigned char *result, MD4_CTX *ctx)
 {
 	unsigned long used, free;
- 
+
 	used = ctx->lo & 0x3f;
- 
+
 	ctx->buffer[used++] = 0x80;
- 
+
 	free = 64 - used;
- 
+
 	if (free < 8) {
 		memset(&ctx->buffer[used], 0, free);
 		body(ctx, ctx->buffer, 64);
 		used = 0;
 		free = 64;
 	}
- 
+
 	memset(&ctx->buffer[used], 0, free - 8);
- 
+
 	ctx->lo <<= 3;
 	ctx->buffer[56] = ctx->lo;
 	ctx->buffer[57] = ctx->lo >> 8;
@@ -247,9 +247,9 @@ void MD4_Final(unsigned char *result, MD4_CTX *ctx)
 	ctx->buffer[61] = ctx->hi >> 8;
 	ctx->buffer[62] = ctx->hi >> 16;
 	ctx->buffer[63] = ctx->hi >> 24;
- 
+
 	body(ctx, ctx->buffer, 64);
- 
+
 	result[0] = ctx->a;
 	result[1] = ctx->a >> 8;
 	result[2] = ctx->a >> 16;
@@ -266,7 +266,7 @@ void MD4_Final(unsigned char *result, MD4_CTX *ctx)
 	result[13] = ctx->d >> 8;
 	result[14] = ctx->d >> 16;
 	result[15] = ctx->d >> 24;
- 
+
 	memset(ctx, 0, sizeof(*ctx));
 }
 

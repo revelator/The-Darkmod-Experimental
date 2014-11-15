@@ -42,7 +42,6 @@ public:
 	int		m_nTotalEntities;
 	//}}AFX_DATA
 
-
 	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CMapInfo)

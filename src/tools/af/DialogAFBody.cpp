@@ -714,7 +714,6 @@ BEGIN_MESSAGE_MAP( DialogAFBody, CDialog )
 	ON_EN_CHANGE( IDC_EDIT_CONTAINEDJOINTS, OnEnChangeEditContainedjoints )
 END_MESSAGE_MAP()
 
-
 // DialogAFBody message handlers
 
 BOOL DialogAFBody::OnToolTipNotify( UINT id, NMHDR *pNMHDR, LRESULT *pResult ) {

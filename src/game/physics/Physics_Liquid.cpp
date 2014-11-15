@@ -213,4 +213,3 @@ void idPhysics_Liquid::SetMinWaveVelocity( const idVec3 &w ) {
 }
 
 #endif
-

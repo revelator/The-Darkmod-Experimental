@@ -22,4 +22,3 @@
 static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "materialview.h"
-

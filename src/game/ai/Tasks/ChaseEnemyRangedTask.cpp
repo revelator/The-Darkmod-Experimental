@@ -28,7 +28,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../States/UnreachableTargetState.h"
 
 namespace ai {
-
 // Get the name of this task
 const idStr &ChaseEnemyRangedTask::GetName() const {
 	static idStr _name( TASK_CHASE_ENEMY_RANGED );
@@ -155,5 +154,4 @@ TaskLibrary::Registrar chaseEnemyRangedTaskRegistrar(
 	TASK_CHASE_ENEMY_RANGED, // Task Name
 	TaskLibrary::CreateInstanceFunc( &ChaseEnemyRangedTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

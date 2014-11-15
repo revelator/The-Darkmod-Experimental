@@ -24,7 +24,6 @@
 #include "IdleState.h"
 
 namespace ai {
-
 #define STATE_IDLE_SLEEP "IdleSleep"
 
 class IdleSleepState :
@@ -55,9 +54,7 @@ protected:
 
 	// Override base class method
 	virtual bool CheckAlertLevel( idAI *owner );
-
 };
-
 } // namespace ai
 
 #endif /* __AI_IDLE_SLEEP_STATE_H__ */

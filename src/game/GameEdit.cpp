@@ -90,7 +90,6 @@ void idCursor3D::Think( void ) {
 	Present();
 }
 
-
 /*
 ===============================================================================
 
@@ -122,7 +121,6 @@ idDragEntity::~idDragEntity( void ) {
 	delete cursor;
 	cursor = NULL;
 }
-
 
 /*
 ==============
@@ -354,7 +352,6 @@ void idDragEntity::UnbindSelected( void ) {
 	af->spawnArgs.Delete( "bindToBody" );
 }
 
-
 /*
 ===============================================================================
 
@@ -442,7 +439,6 @@ void idEditEntities::ClearSelectedEntities() {
 	}
 	selectedEntities.Clear();
 }
-
 
 /*
 =============
@@ -595,7 +591,6 @@ void idEditEntities::DisplayEntities( void ) {
 	}
 }
 
-
 /*
 ===============================================================================
 
@@ -606,7 +601,6 @@ void idEditEntities::DisplayEntities( void ) {
 
 idGameEdit			gameEditLocal;
 idGameEdit 		*gameEdit = &gameEditLocal;
-
 
 /*
 =============
@@ -909,7 +903,6 @@ void idGameEdit::PlayerGetEyePosition( idVec3 &org ) const {
 	org = gameLocal.GetLocalPlayer()->GetEyePosition();
 }
 
-
 /*
 ================
 idGameEdit::MapGetEntityDict
@@ -973,8 +966,6 @@ void idGameEdit::MapCopyDictToEntity( const char *name, const idDict *dict ) con
 	}
 }
 
-
-
 /*
 ================
 idGameEdit::MapGetUniqueMatchingKeyVals
@@ -1026,7 +1017,6 @@ void idGameEdit::MapRemoveEntity( const char *name ) const {
 	}
 }
 
-
 /*
 ================
 idGameEdit::MapGetEntitiesMatchignClassWithString
@@ -1056,7 +1046,6 @@ int idGameEdit::MapGetEntitiesMatchingClassWithString( const char *classname, co
 	}
 	return count;
 }
-
 
 /*
 ================

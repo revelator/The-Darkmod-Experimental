@@ -25,7 +25,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "AASFile.h"
 #include "AASFile_local.h"
 
-
 /*
 ===============================================================================
 
@@ -74,7 +73,6 @@ void idReachability::CopyBase( idReachability &reach ) {
 	edgeNum = reach.edgeNum;
 	travelTime = reach.travelTime;
 }
-
 
 /*
 ===============================================================================
@@ -428,7 +426,6 @@ bool idAASSettings::FromDict( const char *name, const idDict *dict ) {
 	return true;
 }
 
-
 /*
 ============
 idAASSettings::WriteToFile
@@ -510,7 +507,6 @@ bool idAASSettings::ValidEntity( const char *classname ) const {
 	}
 	return false;
 }
-
 
 /*
 ===============================================================================

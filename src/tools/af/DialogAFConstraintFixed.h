@@ -21,7 +21,6 @@
 // DialogAFConstraintFixed dialog
 
 class DialogAFConstraintFixed : public CDialog {
-
 	DECLARE_DYNAMIC( DialogAFConstraintFixed )
 
 public:

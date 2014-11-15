@@ -81,7 +81,6 @@ typedef struct {
 typedef bool ( *objectMemberCallback_t )( const char *objectName, CListBox &listBox );
 typedef bool ( *toolTipCallback_t )( const char *name, CString &string );
 
-
 class CSyntaxRichEditCtrl : public CRichEditCtrl {
 public:
 	CSyntaxRichEditCtrl( void );

@@ -24,12 +24,10 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "tr_local.h"
 
-
 typedef struct {
 	idVec3		origin;
 	idMat3		axis;
 } orientation_t;
-
 
 /*
 =================

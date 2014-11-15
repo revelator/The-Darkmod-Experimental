@@ -107,7 +107,7 @@ bool CZClip::Enable( bool bOnOff ) {
 void CZClip::Paint( void ) {
 	float	x, y;
 	int	xCam = z.width / 4;	// hmmm, a rather unpleasant and obscure global name, but it was already called that so...
-	glColor3f( ZCLIP_COLOUR ); //1.0, 0.0, 1.0);
+	GL_Color( ZCLIP_COLOUR ); //1.0, 0.0, 1.0);
 	// draw TOP marker...
 	//
 	x = 0;
@@ -122,7 +122,7 @@ void CZClip::Paint( void ) {
 	glVertex3f( x + xCam, y + ZCLIP_BAR_THICKNESS, 0 );
 	glVertex3f( x + xCam, y, 0 );
 	glEnd();
-	glColor3f( ZCLIP_COLOUR_DIM ); //0.8, 0.0, 0.8);
+	GL_Color( ZCLIP_COLOUR_DIM ); //0.8, 0.0, 0.8);
 	if( m_bEnabled ) {
 		glBegin( GL_TRIANGLES );
 	} else {
@@ -134,7 +134,7 @@ void CZClip::Paint( void ) {
 	glEnd();
 	// draw bottom marker...
 	//
-	glColor3f( ZCLIP_COLOUR ); //1.0, 0.0, 1.0);
+	GL_Color( ZCLIP_COLOUR ); //1.0, 0.0, 1.0);
 	x = 0;
 	y = m_iZClipBottom;
 	if( m_bEnabled ) {
@@ -147,7 +147,7 @@ void CZClip::Paint( void ) {
 	glVertex3f( x + xCam, y - ZCLIP_BAR_THICKNESS, 0 );
 	glVertex3f( x + xCam, y, 0 );
 	glEnd();
-	glColor3f( ZCLIP_COLOUR_DIM ); //0.8, 0.0, 0.8);
+	GL_Color( ZCLIP_COLOUR_DIM ); //0.8, 0.0, 0.8);
 	if( m_bEnabled ) {
 		glBegin( GL_TRIANGLES );
 	} else {

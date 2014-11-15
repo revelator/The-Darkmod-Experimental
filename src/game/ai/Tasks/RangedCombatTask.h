@@ -23,7 +23,6 @@
 #include "CombatTask.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_RANGED_COMBAT "RangedCombat"
 
@@ -51,7 +50,6 @@ public:
 	virtual void Save( idSaveGame *savefile ) const;
 	virtual void Restore( idRestoreGame *savefile );
 };
-
 } // namespace ai
 
 #endif /* __AI_RANGED_COMBAT_TASK_H__ */

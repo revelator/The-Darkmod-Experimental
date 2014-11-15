@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 PathInteractTask::PathInteractTask() :
 	PathTask() {
 }
@@ -111,5 +110,4 @@ TaskLibrary::Registrar pathInteractTaskRegistrar(
 	TASK_PATH_INTERACT, // Task Name
 	TaskLibrary::CreateInstanceFunc( &PathInteractTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

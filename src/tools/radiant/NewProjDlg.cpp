@@ -35,7 +35,6 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CNewProjDlg dialog
 
-
 CNewProjDlg::CNewProjDlg( CWnd *pParent /*=NULL*/ )
 	: CDialog( CNewProjDlg::IDD, pParent ) {
 	//{{AFX_DATA_INIT(CNewProjDlg)
@@ -43,14 +42,12 @@ CNewProjDlg::CNewProjDlg( CWnd *pParent /*=NULL*/ )
 	//}}AFX_DATA_INIT
 }
 
-
 void CNewProjDlg::DoDataExchange( CDataExchange *pDX ) {
 	CDialog::DoDataExchange( pDX );
 	//{{AFX_DATA_MAP(CNewProjDlg)
 	DDX_Text( pDX, IDC_EDIT_NAME, m_strName );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CNewProjDlg, CDialog )
 	//{{AFX_MSG_MAP(CNewProjDlg)

@@ -35,13 +35,11 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CPatchDensityDlg dialog
 
-
 CPatchDensityDlg::CPatchDensityDlg( CWnd *pParent /*=NULL*/ )
 	: CDialog( CPatchDensityDlg::IDD, pParent ) {
 	//{{AFX_DATA_INIT(CPatchDensityDlg)
 	//}}AFX_DATA_INIT
 }
-
 
 void CPatchDensityDlg::DoDataExchange( CDataExchange *pDX ) {
 	CDialog::DoDataExchange( pDX );
@@ -50,7 +48,6 @@ void CPatchDensityDlg::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Control( pDX, IDC_COMBO_HEIGHT, m_wndHeight );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CPatchDensityDlg, CDialog )
 	//{{AFX_MSG_MAP(CPatchDensityDlg)

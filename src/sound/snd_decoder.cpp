@@ -26,7 +26,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "OggVorbis/vorbis/codec.h"
 #include "OggVorbis/vorbis/vorbisfile.h"
 
-
 /*
 ===================================================================================
 
@@ -70,7 +69,6 @@ void *_decoder_realloc( void *memblock, size_t size ) {
 void _decoder_free( void *memblock ) {
 	decoderMemoryAllocator.Free( ( byte * )memblock );
 }
-
 
 /*
 ===================================================================================
@@ -237,7 +235,6 @@ int idWaveFile::CloseOGG( void ) {
 	}
 	return -1;
 }
-
 
 /*
 ===================================================================================

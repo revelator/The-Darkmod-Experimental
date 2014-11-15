@@ -23,13 +23,10 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "tr_local.h"
 
-
-
 // Compute conservative shadow bounds as the intersection
 // of the object's bounds' shadow volume and the light's bounds.
 //
 // --cass
-
 
 template <class T, int N>
 struct MyArray {
@@ -223,7 +220,6 @@ struct polyhedron {
 		}
 		recompute_planes();
 	}
-
 };
 
 // make a unit cube
@@ -273,7 +269,6 @@ polyhedron PolyhedronFromBounds( const idBounds &b ) {
 	p2.recompute_planes();
 	return p2;
 }
-
 
 polyhedron make_sv( const polyhedron &oc, idVec4 light ) {
 	static polyhedron lut[64];

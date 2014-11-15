@@ -32,7 +32,6 @@
 #define contactEntity_t		idEntityPtr<idEntity>
 
 class idPhysics_Base : public idPhysics {
-
 public:
 	CLASS_PROTOTYPE( idPhysics_Base );
 

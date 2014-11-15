@@ -32,7 +32,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 // Get the name of this state
 const idStr &EmergeFromCoverState::GetName() const {
 	static idStr _name( STATE_EMERGE_FROM_COVER );
@@ -89,5 +88,4 @@ StateLibrary::Registrar emergeFromCoverStateRegistrar(
 	STATE_EMERGE_FROM_COVER, // Task Name
 	StateLibrary::CreateInstanceFunc( &EmergeFromCoverState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

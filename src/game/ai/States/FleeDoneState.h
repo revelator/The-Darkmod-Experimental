@@ -23,7 +23,6 @@
 #include "State.h"
 
 namespace ai {
-
 #define STATE_FLEE_DONE "FleeDone"
 
 class FleeDoneState :
@@ -66,7 +65,6 @@ public:
 
 	static StatePtr CreateInstance();
 };
-
 } // namespace ai
 
 #endif /* __AI_FLEE_DONE_H__ */

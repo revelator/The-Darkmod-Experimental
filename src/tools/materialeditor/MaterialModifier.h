@@ -27,7 +27,6 @@ class MaterialTreeView;
 * Base class for modifications that can be made to a material that can be undone and redone.
 */
 class MaterialModifier {
-
 public:
 	MaterialModifier( MaterialDocManager *manager, const char *materialName );
 	virtual ~MaterialModifier() {};
@@ -44,7 +43,6 @@ protected:
 * Base class for Undo/Redo operations for attribute changes
 */
 class AttributeMaterialModifier : public MaterialModifier {
-
 public:
 	AttributeMaterialModifier( MaterialDocManager *manager, const char *materialName, int stage, const char *key );
 	virtual ~AttributeMaterialModifier() {};
@@ -61,7 +59,6 @@ protected:
 * Undo/Redo operation for string attribute changes
 */
 class AttributeMaterialModifierString : public AttributeMaterialModifier {
-
 public:
 	AttributeMaterialModifierString( MaterialDocManager *manager, const char *materialName, int stage, const char *key, const char *value, const char *oldValue );
 	virtual ~AttributeMaterialModifierString() {};
@@ -72,14 +69,12 @@ public:
 protected:
 	idStr					value;
 	idStr					oldValue;
-
 };
 
 /**
 * Undo/Redo operation for boolean attribute changes
 */
 class AttributeMaterialModifierBool : public AttributeMaterialModifier {
-
 public:
 	AttributeMaterialModifierBool( MaterialDocManager *manager, const char *materialName, int stage, const char *key, bool value, bool oldValue );
 	virtual ~AttributeMaterialModifierBool() {};
@@ -90,14 +85,12 @@ public:
 protected:
 	bool					value;
 	bool					oldValue;
-
 };
 
 /**
 * Undo/Redo operation for stage moves
 */
 class StageMoveModifier : public MaterialModifier {
-
 public:
 	StageMoveModifier( MaterialDocManager *manager, const char *materialName, int from, int to );
 	virtual ~StageMoveModifier() {};
@@ -170,7 +163,6 @@ public:
 	virtual void			Redo();
 
 protected:
-
 };
 
 /**
@@ -256,4 +248,3 @@ protected:
 	HTREEITEM				item;
 	HTREEITEM				parent;
 };
-

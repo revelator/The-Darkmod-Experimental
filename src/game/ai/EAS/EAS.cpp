@@ -29,7 +29,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 // how the AI patrolled there.
 
 namespace eas {
-
 tdmEAS::tdmEAS( idAASLocal *aas ) :
 	_aas( aas ),
 	_routingIterations( 0 ) {
@@ -680,7 +679,6 @@ CMultiStateMover *tdmEAS::GetNearbyElevator( idVec3 pos, float maxDist, float ma
 	return elevator;
 }
 
-
 void tdmEAS::DrawRoute( int startArea, int goalArea ) {
 	int startCluster = _aas->file->GetArea( startArea ).cluster;
 	int goalCluster = _aas->file->GetArea( goalArea ).cluster;
@@ -705,5 +703,4 @@ void tdmEAS::DrawRoute( int startArea, int goalArea ) {
 		}
 	}
 }
-
 } // namespace eas

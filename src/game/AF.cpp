@@ -24,7 +24,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "Game_local.h"
 
-
 /*
 ===============================================================================
 

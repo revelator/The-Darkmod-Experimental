@@ -26,7 +26,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "Radiant.h"
 #include "EditViewDlg.h"
 
-
 // CEditViewDlg dialog
 
 IMPLEMENT_DYNAMIC( CEditViewDlg, CDialog )
@@ -43,7 +42,6 @@ void CEditViewDlg::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Control( pDX, IDC_EDIT_INFO, editInfo );
 }
 
-
 static UINT FindDialogMessage = ::RegisterWindowMessage( FINDMSGSTRING );
 
 BEGIN_MESSAGE_MAP( CEditViewDlg, CDialog )
@@ -55,7 +53,6 @@ BEGIN_MESSAGE_MAP( CEditViewDlg, CDialog )
 	ON_BN_CLICKED( IDC_BUTTON_GOTO, OnBnClickedButtonGoto )
 	ON_REGISTERED_MESSAGE( FindDialogMessage, OnFindDialogMessage )
 END_MESSAGE_MAP()
-
 
 // CEditViewDlg message handlers
 

@@ -138,7 +138,6 @@ const char *Sys_GetThreadName( int *index ) {
 	return "main";
 }
 
-
 /*
 ==================
 Sys_EnterCriticalSection
@@ -186,12 +185,9 @@ void Sys_TriggerEvent( int index ) {
 	SetEvent( win32.backgroundDownloadSemaphore );
 }
 
-
-
 #pragma optimize( "", on )
 
 #ifdef DEBUG
-
 
 static unsigned int debug_total_alloc = 0;
 static unsigned int debug_total_alloc_count = 0;
@@ -344,7 +340,6 @@ void Sys_Quit( void ) {
 	Sys_DestroyConsole();
 	ExitProcess( 0 );
 }
-
 
 /*
 ==============
@@ -580,7 +575,6 @@ int Sys_ListFiles( const char *directory, const char *extension, idStrList &list
 	_findclose( findhandle );
 	return list.Num();
 }
-
 
 /*
 ================
@@ -870,7 +864,6 @@ void Sys_In_Restart_f( const idCmdArgs &args ) {
 	Sys_InitInput();
 }
 
-
 /*
 ==================
 Sys_AsyncThread
@@ -1130,7 +1123,6 @@ const char *Sys_GetProcessorString( void ) {
 //=======================================================================
 
 //#define SET_THREAD_AFFINITY
-
 
 /*
 ====================

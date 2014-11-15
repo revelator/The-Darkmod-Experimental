@@ -162,7 +162,6 @@ idWeapon::~idWeapon() {
 	delete worldModel.GetEntity();
 }
 
-
 /*
 ================
 idWeapon::Spawn
@@ -1162,7 +1161,6 @@ void idWeapon::SetPushVelocity( const idVec3 &pushVelocity ) {
 	this->pushVelocity = pushVelocity;
 }
 
-
 /***********************************************************************
 
 	State control/player interface
@@ -1209,7 +1207,6 @@ idWeapon::SetArrow2Arrow
 void idWeapon::SetArrow2Arrow( bool state ) { // grayman #597
 	arrow2Arrow = state;
 }
-
 
 /*
 ================
@@ -1556,7 +1553,6 @@ void idWeapon::SetState( const char *statename, int blendFrames ) {
 	idealState = "";
 }
 
-
 /***********************************************************************
 
 	Particles/Effects
@@ -1613,7 +1609,6 @@ void idWeapon::UpdateNozzleFx( void ) {
 	gameRenderWorld->UpdateLightDef( nozzleGlowHandle, &nozzleGlow );
 }
 
-
 /*
 ================
 idWeapon::BloodSplat
@@ -1654,7 +1649,6 @@ bool idWeapon::BloodSplat( float size ) {
 	gameRenderWorld->ProjectOverlay( modelDefHandle, localPlane, mtr );
 	return true;
 }
-
 
 /***********************************************************************
 
@@ -2015,7 +2009,6 @@ void idWeapon::GetWeaponTimeOffsets( float *time, float *scale ) {
 	*time = weaponOffsetTime;
 	*scale = weaponOffsetScale;
 }
-
 
 /***********************************************************************
 
@@ -3099,5 +3092,3 @@ idWeapon::GetAttachingTransform
 void idWeapon::GetAttachingTransform( jointHandle_t jointHandle, idVec3 &offset, idMat3 &axis ) {
 	GetGlobalJointTransform( true, jointHandle, offset, axis );
 }
-
-

@@ -39,7 +39,6 @@ typedef struct {
 	float nearDC_acc;
 	float nearDC_partialacc;
 	int   nearptr;
-
 } envelope_filter_state;
 
 typedef struct {
@@ -76,6 +75,4 @@ extern long _ve_envelope_search( vorbis_dsp_state *v );
 extern void _ve_envelope_shift( envelope_lookup *e, long shift );
 extern int  _ve_envelope_mark( vorbis_dsp_state *v );
 
-
 #endif
-

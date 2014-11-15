@@ -28,7 +28,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 FailedKnockoutState::FailedKnockoutState() :
 	_attacker( NULL ),
 	_hitHead( false ) {
@@ -135,5 +134,4 @@ StateLibrary::Registrar failedKnockoutStateRegistrar(
 	STATE_FAILED_KNOCKED_OUT, // Task Name
 	StateLibrary::CreateInstanceFunc( &FailedKnockoutState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

@@ -30,7 +30,6 @@
 #include "CamWnd.h"
 #include "TextureBar.h"
 
-
 const int RAD_SHIFT =   0x01;
 const int RAD_ALT =     0x02;
 const int RAD_CONTROL = 0x04;
@@ -47,9 +46,6 @@ struct SKeyInfo {
 	char *m_strName;
 	unsigned int m_nVKKey;
 };
-
-
-
 
 class CMainFrame : public CFrameWnd {
 	DECLARE_DYNAMIC( CMainFrame )
@@ -168,7 +164,6 @@ public:
 	void SetBusy( bool b ) {
 		busy = b;
 	}
-
 
 	// these are public so i can easily reflect messages
 	// from child windows..

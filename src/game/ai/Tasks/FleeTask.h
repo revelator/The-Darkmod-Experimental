@@ -24,7 +24,6 @@
 #include "../../EscapePointManager.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_FLEE "FleeTask"
 
@@ -65,9 +64,7 @@ public:
 
 	// Creates a new Instance of this task
 	static FleeTaskPtr CreateInstance();
-
 };
-
 } // namespace ai
 
 #endif /* __AI_FLEE_TASK_H__ */

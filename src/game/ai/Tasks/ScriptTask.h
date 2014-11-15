@@ -23,7 +23,6 @@
 #include "Task.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_SCRIPT "ScriptTask"
 
@@ -75,7 +74,6 @@ public:
 	// Creates a new Instance of this task
 	static ScriptTaskPtr CreateInstance();
 };
-
 } // namespace ai
 
 #endif /* __AI_SCRIPT_TASK_H__ */

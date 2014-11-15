@@ -55,7 +55,6 @@ CPatchDialog::CPatchDialog( CWnd *pParent /*=NULL*/ )
 	m_Patch = NULL;
 }
 
-
 void CPatchDialog::DoDataExchange( CDataExchange *pDX ) {
 	CDialog::DoDataExchange( pDX );
 	//{{AFX_DATA_MAP(CPatchDialog)
@@ -80,7 +79,6 @@ void CPatchDialog::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Text( pDX, IDC_VSHIFT, m_fVShift );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CPatchDialog, CDialog )
 	//{{AFX_MSG_MAP(CPatchDialog)
@@ -163,8 +161,6 @@ BOOL CPatchDialog::OnInitDialog() {
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// EXCEPTION: OCX Property Pages should return FALSE
 }
-
-
 
 void CPatchDialog::GetPatchInfo() {
 	m_Patch = SinglePatchSelected();
@@ -296,5 +292,3 @@ void CPatchDialog::UpdateSpinners( bool bUp, int nID ) {
 	Patch_SetTextureInfo( &td );
 	Sys_UpdateWindows( W_CAMERA );
 }
-
-

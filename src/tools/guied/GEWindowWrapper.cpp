@@ -511,4 +511,3 @@ bool rvGEWindowWrapper::VerfiyStateKey( const char *name, const char *value, idS
 	}
 	return true;
 }
-

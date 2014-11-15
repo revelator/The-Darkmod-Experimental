@@ -25,7 +25,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "AAS_local.h"
 #include "../Game_local.h"		// for cvars and debug drawing
 
-
 /*
 ============
 idAASLocal::DrawCone
@@ -506,7 +505,6 @@ void idAASLocal::DrawAreas( const idVec3 &playerOrigin ) {
 		}
 	}
 }
-
 
 void idAASLocal::DrawEASRoute( const idVec3 &playerOrigin, int goalArea ) {
 	idVec3 origin = playerOrigin;

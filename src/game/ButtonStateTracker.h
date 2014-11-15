@@ -73,7 +73,6 @@ public:
 	* so this is more or less a "cancellation".
 	*/
 	void StopTracking( int impulse );
-
 }; // class ButtonStateTracker
 
 #endif /* __GAME_BUTTON_STATE_TRACKER_H__ */

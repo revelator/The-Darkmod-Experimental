@@ -33,9 +33,6 @@ int		c_nodes;
 #define	PLANESIDE_EPSILON	0.001
 //0.1
 
-
-
-
 /*
 ================
 CountBrushList
@@ -49,7 +46,6 @@ int	CountBrushList( uBrush_t *brushes ) {
 	}
 	return c;
 }
-
 
 int BrushSizeForSides( int numsides ) {
 	int		c;
@@ -93,7 +89,6 @@ void FreeBrush( uBrush_t *brushes ) {
 	c_active_brushes--;
 }
 
-
 /*
 ================
 FreeBrushList
@@ -129,7 +124,6 @@ uBrush_t *CopyBrush( uBrush_t *brush ) {
 	return newbrush;
 }
 
-
 /*
 ================
 DrawBrushList
@@ -150,7 +144,6 @@ void DrawBrushList( uBrush_t *brush ) {
 	}
 	GLS_EndScene();
 }
-
 
 /*
 =============
@@ -300,7 +293,6 @@ float BrushVolume( uBrush_t *brush ) {
 	return volume;
 }
 
-
 /*
 ==================
 WriteBspBrushMap
@@ -335,7 +327,6 @@ void WriteBspBrushMap( const char *name, uBrush_t *list ) {
 	fileSystem->CloseFile( f );
 }
 
-
 //=====================================================================================
 
 /*
@@ -369,7 +360,6 @@ int FilterBrushIntoTree_r( uBrush_t *b, node_t *node ) {
 	return c;
 }
 
-
 /*
 =====================
 FilterBrushesIntoTree
@@ -400,8 +390,6 @@ void FilterBrushesIntoTree( uEntity_t *e ) {
 	common->Printf( "%5i total brushes\n", c_unique );
 	common->Printf( "%5i cluster references\n", c_clusters );
 }
-
-
 
 /*
 ================

@@ -93,7 +93,6 @@ CProjectileResult::CProjectileResult( void ) {
 CProjectileResult::~CProjectileResult( void ) {
 }
 
-
 void CProjectileResult::Init
 (
 	SFinalProjData *pData, const trace_t &collision,
@@ -308,4 +307,3 @@ void CProjectileResult::Event_GetActualStruckEnt( void ) {
 	}
 	idThread::ReturnEntity( returnEnt );
 }
-

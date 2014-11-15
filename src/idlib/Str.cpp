@@ -1,27 +1,25 @@
 // vim:ts=4:sw=4:cindent
 /*****************************************************************************
                     The Dark Mod GPL Source Code
- 
- This file is part of the The Dark Mod Source Code, originally based 
+
+ This file is part of the The Dark Mod Source Code, originally based
  on the Doom 3 GPL Source Code as published in 2011.
- 
- The Dark Mod Source Code is free software: you can redistribute it 
- and/or modify it under the terms of the GNU General Public License as 
- published by the Free Software Foundation, either version 3 of the License, 
+
+ The Dark Mod Source Code is free software: you can redistribute it
+ and/or modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation, either version 3 of the License,
  or (at your option) any later version. For details, see LICENSE.TXT.
- 
+
  Project: The Dark Mod (http://www.thedarkmod.com/)
- 
- $Revision$ (Revision of last commit) 
+
+ $Revision$ (Revision of last commit)
  $Date$ (Date of last commit)
  $Author$ (Author of last commit)
- 
+
 ******************************************************************************/
 
 #include "precompiled.h"
 #pragma hdrstop
-
-
 
 #if !defined( ID_REDIRECT_NEWDELETE ) && !defined( MACOS_X )
 	#define USE_STRING_DATA_ALLOCATOR
@@ -179,7 +177,7 @@ idStr idStr::RandomPart( const float rand, const char c ) const {
 		// if we have X commata, we have X+1 pieces, so select one at random
 		seps ++;
 		//gameLocal.Printf("Found random list with %i parts.\n", seps);
-		
+
 		int idx = (int) (rand * (float)seps);
 		//gameLocal.Printf("random part #%i\n", idx);
 		// split string into pieces, and select idx
@@ -208,7 +206,7 @@ idStr idStr::RandomPart( const float rand, const char c ) const {
 		}
 		//gameLocal.Printf("Cutting %s between %i and %i.\n", data, start, end);
 		part = Mid(start, end - start);
-		// left-over separator 
+		// left-over separator
 		part.Strip(c);
 		// and spaces
 		part.Strip(' ');
@@ -223,7 +221,7 @@ idStr idStr::RandomPart( const float rand, const char c ) const {
 		// copy
 		part.Append( data );
 	}
-	
+
 	return part;
 }
 
@@ -525,7 +523,7 @@ returns -1 if not found otherwise the index of the char
 */
 int idStr::Last( const char c ) const {
 	int i;
-	
+
 	for( i = Length(); i > 0; i-- ) {
 		if ( data[ i - 1 ] == c ) {
 			return i - 1;
@@ -631,7 +629,7 @@ idStr::StripTrailing
 */
 void idStr::StripTrailing( const char c ) {
 	int i;
-	
+
 	for( i = Length(); i > 0 && data[ i - 1 ] == c; i-- ) {
 		data[ i - 1 ] = '\0';
 		len--;
@@ -863,7 +861,7 @@ idStr::StripTrailingWhitespace
 */
 void idStr::StripTrailingWhitespace( void ) {
 	int i;
-	
+
 	// cast to unsigned char to prevent stripping off high-ASCII characters
 	for( i = Length(); i > 0 && (unsigned char)(data[ i - 1 ]) <= ' '; i-- ) {
 		data[ i - 1 ] = '\0';
@@ -896,7 +894,7 @@ idStr& idStr::StripQuotes ( void )
 	{
 		return *this;
 	}
-	
+
 	// Remove the trailing quote first
 	if ( data[len-1] == '\"' )
 	{
@@ -905,10 +903,10 @@ idStr& idStr::StripQuotes ( void )
 	}
 
 	// Strip the leading quote now
-	len--;	
+	len--;
 	memmove( &data[ 0 ], &data[ 1 ], len );
 	data[len] = '\0';
-	
+
 	return *this;
 }
 
@@ -1212,7 +1210,6 @@ void idStr::ExtractFileExtension( idStr &dest ) const {
 	}
 }
 
-
 /*
 =====================================================================
 
@@ -1261,21 +1258,21 @@ bool idStr::HasLower( const char *s ) {
 	if ( !s ) {
 		return false;
 	}
-	
+
 	while ( *s ) {
 		if ( CharIsLower( *s ) ) {
 			return true;
 		}
 		s++;
 	}
-	
+
 	return false;
 }
 
 /*
 ============
 idStr::HasUpper
-	
+
 Checks if a string has any uppercase chars
 ============
 */
@@ -1283,14 +1280,14 @@ bool idStr::HasUpper( const char *s ) {
 	if ( !s ) {
 		return false;
 	}
-	
+
 	while ( *s ) {
 		if ( CharIsUpper( *s ) ) {
 			return true;
 		}
 		s++;
 	}
-	
+
 	return false;
 }
 
@@ -1600,7 +1597,7 @@ int idStr::IcmpnPath( const char *s1, const char *s2, int n ) {
 /*
 =============
 idStr::Copynz
- 
+
 Safe strncpy that ensures a trailing zero
 =============
 */
@@ -1610,7 +1607,7 @@ void idStr::Copynz( char *dest, const char *src, int destsize ) {
 		return;
 	}
 	if ( destsize < 1 ) {
-		idLib::common->Warning( "idStr::Copynz: destsize < 1" ); 
+		idLib::common->Warning( "idStr::Copynz: destsize < 1" );
 		return;
 	}
 
@@ -1677,7 +1674,7 @@ char *idStr::RemoveColors( char *string ) {
 	while( (c = *s) != 0 ) {
 		if ( idStr::IsColor( s ) ) {
 			s++;
-		}		
+		}
 		else {
 			*d++ = c;
 		}
@@ -1725,7 +1722,7 @@ C99 standard: vsnprintf returns the number of characters (excluding the trailing
 snprintf and vsnprintf do not write more than size bytes (including the trailing '\0')
 
 win32: _vsnprintf returns the number of characters written, not including the terminating null character,
-or a negative value if an output error occurs. If the number of characters to write exceeds count, then count 
+or a negative value if an output error occurs. If the number of characters to write exceeds count, then count
 characters are written and -1 is returned and no trailing '\0' is added.
 
 idStr::vsnPrintf: always appends a trailing '\0', returns number of characters written (not including terminal \0)
@@ -1764,7 +1761,7 @@ int sprintf( idStr &string, const char *fmt, ... ) {
 	int l;
 	va_list argptr;
 	char buffer[32000];
-	
+
 	va_start( argptr, fmt );
 	l = idStr::vsnPrintf( buffer, sizeof(buffer)-1, fmt, argptr );
 	va_end( argptr );
@@ -1784,10 +1781,10 @@ Sets the value of the string using a vprintf interface.
 int vsprintf( idStr &string, const char *fmt, va_list argptr ) {
 	int l;
 	char buffer[32000];
-	
+
 	l = idStr::vsnPrintf( buffer, sizeof(buffer)-1, fmt, argptr );
 	buffer[sizeof(buffer)-1] = '\0';
-	
+
 	string = buffer;
 	return l;
 }
@@ -1816,8 +1813,6 @@ char *va( const char *fmt, ... ) {
 	return buf;
 }
 
-
-
 /*
 ============
 idStr::BestUnit
@@ -1845,7 +1840,7 @@ void idStr::SetUnit( const char *format, float value, int unit, Measure_t measur
 	value /= 1 << ( unit * 10 );
 	sprintf( *this, format, value );
 	*this += " ";
-	*this += units[ measure ][ unit ];	
+	*this += units[ measure ][ unit ];
 }
 
 /*
@@ -1913,7 +1908,6 @@ formatList_t formatList[] = {
 
 int numFormatList = sizeof(formatList) / sizeof( formatList[0] );
 
-
 idStr idStr::FormatNumber( int number ) {
 	idStr string;
 	bool hit;
@@ -1975,4 +1969,3 @@ idStr idStr::FormatNumber( int number ) {
 
 	return string;
 }
-

@@ -24,11 +24,9 @@
 
 #include "../comafx/CSyntaxRichEditCtrl.h"
 
-
 // DialogScriptEditor dialog
 
 class DialogScriptEditor : public CDialog {
-
 	DECLARE_DYNAMIC( DialogScriptEditor )
 
 public:

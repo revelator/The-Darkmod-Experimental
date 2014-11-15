@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 InteractionTask::InteractionTask() :
 	_waitEndTime( -1 ) {
 }
@@ -134,5 +133,4 @@ TaskLibrary::Registrar interactionTaskRegistrar(
 	TASK_INTERACTION, // Task Name
 	TaskLibrary::CreateInstanceFunc( &InteractionTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

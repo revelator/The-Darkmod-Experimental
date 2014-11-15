@@ -216,7 +216,6 @@ public:
 
 extern idGame 					*game;
 
-
 /*
 ===============================================================================
 
@@ -285,7 +284,6 @@ public:
 	virtual void				AF_UndoChanges( void );
 	virtual idRenderModel 		*AF_CreateMesh( const idDict &args, idVec3 &meshOrigin, idMat3 &meshAxis, bool &poseIsSet );
 
-
 	// Entity selection.
 	virtual void				ClearEntitySelection( void );
 	virtual int					GetSelectedEntities( idEntity *list[], int max );
@@ -332,11 +330,9 @@ public:
 	virtual int					MapGetEntitiesMatchingClassWithString( const char *classname, const char *match, const char *list[], const int max ) const;
 	virtual void				MapRemoveEntity( const char *name ) const;
 	virtual void				MapEntityTranslate( const char *name, const idVec3 &v ) const;
-
 };
 
 extern idGameEdit 				*gameEdit;
-
 
 /*
 ===============================================================================
@@ -357,7 +353,6 @@ class idAASFileManager;
 class idCollisionModelManager;
 
 typedef struct {
-
 	int							version;				// API version
 	idSys 						*sys;					// non-portable system services
 	idCommon 					*common;					// common
@@ -372,15 +367,12 @@ typedef struct {
 	idDeclManager 				*declManager;			// declaration manager
 	idAASFileManager 			*AASFileManager;			// AAS file manager
 	idCollisionModelManager 	*collisionModelManager;	// collision model manager
-
 } gameImport_t;
 
 typedef struct {
-
 	int							version;				// API version
 	idGame 					*game;					// interface to run the game
 	idGameEdit 				*gameEdit;				// interface for in-game editing
-
 } gameExport_t;
 
 extern "C" {

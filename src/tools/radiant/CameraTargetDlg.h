@@ -40,7 +40,6 @@ public:
 	CString	m_strName;
 	//}}AFX_DATA
 
-
 	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CCameraTargetDlg)

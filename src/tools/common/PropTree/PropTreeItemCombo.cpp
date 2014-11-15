@@ -46,7 +46,6 @@ CPropTreeItemCombo::CPropTreeItemCombo() :
 CPropTreeItemCombo::~CPropTreeItemCombo() {
 }
 
-
 BEGIN_MESSAGE_MAP( CPropTreeItemCombo, CComboBox )
 	//{{AFX_MSG_MAP(CPropTreeItemCombo)
 	ON_CONTROL_REFLECT( CBN_SELCHANGE, OnSelchange )
@@ -78,17 +77,14 @@ void CPropTreeItemCombo::DrawAttribute( CDC *pDC, const RECT &rc ) {
 	pDC->DrawText( s, r, DT_SINGLELINE | DT_VCENTER );
 }
 
-
 LPARAM CPropTreeItemCombo::GetItemValue() {
 	return m_lComboData;
 }
-
 
 void CPropTreeItemCombo::SetItemValue( LPARAM lParam ) {
 	m_lComboData = lParam;
 	OnRefresh();
 }
-
 
 void CPropTreeItemCombo::OnMove() {
 	if( IsWindow( m_hWnd ) && IsWindowVisible() ) {
@@ -96,14 +92,12 @@ void CPropTreeItemCombo::OnMove() {
 	}
 }
 
-
 void CPropTreeItemCombo::OnRefresh() {
 	LONG idx = FindCBData( m_lComboData );
 	if( idx != CB_ERR ) {
 		SetCurSel( idx );
 	}
 }
-
 
 void CPropTreeItemCombo::OnCommit() {
 	LONG idx;
@@ -116,7 +110,6 @@ void CPropTreeItemCombo::OnCommit() {
 	ShowWindow( SW_HIDE );
 }
 
-
 void CPropTreeItemCombo::OnActivate( int activateType, CPoint point ) {
 	// activate the combo box
 	SetWindowPos( NULL, m_rc.left, m_rc.top, m_rc.Width() + 1, m_rc.Height() + m_nDropHeight, SWP_NOZORDER | SWP_SHOWWINDOW );
@@ -125,7 +118,6 @@ void CPropTreeItemCombo::OnActivate( int activateType, CPoint point ) {
 		ShowDropDown( TRUE );
 	}
 }
-
 
 BOOL CPropTreeItemCombo::CreateComboBox( DWORD dwStyle ) {
 	ASSERT( m_pProp != NULL );
@@ -141,7 +133,6 @@ BOOL CPropTreeItemCombo::CreateComboBox( DWORD dwStyle ) {
 	SendMessage( WM_SETFONT, ( WPARAM )m_pProp->GetNormalFont()->m_hObject );
 	return TRUE;
 }
-
 
 BOOL CPropTreeItemCombo::CreateComboBoxBool() {
 	ASSERT( m_pProp != NULL );
@@ -167,7 +158,6 @@ BOOL CPropTreeItemCombo::CreateComboBoxBool() {
 	return TRUE;
 }
 
-
 LONG CPropTreeItemCombo::FindCBData( LPARAM lParam ) {
 	LONG idx;
 	for( idx = 0; idx < GetCount(); idx++ ) {
@@ -178,21 +168,17 @@ LONG CPropTreeItemCombo::FindCBData( LPARAM lParam ) {
 	return CB_ERR;
 }
 
-
 void CPropTreeItemCombo::OnSelchange() {
 	CommitChanges();
 }
-
 
 void CPropTreeItemCombo::OnKillfocus() {
 	CommitChanges();
 }
 
-
 void CPropTreeItemCombo::SetDropDownHeight( LONG nDropHeight ) {
 	m_nDropHeight = nDropHeight;
 }
-
 
 LONG CPropTreeItemCombo::GetDropDownHeight() {
 	return m_nDropHeight;

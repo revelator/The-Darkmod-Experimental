@@ -42,7 +42,6 @@ void idWinVar::SetGuiInfo( idDict *gd, const char *_name ) {
 	SetName( _name );
 }
 
-
 void idWinVar::Init( const char *_name, idWindow *win ) {
 	idStr key = _name;
 	guiDict = NULL;
@@ -73,4 +72,3 @@ void idMultiWinVar::SetGuiInfo( idDict *dict ) {
 		( *this )[i]->SetGuiInfo( dict, ( *this )[i]->c_str() );
 	}
 }
-

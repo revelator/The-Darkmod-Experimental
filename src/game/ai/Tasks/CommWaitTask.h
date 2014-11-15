@@ -23,7 +23,6 @@
 #include "CommunicationTask.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_COMM_WAIT "CommWaitTask"
 
@@ -56,7 +55,6 @@ public:
 	// Creates a new Instance of this task
 	static CommWaitTaskPtr CreateInstance();
 };
-
 } // namespace ai
 
 #endif /* __AI_COMM_WAIT_TASK_H__ */

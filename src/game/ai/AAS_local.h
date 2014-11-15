@@ -51,7 +51,6 @@ private:
 	unsigned short 			*travelTimes;			// travel time for every area
 };
 
-
 class idRoutingUpdate {
 	friend class idAASLocal;
 
@@ -66,7 +65,6 @@ private:
 	bool						isInList;				// true if the update is in the list
 };
 
-
 class idRoutingObstacle {
 	friend class idAASLocal;
 	idRoutingObstacle( void ) { }
@@ -75,7 +73,6 @@ private:
 	idBounds					bounds;					// obstacle bounds
 	idList<int>					areas;					// areas the bounds are in
 };
-
 
 class CMultiStateMover;
 namespace eas {
@@ -190,7 +187,6 @@ private:
 
 	typedef std::map<int, CFrobDoor *> DoorMap;
 	DoorMap _doors;
-
 
 private:	// routing data
 	idRoutingCache **			*areaCacheIndex;			// for each area in each cluster the travel times to all other areas in the cluster

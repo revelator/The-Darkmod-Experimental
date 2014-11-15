@@ -26,7 +26,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 int			c_faceLeafs;
 
-
 extern	int	c_nodes;
 
 void RemovePortalFromNode( uPortal_t *portal, node_t *l );
@@ -44,8 +43,6 @@ node_t *NodeForPoint( node_t *node, idVec3 origin ) {
 	}
 	return node;
 }
-
-
 
 /*
 =============
@@ -87,7 +84,6 @@ void FreeTree_r( node_t *node ) {
 	c_nodes--;
 	Mem_Free( node );
 }
-
 
 /*
 =============
@@ -152,7 +148,6 @@ void	FreeBspFace( bspface_t *f ) {
 	}
 	Mem_Free( f );
 }
-
 
 /*
 ================
@@ -323,7 +318,6 @@ void	BuildFaceTree_r( node_t *node, bspface_t *list ) {
 	}
 }
 
-
 /*
 ================
 FaceBSP
@@ -441,4 +435,3 @@ bspface_t	*MakeVisibleBspFaceList( primitive_t *list ) {
 	}
 	return flist;
 }
-

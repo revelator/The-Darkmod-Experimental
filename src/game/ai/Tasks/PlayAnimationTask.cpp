@@ -29,7 +29,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #define DEFAULT_BLEND_FRAMES 4
 
 namespace ai {
-
 PlayAnimationTask::PlayAnimationTask() :
 	_blendFrames( DEFAULT_BLEND_FRAMES ),
 	_playCycle( false ) {
@@ -122,5 +121,4 @@ TaskLibrary::Registrar playAnimationTaskRegistrar(
 	TASK_PLAY_ANIMATION, // Task Name
 	TaskLibrary::CreateInstanceFunc( &PlayAnimationTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

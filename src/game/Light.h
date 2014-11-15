@@ -296,7 +296,6 @@ private:
 
 	idList<AIBarks> aiBarks; // grayman #2603
 
-
 private:
 	void			PresentLightDefChange( void );
 	void			PresentModelDefChange( void );
@@ -333,7 +332,6 @@ private:
 	* "On" light levels are > 0.0
 	*/
 	void			Event_GetLightLevel();
-
 
 	/*
 	*	Add the light to the appropriate LAS area

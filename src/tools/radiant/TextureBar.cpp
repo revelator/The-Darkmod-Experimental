@@ -37,7 +37,6 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CTextureBar dialog
 
-
 CTextureBar::CTextureBar()
 	: CDialogBar() {
 	//{{AFX_DATA_INIT(CTextureBar)
@@ -49,7 +48,6 @@ CTextureBar::CTextureBar()
 	m_nRotateAmt = 45;
 	//}}AFX_DATA_INIT
 }
-
 
 void CTextureBar::DoDataExchange( CDataExchange *pDX ) {
 	CDialogBar::DoDataExchange( pDX );
@@ -67,7 +65,6 @@ void CTextureBar::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Text( pDX, IDC_EDIT_ROTATEAMT, m_nRotateAmt );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CTextureBar, CDialogBar )
 	//{{AFX_MSG_MAP(CTextureBar)
@@ -144,7 +141,6 @@ void CTextureBar::OnDeltaposSpinRotate( NMHDR *pNMHDR, LRESULT *pResult ) {
 	GetSurfaceAttributes();
 }
 
-
 void CTextureBar::OnSelectionPrint() {
 	// TODO: Add your command handler code here
 }
@@ -155,7 +151,6 @@ int CTextureBar::OnCreate( LPCREATESTRUCT lpCreateStruct ) {
 	}
 	return 0;
 }
-
 
 void CTextureBar::OnBtnApplytexturestuff() {
 	SetSurfaceAttributes();

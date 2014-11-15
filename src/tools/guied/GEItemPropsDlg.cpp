@@ -863,7 +863,6 @@ bool rvGEItemPropsGeneralPage::SetActive( void ) {
 	return true;
 }
 
-
 /*
 ================
 rvGEItemPropsGeneralPage::KillActive

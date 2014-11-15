@@ -50,7 +50,6 @@ typedef struct decalProjectionInfo_s {
 	bool						force;
 } decalProjectionInfo_t;
 
-
 class idRenderModelDecal {
 public:
 	idRenderModelDecal( void );

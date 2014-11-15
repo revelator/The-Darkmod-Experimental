@@ -25,7 +25,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "RouteInfo.h"
 
 namespace eas {
-
 RouteInfo::RouteInfo() :
 	routeType( ROUTE_TO_CLUSTER ),
 	target( -1 ),
@@ -95,5 +94,4 @@ void RouteInfo::Restore( idRestoreGame *savefile ) {
 	}
 	savefile->ReadInt( routeTravelTime ); // grayman #3029
 }
-
 } // namespace eas

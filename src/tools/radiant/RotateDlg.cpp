@@ -35,7 +35,6 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CRotateDlg dialog
 
-
 CRotateDlg::CRotateDlg( CWnd *pParent /*=NULL*/ )
 	: CDialog( CRotateDlg::IDD, pParent ) {
 	//{{AFX_DATA_INIT(CRotateDlg)
@@ -44,7 +43,6 @@ CRotateDlg::CRotateDlg( CWnd *pParent /*=NULL*/ )
 	m_strZ = _T( "" );
 	//}}AFX_DATA_INIT
 }
-
 
 void CRotateDlg::DoDataExchange( CDataExchange *pDX ) {
 	CDialog::DoDataExchange( pDX );
@@ -57,7 +55,6 @@ void CRotateDlg::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Text( pDX, IDC_ROTZ, m_strZ );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CRotateDlg, CDialog )
 	//{{AFX_MSG_MAP(CRotateDlg)

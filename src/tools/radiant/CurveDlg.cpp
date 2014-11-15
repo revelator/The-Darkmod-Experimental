@@ -26,7 +26,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "Radiant.h"
 #include "CurveDlg.h"
 
-
 // CCurveDlg dialog
 
 IMPLEMENT_DYNAMIC( CCurveDlg, CDialog )
@@ -52,6 +51,5 @@ void CCurveDlg::OnOK() {
 
 BEGIN_MESSAGE_MAP( CCurveDlg, CDialog )
 END_MESSAGE_MAP()
-
 
 // CCurveDlg message handlers

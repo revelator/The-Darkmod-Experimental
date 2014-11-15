@@ -61,7 +61,6 @@ typedef struct mtrParsingData_s {
 	bool			forceOverlays;
 } mtrParsingData_t;
 
-
 /*
 =============
 idMaterial::CommonInit
@@ -206,7 +205,6 @@ idImage *idMaterial::GetEditorImage( void ) const {
 	return editorImage;
 }
 
-
 // info parms
 typedef struct {
 	const char	*name;
@@ -267,7 +265,6 @@ static infoParm_t	infoParms[] = {
 };
 
 static const int numInfoParms = sizeof( infoParms ) / sizeof( infoParms[0] );
-
 
 /*
 ===============
@@ -636,7 +633,6 @@ int idMaterial::ParseExpression( idLexer &src ) {
 	return ParseExpressionPriority( src, TOP_PRIORITY );
 }
 
-
 /*
 ===============
 idMaterial::ClearStage
@@ -797,7 +793,6 @@ void idMaterial::ParseVertexParm( idLexer &src, newShaderStage_t *newStage ) {
 	newStage->vertexParms[parm][3] = ParseExpression( src );
 }
 
-
 /*
 ================
 idMaterial::ParseFragmentMap
@@ -919,7 +914,6 @@ void idMaterial::MultiplyTextureMatrix( textureStage_t *ts, int registers[2][3] 
 idMaterial::ParseStage
 
 An open brace has been parsed
-
 
 {
 	if <expression>
@@ -1412,7 +1406,6 @@ void idMaterial::ParseDeform( idLexer &src ) {
 		SetMaterialFlag( MF_DEFAULTED );
 	}
 }
-
 
 /*
 ==============
@@ -2400,7 +2393,6 @@ const char *idMaterial::DefaultDefinition() const {
 		"\t"	"}\n"
 		"}";
 }
-
 
 /*
 ===================

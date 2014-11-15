@@ -43,7 +43,6 @@ public:
 	float					Integrate( float frac, idRandom &rand ) const;
 };
 
-
 typedef enum {
 	PDIST_RECT,				// ( sizeX sizeY sizeZ )
 	PDIST_CYLINDER,			// ( sizeX sizeY sizeZ )
@@ -85,12 +84,10 @@ typedef struct {
 	idVec3					origin;				// dynamic smoke particles can have individual origins and axis
 	idMat3					axis;
 
-
 	float					age;				// in seconds, calculated as fraction * stage->particleLife
 	idRandom				originalRandom;		// needed so aimed particles can reset the random for another origin calculation
 	float					animationFrameFrac;	// set by ParticleTexCoords, used to make the cross faded version
 } particleGen_t;
-
 
 //
 // single particle stage
@@ -115,7 +112,6 @@ public:
 	int						NumCustomPathParms();
 	void					SetCustomPathType( const char *p );
 	void					operator=( const idParticleStage &src );
-
 
 	//------------------------------
 
@@ -180,7 +176,6 @@ public:
 
 	idBounds				bounds;				// derived
 };
-
 
 //
 // group of particle stages

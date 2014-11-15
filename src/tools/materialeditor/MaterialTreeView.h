@@ -35,7 +35,6 @@ typedef struct {
 * A tree view of all the materials that have been defined.
 */
 class MaterialTreeView : public CTreeView, public MaterialView {
-
 public:
 	virtual			~MaterialTreeView();
 
@@ -66,7 +65,6 @@ public:
 	void			DeleteFolder( HTREEITEM item, bool addUndo = true );
 	HTREEITEM		AddFolder( const char *name, HTREEITEM parent );
 	void			RenameFolder( HTREEITEM item, const char *name );
-
 
 protected:
 	MaterialTreeView();
@@ -120,7 +118,6 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 
-
 	//Utility methods
 	void			RenameMaterial( HTREEITEM item, const char *originalName );
 	bool			GetFileName( HTREEITEM item, idStr &out );
@@ -130,12 +127,10 @@ protected:
 	void			PopupMenu( CPoint *pt );
 	void			SetItemImage( HTREEITEM item, bool mod, bool apply, bool children );
 
-
 	//Methods for working with the quicktree
 	void			CleanLookupTrees( HTREEITEM item );
 	void			BuildLookupTrees( HTREEITEM item );
 	idStr			GetQuicktreePath( HTREEITEM item );
-
 
 protected:
 	CImageList				m_image;
@@ -145,7 +140,6 @@ protected:
 	idHashTable<HTREEITEM>	quickTree;
 	idHashTable<HTREEITEM>	materialToTree;
 	idHashTable<HTREEITEM>	fileToTree;
-
 
 	//Member variables for renaming folders
 	HTREEITEM				renamedFolder;
@@ -162,5 +156,3 @@ protected:
 
 	bool					internalChange;
 };
-
-

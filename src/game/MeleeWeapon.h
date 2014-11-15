@@ -265,7 +265,6 @@ protected:
 	* List of AI whose CMs we've changed
 	**/
 	idList< idEntityPtr<idAI> >	m_AIWithModCMs;
-
 };
 
 #endif /* !__MELEEWEAPON_H__ */

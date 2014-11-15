@@ -26,7 +26,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "AASFile_local.h"
 #include "AASCluster.h"
 
-
 /*
 ================
 idAASCluster::UpdatePortal

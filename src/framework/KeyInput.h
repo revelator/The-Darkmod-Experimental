@@ -182,7 +182,6 @@ typedef enum {
 	K_LAST_KEY  = 254	// this better be < 256!
 } keyNum_t;
 
-
 class idKeyInput {
 public:
 	static void			Init( void );

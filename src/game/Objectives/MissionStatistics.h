@@ -29,7 +29,7 @@
 // Maximum array sizes:
 #define MAX_TEAMS 64
 #define MAX_TYPES 16
-#define MAX_AICOMP COMP_COUNT				 // SteveL #3304: Zbyl's patch. Tie these 
+#define MAX_AICOMP COMP_COUNT				 // SteveL #3304: Zbyl's patch. Tie these
 #define MAX_ALERTLEVELS (ai::EAlertStateNum) //               constants to their enums.
 
 struct SStat {

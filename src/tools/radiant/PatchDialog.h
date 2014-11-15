@@ -62,7 +62,6 @@ public:
 	float	m_fVShift;
 	//}}AFX_DATA
 
-
 	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CPatchDialog)

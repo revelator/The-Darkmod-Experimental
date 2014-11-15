@@ -30,7 +30,6 @@ class MaterialView;
 * Responsible for managing the materials that are being viewed and/or edited.
 */
 class MaterialDocManager {
-
 public:
 	MaterialDocManager( void );
 	~MaterialDocManager( void );
@@ -69,7 +68,6 @@ public:
 
 	//File Reloading
 	void			ReloadFile( const char *filename );
-
 
 	//Used to get and/or create a MaterialDoc object for editing
 	MaterialDoc 	*CreateMaterialDoc( const char *materialName );

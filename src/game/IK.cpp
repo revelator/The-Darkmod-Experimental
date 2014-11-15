@@ -201,7 +201,6 @@ float idIK::GetBoneAxis( const idVec3 &startPos, const idVec3 &endPos, const idV
 	return length;
 }
 
-
 /*
 ===============================================================================
 
@@ -742,7 +741,6 @@ idIK_Walk::DisableLeg
 void idIK_Walk::DisableLeg( int num ) {
 	enabledLegs &= ~( 1 << num );
 }
-
 
 /*
 ===============================================================================

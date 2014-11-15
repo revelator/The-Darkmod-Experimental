@@ -23,7 +23,6 @@
 #include "State.h"
 
 namespace ai {
-
 #define STATE_LOST_TRACK_OF_ENEMY "LostTrackOfEnemy"
 
 class LostTrackOfEnemyState :
@@ -40,7 +39,6 @@ public:
 
 	static StatePtr CreateInstance();
 };
-
 } // namespace ai
 
 #endif /* __AI_LOST_TRACK_OF_ENEMY_STATE_H__ */

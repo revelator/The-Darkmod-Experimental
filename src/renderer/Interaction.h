@@ -49,7 +49,6 @@ typedef struct {
 	idPlane					localClipPlanes[6];
 } srfCullInfo_t;
 
-
 typedef struct {
 	// if lightTris == LIGHT_TRIS_DEFERRED, then the calculation of the
 	// lightTris has been deferred, and must be done if ambientTris is visible
@@ -69,12 +68,10 @@ typedef struct {
 	srfCullInfo_t			cullInfo;
 } surfaceInteraction_t;
 
-
 typedef struct areaNumRef_s {
 	struct areaNumRef_s 	*next;
 	int						areaNum;
 } areaNumRef_t;
-
 
 class idRenderEntityLocal;
 class idRenderLightLocal;
@@ -166,7 +163,6 @@ private:
 	// projected to the bounds of the light
 	idScreenRect			CalcInteractionScissorRectangle( const idFrustum &viewFrustum );
 };
-
 
 void R_CalcInteractionFacing( const idRenderEntityLocal *ent, const srfTriangles_t *tri, const idRenderLightLocal *light, srfCullInfo_t &cullInfo );
 void R_CalcInteractionCullBits( const idRenderEntityLocal *ent, const srfTriangles_t *tri, const idRenderLightLocal *light, srfCullInfo_t &cullInfo );

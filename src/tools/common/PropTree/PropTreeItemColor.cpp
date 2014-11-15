@@ -96,8 +96,6 @@ static void ColorBox( CDC *pDC, CPoint pt, COLORREF clr, BOOL bHover ) {
 	pDC->DrawEdge( &rc, ( bHover ) ? BDR_SUNKENOUTER : BDR_RAISEDINNER, BF_RECT );
 }
 
-
-
 static LONG FindSpot( CPoint point ) {
 	for( LONG i = 0; i < 40; i++ ) {
 		if( PtInRect( &_crColors[i].rcSpot, point ) ) {
@@ -106,7 +104,6 @@ static LONG FindSpot( CPoint point ) {
 	}
 	return -1;
 }
-
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropTreeItemColor
@@ -124,7 +121,6 @@ CPropTreeItemColor::CPropTreeItemColor() :
 CPropTreeItemColor::~CPropTreeItemColor() {
 }
 
-
 BEGIN_MESSAGE_MAP( CPropTreeItemColor, CWnd )
 	//{{AFX_MSG_MAP(CPropTreeItemColor)
 	ON_WM_KILLFOCUS()
@@ -136,14 +132,12 @@ BEGIN_MESSAGE_MAP( CPropTreeItemColor, CWnd )
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-
 /////////////////////////////////////////////////////////////////////////////
 // CPropTreeItemColor message handlers
 
 void CPropTreeItemColor::SetDefaultColorsList( COLORREF *pColors ) {
 	s_pColors = pColors;
 }
-
 
 void CPropTreeItemColor::DrawAttribute( CDC *pDC, const RECT &rc ) {
 	ASSERT( m_pProp != NULL );
@@ -168,29 +162,23 @@ void CPropTreeItemColor::DrawAttribute( CDC *pDC, const RECT &rc ) {
 	pDC->DrawText( s, r, DT_SINGLELINE | DT_VCENTER );
 }
 
-
 LPARAM CPropTreeItemColor::GetItemValue() {
 	return m_cColor;
 }
-
 
 void CPropTreeItemColor::SetItemValue( LPARAM lParam ) {
 	m_cColor = lParam;
 }
 
-
 void CPropTreeItemColor::OnMove() {
 }
-
 
 void CPropTreeItemColor::OnRefresh() {
 }
 
-
 void CPropTreeItemColor::OnCommit() {
 	ShowWindow( SW_HIDE );
 }
-
 
 void CPropTreeItemColor::OnActivate( int activateType, CPoint point ) {
 	CRect r;
@@ -211,14 +199,12 @@ void CPropTreeItemColor::OnActivate( int activateType, CPoint point ) {
 	SetFocus();
 }
 
-
 void CPropTreeItemColor::OnKillFocus( CWnd *pNewWnd ) {
 	CWnd::OnKillFocus( pNewWnd );
 	if( !m_bInDialog ) {
 		CommitChanges();
 	}
 }
-
 
 void CPropTreeItemColor::OnPaint() {
 	CPaintDC dc( this );
@@ -238,11 +224,9 @@ void CPropTreeItemColor::OnPaint() {
 	dc.DrawEdge( &m_rcButton, m_bButton ? BDR_SUNKENOUTER : BDR_RAISEDINNER, BF_RECT );
 }
 
-
 void CPropTreeItemColor::OnClose() {
 	CommitChanges();
 }
-
 
 void CPropTreeItemColor::OnMouseMove( UINT, CPoint point ) {
 	BOOL bButton;
@@ -259,7 +243,6 @@ void CPropTreeItemColor::OnMouseMove( UINT, CPoint point ) {
 	}
 }
 
-
 BOOL CPropTreeItemColor::OnSetCursor( CWnd *pWnd, UINT nHitTest, UINT message ) {
 	if( nHitTest == HTCLIENT ) {
 		CPoint point;
@@ -272,7 +255,6 @@ BOOL CPropTreeItemColor::OnSetCursor( CWnd *pWnd, UINT nHitTest, UINT message ) 
 	}
 	return CWnd::OnSetCursor( pWnd, nHitTest, message );
 }
-
 
 void CPropTreeItemColor::OnLButtonDown( UINT, CPoint point ) {
 	if( m_nSpot != -1 ) {

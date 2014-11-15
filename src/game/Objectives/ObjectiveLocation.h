@@ -59,7 +59,6 @@ protected:
 
 private:
 	idClipModel 		*clipModel;
-
 }; // CObjectiveLocation
 
 #endif

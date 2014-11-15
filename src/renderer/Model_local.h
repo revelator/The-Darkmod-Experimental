@@ -264,7 +264,6 @@ private:
 	idList<idDrawVert>			verts;
 
 	int							nextDropTime;
-
 };
 
 /*

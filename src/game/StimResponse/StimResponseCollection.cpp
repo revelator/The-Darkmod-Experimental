@@ -183,7 +183,6 @@ CResponsePtr CStimResponseCollection::AddResponse( const CResponsePtr &response 
 	return rv;
 }
 
-
 int CStimResponseCollection::RemoveStim( StimType type ) {
 	int n = m_Stims.Num();
 	for( int i = 0; i < n; ++i ) {
@@ -372,7 +371,6 @@ void CStimResponseCollection::InitFromSpawnargs( const idDict &args, idEntity *o
 		}
 	}
 }
-
 
 void CStimResponseCollection::CreateTimer( const idDict &args, const CStimPtr &stim, int index ) {
 	CStimResponseTimer *timer = stim->GetTimer();

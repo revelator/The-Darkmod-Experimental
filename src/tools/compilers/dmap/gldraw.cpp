@@ -60,7 +60,7 @@ void Draw_ClearWindow( void ) {
 	glMatrixMode( GL_MODELVIEW );
 	glLoadIdentity();
 #endif
-	glColor3f( 0, 0, 0 );
+	GL_Color( 0.0f, 0.0f, 0.0f );
 	//	glPolygonMode (GL_FRONT_AND_BACK, GL_LINE);
 	glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
 	glDisable( GL_DEPTH_TEST );
@@ -83,21 +83,21 @@ void Draw_SetRed( void ) {
 	if( !dmapGlobals.drawflag ) {
 		return;
 	}
-	glColor3f( 1, 0, 0 );
+	GL_Color( 1.0f, 0.0f, 0.0f );
 }
 
 void Draw_SetGrey( void ) {
 	if( !dmapGlobals.drawflag ) {
 		return;
 	}
-	glColor3f( 0.5f, 0.5f, 0.5f );
+	GL_Color( 0.5f, 0.5f, 0.5f );
 }
 
 void Draw_SetBlack( void ) {
 	if( !dmapGlobals.drawflag ) {
 		return;
 	}
-	glColor3f( 0.0f, 0.0f, 0.0f );
+	GL_Color( 0.0f, 0.0f, 0.0f );
 }
 
 void DrawWinding( const idWinding *w ) {
@@ -105,13 +105,13 @@ void DrawWinding( const idWinding *w ) {
 	if( !dmapGlobals.drawflag ) {
 		return;
 	}
-	glColor3f( 0.3f, 0.0f, 0.0f );
+	GL_Color( 0.3f, 0.0f, 0.0f );
 	glBegin( GL_POLYGON );
 	for( i = 0; i < w->GetNumPoints(); i++ ) {
 		glVertex3f( ( *w )[i][0], ( *w )[i][1], ( *w )[i][2] );
 	}
 	glEnd();
-	glColor3f( 1, 0, 0 );
+	GL_Color( 1.0f, 0.0f, 0.0f );
 	glBegin( GL_LINE_LOOP );
 	for( i = 0; i < w->GetNumPoints(); i++ ) {
 		glVertex3f( ( *w )[i][0], ( *w )[i][1], ( *w )[i][2] );
@@ -125,13 +125,13 @@ void DrawAuxWinding( const idWinding *w ) {
 	if( !dmapGlobals.drawflag ) {
 		return;
 	}
-	glColor3f( 0.0f, 0.3f, 0.0f );
+	GL_Color( 0.0f, 0.3f, 0.0f );
 	glBegin( GL_POLYGON );
 	for( i = 0; i < w->GetNumPoints(); i++ ) {
 		glVertex3f( ( *w )[i][0], ( *w )[i][1], ( *w )[i][2] );
 	}
 	glEnd();
-	glColor3f( 0.0f, 1.0f, 0.0f );
+	GL_Color( 0.0f, 1.0f, 0.0f );
 	glBegin( GL_LINE_LOOP );
 	for( i = 0; i < w->GetNumPoints(); i++ ) {
 		glVertex3f( ( *w )[i][0], ( *w )[i][1], ( *w )[i][2] );
@@ -146,28 +146,28 @@ void DrawLine( idVec3 v1, idVec3 v2, int color ) {
 	}
 	switch( color ) {
 	case 0:
-		glColor3f( 0, 0, 0 );
+		GL_Color( 0.0f, 0.0f, 0.0f );
 		break;
 	case 1:
-		glColor3f( 0, 0, 1 );
+		GL_Color( 0.0f, 0.0f, 1.0f );
 		break;
 	case 2:
-		glColor3f( 0, 1, 0 );
+		GL_Color( 0.0f, 1.0f, 0.0f );
 		break;
 	case 3:
-		glColor3f( 0, 1, 1 );
+		GL_Color( 0.0f, 1.0f, 1.0f );
 		break;
 	case 4:
-		glColor3f( 1, 0, 0 );
+		GL_Color( 1.0f, 0.0f, 0.0f );
 		break;
 	case 5:
-		glColor3f( 1, 0, 1 );
+		GL_Color( 1.0f, 0.0f, 1.0f );
 		break;
 	case 6:
-		glColor3f( 1, 1, 0 );
+		GL_Color( 1.0f, 1.0f, 0.0f );
 		break;
 	case 7:
-		glColor3f( 1, 1, 1 );
+		GL_Color( 1.0f, 1.0f, 1.0f );
 		break;
 	}
 	glBegin( GL_LINES );

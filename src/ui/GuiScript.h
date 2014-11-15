@@ -65,9 +65,7 @@ protected:
 	idGuiScriptList *elseList;
 	idList<idGSWinVar> parms;
 	void ( *handler )( idWindow *window, idList<idGSWinVar> *src );
-
 };
-
 
 class idGuiScriptList {
 	idList<idGuiScript *> list;

@@ -29,7 +29,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "Tasks/CommWaitTask.h"
 
 namespace ai {
-
 CommunicationSubsystem::CommunicationSubsystem( SubsystemId subsystemId, idAI *owner ) :
 	Subsystem( subsystemId, owner ) {
 }
@@ -192,10 +191,5 @@ void CommunicationSubsystem::Save( idSaveGame *savefile ) const {
 void CommunicationSubsystem::Restore( idRestoreGame *savefile ) {
 	Subsystem::Restore( savefile );
 }
-
-
-
-
-
 
 } // namespace ai

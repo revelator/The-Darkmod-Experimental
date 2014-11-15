@@ -29,7 +29,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 // CGetString dialog
 
-
 CGetString::CGetString( LPCSTR pPrompt, CString *pFeedback, CWnd *pParent /*=NULL*/ )
 	: CDialog( CGetString::IDD, pParent ) {
 	m_strEditBox = _T( "" );
@@ -57,14 +56,11 @@ BEGIN_MESSAGE_MAP( CGetString, CDialog )
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-
-
 void CGetString::OnOK() {
 	UpdateData( DIALOG_TO_DATA );
 	*m_pFeedback = m_strEditBox;
 	CDialog::OnOK();
 }
-
 
 // returns NULL if CANCEL, else input string
 //
@@ -78,7 +74,6 @@ LPCSTR GetString( LPCSTR psPrompt ) {
 	}
 	return NULL;
 }
-
 
 bool GetYesNo( const char *psQuery ) {
 	if( MessageBox( g_pParentWnd->GetSafeHwnd(), psQuery, "Query", MB_YESNO | MB_ICONWARNING ) == IDYES ) {
@@ -103,6 +98,3 @@ void InfoBox( const char *sString ) {
 void WarningBox( const char *sString ) {
 	MessageBox( g_pParentWnd->GetSafeHwnd(), sString, "Warning",	MB_OK | MB_ICONWARNING | MB_TASKMODAL );
 }
-
-
-

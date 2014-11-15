@@ -21,7 +21,6 @@
 // DialogAFProperties dialog
 
 class DialogAFProperties : public CDialog {
-
 	DECLARE_DYNAMIC( DialogAFProperties )
 
 public:

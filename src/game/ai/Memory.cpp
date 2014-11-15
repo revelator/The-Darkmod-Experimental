@@ -26,7 +26,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "AI.h"
 
 namespace ai {
-
 Memory::Memory( idAI *owningAI ) :
 	owner( owningAI ),
 	lastAlertRiseTime( -10000 ),
@@ -404,5 +403,4 @@ void Memory::StopReacting() {
 		stopReactingToPickedPocket = true; // grayman #3559
 	}
 }
-
 } // namespace ai

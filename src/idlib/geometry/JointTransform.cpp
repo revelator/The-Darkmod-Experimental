@@ -1,25 +1,24 @@
 /*****************************************************************************
                     The Dark Mod GPL Source Code
- 
- This file is part of the The Dark Mod Source Code, originally based 
+
+ This file is part of the The Dark Mod Source Code, originally based
  on the Doom 3 GPL Source Code as published in 2011.
- 
- The Dark Mod Source Code is free software: you can redistribute it 
- and/or modify it under the terms of the GNU General Public License as 
- published by the Free Software Foundation, either version 3 of the License, 
+
+ The Dark Mod Source Code is free software: you can redistribute it
+ and/or modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation, either version 3 of the License,
  or (at your option) any later version. For details, see LICENSE.TXT.
- 
+
  Project: The Dark Mod (http://www.thedarkmod.com/)
- 
- $Revision$ (Revision of last commit) 
+
+ $Revision$ (Revision of last commit)
  $Date$ (Date of last commit)
  $Author$ (Author of last commit)
- 
+
 ******************************************************************************/
 
 #include "precompiled.h"
 #pragma hdrstop
-
 
 /*
 =============
@@ -40,7 +39,6 @@ idJointQuat idJointMat::ToJointQuat( void ) const {
 	trace = mat[0 * 4 + 0] + mat[1 * 4 + 1] + mat[2 * 4 + 2];
 
 	if ( trace > 0.0f ) {
-
 		t = trace + 1.0f;
 		s = idMath::InvSqrt( t ) * 0.5f;
 
@@ -48,9 +46,7 @@ idJointQuat idJointMat::ToJointQuat( void ) const {
 		jq.q[0] = ( mat[1 * 4 + 2] - mat[2 * 4 + 1] ) * s;
 		jq.q[1] = ( mat[2 * 4 + 0] - mat[0 * 4 + 2] ) * s;
 		jq.q[2] = ( mat[0 * 4 + 1] - mat[1 * 4 + 0] ) * s;
-
 	} else {
-
 		i = 0;
 		if ( mat[1 * 4 + 1] > mat[0 * 4 + 0] ) {
 			i = 1;

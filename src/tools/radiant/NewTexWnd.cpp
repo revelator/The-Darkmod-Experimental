@@ -237,8 +237,8 @@ void CNewTexWnd::OnPaint() {
 			g_qeglobals.d_savedinfo.colors[COLOR_TEXTUREBACK][2],
 			0
 		);
-		glViewport( 0, 0, rectClient.Width(), rectClient.Height() );
-		glScissor( 0, 0, rectClient.Width(), rectClient.Height() );
+		GL_Viewport( 0, 0, rectClient.Width(), rectClient.Height() );
+		GL_Scissor( 0, 0, rectClient.Width(), rectClient.Height() );
 		glMatrixMode( GL_PROJECTION );
 		glLoadIdentity();
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
@@ -262,7 +262,7 @@ void CNewTexWnd::OnPaint() {
 			if( ( draw.y - height - FONT_HEIGHT < origin.y ) && ( draw.y > origin.y - rectClient.Height() ) ) {
 				// if in use, draw a background
 				glLineWidth( 1 );
-				glColor3f( 1, 1, 1 );
+				GL_Color( 1.0f, 1.0f, 1.0f );
 				globalImages->BindNull();
 				glBegin( GL_LINE_LOOP );
 				glVertex2f( draw.x - 1, draw.y + 1 - FONT_HEIGHT );
@@ -274,7 +274,7 @@ void CNewTexWnd::OnPaint() {
 				float	fScale = ( g_PrefsDlg.m_bHiColorTextures == TRUE ) ? ( ( float )g_PrefsDlg.m_nTextureScale / 100 ) : 1.0;
 				mat->GetEditorImage()->Bind();
 				QE_CheckOpenGLForErrors();
-				glColor3f( 1, 1, 1 );
+				GL_Color( 1.0f, 1.0f, 1.0f );
 				glBegin( GL_QUADS );
 				glTexCoord2f( 0, 0 );
 				glVertex2f( draw.x, draw.y - FONT_HEIGHT );
@@ -288,7 +288,7 @@ void CNewTexWnd::OnPaint() {
 				// draw the selection border
 				if( !idStr::Icmp( g_qeglobals.d_texturewin.texdef.name, mat->GetName() ) ) {
 					glLineWidth( 3 );
-					glColor3f( 1, 0, 0 );
+					GL_Color( 1.0f, 0.0f, 0.0f );
 					globalImages->BindNull();
 					glBegin( GL_LINE_LOOP );
 					glVertex2f( draw.x - 4, draw.y - FONT_HEIGHT + 4 );
@@ -300,7 +300,7 @@ void CNewTexWnd::OnPaint() {
 				}
 				// draw the texture name
 				globalImages->BindNull();
-				glColor3f( 1, 1, 1 );
+				GL_Color( 1.0f, 1.0f, 1.0f );
 				glRasterPos2f( draw.x, draw.y - FONT_HEIGHT + 2 );
 				// don't draw the directory name
 				for( name = mat->GetName(); *name && *name != '/' && *name != '\\'; name++ ) {

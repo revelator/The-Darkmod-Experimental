@@ -550,7 +550,7 @@ static void	RB_NV20_DrawInteraction( const drawInteraction_t *din ) {
 		glDisableClientState( GL_COLOR_ARRAY );
 		return;
 	}
-	glColor3f( 1, 1, 1 );
+	GL_Color( 1.0f, 1.0f, 1.0f );
 	// on an ideal card, we would now just bind the textures and call a
 	// single pass vertex / fragment program, but
 	// on NV20, we need to decide which single / dual / tripple pass set of programs to use
@@ -680,10 +680,10 @@ void RB_NV20_DrawInteractions( void ) {
 		if( vLight->globalShadows || vLight->localShadows ) {
 			backEnd.currentScissor = vLight->scissorRect;
 			if( r_useScissor.GetBool() ) {
-				glScissor( backEnd.viewDef->viewport.x1 + backEnd.currentScissor.x1,
-						   backEnd.viewDef->viewport.y1 + backEnd.currentScissor.y1,
-						   backEnd.currentScissor.x2 + 1 - backEnd.currentScissor.x1,
-						   backEnd.currentScissor.y2 + 1 - backEnd.currentScissor.y1 );
+				GL_Scissor( backEnd.viewDef->viewport.x1 + backEnd.currentScissor.x1,
+						    backEnd.viewDef->viewport.y1 + backEnd.currentScissor.y1,
+						    backEnd.currentScissor.x2 + 1 - backEnd.currentScissor.x1,
+						    backEnd.currentScissor.y2 + 1 - backEnd.currentScissor.y1 );
 			}
 			glClear( GL_STENCIL_BUFFER_BIT );
 		} else {

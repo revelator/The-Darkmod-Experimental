@@ -86,7 +86,6 @@ bool EscapePointEvaluator::PerformProximityToThreatCheck( EscapePoint &escapePoi
 	return ( ( escapePoint.origin - threatLoc ).LengthFast() < 300 );
 }
 
-
 /**
  * AnyEscapePointFinder
  */

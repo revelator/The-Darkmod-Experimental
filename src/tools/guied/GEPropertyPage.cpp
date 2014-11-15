@@ -82,4 +82,3 @@ int rvGEPropertyPage::HandleMessage( UINT msg, WPARAM wParam, LPARAM lParam ) {
 	}
 	return FALSE;
 }
-

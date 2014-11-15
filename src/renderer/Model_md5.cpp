@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 static const char *MD5_SnapshotName = "_MD5_Snapshot_";
 
-
 /***********************************************************************
 
 	idMD5Mesh

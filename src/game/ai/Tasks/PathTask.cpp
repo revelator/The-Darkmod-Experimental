@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 PathTask::PathTask() {
 }
 
@@ -44,7 +43,6 @@ void PathTask::Init( idAI *owner, Subsystem &subsystem ) {
 	idPathCorner *path = _path.GetEntity();
 	_accuracy = path->spawnArgs.GetFloat( "move_to_position_tolerance", "-1" );
 }
-
 
 void PathTask::SetTargetEntity( idPathCorner *path ) {
 	assert( path );
@@ -65,6 +63,4 @@ void PathTask::Restore( idRestoreGame *savefile ) {
 	savefile->ReadFloat( _accuracy );
 	savefile->ReadBool( _activateTargets ); // grayman #3670
 }
-
-
 } // namespace ai

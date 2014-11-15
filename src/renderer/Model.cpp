@@ -520,9 +520,7 @@ int idRenderModelStatic::NearestJoint( int surfaceNum, int a, int b, int c ) con
 	return INVALID_JOINT;
 }
 
-
 //=====================================================================
-
 
 /*
 ================
@@ -1898,7 +1896,6 @@ bool idRenderModelStatic::LoadFLT( const char *fileName ) {
 	this->AddSurface( surface );
 	return true;
 }
-
 
 //=============================================================================
 

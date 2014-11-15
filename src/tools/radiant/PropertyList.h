@@ -41,7 +41,6 @@
 #define IDC_PROPEDITBOX  713
 #define IDC_PROPBTNCTRL  714
 
-
 /////////////////////////////////////////////////////////////////////////////
 //CPropertyList Items
 class CPropertyItem {

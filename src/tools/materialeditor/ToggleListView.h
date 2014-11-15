@@ -28,7 +28,6 @@
 * be used instead.
 */
 class ToggleListView : public CListView {
-
 public:
 	/**
 	* Enumeration that defines the possible states of the toggle button.
@@ -52,7 +51,6 @@ public:
 
 	DECLARE_MESSAGE_MAP()
 
-
 protected:
 	ToggleListView();
 	virtual ~ToggleListView();
@@ -72,7 +70,4 @@ protected:
 	HICON				onIcon;
 	HICON				offIcon;
 	HICON				disabledIcon;
-
 };
-
-

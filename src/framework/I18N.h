@@ -100,4 +100,3 @@ public:
 };
 
 #endif /* !__DARKMOD_I18N_H__ */
-

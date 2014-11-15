@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Tasks/RepeatedBarkTask.h"
 
 namespace ai {
-
 // Get the name of this state
 const idStr &AgitatedSearchingStateLanternBot::GetName() const {
 	static idStr _name( STATE_AGITATED_SEARCHING_LANTERN_BOT );
@@ -144,5 +143,4 @@ StateLibrary::Registrar agitatedSearchingStateLanternBotRegistrar(
 	STATE_AGITATED_SEARCHING_LANTERN_BOT, // Task Name
 	StateLibrary::CreateInstanceFunc( &AgitatedSearchingStateLanternBot::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

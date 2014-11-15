@@ -310,7 +310,6 @@ static int totalUncompressedLength = 0;
 static int totalCompressedLength = 0;
 static int maxHuffmanBits = 0;
 
-
 /*
 ================
 ClearHuffmanFrequencies
@@ -1555,7 +1554,6 @@ idDeclLocal *idDeclManagerLocal::FindTypeWithoutParsing( declType_t type, const 
 	hashTables[typeIndex].Add( hash, linearLists[typeIndex].Append( decl ) );
 	return decl;
 }
-
 
 /*
 ====================================================================================

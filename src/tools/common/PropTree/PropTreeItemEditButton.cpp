@@ -47,7 +47,6 @@ CPropTreeItemEditButton::CPropTreeItemEditButton() :
 CPropTreeItemEditButton::~CPropTreeItemEditButton() {
 }
 
-
 BEGIN_MESSAGE_MAP( CPropTreeItemEditButton, CEdit )
 	//{{AFX_MSG_MAP(CPropTreeItemEditButton)
 	ON_WM_GETDLGCODE()
@@ -108,17 +107,13 @@ void CPropTreeItemEditButton::DrawAttribute( CDC *pDC, const RECT &rc ) {
 	}
 }
 
-
-
 void CPropTreeItemEditButton::SetAsPassword( BOOL bPassword ) {
 	m_bPassword = bPassword;
 }
 
-
 void CPropTreeItemEditButton::SetValueFormat( ValueFormat nFormat ) {
 	m_nFormat = nFormat;
 }
-
 
 LPARAM CPropTreeItemEditButton::GetItemValue() {
 	switch( m_nFormat ) {
@@ -130,7 +125,6 @@ LPARAM CPropTreeItemEditButton::GetItemValue() {
 	}
 	return ( LPARAM )( LPCTSTR )m_sEdit;
 }
-
 
 void CPropTreeItemEditButton::SetItemValue( LPARAM lParam ) {
 	switch( m_nFormat ) {
@@ -152,13 +146,11 @@ void CPropTreeItemEditButton::SetItemValue( LPARAM lParam ) {
 	m_sEdit = ( LPCTSTR )lParam;
 }
 
-
 void CPropTreeItemEditButton::OnMove() {
 	if( IsWindow( m_hWnd ) ) {
 		SetWindowPos( NULL, m_rc.left, m_rc.top, m_rc.Width(), m_rc.Height(), SWP_NOZORDER | SWP_NOACTIVATE );
 	}
 }
-
 
 void CPropTreeItemEditButton::OnRefresh() {
 	if( IsWindow( m_hWnd ) ) {
@@ -166,14 +158,12 @@ void CPropTreeItemEditButton::OnRefresh() {
 	}
 }
 
-
 void CPropTreeItemEditButton::OnCommit() {
 	// hide edit control
 	ShowWindow( SW_HIDE );
 	// store edit text for GetItemValue
 	GetWindowText( m_sEdit );
 }
-
 
 void CPropTreeItemEditButton::OnActivate( int activateType, CPoint point ) {
 	// Check if the edit control needs creation
@@ -190,11 +180,9 @@ void CPropTreeItemEditButton::OnActivate( int activateType, CPoint point ) {
 	SetFocus();
 }
 
-
 UINT CPropTreeItemEditButton::OnGetDlgCode() {
 	return CEdit::OnGetDlgCode() | DLGC_WANTALLKEYS;
 }
-
 
 void CPropTreeItemEditButton::OnKeyDown( UINT nChar, UINT nRepCnt, UINT nFlags ) {
 	if( nChar == VK_RETURN ) {
@@ -202,7 +190,6 @@ void CPropTreeItemEditButton::OnKeyDown( UINT nChar, UINT nRepCnt, UINT nFlags )
 	}
 	CEdit::OnKeyDown( nChar, nRepCnt, nFlags );
 }
-
 
 void CPropTreeItemEditButton::OnKillfocus() {
 	CommitChanges();

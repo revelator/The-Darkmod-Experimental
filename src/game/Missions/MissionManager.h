@@ -155,7 +155,6 @@ struct MapSequenceElement {
 };
 typedef idList<MapSequenceElement> MapSequence;
 
-
 /**
  * greebo: The MissionManager class handles all the mod selection,
  * mission progress, PK4 download, unpacking, installation, etc.

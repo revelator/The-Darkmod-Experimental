@@ -40,7 +40,6 @@ All fragments will have the same sequence numbers.
 
 */
 
-
 #define	MAX_PACKETLEN			1400		// max size of a network packet
 #define	FRAGMENT_SIZE			(MAX_PACKETLEN - 100)
 #define	FRAGMENT_BIT			(1<<31)
@@ -231,7 +230,6 @@ void idMsgQueue::ReadData( byte *data, const int size ) {
 		}
 	}
 }
-
 
 /*
 ===============

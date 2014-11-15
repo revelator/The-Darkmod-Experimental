@@ -21,11 +21,10 @@
 #define ZCLIP_H
 
 // I don't like doing macros without braces and with whitespace, but the compiler moans if I do these differently,
-//	and since they're only for use within glColor3f() calls anyway then this is ok...  (that's my excuse anyway)
+//	and since they're only for use within GL_Color() calls anyway then this is ok...  (that's my excuse anyway)
 //
 #define ZCLIP_COLOUR		1.0f, 0.0f, 1.0f
 #define ZCLIP_COLOUR_DIM	0.8f, 0.0f, 0.8f
-
 
 class CZClip {
 public:
@@ -49,10 +48,6 @@ protected:
 	int		m_iZClipBottom;
 };
 
-
 #endif	// #ifndef ZCLIP_H
 
-
 ///////////// eof ///////////////
-
-

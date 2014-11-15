@@ -23,7 +23,6 @@
 #include "Task.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_PATH "Path"
 
@@ -54,11 +53,9 @@ public:
 	virtual void Save( idSaveGame *savefile ) const;
 	virtual void Restore( idRestoreGame *savefile );
 
-
 	// Class-specific methods
 	virtual void SetTargetEntity( idPathCorner *path );
 };
-
 } // namespace ai
 
 #endif /* __AI_PATH_TASK_H__ */

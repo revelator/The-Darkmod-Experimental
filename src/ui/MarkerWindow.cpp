@@ -181,8 +181,6 @@ void idMarkerWindow::Draw( int time, float x, float y ) {
 	}
 }
 
-
-
 const char *idMarkerWindow::RouteMouseCoords( float xd, float yd ) {
 	const char *ret = idWindow::RouteMouseCoords( xd, yd );
 	idRectangle r;
@@ -251,7 +249,6 @@ void idMarkerWindow::Line( int x1, int y1, int x2, int y2, dword *out, dword col
 		}
 	}
 }
-
 
 void idMarkerWindow::Activate( bool activate, idStr &act ) {
 	idWindow::Activate( activate, act );

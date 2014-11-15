@@ -21,7 +21,6 @@
 #define USER_MANAGER_H
 
 class UserManager {
-
 public:
 
 	int GetNumUsers();
@@ -47,8 +46,6 @@ public:
 private:
 
 	idList< idEntityPtr<idActor> >			m_users;
-
-
 
 };
 

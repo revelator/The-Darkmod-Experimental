@@ -54,7 +54,6 @@ typedef struct {
 	int		tilesHigh;
 } megaTextureHeader_t;
 
-
 class idMegaTexture {
 public:
 	bool	InitFromMegaFile( const char *fileBase );
@@ -87,4 +86,3 @@ private:
 	static idCVar	r_skipMegaTexture;
 	static idCVar	r_terrainScale;
 };
-

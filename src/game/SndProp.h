@@ -75,7 +75,6 @@ typedef struct SPopArea_s {
 	//TODO: Handle Listeners in another list here
 
 	idList<int>		VisitedPorts; // portals that the sound flooded in on (reduces comp. time to store this)
-
 } SPopArea;
 
 /**
@@ -93,7 +92,6 @@ typedef struct SPortEvent_s {
 	SsndPortal *ThisPort; // pointer to the snd portal object for this portal
 
 	SPortEvent_s *PrevPort; // the portal visited immediately before each portal
-
 } SPortEvent;
 
 /**
@@ -103,7 +101,6 @@ typedef struct SEventArea_s {
 	bool		bVisited; // area was visited at least once in wavefront expansion
 
 	SPortEvent	*PortalDat; // Array of event data for each portal in the area
-
 } SEventArea;
 
 /**
@@ -121,14 +118,9 @@ typedef struct SExpQue_s {
 	float		curLoss; // total loss so far
 
 	SPortEvent *PrevPort; // previous portal flooded through along path
-
 } SExpQue;
 
-
-
-
 class CsndProp : public CsndPropBase {
-
 public:
 	CsndProp( void );
 	~CsndProp( void );
@@ -250,7 +242,6 @@ protected:
 	**/
 	void DrawLines( idList<idVec3> &pointlist );
 
-
 protected:
 
 	/**
@@ -292,10 +283,3 @@ protected:
 };
 
 #endif
-
-
-
-
-
-
-

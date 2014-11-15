@@ -28,7 +28,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 const int INVESTIGATE_SPOT_TIME_REMOTE = 2000; // ms (grayman #2640 - change from 600 -> 2000)
 const int INVESTIGATE_SPOT_TIME_STANDARD = 300; // ms
 const int INVESTIGATE_SPOT_TIME_CLOSELY = 2500; // ms
@@ -345,5 +344,4 @@ TaskLibrary::Registrar investigateSpotTaskRegistrar(
 	TASK_INVESTIGATE_SPOT, // Task Name
 	TaskLibrary::CreateInstanceFunc( &InvestigateSpotTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

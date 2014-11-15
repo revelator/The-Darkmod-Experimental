@@ -23,7 +23,6 @@
 #include "Task.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_MOVE_TO_COVER "MoveToCover"
 
@@ -44,7 +43,6 @@ public:
 	// Creates a new Instance of this task
 	static MoveToCoverTaskPtr CreateInstance();
 };
-
 } // namespace ai
 
 #endif /* __AI_MOVE_TO_COVER_TASK_H__ */

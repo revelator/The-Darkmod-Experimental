@@ -26,7 +26,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #define TOGGLELIST_ITEMHEIGHT 22
 #define TEXT_OFFSET 6
 
-
 IMPLEMENT_DYNCREATE( ToggleListView, CListView )
 
 BEGIN_MESSAGE_MAP( ToggleListView, CListView )
@@ -35,7 +34,6 @@ BEGIN_MESSAGE_MAP( ToggleListView, CListView )
 	ON_WM_MEASUREITEM_REFLECT()
 	ON_NOTIFY_REFLECT( NM_CLICK, OnNMClick )
 END_MESSAGE_MAP()
-
 
 /**
 * Protected constructor used by dynamic creation.
@@ -51,7 +49,6 @@ ToggleListView::ToggleListView() {
 */
 ToggleListView::~ToggleListView() {
 }
-
 
 /**
 * Sets the tree icons to dispay for each of the three states. Sets the
@@ -240,7 +237,6 @@ void ToggleListView::DrawItem( LPDRAWITEMSTRUCT lpDrawItemStruct ) {
 	DrawText( lpDrawItemStruct->hDC, szBuff, strlen( szBuff ), &rDraw, DT_LEFT | DT_VCENTER | DT_SINGLELINE );
 }
 
-
 /**
 * Draws a 3d rectangle using the given brushes this code was taken from the gui editor
 */
@@ -255,7 +251,3 @@ void ToggleListView::Draw3dRect( HDC hDC, RECT *rect, HBRUSH topLeft, HBRUSH bot
 	SetRect( &rOut, rect->left, rect->bottom, rect->right, rect->bottom - 1 );
 	FillRect( hDC, &rOut, bottomRight );
 }
-
-
-
-

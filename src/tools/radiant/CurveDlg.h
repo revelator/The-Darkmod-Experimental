@@ -18,7 +18,6 @@
 ******************************************************************************/
 #pragma once
 
-
 // CCurveDlg dialog
 
 class CCurveDlg : public CDialog {

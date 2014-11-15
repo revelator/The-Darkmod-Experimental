@@ -148,7 +148,6 @@ static static_bookblock _resbook_44s_9 = {
 	}
 };
 
-
 static vorbis_residue_template _res_44s_0[] = {
 	{
 		2, 0,  &_residue_44_mid,

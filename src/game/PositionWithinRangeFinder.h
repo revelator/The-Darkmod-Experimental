@@ -31,7 +31,6 @@ private:
 	float _maxDistance;
 	bool _haveBestGoal;
 
-
 	idBounds			excludeBounds;
 	pvsHandle_t			targetPVS;
 	int					PVSAreas[ idEntity::MAX_PVS_AREAS ];
@@ -39,7 +38,6 @@ private:
 
 	aasGoal_t		bestGoal;
 	float bestGoalDistance;
-
 
 public:
 	PositionWithinRangeFinder( const idAI *self, const idMat3 &gravityAxis,

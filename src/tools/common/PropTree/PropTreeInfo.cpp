@@ -42,7 +42,6 @@ CPropTreeInfo::CPropTreeInfo() :
 CPropTreeInfo::~CPropTreeInfo() {
 }
 
-
 BEGIN_MESSAGE_MAP( CPropTreeInfo, CStatic )
 	//{{AFX_MSG_MAP(CPropTreeInfo)
 	ON_WM_PAINT()

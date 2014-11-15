@@ -37,8 +37,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
-
 // Get the name of this state
 const idStr &IdleState::GetName() const {
 	static idStr _name( STATE_IDLE );
@@ -231,7 +229,6 @@ void IdleState::InitialiseCommunication( idAI *owner ) {
 	}
 }
 
-
 void IdleState::Save( idSaveGame *savefile ) const {
 	State::Save( savefile );
 	savefile->WriteBool( _startSitting );
@@ -286,5 +283,4 @@ StateLibrary::Registrar idleStateRegistrar(
 	STATE_IDLE, // Task Name
 	StateLibrary::CreateInstanceFunc( &IdleState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

@@ -25,11 +25,9 @@ class DialogAFProperties;
 class DialogAFBody;
 class DialogAFConstraint;
 
-
 // DialogAF dialog
 
 class DialogAF : public CDialog {
-
 	DECLARE_DYNAMIC( DialogAF )
 
 public:

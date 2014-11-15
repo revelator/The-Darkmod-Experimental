@@ -28,7 +28,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "DialogAFConstraint.h"
 #include "DialogAFConstraintBallAndSocket.h"
 
-
 // DialogAFConstraintBallAndSocket dialog
 
 toolTip_t DialogAFConstraintBallAndSocket::toolTips[] = {
@@ -300,7 +299,6 @@ int DialogAFConstraintBallAndSocket::OnToolHitTest( CPoint point, TOOLINFO *pTI 
 	return DefaultOnToolHitTest( toolTips, this, point, pTI );
 }
 
-
 BEGIN_MESSAGE_MAP( DialogAFConstraintBallAndSocket, CDialog )
 	ON_NOTIFY_EX_RANGE( TTN_NEEDTEXTW, 0, 0xFFFF, OnToolTipNotify )
 	ON_NOTIFY_EX_RANGE( TTN_NEEDTEXTA, 0, 0xFFFF, OnToolTipNotify )
@@ -341,7 +339,6 @@ BEGIN_MESSAGE_MAP( DialogAFConstraintBallAndSocket, CDialog )
 	ON_EN_CHANGE( IDC_EDIT_BAS_LIMIT_AXIS_YAW, OnEnChangeEditBasLimitAxisYaw )
 	ON_NOTIFY( UDN_DELTAPOS, IDC_SPIN_BAS_LIMIT_AXIS_YAW, OnDeltaposSpinBasLimitAxisYaw )
 END_MESSAGE_MAP()
-
 
 // DialogAFConstraintBallAndSocket message handlers
 

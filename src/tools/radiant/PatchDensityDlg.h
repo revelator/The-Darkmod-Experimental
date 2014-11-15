@@ -40,7 +40,6 @@ public:
 	CComboBox	m_wndHeight;
 	//}}AFX_DATA
 
-
 	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CPatchDensityDlg)

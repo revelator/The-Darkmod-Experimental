@@ -41,7 +41,6 @@
  */
 #define LOD_LEVELS 7
 
-
 // Tels: If set to 2 << 20, it crashes on my system
 #define MAX_MODEL_VERTS		(2 << 18)		// never combine more than this into one model
 #define MAX_MODEL_INDEXES	(2 << 18)		// never combine more than this into one model
@@ -266,4 +265,3 @@ private:
 };
 
 #endif /* !__DARKMOD_MODELGENERATOR_H__ */
-

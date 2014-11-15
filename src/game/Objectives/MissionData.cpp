@@ -831,7 +831,6 @@ void CMissionData::FillParmsData( idEntity *ent, SObjEntParms *parms ) {
 	}
 }
 
-
 /* SteveL #3741: Eliminate SetComponentState_Ext to align SetComponentState with all other
 				 objective-related functions. Bounds check moved to CMissionData::SetComponentState.
 
@@ -1432,7 +1431,6 @@ bool CMissionData::ParseLogicStrs( void ) {
 	}
 	return bReturnVal;
 }
-
 
 /**
 * Parse a string into a logic matrix.

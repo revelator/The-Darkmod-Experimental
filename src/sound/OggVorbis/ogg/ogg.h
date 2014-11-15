@@ -50,7 +50,6 @@ typedef struct {
 	long    body_fill;             /* elements stored; fill mark */
 	long    body_returned;         /* elements of fill returned */
 
-
 	int     *lacing_vals;      /* The values that will go to the segment table */
 	ogg_int64_t *granule_vals; /* granulepos values for headers. Not compact
 				this way, but it is simple coupled to the
@@ -75,7 +74,6 @@ typedef struct {
                              (which is in a seperate abstraction
                              layer) also knows about the gap */
 	ogg_int64_t   granulepos;
-
 } ogg_stream_state;
 
 /* ogg_packet is used to encapsulate the data and metadata belonging
@@ -188,15 +186,8 @@ extern int      ogg_page_packets( ogg_page *og );
 
 extern void     ogg_packet_clear( ogg_packet *op );
 
-
 #ifdef __cplusplus
 }
 #endif
 
 #endif  /* _OGG_H */
-
-
-
-
-
-

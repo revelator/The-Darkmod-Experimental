@@ -32,7 +32,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "CollisionModel_local.h"
 
-
 /*
 ===============================================================================
 

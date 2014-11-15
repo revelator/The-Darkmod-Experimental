@@ -34,7 +34,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../../AIComm_Message.h"
 
 namespace ai {
-
 // Get the name of this state
 const idStr &AgitatedSearchingState::GetName() const {
 	static idStr _name( STATE_AGITATED_SEARCHING );
@@ -234,5 +233,4 @@ StateLibrary::Registrar agitatedSearchingStateRegistrar(
 	STATE_AGITATED_SEARCHING, // Task Name
 	StateLibrary::CreateInstanceFunc( &AgitatedSearchingState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

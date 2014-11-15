@@ -21,7 +21,6 @@
 
 #include "Window.h"
 
-
 class idFieldWindow : public idWindow {
 public:
 	idFieldWindow( idUserInterfaceLocal *gui );

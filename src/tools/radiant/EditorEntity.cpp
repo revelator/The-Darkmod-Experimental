@@ -57,7 +57,6 @@ const char *GetKeyString( entity_t *ent, int iIndex ) {
 	return NULL;
 }
 
-
 /*
  =======================================================================================================================
  =======================================================================================================================
@@ -141,8 +140,6 @@ void SetKeyMat3( entity_t *ent, const char *key, idMat3 m ) {
 	ent->epairs.Set( key, str );
 	GetVectorForKey( ent, "origin", ent->origin );
 }
-
-
 
 /*
  =======================================================================================================================
@@ -335,7 +332,6 @@ struct EpairFixup {
 	const char *name;
 	int type;
 };
-
 
 const EpairFixup FloatFixups[] = {
 	{ "origin", 1 },
@@ -1229,4 +1225,3 @@ void Entity_UpdateSoundEmitter( entity_t *ent ) {
 		ent->soundEmitter = NULL;
 	}
 }
-

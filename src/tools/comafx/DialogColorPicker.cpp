@@ -151,7 +151,6 @@ COLORREF DoOldColor( COLORREF cr ) {
 
 int Distance( CPoint pt1, CPoint pt2 );
 
-
 double Slope( CPoint pt1, CPoint pt2 ) {
 	double x, y;
 	y = pt2.y - pt1.y;
@@ -239,7 +238,6 @@ CPoint PointOnLine( CPoint pt1, CPoint pt2, int len, int maxlen ) {
 	return pt;
 }
 
-
 int Distance( CPoint pt1, CPoint pt2 ) {
 	double a;
 	int x, y;
@@ -323,7 +321,6 @@ RGBType HSVType::toRGB() {
 	return rgb;
 }
 
-
 HSVType RGBType::toHSV() {
 	HSVType hsv;
 	double min, max, delta, temp;
@@ -357,7 +354,6 @@ HSVType RGBType::toHSV() {
 /////////////////////////////////////////////////////////////////////////////
 // CDialogColorPicker dialog
 
-
 CDialogColorPicker::CDialogColorPicker( COLORREF c, CWnd *pParent /*=NULL*/ )
 	: CDialog( CDialogColorPicker::IDD, pParent ) {
 	//{{AFX_DATA_INIT(CDialogColorPicker)
@@ -387,7 +383,6 @@ CDialogColorPicker::~CDialogColorPicker() {
 		m_HsbBitmap.DeleteObject();
 	}
 }
-
 
 BEGIN_MESSAGE_MAP( CDialogColorPicker, CDialog )
 	//{{AFX_MSG_MAP(CDialogColorPicker)
@@ -701,7 +696,6 @@ void CDialogColorPicker::CalcRects() {
 	y = brightRect.bottom - y;
 	brightMark = CRect( brightRect.left - 2, y - 4, brightRect.right + 2, y + 4 );
 }
-
 
 void CDialogColorPicker::DrawHSB( CDC *pDC ) {
 	if( m_HsbBitmap.GetSafeHandle() ) {

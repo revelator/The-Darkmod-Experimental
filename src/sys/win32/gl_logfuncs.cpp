@@ -132,7 +132,7 @@ static void APIENTRY logColor3dv( const GLdouble *v ) {
 }
 
 static void APIENTRY logColor3f( GLfloat red, GLfloat green, GLfloat blue ) {
-	fprintf( tr.logFile, "glColor3f %g %g %g\n", red, green, blue );
+	fprintf( tr.logFile, "GL_Color %g %g %g\n", red, green, blue );
 	dllColor3f( red, green, blue );
 }
 

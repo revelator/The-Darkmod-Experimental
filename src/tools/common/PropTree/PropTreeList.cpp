@@ -51,7 +51,6 @@ CPropTreeList::CPropTreeList() :
 CPropTreeList::~CPropTreeList() {
 }
 
-
 BEGIN_MESSAGE_MAP( CPropTreeList, CWnd )
 	//{{AFX_MSG_MAP(CPropTreeList)
 	ON_WM_SIZE()
@@ -68,7 +67,6 @@ BEGIN_MESSAGE_MAP( CPropTreeList, CWnd )
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-
 /////////////////////////////////////////////////////////////////////////////
 // CPropTreeList message handlers
 
@@ -76,13 +74,11 @@ void CPropTreeList::SetPropOwner( CPropTree *pProp ) {
 	m_pProp = pProp;
 }
 
-
 BOOL CPropTreeList::Create( DWORD dwStyle, const RECT &rect, CWnd *pParentWnd, UINT nID ) {
 	CWnd *pWnd = this;
 	LPCTSTR pszCreateClass = AfxRegisterWndClass( CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS, ::LoadCursor( NULL, IDC_ARROW ) );
 	return pWnd->Create( pszCreateClass, _T( "" ), dwStyle, rect, pParentWnd, nID );
 }
-
 
 void CPropTreeList::OnSize( UINT nType, int cx, int cy ) {
 	CWnd::OnSize( nType, cx, cy );
@@ -96,7 +92,6 @@ void CPropTreeList::OnSize( UINT nType, int cx, int cy ) {
 	}
 }
 
-
 void CPropTreeList::RecreateBackBuffer( int cx, int cy ) {
 	if( m_BackBufferSize.cx < cx || m_BackBufferSize.cy < cy ) {
 		m_BackBufferSize = CSize( cx, cy );
@@ -107,7 +102,6 @@ void CPropTreeList::RecreateBackBuffer( int cx, int cy ) {
 		m_BackBuffer.CreateBitmap( cx, cy, nPlanes, nBitCount, NULL );
 	}
 }
-
 
 void CPropTreeList::UpdateResize() {
 	SCROLLINFO si;
@@ -129,7 +123,6 @@ void CPropTreeList::UpdateResize() {
 	// force set column for clipping
 	m_pProp->SetColumn( m_pProp->GetColumn() );
 }
-
 
 void CPropTreeList::OnPaint() {
 	CPaintDC dc( this );
@@ -174,7 +167,6 @@ void CPropTreeList::OnPaint() {
 	memdc.DeleteDC();
 }
 
-
 BOOL CPropTreeList::OnSetCursor( CWnd *pWnd, UINT nHitTest, UINT message ) {
 	if( nHitTest == HTCLIENT ) {
 		CPoint pt;
@@ -194,7 +186,6 @@ BOOL CPropTreeList::OnSetCursor( CWnd *pWnd, UINT nHitTest, UINT message ) {
 	}
 	return CWnd::OnSetCursor( pWnd, nHitTest, message );
 }
-
 
 void CPropTreeList::OnLButtonDown( UINT, CPoint point ) {
 	ASSERT( m_pProp != NULL );
@@ -274,7 +265,6 @@ void CPropTreeList::OnLButtonDown( UINT, CPoint point ) {
 	}
 }
 
-
 void CPropTreeList::OnLButtonUp( UINT, CPoint point ) {
 	if( m_bColDrag ) {
 		CDC *pDC = GetDC();
@@ -302,7 +292,6 @@ void CPropTreeList::OnLButtonUp( UINT, CPoint point ) {
 		}
 	}
 }
-
 
 void CPropTreeList::OnLButtonDblClk( UINT, CPoint point ) {
 	ASSERT( m_pProp != NULL );
@@ -345,7 +334,6 @@ void CPropTreeList::OnLButtonDblClk( UINT, CPoint point ) {
 	}
 }
 
-
 void CPropTreeList::OnMouseMove( UINT, CPoint point ) {
 	if( m_bColDrag ) {
 		CDC *pDC = GetDC();
@@ -357,7 +345,6 @@ void CPropTreeList::OnMouseMove( UINT, CPoint point ) {
 		ReleaseDC( pDC );
 	}
 }
-
 
 BOOL CPropTreeList::OnMouseWheel( UINT, short zDelta, CPoint ) {
 	SCROLLINFO si;
@@ -374,7 +361,6 @@ BOOL CPropTreeList::OnMouseWheel( UINT, short zDelta, CPoint ) {
 	OnVScroll( zDelta < 0 ? SB_LINEDOWN : SB_LINEUP, 0, NULL );
 	return TRUE;
 }
-
 
 void CPropTreeList::OnKeyDown( UINT nChar, UINT, UINT ) {
 	CPropTreeItem *pItem;
@@ -443,11 +429,9 @@ void CPropTreeList::OnKeyDown( UINT nChar, UINT, UINT ) {
 	}
 }
 
-
 UINT CPropTreeList::OnGetDlgCode() {
 	return DLGC_WANTARROWS | DLGC_WANTCHARS | DLGC_WANTALLKEYS;
 }
-
 
 void CPropTreeList::OnVScroll( UINT nSBCode, UINT nPos, CScrollBar * ) {
 	SCROLLINFO si;
@@ -485,7 +469,6 @@ void CPropTreeList::OnVScroll( UINT nSBCode, UINT nPos, CScrollBar * ) {
 	SetScrollInfo( SB_VERT, &si, TRUE );
 	Invalidate();
 }
-
 
 void CPropTreeList::CheckVisibleFocus() {
 	ASSERT( m_pProp != NULL );

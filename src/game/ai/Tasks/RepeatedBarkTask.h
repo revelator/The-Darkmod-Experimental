@@ -24,7 +24,6 @@
 #include "../../AIComm_Message.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_REPEATED_BARK "RepeatedBark"
 
@@ -71,7 +70,6 @@ public:
 	// Creates a new Instance of this task
 	static RepeatedBarkTaskPtr CreateInstance();
 };
-
 } // namespace ai
 
 #endif /* __AI_REPEATED_BARK_TASK_H__ */

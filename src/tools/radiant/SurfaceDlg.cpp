@@ -38,7 +38,6 @@ static char THIS_FILE[] = __FILE__;
 
 CSurfaceDlg g_dlgSurface;
 
-
 CSurfaceDlg::CSurfaceDlg( CWnd *pParent /*=NULL*/ )
 	: CDialog( CSurfaceDlg::IDD, pParent ) {
 	//{{AFX_DATA_INIT(CSurfaceDlg)
@@ -56,7 +55,6 @@ CSurfaceDlg::CSurfaceDlg( CWnd *pParent /*=NULL*/ )
 	m_absolute = FALSE;
 	//}}AFX_DATA_INIT
 }
-
 
 void CSurfaceDlg::DoDataExchange( CDataExchange *pDX ) {
 	CDialog::DoDataExchange( pDX );
@@ -87,7 +85,6 @@ void CSurfaceDlg::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Check( pDX, IDC_CHECK_ABSOLUTE, m_absolute );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CSurfaceDlg, CDialog )
 	//{{AFX_MSG_MAP(CSurfaceDlg)
@@ -129,7 +126,6 @@ END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CSurfaceDlg message handlers
-
 
 /*
 ===================================================
@@ -186,11 +182,9 @@ void CSurfaceDlg::SetTexMods() {
 	UpdateData( FALSE );
 }
 
-
 bool g_bNewFace = false;
 bool g_bNewApplyHandling = false;
 bool g_bGatewayhack = false;
-
 
 /*
 =================
@@ -354,7 +348,6 @@ void CSurfaceDlg::OnVScroll( UINT nSBCode, UINT nPos, CScrollBar *pScrollBar ) {
 	//Sys_UpdateWindows(W_CAMERA);
 }
 
-
 void CSurfaceDlg::OnOK() {
 	//GetTexMods();
 	UpdateData( TRUE );
@@ -425,7 +418,6 @@ BOOL CSurfaceDlg::PreCreateWindow( CREATESTRUCT &cs ) {
 	return CDialog::PreCreateWindow( cs );
 }
 
-
 void CSurfaceDlg::OnDeltaPosSpin( NMHDR *pNMHDR, LRESULT *pResult ) {
 	NM_UPDOWN *pNMUpDown = ( NM_UPDOWN * )pNMHDR;
 	UpdateSpinners( ( pNMUpDown->iDelta > 0 ), pNMUpDown->hdr.idFrom );
@@ -480,7 +472,6 @@ void CSurfaceDlg::OnBtnFacefit() {
 	g_changed_surface = true;
 	Sys_UpdateWindows( W_ALL );
 }
-
 
 void CSurfaceDlg::OnCheckSubdivide() {
 	UpdateData( TRUE );

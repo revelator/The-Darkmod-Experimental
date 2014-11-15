@@ -33,7 +33,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 // Get the name of this state
 const idStr &TakeCoverState::GetName() const {
 	static idStr _name( STATE_TAKE_COVER );
@@ -88,5 +87,4 @@ StateLibrary::Registrar takeCoverStateRegistrar(
 	STATE_TAKE_COVER, // Task Name
 	StateLibrary::CreateInstanceFunc( &TakeCoverState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

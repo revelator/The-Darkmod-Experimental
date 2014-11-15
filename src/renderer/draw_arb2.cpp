@@ -42,7 +42,6 @@ static void GL_SelectTextureNoClient( int unit ) {
 	glActiveTextureARB( GL_TEXTURE0_ARB + unit );
 	RB_LogComment( "glActiveTextureARB( %i )\n", unit );
 }
-
 /*
 ==================
 RB_ARB2_DrawInteraction
@@ -234,10 +233,10 @@ void RB_ARB2_DrawInteractions( bool noshadows ) {
 		if( vLight->globalShadows || vLight->localShadows ) {
 			backEnd.currentScissor = vLight->scissorRect;
 			if( r_useScissor.GetBool() ) {
-				glScissor( backEnd.viewDef->viewport.x1 + backEnd.currentScissor.x1,
-						   backEnd.viewDef->viewport.y1 + backEnd.currentScissor.y1,
-						   backEnd.currentScissor.x2 + 1 - backEnd.currentScissor.x1,
-						   backEnd.currentScissor.y2 + 1 - backEnd.currentScissor.y1 );
+				GL_Scissor( backEnd.viewDef->viewport.x1 + backEnd.currentScissor.x1,
+						    backEnd.viewDef->viewport.y1 + backEnd.currentScissor.y1,
+						    backEnd.currentScissor.x2 + 1 - backEnd.currentScissor.x1,
+						    backEnd.currentScissor.y2 + 1 - backEnd.currentScissor.y1 );
 			}
 			glClear( GL_STENCIL_BUFFER_BIT );
 		} else {

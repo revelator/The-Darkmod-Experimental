@@ -23,7 +23,6 @@
 #include "State.h"
 
 namespace ai {
-
 #define STATE_SWITCH_ON_LIGHT "SwitchOnLight"
 
 class SwitchOnLightState :
@@ -84,7 +83,6 @@ private:
 
 	void Wrapup( idAI *owner, /*idLight* light,*/ bool ignore ); // grayman #2603
 };
-
 } // namespace ai
 
 #endif /* __AI_SWITCH_ON_LIGHT_H__ */

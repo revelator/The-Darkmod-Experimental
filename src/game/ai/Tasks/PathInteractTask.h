@@ -23,7 +23,6 @@
 #include "PathTask.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_PATH_INTERACT "PathInteract"
 
@@ -58,7 +57,6 @@ public:
 	// Creates a new Instance of this task
 	static PathInteractTaskPtr CreateInstance();
 };
-
 } // namespace ai
 
 #endif /* __AI_PATH_INTERACT_TASK_H__ */

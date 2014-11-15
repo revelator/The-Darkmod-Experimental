@@ -58,7 +58,6 @@ typedef struct {
 	singleSmoke_t 				*smokes;
 } activeSmokeStage_t;
 
-
 class idSmokeParticles {
 public:
 	idSmokeParticles( void );

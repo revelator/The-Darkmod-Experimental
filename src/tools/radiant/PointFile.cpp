@@ -87,7 +87,7 @@ void WINAPI Pointfile_Check( void ) {
 	}
 	s_num_points = 0;
 	glNewList( g_qeglobals.d_pointfile_display_list,  GL_COMPILE );
-	glColor3f( 1, 0, 0 );
+	GL_Color( 1.0f, 0.0f, 0.0f );
 	glDisable( GL_TEXTURE_2D );
 	glDisable( GL_TEXTURE_1D );
 	glLineWidth( 2 );
@@ -112,7 +112,7 @@ void WINAPI Pointfile_Check( void ) {
 
 void Pointfile_Draw( void ) {
 	int i;
-	glColor3f( 1.0F, 0.0F, 0.0F );
+	GL_Color( 1.0F, 0.0F, 0.0F );
 	glDisable( GL_TEXTURE_2D );
 	glDisable( GL_TEXTURE_1D );
 	glLineWidth( 2 );

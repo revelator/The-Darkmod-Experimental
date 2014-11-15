@@ -34,7 +34,6 @@
 //
 
 class CRadiantApp : public CWinApp {
-
 public:
 	CRadiantApp();
 
@@ -55,7 +54,6 @@ public:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
-
 
 /////////////////////////////////////////////////////////////////////////////
 

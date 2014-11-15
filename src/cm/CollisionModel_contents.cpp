@@ -435,7 +435,6 @@ int	idCollisionModelManagerLocal::TransformedPointContents( const idVec3 &p, cmH
 	return idCollisionModelManagerLocal::PointContents( p_l, model );
 }
 
-
 /*
 ==================
 idCollisionModelManagerLocal::ContentsTrm

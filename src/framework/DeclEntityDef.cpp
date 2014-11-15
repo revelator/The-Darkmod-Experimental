@@ -22,7 +22,6 @@
 
 static bool versioned = RegisterVersionedFile( "$Id$" );
 
-
 /*
 =================
 idDeclEntityDef::Size

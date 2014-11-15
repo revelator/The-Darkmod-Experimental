@@ -21,7 +21,6 @@
 // DialogAFConstraintHinge dialog
 
 class DialogAFConstraintHinge : public CDialog {
-
 	DECLARE_DYNAMIC( DialogAFConstraintHinge )
 
 public:

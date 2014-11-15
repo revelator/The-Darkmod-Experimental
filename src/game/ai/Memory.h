@@ -27,7 +27,6 @@
 #include "AI.h"
 
 namespace ai {
-
 #define AIUSE_BLOOD_EVIDENCE	"AIUSE_BLOOD_EVIDENCE"
 #define AIUSE_BROKEN_ITEM		"AIUSE_BROKEN_ITEM"
 #define AIUSE_CARRY				"AIUSE_CARRY"		// for specific animations
@@ -541,7 +540,6 @@ public:
 	// grayman #3559 - stops state reactions
 	void StopReacting();
 };
-
 } // namespace ai
 
 #endif /*__AI_MEMORY_H__*/

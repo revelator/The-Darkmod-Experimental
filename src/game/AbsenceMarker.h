@@ -55,7 +55,6 @@ protected:
 	// The spawn args of the entity being referenced
 	idDict referenced_spawnArgs;
 
-
 public:
 
 	CAbsenceMarker( void );
@@ -75,7 +74,6 @@ public:
 	*/
 	bool initAbsenceReference( idEntity *owner, idBounds &startBounds );
 };
-
 
 // End of header wrapper
 #endif

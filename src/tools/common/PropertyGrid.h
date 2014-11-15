@@ -30,7 +30,6 @@ typedef struct {
 	int				mItem;
 	const char		*mName;
 	const char		*mValue;
-
 } NMPROPGRID;
 
 class rvPropertyGrid {

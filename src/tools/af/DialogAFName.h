@@ -21,7 +21,6 @@
 // DialogAFName dialog
 
 class DialogAFName : public CDialog {
-
 	DECLARE_DYNAMIC( DialogAFName )
 
 public:

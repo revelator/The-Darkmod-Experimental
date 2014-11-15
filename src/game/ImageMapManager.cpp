@@ -199,7 +199,6 @@ int ImageMapManager::GetImageMap( idStr name ) {
 	return num + 1;
 }
 
-
 /**
 * Given the id of a formerly loaded map, returns a ptr to the given raw image data.
 * If the map was previously freed, or never loaded, loads the map again. Returns
@@ -273,7 +272,6 @@ float ImageMapManager::GetMapDensity( const unsigned int id ) {
 	}
 	return map->density;
 }
-
 
 /**
 * Given the id of a formerly loaded map, returns a value between 0 and 255 for the
@@ -406,4 +404,3 @@ Image	*ImageMapManager::GetImage( unsigned int handle ) {
 	}
 	return NULL;
 }
-

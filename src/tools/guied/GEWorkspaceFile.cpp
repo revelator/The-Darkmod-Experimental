@@ -290,4 +290,3 @@ Undoes the checkout of the current file
 bool rvGEWorkspace::UndoCheckout( void ) {
 	return false;
 }
-

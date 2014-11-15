@@ -64,7 +64,6 @@ public:
 	}
 };
 
-
 //////////////////////////////////////////////////////////////////////////
 /* Example showing how to use the combined random number generator:
 #include <stdio.h>

@@ -53,6 +53,4 @@ typedef struct highlevel_encode_setup {
 	double trigger_setting;
 
 	highlevel_byblocktype block[4]; /* padding, impulse, transition, long */
-
 } highlevel_encode_setup;
-

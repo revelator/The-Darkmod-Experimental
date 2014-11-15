@@ -1,7 +1,6 @@
 #ifndef __PROP_TREE_ITEM_EDIT_BUTTON_H__
 #define __PROP_TREE_ITEM_EDIT_BUTTON_H__
 
-
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
@@ -61,7 +60,6 @@ public:
 	// Called to activate the item
 	virtual void OnActivate( int activateType, CPoint point );
 
-
 	enum ValueFormat {
 		ValueFormatText,
 		ValueFormatNumber,
@@ -86,12 +84,10 @@ protected:
 	ValueFormat m_nFormat;
 	BOOL		m_bPassword;
 
-
 	CString				buttonText;
 	CRect				buttonRect;
 	CRect				hitTestRect;
 	bool				mouseDown;
-
 
 	// Operations
 public:

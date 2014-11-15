@@ -68,7 +68,6 @@ class idSoundSample;
 class idSampleDecoder;
 class idSoundWorldLocal;
 
-
 /*
 ===================================================================================
 
@@ -217,7 +216,6 @@ private:
 	int				CloseOGG( void );
 };
 
-
 /*
 ===================================================================================
 
@@ -249,7 +247,6 @@ public:
 	virtual short			*GetMixBuffer( void ) = 0;
 };
 
-
 /*
 ===================================================================================
 
@@ -266,7 +263,6 @@ public:
 	virtual bool		IsSoundPlaying( void ) = 0;
 	virtual void	 	SetVolume( float x ) = 0;
 };
-
 
 /*
 ===================================================================================
@@ -462,7 +458,6 @@ public:
 	ALuint				lastopenalStreamingBuffer[3];
 
 	bool				disallowSlow;
-
 };
 
 class SoundChainResults { // grayman #3042
@@ -525,7 +520,6 @@ public:
 	int					listenerId;
 	soundShaderParms_t	parms;						// default overrides for all channels
 
-
 	// the following are calculated in UpdateEmitter, and don't need to be archived
 	float				maxDistance;				// greatest of all playing channel max distances
 	float				minDistance;				// smallest of all playing channel min distances // grayman #3042
@@ -556,7 +550,6 @@ public:
 	int					ampTime;
 	float				amplitude;
 };
-
 
 /*
 ===================================================================================
@@ -822,7 +815,6 @@ public:
 	// mark available during initialization, or through an explicit test
 	static int				EAXAvailable;
 
-
 	static idCVar			s_noSound;
 	static idCVar			s_quadraticFalloff;
 	static idCVar			s_drawSounds;
@@ -869,7 +861,6 @@ public:
 
 extern	idSoundSystemLocal	soundSystemLocal;
 
-
 /*
 ===================================================================================
 
@@ -910,7 +901,6 @@ public:
 	bool					FetchFromCache( int offset, const byte **output, int *position, int *size, const bool allowIO );
 };
 
-
 /*
 ===================================================================================
 
@@ -934,7 +924,6 @@ public:
 	virtual idSoundSample 	*GetSample( void ) const = 0;
 	virtual int				GetLastDecodeTime( void ) const = 0;
 };
-
 
 /*
 ===================================================================================

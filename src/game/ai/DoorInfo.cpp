@@ -25,7 +25,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "DoorInfo.h"
 
 namespace ai {
-
 DoorInfo::DoorInfo() :
 	areaNum( -1 ),
 	//lastTimeSeen(-1), // grayman #3755 - not used
@@ -55,5 +54,4 @@ void DoorInfo::Restore( idRestoreGame *savefile ) {
 	savefile->ReadBool( wasBlocked );
 	savefile->ReadInt( timeCanUseAgain ); // grayman #2345 grayman #3755
 }
-
 } // namespace ai

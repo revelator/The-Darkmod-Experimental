@@ -24,7 +24,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "AAS_local.h"
 
-
 /*
 ============
 idAAS::Alloc
@@ -166,7 +165,6 @@ bool idAASLocal::TestIfBarrierIsolatesReachability
 	}
 	*/
 }
-
 
 /*
 ============
@@ -337,13 +335,11 @@ void idAASLocal::GetEdge( int edgeNum, idVec3 &start, idVec3 &end ) const {
 	end = file->GetVertex( v[INTSIGNBITNOTSET( edgeNum )] );
 }
 
-
 /*
 **********************************************************8
 Added for Darkmod by SophisticatedZombie
 **********************************************************8
 */
-
 
 /*
 ============

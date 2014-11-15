@@ -204,7 +204,7 @@ void Z_DrawGrid( void ) {
 	}
 	ze = 64 * ceil( ze / 64 );
 	// draw major blocks
-	glColor3fv( g_qeglobals.d_savedinfo.colors[COLOR_GRIDMAJOR].ToFloatPtr() );
+	GL_Color( g_qeglobals.d_savedinfo.colors[COLOR_GRIDMAJOR] );
 	glBegin( GL_LINES );
 	glVertex2f( 0, zb );
 	glVertex2f( 0, ze );
@@ -217,7 +217,7 @@ void Z_DrawGrid( void ) {
 	if( g_qeglobals.d_showgrid &&
 			g_qeglobals.d_gridsize * z.scale >= 4 &&
 			!g_qeglobals.d_savedinfo.colors[COLOR_GRIDMINOR].Compare( g_qeglobals.d_savedinfo.colors[COLOR_GRIDBACK] ) ) {
-		glColor3fv( g_qeglobals.d_savedinfo.colors[COLOR_GRIDMINOR].ToFloatPtr() );
+		GL_Color( g_qeglobals.d_savedinfo.colors[COLOR_GRIDMAJOR] );
 		glBegin( GL_LINES );
 		for( zz = zb; zz < ze; zz += g_qeglobals.d_gridsize ) {
 			if( !( ( int )zz & 63 ) ) {
@@ -229,7 +229,7 @@ void Z_DrawGrid( void ) {
 		glEnd();
 	}
 	// draw coordinate text if needed
-	glColor3fv( g_qeglobals.d_savedinfo.colors[COLOR_GRIDTEXT].ToFloatPtr() );
+	GL_Color( g_qeglobals.d_savedinfo.colors[COLOR_GRIDTEXT] );
 	for( zz = zb; zz < ze; zz += 64 ) {
 		glRasterPos2f( -w + 1, zz );
 		sprintf( text, "%i", ( int )zz );
@@ -249,7 +249,7 @@ void ZDrawCameraIcon( void ) {
 	int		xCam = z.width / 4;
 	x = 0;
 	y = g_pParentWnd->GetCamera()->Camera().origin[2];
-	glColor3f( 0.0, 0.0, 1.0 );
+	GL_Color( 0.0f, 0.0f, 1.0f );
 	glBegin( GL_LINE_STRIP );
 	glVertex3f( x - xCam, y, 0 );
 	glVertex3f( x, y + CAM_GIZMO, 0 );
@@ -289,8 +289,8 @@ void Z_Draw( void ) {
 		return; // not valid yet
 	}
 	// clear
-	glViewport( 0, 0, z.width, z.height );
-	glScissor( 0, 0, z.width, z.height );
+	GL_Viewport( 0, 0, z.width, z.height );
+	GL_Scissor( 0, 0, z.width, z.height );
 	glClearColor
 	(
 		g_qeglobals.d_savedinfo.colors[COLOR_GRIDBACK][0],
@@ -354,14 +354,14 @@ void Z_Draw( void ) {
 		}
 		bottom = org_bottom[2] + bottom;
 		//q = declManager->FindMaterial(brush->brush_faces->texdef.name);
-		glColor3f( brush->owner->eclass->color.x, brush->owner->eclass->color.y, brush->owner->eclass->color.z );
+		GL_Color( brush->owner->eclass->color.x, brush->owner->eclass->color.y, brush->owner->eclass->color.z );
 		glBegin( GL_QUADS );
 		glVertex2f( -xCam, bottom );
 		glVertex2f( xCam, bottom );
 		glVertex2f( xCam, top );
 		glVertex2f( -xCam, top );
 		glEnd();
-		glColor3f( 1, 1, 1 );
+		GL_Color( 1.0f, 1.0f, 1.0f );
 		glBegin( GL_LINE_LOOP );
 		glVertex2f( -xCam, bottom );
 		glVertex2f( xCam, bottom );
@@ -385,7 +385,7 @@ void Z_Draw( void ) {
 				if( Brush_Ray( org_bottom, dir_up, brush, &bottom ) ) {
 					bottom = org_bottom[2] + bottom;
 					//q = declManager->FindMaterial(brush->brush_faces->texdef.name);
-					glColor3f( brush->owner->eclass->color.x, brush->owner->eclass->color.y, brush->owner->eclass->color.z );
+					GL_Color( brush->owner->eclass->color.x, brush->owner->eclass->color.y, brush->owner->eclass->color.z );
 					glBegin( GL_QUADS );
 					glVertex2f( -xCam, bottom );
 					glVertex2f( xCam, bottom );
@@ -395,7 +395,7 @@ void Z_Draw( void ) {
 				}
 			}
 		}
-		glColor3fv( g_qeglobals.d_savedinfo.colors[COLOR_SELBRUSHES].ToFloatPtr() );
+		GL_Color( g_qeglobals.d_savedinfo.colors[COLOR_SELBRUSHES] );
 		glBegin( GL_LINE_LOOP );
 		glVertex2f( -xCam, brush->mins[2] );
 		glVertex2f( xCam, brush->mins[2] );

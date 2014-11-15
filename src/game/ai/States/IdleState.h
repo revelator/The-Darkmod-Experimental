@@ -23,7 +23,6 @@
 #include "State.h"
 
 namespace ai {
-
 #define STATE_IDLE "Idle"
 
 class IdleState :
@@ -71,7 +70,6 @@ protected:
 	virtual void InitialiseMovement( idAI *owner );
 	virtual void InitialiseCommunication( idAI *owner );
 };
-
 } // namespace ai
 
 #endif /* __AI_IDLE_STATE_H__ */

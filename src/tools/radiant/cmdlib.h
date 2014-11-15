@@ -28,7 +28,6 @@
 #include <time.h>
 #include <stdarg.h>
 
-
 int		LoadFile( const char *filename, void **bufferptr );
 void 	DefaultExtension( char *path, char *extension );
 void 	DefaultPath( char *path, char *basepath );

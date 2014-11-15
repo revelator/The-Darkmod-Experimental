@@ -32,7 +32,6 @@ Trilinear on all
 Trilinear on normal maps, bilinear on others
 Bilinear on all
 
-
 Manager
 
 ->List
@@ -114,7 +113,6 @@ static void R_HeightmapToNormalMap( byte *data, int width, int height, float sca
 	R_StaticFree( depth );
 }
 
-
 /*
 =================
 R_ImageScale
@@ -164,7 +162,6 @@ static void R_InvertColor( byte *data, int width, int height ) {
 		data[i + 2] = 255 - data[i + 2];
 	}
 }
-
 
 /*
 ===================
@@ -259,7 +256,6 @@ static void R_SmoothNormalMap( byte *data, int width, int height ) {
 	R_StaticFree( orig );
 }
 
-
 /*
 ===================
 R_ImageAdd
@@ -289,7 +285,6 @@ static void R_ImageAdd( byte *data1, int width1, int height1, byte *data2, int w
 		R_StaticFree( newMap );
 	}
 }
-
 
 // we build a canonical token form of the image program here
 static char parseBuffer[MAX_IMAGE_NAME];
@@ -510,7 +505,6 @@ static bool R_ParseImageProgram_r( idLexer &src, byte **pic, int *width, int *he
 	return true;
 }
 
-
 /*
 ===================
 R_LoadImageProgram
@@ -538,4 +532,3 @@ const char *R_ParsePastImageProgram( idLexer &src ) {
 	R_ParseImageProgram_r( src, NULL, NULL, NULL, NULL, NULL );
 	return parseBuffer;
 }
-

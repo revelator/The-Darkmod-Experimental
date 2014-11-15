@@ -20,7 +20,6 @@
 #ifndef __GAME_BRITTLEFRACTURE_H__
 #define __GAME_BRITTLEFRACTURE_H__
 
-
 /*
 ===============================================================================
 
@@ -45,9 +44,7 @@ typedef struct shard_s {
 	int							islandNum;
 } shard_t;
 
-
 class idBrittleFracture : public idEntity {
-
 public:
 	CLASS_PROTOTYPE( idBrittleFracture );
 

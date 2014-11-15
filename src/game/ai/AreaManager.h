@@ -26,7 +26,6 @@
 class idAI;
 
 namespace ai {
-
 class AreaManager {
 private:
 	// angua: Forbidden areas (e.g. areas with locked doors) are excluded from path finding
@@ -53,7 +52,6 @@ public:
 
 	void Clear();
 };
-
 } // namespace ai
 
 #endif /* __AREA_MANAGER_H__ */

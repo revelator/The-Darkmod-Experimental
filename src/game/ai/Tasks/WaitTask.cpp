@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 WaitTask::WaitTask() :
 	_waitTime( 0 ) {
 }
@@ -85,5 +84,4 @@ TaskLibrary::Registrar waitTaskRegistrar(
 	TASK_WAIT, // Task Name
 	TaskLibrary::CreateInstanceFunc( &WaitTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

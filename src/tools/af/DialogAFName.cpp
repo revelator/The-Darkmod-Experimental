@@ -129,12 +129,10 @@ void EditVerifyName( CEdit *edit ) {
 	entered = false;
 }
 
-
 BEGIN_MESSAGE_MAP( DialogAFName, CDialog )
 	ON_BN_CLICKED( IDOK, OnBnClickedOk )
 	ON_EN_CHANGE( IDC_EDIT_AF_NAME, OnEnChangeEditAfName )
 END_MESSAGE_MAP()
-
 
 // DialogAFName message handlers
 

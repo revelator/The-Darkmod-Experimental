@@ -31,7 +31,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 //#include "../Tasks/RandomTurningTask.h"
 
 namespace ai {
-
 ExamineRopeState::ExamineRopeState() {
 }
 
@@ -322,5 +321,4 @@ StateLibrary::Registrar examineRopeStateRegistrar(
 	STATE_EXAMINE_ROPE, // Task Name
 	StateLibrary::CreateInstanceFunc( &ExamineRopeState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

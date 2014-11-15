@@ -42,7 +42,6 @@ typedef enum {					// MOD_WATERPHYSICS
 #endif // MOD_WATERPHYSICS
 
 class idPhysics_Actor : public idPhysics_Base {
-
 public:
 	CLASS_PROTOTYPE( idPhysics_Actor );
 

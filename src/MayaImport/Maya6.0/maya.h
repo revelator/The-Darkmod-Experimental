@@ -3,7 +3,7 @@
 #define _BOOL
 
 #include <maya/MStatus.h>
-#include <maya/MString.h> 
+#include <maya/MString.h>
 #include <maya/MFileIO.h>
 #include <maya/MLibrary.h>
 #include <maya/MPoint.h>

@@ -1,27 +1,25 @@
 // vim:ts=4:sw=4:cindent
 /*****************************************************************************
                     The Dark Mod GPL Source Code
- 
- This file is part of the The Dark Mod Source Code, originally based 
+
+ This file is part of the The Dark Mod Source Code, originally based
  on the Doom 3 GPL Source Code as published in 2011.
- 
- The Dark Mod Source Code is free software: you can redistribute it 
- and/or modify it under the terms of the GNU General Public License as 
- published by the Free Software Foundation, either version 3 of the License, 
+
+ The Dark Mod Source Code is free software: you can redistribute it
+ and/or modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation, either version 3 of the License,
  or (at your option) any later version. For details, see LICENSE.TXT.
- 
+
  Project: The Dark Mod (http://www.thedarkmod.com/)
- 
- $Revision$ (Revision of last commit) 
+
+ $Revision$ (Revision of last commit)
  $Date$ (Date of last commit)
  $Author$ (Author of last commit)
- 
+
 ******************************************************************************/
 
 #include "precompiled.h"
 #pragma hdrstop
-
-
 
 #include "Simd_Generic.h"
 #include "Simd_MMX.h"
@@ -34,7 +32,6 @@
 idSIMDProcessor	*	processor = NULL;			// pointer to SIMD processor
 idSIMDProcessor *	generic = NULL;				// pointer to generic SIMD implementation
 idSIMDProcessor *	SIMDProcessor = NULL;
-
 
 /*
 ================
@@ -92,7 +89,7 @@ void idSIMD::InitProcessor( const char *module, bool forceGeneric ) {
 		{
 		result = CPUID_INTEL;
 		}
-	
+
 	__asm__ __volatile__ (
 		"	pushl	%%ebx;"				// Save ebx (needed for PIC (position independend code)
 		"	movl	$1, %%eax;"			// CPUID with EAX = 1
@@ -147,9 +144,9 @@ void idSIMD::InitProcessor( const char *module, bool forceGeneric ) {
 	// Print what we found to console
 	idLib::common->Printf( "Found %s CPU%s, features:%s%s%s%s%s%s\n",
 			// Vendor
-			cpuid & CPUID_AMD ? "AMD" : 
-			cpuid & CPUID_INTEL ? "Intel" : 
-			cpuid & CPUID_GENERIC ? "Generic" : 
+			cpuid & CPUID_AMD ? "AMD" :
+			cpuid & CPUID_INTEL ? "Intel" :
+			cpuid & CPUID_GENERIC ? "Generic" :
 			"Unsupported",
 			// Hyper-Threading?
 			cpuid & CPUID_HTT ? " with Hyper-Threading enabled" : "",
@@ -167,11 +164,8 @@ void idSIMD::InitProcessor( const char *module, bool forceGeneric ) {
 			cpuid & CPUID_CMOV ? " CMOV" : "" );
 
 	if ( forceGeneric ) {
-
 		newProcessor = generic;
-
 	} else {
-
 		if ( !processor ) {
 			if ( ( cpuid & CPUID_ALTIVEC ) ) {
 				processor = new idSIMD_AltiVec;
@@ -224,7 +218,6 @@ void idSIMD::Shutdown( void ) {
 	processor = NULL;
 	SIMDProcessor = NULL;
 }
-
 
 //===============================================================
 //
@@ -306,28 +299,24 @@ typedef struct {
 	unsigned int lo;
 } U64;
 
-
 asm void GetTB(U64 *in)
 {
 	nofralloc			// suppress prolog
 	machine 603			// allows the use of mftb & mftbu functions
-	
-loop:	
+
+loop:
 	mftbu	r5			// grab the upper time base register (TBU)
 	mftb	r4			// grab the lower time base register (TBL)
-	mftbu	r6			// grab the upper time base register (TBU) again 
-	
+	mftbu	r6			// grab the upper time base register (TBU) again
+
 	cmpw	r6,r5		// see if old TBU == new TBU
 	bne-	loop		// loop if carry occurred (predict branch not taken)
-	
+
 	stw  	r4,4(r3)	// store TBL in the low 32 bits of the return value
 	stw  	r5,0(r3)	// store TBU in the high 32 bits of the return value
 
 	blr
 }
-
-
-
 
 double TBToDoubleNano( U64 startTime, U64 stopTime, double ticksPerNanosecond );
 
@@ -351,7 +340,7 @@ double TBToDoubleNano( U64 startTime, U64 stopTime, double ticksPerNanosecond ) 
 	nanoTime = (double)(diffTime.hi)*((double)K_2POWER32) + (double)(diffTime.lo);
 	nanoTime = nanoTime/ticksPerNanosecond;
 	return (nanoTime);
-}       
+}
 
 TIME_TYPE time_in_millisec( void ) {
 	#define K_2POWER32 4294967296.0
@@ -376,15 +365,14 @@ TIME_TYPE time_in_millisec( void ) {
 }
 
 #define StartRecordTime( start )			\
-	start = time_in_millisec(); 
+	start = time_in_millisec();
 
 #define StopRecordTime( end )				\
 	end = time_in_millisec();
 
-
 #else
 #define StartRecordTime( start )			\
-	start = mach_absolute_time(); 
+	start = mach_absolute_time();
 
 #define StopRecordTime( end )				\
 	end = mach_absolute_time();
@@ -405,7 +393,6 @@ TIME_TYPE time_in_millisec( void ) {
 	if ( !best || end - start < best ) {	\
 		best = end - start;					\
 	}
-
 
 /*
 ============
@@ -642,7 +629,6 @@ void TestMul( void ) {
 	result = ( i >= COUNT ) ? "ok" : S_COLOR_RED"X";
 	PrintClocks( va( "   simd->Mul( float * float[] ) %s", result ), COUNT, bestClocksSIMD, bestClocksGeneric );
 
-
 	bestClocksGeneric = 0;
 	for ( i = 0; i < NUMTESTS; i++ ) {
 		StartRecordTime( start );
@@ -694,7 +680,6 @@ void TestDiv( void ) {
 
 	idLib::common->Printf("====================================\n" );
 
-
 	bestClocksGeneric = 0;
 	for ( i = 0; i < NUMTESTS; i++ ) {
 		StartRecordTime( start );
@@ -719,7 +704,6 @@ void TestDiv( void ) {
 	}
 	result = ( i >= COUNT ) ? "ok" : S_COLOR_RED"X";
 	PrintClocks( va( "   simd->Div( float * float[] ) %s", result ), COUNT, bestClocksSIMD, bestClocksGeneric );
-
 
 	bestClocksGeneric = 0;
 	for ( i = 0; i < NUMTESTS; i++ ) {
@@ -769,7 +753,6 @@ void TestMulAdd( void ) {
 	idLib::common->Printf("====================================\n" );
 
 	for ( j = 0; j < 50 && j < COUNT; j++ ) {
-
 		bestClocksGeneric = 0;
 		for ( i = 0; i < NUMTESTS; i++ ) {
 			for ( int k = 0; k < COUNT; k++ ) {
@@ -825,7 +808,6 @@ void TestMulSub( void ) {
 	idLib::common->Printf("====================================\n" );
 
 	for ( j = 0; j < 50 && j < COUNT; j++ ) {
-
 		bestClocksGeneric = 0;
 		for ( i = 0; i < NUMTESTS; i++ ) {
 			for ( int k = 0; k < COUNT; k++ ) {
@@ -897,7 +879,6 @@ void TestDot( void ) {
 
 	idLib::common->Printf("====================================\n" );
 
-
 	bestClocksGeneric = 0;
 	for ( i = 0; i < NUMTESTS; i++ ) {
 		StartRecordTime( start );
@@ -922,7 +903,6 @@ void TestDot( void ) {
 	}
 	result = ( i >= COUNT ) ? "ok" : S_COLOR_RED"X";
 	PrintClocks( va( "   simd->Dot( idVec3 * idVec3[] ) %s", result ), COUNT, bestClocksSIMD, bestClocksGeneric );
-
 
 	bestClocksGeneric = 0;
 	for ( i = 0; i < NUMTESTS; i++ ) {
@@ -949,7 +929,6 @@ void TestDot( void ) {
 	result = ( i >= COUNT ) ? "ok" : S_COLOR_RED"X";
 	PrintClocks( va( "   simd->Dot( idVec3 * idPlane[] ) %s", result ), COUNT, bestClocksSIMD, bestClocksGeneric );
 
-
 	bestClocksGeneric = 0;
 	for ( i = 0; i < NUMTESTS; i++ ) {
 		StartRecordTime( start );
@@ -974,7 +953,6 @@ void TestDot( void ) {
 	}
 	result = ( i >= COUNT ) ? "ok" : S_COLOR_RED"X";
 	PrintClocks( va( "   simd->Dot( idVec3 * idDrawVert[] ) %s", result ), COUNT, bestClocksSIMD, bestClocksGeneric );
-
 
 	bestClocksGeneric = 0;
 	for ( i = 0; i < NUMTESTS; i++ ) {
@@ -1001,7 +979,6 @@ void TestDot( void ) {
 	result = ( i >= COUNT ) ? "ok" : S_COLOR_RED"X";
 	PrintClocks( va( "   simd->Dot( idPlane * idVec3[] ) %s", result ), COUNT, bestClocksSIMD, bestClocksGeneric );
 
-
 	bestClocksGeneric = 0;
 	for ( i = 0; i < NUMTESTS; i++ ) {
 		StartRecordTime( start );
@@ -1026,7 +1003,6 @@ void TestDot( void ) {
 	}
 	result = ( i >= COUNT ) ? "ok" : S_COLOR_RED"X";
 	PrintClocks( va( "   simd->Dot( idPlane * idPlane[] ) %s", result ), COUNT, bestClocksSIMD, bestClocksGeneric );
-
 
 	bestClocksGeneric = 0;
 	for ( i = 0; i < NUMTESTS; i++ ) {
@@ -1053,7 +1029,6 @@ void TestDot( void ) {
 	result = ( i >= COUNT ) ? "ok" : S_COLOR_RED"X";
 	PrintClocks( va( "   simd->Dot( idPlane * idDrawVert[] ) %s", result ), COUNT, bestClocksSIMD, bestClocksGeneric );
 
-
 	bestClocksGeneric = 0;
 	for ( i = 0; i < NUMTESTS; i++ ) {
 		StartRecordTime( start );
@@ -1079,12 +1054,10 @@ void TestDot( void ) {
 	result = ( i >= COUNT ) ? "ok" : S_COLOR_RED"X";
 	PrintClocks( va( "   simd->Dot( idVec3[] * idVec3[] ) %s", result ), COUNT, bestClocksSIMD, bestClocksGeneric );
 
-
 	idLib::common->Printf("====================================\n" );
 
 	float dot1 = 0.0f, dot2 = 0.0f;
 	for ( j = 0; j < 50 && j < COUNT; j++ ) {
-
 		bestClocksGeneric = 0;
 		for ( i = 0; i < NUMTESTS; i++ ) {
 			StartRecordTime( start );
@@ -1524,7 +1497,6 @@ void TestClamp( void ) {
 	result = ( i >= COUNT ) ? "ok" : S_COLOR_RED"X";
 	PrintClocks( va( "   simd->Clamp( float[] ) %s", result ), COUNT, bestClocksSIMD, bestClocksGeneric );
 
-
 	bestClocksGeneric = 0;
 	for ( i = 0; i < NUMTESTS; i++ ) {
 		StartRecordTime( start );
@@ -1549,7 +1521,6 @@ void TestClamp( void ) {
 	}
 	result = ( i >= COUNT ) ? "ok" : S_COLOR_RED"X";
 	PrintClocks( va( "   simd->ClampMin( float[] ) %s", result ), COUNT, bestClocksSIMD, bestClocksGeneric );
-
 
 	bestClocksGeneric = 0;
 	for ( i = 0; i < NUMTESTS; i++ ) {
@@ -2257,7 +2228,6 @@ void TestMatXLowerTriangularSolve( void ) {
 	b.Random( MATX_LTS_SOLVE_SIZE, 0, -1.0f, 1.0f );
 
 	for ( i = 1; i < MATX_LTS_SOLVE_SIZE; i++ ) {
-
 		x.Zero( i );
 
 		bestClocksGeneric = 0;
@@ -2304,7 +2274,6 @@ void TestMatXLowerTriangularSolveTranspose( void ) {
 	b.Random( MATX_LTS_SOLVE_SIZE, 0, -1.0f, 1.0f );
 
 	for ( i = 1; i < MATX_LTS_SOLVE_SIZE; i++ ) {
-
 		x.Zero( i );
 
 		bestClocksGeneric = 0;
@@ -2354,7 +2323,6 @@ void TestMatXLDLTFactor( void ) {
 	src.TransposeMultiply( original, src );
 
 	for ( i = 1; i < MATX_LDLT_FACTOR_SOLVE_SIZE; i++ ) {
-
 		bestClocksGeneric = 0;
 		for ( j = 0; j < NUMTESTS; j++ ) {
 			mat1 = original;
@@ -3204,8 +3172,8 @@ void TestNormalizeTangents( void ) {
 		if ( !drawVerts1[i].tangents[1].Compare( drawVerts2[i].tangents[1], 1e-2f ) ) {
 			break;
 		}
-		
-		// since we're doing a lot of unaligned work, added this check to 
+
+		// since we're doing a lot of unaligned work, added this check to
 		// make sure xyz wasn't getting overwritten
 		if ( !drawVerts1[i].xyz.Compare( drawVerts2[i].xyz, 1e-2f ) ) {
 			break;
@@ -3476,7 +3444,6 @@ void TestSoundUpSampling( void ) {
 	ogg[1] = ogg1;
 
 	for ( numSpeakers = 1; numSpeakers <= 2; numSpeakers++ ) {
-
 		for ( kHz = 11025; kHz <= 44100; kHz *= 2 ) {
 			bestClocksGeneric = 0;
 			for ( i = 0; i < NUMTESTS; i++ ) {
@@ -3506,7 +3473,6 @@ void TestSoundUpSampling( void ) {
 	}
 
 	for ( numSpeakers = 1; numSpeakers <= 2; numSpeakers++ ) {
-
 		for ( kHz = 11025; kHz <= 44100; kHz *= 2 ) {
 			bestClocksGeneric = 0;
 			for ( i = 0; i < NUMTESTS; i++ ) {
@@ -3580,7 +3546,6 @@ void TestSoundMixing( void ) {
 	}
 	PrintClocks( "generic->MixSoundTwoSpeakerMono()", MIXBUFFER_SAMPLES, bestClocksGeneric );
 
-
 	bestClocksSIMD = 0;
 	for ( i = 0; i < NUMTESTS; i++ ) {
 		for ( j = 0; j < MIXBUFFER_SAMPLES*6; j++ ) {
@@ -3612,7 +3577,6 @@ void TestSoundMixing( void ) {
 	}
 	PrintClocks( "generic->MixSoundTwoSpeakerStereo()", MIXBUFFER_SAMPLES, bestClocksGeneric );
 
-
 	bestClocksSIMD = 0;
 	for ( i = 0; i < NUMTESTS; i++ ) {
 		for ( j = 0; j < MIXBUFFER_SAMPLES*6; j++ ) {
@@ -3632,7 +3596,6 @@ void TestSoundMixing( void ) {
 	result = ( i >= MIXBUFFER_SAMPLES*6 ) ? "ok" : S_COLOR_RED"X";
 	PrintClocks( va( "   simd->MixSoundTwoSpeakerStereo() %s", result ), MIXBUFFER_SAMPLES, bestClocksSIMD, bestClocksGeneric );
 
-
 	bestClocksGeneric = 0;
 	for ( i = 0; i < NUMTESTS; i++ ) {
 		for ( j = 0; j < MIXBUFFER_SAMPLES*6; j++ ) {
@@ -3644,7 +3607,6 @@ void TestSoundMixing( void ) {
 		GetBest( start, end, bestClocksGeneric );
 	}
 	PrintClocks( "generic->MixSoundSixSpeakerMono()", MIXBUFFER_SAMPLES, bestClocksGeneric );
-
 
 	bestClocksSIMD = 0;
 	for ( i = 0; i < NUMTESTS; i++ ) {
@@ -3677,7 +3639,6 @@ void TestSoundMixing( void ) {
 	}
 	PrintClocks( "generic->MixSoundSixSpeakerStereo()", MIXBUFFER_SAMPLES, bestClocksGeneric );
 
-
 	bestClocksSIMD = 0;
 	for ( i = 0; i < NUMTESTS; i++ ) {
 		for ( j = 0; j < MIXBUFFER_SAMPLES*6; j++ ) {
@@ -3696,7 +3657,6 @@ void TestSoundMixing( void ) {
 	}
 	result = ( i >= MIXBUFFER_SAMPLES*6 ) ? "ok" : S_COLOR_RED"X";
 	PrintClocks( va( "   simd->MixSoundSixSpeakerStereo() %s", result ), MIXBUFFER_SAMPLES, bestClocksSIMD, bestClocksGeneric );
-
 
 	for ( i = 0; i < MIXBUFFER_SAMPLES*6; i++ ) {
 		origMixBuffer[i] = srnd.RandomInt( (1<<17) ) - (1<<16);
@@ -4149,7 +4109,7 @@ void TestNegate( void ) {
 	ALIGN16( float fsrc0[COUNT] );
 	ALIGN16( float fsrc1[COUNT] );
 	ALIGN16( float fsrc2[COUNT] );
-	
+
 	const char *result;
 
 	idRandom srnd( RANDOM_SEED );
@@ -4163,9 +4123,8 @@ void TestNegate( void ) {
 
 	bestClocksGeneric = 0;
 	for ( i = 0; i < NUMTESTS; i++ ) {
-	
 		memcpy( &fsrc1[0], &fsrc0[0], COUNT * sizeof(float) );
-	
+
 		StartRecordTime( start );
 		p_generic->Negate16( fsrc1, COUNT );
 		StopRecordTime( end );
@@ -4175,9 +4134,8 @@ void TestNegate( void ) {
 
 	bestClocksSIMD = 0;
 	for ( i = 0; i < NUMTESTS; i++ ) {
-	
 		memcpy( &fsrc2[0], &fsrc0[0], COUNT * sizeof(float) );
-	
+
 		StartRecordTime( start );
 		p_simd->Negate16( fsrc2, COUNT );
 		StopRecordTime( end );
@@ -4193,14 +4151,12 @@ void TestNegate( void ) {
 	PrintClocks( va( "   simd->Negate16( float[] ) %s", result ), COUNT, bestClocksSIMD, bestClocksGeneric );
 }
 
-
 /*
 ============
 idSIMD::Test_f
 ============
 */
 void idSIMD::Test_f( const idCmdArgs &args ) {
-
 #ifdef _WIN32
 	SetThreadPriority( GetCurrentThread(), THREAD_PRIORITY_TIME_CRITICAL );
 #endif /* _WIN32 */

@@ -26,7 +26,6 @@
 #include <boost/function.hpp>
 
 namespace ai {
-
 /**
  * greebo: This Singleton Library class maps element names to
  *         static Element::CreateInstance() member functions. All elements
@@ -119,7 +118,6 @@ typedef Library<Task> TaskLibrary;
 
 class State;
 typedef Library<State> StateLibrary;
-
 } // namespace ai
 
 #endif /* __AI_LIBRARY_H__ */

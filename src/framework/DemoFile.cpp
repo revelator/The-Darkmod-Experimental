@@ -291,7 +291,3 @@ int idDemoFile::Read( void *buffer, int len ) {
 int idDemoFile::Write( const void *buffer, int len ) {
 	return compressor->Write( buffer, len );
 }
-
-
-
-

@@ -23,7 +23,6 @@
 #include "Task.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_CHASE_ENEMY_RANGED "ChaseEnemyRanged"
 
@@ -55,7 +54,6 @@ public:
 	// Class-specific methods
 	virtual void SetEnemy( idActor *enemy );
 };
-
 } // namespace ai
 
 #endif /* __AI_CHASE_ENEMY_RANGED_TASK_H__ */

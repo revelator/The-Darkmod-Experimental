@@ -19,7 +19,6 @@
 #pragma once
 #include "afxwin.h"
 
-
 // CCommentsDlg dialog
 
 class CCommentsDlg : public CDialog {

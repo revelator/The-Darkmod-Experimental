@@ -1,31 +1,28 @@
 /*****************************************************************************
                     The Dark Mod GPL Source Code
- 
- This file is part of the The Dark Mod Source Code, originally based 
+
+ This file is part of the The Dark Mod Source Code, originally based
  on the Doom 3 GPL Source Code as published in 2011.
- 
- The Dark Mod Source Code is free software: you can redistribute it 
- and/or modify it under the terms of the GNU General Public License as 
- published by the Free Software Foundation, either version 3 of the License, 
+
+ The Dark Mod Source Code is free software: you can redistribute it
+ and/or modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation, either version 3 of the License,
  or (at your option) any later version. For details, see LICENSE.TXT.
- 
+
  Project: The Dark Mod (http://www.thedarkmod.com/)
- 
- $Revision$ (Revision of last commit) 
+
+ $Revision$ (Revision of last commit)
  $Date$ (Date of last commit)
  $Author$ (Author of last commit)
- 
+
 ******************************************************************************/
 
 #include "precompiled.h"
 #pragma hdrstop
 
-
-
 #include <float.h>
 
 idAngles ang_zero( 0.0f, 0.0f, 0.0f );
-
 
 /*
 =================
@@ -66,7 +63,7 @@ idAngles& idAngles::Normalize180( void ) {
 	if ( pitch > 180.0f ) {
 		pitch -= 360.0f;
 	}
-	
+
 	if ( yaw > 180.0f ) {
 		yaw -= 360.0f;
 	}
@@ -84,7 +81,7 @@ idAngles::ToVectors
 */
 void idAngles::ToVectors( idVec3 *forward, idVec3 *right, idVec3 *up ) const {
 	float sr, sp, sy, cr, cp, cy;
-	
+
 	idMath::SinCos( DEG2RAD( yaw ), sy, cy );
 	idMath::SinCos( DEG2RAD( pitch ), sp, cp );
 	idMath::SinCos( DEG2RAD( roll ), sr, cr );
@@ -109,7 +106,7 @@ idAngles::ToForward
 */
 idVec3 idAngles::ToForward( void ) const {
 	float sp, sy, cp, cy;
-	
+
 	idMath::SinCos( DEG2RAD( yaw ), sy, cy );
 	idMath::SinCos( DEG2RAD( pitch ), sp, cp );
 

@@ -43,7 +43,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #define DEFAULT_BLEND_FRAMES 4
 
 namespace ai {
-
 ConversationState::ConversationState() :
 	_conversation( -1 ),
 	_state( ENotReady ),
@@ -613,5 +612,4 @@ StateLibrary::Registrar conversationStateRegistrar(
 	STATE_CONVERSATION, // Task Name
 	StateLibrary::CreateInstanceFunc( &ConversationState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

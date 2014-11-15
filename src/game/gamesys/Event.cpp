@@ -750,8 +750,6 @@ void idEvent::SaveTrace( idSaveGame *savefile, const trace_t &trace ) {
 	savefile->WriteInt( trace.c.id );
 }
 
-
-
 #ifdef CREATE_EVENT_CODE
 /*
 ================

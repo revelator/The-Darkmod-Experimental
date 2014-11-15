@@ -1204,6 +1204,3 @@ void idBrittleFracture::SetLossBase( float lossAI, float lossPlayer ) { // graym
 	m_lossBaseAI = lossAI;
 	m_lossBasePlayer = lossPlayer;
 }
-
-
-

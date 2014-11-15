@@ -173,4 +173,3 @@ ve_setup_data_template ve_setup_44_stereo_low = {
 
 	_mapres_template_44_stereo
 };
-

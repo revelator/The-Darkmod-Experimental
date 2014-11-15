@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 ABSTRACT_DECLARATION( idClass, idPhysics )
 END_CLASS
 
-
 /*
 ================
 idPhysics::~idPhysics

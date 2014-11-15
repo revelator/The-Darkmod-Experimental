@@ -863,4 +863,3 @@ public:
 };
 
 #endif /* !__WINVAR_H__ */
-

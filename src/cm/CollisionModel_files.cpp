@@ -36,7 +36,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #define CM_FILEID			"CM"
 #define CM_FILEVERSION		"1.00"
 
-
 /*
 ===============================================================================
 
@@ -47,7 +46,6 @@ Writing of collision model file
 
 void CM_GetNodeBounds( idBounds *bounds, cm_node_t *node );
 int CM_GetNodeContents( cm_node_t *node );
-
 
 /*
 ================
@@ -275,7 +273,6 @@ bool idCollisionModelManagerLocal::WriteCollisionModelForMapEntity( const idMapE
 	FreeModel( model );
 	return true;
 }
-
 
 /*
 ===============================================================================

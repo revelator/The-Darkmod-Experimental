@@ -724,7 +724,7 @@ void setGLMode( int mode ) {
 		globalImages->BindNull();
 		glDisable( GL_BLEND );
 		glDisable( GL_DEPTH_TEST );
-		glColor3f( 1.0f, 1.0f, 1.0f );
+		GL_Color( 1.0f, 1.0f, 1.0f );
 		break;
 	case cd_solid:
 		glCullFace( GL_FRONT );
@@ -845,8 +845,8 @@ void CCamWnd::Cam_Draw() {
 	if( renderMode ) {
 		Cam_Render();
 	}
-	glViewport( 0, 0, m_Camera.width, m_Camera.height );
-	glScissor( 0, 0, m_Camera.width, m_Camera.height );
+	GL_Viewport( 0, 0, m_Camera.width, m_Camera.height );
+	GL_Scissor( 0, 0, m_Camera.width, m_Camera.height );
 	glClearColor( g_qeglobals.d_savedinfo.colors[COLOR_CAMERABACK][0], g_qeglobals.d_savedinfo.colors[COLOR_CAMERABACK][1], g_qeglobals.d_savedinfo.colors[COLOR_CAMERABACK][2], 0 );
 	if( !renderMode ) {
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
@@ -927,13 +927,13 @@ void CCamWnd::Cam_Draw() {
 	glDisable( GL_DEPTH_TEST );
 	glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 	if( renderMode ) {
-		glColor3f( 1, 0, 0 );
+		GL_Color( 1.0f, 0.0f, 0.0f );
 		for( int i = 0; i < nCount; i++ ) {
 			face_t	*selFace = reinterpret_cast < face_t * >( g_ptrSelectedFaces.GetAt( i ) );
 			Face_Draw( selFace );
 		}
 	}
-	glColor3f( 1, 1, 1 );
+	GL_Color( 1.0f, 1.0f, 1.0f );
 	for( brush = pList->next; brush != pList; brush = brush->next ) {
 		if( brush->pPatch || brush->modelHandle > 0 ) {
 			continue;
@@ -945,7 +945,7 @@ void CCamWnd::Cam_Draw() {
 	// edge / vertex flags
 	if( g_qeglobals.d_select_mode == sel_vertex ) {
 		glPointSize( 4 );
-		glColor3f( 0, 1, 0 );
+		GL_Color( 0.0f, 1.0f, 0.0f );
 		glBegin( GL_POINTS );
 		for( i = 0; i < g_qeglobals.d_numpoints; i++ ) {
 			glVertex3fv( g_qeglobals.d_points[i].ToFloatPtr() );
@@ -955,7 +955,7 @@ void CCamWnd::Cam_Draw() {
 	} else if( g_qeglobals.d_select_mode == sel_edge ) {
 		float	*v1, *v2;
 		glPointSize( 4 );
-		glColor3f( 0, 0, 1 );
+		GL_Color( 0.0f, 0.0f, 1.0f );
 		glBegin( GL_POINTS );
 		for( i = 0; i < g_qeglobals.d_numedges; i++ ) {
 			v1 = g_qeglobals.d_points[g_qeglobals.d_edges[i].p1].ToFloatPtr();
@@ -1738,7 +1738,7 @@ void CCamWnd::DrawEntityData() {
 	glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 	globalImages->BindNull();
 	idVec3 color( 0, 1, 0 );
-	glColor3fv( color.ToFloatPtr() );
+	GL_Color( color[0], color[1], color[2] );
 	brush_t *brushList = &active_brushes;
 	int pass = 0;
 	while( brushList ) {
@@ -1757,7 +1757,7 @@ void CCamWnd::DrawEntityData() {
 		color.x = 1;
 		color.y = 0;
 		pass++;
-		glColor3fv( color.ToFloatPtr() );
+		GL_Color( color[0], color[1], color[2] );
 	}
 }
 
@@ -1782,7 +1782,7 @@ void CCamWnd::Cam_Render() {
 	// save the editor state
 	//glPushAttrib( GL_ALL_ATTRIB_BITS );
 	glClearColor( 0.1f, 0.1f, 0.1f, 0.0f );
-	glScissor( 0, 0, m_Camera.width, m_Camera.height );
+	GL_Scissor( 0, 0, m_Camera.width, m_Camera.height );
 	glClear( GL_COLOR_BUFFER_BIT );
 	//	wglSwapBuffers(dc.m_hDC);
 	// create the model, using explicit normals

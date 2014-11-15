@@ -24,7 +24,6 @@
 #include <list>
 
 namespace difficulty {
-
 /**
  * greebo: A Setting represents a spawnarg change.
  * This can be an assignment, addition or multiplication.
@@ -200,7 +199,6 @@ public:
 	void Save( idSaveGame *savefile );
 	void Restore( idRestoreGame *savefile );
 };
-
 } // namespace difficulty
 
 #endif /* __DIFFICULTY_SETTINGS_H__ */

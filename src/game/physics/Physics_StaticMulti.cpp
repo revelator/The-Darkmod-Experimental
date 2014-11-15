@@ -29,7 +29,6 @@ END_CLASS
 
 staticPState_t defaultState;
 
-
 /*
 ================
 idPhysics_StaticMulti::idPhysics_StaticMulti
