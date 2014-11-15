@@ -28,7 +28,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 CombatTask::CombatTask() :
 	_lastCombatBarkTime( -1 ) {
 }
@@ -66,5 +65,4 @@ void CombatTask::Restore( idRestoreGame *savefile ) {
 	_enemy.Restore( savefile );
 	savefile->ReadInt( _lastCombatBarkTime );
 }
-
 } // namespace ai

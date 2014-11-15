@@ -15,11 +15,9 @@
 
  ********************************************************************/
 
-
 /* preecho trigger settings *****************************************/
 
 static vorbis_info_psy_global _psy_global_44[5] = {
-
 	{
 		8,   /* lines per eighth octave */
 		{20.f, 14.f, 12.f, 12.f, 12.f, 12.f, 12.f},
@@ -388,7 +386,6 @@ static noise3 _psy_noisebias_impulse[11] = {
 	},
 };
 
-
 static noise3 _psy_noisebias_padding[11] = {
 	/*  63     125     250     500      1k       2k      4k      8k     16k*/
 	/* 0 */
@@ -642,7 +639,6 @@ static double _noise_thresh_44[10] = {
 static double _noise_thresh_44_2[2] = {
 	.5, .5,
 };
-
 
 static int _noise_start_short_44_low[2] = {
 	32, 32

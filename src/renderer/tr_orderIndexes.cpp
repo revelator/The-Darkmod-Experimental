@@ -23,7 +23,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "tr_local.h"
 
-
 /*
 ===============
 R_MeshCost
@@ -60,7 +59,6 @@ int	R_MeshCost( int numIndexes, glIndex_t *indexes ) {
 	}
 	return c_loads;
 }
-
 
 typedef struct vertRef_s {
 	struct vertRef_s	*next;
@@ -168,7 +166,6 @@ void R_OrderIndexes( int numIndexes, glIndex_t *indexes ) {
 	c_cost = R_MeshCost( numIndexes, indexes );
 }
 
-
 /*
 
   add all triangles that can be specified by the vertexes in the last 14 cache positions
@@ -179,6 +176,4 @@ void R_OrderIndexes( int numIndexes, glIndex_t *indexes ) {
 
   look for a vert that shares an edge with the vert about to be evicted
 
-
 */
-

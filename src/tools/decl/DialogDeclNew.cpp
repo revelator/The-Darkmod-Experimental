@@ -34,7 +34,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #define DEBUG_NEW new
 #endif
 
-
 toolTip_t DialogDeclNew::toolTips[] = {
 	{ IDC_DECLNEW_COMBO_NEW_TYPE, "select the declaration type to create" },
 	{ IDC_DECLNEW_EDIT_NEW_NAME, "enter a name for the new declaration" },
@@ -44,7 +43,6 @@ toolTip_t DialogDeclNew::toolTips[] = {
 	{ IDCANCEL, "cancel" },
 	{ 0, NULL }
 };
-
 
 IMPLEMENT_DYNAMIC( DialogDeclNew, CDialog )
 
@@ -113,7 +111,6 @@ BOOL DialogDeclNew::OnInitDialog()  {
 	// EXCEPTION: OCX Property Pages should return FALSE
 }
 
-
 BEGIN_MESSAGE_MAP( DialogDeclNew, CDialog )
 	ON_NOTIFY_EX_RANGE( TTN_NEEDTEXTW, 0, 0xFFFF, OnToolTipNotify )
 	ON_NOTIFY_EX_RANGE( TTN_NEEDTEXTA, 0, 0xFFFF, OnToolTipNotify )
@@ -124,7 +121,6 @@ BEGIN_MESSAGE_MAP( DialogDeclNew, CDialog )
 	ON_BN_CLICKED( IDOK, OnBnClickedOk )
 	ON_BN_CLICKED( IDCANCEL, OnBnClickedCancel )
 END_MESSAGE_MAP()
-
 
 // DialogDeclNew message handlers
 

@@ -29,7 +29,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #define EDIT_HEIGHT 25
 
-
 IMPLEMENT_DYNCREATE( ConsoleView, CFormView )
 
 BEGIN_MESSAGE_MAP( ConsoleView, CFormView )

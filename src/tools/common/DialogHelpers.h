@@ -95,7 +95,6 @@ public:															\
 		rvDialogItemContainer::Cache ( parent, sizeof(*this)/sizeof(rvDialogItem) );	\
 	}
 
-
 #define DIALOGITEM(id,name)										\
 class c##name : public rvDialogItem								\
 {																\
@@ -105,6 +104,5 @@ public:															\
 
 #define DIALOGITEM_END()										\
 };
-
 
 #endif // DIALOGHELPERS_H_

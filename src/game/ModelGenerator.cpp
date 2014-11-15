@@ -1211,5 +1211,3 @@ unsigned int CModelGenerator::GetMaxModelCount( const idRenderModel *hModel ) co
 	}
 	return i;
 }
-
-

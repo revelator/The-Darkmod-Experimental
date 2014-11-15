@@ -20,7 +20,6 @@
 #ifndef __UNZIP_H__
 #define __UNZIP_H__
 
-
 #if defined(STRICTUNZIP) || defined(STRICTZIPUNZIP)
 /* like the STRICT of WIN32, we define a pointer that cannot be converted
     from (void*) without cast */
@@ -48,7 +47,6 @@ typedef struct unz_global_info_s {
 	unsigned long number_entry;         /* total number of entries in the central dir on this disk */
 	unsigned long size_comment;         /* size of the global comment of the zipfile */
 } unz_global_info;
-
 
 /* unz_file_info contain information about a file in the zipfile */
 typedef struct unz_file_info_s {
@@ -104,7 +102,6 @@ typedef struct z_stream_s {
 
 typedef z_stream *z_streamp;
 
-
 /* file_in_zip_read_info_s contain internal information about a file in zipfile,
     when reading and decompress it */
 typedef struct {
@@ -126,7 +123,6 @@ typedef struct {
 	unsigned long compression_method;		/* compression method (0==store) */
 	unsigned long byte_before_the_zipfile;	/* unsigned char before the zipfile, (>0 for sfx)*/
 } file_in_zip_read_info_s;
-
 
 /* unz_s contain internal information about the zipfile
 */
@@ -199,7 +195,6 @@ extern int unzGetGlobalInfo( unzFile file, unz_global_info *pglobal_info );
   No preparation of the structure is needed
   return UNZ_OK if there is no problem. */
 
-
 extern int unzGetGlobalComment( unzFile file, char *szComment, unsigned long uSizeBuf );
 
 /*
@@ -207,7 +202,6 @@ extern int unzGetGlobalComment( unzFile file, char *szComment, unsigned long uSi
   uSizeBuf is the size of the szComment buffer.
   return the number of unsigned char copied or an error code <0
 */
-
 
 /***************************************************************************/
 /* Unzip package allow you browse the directory of the zipfile */
@@ -252,7 +246,6 @@ extern int unzLocateFile( unzFile file, const char *szFileName, int iCaseSensiti
   UNZ_END_OF_LIST_OF_FILE if the file is not found
 */
 
-
 extern int unzGetCurrentFileInfo( unzFile file, unz_file_info *pfile_info, char *szFileName, unsigned long fileNameBufferSize, void *extraField, unsigned long extraFieldBufferSize, char *szComment, unsigned long commentBufferSize );
 
 /*
@@ -286,7 +279,6 @@ extern int unzCloseCurrentFile( unzFile file );
   Close the file in zip opened with unzOpenCurrentFile
   Return UNZ_CRCERROR if all the file was read but the CRC is not good
 */
-
 
 extern int unzReadCurrentFile( unzFile file, void *buf, unsigned len );
 

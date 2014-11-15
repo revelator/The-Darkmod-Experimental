@@ -55,10 +55,8 @@ static	uEntity_t	*uEntity;
 // which will have duplicates removed before the final brush is allocated
 static	uBrush_t	*buildBrush;
 
-
 #define	NORMAL_EPSILON			0.00001f
 #define	DIST_EPSILON			0.01f
-
 
 /*
 ===========
@@ -112,7 +110,6 @@ static void SetBrushContents( uBrush_t *b ) {
 	}
 	b->contents = contents;
 }
-
 
 //============================================================================
 
@@ -250,7 +247,6 @@ static bool RemoveDuplicateBrushPlanes( uBrush_t *b ) {
 	}
 	return true;
 }
-
 
 /*
 =================

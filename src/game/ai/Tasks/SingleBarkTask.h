@@ -24,7 +24,6 @@
 #include "../../AIComm_Message.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_SINGLE_BARK "SingleBark"
 
@@ -75,7 +74,6 @@ public:
 	virtual void SetSound( const idStr &soundName );
 	virtual void SetMessage( const CommMessagePtr &message );
 };
-
 } // namespace ai
 
 #endif /* __AI_SINGLE_BARK_TASK_H__ */

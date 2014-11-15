@@ -173,7 +173,6 @@ ve_setup_data_template ve_setup_X_stereo_low = {
 	_mapres_template_44_stereo
 };
 
-
 ve_setup_data_template ve_setup_X_uncoupled_low = {
 	1,
 	rate_mapping_X,
@@ -326,4 +325,3 @@ ve_setup_data_template ve_setup_XX_uncoupled = {
 
 	_mapres_template_8_uncoupled
 };
-

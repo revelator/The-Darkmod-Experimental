@@ -23,7 +23,6 @@
 #include "State.h"
 
 namespace ai {
-
 #define STATE_POCKET_PICKED "PocketPicked"
 
 #define ALERT_WINDOW 4000  // how far back to look for the previous alert
@@ -69,7 +68,6 @@ public:
 private:
 	void Wrapup( idAI *owner );
 };
-
 } // namespace ai
 
 #endif /* __AI_POCKET_PICKED_H__ */

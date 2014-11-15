@@ -908,10 +908,10 @@ void idRenderWorldLocal::ShowPortals() {
 			}
 			if( portalAreas[ p->intoArea ].viewCount != tr.viewCount ) {
 				// red = can't see
-				glColor3f( 1, 0, 0 );
+				GL_Color( 1.0f, 0.0f, 0.0f );
 			} else {
 				// green = see through
-				glColor3f( 0, 1, 0 );
+				GL_Color( 0.0f, 1.0f, 0.0f );
 			}
 			glBegin( GL_LINE_LOOP );
 			for( j = 0 ; j < w->GetNumPoints() ; j++ ) {

@@ -47,7 +47,6 @@ int idEventLoop::JournalLevel( void ) const {
 	printf( post );					\
 	va_end( argptr )
 
-
 class idCommonLocal : public idCommon {
 public:
 	idCommonLocal( void ) {}
@@ -311,7 +310,6 @@ void			idSysLocal::FPU_EnableExceptions( int exceptions ) { }
 
 idSysLocal		sysLocal;
 idSys 			*sys = &sysLocal;
-
 
 /*
 ==============================================================

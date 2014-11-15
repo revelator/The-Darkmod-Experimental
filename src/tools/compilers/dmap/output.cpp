@@ -26,7 +26,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 //=================================================================================
 
-
 #if 0
 
 should we try and snap values very close to 0.5, 0.25, 0.125, etc ?
@@ -36,7 +35,6 @@ should we try and snap values very close to 0.5, 0.25, 0.125, etc ?
 		vertexes merged, and they would have to be split apart before drawing
 
 		do we save out "wings" for shadow silhouette info ?
-
 
 #endif
 
@@ -118,7 +116,6 @@ static int CountUniqueShaders( optimizeGroup_t *groups ) {
 	}
 	return count;
 }
-
 
 /*
 ==============
@@ -268,7 +265,6 @@ static void WriteUTriangles( const srfTriangles_t *uTris ) {
 	}
 }
 
-
 /*
 ====================
 WriteShadowTriangles
@@ -307,7 +303,6 @@ static void WriteShadowTriangles( const srfTriangles_t *tri ) {
 		procFile->WriteFloatString( "\n" );
 	}
 }
-
 
 /*
 =======================
@@ -515,7 +510,6 @@ static void WriteOutputPortals( uEntity_t *e ) {
 	procFile->WriteFloatString( "}\n\n" );
 }
 
-
 /*
 ====================
 WriteOutputEntity
@@ -542,7 +536,6 @@ static void WriteOutputEntity( int entityNum ) {
 		WriteOutputNodes( e->tree->headnode );
 	}
 }
-
 
 /*
 ====================

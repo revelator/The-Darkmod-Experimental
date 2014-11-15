@@ -1429,7 +1429,6 @@ void idRenderWorldLocal::PushVolumeIntoTree_r( idRenderEntityLocal *def, idRende
 	}
 }
 
-
 /*
 ==============
 PushVolumeIntoTree

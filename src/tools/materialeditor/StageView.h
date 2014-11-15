@@ -30,7 +30,6 @@
 * View that handles managing the material stages.
 */
 class StageView : public ToggleListView, public MaterialView {
-
 public:
 	virtual ~StageView();
 
@@ -120,5 +119,3 @@ protected:
 
 	bool					internalChange;
 };
-
-

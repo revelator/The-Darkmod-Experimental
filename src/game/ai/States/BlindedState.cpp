@@ -28,13 +28,11 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 // Get the name of this state
 const idStr &BlindedState::GetName() const {
 	static idStr _name( STATE_BLINDED );
 	return _name;
 }
-
 
 void BlindedState::Init( idAI *owner ) {
 	// Init base class first
@@ -127,5 +125,4 @@ StateLibrary::Registrar blindedStateRegistrar(
 	STATE_BLINDED, // Task Name
 	StateLibrary::CreateInstanceFunc( &BlindedState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

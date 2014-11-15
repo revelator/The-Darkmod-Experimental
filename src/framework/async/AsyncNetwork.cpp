@@ -485,4 +485,3 @@ void idAsyncNetwork::BuildInvalidKeyMsg( idStr &msg, bool valid[ 2 ] ) {
 	msg += "\n";
 	msg += common->Translate( "#str_04304" );
 }
-

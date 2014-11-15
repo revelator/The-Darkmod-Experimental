@@ -51,9 +51,7 @@ typedef void ( *VectorCtlCallbackProc )( idQuat rotation );
 // or
 //      static void CALLBACK MyClass::MyCallBack (double dVecX, double dVecY, double dVecZ);
 
-
 class CVectorCtl : public CButton {
-
 #define EPS                                 1.0e-6                  // Epsilon
 
 #define DEFAULT_VEC                         {0.00, 0.00, 1.00}      // Default start vector
@@ -64,7 +62,6 @@ class CVectorCtl : public CButton {
 #define DEFAULT_END_BACKGROUND_COLOR        RGB(140,   0, 120)      // Default gradient background end color
 #define DEFAULT_SPEC_EXP                    25.0                    // Default specular intensity
 #define VAL_NOT_IN_USE                      -50000                  // Internal use
-
 
 public:
 	CVectorCtl();
@@ -243,14 +240,11 @@ private:
 	idVec3		lastPress;
 	float		radius;
 
-
 	VectorCtlCallbackProc   m_procVectorChanging,
 							m_procVectorChanged;
 
 protected:
 	DECLARE_MESSAGE_MAP()
-
-
 };
 
 #endif

@@ -44,7 +44,6 @@ typedef unsigned short word;
 								 ((src0[2]-src1[2])*(src0[2]-src1[2])) + \
 								 ((src0[3]-src1[3])*(src0[3]-src1[3])) )
 
-
 #define RMULT 0.2990f				// use these for televisions
 #define GMULT 0.5870f
 #define BMULT 0.1140f

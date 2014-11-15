@@ -29,7 +29,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "DialogAFBody.h"
 #include "DialogAFConstraint.h"
 
-
 // DialogAFProperties dialog
 
 toolTip_t DialogAFProperties::toolTips[] = {
@@ -276,7 +275,6 @@ BEGIN_MESSAGE_MAP( DialogAFProperties, CDialog )
 	ON_EN_CHANGE( IDC_EDIT_LINEAR_TOLERANCE, OnEnChangeEditLineartolerance )
 	ON_EN_CHANGE( IDC_EDIT_ANGULAR_TOLERANCE, OnEnChangeEditAngulartolerance )
 END_MESSAGE_MAP()
-
 
 // DialogAFProperties message handlers
 

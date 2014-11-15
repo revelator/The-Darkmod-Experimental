@@ -89,4 +89,3 @@ private:
 };
 
 #endif /* !__SLIDERWINDOW_H__ */
-

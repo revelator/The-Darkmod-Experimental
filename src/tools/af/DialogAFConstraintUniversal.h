@@ -21,7 +21,6 @@
 // DialogAFConstraintUniversal dialog
 
 class DialogAFConstraintUniversal : public CDialog {
-
 	DECLARE_DYNAMIC( DialogAFConstraintUniversal )
 
 public:

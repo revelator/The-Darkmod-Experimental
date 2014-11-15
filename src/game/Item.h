@@ -20,7 +20,6 @@
 #ifndef __GAME_ITEM_H__
 #define __GAME_ITEM_H__
 
-
 /*
 ===============================================================================
 
@@ -45,7 +44,6 @@ public:
 	virtual bool			Pickup( idPlayer *player );
 	virtual void			Think( void );
 	virtual void			Present();
-
 
 	enum {
 		EVENT_PICKUP = idEntity::EVENT_MAXEVENTS,
@@ -77,7 +75,6 @@ private:
 	// This should scale from 0.0 (none) to 1.0 (hard to miss)
 	float					noticeabilityIfAbsent;
 
-
 	// Has the original origin been set?
 	bool					b_orgOriginSet;
 	idEntityPtr<idEntity>	absenceEntityPtr;
@@ -101,7 +98,6 @@ private:
 	void					Event_Respawn( void );
 	void					Event_RespawnFx( void );
 };
-
 
 class idMoveableItem : public idItem {
 public:

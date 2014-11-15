@@ -605,7 +605,6 @@ EVENT( AI_CanReachEnemy,					idAI::Event_CanReachEnemy )
 EVENT( AI_GetReachableEntityPosition,		idAI::Event_GetReachableEntityPosition )
 EVENT( AI_ReEvaluateArea,					idAI::Event_ReEvaluateArea )
 
-
 // greebo: State manipulation interface
 EVENT( AI_PushState,						idAI::Event_PushState )
 EVENT( AI_SwitchState,						idAI::Event_SwitchState )
@@ -1673,7 +1672,6 @@ void idAI::Event_CanSeePositionExt( const idVec3 &position, int bool_useFOV, int
 	idThread::ReturnInt( cansee );
 }
 
-
 /*
 =====================
 idAI::Event_SetTalkTarget
@@ -2537,7 +2535,6 @@ void idAI::Event_LookAtPosition( const idVec3 &lookAtWorldPosition, float durati
 	}
 }
 
-
 void idAI::Event_LookAtAngles( float yawAngleClockwise, float pitchAngleUp, float rollAngle, float durationInSeconds ) {
 	// Get current physical angles
 	idAngles physicalAngles( 0.0f, current_yaw, 0.0f );
@@ -2766,7 +2763,6 @@ void idAI::Event_PushPointIntoAAS( const idVec3 &pos ) {
 	}
 }
 
-
 /*
 ================
 idAI::Event_GetTurnRate
@@ -2943,7 +2939,6 @@ void idAI::Event_GetReachableEntityPosition( idEntity *ent ) {
 	idThread::ReturnVector( pos );
 }
 
-
 void idAI::Event_ReEvaluateArea( int areanum ) {
 	ReEvaluateArea( areanum );
 }
@@ -3003,7 +2998,6 @@ void idAI::Event_GetTactEnt( void ) {
 		idThread::ReturnEntity( ent );
 	}
 }
-
 
 void idAI::Event_VisScan( void ) {
 	// assume we are checking over one frame
@@ -3104,13 +3098,11 @@ void idAI::Event_StartSearchForHidingSpotsWithExclusionArea
 						 ) );
 }
 
-
 //-----------------------------------------------------------------------------------------------------
 
 void idAI::Event_ContinueSearchForHidingSpots() {
 	idThread::ReturnInt( ContinueSearchForHidingSpots() );
 }
-
 
 //-----------------------------------------------------------------------------------------------------
 
@@ -3134,7 +3126,6 @@ void idAI::Event_ResortHidingSpots
 		searchRadius.Length()
 	);
 }
-
 
 //-----------------------------------------------------------------------------------------------------
 
@@ -3349,15 +3340,3 @@ void idAI::Event_HitByDoor( idEntity *door ) {
 	// Treat the door as a suspicious door.
 	mind->GetState()->OnVisualStimDoor( door, this );
 }
-
-
-
-
-
-
-
-
-
-
-
-

@@ -23,7 +23,6 @@
 #include "State.h"
 
 namespace ai {
-
 #define STATE_EMERGE_FROM_COVER "EmergeFromCover"
 
 class EmergeFromCoverState :
@@ -40,7 +39,6 @@ public:
 
 	static StatePtr CreateInstance();
 };
-
 } // namespace ai
 
 #endif /* __AI_EMERGE_FROM_COVER_STATE_H__ */

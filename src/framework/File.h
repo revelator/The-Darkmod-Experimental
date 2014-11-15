@@ -41,7 +41,6 @@ typedef enum {
 
 class idFileSystemLocal;
 
-
 class idFile {
 public:
 	virtual					~idFile( void ) {};
@@ -107,7 +106,6 @@ public:
 	virtual int				WriteMat3( const idMat3 &mat );
 };
 
-
 class idFile_Memory : public idFile {
 	friend class			idFileSystemLocal;
 
@@ -160,7 +158,6 @@ private:
 	char 					*curPtr;			// current read/write pointer
 };
 
-
 class idFile_BitMsg : public idFile {
 	friend class			idFileSystemLocal;
 
@@ -189,7 +186,6 @@ private:
 	int						mode;			// open mode
 	idBitMsg 				*msg;
 };
-
 
 class idFile_Permanent : public idFile {
 	friend class			idFileSystemLocal;
@@ -226,7 +222,6 @@ private:
 	FILE 					*o;				// file handle
 	bool					handleSync;		// true if written data is immediately flushed
 };
-
 
 class idFile_InZip : public idFile {
 	friend class			idFileSystemLocal;

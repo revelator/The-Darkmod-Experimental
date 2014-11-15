@@ -37,7 +37,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 // Get the name of this state
 const idStr &IdleSleepState::GetName() const {
 	static idStr _name( STATE_IDLE_SLEEP );
@@ -116,7 +115,6 @@ void IdleSleepState::Think( idAI *owner ) {
 	}
 }
 
-
 StatePtr IdleSleepState::CreateInstance() {
 	return StatePtr( new IdleSleepState );
 }
@@ -131,5 +129,4 @@ StateLibrary::Registrar idleSleepStateRegistrar(
 	STATE_IDLE_SLEEP, // Task Name
 	StateLibrary::CreateInstanceFunc( &IdleSleepState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

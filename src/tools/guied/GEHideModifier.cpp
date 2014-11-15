@@ -71,4 +71,3 @@ bool rvGEHideModifier::Undo( void ) {
 	}
 	return true;
 }
-

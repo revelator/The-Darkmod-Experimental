@@ -27,7 +27,6 @@ idCVar idEventLoop::com_journal( "com_journal", "0", CVAR_INIT | CVAR_SYSTEM, "1
 idEventLoop eventLoopLocal;
 idEventLoop *eventLoop = &eventLoopLocal;
 
-
 /*
 =================
 idEventLoop::idEventLoop

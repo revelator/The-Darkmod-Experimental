@@ -1,20 +1,20 @@
 /*****************************************************************************
                     The Dark Mod GPL Source Code
- 
- This file is part of the The Dark Mod Source Code, originally based 
+
+ This file is part of the The Dark Mod Source Code, originally based
  on the Doom 3 GPL Source Code as published in 2011.
- 
- The Dark Mod Source Code is free software: you can redistribute it 
- and/or modify it under the terms of the GNU General Public License as 
- published by the Free Software Foundation, either version 3 of the License, 
+
+ The Dark Mod Source Code is free software: you can redistribute it
+ and/or modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation, either version 3 of the License,
  or (at your option) any later version. For details, see LICENSE.TXT.
- 
+
  Project: The Dark Mod (http://www.thedarkmod.com/)
- 
- $Revision$ (Revision of last commit) 
+
+ $Revision$ (Revision of last commit)
  $Date$ (Date of last commit)
  $Author$ (Author of last commit)
- 
+
 ******************************************************************************/
 
 #ifndef DARKMODCIMAGE_H
@@ -54,10 +54,9 @@ public:
 	 */
 	static Format GetFormatFromString(const char *format);
 
-
 	Image();
 	Image(const idStr& name);
-	
+
 	~Image();
 	/**
 	 * Unload will set the image to not loaded and deallocate memory.
@@ -76,17 +75,17 @@ public:
 	bool Init(int width, int height, int bpp);
 
 	/**
-	 * Load the image from the given file (loaded via D3's filesystem) into memory 
+	 * Load the image from the given file (loaded via D3's filesystem) into memory
 	 * and allow access to it. Any previous image is unloaded.
 	 */
 	bool LoadImageFromVfs(const char* filename = NULL);
 	/**
-	 * Load the image from the given file (absolute OS path) into memory 
+	 * Load the image from the given file (absolute OS path) into memory
 	 * and allow access to it. Any previous image is unloaded.
 	 */
 	bool LoadImageFromFile(const boost::filesystem::path& path);
 	/**
-	 * Load the image from memory buffer into memory 
+	 * Load the image from memory buffer into memory
 	 * and allow access to it. Any previous image is unloaded.
 	 * Image name is set explicitly.
 	 */

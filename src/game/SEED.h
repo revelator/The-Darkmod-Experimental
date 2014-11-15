@@ -357,7 +357,6 @@ private:
 	*/
 	void				ComputeEntityCount( void );
 
-
 	/* *********************** Members *********************/
 
 	bool				active;
@@ -524,4 +523,3 @@ private:
 };
 
 #endif /* !__GAME_SEED_H__ */
-

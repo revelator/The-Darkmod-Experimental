@@ -172,8 +172,6 @@ keyname_t keynames[] = {
 	{NULL,				0,					NULL}
 };
 
-
-
 static const int	MAX_KEYS = 256;
 
 class idKey {
@@ -374,7 +372,6 @@ void idKeyInput::SetBinding( int keynum, const char *binding ) {
 	cvarSystem->SetModifiedFlags( CVAR_ARCHIVE );
 }
 
-
 /*
 ===================
 idKeyInput::GetBinding
@@ -487,8 +484,6 @@ void Key_BindUnBindTwo_f( const idCmdArgs &args ) {
 	}
 	idKeyInput::SetBinding( key, bind );
 }
-
-
 
 /*
 ============

@@ -106,7 +106,6 @@ void WINAPI UngetToken( void ) {
 	unget = true;
 }
 
-
 /*
 ==============
 TokenAvailable
@@ -131,4 +130,3 @@ bool TokenAvailable( void ) {
 	}
 	return true;
 }
-

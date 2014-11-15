@@ -162,4 +162,3 @@ void idPlayerIcon::UpdateIcon( idPlayer *player, const idVec3 &origin, const idM
 	renderEnt.axis	= axis;
 	gameRenderWorld->UpdateEntityDef( iconHandle, &renderEnt );
 }
-

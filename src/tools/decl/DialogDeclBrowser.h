@@ -25,7 +25,6 @@
 // DialogDeclBrowser dialog
 
 class DialogDeclBrowser : public CDialog {
-
 	DECLARE_DYNAMIC( DialogDeclBrowser )
 
 public:

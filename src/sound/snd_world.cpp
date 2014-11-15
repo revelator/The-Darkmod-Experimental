@@ -608,7 +608,6 @@ void idSoundWorldLocal::AVIClose( void ) {
 
 //==============================================================================
 
-
 /*
 ===================
 idSoundWorldLocal::ResolveOrigin
@@ -827,7 +826,6 @@ bool idSoundWorldLocal::ResolveOrigin( const int stackDepth, const soundPortalTr
 	}
 	return false;
 }
-
 
 /*
 ===================

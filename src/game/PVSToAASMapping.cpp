@@ -43,7 +43,6 @@ PVSToAASMapping::~PVSToAASMapping( void ) {
 	clear();
 }
 
-
 //----------------------------------------------------------------------------
 
 void PVSToAASMapping::clearMappingList( PVSToAASMappingNode *p_header ) {

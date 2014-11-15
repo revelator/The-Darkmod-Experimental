@@ -26,7 +26,6 @@
 #include "RouteNode.h"
 
 namespace eas {
-
 enum RouteType {
 	ROUTE_DUMMY = 0,	// placeholder
 	ROUTE_TO_AREA,		// a route to an AAS area
@@ -59,7 +58,6 @@ struct RouteInfo {
 typedef boost::shared_ptr<RouteInfo> RouteInfoPtr;
 typedef std::list<RouteInfoPtr> RouteInfoList;
 typedef std::vector<RouteInfoList> RouteInfoListVector;
-
 } // namespace eas
 
 #endif /* __AI_EAS_ROUTEINFO_H__ */

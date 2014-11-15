@@ -32,7 +32,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #define DEBUG_NEW new
 #endif
 
-
 IMPLEMENT_DYNAMIC( DialogGoToLine, CDialog )
 
 /*
@@ -101,11 +100,9 @@ BOOL DialogGoToLine::OnInitDialog()  {
 	// EXCEPTION: OCX Property Pages should return FALSE
 }
 
-
 BEGIN_MESSAGE_MAP( DialogGoToLine, CDialog )
 	ON_BN_CLICKED( IDOK, OnBnClickedOk )
 END_MESSAGE_MAP()
-
 
 // DialogGoToLine message handlers
 

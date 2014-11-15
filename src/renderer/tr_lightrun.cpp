@@ -26,7 +26,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 /*
 
-
 Prelight models
 
 "_prelight_<lightname>", ie "_prelight_light1"
@@ -47,10 +46,8 @@ Shadow volume surfaces will have the material "_shadowVolume"
 The exact same vertexes as the ambient surfaces will be used for the
 non-shadow surfaces, so there is opportunity to share
 
-
 Reference their parent surfaces?
 Reference their parent area?
-
 
 If we don't track parts that are in different areas, there will be huge
 losses when an areaportal closed door has a light poking slightly
@@ -59,7 +56,6 @@ through it.
 There is potential benefit to splitting even the shadow volumes
 at area boundaries, but it would involve the possibility of an
 extra plane of shadow drawing at the area boundary.
-
 
 interaction	lightName	numIndexes
 
@@ -70,11 +66,8 @@ the surfaces are considered together for the optimized shadow volume.  If
 you want no self shadow on a static surface, you must still make it into an
 entity so it isn't considered in the prelight.
 
-
 r_hidePrelights
 r_hideNonPrelights
-
-
 
 each surface could include prelight indexes
 
@@ -91,9 +84,6 @@ optimize groups
 
 build light models
 
-
-
-
 */
 
 /*
@@ -103,7 +93,6 @@ LIGHT TESTING
 
 =================================================================================
 */
-
 
 /*
 ====================
@@ -135,10 +124,7 @@ void R_ModulateLights_f( const idCmdArgs &args ) {
 	common->Printf( "modulated %i lights\n", count );
 }
 
-
-
 //======================================================================================
-
 
 /*
 ===============
@@ -182,7 +168,6 @@ void R_CreateEntityRefs( idRenderEntityLocal *def ) {
 	// push these points down the BSP tree into areas
 	def->world->PushVolumeIntoTree( def, NULL, 8, transformed );
 }
-
 
 /*
 =================================================================================
@@ -426,7 +411,6 @@ void R_RenderLightFrustum( const renderLight_t &renderLight, idPlane lightFrustu
 	lightFrustum[4] = fakeLight.frustum[4];
 	lightFrustum[5] = fakeLight.frustum[5];
 }
-
 
 //=================================================================================
 

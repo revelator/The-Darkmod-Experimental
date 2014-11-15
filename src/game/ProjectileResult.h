@@ -32,7 +32,6 @@
 * NOTE: This object MUST be destroyed/removed in the scripts that are run
 **/
 
-
 class CProjectileResult : public idEntity {
 public:
 	CLASS_PROTOTYPE( CProjectileResult );

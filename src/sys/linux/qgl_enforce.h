@@ -38,7 +38,7 @@
 #define glColor3bv use_glColor3bv
 #define glColor3d use_glColor3d
 #define glColor3dv use_glColor3dv
-#define glColor3f use_glColor3f
+#define GL_Color use_glColor3f
 #define glColor3fv use_glColor3fv
 #define glColor3i use_glColor3i
 #define glColor3iv use_glColor3iv

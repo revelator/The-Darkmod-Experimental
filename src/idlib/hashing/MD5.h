@@ -25,21 +25,17 @@
 
 #ifndef __MD5_H__
 #define __MD5_H__
- 
 
 /* Any 32-bit or wider unsigned integer data type will do */
 typedef unsigned int MD5_u32plus;
- 
+
 typedef struct {
 	MD5_u32plus lo, hi;
 	MD5_u32plus a, b, c, d;
 	unsigned char buffer[64];
 	MD5_u32plus block[16];
 } MD5_CTX;
- 
+
 unsigned long MD5_BlockChecksum( const void *data, int length );
 
 #endif /* !__MD5_H__ */
-
-
-

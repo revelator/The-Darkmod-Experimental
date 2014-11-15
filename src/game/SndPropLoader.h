@@ -111,7 +111,6 @@ public:
 	**/
 	float Vol;
 
-
 	float MaxRange; // Range in meters above which sound propagation is not calculated
 	float MaxRangeCalVol; // volume value to normalize by for the max soundrange (in dB)
 	// NOT YET IMPLEMENTED:
@@ -196,7 +195,6 @@ typedef struct SsndPortal_s {
 	idVec3 normal; // normal vector of portal (by convention, this points into the room)
 
 	const idWinding *winding; // point information
-
 } SsndPortal;
 
 typedef SsndPortal *sndPortalPtr;
@@ -216,12 +214,9 @@ typedef struct SsndArea_s {
 	SsndPortal_s		*portals;	// array containing the portals of this area
 
 	CMatRUT<float>		*portalDists; // acoustical distances from each portal in room to each other portal
-
 } SsndArea;
 
 typedef SsndArea *sndAreaPtr;
-
-
 
 // ====================================================================
 /**
@@ -230,7 +225,6 @@ typedef SsndArea *sndAreaPtr;
 **/
 
 class CsndPropBase {
-
 public:
 	void	Save( idSaveGame *savefile ) const;
 	void	Restore( idRestoreGame *savefile );
@@ -310,7 +304,6 @@ protected:
 	**/
 	int					m_numPortals;
 
-
 	/********************************************************************
 	* GAMEPLAY MEMBERS
 	* Members after this point must be passed along to be used in gameplay!
@@ -336,7 +329,6 @@ protected:
 	**/
 	SPortData			*m_PortData;
 };
-
 
 /**
 * CLASS DESCRIPTION: CsndPropLoader class.  Handles parsing of mapfile
@@ -479,7 +471,6 @@ protected:
 	* Only contains areas with non-default properties.
 	**/
 	idList<SAreaProp>	m_AreaProps;
-
 };
 
 #endif

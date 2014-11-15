@@ -24,7 +24,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "snd_local.h"
 
-
 /*
 ===============
 idSoundShader::Init

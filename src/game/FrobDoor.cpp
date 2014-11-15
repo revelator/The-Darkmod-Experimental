@@ -46,7 +46,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #define DOOR_SPEED_RATE_INCREASE_MIN 7168.0f  // grayman #3755
 #define DOOR_SPEED_RATE_INCREASE_MAX 10752.0f // grayman #3755
 
-
 //===============================================================================
 //CFrobDoor
 //===============================================================================
@@ -1668,9 +1667,3 @@ void CFrobDoor::StopPushingDoorHard() {
 bool CFrobDoor::IsPushingHard() {
 	return m_AIPushingDoor;
 }
-
-
-
-
-
-

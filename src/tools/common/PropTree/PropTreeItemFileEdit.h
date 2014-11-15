@@ -5,7 +5,6 @@
 #pragma once
 #endif
 
-
 //#include "PropTreeItem.h"
 //#include "PropTreeItemEdit.h"
 
@@ -48,6 +47,5 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 
 //{{AFX_INSERT_LOCATION}}
-
 
 #endif

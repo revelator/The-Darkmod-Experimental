@@ -29,7 +29,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 typedef struct {
 	const char		*mFilename;
 	idStr			*mComment;
-
 } GECHECKINDLG;
 
 /*
@@ -85,4 +84,3 @@ bool GECheckInDlg_DoModal( HWND parent, const char *filename, idStr *comment ) {
 	}
 	return true;
 }
-

@@ -39,7 +39,6 @@ static char THIS_FILE[] = __FILE__;
 
 CDlgCamera g_dlgCamera;
 
-
 void showCameraInspector() {
 	if( g_dlgCamera.GetSafeHwnd() == NULL ) {
 		g_dlgCamera.Create( IDD_DLG_CAMERA );
@@ -56,7 +55,6 @@ void showCameraInspector() {
 /////////////////////////////////////////////////////////////////////////////
 // CDlgCamera dialog
 
-
 CDlgCamera::CDlgCamera( CWnd *pParent /*=NULL*/ )
 	: CDialog( CDlgCamera::IDD, pParent ) {
 	//{{AFX_DATA_INIT(CDlgCamera)
@@ -69,7 +67,6 @@ CDlgCamera::CDlgCamera( CWnd *pParent /*=NULL*/ )
 	m_editPoints = 0;
 	//}}AFX_DATA_INIT
 }
-
 
 void CDlgCamera::DoDataExchange( CDataExchange *pDX ) {
 	CDialog::DoDataExchange( pDX );
@@ -86,7 +83,6 @@ void CDlgCamera::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Radio( pDX, IDC_RADIO_EDITPOINTS, m_editPoints );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CDlgCamera, CDialog )
 	//{{AFX_MSG_MAP(CDlgCamera)
@@ -222,7 +218,6 @@ void CDlgCamera::OnDestroy() {
 	CDialog::OnDestroy();
 	Sys_UpdateWindows( W_ALL );
 }
-
 
 void CDlgCamera::OnApply() {
 	UpdateData( TRUE );

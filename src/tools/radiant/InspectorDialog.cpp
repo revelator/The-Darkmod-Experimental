@@ -36,7 +36,6 @@ void InspectorsDockingCallback( bool docked , int ID , CWnd *wnd ) {
 	g_Inspectors->SetDockedTabs( docked , ID );
 }
 
-
 // CInspectorDialog dialog
 //IMPLEMENT_DYNAMIC(CInspectorDialog,CTabsDlg)
 CInspectorDialog::CInspectorDialog( CWnd *pParent /*=NULL*/ )
@@ -48,14 +47,12 @@ CInspectorDialog::CInspectorDialog( CWnd *pParent /*=NULL*/ )
 CInspectorDialog::~CInspectorDialog() {
 }
 
-
 BEGIN_MESSAGE_MAP( CInspectorDialog, CTabsDlg )
 	ON_NOTIFY( TCN_SELCHANGE, IDC_TAB_INSPECTOR, OnTcnSelchange )
 	ON_WM_SIZE()
 	ON_WM_DESTROY()
 	ON_WM_CLOSE()
 END_MESSAGE_MAP()
-
 
 // CInspectorDialog message handlers
 
@@ -102,8 +99,6 @@ bool CInspectorDialog::GetSelectAllCriteria( idStr &key, idStr &val ) {
 	val = v;
 	return true;
 }
-
-
 
 void CInspectorDialog::OnSize( UINT nType, int cx, int cy ) {
 	CTabsDlg::OnSize( nType, cx, cy );

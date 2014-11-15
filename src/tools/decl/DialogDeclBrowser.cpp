@@ -59,9 +59,7 @@ toolTip_t DialogDeclBrowser::toolTips[] = {
 	{ 0, NULL }
 };
 
-
 static DialogDeclBrowser *g_DeclDialog = NULL;
-
 
 IMPLEMENT_DYNAMIC( DialogDeclBrowser, CDialog )
 

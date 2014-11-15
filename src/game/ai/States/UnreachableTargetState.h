@@ -23,7 +23,6 @@
 #include "State.h"
 
 namespace ai {
-
 #define STATE_UNREACHABLE_TARGET "UnreachableTarget"
 
 class UnreachableTargetState :
@@ -51,7 +50,6 @@ public:
 
 	static StatePtr CreateInstance();
 };
-
 } // namespace ai
 
 #endif /* __AI_UNREACHABLE_TARGET_STATE_H__ */

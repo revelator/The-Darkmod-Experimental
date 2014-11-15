@@ -27,7 +27,6 @@
 #include "Queue.h"
 
 namespace ai {
-
 enum SubsystemId {
 	SubsysSenses = 0,
 	SubsysMovement,
@@ -119,7 +118,6 @@ public:
 	virtual idStr GetDebugInfo();
 };
 typedef boost::shared_ptr<Subsystem> SubsystemPtr;
-
 } // namespace ai
 
 #endif /* __AI_SUBSYSTEM_H__ */

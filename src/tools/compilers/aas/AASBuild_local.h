@@ -28,7 +28,6 @@
 #include "AASReach.h"
 #include "AASCluster.h"
 
-
 //===============================================================
 //
 //	idAASBuild
@@ -40,9 +39,7 @@ typedef struct aasProcNode_s {
 	int children[2];		// negative numbers are (-1 - areaNumber), 0 = solid
 } aasProcNode_t;
 
-
 class idLedge {
-
 public:
 	idVec3					start;
 	idVec3					end;
@@ -62,9 +59,7 @@ public:
 	bool					PointBetweenBounds( const idVec3 &v ) const;
 };
 
-
 class idAASBuild {
-
 public:
 	idAASBuild( void );
 	~idAASBuild( void );
@@ -134,7 +129,6 @@ private:	// storing file
 	void					GetSizeEstimate_r( idBrushBSPNode *parent, idBrushBSPNode *node, struct sizeEstimate_s &size );
 	void					SetSizeEstimate( const idBrushBSP &bsp, idAASFileLocal *file );
 	bool					StoreFile( const idBrushBSP &bsp );
-
 };
 
 #endif /* !__AASBUILD_LOCAL_H__ */

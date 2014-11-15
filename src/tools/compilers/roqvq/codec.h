@@ -93,7 +93,6 @@ private:
 	byte				*luti;
 	VQDATA				**codebook2;
 	VQDATA				**codebook4;
-
 };
 
 #endif // __codec_h__

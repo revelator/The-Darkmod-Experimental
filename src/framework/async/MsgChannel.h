@@ -20,7 +20,6 @@
 #ifndef __MSGCHANNEL_H__
 #define __MSGCHANNEL_H__
 
-
 /*
 ===============================================================================
 
@@ -42,7 +41,6 @@
 #define CONNECTIONLESS_MESSAGE_ID_MASK	0x7FFF		// value to mask away connectionless message id
 
 #define MAX_MSG_QUEUE_SIZE				16384		// must be a power of 2
-
 
 class idMsgQueue {
 public:
@@ -78,7 +76,6 @@ private:
 	void			WriteData( const byte *data, const int size );
 	void			ReadData( byte *data, const int size );
 };
-
 
 class idMsgChannel {
 public:

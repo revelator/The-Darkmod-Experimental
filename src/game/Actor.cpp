@@ -320,7 +320,6 @@ bool idAnimState::UpdateState( void ) {
 	return true;
 }
 
-
 /*
 =====================
 idAnimState::FinishAction
@@ -353,10 +352,6 @@ const char *idAnimState::WaitState( void ) const {
 		return NULL;
 	}
 }
-
-
-
-
 
 /***********************************************************************
 
@@ -2547,7 +2542,6 @@ const char *idActor::WaitState( void ) const {
 	}
 }
 
-
 const char *idActor::WaitState( int channel ) const {
 	switch( channel ) {
 	case ANIMCHANNEL_HEAD :
@@ -2565,8 +2559,6 @@ const char *idActor::WaitState( int channel ) const {
 	}
 	return NULL;
 }
-
-
 
 /*
 =====================
@@ -2836,7 +2828,6 @@ void idActor::Gib( const idVec3 &dir, const char *damageDefName ) {
 	}
 	StopSound( SND_CHANNEL_VOICE, false );
 }
-
 
 /*
 ============
@@ -3809,7 +3800,6 @@ void idActor::Event_EnableAnim( int channel, int blendFrames ) {
 		break;
 	}
 }
-
 
 /*
 ===============

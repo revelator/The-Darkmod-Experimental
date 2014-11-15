@@ -193,7 +193,6 @@ ve_setup_data_template ve_setup_32_stereo_low = {
 	_mapres_template_44_stereo
 };
 
-
 ve_setup_data_template ve_setup_32_uncoupled_low = {
 	1,
 	rate_mapping_32_un_low,

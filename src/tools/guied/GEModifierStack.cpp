@@ -96,4 +96,3 @@ bool rvGEModifierStack::Redo( void ) {
 	gApp.GetTransformer().Update( );
 	return true;
 }
-

@@ -141,4 +141,3 @@ void CAboutDlg::DoDataExchange( CDataExchange *pDX ) {
 
 BEGIN_MESSAGE_MAP( CAboutDlg, CDialog )
 END_MESSAGE_MAP()
-

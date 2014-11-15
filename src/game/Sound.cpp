@@ -43,7 +43,6 @@ EVENT( EV_Speaker_Off,			idSound::Event_Off )
 EVENT( EV_Speaker_Timer,		idSound::Event_Timer )
 END_CLASS
 
-
 /*
 ================
 idSound::idSound
@@ -286,4 +285,3 @@ idSound::ShowEditingDialog
 void idSound::ShowEditingDialog( void ) {
 	common->InitTool( EDITOR_SOUND, &spawnArgs );
 }
-

@@ -1,20 +1,20 @@
 /*****************************************************************************
                     The Dark Mod GPL Source Code
- 
- This file is part of the The Dark Mod Source Code, originally based 
+
+ This file is part of the The Dark Mod Source Code, originally based
  on the Doom 3 GPL Source Code as published in 2011.
- 
- The Dark Mod Source Code is free software: you can redistribute it 
- and/or modify it under the terms of the GNU General Public License as 
- published by the Free Software Foundation, either version 3 of the License, 
+
+ The Dark Mod Source Code is free software: you can redistribute it
+ and/or modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation, either version 3 of the License,
  or (at your option) any later version. For details, see LICENSE.TXT.
- 
+
  Project: The Dark Mod (http://www.thedarkmod.com/)
- 
- $Revision$ (Revision of last commit) 
+
+ $Revision$ (Revision of last commit)
  $Date$ (Date of last commit)
  $Author$ (Author of last commit)
- 
+
 ******************************************************************************/
 
 #include "precompiled.h"
@@ -25,7 +25,6 @@
 #include "Simd_SSE.h"
 #include "Simd_SSE2.h"
 #include "Simd_SSE3.h"
-
 
 //===============================================================
 //
@@ -134,7 +133,6 @@ const char * idSIMD_SSE3::GetName( void ) const {
 	_asm _emit ( ( reg1 & 7 ) << 3 ) | ( reg0 & 7 ) | RSCALE( scale )			\
 	_asm _emit constant
 
-
 // Packed Single-FP Add/Subtract ( dst[0]=dst[0]+src[0], dst[1]=dst[1]-src[1], dst[2]=dst[2]+src[2], dst[3]=dst[3]-src[3] )
 #define addsubps( dst, src )						\
 	_asm _emit 0xF2									\
@@ -212,7 +210,6 @@ const char * idSIMD_SSE3::GetName( void ) const {
 	_asm _emit 0xF0									\
 	_asm _emit ( ( dst & 7 ) << 3 ) | src
 
-
 #define DRAWVERT_SIZE				60
 #define DRAWVERT_XYZ_OFFSET			(0*4)
 #define DRAWVERT_ST_OFFSET			(3*4)
@@ -224,7 +221,6 @@ const char * idSIMD_SSE3::GetName( void ) const {
 #define JOINTQUAT_SIZE				(7*4)
 #define JOINTMAT_SIZE				(4*3*4)
 #define JOINTWEIGHT_SIZE			(4*4)
-
 
 /*
 ============

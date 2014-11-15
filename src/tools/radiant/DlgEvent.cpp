@@ -34,7 +34,6 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CDlgEvent dialog
 
-
 CDlgEvent::CDlgEvent( CWnd *pParent /*=NULL*/ )
 	: CDialog( CDlgEvent::IDD, pParent ) {
 	//{{AFX_DATA_INIT(CDlgEvent)
@@ -43,7 +42,6 @@ CDlgEvent::CDlgEvent( CWnd *pParent /*=NULL*/ )
 	//}}AFX_DATA_INIT
 }
 
-
 void CDlgEvent::DoDataExchange( CDataExchange *pDX ) {
 	CDialog::DoDataExchange( pDX );
 	//{{AFX_DATA_MAP(CDlgEvent)
@@ -51,7 +49,6 @@ void CDlgEvent::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Radio( pDX, IDC_RADIO_EVENT, m_event );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CDlgEvent, CDialog )
 	//{{AFX_MSG_MAP(CDlgEvent)

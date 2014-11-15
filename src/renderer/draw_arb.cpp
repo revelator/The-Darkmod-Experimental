@@ -86,7 +86,7 @@ static void RB_ARB_DrawInteraction( const drawInteraction_t *din ) {
 	// draw light falloff to the alpha channel
 	//
 	GL_State( GLS_COLORMASK | GLS_DEPTHMASK | backEnd.depthFunc );
-	glColor3f( 1, 1, 1 );
+	GL_Color( 1.0f, 1.0f, 1.0f );
 	glDisableClientState( GL_TEXTURE_COORD_ARRAY );
 	glEnable( GL_TEXTURE_GEN_S );
 	glTexGenfv( GL_S, GL_OBJECT_PLANE, din->lightProjection[3].ToFloatPtr() );
@@ -179,7 +179,7 @@ static void RB_ARB_DrawInteraction( const drawInteraction_t *din ) {
 	GL_SelectTexture( 0 );
 	// select the vertex color source
 	if( din->vertexColor == SVC_IGNORE ) {
-		glColor4fv( din->diffuseColor.ToFloatPtr() );
+		GL_Color(din->diffuseColor[0], din->diffuseColor[1], din->diffuseColor[2], din->diffuseColor[3]);
 	} else {
 		// FIXME: does this not get diffuseColor blended in?
 		glColorPointer( 4, GL_UNSIGNED_BYTE, sizeof( idDrawVert ), ( void * )&ac->color );
@@ -243,7 +243,7 @@ static void RB_ARB_DrawThreeTextureInteraction( const drawInteraction_t *din ) {
 	glVertexPointer( 3, GL_FLOAT, sizeof( idDrawVert ), ac->xyz.ToFloatPtr() );
 	GL_SelectTexture( 0 );
 	glTexCoordPointer( 2, GL_FLOAT, sizeof( idDrawVert ), ( void * )&ac->st );
-	glColor3f( 1, 1, 1 );
+	GL_Color( 1.0f, 1.0f, 1.0f );
 	//
 	// bump map dot cubeMap into the alpha channel
 	//
@@ -292,7 +292,7 @@ static void RB_ARB_DrawThreeTextureInteraction( const drawInteraction_t *din ) {
 	GL_SelectTexture( 0 );
 	// select the vertex color source
 	if( din->vertexColor == SVC_IGNORE ) {
-		glColor4fv( din->diffuseColor.ToFloatPtr() );
+		GL_Color(din->diffuseColor[0], din->diffuseColor[1], din->diffuseColor[2], din->diffuseColor[3]);
 	} else {
 		// FIXME: does this not get diffuseColor blended in?
 		glColorPointer( 4, GL_UNSIGNED_BYTE, sizeof( idDrawVert ), ( void * )&ac->color );
@@ -403,10 +403,10 @@ static void RB_RenderViewLight( viewLight_t *vLight ) {
 	if( vLight->globalShadows || vLight->localShadows ) {
 		backEnd.currentScissor = vLight->scissorRect;
 		if( r_useScissor.GetBool() ) {
-			glScissor( backEnd.viewDef->viewport.x1 + backEnd.currentScissor.x1,
-					   backEnd.viewDef->viewport.y1 + backEnd.currentScissor.y1,
-					   backEnd.currentScissor.x2 + 1 - backEnd.currentScissor.x1,
-					   backEnd.currentScissor.y2 + 1 - backEnd.currentScissor.y1 );
+			GL_Scissor( backEnd.viewDef->viewport.x1 + backEnd.currentScissor.x1,
+					    backEnd.viewDef->viewport.y1 + backEnd.currentScissor.y1,
+					    backEnd.currentScissor.x2 + 1 - backEnd.currentScissor.x1,
+					    backEnd.currentScissor.y2 + 1 - backEnd.currentScissor.y1 );
 		}
 		glClear( GL_STENCIL_BUFFER_BIT );
 	} else {

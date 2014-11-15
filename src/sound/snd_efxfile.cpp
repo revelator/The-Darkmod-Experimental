@@ -171,7 +171,6 @@ bool idEFXFile::ReadEffect( idLexer &src, idSoundEffect *effect ) {
 	return false;
 }
 
-
 /*
 ===============
 idEFXFile::LoadFile
@@ -199,7 +198,6 @@ bool idEFXFile::LoadFile( const char *filename, bool OSPath ) {
 	};
 	return true;
 }
-
 
 /*
 ===============

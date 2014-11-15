@@ -28,7 +28,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "DialogAFConstraint.h"
 #include "DialogAFConstraintUniversal.h"
 
-
 // DialogAFConstraintUniversal dialog
 
 toolTip_t DialogAFConstraintUniversal::toolTips[] = {
@@ -340,7 +339,6 @@ int DialogAFConstraintUniversal::OnToolHitTest( CPoint point, TOOLINFO *pTI ) co
 	return DefaultOnToolHitTest( toolTips, this, point, pTI );
 }
 
-
 BEGIN_MESSAGE_MAP( DialogAFConstraintUniversal, CDialog )
 	ON_NOTIFY_EX_RANGE( TTN_NEEDTEXTW, 0, 0xFFFF, OnToolTipNotify )
 	ON_NOTIFY_EX_RANGE( TTN_NEEDTEXTA, 0, 0xFFFF, OnToolTipNotify )
@@ -389,7 +387,6 @@ BEGIN_MESSAGE_MAP( DialogAFConstraintUniversal, CDialog )
 	ON_EN_CHANGE( IDC_EDIT_UNIVERSAL_LIMIT_YAW, OnEnChangeEditUniversalLimitYaw )
 	ON_NOTIFY( UDN_DELTAPOS, IDC_SPIN_UNIVERSAL_LIMIT_YAW, OnDeltaposSpinUniversalLimitYaw )
 END_MESSAGE_MAP()
-
 
 // DialogAFConstraintUniversal message handlers
 

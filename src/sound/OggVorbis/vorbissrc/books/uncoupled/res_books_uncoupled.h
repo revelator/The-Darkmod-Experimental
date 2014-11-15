@@ -10904,4 +10904,3 @@ static static_codebook _huff_book__8u1__single = {
 	NULL,
 	0
 };
-

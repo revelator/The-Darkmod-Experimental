@@ -739,7 +739,6 @@ private:
 
 	decalInfo_t			decalInfo;
 
-
 	mutable	float		sort;				// lower numbered shaders draw before higher numbered
 	deform_t			deform;
 	int					deformRegisters[4];		// numeric parameter for deforms

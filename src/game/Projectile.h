@@ -74,7 +74,6 @@ typedef struct SFinalProjData_s {
 	* Name of the surface that was struck
 	**/
 	idStr	SurfaceType;
-
 } SFinalProjData;
 
 /*
@@ -244,7 +243,6 @@ private:
 	float					burstVelocity;
 };
 
-
 /*
 ===============================================================================
 
@@ -273,7 +271,6 @@ public :
 	void					Explode( void );
 	void					Fizzle( void );
 	virtual bool			Collide( const trace_t &collision, const idVec3 &velocity );
-
 
 private:
 	idEntityPtr<idEntity>	owner;

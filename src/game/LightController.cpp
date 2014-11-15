@@ -184,5 +184,3 @@ CLightController::UnregisterAmbient
 void CLightController::UnregisterAmbient() {
 	//	m_Changes.Clear();
 }
-
-

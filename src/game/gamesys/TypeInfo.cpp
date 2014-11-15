@@ -37,9 +37,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 // disabled because it's adds about 64MB to state dumps and takes a really long time
 //#define DUMP_GAMELOCAL
 
-
 typedef void ( *WriteVariableType_t )( const char *varName, const char *varType, const char *scope, const char *prefix, const char *postfix, const char *value, const void *varPtr, int varSize );
-
 
 class idTypeInfoTools {
 public:
@@ -75,7 +73,6 @@ int									idTypeInfoTools::initValue	= 0;
 WriteVariableType_t					idTypeInfoTools::Write		= NULL;
 idLexer 							*idTypeInfoTools::src		= NULL;
 bool								idTypeInfoTools::typeError	= false;
-
 
 /*
 ================

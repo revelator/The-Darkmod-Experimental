@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 LONG WINAPI MainWndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
 
-
 void WIN_Sizing( WORD side, RECT *rect ) {
 	if( !glConfig.isInitialized || glConfig.vidHeight <= 0 || glConfig.vidWidth <= 0 ) {
 		return;
@@ -133,7 +132,6 @@ static byte s_scantoshift[128] = {
 	0,          0,      0,         0,          0,      0,           0,        0      // 7
 };
 
-
 /*
 =======
 MapKey
@@ -207,7 +205,6 @@ int MapKey( int key ) {
 	}
 	return result;
 }
-
 
 /*
 ====================

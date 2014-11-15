@@ -25,14 +25,12 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #define PROP_TREE_VIEW "PropTreeView"
 
-
 IMPLEMENT_DYNCREATE( MaterialPropTreeView, CPropTreeView )
 
 BEGIN_MESSAGE_MAP( MaterialPropTreeView, CPropTreeView )
 	ON_NOTIFY( PTN_ITEMCHANGED, IDC_PROPERTYTREE, OnPropertyChangeNotification )
 	ON_NOTIFY( PTN_ITEMEXPANDING, IDC_PROPERTYTREE, OnPropertyItemExpanding )
 END_MESSAGE_MAP()
-
 
 /**
 * Constructor for MaterialPropTreeView.
@@ -204,8 +202,3 @@ void MaterialPropTreeView::RefreshProperties() {
 	}
 	Invalidate();
 }
-
-
-
-
-

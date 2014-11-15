@@ -23,7 +23,6 @@
 #include "PathTask.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_PATH_SLEEP "PathSleep"
 
@@ -51,9 +50,7 @@ public:
 
 	// Creates a new Instance of this task
 	static PathSleepTaskPtr CreateInstance();
-
 };
-
 } // namespace ai
 
 #endif /* __AI_PATH_SLEEP_TASK_H__ */

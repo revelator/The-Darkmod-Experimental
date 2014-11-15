@@ -33,7 +33,6 @@ Save out name.line for qe3 to read
 ==============================================================================
 */
 
-
 /*
 =============
 LeakFile
@@ -92,4 +91,3 @@ void LeakFile( tree_t *tree ) {
 	common->Printf( "%5i point linefile\n", count + 1 );
 	fclose( linefile );
 }
-

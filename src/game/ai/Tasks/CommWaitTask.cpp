@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 CommWaitTask::CommWaitTask() :
 	CommunicationTask( "" ),
 	_duration( 0 ),
@@ -79,5 +78,4 @@ TaskLibrary::Registrar commWaitTaskRegistrar(
 	TASK_COMM_WAIT, // Task Name
 	TaskLibrary::CreateInstanceFunc( &CommWaitTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

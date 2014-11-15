@@ -51,14 +51,12 @@ void CPreviewDlg::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Control( pDX, IDC_PREVIEW, wndPreview );
 }
 
-
 BEGIN_MESSAGE_MAP( CPreviewDlg, CDialog )
 	ON_NOTIFY( TVN_SELCHANGED, IDC_TREE_MEDIA, OnTvnSelchangedTreeMedia )
 	ON_BN_CLICKED( IDC_BUTTON_RELOAD, OnBnClickedButtonReload )
 	ON_BN_CLICKED( IDC_BUTTON_ADD, OnBnClickedButtonAdd )
 	ON_BN_CLICKED( IDC_BUTTON_PLAY, OnBnClickedButtonPlay )
 END_MESSAGE_MAP()
-
 
 // CPreviewDlg message handlers
 
@@ -155,8 +153,6 @@ void CPreviewDlg::AddCommentedItems() {
 		}
 	}
 }
-
-
 
 void CPreviewDlg::AddStrList( const char *root, const idStrList &list, int id ) {
 	idStr		out, path;
@@ -366,7 +362,6 @@ void CPreviewDlg::OnTvnSelchangedTreeMedia( NMHDR *pNMHDR, LRESULT *pResult ) {
 	*pResult = 0;
 }
 
-
 BOOL CPreviewDlg::Create( LPCTSTR lpszTemplateName, CWnd *pParentWnd ) {
 	BOOL b =  CDialog::Create( lpszTemplateName, pParentWnd );
 	ShowWindow( SW_SHOW );
@@ -440,7 +435,6 @@ void CPreviewDlg::OnBnClickedButtonAdd() {
 		}
 	}
 }
-
 
 void CPreviewDlg::AddSounds( bool rootItems ) {
 	int i, j;

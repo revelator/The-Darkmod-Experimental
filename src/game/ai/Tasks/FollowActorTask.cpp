@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 #define DISTANCE_FOLLOWER_REACHED						60
 #define DISTANCE_FOLLOWER_CATCHUP_DISTANCE				480
 #define DISTANCE_FOLLOWER_CLOSE_ENOUGH_TO_STOP_RUNNING	180
@@ -108,5 +107,4 @@ TaskLibrary::Registrar followActorTaskRegistrar(
 	TASK_FOLLOW_ACTOR, // Task Name
 	TaskLibrary::CreateInstanceFunc( &FollowActorTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

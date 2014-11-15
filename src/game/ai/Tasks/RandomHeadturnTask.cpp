@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 // Get the name of this task
 const idStr &RandomHeadturnTask::GetName() const {
 	static idStr _name( TASK_RANDOM_HEADTURN );
@@ -116,5 +115,4 @@ TaskLibrary::Registrar randomHeadturnTaskRegistrar(
 	TASK_RANDOM_HEADTURN, // Task Name
 	TaskLibrary::CreateInstanceFunc( &RandomHeadturnTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

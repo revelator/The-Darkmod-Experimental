@@ -60,7 +60,6 @@ CFindTextureDlg::CFindTextureDlg( CWnd *pParent /*=NULL*/ )
 	//}}AFX_DATA_INIT
 }
 
-
 void CFindTextureDlg::DoDataExchange( CDataExchange *pDX ) {
 	CDialog::DoDataExchange( pDX );
 	//{{AFX_DATA_MAP(CFindTextureDlg)
@@ -71,7 +70,6 @@ void CFindTextureDlg::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Check( pDX, IDC_CHECK_LIVE, m_bLive );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CFindTextureDlg, CDialog )
 	//{{AFX_MSG_MAP(CFindTextureDlg)
@@ -112,7 +110,6 @@ void CFindTextureDlg::show() {
 	}
 }
 
-
 bool CFindTextureDlg::isOpen() {
 	return ( g_dlgFind.GetSafeHwnd() == NULL || ::IsWindowVisible( g_dlgFind.GetSafeHwnd() ) == FALSE ) ? false : true;
 }
@@ -132,7 +129,6 @@ void CFindTextureDlg::setReplaceStr( const char *p ) {
 		g_dlgFind.UpdateData( FALSE );
 	}
 }
-
 
 void CFindTextureDlg::OnCancel() {
 	CRect rct;

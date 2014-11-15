@@ -81,7 +81,6 @@ void idDeviceContext::SetFont( int num ) {
 	}
 }
 
-
 void idDeviceContext::Init() {
 	xScale = 0.0;
 	SetSize( VIRTUAL_WIDTH, VIRTUAL_HEIGHT );
@@ -220,7 +219,6 @@ bool idDeviceContext::ClippedCoords( float *x, float *y, float *w, float *h, flo
 	return ( *w == 0 || *h == 0 ) ? true : false;
 }
 
-
 void idDeviceContext::AdjustCoords( float *x, float *y, float *w, float *h ) {
 	if( x ) {
 		*x *= xScale;
@@ -318,7 +316,6 @@ void idDeviceContext::DrawStretchPic( float x, float y, float w, float h, float 
 	}
 	renderSystem->DrawStretchPic( &verts[0], &indexes[0], 4, 6, shader, ident );
 }
-
 
 void idDeviceContext::DrawMaterial( float x, float y, float w, float h, const idMaterial *mat, const idVec4 &color, float scalex, float scaley ) {
 	renderSystem->SetColor( color );
@@ -511,7 +508,6 @@ void idDeviceContext::DrawFilledRect( float x, float y, float w, float h, const 
 	DrawStretchPic( x, y, w, h, 0, 0, 0, 0, whiteImage );
 }
 
-
 void idDeviceContext::DrawRect( float x, float y, float w, float h, float size, const idVec4 &color ) {
 	if( color.w == 0.0f ) {
 		return;
@@ -537,7 +533,6 @@ void idDeviceContext::DrawMaterialRect( float x, float y, float w, float h, floa
 	DrawMaterial( x, y, w, size, mat, color );
 	DrawMaterial( x, y + h - size, w, size, mat, color );
 }
-
 
 void idDeviceContext::SetCursor( int n ) {
 	cursor = ( n < CURSOR_ARROW || n >= CURSOR_COUNT ) ? CURSOR_ARROW : n;
@@ -575,7 +570,6 @@ void idDeviceContext::PaintChar( float x, float y, float width, float height, fl
 	AdjustCoords( &x, &y, &w, &h );
 	DrawStretchPic( x, y, w, h, s, t, s2, t2, hShader );
 }
-
 
 void idDeviceContext::SetFontByScale( float scale ) {
 	if( scale <= gui_smallFontLimit.GetFloat() ) {
@@ -792,7 +786,6 @@ idRegion *idDeviceContext::GetTextRegion( const char *text, float textScale, idR
 
 			if ((newLine && textWidth > rectDraw.w) || *p == '\n' || *p == '\0') {
 				if (len) {
-
 					float x = rectDraw.x ;
 
 					buff[newLine] = '\0';

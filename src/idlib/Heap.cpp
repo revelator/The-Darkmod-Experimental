@@ -1,26 +1,24 @@
 /*****************************************************************************
                     The Dark Mod GPL Source Code
- 
- This file is part of the The Dark Mod Source Code, originally based 
+
+ This file is part of the The Dark Mod Source Code, originally based
  on the Doom 3 GPL Source Code as published in 2011.
- 
- The Dark Mod Source Code is free software: you can redistribute it 
- and/or modify it under the terms of the GNU General Public License as 
- published by the Free Software Foundation, either version 3 of the License, 
+
+ The Dark Mod Source Code is free software: you can redistribute it
+ and/or modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation, either version 3 of the License,
  or (at your option) any later version. For details, see LICENSE.TXT.
- 
+
  Project: The Dark Mod (http://www.thedarkmod.com/)
- 
- $Revision$ (Revision of last commit) 
+
+ $Revision$ (Revision of last commit)
  $Date$ (Date of last commit)
  $Author$ (Author of last commit)
- 
+
 ******************************************************************************/
 
 #include "precompiled.h"
 #pragma hdrstop
-
-
 
 #ifndef USE_LIBC_MALLOC
 	#define USE_LIBC_MALLOC		0
@@ -44,9 +42,7 @@
 #define SMALL_ALIGN( bytes )	( ALIGN_SIZE( (bytes) + SMALL_HEADER_SIZE ) - SMALL_HEADER_SIZE )
 #define MEDIUM_SMALLEST_SIZE	( ALIGN_SIZE( 256 ) + ALIGN_SIZE( MEDIUM_HEADER_SIZE ) )
 
-
 class idHeap {
-
 public:
 					idHeap( void );
 					~idHeap( void );				// frees all associated data
@@ -135,7 +131,6 @@ private:
 	void			FreePageReal( idHeap::page_s *p );
 };
 
-
 /*
 ================
 idHeap::Init
@@ -182,13 +177,12 @@ idHeap::~idHeap
 ================
 */
 idHeap::~idHeap( void ) {
-
 	idHeap::page_s	*p;
 
 	if ( smallCurPage ) {
 		FreePage( smallCurPage );			// free small-heap current allocation page
 	}
-	p = smallFirstUsedPage;					// free small-heap allocated pages 
+	p = smallFirstUsedPage;					// free small-heap allocated pages
 	while( p ) {
 		idHeap::page_s *next = p->next;
 		FreePage( p );
@@ -216,7 +210,7 @@ idHeap::~idHeap( void ) {
 		p = next;
 	}
 
-	ReleaseSwappedPages();			
+	ReleaseSwappedPages();
 
 	if ( defragBlock ) {
 		free( defragBlock );
@@ -322,7 +316,7 @@ void *idHeap::Allocate16( const dword bytes ) {
 			idLib::common->Printf( "Freeing defragBlock on alloc of %i.\n", bytes );
 			free( defragBlock );
 			defragBlock = NULL;
-			ptr = (byte *) malloc( bytes + 16 + 4 );			
+			ptr = (byte *) malloc( bytes + 16 + 4 );
 			AllocDefragBlock();
 		}
 		if ( !ptr ) {
@@ -357,7 +351,6 @@ idHeap::Msize
 ================
 */
 dword idHeap::Msize( void *p ) {
-
 	if ( !p ) {
 		return 0;
 	}
@@ -413,7 +406,7 @@ void idHeap::Dump( void ) {
 	for ( pg = mediumFirstFreePage; pg; pg = pg->next ) {
 		idLib::common->Printf( "%p  bytes %-8d  (partially used by medium heap)\n", pg->data, pg->dataSize );
 	}
-	
+
 	for ( pg = largeFirstUsedPage; pg; pg = pg->next ) {
 		idLib::common->Printf( "%p  bytes %-8d  (fully used by large heap)\n", pg->data, pg->dataSize );
 	}
@@ -477,7 +470,7 @@ idHeap::page_s* idHeap::AllocatePage( dword bytes ) {
 				idLib::common->Printf( "Freeing defragBlock on alloc of %i.\n", size + ALIGN - 1 );
 				free( defragBlock );
 				defragBlock = NULL;
-				p = (idHeap::page_s *) ::malloc( size + ALIGN - 1 );			
+				p = (idHeap::page_s *) ::malloc( size + ALIGN - 1 );
 				AllocDefragBlock();
 			}
 			if ( !p ) {
@@ -496,7 +489,7 @@ idHeap::page_s* idHeap::AllocatePage( dword bytes ) {
 	p->next = NULL;
 
 	pagesAllocated++;
-	
+
 	return p;
 }
 
@@ -556,7 +549,6 @@ void *idHeap::SmallAllocate( dword bytes ) {
 	dword bytesLeft = (long)(pageSize) - smallCurPageOffset;
 	// if we need to allocate a new page
 	if ( bytes >= bytesLeft ) {
-
 		smallCurPage->next	= smallFirstUsedPage;
 		smallFirstUsedPage	= smallCurPage;
 		smallCurPage		= AllocatePage( pageSize );
@@ -619,7 +611,6 @@ idHeap::MediumAllocateFromPage
 ================
 */
 void *idHeap::MediumAllocateFromPage( idHeap::page_s *p, dword sizeNeeded ) {
-
 	mediumHeapEntry_s	*best,*nw = NULL;
 	byte				*ret;
 
@@ -644,7 +635,7 @@ void *idHeap::MediumAllocateFromPage( idHeap::page_s *p, dword sizeNeeded ) {
 		}
 		best->next	= nw;
 		best->size	-= sizeNeeded;
-		
+
 		p->largestFree = best->size;
 	}
 	else {
@@ -709,7 +700,7 @@ void *idHeap::MediumAllocate( dword bytes ) {
 		}
 
 		mediumFirstFreePage		= p;
-		
+
 		p->largestFree	= pageSize;
 		p->firstFree	= (void *)p->data;
 
@@ -756,7 +747,7 @@ void *idHeap::MediumAllocate( dword bytes ) {
 		}
 		mediumFirstUsedPage = p;
 		return data;
-	} 
+	}
 
 	// re-order linked list (so that next malloc query starts from current
 	// matching block) -- this speeds up both the page walks and block walks
@@ -820,18 +811,18 @@ void idHeap::MediumFree( void *ptr ) {
 		p->largestFree	= e->size;
 		e->freeBlock	= 1;				// mark block as free
 	}
-			
+
 	mediumHeapEntry_s *next = e->next;
 
 	// if the next block is free we can merge
 	if ( next && next->freeBlock ) {
 		e->size += next->size;
 		e->next = next->next;
-		
+
 		if ( next->next ) {
 			next->next->prev = e;
 		}
-		
+
 		if ( next->prevFree ) {
 			next->prevFree->nextFree = next->nextFree;
 		}
@@ -864,7 +855,7 @@ void idHeap::MediumFree( void *ptr ) {
 		if ( e->nextFree ) {
 			e->nextFree->prevFree = e->prevFree;
 		}
-		
+
 		e->nextFree = (mediumHeapEntry_s *)p->firstFree;
 		e->prevFree = NULL;
 		if ( e->nextFree ) {
@@ -875,7 +866,6 @@ void idHeap::MediumFree( void *ptr ) {
 
 	// if page wasn't in free list (because it was near-full), move it back there
 	if ( !isInFreeList ) {
-
 		// remove from "completely used" list
 		if ( p->prev ) {
 			p->prev->next = p->next;
@@ -897,7 +887,7 @@ void idHeap::MediumFree( void *ptr ) {
 		if ( !mediumFirstFreePage ) {
 			mediumFirstFreePage = p;
 		}
-	} 
+	}
 }
 
 //===============================================================
@@ -1052,7 +1042,6 @@ void Mem_UpdateFreeStats( int size ) {
 	mem_total_allocs.totalSize -= size;
 }
 
-
 #ifndef ID_DEBUG_MEMORY
 
 /*
@@ -1164,7 +1153,7 @@ Mem_CopyString
 */
 char *Mem_CopyString( const char *in ) {
 	char	*out;
-	
+
 	out = (char *)Mem_Alloc( strlen(in) + 1 );
 	strcpy( out, in );
 	return out;
@@ -1214,7 +1203,6 @@ Mem_EnableLeakTest
 */
 void Mem_EnableLeakTest( const char *name ) {
 }
-
 
 #else /* !ID_DEBUG_MEMORY */
 
@@ -1370,7 +1358,6 @@ void Mem_DumpCompressed( const char *fileName, memorySortType_t memSort, int sor
 	totalSize = 0;
 	numBlocks = 0;
 	for ( b = mem_debugMemory; b; b = b->next ) {
-
 		if ( numFrames && b->frameNumber < idLib::frameNumber - numFrames ) {
 			continue;
 		}
@@ -1721,7 +1708,7 @@ Mem_CopyString
 */
 char *Mem_CopyString( const char *in, const char *fileName, const int lineNumber ) {
 	char	*out;
-	
+
 	out = (char *)Mem_Alloc( strlen(in) + 1, fileName, lineNumber );
 	strcpy( out, in );
 	return out;
@@ -1742,7 +1729,6 @@ Mem_Shutdown
 ==================
 */
 void Mem_Shutdown( void ) {
-
 	if ( mem_leakName[0] != '\0' ) {
 		Mem_DumpCompressed( va( "%s_leak_size.txt", mem_leakName ), MEMSORT_SIZE, 0, 0 );
 		Mem_DumpCompressed( va( "%s_leak_location.txt", mem_leakName ), MEMSORT_LOCATION, 0, 0 );

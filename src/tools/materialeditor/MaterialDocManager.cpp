@@ -25,7 +25,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "MaterialDocManager.h"
 #include "MaterialView.h"
 
-
 /**
 * Constructor for MaterialDocManager.
 */

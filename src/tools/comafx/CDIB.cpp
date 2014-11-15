@@ -39,10 +39,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 		    4L*(long)((g1)-(g2))*(long)((g1)-(g2)) + \
 		    2L*(long)((b1)-(b2))*(long)((b1)-(b2)))
 
-
 static unsigned char masktable[] = { 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 };
-
-
 
 CDIB::CDIB( HANDLE hDib, int nBits ) {
 	m_pVoid = NULL;
@@ -68,7 +65,6 @@ void CDIB::DestroyDIB() {
 	}
 	m_pLinePtr = NULL;
 }
-
 
 BOOL CDIB::Create( int width, int height, int bits ) {
 	/*
@@ -150,11 +146,9 @@ void CDIB::SetPalette( RGBQUAD *pRGB ) {
 	memcpy( m_pRGB, pRGB, size * sizeof( RGBQUAD ) );
 }
 
-
 int CDIB::GetPaletteSize() {
 	return GetPaletteSize( m_pInfo->bmiHeader );
 }
-
 
 int CDIB::GetPaletteSize( BITMAPINFOHEADER &bmInfo ) {
 	switch( bmInfo.biBitCount ) {
@@ -168,7 +162,6 @@ int CDIB::GetPaletteSize( BITMAPINFOHEADER &bmInfo ) {
 		return 0;
 	}
 }
-
 
 void CDIB::SetPixel( int x, int y, COLORREF color ) {
 	unsigned char *ptr;
@@ -193,7 +186,6 @@ void CDIB::SetPixel8( int x, int y, unsigned char color ) {
 	ptr += x;
 	*ptr = color;
 }
-
 
 COLORREF CDIB::GetPixel( int x, int y ) {
 	unsigned char *ptr;
@@ -289,7 +281,6 @@ void CDIB::InitDIB( COLORREF color ) {
 		}
 	}
 }
-
 
 void CDIB::BitBlt( HDC hDest, int nXDest, int nYDest, int nWidth, int nHeight, int xSrc, int ySrc ) {
 	SetDIBitsToDevice( hDest, nXDest, nYDest, nWidth, nHeight, xSrc, Height() - ySrc - nHeight, 0, Height(), m_pBits, m_pInfo, DIB_RGB_COLORS );
@@ -493,7 +484,6 @@ void CDIB::ReplaceColor( unsigned char oldColor, unsigned char newColor ) {
 	}
 }
 
-
 CDIB &CDIB::operator=( CDIB &dib ) {
 	CopyDIB( dib );
 	return *this;
@@ -578,15 +568,12 @@ void CDIB::UseGamma( float fg, BOOL bUse ) {
 	CreateGammaCurve();
 }
 
-
 void CDIB::CreateGammaCurve() {
 	int i;
 	for( i = 0; i < 256; ++i ) {
 		Gamma[i] = ( int )( 255 * powf( ( double )i / 255, m_fGamma ) + ( double )0.5 );
 	}
 }
-
-
 
 void CDIB::GetPixel( UINT x, UINT y, int &pixel ) {
 	ASSERT( x < ( UINT )Width() );
@@ -644,7 +631,6 @@ unsigned char *sPtr,*dPtr;
 	return TRUE;
 }
 */
-
 
 BOOL CDIB::SwitchFromOne( CDIB &dib ) {
 	int i, j, w, h;
@@ -715,7 +701,6 @@ BOOL CDIB::SwitchPalette( CDIB &dib ) {
 	return TRUE;
 }
 
-
 int CDIB::ClosestColor( RGBQUAD *pRgb ) {
 	unsigned int dist = BIG_DISTANCE, i, d, c;
 	RGBQUAD *pQuad = m_pRGB;
@@ -763,8 +748,6 @@ BOOL CDIB::OpenDIB( CString &csFileName ) {
 	}
 	return FALSE;
 }
-
-
 
 BOOL CDIB::SaveDIB( CString &csFileName, BitmapType type ) {
 	CFile file;
@@ -820,7 +803,6 @@ BOOL CDIB::OpenBMP( CString &csFileName ) {
 	file.Close();
 	return TRUE;
 }
-
 
 int CDIB::CountColors() {
 	ASSERT( GetBitCount() == 8 );

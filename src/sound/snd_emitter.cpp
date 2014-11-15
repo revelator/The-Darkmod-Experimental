@@ -24,7 +24,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "snd_local.h"
 
-
 /*
 ===================
 idSoundFade::Clear
@@ -57,7 +56,6 @@ float idSoundFade::FadeDbAt44kHz( int current44kHz ) {
 }
 
 //========================================================================
-
 
 /*
 =======================
@@ -296,7 +294,6 @@ void idSoundChannel::GatherChannelSamples( int sampleOffset44k, int sampleCount4
 		sampleOffset44k += len;
 	}
 }
-
 
 //=====================================================================================
 

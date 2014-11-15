@@ -45,7 +45,6 @@ Collision detection for rotational motion
 // if the collision point is this close to the rotation axis it is not considered a collision
 #define ROTATION_AXIS_EPSILON		(CM_CLIP_EPSILON*0.25f)
 
-
 /*
 ================
 CM_RotatePoint

@@ -47,7 +47,6 @@ EVENT( EV_IsAtRest,					idMoveable::Event_IsAtRest )
 EVENT( EV_EnableDamage,				idMoveable::Event_EnableDamage )
 END_CLASS
 
-
 static const float BOUNCE_SOUND_MIN_VELOCITY	= 80.0f;
 static const float BOUNCE_SOUND_MAX_VELOCITY	= 200.0f;
 static const float SLIDING_VELOCITY_THRESHOLD	= 5.0f;
@@ -787,7 +786,6 @@ void idMoveable::Event_EnableDamage( float enable ) {
 	canDamage = ( enable != 0.0f );
 }
 
-
 /*
 ===============================================================================
 
@@ -951,7 +949,6 @@ idBarrel::ClientPredictionThink
 void idBarrel::ClientPredictionThink( void ) {
 	Think();
 }
-
 
 /*
 ===============================================================================

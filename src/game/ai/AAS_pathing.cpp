@@ -25,7 +25,6 @@ static bool versioned = RegisterVersionedFile( "$Source$  $Revision$   $Date$" )
 #include "AAS_local.h"
 #include "../TimerManager.h"
 
-
 #define SUBSAMPLE_WALK_PATH		1
 #define SUBSAMPLE_FLY_PATH		0
 
@@ -36,7 +35,6 @@ const float		walkPathSampleDistance		= 8.0f;
 const int		maxFlyPathIterations		= 10;
 const float		maxFlyPathDistance			= 500.0f;
 const float		flyPathSampleDistance		= 8.0f;
-
 
 /*
 ============
@@ -380,7 +378,6 @@ bool idAASLocal::WalkPathToGoal( aasPath_t &path, int areaNum, const idVec3 &ori
 	}
 	return false; // no walking path and no elevator
 }
-
 
 /*
 ============

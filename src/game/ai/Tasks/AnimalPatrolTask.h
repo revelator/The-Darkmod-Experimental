@@ -23,7 +23,6 @@
 #include "Task.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_ANIMAL_PATROL "AnimalPatrol"
 
@@ -78,7 +77,6 @@ private:
 
 	void switchToState( EState newState, idAI *owner );
 };
-
 } // namespace ai
 
 #endif /* __AI_ANIMAL_PATROL_TASK_H__ */

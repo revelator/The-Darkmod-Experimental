@@ -48,7 +48,6 @@
 // base folder where the source code lives
 #define SOURCE_CODE_BASE_FOLDER				"tdm"
 
-
 // default idnet host address
 #ifndef IDNET_HOST
 #define IDNET_HOST				"tdmnet.thedarkmod.com"

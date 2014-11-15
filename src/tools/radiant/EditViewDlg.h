@@ -68,5 +68,4 @@ public:
 	afx_msg void OnBnClickedButtonGoto();
 	virtual BOOL PreTranslateMessage( MSG *pMsg );
 	afx_msg LRESULT OnFindDialogMessage( WPARAM wParam, LPARAM lParam );
-
 };

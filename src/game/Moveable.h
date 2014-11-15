@@ -110,7 +110,6 @@ protected:
 	void					Event_EnableDamage( float enable );
 };
 
-
 /*
 ===============================================================================
 
@@ -121,7 +120,6 @@ protected:
 */
 
 class idBarrel : public idMoveable {
-
 public:
 	CLASS_PROTOTYPE( idBarrel );
 	idBarrel();
@@ -144,7 +142,6 @@ private:
 	float					additionalRotation;		// additional rotation of the barrel about it's axis
 	idMat3					additionalAxis;			// additional rotation axis
 };
-
 
 /*
 ===============================================================================

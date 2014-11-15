@@ -25,7 +25,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "Model_local.h"
 #include "tr_local.h"
 
-
 /*
 ====================
 idRenderModelOverlay::idRenderModelOverlay

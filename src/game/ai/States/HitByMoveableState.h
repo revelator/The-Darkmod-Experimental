@@ -23,7 +23,6 @@
 #include "State.h"
 
 namespace ai {
-
 #define STATE_HIT_BY_MOVEABLE "HitByMoveable"
 
 // grayman #2816 - constants for looking at objects that strike the AI
@@ -79,7 +78,6 @@ public:
 private:
 	void Wrapup( idAI *owner );
 };
-
 } // namespace ai
 
 #endif /* __AI_HIT_BY_MOVEABLE_H__ */

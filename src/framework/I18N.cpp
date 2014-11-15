@@ -512,4 +512,3 @@ void I18NLocal::MoveArticlesToBack( const idStr &title, idStr &prefix, idStr &su
 	// return prefix and suffix to caller
 	return;
 }
-

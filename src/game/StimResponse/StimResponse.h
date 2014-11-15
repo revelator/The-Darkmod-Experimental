@@ -33,7 +33,6 @@ enum StimState {
  * CStimResponse is the baseclass for stims and responses
  */
 class CStimResponse {
-
 	friend class CStimResponseCollection;
 
 protected:

@@ -22,11 +22,9 @@
 
 #pragma once
 
-
 // DialogDeclNew dialog
 
 class DialogDeclNew : public CDialog {
-
 	DECLARE_DYNAMIC( DialogDeclNew )
 
 public:

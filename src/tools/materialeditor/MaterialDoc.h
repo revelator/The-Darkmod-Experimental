@@ -42,7 +42,6 @@ typedef struct {
 * Implemented by the edit window that is responsible for modifying the material source text.
 */
 class SourceModifyOwner {
-
 public:
 	SourceModifyOwner() {};
 	virtual ~SourceModifyOwner() {};
@@ -58,7 +57,6 @@ class MaterialDocManager;
 * Responsible for managing a single material that is being viewed and/or edited.
 */
 class MaterialDoc {
-
 public:
 	MaterialDocManager		*manager;
 	idStr					name;
@@ -146,4 +144,3 @@ protected:
 	void			WriteSpecialMapStage( int stage, idFile_Memory *file );
 	void			WriteMaterialDef( int stage, idFile_Memory *file, int type, int indent );
 };
-

@@ -125,7 +125,6 @@ public:
 	BOOL    m_bIsParallel;
 	//}}AFX_DATA
 
-
 	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CLightDlg)

@@ -31,7 +31,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Tasks/RandomTurningTask.h"
 
 namespace ai {
-
 // grayman #2603 - heights for determining whether a light or switch is high/med/low off the floor
 
 #define RELIGHT_HEIGHT_HIGH 66 // grayman #3077 - bump up 1 to accomodate light origin change in desk lamp
@@ -616,5 +615,4 @@ StateLibrary::Registrar switchOnLightStateRegistrar(
 	STATE_SWITCH_ON_LIGHT, // Task Name
 	StateLibrary::CreateInstanceFunc( &SwitchOnLightState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

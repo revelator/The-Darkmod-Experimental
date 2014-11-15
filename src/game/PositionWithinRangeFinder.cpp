@@ -84,8 +84,3 @@ bool PositionWithinRangeFinder::GetBestGoalResult( float &out_bestGoalDistance, 
 		return false;
 	}
 }
-
-
-
-
-

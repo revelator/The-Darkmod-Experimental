@@ -38,7 +38,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 
-
 */
 /* for more info about .ZIP format, see
       ftp://ftp.cdrom.com/pub/infozip/doc/appnote-970311-iz.zip
@@ -68,7 +67,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
   Jean-loup Gailly        Mark Adler
   jloup@gzip.org          madler@alumni.caltech.edu
-
 
   The data format used by the zlib library is described by RFCs (Request for
   Comments) 1950 to 1952 in the files ftp://ds.internic.net/rfc/rfc1950.txt
@@ -267,7 +265,6 @@ int deflateInit OF((z_streamp strm, int level));
    perform any compression: this will be done by deflate().
 */
 
-
 int deflate OF( ( z_streamp strm, int flush ) );
 /*
     deflate compresses as much data as possible, and stops when the input
@@ -345,7 +342,6 @@ int deflate OF( ( z_streamp strm, int flush ) );
   (for example avail_in or avail_out was zero).
 */
 
-
 int deflateEnd OF( ( z_streamp strm ) );
 /*
      All dynamically allocated data structures for this stream are freed.
@@ -358,7 +354,6 @@ int deflateEnd OF( ( z_streamp strm ) );
    msg may be set but then points to a static string (which must not be
    deallocated).
 */
-
 
 /*
 int inflateInit OF((z_streamp strm));
@@ -379,7 +374,6 @@ int inflateInit OF((z_streamp strm));
    the zlib header if present: this will be done by inflate().  (So next_in and
    avail_in may be modified, but next_out and avail_out are unchanged.)
 */
-
 
 int inflate OF( ( z_streamp strm, int flush ) );
 /*
@@ -448,7 +442,6 @@ int inflate OF( ( z_streamp strm, int flush ) );
   case, the application may then call inflateSync to look for a good
   compression block.
 */
-
 
 int inflateEnd OF( ( z_streamp strm ) );
 /*
@@ -664,7 +657,6 @@ int inflateReset OF( ( z_streamp strm ) );
    stream state was inconsistent (such as zalloc or state being NULL).
 */
 
-
 /* utility functions */
 
 /*
@@ -722,7 +714,6 @@ int uncompress OF( ( Byte *dest,   uLong *destLen,
    enough memory, Z_BUF_ERROR if there was not enough room in the output
    buffer, or Z_DATA_ERROR if the input data was corrupted.
 */
-
 
 typedef voidp gzFile;
 
@@ -921,7 +912,6 @@ uLong crc32   OF( ( uLong crc, const Byte *buf, uInt len ) );
      if (crc != original_crc) error();
 */
 
-
 /* various hacks, don't look :) */
 
 /* deflateInit and inflateInit are macros to allow checking the zlib version
@@ -946,7 +936,6 @@ int inflateInit2_ OF( ( z_streamp strm, int  windowBits,
                       (strategy),           ZLIB_VERSION, sizeof(z_stream))
 #define inflateInit2(strm, windowBits) \
         inflateInit2_((strm), (windowBits), ZLIB_VERSION, sizeof(z_stream))
-
 
 const char    *zError           OF( ( int err ) );
 int            inflateSyncPoint OF( ( z_streamp z ) );
@@ -1034,7 +1023,6 @@ int z_verbose = 0;
 #  define Tracecv(c,x)
 #endif
 
-
 typedef uLong( *check_func ) OF( ( uLong check, const Byte *buf, uInt len ) );
 voidp zcalloc OF( ( voidp opaque, unsigned items, unsigned size ) );
 void   zcfree  OF( ( voidp opaque, voidp ptr ) );
@@ -1044,12 +1032,10 @@ void   zcfree  OF( ( voidp opaque, voidp ptr ) );
 #define ZFREE(strm, addr)  (*((strm)->zfree))((strm)->opaque, (voidp)(addr))
 #define TRY_FREE(s, p) {if (p) ZFREE(s, p);}
 
-
 #if !defined(unix) && !defined(CASESENSITIVITYDEFAULT_YES) && \
                       !defined(CASESENSITIVITYDEFAULT_NO)
 #define CASESENSITIVITYDEFAULT_NO
 #endif
-
 
 #ifndef UNZ_BUFSIZE
 #define UNZ_BUFSIZE (65536)
@@ -1068,8 +1054,6 @@ void   zcfree  OF( ( voidp opaque, voidp ptr ) );
 
 #define SIZECENTRALDIRITEM (0x2e)
 #define SIZEZIPLOCALHEADER (0x1e)
-
-
 
 /* ===========================================================================
      Read a byte from a gz_stream; update next_in and avail_in. Return EOF
@@ -1158,7 +1142,6 @@ static int unzlocal_getLong( FILE *fin, uLong *pX ) {
 	*/
 }
 
-
 /* My own strcmpi / strcasecmp */
 static int strcmpcasenosensitive_internal( const char *fileName1, const char *fileName2 ) {
 	for( ;; ) {
@@ -1184,7 +1167,6 @@ static int strcmpcasenosensitive_internal( const char *fileName1, const char *fi
 		}
 	}
 }
-
 
 #ifdef  CASESENSITIVITYDEFAULT_NO
 #define CASESENSITIVITYDEFAULTVALUE 2
@@ -1374,7 +1356,6 @@ extern unzFile unzOpen( const char *path ) {
 	return ( unzFile )s;
 }
 
-
 /*
   Close a ZipFile opened with unzipOpen.
   If there is files inside the .Zip opened with unzipOpenCurrentFile (see later),
@@ -1394,7 +1375,6 @@ extern int unzClose( unzFile file ) {
 	return UNZ_OK;
 }
 
-
 /*
   Write info about the ZipFile in the *pglobal_info structure.
   No preparation of the structure is needed
@@ -1408,7 +1388,6 @@ extern int unzGetGlobalInfo( unzFile file, unz_global_info *pglobal_info ) {
 	*pglobal_info = s->gi;
 	return UNZ_OK;
 }
-
 
 /*
    Translate date/time from Dos format to tm_unz (readable more easilty)
@@ -1708,7 +1687,6 @@ extern int unzLocateFile( unzFile file, const char *szFileName, int iCaseSensiti
 	return err;
 }
 
-
 /*
   Read the static header of the current zipfile
   Check the coherency of the static header and info in the end of central
@@ -1872,7 +1850,6 @@ extern int unzOpenCurrentFile( unzFile file ) {
 	return UNZ_OK;
 }
 
-
 /*
   Read bytes from the current file.
   buf contain buffer where data must be copied
@@ -1990,7 +1967,6 @@ extern int unzReadCurrentFile( unzFile file, void *buf, unsigned len ) {
 	return err;
 }
 
-
 /*
   Give the current position in uncompressed data
 */
@@ -2007,7 +1983,6 @@ extern long unztell( unzFile file ) {
 	}
 	return ( long )pfile_in_zip_read_info->stream.total_out;
 }
-
 
 /*
   return 1 if the end of file was reached, 0 elsewhere
@@ -2029,8 +2004,6 @@ extern int unzeof( unzFile file ) {
 		return 0;
 	}
 }
-
-
 
 /*
   Read extra field from the current file (opened by unzOpenCurrentFile)
@@ -2112,7 +2085,6 @@ extern int unzCloseCurrentFile( unzFile file ) {
 	s->pfile_in_zip_read = NULL;
 	return err;
 }
-
 
 /*
   Get the global comment string of the ZipFile, in the szComment buffer.
@@ -2409,7 +2381,6 @@ extern int inflate_trees_fixed OF( (
 									   inflate_huft **,       /* distance tree result */
 									   z_streamp ) );              /* for memory allocation */
 
-
 /* infcodes.h -- header to use infcodes.c
  * Copyright (C) 1995-1998 Mark Adler
  * For conditions of distribution and use, see copyright notice in zlib.h
@@ -2466,7 +2437,6 @@ inflate_block_mode;
 
 /* inflate blocks semi-private state */
 struct inflate_blocks_state {
-
 	/* mode */
 	inflate_block_mode  mode;     /* current inflate_block mode */
 
@@ -2497,9 +2467,7 @@ struct inflate_blocks_state {
 	Byte *write;         /* window write pointer */
 	check_func checkfn;   /* check function */
 	uLong check;          /* check on output */
-
 };
-
 
 /* defines for inflate input/output */
 /*   update pointers and return */
@@ -2539,7 +2507,6 @@ extern int inflate_flush OF( (
 								 int ) );
 
 #endif
-
 
 /*
    Notes beyond the 1.93a appnote.txt:
@@ -2586,7 +2553,6 @@ extern int inflate_flush OF( (
       the two sets of lengths.
  */
 
-
 void inflate_blocks_reset( inflate_blocks_statef *s, z_streamp z, uLong *c ) {
 	if( c != Z_NULL ) {
 		*c = s->check;
@@ -2606,7 +2572,6 @@ void inflate_blocks_reset( inflate_blocks_statef *s, z_streamp z, uLong *c ) {
 	}
 	Tracev( ( "inflate:   blocks reset\n" ) );
 }
-
 
 inflate_blocks_statef *inflate_blocks_new( z_streamp z, check_func c, uInt w ) {
 	inflate_blocks_statef *s;
@@ -2631,7 +2596,6 @@ inflate_blocks_statef *inflate_blocks_new( z_streamp z, check_func c, uInt w ) {
 	inflate_blocks_reset( s, z, Z_NULL );
 	return s;
 }
-
 
 int inflate_blocks( inflate_blocks_statef *s, z_streamp z, int r ) {
 	uInt t;               /* temporary storage */
@@ -2876,7 +2840,6 @@ int inflate_blocks( inflate_blocks_statef *s, z_streamp z, int r ) {
 		}
 }
 
-
 int inflate_blocks_free( inflate_blocks_statef *s, z_streamp z ) {
 	inflate_blocks_reset( s, z, Z_NULL );
 	ZFREE( z, s->window );
@@ -2886,12 +2849,10 @@ int inflate_blocks_free( inflate_blocks_statef *s, z_streamp z ) {
 	return Z_OK;
 }
 
-
 void inflate_set_dictionary( inflate_blocks_statef *s, const Byte *d, uInt n ) {
 	zmemcpy( s->window, d, n );
 	s->read = s->write = s->window + n;
 }
-
 
 /* Returns true if inflate is currently at the end of a block generated
  * by Z_SYNC_FLUSH or Z_FULL_FLUSH.
@@ -3002,7 +2963,6 @@ const char inflate_copyright[] =
 #define exop word.what.Exop
 #define bits word.what.Bits
 
-
 static int huft_build OF( (
 							  uInt *,				/* code lengths in bits */
 							  uInt,               /* number of codes */
@@ -3067,7 +3027,6 @@ static const uInt cpdext[30] = { /* Extra bits for distance codes */
    The optimum values may differ though from machine to machine, and
    possibly even between compilers.  Your mileage may vary.
  */
-
 
 /* If BMAX needs to be larger than 16, then h and x[] should be uLong. */
 #define BMAX 15         /* maximum bit length of any code */
@@ -3253,7 +3212,6 @@ static int huft_build( uInt *b, uInt n, uInt s, const uInt *d, const uInt *e, in
 	return y != 0 && g != 1 ? Z_BUF_ERROR : Z_OK;
 }
 
-
 int inflate_trees_bits( uInt *c, uInt *bb, inflate_huft **tb, inflate_huft *hp, z_streamp z )
 //uInt *c;               /* 19 code lengths */
 //uInt *bb;              /* bits tree desired/actual depth */
@@ -3278,7 +3236,6 @@ int inflate_trees_bits( uInt *c, uInt *bb, inflate_huft **tb, inflate_huft *hp, 
 	ZFREE( z, v );
 	return r;
 }
-
 
 int inflate_trees_dynamic( uInt nl, uInt nd, uInt *c, uInt *bl, uInt *bd, inflate_huft **tl, inflate_huft **td, inflate_huft *hp, z_streamp z )
 //uInt nl;                /* number of literal/length codes */
@@ -3658,7 +3615,6 @@ inflate_codes_mode;
 
 /* inflate codes private state */
 struct inflate_codes_state {
-
 	/* mode */
 	inflate_codes_mode mode;      /* current inflate_codes mode */
 
@@ -3681,9 +3637,7 @@ struct inflate_codes_state {
 	Byte dbits;           /* dtree bits decoder per branch */
 	inflate_huft *ltree;          /* literal/length/eob tree */
 	inflate_huft *dtree;          /* distance tree */
-
 };
-
 
 inflate_codes_statef *inflate_codes_new( uInt bl, uInt bd, inflate_huft *tl, inflate_huft *td, z_streamp z ) {
 	inflate_codes_statef *c;
@@ -3698,7 +3652,6 @@ inflate_codes_statef *inflate_codes_new( uInt bl, uInt bd, inflate_huft *tl, inf
 	}
 	return c;
 }
-
 
 int inflate_codes( inflate_blocks_statef *s, z_streamp z, int r ) {
 	uInt j;               /* temporary storage */
@@ -3855,7 +3808,6 @@ int inflate_codes( inflate_blocks_statef *s, z_streamp z, int r ) {
 #endif
 }
 
-
 void inflate_codes_free( inflate_codes_statef *c, z_streamp z ) {
 	ZFREE( z, c );
 	Tracev( ( "inflate:       codes free\n" ) );
@@ -3966,7 +3918,6 @@ inflate_mode;
 
 /* inflate private state */
 struct internal_state {
-
 	/* mode */
 	inflate_mode  mode;   /* current inflate mode */
 
@@ -3985,9 +3936,7 @@ struct internal_state {
 	uInt wbits;           /* log2(window size)  (8..15, defaults to 15) */
 	inflate_blocks_statef
 	*blocks;            /* current inflate_blocks state */
-
 };
-
 
 int inflateReset( z_streamp z ) {
 	if( z == Z_NULL || z->state == Z_NULL ) {
@@ -4001,7 +3950,6 @@ int inflateReset( z_streamp z ) {
 	return Z_OK;
 }
 
-
 int inflateEnd( z_streamp z ) {
 	if( z == Z_NULL || z->state == Z_NULL || z->zfree == Z_NULL ) {
 		return Z_STREAM_ERROR;
@@ -4014,8 +3962,6 @@ int inflateEnd( z_streamp z ) {
 	Tracev( ( "inflate: end\n" ) );
 	return Z_OK;
 }
-
-
 
 int inflateInit2_( z_streamp z, int w, const char *version, int stream_size ) {
 	if( version == Z_NULL || version[0] != ZLIB_VERSION[0] ||
@@ -4064,11 +4010,9 @@ int inflateInit2_( z_streamp z, int w, const char *version, int stream_size ) {
 	return Z_OK;
 }
 
-
 int inflateInit_( z_streamp z, const char *version, int stream_size ) {
 	return inflateInit2_( z, DEF_WBITS, version, stream_size );
 }
-
 
 #define iNEEDBYTE {if(z->avail_in==0)return r;r=f;}
 #define iNEXTBYTE (z->avail_in--,z->total_in++,*z->next_in++)
@@ -4190,7 +4134,6 @@ int inflate( z_streamp z, int f ) {
 #endif
 }
 
-
 int inflateSetDictionary( z_streamp z, const Byte *dictionary, uInt dictLength ) {
 	uInt length = dictLength;
 	if( z == Z_NULL || z->state == Z_NULL || z->state->mode != imDICT0 ) {
@@ -4208,7 +4151,6 @@ int inflateSetDictionary( z_streamp z, const Byte *dictionary, uInt dictLength )
 	z->state->mode = imBLOCKS;
 	return Z_OK;
 }
-
 
 int inflateSync( z_streamp z ) {
 	uInt n;       /* number of bytes to look at */
@@ -4257,7 +4199,6 @@ int inflateSync( z_streamp z ) {
 	z->state->mode = imBLOCKS;
 	return Z_OK;
 }
-
 
 /* Returns true if inflate is currently at the end of a block generated
  * by Z_SYNC_FLUSH or Z_FULL_FLUSH. This function is used by one PPP

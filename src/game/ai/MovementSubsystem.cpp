@@ -45,7 +45,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "Tasks/HandleElevatorTask.h" // grayman #3050
 
 namespace ai {
-
 #define HISTORY_SIZE 32
 #define HISTORY_BOUNDS_THRESHOLD 40	// units (grayman #2345 changed to 40 for quicker blocking recognition; was 10)
 #define BLOCK_TIME_OUT 400			// milliseconds (grayman #2345 changed to 400 for quicker blocking recognition; was 800)
@@ -80,7 +79,6 @@ bool MovementSubsystem::PerformTask() {
 	Patrol();
 	return Subsystem::PerformTask();
 }
-
 
 void MovementSubsystem::StartPatrol() {
 	if( !_patrolling ) {
@@ -730,5 +728,4 @@ void MovementSubsystem::DebugDraw( idAI *owner ) {
 							   ( owner->GetEyePosition() - owner->GetPhysics()->GetGravityNormal() * 60.0f ),
 							   0.25f, colour, gameLocal.GetLocalPlayer()->viewAngles.ToMat3(), 1, 3 * gameLocal.msec );
 }
-
 } // namespace ai

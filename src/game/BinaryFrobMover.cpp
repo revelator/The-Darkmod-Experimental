@@ -54,7 +54,6 @@ const idEventDef EV_TDM_FrobMover_HandleLockRequest( "_handleLockRequest", Event
 const idEventDef EV_TDM_FrobMover_ClearPlayerImmobilization( "_EV_TDM_FrobMover_ClearPlayerImmobilization",
 		EventArgs( 'e', "", "" ), EV_RETURNS_VOID, "internal" ); // grayman #3643 - allows player to handle weapons again
 
-
 CLASS_DECLARATION( idMover, CBinaryFrobMover )
 EVENT( EV_PostSpawn,					CBinaryFrobMover::Event_PostSpawn )
 EVENT( EV_TDM_FrobMover_Open,			CBinaryFrobMover::Event_Open )
@@ -1358,5 +1357,3 @@ void CBinaryFrobMover::Event_Lock_OnLockPicked() {
 	// "Lock is picked" signal, unlock in master mode
 	Unlock( true );
 }
-
-

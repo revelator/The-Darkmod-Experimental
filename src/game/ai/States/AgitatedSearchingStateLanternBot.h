@@ -24,7 +24,6 @@
 #include "AgitatedSearchingState.h"
 
 namespace ai {
-
 #define STATE_AGITATED_SEARCHING_LANTERN_BOT "AgitatedSearchingLanternBot"
 
 class AgitatedSearchingStateLanternBot :
@@ -57,7 +56,6 @@ protected:
 
 	void MoveTowardAlertPos( idAI *owner );
 };
-
 } // namespace
 
 #endif

@@ -23,7 +23,6 @@
 #include "State.h"
 
 namespace ai {
-
 #define STATE_DEAD "Dead"
 
 class DeadState :
@@ -47,7 +46,6 @@ public:
 
 	static StatePtr CreateInstance();
 };
-
 } // namespace ai
 
 #endif /* __AI_DEAD_STATE_H__ */

@@ -250,10 +250,3 @@ void MaterialEditView::OnEnChangeEdit( NMHDR *pNMHDR, LRESULT *pResult ) {
 		}
 	}
 }
-
-
-
-
-
-
-

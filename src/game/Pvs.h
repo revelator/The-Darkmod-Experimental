@@ -30,12 +30,10 @@
 ===================================================================================
 */
 
-
 typedef struct pvsHandle_s {
 	int			i;		// index to current pvs
 	unsigned int		h;		// handle for current pvs
 } pvsHandle_t;
-
 
 typedef struct pvsCurrent_s {
 	pvsHandle_t		handle;		// current pvs handle
@@ -49,7 +47,6 @@ typedef enum {
 	PVS_ALL_PORTALS_OPEN			= 1,	// PVS through portals assuming all portals are open
 	PVS_CONNECTED_AREAS			= 2	// PVS considering all topologically connected areas visible
 } pvsType_t;
-
 
 class idPVS {
 public:

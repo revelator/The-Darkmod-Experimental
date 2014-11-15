@@ -23,7 +23,6 @@
 #include "State.h"
 
 namespace ai {
-
 #define STATE_ALERT_IDLE "AlertIdle"
 
 /**
@@ -33,7 +32,6 @@ namespace ai {
  */
 class AlertIdleState :
 	public IdleState {
-
 public:
 	// Get the name of this state
 	virtual const idStr &GetName() const;
@@ -55,7 +53,6 @@ protected:
 	// and the current state of mind
 	virtual idStr GetInitialIdleBark( idAI *owner );
 };
-
 } // namespace ai
 
 #endif /* __AI_ALERT_IDLE_STATE_H__ */

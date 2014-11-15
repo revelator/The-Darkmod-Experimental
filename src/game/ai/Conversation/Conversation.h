@@ -26,7 +26,6 @@
 #include "../States/ConversationState.h"
 
 namespace ai {
-
 /**
  * greebo: This class encapsulates a single conversation between
  * two or more characters in the game.
@@ -148,7 +147,6 @@ private:
 	void InitFromSpawnArgs( const idDict &dict, int index );
 };
 typedef boost::shared_ptr<Conversation> ConversationPtr;
-
 } // namespace ai
 
 #endif /* __AI_CONVERSATION_H__ */

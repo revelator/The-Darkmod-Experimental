@@ -34,7 +34,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #define DEBUG_NEW new
 #endif
 
-
 void CLightInfo::Defaults() {
 	pointLight = true;
 	fallOff = 1;
@@ -62,7 +61,6 @@ void CLightInfo::Defaults() {
 	fog = false;
 	lightRadius[0] = lightRadius[1] = lightRadius[2] = 300;
 }
-
 
 void CLightInfo::DefaultPoint() {
 	idVec3 oldColor = color;
@@ -238,13 +236,10 @@ CLightInfo::CLightInfo() {
 	Defaults();
 }
 
-
-
 /////////////////////////////////////////////////////////////////////////////
 // CLightDlg dialog
 
 CLightDlg *g_LightDialog = NULL;
-
 
 CLightDlg::CLightDlg( CWnd *pParent /*=NULL*/ )
 	: CDialog( CLightDlg::IDD, pParent ) {
@@ -331,7 +326,6 @@ void CLightDlg::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Text( pDX, IDC_EDIT_CENTERZ, m_centerZ );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CLightDlg, CDialog )
 	//{{AFX_MSG_MAP(CLightDlg)
@@ -572,7 +566,6 @@ void CLightDlg::ColorButtons() {
 	dc.SelectObject( pOldBmp );
 	pBtn->SetBitmap( HBITMAP( colorBitmap ) );
 }
-
 
 void CLightDlg::LoadLightTextures() {
 	int count = declManager->GetNumDecls( DECL_MATERIAL );

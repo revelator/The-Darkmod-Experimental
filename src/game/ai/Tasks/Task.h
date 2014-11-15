@@ -23,7 +23,6 @@
 #include <boost/shared_ptr.hpp>
 
 namespace ai {
-
 // Forward declaration
 class Subsystem;
 
@@ -118,7 +117,6 @@ public:
 	}
 };
 typedef boost::shared_ptr<Task> TaskPtr;
-
 } // namespace ai
 
 #endif /* __AI_TASK_H__ */

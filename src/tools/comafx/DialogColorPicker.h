@@ -33,13 +33,11 @@
 #define TOSCALE(x)	(((x)*RADIUS)/255.0)
 #define SCALETOMAX(x) (((x)*255.0)/RADIUS)
 
-
 #define RED	0
 #define GREEN 1
 #define BLUE 2
 
 #define BAD_SLOPE	1000000.0
-
 
 struct HSVType;
 
@@ -62,7 +60,6 @@ struct LineDesc {
 	double			c;
 };
 
-
 class CDialogColorPicker : public CDialog {
 	// Construction
 public:
@@ -75,7 +72,6 @@ public:
 	float			GetOverBright() {
 		return overBright;
 	};
-
 
 	// Dialog Data
 	//{{AFX_DATA(CDialogColorPicker)
@@ -129,7 +125,6 @@ protected:
 	BOOL			InBright( CPoint pt );
 	BOOL			InOverBright( CPoint pt );
 
-
 	void			SetSpinVals();
 	void			SetEditVals();
 	void			DrawAll();
@@ -171,7 +166,6 @@ protected:
 	int				GreenLen;
 	int				BlueLen;
 	LineDesc		lines[3];
-
 
 	CRect			rgbRect;
 	CRect			hsbRect;

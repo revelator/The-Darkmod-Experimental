@@ -233,7 +233,6 @@ bool idChoiceWindow::ParseInternalVar( const char *_name, idParser *src ) {
 	return idWindow::ParseInternalVar( _name, src );
 }
 
-
 idWinVar *idChoiceWindow::GetWinVarByName( const char *_name, bool fixup, drawWin_t **owner ) {
 	if( idStr::Icmp( _name, "choices" ) == 0 ) {
 		return &choicesStr;

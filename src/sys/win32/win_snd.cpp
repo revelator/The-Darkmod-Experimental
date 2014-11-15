@@ -61,7 +61,6 @@ private:
 };
 
 class idAudioHardwareWIN32 : public idAudioHardware {
-
 public:
 	idAudioHardwareWIN32();
 	~idAudioHardwareWIN32();

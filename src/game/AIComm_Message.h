@@ -35,7 +35,6 @@
 #include "StimResponse/StimResponse.h"
 
 namespace ai {
-
 /**
  * This struct carries information which is used by AI
  * to communicate with each other.
@@ -251,7 +250,6 @@ struct CommMessage {
 };
 typedef boost::shared_ptr<CommMessage> CommMessagePtr;
 typedef idList<ai::CommMessagePtr> MessageList;
-
 } // namespace ai
 
 #endif

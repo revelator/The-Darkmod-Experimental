@@ -66,7 +66,6 @@ public:
 	BOOL	m_absolute;
 	//}}AFX_DATA
 
-
 	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CSurfaceDlg)

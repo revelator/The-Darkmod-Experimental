@@ -26,7 +26,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include <vector>
 
 namespace difficulty {
-
 #define PATTERN_DIFF "diff_%d_"
 #define PREFIX_CLASS "class_"
 #define PREFIX_CHANGE "change_"
@@ -476,5 +475,4 @@ void CVARDifficultySettings::Restore( idRestoreGame *savefile ) {
 		_settings[i].Restore( savefile );
 	}
 }
-
 } // namespace difficulty

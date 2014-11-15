@@ -40,7 +40,6 @@ public:
 	int		m_nAmount;
 	//}}AFX_DATA
 
-
 	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CDialogThick)

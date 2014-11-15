@@ -331,8 +331,6 @@ void idFuncEmitter::Event_EmitterAddModel( idStr const &modelName, idVec3 const 
 	SetModel( m_models.Num(), modelName, modelOffset );
 }
 
-
-
 /*
 ================
 idFuncEmitter::WriteToSnapshot
@@ -360,7 +358,6 @@ void idFuncEmitter::ReadFromSnapshot( const idBitMsgDelta &msg ) {
 	}
 }
 
-
 /*
 ===============================================================================
 
@@ -368,7 +365,6 @@ idFuncSplat
 
 ===============================================================================
 */
-
 
 const idEventDef EV_Splat( "<Splat>", EventArgs(), EV_RETURNS_VOID, "internal" );
 CLASS_DECLARATION( idFuncEmitter, idFuncSplat )
@@ -422,5 +418,3 @@ void idFuncSplat::Event_Activate( idEntity *activator ) {
 	PostEventSec( &EV_Splat, spawnArgs.GetFloat( "splatDelay", "0.25" ) );
 	StartSound( "snd_spurt", SND_CHANNEL_ANY, 0, false, NULL );
 }
-
-

@@ -79,7 +79,6 @@ typedef struct aseModel_s {
 	idList<aseObject_t *>	objects;
 } aseModel_t;
 
-
 aseModel_t *ASE_Load( const char *fileName );
 void		ASE_Free( aseModel_t *ase );
 

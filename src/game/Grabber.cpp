@@ -83,7 +83,6 @@ CGrabber::~CGrabber( void ) {
 	Clear();
 }
 
-
 /*
 ==============
 CGrabber::Clear
@@ -893,7 +892,6 @@ bool CGrabber::IsInClipList( idEntity *ent ) const {
 	return true;
 }
 
-
 /*
 ==============
 CGrabber::HasClippedEntity
@@ -1436,5 +1434,3 @@ idEntity *CGrabber::GetShouldered( void ) const {
 	// we can only shoulder AF entities, so if the equipped entity is one of these, it is shouldered
 	return ( ent && ent->spawnArgs.GetBool( "shoulderable" ) && ent->IsType( idAFEntity_Base::Type ) ) ? ent : NULL;
 }
-
-

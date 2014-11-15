@@ -336,7 +336,6 @@ idVec3 CForce_Grab::GetCenterOfMass( void ) const {
 	return ( m_physics->GetOrigin( m_id ) + m_centerOfMass * m_physics->GetAxis( m_id ) );
 }
 
-
 /*
 ================
 CForce_Grab::Rotate

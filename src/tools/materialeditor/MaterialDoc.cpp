@@ -832,4 +832,3 @@ void MaterialDoc::WriteMaterialDef( int stage, idFile_Memory *file, int type, in
 		}
 	}
 }
-

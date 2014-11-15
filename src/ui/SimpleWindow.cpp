@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "UserInterfaceLocal.h"
 #include "SimpleWindow.h"
 
-
 idSimpleWindow::idSimpleWindow( idWindow *win ) {
 	gui = win->GetGui();
 	dc = win->dc;
@@ -191,7 +190,6 @@ void idSimpleWindow::CalcClientRect( float xofs, float yofs ) {
 	}
 	origin.Set( rect.x() + ( rect.w() / 2 ), rect.y() + ( rect.h() / 2 ) );
 }
-
 
 void idSimpleWindow::Redraw( float x, float y ) {
 	if( !visible ) {
@@ -376,7 +374,6 @@ void idSimpleWindow::ReadFromSaveGame( idFile *savefile ) {
 		background = NULL;
 	}
 }
-
 
 /*
 ===============================

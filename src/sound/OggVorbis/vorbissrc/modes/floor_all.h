@@ -229,6 +229,4 @@ static vorbis_info_floor1 _floor[10] = {
 
 		60, 30, 500,    1, 18.,  -1 /* lowpass! */
 	},
-
 };
-

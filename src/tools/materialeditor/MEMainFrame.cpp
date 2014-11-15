@@ -534,7 +534,6 @@ void MEMainFrame::OnEditRename() {
 	}
 }
 
-
 /**
 * Enable the cut menu item if a material is selected.
 */

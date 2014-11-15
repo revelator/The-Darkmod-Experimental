@@ -1153,7 +1153,6 @@ void idAI::FreeObstacleAvoidanceNodes( void ) {
 	pathNodeAllocator.Shutdown();
 }
 
-
 /*
 ===============================================================================
 
@@ -1374,7 +1373,6 @@ bool idAI::PredictPath( const idEntity *ent, const idAAS *aas, const idVec3 &sta
 	path.endEvent = 0;
 	return false;
 }
-
 
 /*
 ===============================================================================

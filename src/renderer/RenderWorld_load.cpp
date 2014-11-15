@@ -24,7 +24,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "tr_local.h"
 
-
 /*
 ================
 idRenderWorldLocal::FreeWorld

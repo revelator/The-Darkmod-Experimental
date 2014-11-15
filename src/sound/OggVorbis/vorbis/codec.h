@@ -116,7 +116,6 @@ typedef struct vorbis_block {
 	long res_bits;
 
 	void *internal;
-
 } vorbis_block;
 
 /* vorbis_block is a single block of data to be processed as part of
@@ -144,9 +143,7 @@ typedef struct vorbis_comment {
 	int   *comment_lengths;
 	int    comments;
 	char  *vendor;
-
 } vorbis_comment;
-
 
 /* libvorbis encodes in two abstraction layers; first we perform DSP
    and produce a packet (see docs/analysis.txt).  The packet is then
@@ -237,4 +234,3 @@ extern int      vorbis_synthesis_halfrate_p( vorbis_info *v );
 #endif /* __cplusplus */
 
 #endif
-

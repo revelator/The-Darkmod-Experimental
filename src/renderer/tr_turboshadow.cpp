@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 int	c_turboUsedVerts;
 int c_turboUnusedVerts;
 
-
 /*
 =====================
 R_CreateVertexProgramTurboShadowVolume

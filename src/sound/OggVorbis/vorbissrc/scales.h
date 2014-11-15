@@ -87,4 +87,3 @@ static float unitnorm( float x ) {
 #define fromOC(o)   (exp(((o)+5.965784f)*.693147f))
 
 #endif
-

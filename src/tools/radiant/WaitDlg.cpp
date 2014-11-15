@@ -34,7 +34,6 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CWaitDlg dialog
 
-
 CWaitDlg::CWaitDlg( CWnd *pParent, const char *msg )
 	: CDialog( CWaitDlg::IDD, pParent ) {
 	//{{AFX_DATA_INIT(CWaitDlg)
@@ -55,7 +54,6 @@ void CWaitDlg::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Text( pDX, IDC_WAITSTR, waitStr );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CWaitDlg, CDialog )
 	//{{AFX_MSG_MAP(CWaitDlg)

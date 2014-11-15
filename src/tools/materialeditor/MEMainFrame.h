@@ -36,7 +36,6 @@
 * The main window for the material editor.
 */
 class MEMainFrame : public CFrameWnd, public MaterialView {
-
 public:
 	MEMainFrame();
 	virtual ~MEMainFrame();
@@ -138,7 +137,4 @@ protected:
 
 	//Options
 	MEOptions					options;
-
 };
-
-

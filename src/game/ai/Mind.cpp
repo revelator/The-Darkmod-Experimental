@@ -31,7 +31,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../AIComm_Message.h"
 
 namespace ai {
-
 // This is the default state
 #define STATE_DEFAULT STATE_IDLE
 
@@ -310,5 +309,4 @@ void Mind::Restore( idRestoreGame *savefile ) {
 	_stateQueue.Restore( savefile );
 	_memory.Restore( savefile );
 }
-
 } // namespace ai

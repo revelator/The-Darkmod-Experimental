@@ -35,7 +35,6 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CCapDialog dialog
 
-
 CCapDialog::CCapDialog( CWnd *pParent /*=NULL*/ )
 	: CDialog( CCapDialog::IDD, pParent ) {
 	//{{AFX_DATA_INIT(CCapDialog)
@@ -43,14 +42,12 @@ CCapDialog::CCapDialog( CWnd *pParent /*=NULL*/ )
 	//}}AFX_DATA_INIT
 }
 
-
 void CCapDialog::DoDataExchange( CDataExchange *pDX ) {
 	CDialog::DoDataExchange( pDX );
 	//{{AFX_DATA_MAP(CCapDialog)
 	DDX_Radio( pDX, IDC_RADIO_CAP, m_nCap );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CCapDialog, CDialog )
 	//{{AFX_MSG_MAP(CCapDialog)

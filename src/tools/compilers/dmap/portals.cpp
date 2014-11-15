@@ -24,10 +24,8 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "dmap.h"
 
-
 interAreaPortal_t interAreaPortals[MAX_INTER_AREA_PORTALS];
 int					numInterAreaPortals;
-
 
 int		c_active_portals;
 int		c_peak_portals;
@@ -47,7 +45,6 @@ uPortal_t	*AllocPortal( void ) {
 	memset( p, 0, sizeof( uPortal_t ) );
 	return p;
 }
-
 
 void FreePortal( uPortal_t  *p ) {
 	if( p->winding ) {
@@ -80,7 +77,6 @@ static bool Portal_Passable( uPortal_t  *p ) {
 	return false;
 }
 
-
 //=============================================================================
 
 int		c_tinyportals;
@@ -101,7 +97,6 @@ void AddPortalToNodes( uPortal_t  *p, node_t *front, node_t *back ) {
 	p->next[1] = back->portals;
 	back->portals = p;
 }
-
 
 /*
 =============
@@ -213,7 +208,6 @@ static void MakeHeadnodePortals( tree_t *tree ) {
 
 //===================================================
 
-
 /*
 ================
 BaseWindingForNode
@@ -288,7 +282,6 @@ static void MakeNodePortal( node_t *node ) {
 	new_portal->winding = w;
 	AddPortalToNodes( new_portal, node->children[0], node->children[1] );
 }
-
 
 /*
 ==============
@@ -373,7 +366,6 @@ static void SplitNodePortals( node_t *node ) {
 	node->portals = NULL;
 }
 
-
 /*
 ================
 CalcNodeBounds
@@ -392,7 +384,6 @@ void CalcNodeBounds( node_t *node ) {
 		}
 	}
 }
-
 
 /*
 ==================
@@ -720,7 +711,6 @@ void ClearAreas_r( node_t *node ) {
 
 //=============================================================
 
-
 /*
 =================
 FindInterAreaPortals_r
@@ -788,10 +778,6 @@ static void FindInterAreaPortals_r( node_t *node ) {
 		iap->side = side;
 	}
 }
-
-
-
-
 
 /*
 =============

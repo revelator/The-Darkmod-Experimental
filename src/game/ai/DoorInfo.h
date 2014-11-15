@@ -23,7 +23,6 @@
 #include <boost/shared_ptr.hpp>
 
 namespace ai {
-
 struct DoorInfo {
 	// The AAS area number
 	int areaNum;
@@ -52,7 +51,6 @@ struct DoorInfo {
 	void Restore( idRestoreGame *savefile );
 };
 typedef boost::shared_ptr<DoorInfo> DoorInfoPtr;
-
 } // namespace ai
 
 #endif /* __DOOR_INFO_H__ */

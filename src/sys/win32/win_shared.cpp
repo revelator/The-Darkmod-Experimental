@@ -74,7 +74,6 @@ int Sys_GetSystemRam( void ) {
 	return physRam;
 }
 
-
 /*
 ================
 Sys_GetDriveFreeSpace
@@ -92,7 +91,6 @@ int Sys_GetDriveFreeSpace( const char *path ) {
 	}
 	return ret;
 }
-
 
 /*
 ================
@@ -190,7 +188,6 @@ char *Sys_GetCurrentUser( void ) {
 	return s_userName;
 }
 
-
 /*
 ===============================================================================
 
@@ -198,7 +195,6 @@ char *Sys_GetCurrentUser( void ) {
 
 ===============================================================================
 */
-
 
 #define PROLOGUE_SIGNATURE 0x00EC8B55
 

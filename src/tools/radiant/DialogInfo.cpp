@@ -54,13 +54,11 @@ void HideInfoDialog() {
 	}
 }
 
-
 CDialogInfo::CDialogInfo( CWnd *pParent /*=NULL*/ )
 	: CDialog( CDialogInfo::IDD, pParent ) {
 	//{{AFX_DATA_INIT(CDialogInfo)
 	//}}AFX_DATA_INIT
 }
-
 
 void CDialogInfo::DoDataExchange( CDataExchange *pDX ) {
 	CDialog::DoDataExchange( pDX );
@@ -68,7 +66,6 @@ void CDialogInfo::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Control( pDX, IDC_EDIT1, m_wndInfo );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CDialogInfo, CDialog )
 	//{{AFX_MSG_MAP(CDialogInfo)

@@ -36,7 +36,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "IdleState.h"
 
 namespace ai {
-
 // Get the name of this state
 const idStr &FleeDoneState::GetName() const {
 	static idStr _name( STATE_FLEE_DONE );
@@ -144,7 +143,6 @@ void FleeDoneState::Think( idAI *owner ) {
 	}
 }
 
-
 void FleeDoneState::OnActorEncounter( idEntity *stimSource, idAI *owner ) {
 	assert( stimSource != NULL && owner != NULL ); // must be fulfilled
 	Memory &memory = owner->GetMemory();
@@ -170,7 +168,6 @@ void FleeDoneState::OnActorEncounter( idEntity *stimSource, idAI *owner ) {
 	}
 	State::OnActorEncounter( stimSource, owner );
 }
-
 
 bool FleeDoneState::CheckAlertLevel( idAI *owner ) {
 	// FleeDoneState terminates itself when the AI reaches Suspicious (aka Investigating)
@@ -218,5 +215,4 @@ StateLibrary::Registrar fleeDoneStateRegistrar(
 	STATE_FLEE_DONE, // Task Name
 	StateLibrary::CreateInstanceFunc( &FleeDoneState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

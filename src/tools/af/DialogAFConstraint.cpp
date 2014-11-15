@@ -40,7 +40,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #define DEBUG_NEW new
 #endif
 
-
 typedef struct {
 	declAFConstraintType_t type;
 	const char *name;
@@ -55,7 +54,6 @@ c_type_t constraintTypes[] = {
 	{ DECLAF_CONSTRAINT_SPRING, "spring" },
 	{ DECLAF_CONSTRAINT_INVALID, NULL }
 };
-
 
 const char *ConstraintTypeToString( declAFConstraintType_t type ) {
 	for( int i = 0; constraintTypes[i].name; i++ ) {
@@ -74,7 +72,6 @@ declAFConstraintType_t StringToConstraintType( const char *str ) {
 	}
 	return DECLAF_CONSTRAINT_INVALID;
 }
-
 
 // DialogAFConstraint dialog
 
@@ -393,7 +390,6 @@ BEGIN_MESSAGE_MAP( DialogAFConstraint, CDialog )
 	ON_BN_CLICKED( IDC_BUTTON_RENAMECONSTRAINT, OnBnClickedButtonRenameconstraint )
 	ON_BN_CLICKED( IDC_BUTTON_DELETECONSTRAINT, OnBnClickedButtonDeleteconstraint )
 END_MESSAGE_MAP()
-
 
 // DialogAFConstraint message handlers
 

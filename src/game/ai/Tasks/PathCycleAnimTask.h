@@ -23,7 +23,6 @@
 #include "PathTask.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_PATH_CYCLE_ANIM "PathCycleAnim"
 
@@ -56,9 +55,7 @@ public:
 
 	// Creates a new Instance of this task
 	static PathCycleAnimTaskPtr CreateInstance();
-
 };
-
 } // namespace ai
 
 #endif /* __AI_PATH_CYCLE_ANIM_TASK_H__ */

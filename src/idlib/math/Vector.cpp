@@ -1,20 +1,20 @@
 /*****************************************************************************
                     The Dark Mod GPL Source Code
- 
- This file is part of the The Dark Mod Source Code, originally based 
+
+ This file is part of the The Dark Mod Source Code, originally based
  on the Doom 3 GPL Source Code as published in 2011.
- 
- The Dark Mod Source Code is free software: you can redistribute it 
- and/or modify it under the terms of the GNU General Public License as 
- published by the Free Software Foundation, either version 3 of the License, 
+
+ The Dark Mod Source Code is free software: you can redistribute it
+ and/or modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation, either version 3 of the License,
  or (at your option) any later version. For details, see LICENSE.TXT.
- 
+
  Project: The Dark Mod (http://www.thedarkmod.com/)
- 
- $Revision$ (Revision of last commit) 
+
+ $Revision$ (Revision of last commit)
  $Date$ (Date of last commit)
  $Author$ (Author of last commit)
- 
+
 ******************************************************************************/
 
 #include "precompiled.h"
@@ -26,7 +26,6 @@ idVec4 vec4_origin( 0.0f, 0.0f, 0.0f, 0.0f );
 idVec5 vec5_origin( 0.0f, 0.0f, 0.0f, 0.0f, 0.0f );
 idVec6 vec6_origin( 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f );
 idVec6 vec6_infinity( idMath::INFINITY, idMath::INFINITY, idMath::INFINITY, idMath::INFINITY, idMath::INFINITY, idMath::INFINITY );
-
 
 //===============================================================
 //
@@ -60,7 +59,6 @@ void idVec2::Lerp( const idVec2 &v1, const idVec2 &v2, const float l ) {
 	}
 }
 
-
 //===============================================================
 //
 //	idVec3
@@ -74,7 +72,7 @@ idVec3::ToYaw
 */
 float idVec3::ToYaw( void ) const {
 	float yaw;
-	
+
 	if ( ( y == 0.0f ) && ( x == 0.0f ) ) {
 		yaw = 0.0f;
 	} else {
@@ -95,7 +93,7 @@ idVec3::ToPitch
 float idVec3::ToPitch( void ) const {
 	float	forward;
 	float	pitch;
-	
+
 	if ( ( x == 0.0f ) && ( y == 0.0f ) ) {
 		if ( z > 0.0f ) {
 			pitch = 90.0f;
@@ -122,7 +120,7 @@ idAngles idVec3::ToAngles( void ) const {
 	float forward;
 	float yaw;
 	float pitch;
-	
+
 	if ( ( x == 0.0f ) && ( y == 0.0f ) ) {
 		yaw = 0.0f;
 		if ( z > 0.0f ) {
@@ -155,7 +153,7 @@ idPolar3 idVec3::ToPolar( void ) const {
 	float forward;
 	float yaw;
 	float pitch;
-	
+
 	if ( ( x == 0.0f ) && ( y == 0.0f ) ) {
 		yaw = 0.0f;
 		if ( z > 0.0f ) {
@@ -282,8 +280,6 @@ void idVec3::ProjectSelfOntoSphere( const float radius ) {
 	}
 }
 
-
-
 //===============================================================
 //
 //	idVec4
@@ -315,7 +311,6 @@ void idVec4::Lerp( const idVec4 &v1, const idVec4 &v2, const float l ) {
 		(*this) = v1 + l * ( v2 - v1 );
 	}
 }
-
 
 //===============================================================
 //
@@ -351,7 +346,6 @@ void idVec5::Lerp( const idVec5 &v1, const idVec5 &v2, const float l ) {
 	}
 }
 
-
 //===============================================================
 //
 //	idVec6
@@ -366,7 +360,6 @@ idVec6::ToString
 const char *idVec6::ToString( int precision ) const {
 	return idStr::FloatArrayToString( ToFloatPtr(), GetDimension(), precision );
 }
-
 
 //===============================================================
 //

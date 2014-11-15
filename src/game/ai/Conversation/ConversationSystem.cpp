@@ -28,7 +28,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #define CONVERSATION_ENTITYCLASS "atdm:conversation_info"
 
 namespace ai {
-
 void ConversationSystem::Clear() {
 	_conversations.Clear();
 	_activeConversations.Clear();
@@ -194,5 +193,4 @@ void ConversationSystem::LoadConversationEntity( idMapEntity *entity ) {
 		}
 	}
 }
-
 } // namespace ai

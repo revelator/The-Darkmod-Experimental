@@ -20,10 +20,6 @@
 
 #include "../vorbis/codec.h"
 
-
-
-
-
 /*#define MDCT_INTEGERIZED  <- be warned there could be some hurt left here*/
 #ifdef MDCT_INTEGERIZED
 
@@ -52,7 +48,6 @@
 
 #endif
 
-
 typedef struct {
 	int n;
 	int log2n;
@@ -69,15 +64,3 @@ extern void mdct_forward( mdct_lookup *init, DATA_TYPE *in, DATA_TYPE *out );
 extern void mdct_backward( mdct_lookup *init, DATA_TYPE *in, DATA_TYPE *out );
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-

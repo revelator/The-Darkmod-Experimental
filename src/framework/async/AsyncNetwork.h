@@ -51,7 +51,6 @@ const int MAX_SERVER_PORTS			= 8;
 const int GAME_INIT_ID_INVALID		= -1;
 const int GAME_INIT_ID_MAP_LOAD		= -2;
 
-
 #include "MsgChannel.h"
 #include "AsyncServer.h"
 #include "ServerScan.h"
@@ -64,7 +63,6 @@ const int GAME_INIT_ID_MAP_LOAD		= -2;
 
 ===============================================================================
 */
-
 
 // unreliable server -> client messages
 enum {
@@ -127,7 +125,6 @@ typedef struct master_s {
 	netadr_t		address;
 	bool			resolved;
 } master_t;
-
 
 class idAsyncNetwork {
 public:

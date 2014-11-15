@@ -23,7 +23,6 @@
 #include "DifficultySettings.h"
 
 namespace difficulty {
-
 #define DEFAULT_DIFFICULTY_ENTITYDEF "atdm:difficulty_settings_default"
 #define DIFFICULTY_ENTITYDEF "atdm:difficulty_settings"
 
@@ -109,7 +108,6 @@ private:
 	// Loads the map-specific difficulty settings from the given map entity
 	void LoadMapDifficultySettings( idMapEntity *ent );
 };
-
 } // namespace difficulty
 
 #endif /* DIFFICULTY_MANAGER_H */

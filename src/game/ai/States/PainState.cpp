@@ -29,7 +29,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "FleeState.h"	 // grayman #3331
 
 namespace ai {
-
 // Get the name of this state
 const idStr &PainState::GetName() const {
 	static idStr _name( STATE_PAIN );
@@ -148,5 +147,4 @@ StateLibrary::Registrar painStateRegistrar(
 	STATE_PAIN, // Task Name
 	StateLibrary::CreateInstanceFunc( &PainState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

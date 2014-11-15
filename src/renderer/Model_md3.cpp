@@ -300,4 +300,3 @@ idBounds idRenderModelMD3::Bounds( const struct renderEntity_s *ent ) const {
 	ret.AddPoint( frame->bounds[1] );
 	return ret;
 }
-

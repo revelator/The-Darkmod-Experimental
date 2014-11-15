@@ -49,7 +49,6 @@
 #define VERTEX_EPSILON						0.1f
 #define CHOP_EPSILON						0.1f
 
-
 typedef struct cm_windingList_s {
 	int					numWindings;			// number of windings
 	idFixedWinding		w[MAX_WINDING_LIST];	// windings
@@ -516,5 +515,3 @@ private:			// collision map data
 
 // for debugging
 extern idCVar cm_debugCollision;
-
-

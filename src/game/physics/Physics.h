@@ -61,7 +61,6 @@ class idPhysics_Liquid; // MOD_WATERPHYSICS
 
 #endif
 
-
 typedef struct impactInfo_s {
 	float						invMass;			// inverse mass
 	idMat3						invInertiaTensor;	// inverse inertia tensor
@@ -69,9 +68,7 @@ typedef struct impactInfo_s {
 	idVec3						velocity;			// velocity at the impact position
 } impactInfo_t;
 
-
 class idPhysics : public idClass {
-
 public:
 	ABSTRACT_PROTOTYPE( idPhysics );
 
@@ -194,7 +191,6 @@ public:	// common physics interface
 	virtual void				SetWater( idPhysics_Liquid *e, const float murkiness ) = 0; // MOD_WATERPHYSICS
 
 #endif
-
 };
 
 #endif /* !__PHYSICS_H__ */

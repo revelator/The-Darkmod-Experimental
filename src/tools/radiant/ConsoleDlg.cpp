@@ -26,7 +26,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "Radiant.h"
 #include "ConsoleDlg.h"
 
-
 // CConsoleDlg dialog
 
 IMPLEMENT_DYNCREATE( CConsoleDlg, CDialog )
@@ -63,13 +62,11 @@ void CConsoleDlg::AddText( const char *msg ) {
 	editConsole.ReplaceSel( work );
 }
 
-
 BEGIN_MESSAGE_MAP( CConsoleDlg, CDialog )
 	ON_WM_SIZE()
 	ON_WM_SETFOCUS()
 	ON_WM_ACTIVATE()
 END_MESSAGE_MAP()
-
 
 // CConsoleDlg message handlers
 

@@ -41,7 +41,6 @@ struct SAIVehicleSpeed {
 	float	NextSpeedFrac; // fraction of max control speed at which we switch to the NEXT speed
 };
 
-
 class CAIVehicle : public idAI {
 public:
 	CLASS_PROTOTYPE( CAIVehicle );
@@ -141,6 +140,5 @@ protected:
 	// animation to play when jumping (no jumping if this is empty) NYI!
 	idStr					m_JumpAnim;
 };
-
 
 #endif /* !AIVEHICLE_H */

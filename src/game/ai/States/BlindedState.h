@@ -24,7 +24,6 @@
 #include "State.h"
 
 namespace ai {
-
 #define STATE_BLINDED "Blinded"
 
 class BlindedState :
@@ -51,7 +50,6 @@ public:
 
 	static StatePtr CreateInstance();
 };
-
 } // namespace ai
 
 #endif /* __AI_BLINDED_STATE_H__ */

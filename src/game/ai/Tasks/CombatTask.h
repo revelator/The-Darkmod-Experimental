@@ -23,7 +23,6 @@
 #include "Task.h"
 
 namespace ai {
-
 class CombatTask :
 	public Task {
 protected:
@@ -50,7 +49,6 @@ protected:
 	void EmitCombatBark( idAI *owner, const idStr &sndName );
 };
 typedef boost::shared_ptr<CombatTask> CombatTaskPtr;
-
 } // namespace ai
 
 #endif /* __AI_RANGED_COMBAT_TASK_H__ */

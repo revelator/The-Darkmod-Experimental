@@ -34,7 +34,6 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CCameraTargetDlg dialog
 
-
 CCameraTargetDlg::CCameraTargetDlg( CWnd *pParent /*=NULL*/ )
 	: CDialog( CCameraTargetDlg::IDD, pParent ) {
 	//{{AFX_DATA_INIT(CCameraTargetDlg)
@@ -43,7 +42,6 @@ CCameraTargetDlg::CCameraTargetDlg( CWnd *pParent /*=NULL*/ )
 	//}}AFX_DATA_INIT
 }
 
-
 void CCameraTargetDlg::DoDataExchange( CDataExchange *pDX ) {
 	CDialog::DoDataExchange( pDX );
 	//{{AFX_DATA_MAP(CCameraTargetDlg)
@@ -51,7 +49,6 @@ void CCameraTargetDlg::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Text( pDX, IDC_EDIT_NAME, m_strName );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CCameraTargetDlg, CDialog )
 	//{{AFX_MSG_MAP(CCameraTargetDlg)

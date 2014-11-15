@@ -24,7 +24,6 @@
 #include "State.h"
 
 namespace ai {
-
 #define STATE_COMBAT "Combat"
 
 class CombatState :
@@ -124,7 +123,6 @@ protected:
 	// Returns false if the enemy is not applicable anymore and the state has ended
 	bool CheckEnemyStatus( idActor *enemy, idAI *owner );
 };
-
 } // namespace ai
 
 #endif /* __AI_COMBAT_STATE_H__ */

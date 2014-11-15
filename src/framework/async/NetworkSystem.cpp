@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 idNetworkSystem		networkSystemLocal;
 idNetworkSystem 	*networkSystem = &networkSystemLocal;
 
-
 /*
 ==================
 idNetworkSystem::ServerSendReliableMessage

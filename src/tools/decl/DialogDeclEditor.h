@@ -27,7 +27,6 @@
 // DialogDeclEditor dialog
 
 class DialogDeclEditor : public CDialog {
-
 	DECLARE_DYNAMIC( DialogDeclEditor )
 
 public:

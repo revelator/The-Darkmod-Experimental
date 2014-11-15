@@ -41,11 +41,9 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 extern HTREEITEM FindTreeItem( CTreeCtrl *tree, HTREEITEM root, const char *text, HTREEITEM forceParent );
 
-
 /////////////////////////////////////////////////////////////////////////////
 // CDialogSound dialog
 CDialogSound *g_SoundDialog = NULL;
-
 
 CDialogSound::CDialogSound( CWnd *pParent /*=NULL*/ )
 	: CDialog( CDialogSound::IDD, pParent ) {
@@ -71,7 +69,6 @@ CDialogSound::CDialogSound( CWnd *pParent /*=NULL*/ )
 	unclamped = FALSE;
 	//}}AFX_DATA_INIT
 }
-
 
 void CDialogSound::DoDataExchange( CDataExchange *pDX ) {
 	CDialog::DoDataExchange( pDX );
@@ -100,7 +97,6 @@ void CDialogSound::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Text( pDX, IDC_EDIT_SHAKES, shakes );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CDialogSound, CDialog )
 	//{{AFX_MSG_MAP(CDialogSound)
@@ -725,7 +721,6 @@ idStr CDialogSound::RebuildItemName( const char *root, HTREEITEM item ) {
 	return strParent;
 }
 
-
 void CDialogSound::UpdateSelectedOrigin( float x, float y, float z ) {
 	idList<idEntity *> list;
 	idVec3 origin;
@@ -777,7 +772,6 @@ void CDialogSound::OnBtnTrigger() {
 
 void CDialogSound::OnHScroll( UINT nSBCode, UINT nPos, CScrollBar *pScrollBar ) {
 }
-
 
 void CDialogSound::OnCheckGrouponly() {
 	AddSpeakers();

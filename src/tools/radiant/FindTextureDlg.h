@@ -48,7 +48,6 @@ public:
 	BOOL	m_bLive;
 	//}}AFX_DATA
 
-
 	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CFindTextureDlg)
@@ -71,7 +70,6 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
-
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.

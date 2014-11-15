@@ -22,6 +22,7 @@
 
 static bool versioned = RegisterVersionedFile( "$Id$" );
 
+#include "../../renderer/tr_local.h"
 #include "splines.h"
 
 idCameraDef splineList;
@@ -33,7 +34,7 @@ glLabeledPoint
 ================
 */
 void glLabeledPoint( idVec4 &color, idVec3 &point, float size, const char *label ) {
-	glColor3fv( color.ToFloatPtr() );
+	GL_Color( color[0], color[1], color[2] );
 	glPointSize( size );
 	glBegin( GL_POINTS );
 	glVertex3fv( point.ToFloatPtr() );
@@ -62,7 +63,7 @@ void glBox( idVec4 &color, idVec3 &point, float size ) {
 	maxs[2] += size;
 	idVec4	saveColor;
 	glGetFloatv( GL_CURRENT_COLOR, saveColor.ToFloatPtr() );
-	glColor3fv( color.ToFloatPtr() );
+	GL_Color( color );
 	glBegin( GL_LINE_LOOP );
 	glVertex3f( mins[0], mins[1], mins[2] );
 	glVertex3f( maxs[0], mins[1], mins[2] );
@@ -85,7 +86,7 @@ void glBox( idVec4 &color, idVec3 &point, float size ) {
 	glVertex3f( maxs[0], maxs[1], maxs[2] );
 	glVertex3f( maxs[0], maxs[1], mins[2] );
 	glEnd();
-	glColor4fv( saveColor.ToFloatPtr() );
+	GL_Color( saveColor[0], saveColor[1], saveColor[2], saveColor[3] );
 }
 
 /*
@@ -415,7 +416,7 @@ void idSplineList::draw( bool editMode ) {
 	if( dirty ) {
 		buildSpline();
 	}
-	glColor3fv( controlColor.ToFloatPtr() );
+	GL_Color( controlColor[0], controlColor[1], controlColor[2] );
 	glPointSize( 5 );
 	glBegin( GL_POINTS );
 	for( i = 0; i < controlPoints.Num(); i++ ) {
@@ -428,7 +429,7 @@ void idSplineList::draw( bool editMode ) {
 		}
 	}
 	//Draw the curve
-	glColor3fv( pathColor.ToFloatPtr() );
+	GL_Color( pathColor[0], pathColor[1], pathColor[2] );
 	glBegin( GL_LINE_STRIP );
 	int count = splinePoints.Num();
 	for( i = 0; i < count; i++ ) {
@@ -436,7 +437,7 @@ void idSplineList::draw( bool editMode ) {
 	}
 	glEnd();
 	if( editMode ) {
-		glColor3fv( segmentColor.ToFloatPtr() );
+		GL_Color( segmentColor[0], segmentColor[1], segmentColor[2] );
 		glPointSize( 3 );
 		glBegin( GL_POINTS );
 		for( i = 0; i < count; i++ ) {

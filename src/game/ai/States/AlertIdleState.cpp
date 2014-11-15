@@ -35,7 +35,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 // Get the name of this state
 const idStr &AlertIdleState::GetName() const {
 	static idStr _name( STATE_ALERT_IDLE );
@@ -164,5 +163,4 @@ StateLibrary::Registrar alertIdleStateRegistrar(
 	STATE_ALERT_IDLE, // Task Name
 	StateLibrary::CreateInstanceFunc( &AlertIdleState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

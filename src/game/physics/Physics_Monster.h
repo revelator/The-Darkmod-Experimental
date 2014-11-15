@@ -49,7 +49,6 @@ typedef struct monsterPState_s {
 } monsterPState_t;
 
 class idPhysics_Monster : public idPhysics_Actor {
-
 public:
 	CLASS_PROTOTYPE( idPhysics_Monster );
 

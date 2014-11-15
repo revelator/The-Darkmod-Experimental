@@ -133,7 +133,6 @@ void idMultiModelAF::ParseAttachmentsAF( void ) {
 	idEntity::ParseAttachments();
 }
 
-
 /*
 ===============================================================================
 
@@ -1627,7 +1626,6 @@ EVENT( EV_Gib,		idAFEntity_Gibbable::Event_Gib )
 EVENT( EV_Gibbed,	idAFEntity_Base::Event_Remove )
 END_CLASS
 
-
 /*
 ================
 idAFEntity_Gibbable::idAFEntity_Gibbable
@@ -1962,7 +1960,6 @@ void idAFEntity_Generic::Event_Activate( idEntity *activator ) {
 	BecomeActive( TH_ANIMATE );
 }
 
-
 /*
 ===============================================================================
 
@@ -2232,7 +2229,6 @@ void idAFEntity_WithAttachedHead::Event_Activate( idEntity *activator ) {
 	}
 }
 
-
 /*
 ===============================================================================
 
@@ -2333,7 +2329,6 @@ float idAFEntity_Vehicle::GetSteerAngle( void ) {
 	}
 	return steerAngle;
 }
-
 
 /*
 ===============================================================================
@@ -2506,7 +2501,6 @@ void idAFEntity_VehicleSimple::Think( void ) {
 	}
 }
 
-
 /*
 ===============================================================================
 
@@ -2517,7 +2511,6 @@ void idAFEntity_VehicleSimple::Think( void ) {
 
 CLASS_DECLARATION( idAFEntity_Vehicle, idAFEntity_VehicleFourWheels )
 END_CLASS
-
 
 /*
 ================
@@ -2666,7 +2659,6 @@ void idAFEntity_VehicleFourWheels::Think( void ) {
 		LinkCombat();
 	}
 }
-
 
 /*
 ===============================================================================
@@ -2841,7 +2833,6 @@ void idAFEntity_VehicleSixWheels::Think( void ) {
 	}
 }
 
-
 /*
 ===============================================================================
 
@@ -2852,7 +2843,6 @@ void idAFEntity_VehicleSixWheels::Think( void ) {
 
 CLASS_DECLARATION( idAFEntity_Base, idAFEntity_SteamPipe )
 END_CLASS
-
 
 /*
 ================
@@ -2977,7 +2967,6 @@ void idAFEntity_SteamPipe::Think( void ) {
 	idAFEntity_Base::Think();
 }
 
-
 /*
 ===============================================================================
 
@@ -2985,7 +2974,6 @@ void idAFEntity_SteamPipe::Think( void ) {
 
 ===============================================================================
 */
-
 
 /*
 ================

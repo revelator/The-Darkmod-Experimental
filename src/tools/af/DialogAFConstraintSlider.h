@@ -21,7 +21,6 @@
 // DialogAFConstraintSlider dialog
 
 class DialogAFConstraintSlider : public CDialog {
-
 	DECLARE_DYNAMIC( DialogAFConstraintSlider )
 
 public:

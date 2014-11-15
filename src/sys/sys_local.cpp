@@ -191,4 +191,3 @@ const char *Sys_TimeStampToStr( ID_TIME_T timeStamp ) {
 	idStr::Copynz( timeString, out, sizeof( timeString ) );
 	return timeString;
 }
-

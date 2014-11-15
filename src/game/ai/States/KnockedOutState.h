@@ -23,7 +23,6 @@
 #include "State.h"
 
 namespace ai {
-
 #define STATE_KNOCKED_OUT "KnockedOut"
 
 class KnockedOutState :
@@ -45,7 +44,6 @@ public:
 
 	static StatePtr CreateInstance();
 };
-
 } // namespace ai
 
 #endif /* __AI_KNOCKED_OUT_STATE_H__ */

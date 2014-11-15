@@ -27,7 +27,6 @@ typedef struct tagPVSToAASMappingNode {
 	tagPVSToAASMappingNode *p_next;
 
 	int AASAreaIndex;
-
 } PVSToAASMappingNode;
 
 //------------------------------------------------------

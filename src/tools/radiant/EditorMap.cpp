@@ -259,7 +259,6 @@ entity_t *AngledEntity() {
 	return ent;
 }
 
-
 brush_t *BrushFromMapPatch( idMapPatch *mappatch, idVec3 origin ) {
 	patchMesh_t *pm = MakeNewPatch( mappatch->GetWidth(), mappatch->GetHeight() );
 	pm->d_texture = Texture_ForName( mappatch->GetMaterial() );
@@ -480,7 +479,6 @@ void Map_LoadFile( const char *filename ) {
 	Sys_EndWait();
 	Sys_UpdateWindows( W_ALL );
 }
-
 
 void Map_VerifyCurrentMap( const char *map ) {
 	if( idStr::Icmp( map, currentmap ) != 0 ) {
@@ -728,7 +726,6 @@ void Map_New( void ) {
 	mapModified = 0;
 	g_qeglobals.mapVersion = MAP_VERSION;
 }
-
 
 bool	region_active;
 idVec3	region_mins( MIN_WORLD_COORD, MIN_WORLD_COORD, MIN_WORLD_COORD );

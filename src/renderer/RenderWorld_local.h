@@ -23,7 +23,6 @@
 // assume any lightDef or entityDef index above this is an internal error
 #define LUDICROUS_INDEX	65537		// (2 ** 16) + 1;
 
-
 typedef struct portal_s {
 	int						intoArea;		// area this portal leads to
 	idWinding 				*w;				// winding points have counter clockwise ordering seen this area
@@ -31,7 +30,6 @@ typedef struct portal_s {
 	struct portal_s 		*next;			// next portal of the area
 	struct doublePortal_s 	*doublePortal;
 } portal_t;
-
 
 typedef struct doublePortal_s {
 	struct portal_s			*portals[2];
@@ -46,7 +44,6 @@ typedef struct doublePortal_s {
 	struct doublePortal_s 	*nextFoggedPortal;
 } doublePortal_t;
 
-
 typedef struct portalArea_s {
 	int				areaNum;
 	int				connectedAreaNum[NUM_PORTAL_ATTRIBUTES];	// if two areas have matching connectedAreaNum, they are
@@ -57,7 +54,6 @@ typedef struct portalArea_s {
 	areaReference_t	lightRefs;		// head/tail of doubly linked list, may change
 } portalArea_t;
 
-
 static const int	CHILDREN_HAVE_MULTIPLE_AREAS = -2;
 static const int	AREANUM_SOLID = -1;
 typedef struct {
@@ -66,7 +62,6 @@ typedef struct {
 	int				commonChildrenArea;	// if all children are either solid or a single area,
 	// this is the area number, else CHILDREN_HAVE_MULTIPLE_AREAS
 } areaNode_t;
-
 
 class idRenderWorldLocal : public idRenderWorld {
 public:
@@ -163,7 +158,6 @@ public:
 	int						interactionTableWidth;		// entityDefs
 	int						interactionTableHeight;		// lightDefs
 
-
 	bool					generateAllInteractionsCalled;
 
 	//-----------------------
@@ -231,7 +225,6 @@ public:
 	void					WriteRenderEntity( qhandle_t handle, const renderEntity_t *ent );
 	void					ReadRenderEntity();
 	void					ReadRenderLight();
-
 
 	//--------------------------
 	// RenderWorld.cpp

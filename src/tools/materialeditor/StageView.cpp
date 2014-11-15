@@ -713,7 +713,3 @@ void StageView::DropItemOnList() {
 	}
 	m_propView->SetPropertyListType( type, toStage );
 }
-
-
-
-

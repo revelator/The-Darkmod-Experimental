@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 PathTurnTask::PathTurnTask() :
 	PathTask() {
 }
@@ -86,5 +85,4 @@ TaskLibrary::Registrar pathTurnTaskRegistrar(
 	TASK_PATH_TURN, // Task Name
 	TaskLibrary::CreateInstanceFunc( &PathTurnTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

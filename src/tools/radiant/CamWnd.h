@@ -45,7 +45,6 @@ typedef struct {
 	idVec3		vup, vpn, vright;	// view matrix
 } camera_t;
 
-
 /////////////////////////////////////////////////////////////////////////////
 // CCamWnd window
 class CXYWnd;
@@ -110,7 +109,6 @@ public:
 		return soundMode;
 	}
 
-
 	bool UpdateRenderEntities();
 	void MarkWorldDirty();
 
@@ -146,7 +144,6 @@ protected:
 	void	UpdateCaption();
 	bool	BuildBrushRenderData( brush_t *brush );
 	void	DrawEntityData();
-
 
 	camera_t m_Camera;
 	int	m_nCambuttonstate;

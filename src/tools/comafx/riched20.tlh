@@ -11,7 +11,6 @@
 #include <comdef.h>
 
 namespace tom {
-
 //
 // Forward references and typedefs
 //
@@ -859,7 +858,6 @@ extern "C" const GUID __declspec(selectany) IID_ITextDocument2 =
     {0x01c25500,0x4268,0x11d1,{0x88,0x3a,0x3c,0x8b,0x00,0xc1,0x00,0x00}};
 extern "C" const GUID __declspec(selectany) IID_ITextMsgFilter =
     {0xa3787420,0x4267,0x11d1,{0x88,0x3a,0x3c,0x8b,0x00,0xc1,0x00,0x00}};
-
 } // namespace tom
 
 #pragma pack(pop)

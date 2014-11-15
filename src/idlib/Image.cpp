@@ -1,20 +1,20 @@
 /*****************************************************************************
                     The Dark Mod GPL Source Code
- 
- This file is part of the The Dark Mod Source Code, originally based 
+
+ This file is part of the The Dark Mod Source Code, originally based
  on the Doom 3 GPL Source Code as published in 2011.
- 
- The Dark Mod Source Code is free software: you can redistribute it 
- and/or modify it under the terms of the GNU General Public License as 
- published by the Free Software Foundation, either version 3 of the License, 
+
+ The Dark Mod Source Code is free software: you can redistribute it
+ and/or modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation, either version 3 of the License,
  or (at your option) any later version. For details, see LICENSE.TXT.
- 
+
  Project: The Dark Mod (http://www.thedarkmod.com/)
- 
- $Revision$ (Revision of last commit) 
+
+ $Revision$ (Revision of last commit)
  $Date$ (Date of last commit)
  $Author$ (Author of last commit)
- 
+
 ******************************************************************************/
 
 #include "precompiled.h"
@@ -113,7 +113,7 @@ bool Image::Init(int width, int height, int bpp)
 	ILboolean result = ilTexImage(
 		static_cast<ILuint>(width), static_cast<ILuint>(height), 1, static_cast<ILuint>(bpp),
 		format, IL_UNSIGNED_BYTE, NULL); // no new data to be copied into the image, just allocate the buffer
-	
+
 	if (result == IL_FALSE)
 	{
 		common->Warning("Could not generate image: error message %s.", ilGetString(ilGetError()));
@@ -175,7 +175,6 @@ bool Image::SaveDevILToFile(const char *filename, Format format) const {
 
 	return true;
 }
-
 
 bool Image::LoadImageFromMemory(const unsigned char *imageBuffer, unsigned int imageLength, const char *name)
 {

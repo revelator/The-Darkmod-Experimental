@@ -156,7 +156,6 @@ protected:
 	* Default is reversible.
 	**/
 	bool m_bReversible;
-
 }; // CObjectiveComponent
 
 #endif

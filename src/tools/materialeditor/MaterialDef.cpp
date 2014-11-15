@@ -23,7 +23,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "MaterialDef.h"
 
-
 /**
 * Constructor.
 */
@@ -57,7 +56,6 @@ void MaterialDef::SetViewData( const char *viewName, DWORD value ) {
 #define MATERIAL_DEF_FILE "MaterialEditorDefs.med"
 
 MaterialDefList MaterialDefManager::materialDefs[MaterialDefManager::MATERIAL_DEF_NUM];
-
 
 /**
 * Loads the material definition file instatiates MaterialDef objects for each definition

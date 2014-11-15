@@ -3092,7 +3092,7 @@ void DrawProjectedLight( brush_t *b, bool bSelected, bool texture ) {
 	gameEdit->ParseSpawnArgsToRenderLight( &spawnArgs, &parms );
 	R_RenderLightFrustum( parms, planes );
 	tri = R_PolytopeSurface( 6, planes, NULL );
-	glColor3f( 1, 0, 1 );
+	GL_Color( 1.0f, 0.0f, 1.0f );
 	for( i = 0; i < tri->numIndexes; i += 3 ) {
 		glBegin( GL_LINE_LOOP );
 		glVertex3fv( tri->verts[tri->indexes[i]].xyz.ToFloatPtr() );
@@ -3116,7 +3116,7 @@ void DrawProjectedLight( brush_t *b, bool bSelected, bool texture ) {
 	if( b->pointLight ) {
 		if( b->lightCenter[0] || b->lightCenter[1] || b->lightCenter[2] ) {
 			glPointSize( 8 );
-			glColor3f( 1.0f, 0.4f, 0.8f );
+			GL_Color( 1.0f, 0.4f, 0.8f );
 			glBegin( GL_POINTS );
 			tv = b->lightCenter;
 			if( transform ) {
@@ -3132,7 +3132,7 @@ void DrawProjectedLight( brush_t *b, bool bSelected, bool texture ) {
 	}
 	// projected light
 	glPointSize( 8 );
-	glColor3f( 1.0f, 0.4f, 0.8f );
+	GL_Color( 1.0f, 0.4f, 0.8f );
 	glBegin( GL_POINTS );
 	tv = b->lightRight;
 	if( transform ) {
@@ -3157,7 +3157,7 @@ void DrawProjectedLight( brush_t *b, bool bSelected, bool texture ) {
 	glVertex3fv( tv.ToFloatPtr() );
 	glEnd();
 	if( b->startEnd ) {
-		glColor3f( 0.4f, 1.0f, 0.8f );
+		GL_Color( 0.4f, 1.0f, 0.8f );
 		glBegin( GL_POINTS );
 		glVertex3fv( b->lightStart.ToFloatPtr() );
 		glVertex3fv( b->lightEnd.ToFloatPtr() );
@@ -3249,11 +3249,11 @@ void DrawSpeaker( brush_t *b, bool bSelected, bool twoD ) {
 	} else {
 		glPushMatrix();
 		glTranslatef( b->owner->origin.x, b->owner->origin.y, b->owner->origin.z );
-		glColor3f( 0.4f, 0.4f, 0.4f );
+		GL_Color( 0.4f, 0.4f, 0.4f );
 		glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 		GLUquadricObj *qobj = gluNewQuadric();
 		gluSphere( qobj, min, 8, 8 );
-		glColor3f( 0.8f, 0.8f, 0.8f );
+		GL_Color( 0.8f, 0.8f, 0.8f );
 		gluSphere( qobj, max, 8, 8 );
 		glEnable( GL_BLEND );
 		glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
@@ -3297,7 +3297,7 @@ void DrawLight( brush_t *b, bool bSelected ) {
 			vTriColor[2] = fB;
 		}
 	}
-	glColor3f( vTriColor[0], vTriColor[1], vTriColor[2] );
+	GL_Color( vTriColor[0], vTriColor[1], vTriColor[2] );
 	idVec3	vCorners[4];
 	float	fMid = b->mins[2] + ( b->maxs[2] - b->mins[2] ) / 2;
 	vCorners[0][0] = b->mins[0];
@@ -3328,7 +3328,7 @@ void DrawLight( brush_t *b, bool bSelected ) {
 		vTriColor[0] *= 0.95f;
 		vTriColor[1] *= 0.95f;
 		vTriColor[2] *= 0.95f;
-		glColor3f( vTriColor[0], vTriColor[1], vTriColor[2] );
+		GL_Color( vTriColor[0], vTriColor[1], vTriColor[2] );
 		glVertex3fv( vCorners[i].ToFloatPtr() );
 	}
 	glVertex3fv( vCorners[0].ToFloatPtr() );
@@ -3344,7 +3344,7 @@ void DrawLight( brush_t *b, bool bSelected ) {
 		vTriColor[0] *= 0.95f;
 		vTriColor[1] *= 0.95f;
 		vTriColor[2] *= 0.95f;
-		glColor3f( vTriColor[0], vTriColor[1], vTriColor[2] );
+		GL_Color( vTriColor[0], vTriColor[1], vTriColor[2] );
 		glVertex3fv( vCorners[i].ToFloatPtr() );
 	}
 	glEnd();
@@ -3447,10 +3447,10 @@ void Brush_DrawModel( brush_t *b, bool camera, bool bSelected ) {
 		idVec4	colorSave;
 		glGetFloatv( GL_CURRENT_COLOR, colorSave.ToFloatPtr() );
 		if( bSelected ) {
-			glColor3fv( g_qeglobals.d_savedinfo.colors[COLOR_SELBRUSHES].ToFloatPtr() );
+			GL_Color( g_qeglobals.d_savedinfo.colors[COLOR_SELBRUSHES] );
 		}
 		DrawRenderModel( model, b->owner->origin, axis, camera );
-		glColor4fv( colorSave.ToFloatPtr() );
+		GL_Color( colorSave[0], colorSave[1], colorSave[2], colorSave[3] );
 		if( bSelected && camera ) {
 			//draw selection tints
 			/*
@@ -3467,7 +3467,7 @@ void Brush_DrawModel( brush_t *b, bool camera, bool bSelected ) {
 			glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 			glDisable( GL_BLEND );
 			glDisable( GL_DEPTH_TEST );
-			glColor3f( 1.0f, 1.0f, 1.0f );
+			GL_Color( 1.0f, 1.0f, 1.0f );
 			glPolygonOffset( 1.0f, 3.0f );
 			DrawRenderModel( model, b->owner->origin, axis, false );
 			glEnable( GL_DEPTH_TEST );
@@ -3521,7 +3521,7 @@ void GLTransformedVertex( float x, float y, float z, idMat3 mat, idVec3 origin, 
 	} else {
 		color.z = max;
 	}
-	glColor3f( color.x, color.y, color.z );
+	GL_Color( color.x, color.y, color.z );
 	glVertex3f( v.x, v.y, v.z );
 }
 
@@ -3639,12 +3639,12 @@ void Brush_DrawModelInfo( brush_t *b, bool selected ) {
 		GLfloat color[4];
 		glGetFloatv( GL_CURRENT_COLOR, &color[0] );
 		if( selected ) {
-			glColor3fv( g_qeglobals.d_savedinfo.colors[COLOR_SELBRUSHES].ToFloatPtr() );
+			GL_Color( g_qeglobals.d_savedinfo.colors[COLOR_SELBRUSHES] );
 		} else {
-			glColor3fv( b->owner->eclass->color.ToFloatPtr() );
+			GL_Color( b->owner->eclass->color );
 		}
 		Brush_DrawModel( b, true, selected );
-		glColor4fv( color );
+		GL_Color( color[0], color[1], color[2], color[3] );
 		if( selected ) {
 			Brush_DrawAxis( b );
 		}
@@ -3699,15 +3699,15 @@ void Brush_DrawEnv( brush_t *b, bool cameraView, bool bSelected ) {
 		idVec4	colorSave;
 		glGetFloatv( GL_CURRENT_COLOR, colorSave.ToFloatPtr() );
 		if( bSelected ) {
-			glColor3fv( g_qeglobals.d_savedinfo.colors[COLOR_SELBRUSHES].ToFloatPtr() );
+			GL_Color( g_qeglobals.d_savedinfo.colors[COLOR_SELBRUSHES] );
 		} else {
-			glColor3f( 1.f, 1.f, 1.f );
+			GL_Color( 1.0f, 1.0f, 1.0f );
 		}
 		DrawRenderModel( model, origin, axis, true );
 		globalImages->BindNull();
 		delete model;
 		model = NULL;
-		glColor4fv( colorSave.ToFloatPtr() );
+		GL_Color( colorSave[0], colorSave[1], colorSave[2], colorSave[3] );
 	}
 }
 
@@ -3748,7 +3748,7 @@ void Brush_DrawCombatNode( brush_t *b, bool cameraView, bool bSelected ) {
 		pt2 = org + leftDir * cone_dist;
 		pt3 = org + rightDir * cone_dist;
 		pt4 = org + rightDir * min_dist;
-		glColor4fv( color.ToFloatPtr() );
+		GL_Color( color[0], color[1], color[2], color[3] );
 		glBegin( GL_LINE_STRIP );
 		glVertex3fv( pt1.ToFloatPtr() );
 		glVertex3fv( pt2.ToFloatPtr() );
@@ -3756,7 +3756,7 @@ void Brush_DrawCombatNode( brush_t *b, bool cameraView, bool bSelected ) {
 		glVertex3fv( pt4.ToFloatPtr() );
 		glVertex3fv( pt1.ToFloatPtr() );
 		glEnd();
-		glColor4fv( colorGreen.ToFloatPtr() );
+		GL_Color( colorGreen[0], colorGreen[1], colorGreen[2], colorGreen[3] );
 		glBegin( GL_LINE_STRIP );
 		glVertex3fv( entorg.ToFloatPtr() );
 		pt = ( pt1 + pt4 ) * 0.5f;
@@ -3825,7 +3825,7 @@ void Brush_Draw( brush_t *b, bool bSelected ) {
 		glEnd();
 	}
 	if( b->owner->eclass->entityModel ) {
-		glColor3fv( b->owner->eclass->color.ToFloatPtr() );
+		GL_Color( b->owner->eclass->color );
 		Brush_DrawModel( b, true, bSelected );
 		return;
 	}
@@ -3939,7 +3939,7 @@ void Brush_DrawCurve( brush_t *b, bool bSelected, bool cam ) {
 	}
 	int maxage = b->owner->curve->GetNumValues();
 	int i, time = 0;
-	glColor3f( 0.0f, 0.0f, 1.0f );
+	GL_Color( 0.0f, 0.0f, 1.0f );
 	for( i = 0; i < maxage; i++ ) {
 		if( bSelected && g_qeglobals.d_select_mode == sel_editpoint ) {
 			idVec3 v = b->owner->curve->GetValue( i );
@@ -3972,7 +3972,7 @@ void Brush_DrawCurve( brush_t *b, bool bSelected, bool cam ) {
 							for ( k = 0; k < 3; k++ ) {
 								int	index = indexes[ j + 2 - k ];
 								float f = ShadeForNormal( verts[index].normal  );
-								glColor3f( f, f, f );
+								GL_Color( f, f, f );
 								glTexCoord2fv( verts[index].st.ToFloatPtr() );
 								glVertex3fv( verts[index].xyz.ToFloatPtr() );
 							}
@@ -4037,7 +4037,7 @@ void Brush_DrawXY( brush_t *b, int nViewType, bool bSelected, bool ignoreViewTyp
 		glEnd();
 	}
 	Brush_DrawCurve( b, bSelected, false );
-	glColor4fv( colorSave.ToFloatPtr() );
+	GL_Color( colorSave[0], colorSave[1], colorSave[2], colorSave[3] );
 	if( b->pPatch ) {
 		Patch_DrawXY( b->pPatch );
 		if( !g_bPatchShowBounds ) {
@@ -4097,15 +4097,15 @@ void Brush_DrawXY( brush_t *b, int nViewType, bool bSelected, bool ignoreViewTyp
 		if( b->owner->eclass->entityModel ) {
 			Brush_DrawModel( b, false, bSelected );
 			DrawBrushEntityName( b );
-			glColor4fv( colorSave.ToFloatPtr() );
+			GL_Color( colorSave[0], colorSave[1], colorSave[2], colorSave[3] );
 			return;
 		}
 	}
-	glColor4fv( colorSave.ToFloatPtr() );
+	GL_Color( colorSave[0], colorSave[1], colorSave[2], colorSave[3] );
 	if( b->modelHandle > 0 ) {
 		Brush_DrawEmitter( b, bSelected, false );
 		Brush_DrawModel( b, false, bSelected );
-		glColor4fv( colorSave.ToFloatPtr() );
+		GL_Color( colorSave[0], colorSave[1], colorSave[2], colorSave[3] );
 		return;
 	}
 	for( face = b->brush_faces, order = 0; face; face = face->next, order++ ) {

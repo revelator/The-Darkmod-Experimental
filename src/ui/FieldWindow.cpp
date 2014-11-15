@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "UserInterfaceLocal.h"
 #include "FieldWindow.h"
 
-
 void idFieldWindow::CommonInit() {
 	cursorPos = 0;
 	lastTextLength = 0;
@@ -62,7 +61,6 @@ bool idFieldWindow::ParseInternalVar( const char *_name, idParser *src ) {
 	return idWindow::ParseInternalVar( _name, src );
 }
 
-
 void idFieldWindow::CalcPaintOffset( int len ) {
 	lastCursorPos = cursorPos;
 	lastTextLength = len;
@@ -76,7 +74,6 @@ void idFieldWindow::CalcPaintOffset( int len ) {
 		paintOffset++;
 	}
 }
-
 
 void idFieldWindow::Draw( int time, float x, float y ) {
 	float scale = textScale;
@@ -94,4 +91,3 @@ void idFieldWindow::Draw( int time, float x, float y ) {
 	}
 	dc->DrawText( &text[paintOffset], scale, 0, foreColor, rect, false, ( ( flags & WIN_FOCUS ) || showCursor ) ? cursorPos - paintOffset : -1 );
 }
-

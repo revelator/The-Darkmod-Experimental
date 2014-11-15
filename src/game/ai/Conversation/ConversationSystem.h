@@ -25,7 +25,6 @@
 #include "Conversation.h"
 
 namespace ai {
-
 class ConversationSystem {
 	// The indexed list of conversations
 	idList<ConversationPtr> _conversations;
@@ -90,7 +89,6 @@ private:
 	void LoadConversationEntity( idMapEntity *entity );
 };
 typedef boost::shared_ptr<ConversationSystem> ConversationSystemPtr;
-
 } // namespace ai
 
 #endif /* __AI_CONVERSATION_SYSTEM_H__ */

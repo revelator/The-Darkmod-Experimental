@@ -29,7 +29,6 @@
 */
 
 class idForce_Spring : public idForce {
-
 public:
 	CLASS_PROTOTYPE( idForce_Spring );
 
@@ -60,7 +59,6 @@ private:
 	idPhysics 			*physics2;	// second physics object
 	int					id2;		// clip model id of second physics object
 	idVec3				p2;			// position on clip model
-
 };
 
 #endif /* !__FORCE_SPRING_H__ */

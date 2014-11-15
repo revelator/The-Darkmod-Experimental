@@ -23,7 +23,6 @@
 #include "Task.h"
 
 namespace ai {
-
 #define BARK_PRIORITY_DEF "atdm:ai_bark_priority"
 #define VERY_HIGH_BARK_PRIORITY 9000000
 
@@ -73,7 +72,6 @@ public:
 	virtual void Save( idSaveGame *savefile ) const;
 	virtual void Restore( idRestoreGame *savefile );
 };
-
 } // namespace ai
 
 #endif /* __AI_COMMUNICATION_TASK_H__ */

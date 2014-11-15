@@ -18,7 +18,6 @@
 
 ******************************************************************************/
 
-
 /*
 	StaticMulti - 	A variant of func_static that can use a idPhys_StaticMulti
 					for the clipmodel, e.g. has more than one clipmodel. Used
@@ -47,8 +46,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 static idTimer timer_updatemodel, timer_total;
 int updates = 0;
 #endif
-
-
 
 //===============================================================
 CLASS_DECLARATION( idStaticEntity, CStaticMulti )
@@ -639,4 +636,3 @@ void CStaticMulti::AddChange( const int entity, const int newLOD, const int newF
 	m_Changes.Append( change );
 	// done
 }
-

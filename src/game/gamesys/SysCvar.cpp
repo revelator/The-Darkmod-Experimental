@@ -220,7 +220,6 @@ idCVar cv_tdm_crouch_toggle(	"tdm_toggle_crouch",			"1",			CVAR_GAME | CVAR_ARCH
 idCVar cv_tdm_crouch_toggle_hold_time(	"tdm_crouch_toggle_hold_time",	"400",			CVAR_GAME | CVAR_ARCHIVE | CVAR_FLOAT, "The time in milliseconds to hold crouch while on a rope/ladder for starting to slide down." );
 idCVar cv_tdm_reattach_delay(	"tdm_reattach_delay",			"100",			CVAR_GAME | CVAR_ARCHIVE | CVAR_FLOAT, "Delay (in ms) for reattaching to ropes/ladders after detaching using crouch." );
 
-
 /**
 * Dark Mod Leaning
 **/
@@ -314,7 +313,6 @@ idCVar cv_throw_max_vel(	"tdm_throw_max_vel",		"900",			CVAR_GAME | CVAR_ARCHIVE
 
 idCVar cv_bounce_sound_max_vel(	"tdm_bounce_sound_max_vel",	"400",			CVAR_GAME | CVAR_ARCHIVE | CVAR_FLOAT, "At this velocity moveable collision sounds reach their maximum volume." );
 idCVar cv_bounce_sound_min_vel(	"tdm_bounce_sound_min_vel",	"80",			CVAR_GAME | CVAR_ARCHIVE | CVAR_FLOAT, "This is the minimum velocity at which moveable collision sounds can be heard at all." );
-
 
 idCVar cv_reverse_grab_control(	"tdm_grabber_reverse_control",	"0",	CVAR_GAME | CVAR_ARCHIVE | CVAR_INTEGER, "Set to 1 to reverse the direction when using next/prev weapon to increase/decrease the distance of the grabbed item." );
 
@@ -452,7 +450,6 @@ idCVar si_usePass(	"si_usePass",				"0",			CVAR_GAME | CVAR_SERVERINFO | CVAR_AR
 idCVar si_spectators(	"si_spectators",			"1",			CVAR_GAME | CVAR_SERVERINFO | CVAR_ARCHIVE | CVAR_BOOL, "allow spectators or require all clients to play" );
 idCVar si_serverURL(	"si_serverURL",				"",				CVAR_GAME | CVAR_SERVERINFO | CVAR_ARCHIVE, "where to reach the server admins and get information about the server" );
 
-
 // user info
 idCVar ui_name(	"ui_name",					"Player",		CVAR_GAME | CVAR_USERINFO | CVAR_ARCHIVE, "player name" );
 idCVar ui_skin(	"ui_skin",				ui_skinArgs[ 0 ],	CVAR_GAME | CVAR_USERINFO | CVAR_ARCHIVE, "player skin", ui_skinArgs, idCmdSystem::ArgCompletion_String<ui_skinArgs> );
@@ -502,7 +499,6 @@ idCVar g_debugCinematic(	"g_debugCinematic",			"0",			CVAR_GAME | CVAR_BOOL, "" 
 idCVar g_stopTime(	"g_stopTime",				"0",			CVAR_GAME | CVAR_BOOL, "" );
 idCVar g_damageScale(	"g_damageScale",			"1",			CVAR_GAME | CVAR_FLOAT | CVAR_ARCHIVE, "scale final damage on player by this factor" );
 
-
 idCVar g_showPVS(	"g_showPVS",				"0",			CVAR_GAME | CVAR_INTEGER, "", 0, 2 );
 idCVar g_showTargets(	"g_showTargets",			"0",			CVAR_GAME | CVAR_BOOL, "draws entities and thier targets.  hidden entities are drawn grey." );
 idCVar g_showTriggers(	"g_showTriggers",			"0",			CVAR_GAME | CVAR_BOOL, "draws trigger entities (orange) and thier targets (green).  disabled triggers are drawn grey." );
@@ -523,9 +519,7 @@ idCVar g_frametime(	"g_frametime",				"0",			CVAR_GAME | CVAR_BOOL, "displays ti
 idCVar g_timeModifier(	"g_timeModifier",			"1",			CVAR_GAME | CVAR_FLOAT, "Use this to stretch the hardcoded 16 msec each frame takes. This can be used to let the game run ultra-slow." );
 idCVar g_timeentities(	"g_timeEntities",			"0",			CVAR_GAME | CVAR_FLOAT, "when non-zero, shows entities whose think functions exceeded the # of milliseconds specified" );
 
-
 idCVar g_enablePortalSky(	"g_enablePortalSky",		"1",			CVAR_GAME | CVAR_BOOL, "enables the portal sky" );
-
 
 idCVar ai_debugScript(	"ai_debugScript",			"-1",			CVAR_GAME | CVAR_INTEGER, "displays script calls for the specified monster entity number" );
 idCVar ai_debugMove(	"ai_debugMove",				"0",			CVAR_GAME | CVAR_BOOL, "draws movement information for monsters" );
@@ -620,7 +614,6 @@ idCVar rb_showActive(	"rb_showActive",			"0",			CVAR_GAME | CVAR_BOOL, "show rig
 idCVar rb_showBuoyancy( "rb_showBuoyancy",          "0",            CVAR_GAME | CVAR_BOOL, "show rigid body buoyancy information" );             // MOD_WATERPHYSICS
 
 #endif //   MOD_WATERPHYSICS
-
 
 // The default values for player movement cvars are set in def/player.def
 idCVar pm_jumpheight(	"pm_jumpheight",			"48",			CVAR_GAME | CVAR_NETWORKSYNC | CVAR_FLOAT, "approximate hieght the player can jump" );
@@ -752,7 +745,6 @@ idCVar r_postprocess_bloomIntensity( "r_postprocess_bloomIntensity",		"0",		CVAR
 idCVar r_postprocess_bloomKernelSize( "r_postprocess_bloomKernelSize",		"2",		CVAR_GAME | CVAR_INTEGER | CVAR_ARCHIVE,	" Sets Bloom's Kernel size. Smaller is faster, takes less memory. Also, smaller kernel means larger bloom spread. \n 1. Large (2x smaller than current resolution) \n 2. Small (4x smaller than current resolution) " );
 //----------------------------------
 
-
 // sikk---> PostProcess Effects
 idCVar r_useSoftShadows(	"r_useSoftShadows",				"0",		CVAR_GAME | CVAR_NOCHEAT | CVAR_ARCHIVE | CVAR_BOOL,	"Enable Soft Shadows postprocessing effect" );
 idCVar r_softShadowsBlurFilter(	"r_softShadowsBlurFilter",		"3",		CVAR_GAME | CVAR_NOCHEAT | CVAR_ARCHIVE | CVAR_INTEGER,	"Blur method used for the shadow mask:\n0 = No Filter\n1 = Box Filter\n2 = Poisson Filter\n3 = Gaussian Filter" );
@@ -872,4 +864,3 @@ idCVar	noshadowDistance(	"noshadowDistance", "0", CVAR_GAME | CVAR_NOCHEAT | CVA
 #ifndef __linux__
 idCVar s_driver( "s_driver", "0", CVAR_GUI, "Dummy CVAR introduced by TDM to fix a console warning in Windows. Seems to be missing, but D3's mpmain.gui references this." );
 #endif
-

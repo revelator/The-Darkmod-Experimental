@@ -54,7 +54,6 @@ typedef struct {
 } maFace_t;
 
 typedef struct {
-
 	//Transform to be applied
 	maTransform_t			*transform;
 
@@ -86,7 +85,6 @@ typedef struct {
 	idVec3 				*normals;
 	bool					normalsParsed;
 	int						nextNormal;
-
 } maMesh_t;
 
 typedef struct {
@@ -104,7 +102,6 @@ typedef struct {
 	maMesh_t				mesh;
 } maObject_t;
 
-
 typedef struct {
 	char					name[128];
 	char					path[1024];
@@ -115,7 +112,6 @@ typedef struct maMaterialNode_s {
 
 	maMaterialNode_s		*child;
 	maFileNode_t				*file;
-
 } maMaterialNode_t;
 
 typedef struct maModel_s {
@@ -127,7 +123,6 @@ typedef struct maModel_s {
 	//Material Resolution
 	idHashTable<maFileNode_t *>		fileNodes;
 	idHashTable<maMaterialNode_t *>	materialNodes;
-
 } maModel_t;
 
 maModel_t	*MA_Load( const char *fileName );

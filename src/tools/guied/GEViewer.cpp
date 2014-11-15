@@ -382,8 +382,8 @@ void rvGEViewer::Render( HDC dc ) {
 	GetClientRect( mToolbar, &rToolbar );
 	mWindowWidth = rClient.right - rClient.left;
 	mWindowHeight = rClient.bottom - rClient.top;
-	glViewport( 0, 0, mWindowWidth, mWindowHeight );
-	glScissor( 0, 0, mWindowWidth, mWindowHeight );
+	GL_Viewport( 0, 0, mWindowWidth, mWindowHeight );
+	GL_Scissor( 0, 0, mWindowWidth, mWindowHeight );
 	glClearColor( 0, 0, 0, 0 );
 	glDisable( GL_DEPTH_TEST );
 	glDisable( GL_CULL_FACE );

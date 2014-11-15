@@ -1,20 +1,20 @@
 /*****************************************************************************
                     The Dark Mod GPL Source Code
- 
- This file is part of the The Dark Mod Source Code, originally based 
+
+ This file is part of the The Dark Mod Source Code, originally based
  on the Doom 3 GPL Source Code as published in 2011.
- 
- The Dark Mod Source Code is free software: you can redistribute it 
- and/or modify it under the terms of the GNU General Public License as 
- published by the Free Software Foundation, either version 3 of the License, 
+
+ The Dark Mod Source Code is free software: you can redistribute it
+ and/or modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation, either version 3 of the License,
  or (at your option) any later version. For details, see LICENSE.TXT.
- 
+
  Project: The Dark Mod (http://www.thedarkmod.com/)
- 
- $Revision$ (Revision of last commit) 
+
+ $Revision$ (Revision of last commit)
  $Date$ (Date of last commit)
  $Author$ (Author of last commit)
- 
+
 ******************************************************************************/
 
 #include "precompiled.h"
@@ -24,13 +24,11 @@
 #include "Simd_MMX.h"
 #include "Simd_SSE.h"
 
-
 //===============================================================
 //                                                        M
 //  SSE implementation of idSIMDProcessor                MrE
 //                                                        E
 //===============================================================
-
 
 #if defined(MACOS_X) && defined(__i386__)
 
@@ -69,14 +67,14 @@ void VPCALL idSIMD_SSE::Dot( float *dst, const idPlane &constant, const idDrawVe
 	// 6,  7,  8
 	// 9, 10, 11
 
-	/* 
+	/*
 		mov			eax, count
 		mov			edi, constant
 		mov			edx, eax
 		mov			esi, src
 		mov			ecx, dst
-	*/	
-	__m128 xmm0, xmm1, xmm2, xmm3, xmm4, xmm5, xmm6, xmm7; 	// Declare 8 xmm registers. 
+	*/
+	__m128 xmm0, xmm1, xmm2, xmm3, xmm4, xmm5, xmm6, xmm7; 	// Declare 8 xmm registers.
 	int count_l4 = count;                                   // count_l4 = eax
 	int count_l1 = count;                                   // count_l1 = edx
 	char *constant_p = (char *)&constant;                   // constant_p = edi
@@ -85,7 +83,7 @@ void VPCALL idSIMD_SSE::Dot( float *dst, const idPlane &constant, const idDrawVe
 
 	assert( sizeof( idDrawVert ) == DRAWVERT_SIZE );
 	assert( (int)&((idDrawVert *)0)->xyz == DRAWVERT_XYZ_OFFSET );
-	
+
 	/*
 		and			eax, ~3
 		movss		xmm4, [edi+0]
@@ -103,10 +101,10 @@ void VPCALL idSIMD_SSE::Dot( float *dst, const idPlane &constant, const idDrawVe
 	xmm5 = _mm_load_ss((float *) (constant_p + 4));
 	xmm5 = _mm_shuffle_ps(xmm5, xmm5, R_SHUFFLEPS( 0, 0, 0, 0 ));
 	xmm6 = _mm_load_ss((float *) (constant_p + 8));
-	xmm6 = _mm_shuffle_ps(xmm6, xmm6, R_SHUFFLEPS( 0, 0, 0, 0 ));	
-	xmm7 = _mm_load_ss((float *) (constant_p + 12));	
- 	xmm7 = _mm_shuffle_ps(xmm7, xmm7, R_SHUFFLEPS( 0, 0, 0, 0 ));	
-	
+	xmm6 = _mm_shuffle_ps(xmm6, xmm6, R_SHUFFLEPS( 0, 0, 0, 0 ));
+	xmm7 = _mm_load_ss((float *) (constant_p + 12));
+ 	xmm7 = _mm_shuffle_ps(xmm7, xmm7, R_SHUFFLEPS( 0, 0, 0, 0 ));
+
 	/*
 		jz			startVert1
 	*/
@@ -133,14 +131,14 @@ void VPCALL idSIMD_SSE::Dot( float *dst, const idPlane &constant, const idDrawVe
 			xmm2 = _mm_load_ss((float *) (src_p+count_l4+0*DRAWVERT_SIZE+DRAWVERT_XYZ_OFFSET+8));        // 2,  X,  X,  X
 			xmm0 = _mm_loadh_pi(xmm0, (__m64 *) (src_p+count_l4+0*DRAWVERT_SIZE+DRAWVERT_XYZ_OFFSET+0)); // 3,  X,  0,  1
 			xmm1 = xmm0;							                                                    // 3,  X,  0,  1
-		
-	/*		
+
+	/*
 		movlps		xmm1, [esi+eax+1*DRAWVERT_SIZE+DRAWVERT_XYZ_OFFSET+4]	//  4,  5,  0,  1
 		shufps		xmm2, xmm1, R_SHUFFLEPS( 0, 1, 0, 1 )					//  2,  X,  4,  5
 	*/
 			xmm1 = _mm_loadl_pi(xmm1, (__m64 *) (src_p+count_l4+1*DRAWVERT_SIZE+DRAWVERT_XYZ_OFFSET+4)); // 4,  5,  0,  1
 			xmm2 = _mm_shuffle_ps(xmm2, xmm1, R_SHUFFLEPS( 0, 1, 0, 1 ));                               // 2,  X,  4,  5
-			
+
 	/*
 		movss		xmm3, [esi+eax+3*DRAWVERT_SIZE+DRAWVERT_XYZ_OFFSET+0]	//  9,  X,  X,  X
 		movhps		xmm3, [esi+eax+2*DRAWVERT_SIZE+DRAWVERT_XYZ_OFFSET+0]	//  9,  X,  6,  7
@@ -158,17 +156,17 @@ void VPCALL idSIMD_SSE::Dot( float *dst, const idPlane &constant, const idDrawVe
 	/*
 		movhps		xmm3, [esi+eax+2*DRAWVERT_SIZE+DRAWVERT_XYZ_OFFSET+8]	// 10, 11,  8,  X
 		shufps		xmm2, xmm3, R_SHUFFLEPS( 0, 3, 2, 1 )					//  2,  5,  8, 11
-	*/		
+	*/
 			xmm3 = _mm_loadh_pi(xmm3, (__m64 *)(src_p+count_l4+2*DRAWVERT_SIZE+DRAWVERT_XYZ_OFFSET+8));  // 10, 11, 8,  X
 			xmm2 = _mm_shuffle_ps(xmm2, xmm3, R_SHUFFLEPS( 0, 3, 2, 1 ));                               // 2,  5,  8,  11
-	
+
 	/*
 		add			ecx, 16
 		add			eax, 4*DRAWVERT_SIZE
 	*/
 			dst_p = dst_p + 16;
 			count_l4 = count_l4 + 4*DRAWVERT_SIZE;
-		
+
 	/*
 		mulps		xmm0, xmm4
 		mulps		xmm1, xmm5
@@ -183,7 +181,7 @@ void VPCALL idSIMD_SSE::Dot( float *dst, const idPlane &constant, const idDrawVe
 			xmm0 = _mm_add_ps(xmm0, xmm7);
 			xmm0 = _mm_add_ps(xmm0, xmm1);
 			xmm0 = _mm_add_ps(xmm0, xmm2);
-			
+
 	/*
 		movlps		[ecx-16+0], xmm0
 		movhps		[ecx-16+8], xmm0
@@ -193,7 +191,7 @@ void VPCALL idSIMD_SSE::Dot( float *dst, const idPlane &constant, const idDrawVe
 			_mm_storeh_pi((__m64 *) (dst_p-16+8), xmm0);
 		} while(count_l4 < 0);
 	}
-	
+
 	/*
 	startVert1:
 		and			edx, 3
@@ -230,7 +228,7 @@ void VPCALL idSIMD_SSE::Dot( float *dst, const idPlane &constant, const idDrawVe
 			xmm0 = _mm_add_ss(xmm0, xmm1);
 			count_l4 = count_l4 + DRAWVERT_SIZE;
 			xmm0 = _mm_add_ss(xmm0, xmm2);
-			count_l1 = count_l1 - 1;		
+			count_l1 = count_l1 - 1;
 			_mm_store_ss((float *) (dst_p-4), xmm0);
 		} while( count_l1 != 0);
 	}
@@ -245,7 +243,6 @@ idSIMD_SSE::MinMax
 ============
 */
 void VPCALL idSIMD_SSE::MinMax( idVec3 &min, idVec3 &max, const idDrawVert *src, const int *indexes, const int count ) {
-
 	assert( sizeof( idDrawVert ) == DRAWVERT_SIZE );
 	assert( (int)&((idDrawVert *)0)->xyz == DRAWVERT_XYZ_OFFSET );
 
@@ -256,7 +253,7 @@ void VPCALL idSIMD_SSE::MinMax( idVec3 &min, idVec3 &max, const idDrawVert *src,
 	int edx;
 	char *min_p;
 	char *max_p;
-	
+
 	/*
 		movss		xmm0, idMath::INFINITY
 		xorps		xmm1, xmm1
@@ -266,7 +263,7 @@ void VPCALL idSIMD_SSE::MinMax( idVec3 &min, idVec3 &max, const idDrawVert *src,
 		movaps		xmm3, xmm1
 	*/
 		xmm0 = _mm_load_ss(&idMath::INFINITY);
-		// To satisfy the compiler use xmm0 instead. 
+		// To satisfy the compiler use xmm0 instead.
 		xmm1 = _mm_xor_ps(xmm0, xmm0);
 		xmm0 = _mm_shuffle_ps(xmm0, xmm0, R_SHUFFLEPS( 0, 0, 0, 0 ));
 		xmm1 = _mm_sub_ps(xmm1, xmm0);
@@ -313,7 +310,7 @@ void VPCALL idSIMD_SSE::MinMax( idVec3 &min, idVec3 &max, const idDrawVert *src,
 			xmm4 = _mm_loadh_pi(xmm4, (__m64 *) (src_p+edx+DRAWVERT_XYZ_OFFSET+0) );
 			xmm0 = _mm_min_ps(xmm0, xmm4);
 			xmm1 = _mm_max_ps(xmm1, xmm4);
-		
+
 	/*
 		mov			edx, [edi+eax+4]
 		imul		edx, DRAWVERT_SIZE
@@ -327,8 +324,8 @@ void VPCALL idSIMD_SSE::MinMax( idVec3 &min, idVec3 &max, const idDrawVert *src,
 			xmm5 = _mm_load_ss((float *) (src_p+edx+DRAWVERT_XYZ_OFFSET+0));
 			xmm5 = _mm_loadh_pi(xmm5, (__m64 *) (src_p+edx+DRAWVERT_XYZ_OFFSET+4) );
 			xmm2 = _mm_min_ps(xmm2, xmm5);
-			xmm3 = _mm_max_ps(xmm3, xmm5);		
-		
+			xmm3 = _mm_max_ps(xmm3, xmm5);
+
 	/*
 		mov			edx, [edi+eax+8]
 		imul		edx, DRAWVERT_SIZE
@@ -343,7 +340,7 @@ void VPCALL idSIMD_SSE::MinMax( idVec3 &min, idVec3 &max, const idDrawVert *src,
 			xmm6 = _mm_loadh_pi(xmm6, (__m64 *) (src_p+edx+DRAWVERT_XYZ_OFFSET+0) );
 			xmm0 = _mm_min_ps(xmm0, xmm6);
 			xmm1 = _mm_max_ps(xmm1, xmm6);
-		
+
 	/*
 		mov			edx, [edi+eax+12]
 		imul		edx, DRAWVERT_SIZE
@@ -357,7 +354,7 @@ void VPCALL idSIMD_SSE::MinMax( idVec3 &min, idVec3 &max, const idDrawVert *src,
 			xmm7 = _mm_load_ss((float *) (src_p+edx+DRAWVERT_XYZ_OFFSET+0));
 			xmm7 = _mm_loadh_pi(xmm7, (__m64 *) (src_p+edx+DRAWVERT_XYZ_OFFSET+4) );
 			xmm2 = _mm_min_ps(xmm2, xmm7);
-			xmm3 = _mm_max_ps(xmm3, xmm7);	
+			xmm3 = _mm_max_ps(xmm3, xmm7);
 
 	/*
 		add			eax, 4*4
@@ -384,7 +381,7 @@ void VPCALL idSIMD_SSE::MinMax( idVec3 &min, idVec3 &max, const idDrawVert *src,
 		indexes_p = indexes_p + count_l;
 		count_l = -count_l;
 	/*
-	loop1:		
+	loop1:
 	*/
 		do{
 	/*
@@ -401,17 +398,16 @@ void VPCALL idSIMD_SSE::MinMax( idVec3 &min, idVec3 &max, const idDrawVert *src,
 			xmm4 = _mm_loadh_pi(xmm4, (__m64 *) (src_p+edx+DRAWVERT_XYZ_OFFSET+0) );
 			xmm0 = _mm_min_ps(xmm0, xmm4);
 			xmm1 = _mm_max_ps(xmm1, xmm4);
-	
+
 	/*
 		add			eax, 4
 		jl			loop1
 	*/
 			count_l = count_l + 4;
 		} while (count_l < 0);
-	
 	}
 
-	/*	
+	/*
 	done1:
 		shufps		xmm2, xmm2, R_SHUFFLEPS( 3, 1, 0, 2 )
 		shufps		xmm3, xmm3, R_SHUFFLEPS( 3, 1, 0, 2 )
@@ -480,7 +476,7 @@ void VPCALL idSIMD_SSE::Dot( float *dst, const idVec3 &constant, const idPlane *
 	xmm6 = _mm_shuffle_ps(xmm6, xmm6, R_SHUFFLEPS( 0, 0, 0, 0 ));
 	xmm7 = _mm_load_ss((float *) (constant_p+8));
 	xmm7 = _mm_shuffle_ps(xmm7, xmm7, R_SHUFFLEPS( 0, 0, 0, 0 ));
-	
+
 	/*
 		jz			startVert1
 	*/
@@ -494,7 +490,7 @@ void VPCALL idSIMD_SSE::Dot( float *dst, const idVec3 &constant, const idPlane *
 		src_p = src_p + count_l4;
 		count_l4 = -count_l4;
 	/*
-	loopVert4:		
+	loopVert4:
 	*/
 		do {
 	/*
@@ -528,14 +524,14 @@ void VPCALL idSIMD_SSE::Dot( float *dst, const idVec3 &constant, const idPlane *
 			xmm2 = xmm3;
 			xmm2 = _mm_shuffle_ps(xmm2, xmm4, R_SHUFFLEPS( 0, 2, 0, 2 ));
 			xmm3 = _mm_shuffle_ps(xmm3, xmm4, R_SHUFFLEPS( 1, 3, 1, 3 ));
-		
+
 	/*
 		add			ecx, 16
 		add			eax, 4*16
 	*/
 			dst_p = dst_p + 16;
 			count_l4 = count_l4 + 4*16;
-		
+
 	/*
 		mulps		xmm0, xmm5
 		mulps		xmm1, xmm6
@@ -546,11 +542,11 @@ void VPCALL idSIMD_SSE::Dot( float *dst, const idVec3 &constant, const idPlane *
 	*/
 			xmm0 = _mm_mul_ps(xmm0, xmm5);
 			xmm1 = _mm_mul_ps(xmm1, xmm6);
-			xmm2 = _mm_mul_ps(xmm2, xmm7);		
+			xmm2 = _mm_mul_ps(xmm2, xmm7);
 			xmm0 = _mm_add_ps(xmm0, xmm3);
 			xmm0 = _mm_add_ps(xmm0, xmm1);
-			xmm0 = _mm_add_ps(xmm0, xmm2);		
-		
+			xmm0 = _mm_add_ps(xmm0, xmm2);
+
 	/*
 		movlps		[ecx-16+0], xmm0
 		movhps		[ecx-16+8], xmm0
@@ -558,7 +554,7 @@ void VPCALL idSIMD_SSE::Dot( float *dst, const idVec3 &constant, const idPlane *
 	*/
 			_mm_storel_pi((__m64 *) (dst_p-16+0), xmm0);
 			_mm_storeh_pi((__m64 *) (dst_p-16+8), xmm0);
-		} while (count_l4 < 0);	
+		} while (count_l4 < 0);
 	}
 
 	/*
@@ -570,7 +566,7 @@ void VPCALL idSIMD_SSE::Dot( float *dst, const idVec3 &constant, const idPlane *
 
 	if(count_l1 != 0) {
 	/*
-	loopVert1:	
+	loopVert1:
 	*/
 		do {
 	/*
@@ -593,11 +589,11 @@ void VPCALL idSIMD_SSE::Dot( float *dst, const idVec3 &constant, const idPlane *
 			xmm1 = _mm_load_ss((float *) (src_p+count_l4+ 4));
 			xmm2 = _mm_load_ss((float *) (src_p+count_l4+ 8));
 			xmm3 = _mm_load_ss((float *) (src_p+count_l4+12));
-						
+
 			xmm0 = _mm_mul_ss(xmm0, xmm5);
 			xmm1 = _mm_mul_ss(xmm1, xmm6);
 			xmm2 = _mm_mul_ss(xmm2, xmm7);
-			
+
 			xmm0 = _mm_add_ss(xmm0, xmm3);
 			dst_p = dst_p + 4;
 			xmm0 = _mm_add_ss(xmm0, xmm1);
@@ -704,7 +700,6 @@ void VPCALL idSIMD_SSE::Dot( float *dst, const idVec3 &constant, const idPlane *
 	__asm	movhps		[address+24], reg0						/* mem1 =  4,  5,  6,  7 */		\
 	__asm	movhps		[address+32], reg2						/* mem2 =  8,  9,  X,  X */		\
 	__asm	movhps		[address+40], reg1						/* mem2 =  8,  9, 10, 11 */
-
 
 // with alignment
 #define KFLOATINITS(   SRC0, COUNT, PRE, POST )				KFLOATINITDSS( SRC0,SRC0,SRC0,COUNT,PRE,POST )
@@ -987,7 +982,6 @@ void VPCALL idSIMD_SSE::Dot( float *dst, const idVec3 &constant, const idPlane *
 	KFLOATOPER( KALUDSS1( ALUOP, [edi+ebx],[edx+ebx],[esi+ebx] ),		\
 				KALUDSS4( ALUOP, [edi+ebx],[edx+ebx],[esi+ebx] ), COUNT )
 
-
 #define DRAWVERT_SIZE				60
 #define DRAWVERT_XYZ_OFFSET			(0*4)
 #define DRAWVERT_ST_OFFSET			(3*4)
@@ -999,7 +993,6 @@ void VPCALL idSIMD_SSE::Dot( float *dst, const idVec3 &constant, const idPlane *
 #define JOINTQUAT_SIZE				(7*4)
 #define JOINTMAT_SIZE				(4*3*4)
 #define JOINTWEIGHT_SIZE			(4*4)
-
 
 #define ALIGN4_INIT1( X, INIT )				ALIGN16( static X[4] ) = { INIT, INIT, INIT, INIT }
 #define ALIGN4_INIT4( X, I0, I1, I2, I3 )	ALIGN16( static X[4] ) = { I0, I1, I2, I3 }
@@ -2674,7 +2667,6 @@ idSIMD_SSE::Dot
 ============
 */
 void VPCALL idSIMD_SSE::Dot( float *dst, const idVec3 &constant, const idDrawVert *src, const int count ) {
-
 	assert( sizeof( idDrawVert ) == DRAWVERT_SIZE );
 	assert( (int)&((idDrawVert *)0)->xyz == DRAWVERT_XYZ_OFFSET );
 
@@ -2848,7 +2840,6 @@ idSIMD_SSE::Dot
 ============
 */
 void VPCALL idSIMD_SSE::Dot( float *dst, const idPlane &constant, const idPlane *src, const int count ) {
-
 #define SINGLE_OP(SRC, DEST)							\
 	__asm	movlps		xmm0,[SRC]						\
 	__asm	movlps		xmm1,[SRC+8]					\
@@ -2909,7 +2900,7 @@ void VPCALL idSIMD_SSE::Dot( float *dst, const idPlane &constant, const idPlane 
 		shl			ecx, 2
 		lea			eax, [eax+ecx*4]
 		add			edx, ecx
-		neg			ecx		
+		neg			ecx
 
 		movlps		xmm0, [eax+ecx*4]
 		movhps		xmm0, [eax+ecx*4+16]
@@ -2960,7 +2951,6 @@ void VPCALL idSIMD_SSE::Dot( float *dst, const idPlane &constant, const idPlane 
 
 #undef DUAL_OP
 #undef SINGLE_OP
-
 }
 
 /*
@@ -2971,7 +2961,6 @@ idSIMD_SSE::Dot
 ============
 */
 void VPCALL idSIMD_SSE::Dot( float *dst, const idPlane &constant, const idDrawVert *src, const int count ) {
-
 	assert( sizeof( idDrawVert ) == DRAWVERT_SIZE );
 	assert( (int)&((idDrawVert *)0)->xyz == DRAWVERT_XYZ_OFFSET );
 
@@ -3686,7 +3675,6 @@ idSIMD_SSE::MinMax
 */
 void VPCALL idSIMD_SSE::MinMax( idVec3 &min, idVec3 &max, const idVec3 *src, const int count ) {
 	__asm {
-
 		movss		xmm0, idMath::INFINITY
 		xorps		xmm1, xmm1
 		shufps		xmm0, xmm0, R_SHUFFLEPS( 0, 0, 0, 0 )
@@ -3765,12 +3753,10 @@ idSIMD_SSE::MinMax
 ============
 */
 void VPCALL idSIMD_SSE::MinMax( idVec3 &min, idVec3 &max, const idDrawVert *src, const int count ) {
-
 	assert( sizeof( idDrawVert ) == DRAWVERT_SIZE );
 	assert( (int)&((idDrawVert *)0)->xyz == DRAWVERT_XYZ_OFFSET );
 
 	__asm {
-
 		movss		xmm0, idMath::INFINITY
 		xorps		xmm1, xmm1
 		shufps		xmm0, xmm0, R_SHUFFLEPS( 0, 0, 0, 0 )
@@ -3849,12 +3835,10 @@ idSIMD_SSE::MinMax
 ============
 */
 void VPCALL idSIMD_SSE::MinMax( idVec3 &min, idVec3 &max, const idDrawVert *src, const int *indexes, const int count ) {
-
 	assert( sizeof( idDrawVert ) == DRAWVERT_SIZE );
 	assert( (int)&((idDrawVert *)0)->xyz == DRAWVERT_XYZ_OFFSET );
 
 	__asm {
-
 		movss		xmm0, idMath::INFINITY
 		xorps		xmm1, xmm1
 		shufps		xmm0, xmm0, R_SHUFFLEPS( 0, 0, 0, 0 )
@@ -8404,7 +8388,6 @@ void VPCALL idSIMD_SSE::MatX_MultiplyMatX( idMatX &dst, const idMatX &m1, const 
 			if ( !(l^6) ) {
 				switch( k ) {
 					case 2: {			// 2x2 * 2x6
-
 						#define MUL_Nx2_2x6_INIT								\
 						__asm mov		esi, m2Ptr								\
 						__asm mov		edi, m1Ptr								\
@@ -8458,7 +8441,6 @@ void VPCALL idSIMD_SSE::MatX_MultiplyMatX( idMatX &dst, const idMatX &m1, const 
 						return;
 					}
 					case 6: {			// 6x2 * 2x6
-
 						MUL_Nx2_2x6_INIT
 						MUL_Nx2_2x6_ROW2( 0 )
 						MUL_Nx2_2x6_ROW2( 1 )
@@ -8669,7 +8651,6 @@ void VPCALL idSIMD_SSE::MatX_MultiplyMatX( idMatX &dst, const idMatX &m1, const 
 			if ( !(l^6) ) {
 				switch( k ) {
 					case 4: {			// 4x4 * 4x6
-
 						#define MUL_Nx4_4x6_FIRST4COLUMNS_INIT						\
 						__asm mov			esi, m2Ptr								\
 						__asm mov			edi, m1Ptr								\
@@ -8745,7 +8726,6 @@ void VPCALL idSIMD_SSE::MatX_MultiplyMatX( idMatX &dst, const idMatX &m1, const 
 						return;
 					}
 					case 6: {			// 6x4 * 4x6
-
 						MUL_Nx4_4x6_FIRST4COLUMNS_INIT
 						MUL_Nx4_4x6_FIRST4COLUMNS_ROW( 0 )
 						MUL_Nx4_4x6_FIRST4COLUMNS_ROW( 1 )
@@ -8777,7 +8757,6 @@ void VPCALL idSIMD_SSE::MatX_MultiplyMatX( idMatX &dst, const idMatX &m1, const 
 			if ( !(l^6) ) {
 				switch( k ) {
 					case 5: {			// 5x5 * 5x6
-
 						#define MUL_Nx5_5x6_FIRST4COLUMNS_INIT						\
 						__asm mov			esi, m2Ptr								\
 						__asm mov			edi, m1Ptr								\
@@ -8885,7 +8864,6 @@ void VPCALL idSIMD_SSE::MatX_MultiplyMatX( idMatX &dst, const idMatX &m1, const 
 						return;
 					}
 					case 6: {			// 6x5 * 5x6
-
 						MUL_Nx5_5x6_FIRST4COLUMNS_INIT
 						MUL_Nx5_5x6_FIRST4COLUMNS_ROW( 0 )
 						MUL_Nx5_5x6_FIRST4COLUMNS_ROW( 1 )
@@ -8925,7 +8903,6 @@ void VPCALL idSIMD_SSE::MatX_MultiplyMatX( idMatX &dst, const idMatX &m1, const 
 				}
 				case 2: {
 					if ( !(l^2) ) {		// 2x6 * 6x2
-
 						#define MUL_Nx6_6x2_INIT								\
 						__asm mov		esi, m2Ptr								\
 						__asm mov		edi, m1Ptr								\
@@ -8972,7 +8949,6 @@ void VPCALL idSIMD_SSE::MatX_MultiplyMatX( idMatX &dst, const idMatX &m1, const 
 				}
 				case 3: {
 					if ( !(l^3) ) {		// 3x6 * 6x3
-
 						#define MUL_Nx6_6x3_INIT								\
 						__asm mov		esi, m2Ptr								\
 						__asm mov		edi, m1Ptr								\
@@ -9028,7 +9004,6 @@ void VPCALL idSIMD_SSE::MatX_MultiplyMatX( idMatX &dst, const idMatX &m1, const 
 				}
 				case 4: {
 					if ( !(l^4) ) {		// 4x6 * 6x4
-
 						#define MUL_Nx6_6x4_INIT								\
 						__asm mov		esi, m2Ptr								\
 						__asm mov		edi, m1Ptr								\
@@ -9071,14 +9046,13 @@ void VPCALL idSIMD_SSE::MatX_MultiplyMatX( idMatX &dst, const idMatX &m1, const 
 						MUL_Nx6_6x4_ROW( 1 )
 						MUL_Nx6_6x4_ROW( 2 )
 						MUL_Nx6_6x4_ROW( 3 )
-	
+
 						return;
 					}
 					break;
 				}
 				case 5: {
 					if ( !(l^5) ) {		// 5x6 * 6x5
-
 						#define MUL_Nx6_6x5_INIT								\
 						__asm mov		esi, m2Ptr								\
 						__asm mov		edi, m1Ptr								\
@@ -9211,7 +9185,6 @@ void VPCALL idSIMD_SSE::MatX_MultiplyMatX( idMatX &dst, const idMatX &m1, const 
 							return;
 						}
 						case 2: {		// 6x6 * 6x2
-
 							MUL_Nx6_6x2_INIT
 							MUL_Nx6_6x2_ROW2( 0 )
 							MUL_Nx6_6x2_ROW2( 1 )
@@ -9220,7 +9193,6 @@ void VPCALL idSIMD_SSE::MatX_MultiplyMatX( idMatX &dst, const idMatX &m1, const 
 							return;
 						}
 						case 3: {		// 6x6 * 6x3
-
 							MUL_Nx6_6x3_INIT
 							MUL_Nx6_6x3_ROW( 0 )
 							MUL_Nx6_6x3_ROW( 1 )
@@ -9232,7 +9204,6 @@ void VPCALL idSIMD_SSE::MatX_MultiplyMatX( idMatX &dst, const idMatX &m1, const 
 							return;
 						}
 						case 4: {		// 6x6 * 6x4
-
 							MUL_Nx6_6x4_INIT
 							MUL_Nx6_6x4_ROW( 0 )
 							MUL_Nx6_6x4_ROW( 1 )
@@ -9244,7 +9215,6 @@ void VPCALL idSIMD_SSE::MatX_MultiplyMatX( idMatX &dst, const idMatX &m1, const 
 							return;
 						}
 						case 5: {		// 6x6 * 6x5
-
 							MUL_Nx6_6x5_INIT
 							MUL_Nx6_6x5_ROW( 0 )
 							MUL_Nx6_6x5_ROW( 1 )
@@ -9674,7 +9644,6 @@ void VPCALL idSIMD_SSE::MatX_TransposeMultiplyMatX( idMatX &dst, const idMatX &m
 			break;
 		case 3:
 			if ( !((k^6)|(l^3)) ) {			// 3x6 * 3x3
-
 				#define MUL_3xN_3x3_INIT								\
 				__asm mov		esi, m2Ptr								\
 				__asm mov		edi, m1Ptr								\
@@ -9780,7 +9749,6 @@ void VPCALL idSIMD_SSE::MatX_TransposeMultiplyMatX( idMatX &dst, const idMatX &m
 			break;
 		case 4:
 			if ( !((k^6)|(l^4)) ) {			// 4x6 * 4x4
-
 				#define MUL_4xN_4x4_INIT								\
 				__asm mov		esi, m2Ptr								\
 				__asm mov		edi, m1Ptr								\
@@ -9830,7 +9798,6 @@ void VPCALL idSIMD_SSE::MatX_TransposeMultiplyMatX( idMatX &dst, const idMatX &m
 			break;
 		case 5:
 			if ( !((k^6)|(l^5)) ) {			// 5x6 * 5x5
-
 				#define MUL_5xN_5x5_INIT								\
 				__asm mov		esi, m2Ptr								\
 				__asm mov		edi, m1Ptr								\
@@ -10027,7 +9994,6 @@ void VPCALL idSIMD_SSE::MatX_TransposeMultiplyMatX( idMatX &dst, const idMatX &m
 						return;
 					}
 					case 2: {					// 6x2 * 6x6
-
 						MUL_6xN_6x6_FIRST4COLUMNS_INIT
 						MUL_6xN_6x6_FIRST4COLUMNS_ROW( 2, 0 )
 						MUL_6xN_6x6_FIRST4COLUMNS_ROW( 2, 1 )
@@ -10037,7 +10003,6 @@ void VPCALL idSIMD_SSE::MatX_TransposeMultiplyMatX( idMatX &dst, const idMatX &m
 						return;
 					}
 					case 3: {					// 6x3 * 6x6
-
 						MUL_6xN_6x6_FIRST4COLUMNS_INIT
 						MUL_6xN_6x6_FIRST4COLUMNS_ROW( 3, 0 )
 						MUL_6xN_6x6_FIRST4COLUMNS_ROW( 3, 1 )
@@ -10049,7 +10014,6 @@ void VPCALL idSIMD_SSE::MatX_TransposeMultiplyMatX( idMatX &dst, const idMatX &m
 						return;
 					}
 					case 4: {					// 6x4 * 6x6
-
 						MUL_6xN_6x6_FIRST4COLUMNS_INIT
 						MUL_6xN_6x6_FIRST4COLUMNS_ROW( 4, 0 )
 						MUL_6xN_6x6_FIRST4COLUMNS_ROW( 4, 1 )
@@ -10062,7 +10026,6 @@ void VPCALL idSIMD_SSE::MatX_TransposeMultiplyMatX( idMatX &dst, const idMatX &m
 						return;
 					}
 					case 5: {					// 6x5 * 6x6
-
 						MUL_6xN_6x6_FIRST4COLUMNS_INIT
 						MUL_6xN_6x6_FIRST4COLUMNS_ROW( 5, 0 )
 						MUL_6xN_6x6_FIRST4COLUMNS_ROW( 5, 1 )
@@ -10077,7 +10040,6 @@ void VPCALL idSIMD_SSE::MatX_TransposeMultiplyMatX( idMatX &dst, const idMatX &m
 						return;
 					}
 					case 6: {					// 6x6 * 6x6
-
 						MUL_6xN_6x6_FIRST4COLUMNS_INIT
 						MUL_6xN_6x6_FIRST4COLUMNS_ROW( 6, 0 )
 						MUL_6xN_6x6_FIRST4COLUMNS_ROW( 6, 1 )
@@ -10433,7 +10395,6 @@ void VPCALL idSIMD_SSE::MatX_LowerTriangularSolveTranspose( const idMatX &L, flo
 	// processed rows is not a multiple of 2 we can still run 8 byte aligned
 	m = n;
 	if ( m & 1 ) {
-
 		m--;
 		x[m] = b[m];
 
@@ -10536,9 +10497,7 @@ void VPCALL idSIMD_SSE::MatX_LowerTriangularSolveTranspose( const idMatX &L, flo
 		done4rows_1:
 			pop			ebx
 		}
-
 	} else {
-
 		lptr = L.ToFloatPtr() + m * nc + m - 4;
 		xptr = x + m;
 		__asm {
@@ -10652,7 +10611,6 @@ void VPCALL idSIMD_SSE::MatX_LowerTriangularSolveTranspose( const idMatX &L, flo
 
 	m = n;
 	if ( m & 1 ) {
-
 		m--;
 		x[m] = b[m];
 
@@ -10722,9 +10680,7 @@ void VPCALL idSIMD_SSE::MatX_LowerTriangularSolveTranspose( const idMatX &L, flo
 			lptr -= 4;
 			xptr -= 4;
 		}
-
 	} else {
-
 		lptr = L.ToFloatPtr() + m * nc + m - 4;
 		xptr = x + m;
 		// process 4 rows at a time
@@ -11190,7 +11146,6 @@ bool VPCALL idSIMD_SSE::MatX_LDLTFactor( idMatX &mat, idVecX &invDiag, const int
 	}
 
 	for ( i = 4; i < n; i++ ) {
-
 		mptr = mat[i];
 
 		v[0] = diag[0] * mptr[0]; s0 = v[0] * mptr[0];
@@ -11684,13 +11639,11 @@ idSIMD_SSE::ConvertJointQuatsToJointMats
 ============
 */
 void VPCALL idSIMD_SSE::ConvertJointQuatsToJointMats( idJointMat *jointMats, const idJointQuat *jointQuats, const int numJoints ) {
-
 	assert( sizeof( idJointQuat ) == JOINTQUAT_SIZE );
 	assert( sizeof( idJointMat ) == JOINTMAT_SIZE );
 	assert( (int)(&((idJointQuat *)0)->t) == (int)(&((idJointQuat *)0)->q) + (int)sizeof( ((idJointQuat *)0)->q ) );
 
 	for ( int i = 0; i < numJoints; i++ ) {
-
 		const float *q = jointQuats[i].q.ToFloatPtr();
 		float *m = jointMats[i].ToFloatPtr();
 
@@ -11744,7 +11697,6 @@ idSIMD_SSE::ConvertJointMatsToJointQuats
 ============
 */
 void VPCALL idSIMD_SSE::ConvertJointMatsToJointQuats( idJointQuat *jointQuats, const idJointMat *jointMats, const int numJoints ) {
-
 	assert( sizeof( idJointQuat ) == JOINTQUAT_SIZE );
 	assert( sizeof( idJointMat ) == JOINTMAT_SIZE );
 	assert( (int)(&((idJointQuat *)0)->t) == (int)(&((idJointQuat *)0)->q) + (int)sizeof( ((idJointQuat *)0)->q ) );
@@ -12144,7 +12096,6 @@ void VPCALL idSIMD_SSE::ConvertJointMatsToJointQuats( idJointQuat *jointQuats, c
 		const float *m = jointMats[i].ToFloatPtr();
 
 		if ( m[0 * 4 + 0] + m[1 * 4 + 1] + m[2 * 4 + 2] > 0.0f ) {
-
 			k0 = 3;
 			k1 = 2;
 			k2 = 1;
@@ -12152,9 +12103,7 @@ void VPCALL idSIMD_SSE::ConvertJointMatsToJointQuats( idJointQuat *jointQuats, c
 			s0 = 1.0f;
 			s1 = 1.0f;
 			s2 = 1.0f;
-
 		} else if ( m[0 * 4 + 0] > m[1 * 4 + 1] && m[0 * 4 + 0] > m[2 * 4 + 2] ) {
-
 			k0 = 0;
 			k1 = 1;
 			k2 = 2;
@@ -12162,9 +12111,7 @@ void VPCALL idSIMD_SSE::ConvertJointMatsToJointQuats( idJointQuat *jointQuats, c
 			s0 = 1.0f;
 			s1 = -1.0f;
 			s2 = -1.0f;
-
 		} else if ( m[1 * 4 + 1] > m[2 * 4 + 2] ) {
-
 			k0 = 1;
 			k1 = 0;
 			k2 = 3;
@@ -12172,9 +12119,7 @@ void VPCALL idSIMD_SSE::ConvertJointMatsToJointQuats( idJointQuat *jointQuats, c
 			s0 = -1.0f;
 			s1 = 1.0f;
 			s2 = -1.0f;
-
 		} else {
-
 			k0 = 2;
 			k1 = 3;
 			k2 = 0;
@@ -12182,7 +12127,6 @@ void VPCALL idSIMD_SSE::ConvertJointMatsToJointQuats( idJointQuat *jointQuats, c
 			s0 = -1.0f;
 			s1 = -1.0f;
 			s2 = 1.0f;
-
 		}
 
 		float t = s0 * m[0 * 4 + 0] + s1 * m[1 * 4 + 1] + s2 * m[2 * 4 + 2] + 1.0f;
@@ -12201,12 +12145,10 @@ void VPCALL idSIMD_SSE::ConvertJointMatsToJointQuats( idJointQuat *jointQuats, c
 #elif 1
 
 	for ( int i = 0; i < numJoints; i++ ) {
-
 		float *q = jointQuats[i].q.ToFloatPtr();
 		const float *m = jointMats[i].ToFloatPtr();
 
 		if ( m[0 * 4 + 0] + m[1 * 4 + 1] + m[2 * 4 + 2] > 0.0f ) {
-
 			float t = + m[0 * 4 + 0] + m[1 * 4 + 1] + m[2 * 4 + 2] + 1.0f;
 			float s = idMath::InvSqrt( t ) * 0.5f;
 
@@ -12214,9 +12156,7 @@ void VPCALL idSIMD_SSE::ConvertJointMatsToJointQuats( idJointQuat *jointQuats, c
 			q[2] = ( m[0 * 4 + 1] - m[1 * 4 + 0] ) * s;
 			q[1] = ( m[2 * 4 + 0] - m[0 * 4 + 2] ) * s;
 			q[0] = ( m[1 * 4 + 2] - m[2 * 4 + 1] ) * s;
-
 		} else if ( m[0 * 4 + 0] > m[1 * 4 + 1] && m[0 * 4 + 0] > m[2 * 4 + 2] ) {
-
 			float t = + m[0 * 4 + 0] - m[1 * 4 + 1] - m[2 * 4 + 2] + 1.0f;
 			float s = idMath::InvSqrt( t ) * 0.5f;
 
@@ -12224,9 +12164,7 @@ void VPCALL idSIMD_SSE::ConvertJointMatsToJointQuats( idJointQuat *jointQuats, c
 			q[1] = ( m[0 * 4 + 1] + m[1 * 4 + 0] ) * s;
 			q[2] = ( m[2 * 4 + 0] + m[0 * 4 + 2] ) * s;
 			q[3] = ( m[1 * 4 + 2] - m[2 * 4 + 1] ) * s;
-
 		} else if ( m[1 * 4 + 1] > m[2 * 4 + 2] ) {
-
 			float t = - m[0 * 4 + 0] + m[1 * 4 + 1] - m[2 * 4 + 2] + 1.0f;
 			float s = idMath::InvSqrt( t ) * 0.5f;
 
@@ -12234,9 +12172,7 @@ void VPCALL idSIMD_SSE::ConvertJointMatsToJointQuats( idJointQuat *jointQuats, c
 			q[0] = ( m[0 * 4 + 1] + m[1 * 4 + 0] ) * s;
 			q[3] = ( m[2 * 4 + 0] - m[0 * 4 + 2] ) * s;
 			q[2] = ( m[1 * 4 + 2] + m[2 * 4 + 1] ) * s;
-
 		} else {
-
 			float t = - m[0 * 4 + 0] - m[1 * 4 + 1] + m[2 * 4 + 2] + 1.0f;
 			float s = idMath::InvSqrt( t ) * 0.5f;
 
@@ -12244,7 +12180,6 @@ void VPCALL idSIMD_SSE::ConvertJointMatsToJointQuats( idJointQuat *jointQuats, c
 			q[3] = ( m[0 * 4 + 1] - m[1 * 4 + 0] ) * s;
 			q[0] = ( m[2 * 4 + 0] + m[0 * 4 + 2] ) * s;
 			q[1] = ( m[1 * 4 + 2] + m[2 * 4 + 1] ) * s;
-
 		}
 
 		q[4] = m[0 * 4 + 3];
@@ -12266,7 +12201,6 @@ void VPCALL idSIMD_SSE::TransformJoints( idJointMat *jointMats, const int *paren
 	assert( sizeof( idJointMat ) == JOINTMAT_SIZE );
 
 	__asm {
-
 		mov			ecx, firstJoint
 		mov			eax, lastJoint
 		sub			eax, ecx
@@ -12374,7 +12308,6 @@ void VPCALL idSIMD_SSE::UntransformJoints( idJointMat *jointMats, const int *par
 	assert( sizeof( idJointMat ) == JOINTMAT_SIZE );
 
 	__asm {
-
 		mov			edx, firstJoint
 		mov			eax, lastJoint
 		mov			ecx, eax
@@ -12782,7 +12715,7 @@ void VPCALL idSIMD_SSE::DecalPointCull( byte *cullBits, const idPlane *planes, c
 
 		cmpnltps	xmm6, SIMD_SP_zero
 		movmskps	ecx, xmm6
-			
+
 		movaps		xmm6, p0
 		movss		xmm3, [esi+eax+1*DRAWVERT_SIZE+DRAWVERT_XYZ_OFFSET+0]
 		shufps		xmm3, xmm3, R_SHUFFLEPS( 0, 0, 0, 0 )
@@ -12871,7 +12804,6 @@ void VPCALL idSIMD_SSE::DecalPointCull( byte *cullBits, const idPlane *planes, c
 
 	done:
 	}
-
 
 #else
 
@@ -13570,7 +13502,6 @@ void VPCALL idSIMD_SSE::DeriveTriPlanes( idPlane *planes, const idDrawVert *vert
 		n2[2] *= tmp[2];
 		n2[3] *= tmp[3];
 
-
 		for ( j = 0; j < 4; j++ ) {
 			const idDrawVert *a;
 
@@ -13677,7 +13608,6 @@ void VPCALL idSIMD_SSE::DeriveTangents( idPlane *planes, idDrawVert *verts, cons
 		ALIGN16( float t5[4] );
 
 		for ( int j = 0; j < 4; j++ ) {
-
 			a = verts + indexes[i + j * 3 + 0];
 			b = verts + indexes[i + j * 3 + 1];
 			c = verts + indexes[i + j * 3 + 2];
@@ -14108,7 +14038,6 @@ void VPCALL idSIMD_SSE::DeriveTangents( idPlane *planes, idDrawVert *verts, cons
 #endif
 
 		for ( int j = 0; j < 4; j++ ) {
-
 			const int v0 = indexes[i + j * 3 + 0];
 			const int v1 = indexes[i + j * 3 + 1];
 			const int v2 = indexes[i + j * 3 + 2];
@@ -14620,7 +14549,6 @@ void VPCALL idSIMD_SSE::DeriveUnsmoothedTangents( idDrawVert *verts, const domin
 #if 1
 
 		__asm {
-
 			movaps		xmm0, d6
 			mulps		xmm0, d2
 			movaps		xmm1, d7
@@ -14942,7 +14870,6 @@ void VPCALL idSIMD_SSE::DeriveUnsmoothedTangents( idDrawVert *verts, const domin
 #if 1
 
 		__asm {
-
 			movss		xmm0, d6
 			mulss		xmm0, d2
 			movss		xmm1, d7
@@ -15537,7 +15464,6 @@ idSIMD_SSE::CreateTextureSpaceLightVectors
 ============
 */
 void VPCALL idSIMD_SSE::CreateTextureSpaceLightVectors( idVec3 *lightVectors, const idVec3 &lightOrigin, const idDrawVert *verts, const int numVerts, const int *indexes, const int numIndexes ) {
-
 	assert( sizeof( idDrawVert ) == DRAWVERT_SIZE );
 	assert( (int)&((idDrawVert *)0)->xyz == DRAWVERT_XYZ_OFFSET );
 	assert( (int)&((idDrawVert *)0)->normal == DRAWVERT_NORMAL_OFFSET );
@@ -15554,7 +15480,6 @@ void VPCALL idSIMD_SSE::CreateTextureSpaceLightVectors( idVec3 *lightVectors, co
 #if 0
 
 	__asm {
-
 		mov			eax, numVerts
 
 		mov			esi, used
@@ -15660,7 +15585,6 @@ void VPCALL idSIMD_SSE::CreateTextureSpaceLightVectors( idVec3 *lightVectors, co
 	idVec3 localLightOrigin = lightOrigin;
 
 	__asm {
-
 		xor			ecx, ecx
 		mov			eax, numVerts
 
@@ -15932,7 +15856,6 @@ void VPCALL idSIMD_SSE::CreateTextureSpaceLightVectors( idVec3 *lightVectors, co
 		lightVectors2[2] += lightDir2[2] * normal2[2];
 		lightVectors2[3] += lightDir2[3] * normal2[3];
 
-
 		for ( int j = 0; j < 4; j++ ) {
 			int n = usedVertNums[j];
 
@@ -15945,7 +15868,6 @@ void VPCALL idSIMD_SSE::CreateTextureSpaceLightVectors( idVec3 *lightVectors, co
 	}
 
 	for ( int i = 0; i < numUsedVerts; i++ ) {
-
 		lightVectors0[i] = lightDir0[i] * tangent0[i] + lightDir1[i] * tangent1[i] + lightDir2[i] * tangent2[i];
 		lightVectors1[i] = lightDir0[i] * tangent3[i] + lightDir1[i] * tangent4[i] + lightDir2[i] * tangent5[i];
 		lightVectors2[i] = lightDir0[i] * normal0[i] + lightDir1[i] * normal1[i] + lightDir2[i] * normal2[i];
@@ -15965,7 +15887,6 @@ idSIMD_SSE::CreateSpecularTextureCoords
 ============
 */
 void VPCALL idSIMD_SSE::CreateSpecularTextureCoords( idVec3 *texCoords, const idVec3 &lightOrigin, const idVec3 &viewOrigin, const idDrawVert *verts, const int numVerts, const int *indexes, const int numIndexes ) {
-
 	assert( sizeof( idDrawVert ) == DRAWVERT_SIZE );
 	assert( (int)&((idDrawVert *)0)->xyz == DRAWVERT_XYZ_OFFSET );
 	assert( (int)&((idDrawVert *)0)->normal == DRAWVERT_NORMAL_OFFSET );
@@ -15982,7 +15903,6 @@ void VPCALL idSIMD_SSE::CreateSpecularTextureCoords( idVec3 *texCoords, const id
 #if 0
 
 	__asm {
-
 		mov			eax, numVerts
 
 		mov			esi, used
@@ -16112,7 +16032,6 @@ void VPCALL idSIMD_SSE::CreateSpecularTextureCoords( idVec3 *texCoords, const id
 		texCoords[i][3] = 1.0f;
 	}
 
-
 #elif 1
 
 	ALIGN16( int usedVertNums[4] );
@@ -16135,7 +16054,6 @@ void VPCALL idSIMD_SSE::CreateSpecularTextureCoords( idVec3 *texCoords, const id
 	idVec3 localViewOrigin = viewOrigin;
 
 	__asm {
-
 		xor			ecx, ecx
 		mov			eax, numVerts
 
@@ -18007,7 +17925,6 @@ void VPCALL idSIMD_SSE::MixedSoundToSamples( short *samples, const float *mixBuf
 	assert( ( numSamples % MIXBUFFER_SAMPLES ) == 0 );
 
 	__asm {
-
 		mov			eax, numSamples
 		mov			edi, mixBuffer
 		mov			esi, samples

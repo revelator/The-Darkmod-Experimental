@@ -26,7 +26,6 @@
 #include "../../Game_local.h"
 
 namespace eas {
-
 struct ElevatorStationInfo {
 	idEntityPtr<CMultiStateMover> elevator;					// The elevator this station is belonging to
 	idEntityPtr<CMultiStateMoverPosition> elevatorPosition;	// The elevator position entity
@@ -60,7 +59,6 @@ struct ElevatorStationInfo {
 };
 typedef boost::shared_ptr<ElevatorStationInfo> ElevatorStationInfoPtr;
 typedef std::list<ElevatorStationInfoPtr> ElevatorStationInfoList;
-
 } // namespace eas
 
 #endif /* __AI_EAS_ELEVATOR_STATION_INFO_H__ */

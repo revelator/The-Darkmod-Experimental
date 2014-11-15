@@ -75,4 +75,3 @@ bool rvGEStateModifier::SetState( idDict &dict ) {
 	mWrapper->SetState( dict );
 	return true;
 }
-

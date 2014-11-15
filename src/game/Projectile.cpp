@@ -38,7 +38,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 ===============================================================================
 */
 
-
 static const float BOUNCE_SOUND_MIN_VELOCITY	= 200.0f;
 static const float BOUNCE_SOUND_MAX_VELOCITY	= 400.0f;
 
@@ -1167,8 +1166,6 @@ void idProjectile::AttackAction( idPlayer *player ) {
 	}
 }
 
-
-
 /*
 ================
 idProjectile::GetVelocity
@@ -1649,7 +1646,6 @@ void idProjectile::Event_Mine_Replace() {
 	}
 }
 
-
 /*
 ===============================================================================
 
@@ -1737,7 +1733,6 @@ void idGuidedProjectile::Restore( idRestoreGame *savefile ) {
 	savefile->ReadFloat( burstVelocity );
 	// The lock class is restored by the idRestoreGame, don't handle it here
 }
-
 
 /*
 ================
@@ -1858,8 +1853,6 @@ void idGuidedProjectile::Launch( const idVec3 &start, const idVec3 &dir, const i
 	burstVelocity = spawnArgs.GetFloat( "burstVelocity", "1.25" );
 	UpdateVisuals();
 }
-
-
 
 /*
 ===============================================================================
@@ -2099,7 +2092,6 @@ bool idDebris::Collide( const trace_t &collision, const idVec3 &velocity ) {
 	return false;
 }
 
-
 /*
 ================
 idDebris::Fizzle
@@ -2176,5 +2168,3 @@ idDebris::Event_Fizzle
 void idDebris::Event_Fizzle( void ) {
 	Fizzle();
 }
-
-

@@ -49,7 +49,6 @@ typedef short glIndex_t;
 
 #endif
 
-
 typedef struct {
 	// NOTE: making this a glIndex is dubious, as there can be 2x the faces as verts
 	glIndex_t					p1, p2;					// planes defining the edge
@@ -156,7 +155,6 @@ public:
 	idStr						name;
 	const idMD5Joint 			*parent;
 };
-
 
 // the init methods may be called again on an already created model when
 // a reloadModels is issued

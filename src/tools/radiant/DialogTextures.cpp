@@ -836,7 +836,6 @@ void CDialogTextures::OnPreview() {
 	// TODO: Add your control notification handler code here
 }
 
-
 //void CDialogTextures::OnSave()
 //{
 /*
@@ -890,10 +889,8 @@ void CDialogTextures::CollapseEditor() {
 	}
 }
 
-
 void CDialogTextures::OnCancel() {
 }
-
 
 BOOL CDialogTextures::PreTranslateMessage( MSG *pMsg ) {
 	if( pMsg->message == WM_KEYDOWN && ( pMsg->wParam == VK_ESCAPE || pMsg->wParam == VK_RETURN ) ) {

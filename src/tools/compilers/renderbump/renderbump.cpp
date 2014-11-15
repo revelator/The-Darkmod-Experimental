@@ -795,7 +795,7 @@ static void RenderBumpTriangles( srfTriangles_t *lowMesh, renderBump_t *rb ) {
 	int		i, j;
 	RB_SetGL2D();
 	glDisable( GL_CULL_FACE );
-	glColor3f( 1, 1, 1 );
+	GL_Color( 1.0f, 1.0f, 1.0f );
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity();
 	glOrtho( 0, 1, 1, 0, -1, 1 );
@@ -805,7 +805,7 @@ static void RenderBumpTriangles( srfTriangles_t *lowMesh, renderBump_t *rb ) {
 	glDisable( GL_DEPTH_TEST );
 	glClearColor( 1, 0, 0, 1 );
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-	glColor3f( 1, 1, 1 );
+	GL_Color( 1.0f, 1.0f, 1.0f );
 	// create smoothed normals for the surface, which might be
 	// different than the normals at the vertexes if the
 	// surface uses unsmoothedNormals, which only takes the
@@ -1203,7 +1203,7 @@ void RenderBumpFlat_f( const idCmdArgs &args ) {
 	glDisable( GL_TEXTURE_2D );
 	glDepthMask( GL_TRUE );
 	glDepthFunc( GL_LEQUAL );
-	glColor3f( 1, 1, 1 );
+	GL_Color( 1.0f, 1.0f, 1.0f );
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity();
 	glOrtho( bounds[0][0], bounds[1][0], bounds[0][2],
@@ -1266,9 +1266,9 @@ void RenderBumpFlat_f( const idCmdArgs &args ) {
 							// NULLNORMAL is used by the artists to force an area to reflect no
 							// light at all
 							if( surf->shader->GetSurfaceFlags() & SURF_NULLNORMAL ) {
-								glColor3f( 0.5, 0.5, 0.5 );
+								GL_Color( 0.5f, 0.5f, 0.5f );
 							} else {
-								glColor3f( 0.5 + 0.5 * plane[0], 0.5 - 0.5 * plane[2], 0.5 - 0.5 * plane[1] );
+								GL_Color( 0.5f + 0.5f * plane[0], 0.5f - 0.5f * plane[2], 0.5f - 0.5f * plane[1] );
 							}
 							glVertex3f( ( *a )[0] + xOff, ( *a )[2] + yOff, ( *a )[1] );
 							glVertex3f( ( *b )[0] + xOff, ( *b )[2] + yOff, ( *b )[1] );
@@ -1283,10 +1283,10 @@ void RenderBumpFlat_f( const idCmdArgs &args ) {
 								// NULLNORMAL is used by the artists to force an area to reflect no
 								// light at all
 								if( surf->shader->GetSurfaceFlags() & SURF_NULLNORMAL ) {
-									glColor3f( 0.5, 0.5, 0.5 );
+									GL_Color( 0.5f, 0.5f, 0.5f );
 								} else {
 									// we are going to flip the normal Z direction
-									glColor3f( 0.5 + 0.5 * n[0], 0.5 - 0.5 * n[2], 0.5 - 0.5 * n[1] );
+									GL_Color( 0.5f + 0.5f * n[0], 0.5f - 0.5f * n[2], 0.5f - 0.5f * n[1] );
 								}
 								a = mesh->verts[v].xyz.ToFloatPtr();
 								glVertex3f( a[0] + xOff, a[2] + yOff, a[1] );

@@ -42,7 +42,6 @@ public:
 	CListCtrl	m_lstEntity;
 	//}}AFX_DATA
 
-
 	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CEntityListDlg)

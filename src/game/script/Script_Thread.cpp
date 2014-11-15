@@ -1343,7 +1343,6 @@ void idThread::Event_ClearPersistantArgs( void ) {
 	gameLocal.persistentLevelInfo.Clear();
 }
 
-
 /*
 ================
 idThread::Event_SetPersistantArg

@@ -34,7 +34,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "Intersection.h"
 #include "TimerManager.h"
 
-
 //----------------------------------------------------------------------------
 
 // Global instance of LAS
@@ -58,7 +57,6 @@ darkModLAS::darkModLAS() {
 darkModLAS::~darkModLAS() {
 	shutDown();
 }
-
 
 void darkModLAS::Save( idSaveGame *savefile ) const {
 	DM_LOG( LC_LIGHT, LT_DEBUG )LOGSTRING( "Saving LAS.\r" );
@@ -128,7 +126,6 @@ void darkModLAS::Restore( idRestoreGame *savefile ) {
 		}
 	}
 }
-
 
 //----------------------------------------------------------------------------
 
@@ -978,7 +975,6 @@ void darkModLAS::addLight( idLight *p_idLight ) {
 	p_idLight->LASAreaIndex = containingAreaIndex;
 }
 
-
 //------------------------------------------------------------------------------
 
 void darkModLAS::removeLight( idLight *p_idLight ) {
@@ -1141,7 +1137,6 @@ void darkModLAS::updateLASState() {
 	// Done
 	DM_LOG( LC_LIGHT, LT_DEBUG )LOGSTRING( "LAS update frame %d complete\r", m_updateFrameIndex );
 }
-
 
 //----------------------------------------------------------------------------
 
@@ -1326,4 +1321,3 @@ float darkModLAS::queryLightingAlongBestLine
 idStr darkModLAS::getAASName() {
 	return pvsToAASMappingTable.getAASName();
 }
-

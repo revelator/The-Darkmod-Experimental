@@ -252,7 +252,6 @@ private:
 	bool						ParseBBoxes( idLexer &src );
 };
 
-
 /*
 
 -	when a node child is a solid leaf the node child number is zero
@@ -275,7 +274,6 @@ private:
 -	cluster zero is a dummy
 
 */
-
 
 class idAASFile {
 public:

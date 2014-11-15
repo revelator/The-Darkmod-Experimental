@@ -1368,7 +1368,6 @@ bool CsndProp::ExpandWaveFast( float volInit, idVec3 origin, float MaxDist, int 
 	NextAreas.Clear();
 	AddedAreas.Clear();
 
-
 	// ======================== Handle the initial area =========================
 
 	DM_LOG(LC_SOUND, LT_DEBUG)LOGSTRING("Processing initial area\r" );
@@ -1405,7 +1404,6 @@ bool CsndProp::ExpandWaveFast( float volInit, idVec3 origin, float MaxDist, int 
 
 		DM_LOG(LC_SOUND, LT_DEBUG)LOGSTRING("Dist at portal %d is %f [m]\r", i2, tempDist);
 
-
 		// add the portal destination to flooding queue if the sound has
 		//	not dropped below threshold at the portal
 		if( !bDistLimit || tempDist < MaxDist )
@@ -1424,7 +1422,6 @@ bool CsndProp::ExpandWaveFast( float volInit, idVec3 origin, float MaxDist, int 
 	}
 
 	DM_LOG(LC_SOUND, LT_DEBUG)LOGSTRING("Starting main loop\r" );
-
 
 // done with initial area, begin main loop
 
@@ -1467,7 +1464,6 @@ bool CsndProp::ExpandWaveFast( float volInit, idVec3 origin, float MaxDist, int 
 			pPortEv->Att = NextAreas[j].curAtt;
 			pPortEv->Floods = floods - 1;
 			pPortEv->PrevPort = NextAreas[j].PrevPort;
-
 
 			// Updated the Populated Areas to show that it's been visited
 			// Only do this for populated areas that matter (ie, they've been updated
@@ -1533,16 +1529,13 @@ bool CsndProp::ExpandWaveFast( float volInit, idVec3 origin, float MaxDist, int 
 				tempQEntry.curLoss = 0.0f; // greebo: Initialised to 0.0f to fix gcc warning
 
 				AddedAreas.Append( tempQEntry );
-
 			} // end portal flood loop
 
 			m_EventAreas[area].bVisited = true;
-
 		} // end area flood loop
 
 		// create the next expansion queue
 		NextAreas = AddedAreas;
-
 	} // end main loop
 
 	// return true if the expansion died out naturally rather than being stopped

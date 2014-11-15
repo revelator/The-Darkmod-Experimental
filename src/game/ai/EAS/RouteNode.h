@@ -24,7 +24,6 @@
 #include <boost/shared_ptr.hpp>
 
 namespace eas {
-
 enum ActionType {
 	ACTION_WALK = 0,		// AI just needs to walk to the target
 	ACTION_USE_ELEVATOR,	// AI needs to use an elevator
@@ -56,7 +55,6 @@ struct RouteNode {
 };
 typedef boost::shared_ptr<RouteNode> RouteNodePtr;
 typedef std::list<RouteNodePtr> RouteNodeList;
-
 } // namespace eas
 
 #endif /* __AI_EAS_ROUTENODE_H__ */

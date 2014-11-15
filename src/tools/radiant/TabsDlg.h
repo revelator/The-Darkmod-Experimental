@@ -21,7 +21,6 @@
 #include "afxcmn.h"
 #include "TearoffContainerWindow.h"
 
-
 // CTabsDlg dialog
 class CTabsDlg : public CDialog {
 	//	DECLARE_DYNAMIC ( CTabsDlg )

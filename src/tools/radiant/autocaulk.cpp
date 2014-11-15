@@ -41,7 +41,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #if 1
 
-
 //extern void ClearBounds (idVec3 mins, idVec3 maxs);
 //extern void AddPointToBounds (const idVec3 v, idVec3 mins, idVec3 maxs);
 void ClearBounds( idVec3 &mins, idVec3 &maxs ) {
@@ -63,14 +62,12 @@ void AddPointToBounds( const idVec3 &v, idVec3 &mins, idVec3 &maxs ) {
 	}
 }
 
-
 static void FloorBounds( idVec3 &mins, idVec3 &maxs ) {
 	for( int i = 0 ; i < 3 ; i++ ) {
 		mins[i] = floor( mins[i] + 0.5 );
 		maxs[i] = floor( maxs[i] + 0.5 );
 	}
 }
-
 
 static LPCSTR vtos( idVec3 &v3 ) {
 	return va( "%.3ff,%.3f,%.3f", v3[0], v3[1], v3[2] );

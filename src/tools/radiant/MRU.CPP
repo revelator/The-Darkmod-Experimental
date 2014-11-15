@@ -38,12 +38,10 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 //
 //*************************************************************
 
-
 // CreateMruMenu  : MRUMENU constructor
 // wNbLruShowInit : nb of item showed in menu
 // wNbLruMenuInit : nb of item stored in memory
 // wMaxSizeLruItemInit : size max. of filename
-
 
 //*************************************************************
 //
@@ -123,7 +121,6 @@ LPMRUMENU CreateMruMenu( WORD wNbLruShowInit,
 LPMRUMENU CreateMruMenuDefault() {
 	return CreateMruMenu( NBMRUMENUSHOW, NBMRUMENU, MAXSIZEMRUITEM, IDMRU );
 }
-
 
 //*************************************************************
 //
@@ -396,8 +393,6 @@ void PlaceMenuMRUItem( LPMRUMENU lpMruMenu, HMENU hMenu, UINT uiItem ) {
 
 ///////////////////////////////////////////
 
-
-
 //*************************************************************
 //
 //  SaveMruInIni()
@@ -443,7 +438,6 @@ BOOL SaveMruInIni( LPMRUMENU lpMruMenu, LPSTR lpszSection, LPSTR lpszFile ) {
 	WritePrivateProfileString( NULL, NULL, NULL, lpszFile ); // flush cache
 	return TRUE;
 }
-
 
 //*************************************************************
 //
@@ -500,7 +494,6 @@ BOOL IsWin395OrHigher( void ) {
 	wVer = ( ( ( WORD )LOBYTE( wVer ) ) << 8 ) | ( WORD )HIBYTE( wVer );
 	return ( wVer >= 0x035F );            // 5F = 95 dec
 }
-
 
 //*************************************************************
 //
@@ -605,7 +598,6 @@ BOOL LoadMruInReg( LPMRUMENU lpMruMenu, LPSTR lpszKey ) {
 	GlobalFreePtr( lpTxt );
 	return TRUE;
 }
-
 
 //*************************************************************
 //

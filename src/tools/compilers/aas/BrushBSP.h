@@ -32,7 +32,6 @@ class idBrushBSP;
 class idBrushBSPNode;
 class idBrushBSPPortal;
 
-
 //===============================================================
 //
 //	idBrushBSPPortal
@@ -40,7 +39,6 @@ class idBrushBSPPortal;
 //===============================================================
 
 class idBrushBSPPortal {
-
 	friend class idBrushBSP;
 	friend class idBrushBSPNode;
 
@@ -89,7 +87,6 @@ private:
 	int						faceNum;		// number of the face created for this portal
 };
 
-
 //===============================================================
 //
 //	idBrushBSPNode
@@ -100,7 +97,6 @@ private:
 #define NODE_DONE			BIT(31)
 
 class idBrushBSPNode {
-
 	friend class idBrushBSP;
 	friend class idBrushBSPPortal;
 
@@ -154,7 +150,6 @@ public:
 	// split the leaf node with a plane
 	bool					Split( const idPlane &splitPlane, int splitPlaneNum );
 
-
 private:
 	idPlane					plane;			// split plane if this is not a leaf node
 	idBrush 				*volume;			// node volume
@@ -168,7 +163,6 @@ private:
 	int						occupied;		// true when portal is occupied
 };
 
-
 //===============================================================
 //
 //	idBrushBSP
@@ -176,7 +170,6 @@ private:
 //===============================================================
 
 class idBrushBSP {
-
 public:
 	idBrushBSP( void );
 	~idBrushBSP( void );

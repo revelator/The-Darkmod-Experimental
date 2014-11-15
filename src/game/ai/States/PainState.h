@@ -23,7 +23,6 @@
 #include "State.h"
 
 namespace ai {
-
 #define STATE_PAIN "Pain"
 
 // An intermediate state, playing the pain anim and alerting the AI afterwards
@@ -48,7 +47,6 @@ public:
 
 	static StatePtr CreateInstance();
 };
-
 } // namespace ai
 
 #endif /* __AI_PAIN_STATE_H__ */

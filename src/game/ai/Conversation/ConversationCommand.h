@@ -25,7 +25,6 @@
 #include <boost/shared_ptr.hpp>
 
 namespace ai {
-
 class Conversation;
 
 class ConversationCommand {
@@ -136,7 +135,6 @@ private:
 	static Type GetType( const idStr &cmdString );
 };
 typedef boost::shared_ptr<ConversationCommand> ConversationCommandPtr;
-
 } // namespace ai
 
 #endif /* __AI_CONVERSATION_COMMAND_H__ */

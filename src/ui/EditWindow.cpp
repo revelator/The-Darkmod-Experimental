@@ -28,7 +28,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "SliderWindow.h"
 #include "EditWindow.h"
 
-
 bool idEditWindow::ParseInternalVar( const char *_name, idParser *src ) {
 	if( idStr::Icmp( _name, "maxchars" ) == 0 ) {
 		maxChars = src->ParseInt();
@@ -100,7 +99,6 @@ void idEditWindow::CommonInit() {
 	readonly = false;
 	scroller = new idSliderWindow( dc, gui );
 }
-
 
 idEditWindow::idEditWindow( idDeviceContext *d, idUserInterfaceLocal *g ) : idWindow( d, g ) {
 	dc = d;

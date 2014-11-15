@@ -29,11 +29,9 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
   QERadiant Undo/Redo
 
-
 basic setup:
 
 <-g_undolist---------g_lastundo> <---map data---> <-g_lastredo---------g_redolist->
-
 
   undo/redo on the world_entity is special, only the epair changes are remembered
   and the world entity never gets deleted.
@@ -62,7 +60,6 @@ int g_undoMaxMemorySize = 2 * 1024 * 1024;	//maximum undo memory (default 2 MB)
 int g_undoMemorySize = 0;				//memory size of undo buffer
 int g_undoId = 1;						//current undo ID (zero is invalid id)
 int g_redoId = 1;						//current redo ID (zero is invalid id)
-
 
 /*
 =============

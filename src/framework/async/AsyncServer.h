@@ -113,9 +113,7 @@ typedef struct serverClient_s {
 	int					numDuplicatedUsercmds;
 
 	char				guid[12];  // Even Balance - M. Quinn
-
 } serverClient_t;
-
 
 class idAsyncServer {
 public:

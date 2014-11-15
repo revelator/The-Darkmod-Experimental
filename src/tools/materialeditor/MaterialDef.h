@@ -25,7 +25,6 @@
 * is being initialized.
 */
 class MaterialDef {
-
 public:
 	/**
 	* Defines possible attribute types.
@@ -67,7 +66,6 @@ typedef idList<MaterialDef *> MaterialDefList;
 * is also responsible for loading and destroying the MaterialDef instances.
 */
 class MaterialDefManager {
-
 public:
 
 	/**
@@ -86,7 +84,6 @@ public:
 	static void					DestroyMaterialDefLists();
 
 	static MaterialDefList		*GetMaterialDefs( int type );
-
 
 protected:
 	static MaterialDefList		materialDefs[MATERIAL_DEF_NUM];

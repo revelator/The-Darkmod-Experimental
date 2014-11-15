@@ -29,7 +29,6 @@
 * the stage view, the properties view and the source view.
 */
 class MaterialEditView : public CFormView, public MaterialView, SourceModifyOwner {
-
 public:
 	enum { IDD = IDD_MATERIALEDIT_FORM };
 

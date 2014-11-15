@@ -44,7 +44,6 @@ CPropTreeItemEdit::CPropTreeItemEdit() :
 CPropTreeItemEdit::~CPropTreeItemEdit() {
 }
 
-
 BEGIN_MESSAGE_MAP( CPropTreeItemEdit, CEdit )
 	//{{AFX_MSG_MAP(CPropTreeItemEdit)
 	ON_WM_GETDLGCODE()
@@ -77,17 +76,13 @@ void CPropTreeItemEdit::DrawAttribute( CDC *pDC, const RECT &rc ) {
 	}
 }
 
-
-
 void CPropTreeItemEdit::SetAsPassword( BOOL bPassword ) {
 	m_bPassword = bPassword;
 }
 
-
 void CPropTreeItemEdit::SetValueFormat( ValueFormat nFormat ) {
 	m_nFormat = nFormat;
 }
-
 
 LPARAM CPropTreeItemEdit::GetItemValue() {
 	switch( m_nFormat ) {
@@ -99,7 +94,6 @@ LPARAM CPropTreeItemEdit::GetItemValue() {
 	}
 	return ( LPARAM )( LPCTSTR )m_sEdit;
 }
-
 
 void CPropTreeItemEdit::SetItemValue( LPARAM lParam ) {
 	switch( m_nFormat ) {
@@ -121,13 +115,11 @@ void CPropTreeItemEdit::SetItemValue( LPARAM lParam ) {
 	m_sEdit = ( LPCTSTR )lParam;
 }
 
-
 void CPropTreeItemEdit::OnMove() {
 	if( IsWindow( m_hWnd ) ) {
 		SetWindowPos( NULL, m_rc.left, m_rc.top, m_rc.Width(), m_rc.Height(), SWP_NOZORDER | SWP_NOACTIVATE );
 	}
 }
-
 
 void CPropTreeItemEdit::OnRefresh() {
 	if( IsWindow( m_hWnd ) ) {
@@ -135,14 +127,12 @@ void CPropTreeItemEdit::OnRefresh() {
 	}
 }
 
-
 void CPropTreeItemEdit::OnCommit() {
 	// hide edit control
 	ShowWindow( SW_HIDE );
 	// store edit text for GetItemValue
 	GetWindowText( m_sEdit );
 }
-
 
 void CPropTreeItemEdit::OnActivate( int activateType, CPoint point ) {
 	// Check if the edit control needs creation
@@ -159,11 +149,9 @@ void CPropTreeItemEdit::OnActivate( int activateType, CPoint point ) {
 	SetFocus();
 }
 
-
 UINT CPropTreeItemEdit::OnGetDlgCode() {
 	return CEdit::OnGetDlgCode() | DLGC_WANTALLKEYS;
 }
-
 
 void CPropTreeItemEdit::OnKeyDown( UINT nChar, UINT nRepCnt, UINT nFlags ) {
 	if( nChar == VK_RETURN ) {
@@ -171,7 +159,6 @@ void CPropTreeItemEdit::OnKeyDown( UINT nChar, UINT nRepCnt, UINT nFlags ) {
 	}
 	CEdit::OnKeyDown( nChar, nRepCnt, nFlags );
 }
-
 
 void CPropTreeItemEdit::OnKillfocus() {
 	CommitChanges();

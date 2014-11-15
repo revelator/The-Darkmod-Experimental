@@ -107,7 +107,6 @@ static inline int vorbis_ftoi( double f ) {
 }
 #endif
 
-
 #if defined(_WIN32) && !defined(__GNUC__) && !defined(__BORLANDC__)
 #  define VORBIS_FPU_CONTROL
 
@@ -129,7 +128,6 @@ static __inline void vorbis_fpu_restore( vorbis_fpu_control fpu ) {
 }
 
 #endif
-
 
 #ifndef VORBIS_FPU_CONTROL
 

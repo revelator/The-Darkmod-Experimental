@@ -56,9 +56,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 		continue
 	make a sil edge from one triangle to the other
 
-
-
-
   classify triangles on common planes, so they can be optimized
 
   what about interpenetrating triangles???
@@ -79,14 +76,12 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
   Triangle count optimizations at the expense of a slight fill rate cost
   may be apropriate in some cases.
 
-
   Perform the complete clipping on all triangles
   for each vertex
 	project onto the apropriate plane and mark plane bit as in use
 for each triangle
 	if points project onto different planes, clip
 */
-
 
 typedef struct {
 	idVec3	v[3];
@@ -119,7 +114,6 @@ typedef struct silQuad_s {
 static const int MAX_SIL_QUADS = MAX_SHADOW_TRIS * 3;
 static	silQuad_t	silQuads[MAX_SIL_QUADS];
 static int		numSilQuads;
-
 
 typedef struct {
 	idVec3	normal;	// all sil planes go through the projection origin
@@ -159,7 +153,6 @@ static void CreateEdgesForTri( shadowTri_t *tri ) {
 		tri->edge[j].Normalize();
 	}
 }
-
 
 static const float EDGE_EPSILON = 0.1f;
 
@@ -278,7 +271,6 @@ static void ClipTriangle_r( const shadowTri_t *tri, int startTri, int skipTri, i
 	outputTris[numOutputTris] = *tri;
 	numOutputTris++;
 }
-
 
 /*
 ====================
@@ -536,7 +528,6 @@ static void SaveQuad( silPlane_t *silPlane, silQuad_t &quad ) {
 	numSilQuads++;
 }
 
-
 /*
 ===================
 FragmentSilQuad
@@ -666,7 +657,6 @@ static void FragmentSilQuad( silQuad_t quad, silPlane_t *silPlane,
 	}
 	SaveQuad( silPlane, quad );
 }
-
 
 /*
 ===============

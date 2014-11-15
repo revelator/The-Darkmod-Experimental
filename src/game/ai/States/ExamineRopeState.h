@@ -23,7 +23,6 @@
 #include "State.h"
 
 namespace ai {
-
 #define STATE_EXAMINE_ROPE "ExamineRope"
 
 class ExamineRopeState :
@@ -81,7 +80,6 @@ private:
 
 	void Wrapup( idAI *owner );
 };
-
 } // namespace ai
 
 #endif /* __AI_EXAMINE_ROPE_H__ */

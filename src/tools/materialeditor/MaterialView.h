@@ -123,7 +123,6 @@ public:
 	*/
 	virtual void	MV_OnMaterialAttributeChanged( MaterialDoc *pMaterial, int stage, const char *attribName ) {};
 
-
 	/**
 	* Called when the material name has changed
 	* @param pMaterial The material that was deleted.
@@ -136,7 +135,6 @@ public:
 	* @param filename The file that was reloaded.
 	*/
 	virtual void	MV_OnFileReload( const char *filename ) {};
-
 
 protected:
 	MaterialDocManager *materialDocManager;

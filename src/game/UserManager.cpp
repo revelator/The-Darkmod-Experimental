@@ -86,7 +86,6 @@ idActor *UserManager::GetMasterUser() {
 	return NULL;
 }
 
-
 idActor *UserManager::GetUserAtIndex( const int index ) { // grayman #2345
 	if( GetNumUsers() > index ) {
 		return m_users[index].GetEntity();
@@ -159,7 +158,6 @@ void UserManager::ResetMaster( CFrobDoor *frobDoor ) {
 	}
 }
 
-
 void UserManager::Save( idSaveGame *savefile ) const {
 	int num = m_users.Num();
 	savefile->WriteInt( num );
@@ -177,4 +175,3 @@ void UserManager::Restore( idRestoreGame *savefile ) {
 		m_users.AddUnique( actor );
 	}
 }
-

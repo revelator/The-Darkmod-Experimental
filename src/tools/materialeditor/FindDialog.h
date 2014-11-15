@@ -29,7 +29,6 @@ class MEMainFrame;
 * scope and search only name flag.
 */
 class FindDialog : public CDialog {
-
 public:
 	enum { IDD = IDD_FIND };
 

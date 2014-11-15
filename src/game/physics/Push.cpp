@@ -24,7 +24,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "../Game_local.h"
 
-
 /*
 ============
 idPush::InitSavingPushedEntityPositions
@@ -1202,7 +1201,6 @@ float idPush::ClipRotationalPush( trace_t &results, idEntity *pusher, const int 
 }
 
 #endif /* !NEW_PUSH */
-
 
 /*
 ============

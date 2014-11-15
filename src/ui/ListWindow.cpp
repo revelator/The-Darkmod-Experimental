@@ -211,7 +211,6 @@ const char *idListWindow::HandleEvent( const sysEvent_t *event, bool *updateVisu
 	return ret;
 }
 
-
 bool idListWindow::ParseInternalVar( const char *_name, idParser *src ) {
 	if( idStr::Icmp( _name, "horizontal" ) == 0 ) {
 		horizontal = src->ParseBool();
@@ -563,4 +562,3 @@ void idListWindow::UpdateList() {
 void idListWindow::StateChanged( bool redraw ) {
 	UpdateList();
 }
-

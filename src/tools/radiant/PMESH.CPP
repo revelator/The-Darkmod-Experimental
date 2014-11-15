@@ -2066,13 +2066,13 @@ void DrawPatchMesh( patchMesh_t *pm, bool bPoints, int *list, bool bShade = fals
 				v2 = v1 + 1;
 				if( bShade ) {
 					f = ShadeForNormal( ( *cp )[v2].normal );
-					glColor3f( f, f, f );
+					GL_Color( f, f, f );
 				}
 				glTexCoord2fv( ( *cp )[v2].st.ToFloatPtr() );
 				glVertex3fv( ( *cp )[v2].xyz.ToFloatPtr() );
 				if( bShade ) {
 					f = ShadeForNormal( ( *cp )[v1].normal );
-					glColor3f( f, f, f );
+					GL_Color( f, f, f );
 				}
 				glTexCoord2fv( ( *cp )[v1].st.ToFloatPtr() );
 				glVertex3fv( ( *cp )[v1].xyz.ToFloatPtr() );
@@ -2083,7 +2083,7 @@ void DrawPatchMesh( patchMesh_t *pm, bool bPoints, int *list, bool bShade = fals
 		if( list == &pm->nListSelected ) {
 			globalImages->BindNull();
 			glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
-			glColor3f( 1.0f, 1.0f, 1.0f );
+			GL_Color( 1.0f, 1.0f, 1.0f );
 			for( i = 0 ; i < width - 1; i++ ) {
 				glBegin( GL_QUAD_STRIP );
 				for( j = 0 ; j < height; j++ ) {
@@ -2112,7 +2112,7 @@ void DrawPatchMesh( patchMesh_t *pm, bool bPoints, int *list, bool bShade = fals
 		if( g_bPatchBendMode || g_bPatchInsertMode ) {
 			glPointSize( 6 );
 			if( g_bPatchAxisOnRow ) {
-				glColor3f( 1, 0, 1 );
+				GL_Color( 1.0f, 0.0f, 1.0f );
 				glBegin( GL_POINTS );
 				for( i = 0; i < pm->width; i++ ) {
 					glVertex3fv( reinterpret_cast< float( * )>( &pm->ctrl( i, g_nPatchAxisIndex ).xyz ) );
@@ -2120,7 +2120,7 @@ void DrawPatchMesh( patchMesh_t *pm, bool bPoints, int *list, bool bShade = fals
 				glEnd();
 				// could do all of this in one loop but it was pretty messy
 				if( g_bPatchInsertMode ) {
-					glColor3f( 0, 0, 1 );
+					GL_Color( 0.0f, 0.0f, 1.0f );
 					glBegin( GL_POINTS );
 					for( i = 0; i < pm->width; i++ ) {
 						glVertex3fv( reinterpret_cast< float( * )>( &pm->ctrl( i, g_nPatchAxisIndex ).xyz ) );
@@ -2129,7 +2129,7 @@ void DrawPatchMesh( patchMesh_t *pm, bool bPoints, int *list, bool bShade = fals
 					glEnd();
 				} else {
 					if( g_nPatchBendState == BEND_SELECT_EDGE || g_nPatchBendState == BEND_BENDIT || g_nPatchBendState == BEND_SELECT_ORIGIN ) {
-						glColor3f( 0, 0, 1 );
+						GL_Color( 0.0f, 0.0f, 1.0f );
 						glBegin( GL_POINTS );
 						if( g_nPatchBendState == BEND_SELECT_ORIGIN ) {
 							glVertex3fv( g_vBendOrigin.ToFloatPtr() );
@@ -2150,7 +2150,7 @@ void DrawPatchMesh( patchMesh_t *pm, bool bPoints, int *list, bool bShade = fals
 					}
 				}
 			} else {
-				glColor3f( 1, 0, 1 );
+				GL_Color( 1.0f, 0.0f, 1.0f );
 				glBegin( GL_POINTS );
 				for( i = 0; i < pm->height; i++ ) {
 					glVertex3fv( reinterpret_cast< float( * )>( &pm->ctrl( g_nPatchAxisIndex, i ).xyz ) );
@@ -2158,7 +2158,7 @@ void DrawPatchMesh( patchMesh_t *pm, bool bPoints, int *list, bool bShade = fals
 				glEnd();
 				// could do all of this in one loop but it was pretty messy
 				if( g_bPatchInsertMode ) {
-					glColor3f( 0, 0, 1 );
+					GL_Color( 0.0f, 0.0f, 1.0f );
 					glBegin( GL_POINTS );
 					for( i = 0; i < pm->height; i++ ) {
 						glVertex3fv( reinterpret_cast< float( * )>( &pm->ctrl( g_nPatchAxisIndex, i ).xyz ) );
@@ -2167,7 +2167,7 @@ void DrawPatchMesh( patchMesh_t *pm, bool bPoints, int *list, bool bShade = fals
 					glEnd();
 				} else {
 					if( g_nPatchBendState == BEND_SELECT_EDGE || g_nPatchBendState == BEND_BENDIT || g_nPatchBendState == BEND_SELECT_ORIGIN ) {
-						glColor3f( 0, 0, 1 );
+						GL_Color( 0.0f, 0.0f, 1.0f );
 						glBegin( GL_POINTS );
 						for( i = 0; i < pm->height; i++ ) {
 							if( g_nPatchBendState == BEND_SELECT_ORIGIN ) {
@@ -2199,9 +2199,9 @@ void DrawPatchMesh( patchMesh_t *pm, bool bPoints, int *list, bool bShade = fals
 						pSelectedPoints[nIndex++] = &pm->ctrl( i, j ).xyz;
 					}
 					if( i & 0x01 || j & 0x01 ) {
-						glColor3f( 1, 0, 1 );
+						GL_Color( 1.0f, 0.0f, 1.0f );
 					} else {
-						glColor3f( 0, 1, 0 );
+						GL_Color( 0.0f, 1.0f, 0.0f );
 					}
 					glVertex3fv( pm->ctrl( i, j ).xyz.ToFloatPtr() );
 					glEnd();
@@ -2210,7 +2210,7 @@ void DrawPatchMesh( patchMesh_t *pm, bool bPoints, int *list, bool bShade = fals
 		}
 		if( nIndex > 0 ) {
 			glBegin( GL_POINTS );
-			glColor3f( 0, 0, 1 );
+			GL_Color( 0.0f, 0.0f, 1.0f );
 			while( nIndex-- > 0 ) {
 				glVertex3fv( ( *pSelectedPoints[nIndex] ).ToFloatPtr() );
 			}
@@ -2219,14 +2219,14 @@ void DrawPatchMesh( patchMesh_t *pm, bool bPoints, int *list, bool bShade = fals
 	}
 	if( bOverlay ) {
 		glPointSize( 6 );
-		glColor3f( 0.5, 0.5, 0.5 );
+		GL_Color( 0.5f, 0.5f, 0.5f );
 		for( i = 0 ; i < pm->width ; i++ ) {
 			glBegin( GL_POINTS );
 			for( j = 0 ; j < pm->height ; j++ ) {
 				if( i & 0x01 || j & 0x01 ) {
-					glColor3f( 0.5, 0, 0.5 );
+					GL_Color( 0.5f, 0.0f, 0.5f );
 				} else {
-					glColor3f( 0, 0.5, 0 );
+					GL_Color( 0.0f, 0.5f, 0.0f );
 				}
 				glVertex3fv( pm->ctrl( i, j ).xyz.ToFloatPtr() );
 			}
@@ -2243,11 +2243,11 @@ Patch_DrawXY
 void Patch_DrawXY( patchMesh_t *pm ) {
 	glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 	if( pm->bSelected ) {
-		glColor3fv( g_qeglobals.d_savedinfo.colors[COLOR_SELBRUSHES].ToFloatPtr() );
+		GL_Color( g_qeglobals.d_savedinfo.colors[COLOR_SELBRUSHES] );
 		//glDisable (GL_LINE_STIPPLE);
 		//glLineWidth (1);
 	} else {
-		glColor3fv( g_qeglobals.d_savedinfo.colors[COLOR_BRUSHES].ToFloatPtr() );
+		GL_Color( g_qeglobals.d_savedinfo.colors[COLOR_BRUSHES] );
 	}
 	DrawPatchMesh( pm, pm->bSelected, &pm->nListID );
 	glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
@@ -2265,7 +2265,7 @@ Patch_DrawCam
 void Patch_DrawCam( patchMesh_t *pm, bool selected ) {
 	int nDrawMode = g_pParentWnd->GetCamera()->Camera().draw_mode;
 	if( !selected ) {
-		glColor3f( 1, 1, 1 );
+		GL_Color( 1.0f, 1.0f, 1.0f );
 	}
 	if( g_bPatchWireFrame || nDrawMode == cd_wire ) {
 		glDisable( GL_CULL_FACE );
@@ -2303,7 +2303,7 @@ void Patch_DrawCam( patchMesh_t *pm, bool selected ) {
 	}
 #if 0 // this paints normal indicators on the ctrl points
 	//--glDisable (GL_DEPTH_TEST);
-	glColor3f( 1, 1, 1 );
+	GL_Color( 1.0f, 1.0f, 1.0f );
 	for( int i = 0; i < pm->width; i++ ) {
 		for( int j = 0; j < pm->height; j++ ) {
 			idVec3 temp;

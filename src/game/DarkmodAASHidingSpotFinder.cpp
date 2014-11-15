@@ -49,7 +49,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 // Static member for debugging hiding spot results
 idList<darkModHidingSpot> CDarkmodAASHidingSpotFinder::DebugDrawList;
 
-
 //----------------------------------------------------------------------------
 
 CDarkmodAASHidingSpotFinder::CDarkmodAASHidingSpotFinder() :
@@ -180,7 +179,6 @@ CDarkmodAASHidingSpotFinder::~CDarkmodAASHidingSpotFinder( void ) {
 		h_hideFromPVS.i = -1;
 	}
 }
-
 
 void CDarkmodAASHidingSpotFinder::Save( idSaveGame *savefile ) const {
 	savefile->WriteFloat( hidingSpotRedundancyDistance );
@@ -735,7 +733,6 @@ void CDarkmodAASHidingSpotFinder::insertHidingSpotWithQualitySorting
 
 	// Do insertion
 	inout_hidingSpots.Insert (hidingSpot, spotIndex);
-
 }
 */
 
@@ -771,7 +768,6 @@ void CDarkmodAASHidingSpotFinder::CombineRedundantHidingSpots
 				otherIndex --;
 			}
 		}
-
 	}
 	*/
 }

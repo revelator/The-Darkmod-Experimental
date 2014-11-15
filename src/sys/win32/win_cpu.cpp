@@ -24,7 +24,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "win_local.h"
 
-
 /*
 ==============================================================
 
@@ -97,7 +96,6 @@ double Sys_ClockTicksPerSecond( void ) {
 	return ticks;
 }
 
-
 /*
 ==============================================================
 
@@ -167,7 +165,6 @@ static void CPUID( int func, unsigned regs[4] ) {
 	regs[_REG_ECX] = regECX;
 	regs[_REG_EDX] = regEDX;
 }
-
 
 /*
 ================
@@ -321,7 +318,7 @@ static unsigned char LogicalProcPerPhysicalProc( void ) {
 GetAPIC_ID
 ================
 */
-#define INITIAL_APIC_ID_BITS  0xFF000000  // EBX[31:24] Bits 24-31 (8 bits) return the 8-bit unique 
+#define INITIAL_APIC_ID_BITS  0xFF000000  // EBX[31:24] Bits 24-31 (8 bits) return the 8-bit unique
 // initial APIC ID for the processor this code is running on.
 // Default value = 0xff if HT is not supported
 static unsigned char GetAPIC_ID( void ) {
@@ -515,7 +512,6 @@ cpuid_t Sys_GetCPUId( void ) {
 	}
 	return ( cpuid_t )flags;
 }
-
 
 /*
 ===============================================================================

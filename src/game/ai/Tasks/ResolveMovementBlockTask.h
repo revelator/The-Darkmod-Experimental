@@ -23,7 +23,6 @@
 #include "Task.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_RESOLVE_MOVEMENT_BLOCK "ResolveMovementBlock"
 #define RESOLVE_MOVE_DIST 16 // grayman #2345
@@ -79,7 +78,6 @@ private:
 	bool IsSolid();			// grayman #2345
 	void BecomeNonSolid( idAI *owner ); // grayman #2345
 };
-
 } // namespace ai
 
 #endif /* __AI_RESOLVE_MOVEMENT_BLOCK_TASK_H__ */

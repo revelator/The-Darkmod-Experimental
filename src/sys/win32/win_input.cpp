@@ -24,7 +24,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "win_local.h"
 
-
 #define DINPUT_BUFFERSIZE           256
 
 #define CHAR_FIRSTREPEAT 200
@@ -240,8 +239,6 @@ static const unsigned char s_scantokey_italian[256] = {
 	0,          0,      0,         0,          0,      0,           0,        0,     // 6
 	0,          0,      0,         0,          0,      0,           0,        0,
 	0,          0,      0,         0,          0,      0,           0,        0		 // 7
-
-
 };
 
 static const unsigned char *keyScanTable = s_scantokey;
@@ -454,7 +451,6 @@ int IN_DIMapKey( int key ) {
 	}
 }
 
-
 /*
 ==========================
 IN_DeactivateKeyboard
@@ -555,7 +551,6 @@ bool IN_InitDIMouse( void ) {
 	return true;
 }
 
-
 /*
 ==========================
 IN_ActivateMouse
@@ -619,7 +614,6 @@ void IN_DeactivateMouseIfWindowed( void ) {
 
 ============================================================
 */
-
 
 /*
 ===========
@@ -751,7 +745,6 @@ void IN_Frame( void ) {
 	}
 }
 
-
 void	Sys_GrabMouseCursor( bool grabIt ) {
 #ifndef	ID_DEDICATED
 	win32.mouseReleased = !grabIt;
@@ -768,7 +761,6 @@ static DIDEVICEOBJECTDATA polled_didod[ DINPUT_BUFFERSIZE ];  // Receives buffer
 
 static int diFetch;
 static byte toggleFetch[2][ 256 ];
-
 
 #if 1
 // I tried doing the full-state get to address a keyboard problem on one system,
@@ -881,7 +873,6 @@ int Sys_ReturnKeyboardInputEvent( const int n, int &ch, bool &state ) {
 	}
 	return ch;
 }
-
 
 void Sys_EndKeyboardInputEvents( void ) {
 }

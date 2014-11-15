@@ -91,4 +91,3 @@ NSBitmapImageRep &NSBitmapImageRep::operator=( const NSBitmapImageRep &a ) {
 	timestamp = a.timestamp;
 	return *this;
 }
-

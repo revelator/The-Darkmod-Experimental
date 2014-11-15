@@ -28,7 +28,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 // Get the name of this state
 const idStr &LostTrackOfEnemyState::GetName() const {
 	static idStr _name( STATE_LOST_TRACK_OF_ENEMY );
@@ -100,5 +99,4 @@ StateLibrary::Registrar lostTrackOfEnemyStateRegistrar(
 	STATE_LOST_TRACK_OF_ENEMY, // Task Name
 	StateLibrary::CreateInstanceFunc( &LostTrackOfEnemyState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

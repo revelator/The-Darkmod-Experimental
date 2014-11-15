@@ -25,7 +25,6 @@
 class CStim;
 
 class CResponse : public CStimResponse {
-
 	friend class CStimResponseCollection;
 
 protected:

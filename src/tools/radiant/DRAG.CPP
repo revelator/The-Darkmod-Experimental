@@ -389,7 +389,6 @@ void Drag_Begin( int x, int y, int buttons,
 	}
 }
 
-
 void Brush_GetBounds( brush_t *b, idVec3 &mins, idVec3 &maxs ) {
 	int		i;
 	for( i = 0; i < 3; i++ ) {
@@ -405,7 +404,6 @@ void Brush_GetBounds( brush_t *b, idVec3 &mins, idVec3 &maxs ) {
 		}
 	}
 }
-
 
 /*
 ================

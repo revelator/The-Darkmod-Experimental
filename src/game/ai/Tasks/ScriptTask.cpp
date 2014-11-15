@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 ScriptTask::ScriptTask() :
 	_thread( NULL ) {
 }
@@ -102,5 +101,4 @@ TaskLibrary::Registrar scriptTaskRegistrar(
 	TASK_SCRIPT, // Task Name
 	TaskLibrary::CreateInstanceFunc( &ScriptTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

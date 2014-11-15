@@ -28,7 +28,6 @@
 ===============================================================================
 */
 
-
 #define BRUSH_PLANESIDE_FRONT		1
 #define BRUSH_PLANESIDE_BACK		2
 #define BRUSH_PLANESIDE_BOTH		( BRUSH_PLANESIDE_FRONT | BRUSH_PLANESIDE_BACK )
@@ -38,7 +37,6 @@ class idBrush;
 class idBrushList;
 
 void DisplayRealTimeString( const char *string, ... ) id_attribute( ( format( printf, 1, 2 ) ) );
-
 
 //===============================================================
 //
@@ -52,7 +50,6 @@ void DisplayRealTimeString( const char *string, ... ) id_attribute( ( format( pr
 #define SFL_TESTED_SPLITTER			0x0008
 
 class idBrushSide {
-
 	friend class idBrush;
 
 public:
@@ -91,7 +88,6 @@ private:
 	idWinding 				*winding;
 };
 
-
 //===============================================================
 //
 //	idBrush
@@ -101,7 +97,6 @@ private:
 #define BFL_NO_VALID_SPLITTERS		0x0001
 
 class idBrush {
-
 	friend class idBrushList;
 
 public:
@@ -184,7 +179,6 @@ private:
 	bool					RemoveSidesWithoutWinding( void );
 };
 
-
 //===============================================================
 //
 //	idBrushList
@@ -252,7 +246,6 @@ private:
 	int						numBrushSides;
 };
 
-
 //===============================================================
 //
 //	idBrushMap
@@ -260,7 +253,6 @@ private:
 //===============================================================
 
 class idBrushMap {
-
 public:
 	idBrushMap( const idStr &fileName, const idStr &ext );
 	~idBrushMap( void );

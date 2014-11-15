@@ -174,7 +174,6 @@ protected:
 	TArch Architecture;                  // conversion to float depends on computer architecture
 };
 
-
 class TRanrotWGenerator {              // encapsulate random number generator
 	enum constants {                     // define parameters
 		KK = 17, JJ = 10, R1 = 19, R2 =  27
@@ -210,4 +209,3 @@ protected:
 #include "rancombi.h"
 
 #endif
-

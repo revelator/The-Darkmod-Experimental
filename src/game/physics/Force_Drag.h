@@ -29,7 +29,6 @@
 */
 
 class idForce_Drag : public idForce {
-
 public:
 	CLASS_PROTOTYPE( idForce_Drag );
 

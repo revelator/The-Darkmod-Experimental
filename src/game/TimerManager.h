@@ -44,7 +44,6 @@
 #ifdef TIMING_BUILD
 
 namespace debugtools {
-
 class TimerManager {
 	struct TimerInfo {
 		idTimer timer;
@@ -93,7 +92,6 @@ public:
 		TimerManager::Instance().StopTimer( _id );
 	}
 };
-
 } // namespace debugtools
 
 #endif /* ifdef TIMING_BUILD */

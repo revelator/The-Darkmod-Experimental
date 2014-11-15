@@ -25,12 +25,10 @@
 // EntKeyFindReplace.h : header file
 //
 
-
 // return vals for modal dialogue, any values will do that don't clash with the first 9 or so defined by IDOK etc
 //
 #define ID_RET_REPLACE	100
 #define ID_RET_FIND		101
-
 
 /////////////////////////////////////////////////////////////////////////////
 // CEntKeyFindReplace dialog
@@ -56,7 +54,6 @@ public:
 	BOOL	m_bWholeStringMatchOnly;
 	BOOL	m_bSelectAllMatchingEnts;
 	//}}AFX_DATA
-
 
 	// Overrides
 	// ClassWizard generated virtual function overrides

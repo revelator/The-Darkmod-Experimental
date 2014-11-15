@@ -24,7 +24,6 @@
 #include "../../AIComm_Message.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_GREETING_BARK "GreetingBark"
 
@@ -61,7 +60,6 @@ public:
 	// Creates a new Instance of this task
 	static GreetingBarkTaskPtr CreateInstance();
 };
-
 } // namespace ai
 
 #endif /* __AI_GREETING_BARK_TASK_H__ */

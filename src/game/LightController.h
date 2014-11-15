@@ -48,7 +48,6 @@ typedef struct {
 	float				radius;			// average of the radius
 } light_controller_light_t;
 
-
 class CLightController {
 public:
 	//CLASS_PROTOTYPE( CModelGenerator );
@@ -104,4 +103,3 @@ private:
 };
 
 #endif /* !__DARKMOD_LIGHTCONTROLLER_H__ */
-

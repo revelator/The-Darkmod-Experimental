@@ -28,7 +28,6 @@
 #include "Queue.h"
 
 namespace ai {
-
 class CommunicationSubsystem :
 	public Subsystem {
 protected:
@@ -79,7 +78,6 @@ protected:
 	CommunicationTaskPtr GetCurrentCommTask();
 };
 typedef boost::shared_ptr<CommunicationSubsystem> CommunicationSubsystemPtr;
-
 } // namespace ai
 
 #endif /* __AI_COMMUNICATION_SUBSYSTEM_H__ */

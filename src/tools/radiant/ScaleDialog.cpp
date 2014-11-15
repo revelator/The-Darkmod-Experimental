@@ -35,7 +35,6 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CScaleDialog dialog
 
-
 CScaleDialog::CScaleDialog( CWnd *pParent /*=NULL*/ )
 	: CDialog( CScaleDialog::IDD, pParent ) {
 	//{{AFX_DATA_INIT(CScaleDialog)
@@ -45,7 +44,6 @@ CScaleDialog::CScaleDialog( CWnd *pParent /*=NULL*/ )
 	//}}AFX_DATA_INIT
 }
 
-
 void CScaleDialog::DoDataExchange( CDataExchange *pDX ) {
 	CDialog::DoDataExchange( pDX );
 	//{{AFX_DATA_MAP(CScaleDialog)
@@ -54,7 +52,6 @@ void CScaleDialog::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Text( pDX, IDC_EDIT_Y, m_fY );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CScaleDialog, CDialog )
 	//{{AFX_MSG_MAP(CScaleDialog)

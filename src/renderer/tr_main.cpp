@@ -191,7 +191,6 @@ void R_ToggleSmpFrame( void ) {
 	R_ClearCommandChain();
 }
 
-
 //=====================================================
 
 #define	MEMORY_BLOCK_SIZE	0x100000
@@ -383,7 +382,6 @@ void *R_ClearedFrameAlloc( int bytes ) {
 	return r;
 }
 
-
 /*
 ==================
 R_FrameFree
@@ -398,8 +396,6 @@ to both alloc and free.
 */
 void R_FrameFree( void *data ) {
 }
-
-
 
 //==========================================================================
 
@@ -421,7 +417,6 @@ void R_AxisToModelMatrix( const idMat3 &axis, const idVec3 &origin, float modelM
 	modelMatrix[11] = 0;
 	modelMatrix[15] = 1;
 }
-
 
 // FIXME: these assume no skewing or scaling transforms
 
@@ -698,7 +693,6 @@ void R_TransformClipToDevice( const idPlane &clip, const viewDef_t *view, idVec3
 	normalized[2] = clip[2] / clip[3];
 }
 
-
 /*
 ==========================
 myGlMultMatrix
@@ -930,7 +924,6 @@ DRAWSURF SORTING
 ==========================================================================================
 */
 
-
 /*
 =======================
 R_QsortSurfaces
@@ -950,7 +943,6 @@ static int R_QsortSurfaces( const void *a, const void *b ) {
 	return 0;
 }
 
-
 /*
 =================
 R_SortDrawSurfs
@@ -962,14 +954,9 @@ static void R_SortDrawSurfs( void ) {
 		   R_QsortSurfaces );
 }
 
-
-
 //========================================================================
 
-
 //==============================================================================
-
-
 
 /*
 ================

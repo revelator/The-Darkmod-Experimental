@@ -23,7 +23,6 @@
 #include "State.h"
 
 namespace ai {
-
 #define STATE_STAY_IN_COVER "StayInCover"
 
 class StayInCoverState :
@@ -50,7 +49,6 @@ protected:
 	// Override the base class method to catch projectile hit events
 	//	virtual void OnProjectileHit(idProjectile* projectile); // grayman #3140 - no longer used
 };
-
 } // namespace ai
 
 #endif /* __AI_STAY_IN_COVER_STATE_H__ */

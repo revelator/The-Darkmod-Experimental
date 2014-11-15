@@ -23,7 +23,6 @@
 #include "PathTask.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_PATH_SHOW "PathShow"
 
@@ -48,7 +47,6 @@ public:
 	// Creates a new Instance of this task
 	static PathShowTaskPtr CreateInstance();
 };
-
 } // namespace ai
 
 #endif /* __AI_PATH_SHOW_TASK_H__ */

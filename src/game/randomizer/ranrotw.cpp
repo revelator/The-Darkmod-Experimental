@@ -74,7 +74,6 @@ TRanrotWGenerator::TRanrotWGenerator( uint32 seed ) {
 	}
 }
 
-
 uint32 TRanrotWGenerator::BRandom() {
 	// generate next random number
 	uint32 y, z;
@@ -108,7 +107,6 @@ uint32 TRanrotWGenerator::BRandom() {
 	return y;
 }
 
-
 long double TRanrotWGenerator::Random() {
 	// returns a random number between 0 and 1.
 	uint32 z = BRandom();  // generate 64 random bits
@@ -133,7 +131,6 @@ long double TRanrotWGenerator::Random() {
 	return randp1 - 1.0;
 }
 
-
 int TRanrotWGenerator::IRandom( int min, int max ) {
 	// get integer random number in desired interval
 	int iinterval = max - min + 1;
@@ -146,7 +143,6 @@ int TRanrotWGenerator::IRandom( int min, int max ) {
 	}
 	return min + i;
 }
-
 
 void TRanrotWGenerator::RandomInit( uint32 seed ) {
 	// this function initializes the random number generator.
@@ -172,4 +168,3 @@ void TRanrotWGenerator::RandomInit( uint32 seed ) {
 		BRandom();
 	}
 }
-

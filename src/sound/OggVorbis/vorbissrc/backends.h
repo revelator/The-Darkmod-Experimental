@@ -51,9 +51,7 @@ typedef struct {
 
 	float lessthan;     /* encode-only config setting hacks for libvorbis */
 	float greaterthan;  /* encode-only config setting hacks for libvorbis */
-
 } vorbis_info_floor0;
-
 
 #define VIF_POSIT 63
 #define VIF_CLASS 16
@@ -67,10 +65,8 @@ typedef struct {
 	int   class_book[VIF_CLASS];       /* subs ^ dim entries */
 	int   class_subbook[VIF_CLASS][8]; /* [VIF_CLASS][subs] */
 
-
 	int   mult;                      /* 1 2 3 or 4 */
 	int   postlist[VIF_POSIT + 2];  /* first two implicit */
-
 
 	/* encode side analysis parameters */
 	float maxover;
@@ -81,7 +77,6 @@ typedef struct {
 	float twofitatten;
 
 	int   n;
-
 } vorbis_info_floor1;
 
 /* Residue backend generic *****************************************/
@@ -114,7 +109,6 @@ typedef struct vorbis_info_residue0 {
 
 	float  classmetric1[64];
 	float  classmetric2[64];
-
 } vorbis_info_residue0;
 
 /* Mapping backend generic *****************************************/
@@ -137,9 +131,6 @@ typedef struct vorbis_info_mapping0 {
 	int   coupling_steps;
 	int   coupling_mag[256];
 	int   coupling_ang[256];
-
 } vorbis_info_mapping0;
 
 #endif
-
-

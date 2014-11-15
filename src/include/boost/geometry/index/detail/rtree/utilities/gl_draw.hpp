@@ -142,19 +142,19 @@ struct gl_draw : public rtree::visitor<Value, typename Options::parameters_type,
             size_t level_rel = level - level_f;
 
             if ( level_rel == 0 )
-                glColor3f(0.75f, 0.0f, 0.0f);
+                GL_Color(0.75f, 0.0f, 0.0f);
             else if ( level_rel == 1 )
-                glColor3f(0.0f, 0.75f, 0.0f);
+                GL_Color(0.0f, 0.75f, 0.0f);
             else if ( level_rel == 2 )
-                glColor3f(0.0f, 0.0f, 0.75f);
+                GL_Color(0.0f, 0.0f, 0.75f);
             else if ( level_rel == 3 )
-                glColor3f(0.75f, 0.75f, 0.0f);
+                GL_Color(0.75f, 0.75f, 0.0f);
             else if ( level_rel == 4 )
-                glColor3f(0.75f, 0.0f, 0.75f);
+                GL_Color(0.75f, 0.0f, 0.75f);
             else if ( level_rel == 5 )
-                glColor3f(0.0f, 0.75f, 0.75f);
+                GL_Color(0.0f, 0.75f, 0.75f);
             else
-                glColor3f(0.5f, 0.5f, 0.5f);
+                GL_Color(0.5f, 0.5f, 0.5f);
 
             for (typename elements_type::const_iterator it = elements.begin();
                 it != elements.end(); ++it)
@@ -187,7 +187,7 @@ struct gl_draw : public rtree::visitor<Value, typename Options::parameters_type,
         {
             size_t level_rel = level - level_f;
 
-            glColor3f(0.25f, 0.25f, 0.25f);
+            GL_Color(0.25f, 0.25f, 0.25f);
 
             for (typename elements_type::const_iterator it = elements.begin();
                 it != elements.end(); ++it)
@@ -221,7 +221,7 @@ void gl_draw(Rtree const& tree,
 
     if ( !tree.empty() )
     {
-        glColor3f(0.75f, 0.75f, 0.75f);
+        GL_Color(0.75f, 0.75f, 0.75f);
         detail::utilities::gl_draw_indexable(tree.bounds(), 0);
     }
 

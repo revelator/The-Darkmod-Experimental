@@ -23,7 +23,6 @@
 #include "State.h"
 
 namespace ai {
-
 #define STATE_FAILED_KNOCKED_OUT "FailedKnockout"
 
 class FailedKnockoutState :
@@ -54,7 +53,6 @@ public:
 
 	static StatePtr CreateInstance();
 };
-
 } // namespace ai
 
 #endif /* __AI_FAILED_KNOCK_OUT_STATE_H__ */

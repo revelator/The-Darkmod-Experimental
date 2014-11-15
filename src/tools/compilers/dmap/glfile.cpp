@@ -128,4 +128,3 @@ void WriteGLView( tree_t *tree, char *source ) {
 	fileSystem->CloseFile( glview );
 	common->Printf( "%5i c_glfaces\n", c_glfaces );
 }
-

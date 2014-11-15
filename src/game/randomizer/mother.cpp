@@ -50,7 +50,6 @@ TRandomMotherOfAll::TRandomMotherOfAll( uint32 seed ) {
 	RandomInit( seed );
 }
 
-
 // returns a random number between 0 and 1:
 double TRandomMotherOfAll::Random() {
 	long double c;
@@ -65,7 +64,6 @@ double TRandomMotherOfAll::Random() {
 	return x[0];
 }
 
-
 // returns integer random number in desired interval:
 int TRandomMotherOfAll::IRandom( int min, int max ) {
 	int iinterval = max - min + 1;
@@ -78,7 +76,6 @@ int TRandomMotherOfAll::IRandom( int min, int max ) {
 	}
 	return min + i;
 }
-
 
 // this function initializes the random number generator:
 void TRandomMotherOfAll::RandomInit( uint32 seed ) {
@@ -94,4 +91,3 @@ void TRandomMotherOfAll::RandomInit( uint32 seed ) {
 		Random();
 	}
 }
-

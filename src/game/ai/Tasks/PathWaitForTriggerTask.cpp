@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 PathWaitForTriggerTask::PathWaitForTriggerTask() :
 	PathTask() {
 }
@@ -76,5 +75,4 @@ TaskLibrary::Registrar pathWaitForTriggerTaskRegistrar(
 	TASK_PATH_WAIT_FOR_TRIGGER, // Task Name
 	TaskLibrary::CreateInstanceFunc( &PathWaitForTriggerTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

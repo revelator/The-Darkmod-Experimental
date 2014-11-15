@@ -67,9 +67,7 @@
 
 #define SHADERPARM_PARTICLE_STOPTIME 8	// don't spawn any more particles after this time
 
-
 typedef bool( *deferredEntityCallback_t )( renderEntity_s *, const renderView_s * );
-
 
 typedef struct renderEntity_s {
 	idRenderModel 			*hModel;				// this can only be null if callback is set
@@ -147,7 +145,6 @@ typedef struct renderEntity_s {
 	int						xrayIndex;
 } renderEntity_t;
 
-
 typedef struct renderLight_s {
 	idMat3					axis;				// rotation vectors, must be unit length
 	idVec3					origin;
@@ -195,7 +192,6 @@ typedef struct renderLight_s {
 	idSoundEmitter 		*referenceSound;		// for shader sound tables, allowing effects to vary with sounds
 } renderLight_t;
 
-
 typedef struct renderView_s {
 	// player views will set this to a non-zero integer for model suppress / allow
 	// subviews (mirrors, cameras, etc) will always clear it to zero
@@ -218,7 +214,6 @@ typedef struct renderView_s {
 	bool					noshadows;
 } renderView_t;
 
-
 // exitPortal_t is returned by idRenderWorld::GetPortal()
 typedef struct {
 	int					areas[2];		// areas connected by this portal
@@ -228,13 +223,11 @@ typedef struct {
 	qhandle_t			portalHandle;
 } exitPortal_t;
 
-
 // guiPoint_t is returned by idRenderWorld::GuiTrace()
 typedef struct {
 	float				x, y;			// 0.0 to 1.0 range if trace hit a gui, otherwise -1
 	int					guiId;			// id of gui ( 0, 1, or 2 ) that the trace happened against
 } guiPoint_t;
-
 
 // modelTrace_t is for tracing vs. visual geometry
 typedef struct modelTrace_s {
@@ -246,7 +239,6 @@ typedef struct modelTrace_s {
 	int						jointNumber;		// md5 joint nearest to the hit triangle
 } modelTrace_t;
 
-
 typedef enum {
 	PS_BLOCK_NONE =			0,
 	PS_BLOCK_VIEW =			1,
@@ -256,7 +248,6 @@ typedef enum {
 
 	PS_BLOCK_ALL = ( 1 << NUM_PORTAL_ATTRIBUTES ) - 1,
 } portalConnection_t;
-
 
 class idRenderWorld {
 public:

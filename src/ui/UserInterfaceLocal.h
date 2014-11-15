@@ -167,5 +167,4 @@ private:
 
 	idList<idUserInterfaceLocal *> guis;
 	idList<idUserInterfaceLocal *> demoGuis;
-
 };

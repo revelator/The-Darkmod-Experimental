@@ -145,8 +145,8 @@ void idGLWidget::OnPaint() {
 	GetClientRect( rect );
 	if( !wglMakeCurrent( dc.m_hDC, win32.hGLRC ) ) {
 	}
-	glViewport( 0, 0, rect.Width(), rect.Height() );
-	glScissor( 0, 0, rect.Width(), rect.Height() );
+	GL_Viewport( 0, 0, rect.Width(), rect.Height() );
+	GL_Scissor( 0, 0, rect.Width(), rect.Height() );
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity();
 	glClearColor( 0.4f, 0.4f, 0.4f, 0.7f );
@@ -157,8 +157,8 @@ void idGLWidget::OnPaint() {
 	if( drawable ) {
 		drawable->draw( 1, 1, rect.Width() - 1, rect.Height() - 1 );
 	} else {
-		glViewport( 0, 0, rect.Width(), rect.Height() );
-		glScissor( 0, 0, rect.Width(), rect.Height() );
+		GL_Viewport( 0, 0, rect.Width(), rect.Height() );
+		GL_Scissor( 0, 0, rect.Width(), rect.Height() );
 		glMatrixMode( GL_PROJECTION );
 		glLoadIdentity();
 		glClearColor( 0.4f, 0.4f, 0.4f, 0.7f );
@@ -230,23 +230,23 @@ void idGLDrawable::mouseMove( float x, float y ) {
 
 void idGLDrawable::draw( int x, int y, int w, int h ) {
 	GL_State( GLS_DEFAULT );
-	glViewport( x, y, w, h );
-	glScissor( x, y, w, h );
+	GL_Viewport( x, y, w, h );
+	GL_Scissor( x, y, w, h );
 	glMatrixMode( GL_PROJECTION );
 	glClearColor( 0.1f, 0.1f, 0.1f, 0.0f );
 	glClear( GL_COLOR_BUFFER_BIT );
 	glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
 	glLineWidth( 0.5 );
-	glColor3f( 1, 1, 1 );
+	GL_Color( 1.0f, 1.0f, 1.0f );
 	globalImages->BindNull();
 	glBegin( GL_LINE_LOOP );
-	glColor3f( 1, 0, 0 );
+	GL_Color( 1.0f, 0.0f, 0.0f );
 	glVertex2f( x + 3, y + 3 );
-	glColor3f( 0, 1, 0 );
+	GL_Color( 0.0f, 1.0f, 0.0f );
 	glVertex2f( x + 3, h - 3 );
-	glColor3f( 0, 0, 1 );
+	GL_Color( 0.0f, 0.0f, 1.0f );
 	glVertex2f( w - 3, h - 3 );
-	glColor3f( 1, 1, 1 );
+	GL_Color( 1.0f, 1.0f, 1.0f );
 	glVertex2f( w - 3, y + 3 );
 	glEnd();
 }
@@ -317,8 +317,8 @@ void idGLDrawableMaterial::mouseMove( float x, float y ) {
 void idGLDrawableMaterial::draw( int x, int y, int w, int h ) {
 	const idMaterial *mat = material;
 	if( mat ) {
-		glViewport( x, y, w, h );
-		glScissor( x, y, w, h );
+		GL_Viewport( x, y, w, h );
+		GL_Scissor( x, y, w, h );
 		glMatrixMode( GL_PROJECTION );
 		glClearColor( 0.1f, 0.1f, 0.1f, 0.0f );
 		glClear( GL_COLOR_BUFFER_BIT );
@@ -557,8 +557,8 @@ void idGLDrawableModel::draw( int x, int y, int w, int h ) {
 		//return;
 	}
 	rect.Set( x, y, w, h );
-	glViewport( x, y, w, h );
-	glScissor( x, y, w, h );
+	GL_Viewport( x, y, w, h );
+	GL_Scissor( x, y, w, h );
 	glMatrixMode( GL_PROJECTION );
 	glClearColor( 0.1f, 0.1f, 0.1f, 0.0f );
 	glClear( GL_COLOR_BUFFER_BIT );
@@ -731,7 +731,7 @@ idGLDrawable::idGLDrawable() {
 void idGLDrawableConsole::draw( int x, int y, int w, int h ) {
 	glPushAttrib( GL_ALL_ATTRIB_BITS );
 	glClearColor( 0.1f, 0.1f, 0.1f, 0.0f );
-	glScissor( 0, 0, w, h );
+	GL_Scissor( 0, 0, w, h );
 	glClear( GL_COLOR_BUFFER_BIT );
 	renderSystem->BeginFrame( w, h );
 	console->Draw( true );

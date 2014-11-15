@@ -28,7 +28,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /////////////////////////////////////////////////////////////////////////////
 // DialogName dialog
 
-
 DialogName::DialogName( const char *pName, CWnd *pParent /*=NULL*/ )
 	: CDialog( DialogName::IDD, pParent ) {
 	//{{AFX_DATA_INIT(DialogName)
@@ -36,7 +35,6 @@ DialogName::DialogName( const char *pName, CWnd *pParent /*=NULL*/ )
 	//}}AFX_DATA_INIT
 	m_strCaption = pName;
 }
-
 
 void DialogName::DoDataExchange( CDataExchange *pDX ) {
 	CDialog::DoDataExchange( pDX );

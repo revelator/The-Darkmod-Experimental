@@ -25,7 +25,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "AreaManager.h"
 
 namespace ai {
-
 void AreaManager::Save( idSaveGame *savefile ) const {
 	int size = _forbiddenAreas.size();
 	savefile->WriteInt( size );
@@ -114,6 +113,4 @@ void AreaManager::Clear() {
 	_forbiddenAreas.clear();
 	_aiAreas.clear();
 }
-
-
 } // namespace ai

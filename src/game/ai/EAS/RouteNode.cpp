@@ -25,7 +25,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "RouteNode.h"
 
 namespace eas {
-
 RouteNode::RouteNode() :
 	type( ACTION_WALK ),
 	toArea( 0 ),
@@ -86,5 +85,4 @@ void RouteNode::Restore( idRestoreGame *savefile ) {
 	savefile->ReadInt( elevatorStation );
 	savefile->ReadInt( nodeTravelTime ); // grayman #3029
 }
-
 } // namespace eas

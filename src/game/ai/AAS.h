@@ -57,12 +57,10 @@ typedef struct aasPath_s {
 	CFrobDoor					*firstDoor;		// angua: when a door is in the path, this is stored here (NULL otherwise)
 } aasPath_t;
 
-
 typedef struct aasGoal_s {
 	int							areaNum;		// area the goal is in
 	idVec3						origin;			// position of goal
 } aasGoal_t;
-
 
 typedef struct aasObstacle_s {
 	idBounds					absBounds;		// absolute bounds of obstacle

@@ -25,7 +25,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "GEApp.h"
 #include "GEZOrderModifier.h"
 
-
 rvGEZOrderModifier::rvGEZOrderModifier( const char *name, idWindow *window, EZOrderChange change ) :
 	rvGEModifier( name, window ) {
 	int			count;

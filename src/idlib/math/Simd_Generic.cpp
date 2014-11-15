@@ -1,27 +1,26 @@
 /*****************************************************************************
                     The Dark Mod GPL Source Code
- 
- This file is part of the The Dark Mod Source Code, originally based 
+
+ This file is part of the The Dark Mod Source Code, originally based
  on the Doom 3 GPL Source Code as published in 2011.
- 
- The Dark Mod Source Code is free software: you can redistribute it 
- and/or modify it under the terms of the GNU General Public License as 
- published by the Free Software Foundation, either version 3 of the License, 
+
+ The Dark Mod Source Code is free software: you can redistribute it
+ and/or modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation, either version 3 of the License,
  or (at your option) any later version. For details, see LICENSE.TXT.
- 
+
  Project: The Dark Mod (http://www.thedarkmod.com/)
- 
- $Revision$ (Revision of last commit) 
+
+ $Revision$ (Revision of last commit)
  $Date$ (Date of last commit)
  $Author$ (Author of last commit)
- 
+
 ******************************************************************************/
 
 #include "precompiled.h"
 #pragma hdrstop
 
 #include "Simd_Generic.h"
-
 
 //===============================================================
 //
@@ -41,7 +40,6 @@
 #else
 #define NODEFAULT
 #endif
-
 
 /*
 ============
@@ -2105,7 +2103,6 @@ bool VPCALL idSIMD_Generic::MatX_LDLTFactor( idMatX &mat, idVecX &invDiag, const
 	}
 
 	for ( i = 4; i < n; i++ ) {
-
 		mptr = mat[i];
 
 		v[0] = diag[0] * mptr[0]; s0 = v[0] * mptr[0];
@@ -2191,7 +2188,6 @@ bool VPCALL idSIMD_Generic::MatX_LDLTFactor( idMatX &mat, idVecX &invDiag, const
 	nc = mat.GetNumColumns();
 
 	for ( i = 0; i < n; i++ ) {
-
 		ptr = mat[i];
 		diagPtr = mat[0];
 		sum = ptr[i];
@@ -2677,7 +2673,6 @@ idSIMD_Generic::NormalizeTangents
 ============
 */
 void VPCALL idSIMD_Generic::NormalizeTangents( idDrawVert *verts, const int numVerts ) {
-
 	for ( int i = 0; i < numVerts; i++ ) {
 		idVec3 &v = verts[i].normal;
 		float f;
@@ -2705,7 +2700,6 @@ idSIMD_Generic::CreateTextureSpaceLightVectors
 ============
 */
 void VPCALL idSIMD_Generic::CreateTextureSpaceLightVectors( idVec3 *lightVectors, const idVec3 &lightOrigin, const idDrawVert *verts, const int numVerts, const int *indexes, const int numIndexes ) {
-
 	bool *used = (bool *)_alloca16( numVerts * sizeof( used[0] ) );
 	memset( used, 0, numVerts * sizeof( used[0] ) );
 
@@ -2739,7 +2733,6 @@ idSIMD_Generic::CreateSpecularTextureCoords
 ============
 */
 void VPCALL idSIMD_Generic::CreateSpecularTextureCoords( idVec3 *texCoords, const idVec3 &lightOrigin, const idVec3 &viewOrigin, const idDrawVert *verts, const int numVerts, const int *indexes, const int numIndexes ) {
-
 	bool *used = (bool *)_alloca16( numVerts * sizeof( used[0] ) );
 	memset( used, 0, numVerts * sizeof( used[0] ) );
 
@@ -3037,7 +3030,6 @@ idSIMD_Generic::MixedSoundToSamples
 ============
 */
 void VPCALL idSIMD_Generic::MixedSoundToSamples( short *samples, const float *mixBuffer, const int numSamples ) {
-
 	for ( int i = 0; i < numSamples; i++ ) {
 		if ( mixBuffer[i] <= -32768.0f ) {
 			samples[i] = -32768;

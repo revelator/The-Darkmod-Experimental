@@ -17,7 +17,6 @@
 
 ******************************************************************************/
 
-
 typedef struct {
 	const idMaterial	*material;
 	float				color[4];
@@ -58,4 +57,3 @@ private:
 	idList<glIndex_t>		indexes;
 	idList<idDrawVert>	verts;
 };
-

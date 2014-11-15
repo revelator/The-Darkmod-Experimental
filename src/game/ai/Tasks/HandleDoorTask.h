@@ -25,7 +25,6 @@
 #include "../../BinaryFrobMover.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_HANDLE_DOOR "HandleDoor"
 
@@ -145,7 +144,6 @@ private:
 	void InitDoorPositions( idAI *owner, CFrobDoor *frobDoor, bool susDoorCloseFromSameSide ); // grayman #3643
 	void StartHandAnim( idAI *owner, idEntity *controller ); // grayman #3643
 };
-
 } // namespace ai
 
 #endif /* __AI_HANDLE_DOOR_TASK_H__ */

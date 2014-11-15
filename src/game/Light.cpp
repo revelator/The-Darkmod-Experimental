@@ -35,7 +35,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 ===============================================================================
 */
 
-
 const idEventDef EV_Light_SetShader( "setShader", EventArgs( 's', "shader", "" ), EV_RETURNS_VOID, "Sets the shader to be used for the light." );
 const idEventDef EV_Light_GetShader( "getShader", EventArgs(), 's', "Gets the shader name used by the light." ); // #3765
 const idEventDef EV_Light_GetLightParm( "getLightParm", EventArgs( 'd', "parmNum", "" ), 'f', "Gets a shader parameter." );
@@ -60,7 +59,6 @@ const idEventDef EV_Light_AddToLAS( "_addToLAS", EventArgs(), EV_RETURNS_VOID, "
 const idEventDef EV_Light_FadeToLight( "fadeToLight", EventArgs( 'v', "color", "", 'f', "time", "" ), EV_RETURNS_VOID, "Fades the light to the given color over a given time." );
 const idEventDef EV_Smoking( "smoking", EventArgs( 'd', "state", "1 = smoking, 0 = not smoking" ), EV_RETURNS_VOID, "flame is now smoking (1), or not (0)" );
 const idEventDef EV_SetStartedOff( "setStartedOff", EventArgs(), EV_RETURNS_VOID, "no description" ); // grayman #2905
-
 
 CLASS_DECLARATION( idEntity, idLight )
 EVENT( EV_Light_SetShader,		idLight::Event_SetShader )
@@ -89,7 +87,6 @@ EVENT( EV_Smoking,				idLight::Event_Smoking )		// grayman #2603
 EVENT( EV_SetStartedOff,		idLight::Event_SetStartedOff )	// grayman #2905
 EVENT( EV_Light_GetShader,		idLight::Event_GetShader )		// SteveL  #3765
 END_CLASS
-
 
 /*
 ================
@@ -1436,7 +1433,6 @@ bool idLight::ClientReceiveEvent( int event, int time, const idBitMsg &msg ) {
 	//	return false;
 }
 
-
 /**	Returns a bounding box surrounding the light.
  */
 idBounds idLight::GetBounds() {
@@ -1457,7 +1453,6 @@ idBounds idLight::GetBounds() {
 	}
 	return b;
 }
-
 
 /**	Called to update m_renderTrigger after the render entity is modified.
  *	Only updates the render trigger if a thread is waiting for it.
@@ -1489,7 +1484,6 @@ void idLight::PresentRenderTrigger() {
 Quit:
 	return;
 }
-
 
 int idLight::GetTextureIndex( float x, float y, int w, int h, int bpp ) {
 	int rc = 0;
@@ -1712,7 +1706,6 @@ idEntity *idLight::GetSwitch( idAI *user ) {
 	return closestSwitch;
 }
 
-
 // grayman #2603 - Change the flag that says if this light is being relit.
 
 void idLight::SetBeingRelit( bool relighting ) {
@@ -1861,7 +1854,6 @@ void idLight::Event_SetStartedOff() { // grayman #2905 - the light was out at sp
 bool idLight::GetStartedOff() { // grayman #2905 - was the light out at spawn time?
 	return startedOff;
 }
-
 
 // sikk---> Soft Shadows PostProcess
 /*

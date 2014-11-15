@@ -203,7 +203,6 @@ public:
 	int					lastDemoTic;
 	bool				syncNextGameFrame;
 
-
 	bool				aviCaptureMode;		// if true, screenshots will be taken and sound captured
 	idStr				aviDemoShortName;	//
 	float				aviDemoFrameCount;

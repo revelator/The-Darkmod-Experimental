@@ -32,7 +32,6 @@
 class idFile;
 class idDemoFile;
 
-
 class idUserInterface {
 public:
 	virtual						~idUserInterface() {};
@@ -103,7 +102,6 @@ public:
 	virtual float				CursorX() = 0;
 	virtual float				CursorY() = 0;
 };
-
 
 class idUserInterfaceManager {
 public:

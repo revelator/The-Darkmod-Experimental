@@ -41,7 +41,6 @@ public:
 	int m_event;
 	//}}AFX_DATA
 
-
 	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CDlgEvent)

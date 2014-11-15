@@ -45,7 +45,6 @@ public:
 	virtual void MouseExit();
 	virtual void MouseEnter();
 
-
 private:
 	virtual bool ParseInternalVar( const char *name, idParser *src );
 	void CommonInit();

@@ -28,7 +28,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "TabsDlg.h"
 #include "TearoffContainerWindow.h"
 
-
 // CTearoffContainerWindow
 
 IMPLEMENT_DYNAMIC( CTearoffContainerWindow, CWnd )
@@ -41,7 +40,6 @@ CTearoffContainerWindow::CTearoffContainerWindow() {
 CTearoffContainerWindow::~CTearoffContainerWindow() {
 }
 
-
 BEGIN_MESSAGE_MAP( CTearoffContainerWindow, CWnd )
 	ON_WM_NCLBUTTONDBLCLK()
 	ON_WM_CLOSE()
@@ -52,14 +50,12 @@ END_MESSAGE_MAP()
 
 // CTearoffContainerWindow message handlers
 
-
 void CTearoffContainerWindow::OnNcLButtonDblClk( UINT nHitTest, CPoint point ) {
 	if( nHitTest == HTCAPTION ) {
 		m_DockManager->DockWindow( m_DialogID , true );
 	}
 	CWnd::OnNcLButtonDblClk( nHitTest, point );
 }
-
 
 void CTearoffContainerWindow::SetDialog( CWnd *dlg , int ID ) {
 	m_DialogID = ID;
@@ -84,7 +80,6 @@ void CTearoffContainerWindow::OnClose() {
 		m_DockManager->DockWindow( m_DialogID , true );
 	}
 }
-
 
 BOOL CTearoffContainerWindow:: PreTranslateMessage( MSG *pMsg ) {
 	if( pMsg->message == WM_NCLBUTTONUP ) {

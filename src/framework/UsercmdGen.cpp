@@ -55,7 +55,6 @@ bool usercmd_t::operator==( const usercmd_t &rhs ) const {
 			 my == rhs.my );
 }
 
-
 const int KEY_MOVESPEED	= 127;
 
 /*typedef enum {
@@ -296,7 +295,6 @@ void buttonState_t::SetKeyState( int keystate, bool toggle ) {
 	}
 }
 
-
 const int NUM_USER_COMMANDS = sizeof( userCmdStrings ) / sizeof( userCmdString_t );
 
 const int MAX_CHAT_BUFFER = 127;
@@ -473,9 +471,7 @@ int	idUsercmdGenLocal::KeyState( int key ) {
 	return ( keyState[key] ) ? 1 : 0;
 }
 
-
 //=====================================================================
-
 
 /*
 ================
@@ -761,7 +757,6 @@ void idUsercmdGenLocal::MakeCurrent( void ) {
 
 //=====================================================================
 
-
 /*
 ================
 idUsercmdGenLocal::CommandStringUsercmdData
@@ -859,7 +854,6 @@ usercmd_t idUsercmdGenLocal::TicCmd( int ticNumber ) {
 }
 
 //======================================================================
-
 
 /*
 ===================

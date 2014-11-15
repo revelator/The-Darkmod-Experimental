@@ -31,7 +31,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 // Get the name of this state
 const idStr &SuspiciousState::GetName() const {
 	static idStr _name( STATE_SUSPICIOUS );
@@ -198,7 +197,6 @@ void SuspiciousState::Think( idAI *owner ) {
 	owner->PerformVisualScan();
 }
 
-
 StatePtr SuspiciousState::CreateInstance() {
 	return StatePtr( new SuspiciousState );
 }
@@ -208,5 +206,4 @@ StateLibrary::Registrar suspiciousStateRegistrar(
 	STATE_SUSPICIOUS, // Task Name
 	StateLibrary::CreateInstanceFunc( &SuspiciousState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

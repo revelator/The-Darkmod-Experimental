@@ -33,7 +33,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "FleeDoneState.h"
 
 namespace ai {
-
 // Get the name of this state
 const idStr &FleeState::GetName() const {
 	static idStr _name( STATE_FLEE );
@@ -147,5 +146,4 @@ StateLibrary::Registrar fleeStateRegistrar(
 	STATE_FLEE, // Task Name
 	StateLibrary::CreateInstanceFunc( &FleeState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

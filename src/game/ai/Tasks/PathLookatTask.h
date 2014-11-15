@@ -23,7 +23,6 @@
 #include "PathTask.h"
 
 namespace ai {
-
 // Define the name of this task
 #define TASK_PATH_LOOKAT "PathLookat"
 
@@ -56,7 +55,6 @@ public:
 	// Creates a new Instance of this task
 	static PathLookatTaskPtr CreateInstance();
 };
-
 } // namespace ai
 
 #endif /* __AI_PATH_LOOKAT_TASK_H__ */

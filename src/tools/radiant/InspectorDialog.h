@@ -23,7 +23,6 @@
 #include "ConsoleDlg.h"
 #include "TabsDlg.h"
 
-
 // CInspectorDialog dialog
 
 class CInspectorDialog : public CTabsDlg {

@@ -29,7 +29,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /////////////////////////////////////////////////////////////////////////////
 // CDialogSoundGroup dialog
 
-
 CDialogSoundGroup::CDialogSoundGroup( CWnd *pParent /*=NULL*/ )
 	: CDialog( CDialogSoundGroup::IDD, pParent ) {
 	//{{AFX_DATA_INIT(CDialogSoundGroup)
@@ -37,14 +36,12 @@ CDialogSoundGroup::CDialogSoundGroup( CWnd *pParent /*=NULL*/ )
 	//}}AFX_DATA_INIT
 }
 
-
 void CDialogSoundGroup::DoDataExchange( CDataExchange *pDX ) {
 	CDialog::DoDataExchange( pDX );
 	//{{AFX_DATA_MAP(CDialogSoundGroup)
 	DDX_Control( pDX, IDC_LIST_GROUPS, lstGroups );
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( CDialogSoundGroup, CDialog )
 	//{{AFX_MSG_MAP(CDialogSoundGroup)

@@ -68,7 +68,6 @@ EVENT( EV_Activate,				idCameraView::Event_Activate )
 EVENT( EV_Camera_SetAttachments, idCameraView::Event_SetAttachments )
 END_CLASS
 
-
 /*
 ===============
 idCameraView::idCameraView
@@ -146,7 +145,6 @@ void idCameraView::Stop( void ) {
 	ActivateTargets( gameLocal.GetLocalPlayer() );
 }
 
-
 /*
 =====================
 idCameraView::Spawn
@@ -158,7 +156,6 @@ void idCameraView::SetAttachment( idEntity **e, const char *p ) {
 		*e = gameLocal.FindEntity( cam );
 	}
 }
-
 
 /*
 =====================
@@ -221,7 +218,6 @@ EVENT( EV_Camera_Stop,			idCameraAnim::Event_Stop )
 EVENT( EV_Camera_Start,			idCameraAnim::Event_Start )
 EVENT( EV_Activate,				idCameraAnim::Event_Activate )
 END_CLASS
-
 
 /*
 =====================

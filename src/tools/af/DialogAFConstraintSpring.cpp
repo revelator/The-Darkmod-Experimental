@@ -28,7 +28,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "DialogAFConstraint.h"
 #include "DialogAFConstraintSpring.h"
 
-
 // DialogAFConstraintSpring dialog
 
 toolTip_t DialogAFConstraintSpring::toolTips[] = {
@@ -270,7 +269,6 @@ int DialogAFConstraintSpring::OnToolHitTest( CPoint point, TOOLINFO *pTI ) const
 	return DefaultOnToolHitTest( toolTips, this, point, pTI );
 }
 
-
 BEGIN_MESSAGE_MAP( DialogAFConstraintSpring, CDialog )
 	ON_NOTIFY_EX_RANGE( TTN_NEEDTEXTW, 0, 0xFFFF, OnToolTipNotify )
 	ON_NOTIFY_EX_RANGE( TTN_NEEDTEXTA, 0, 0xFFFF, OnToolTipNotify )
@@ -309,7 +307,6 @@ BEGIN_MESSAGE_MAP( DialogAFConstraintSpring, CDialog )
 	ON_EN_CHANGE( IDC_EDIT_SPRING_MAX_LENGTH, OnEnChangeEditLimitMaxLength )
 	ON_NOTIFY( UDN_DELTAPOS, IDC_SPIN_SPRING_MAX_LENGTH, OnDeltaposSpinLimitMaxLength )
 END_MESSAGE_MAP()
-
 
 // DialogAFConstraintSpring message handlers
 

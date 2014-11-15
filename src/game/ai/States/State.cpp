@@ -139,7 +139,6 @@ void State::SetOwner( idAI *owner ) {
 	_owner = owner;
 }
 
-
 void State::UpdateAlertLevel() {
 	idAI *owner = _owner.GetEntity();
 	int currentTime = gameLocal.time;
@@ -153,7 +152,6 @@ void State::UpdateAlertLevel() {
 		owner->SetAlertLevel( newAlertLevel );
 	}
 }
-
 
 // Save/Restore methods
 void State::Save( idSaveGame *savefile ) const {
@@ -2276,7 +2274,6 @@ void State::OnProjectileHit( idProjectile *projectile, idEntity *attacker, int d
 	}
 }
 
-
 void State::OnMovementBlocked( idAI *owner ) {
 	//DM_LOG(LC_AI, LT_DEBUG)LOGSTRING("State::OnMovementBlocked: %s ...\r", owner->name.c_str());
 	// Determine which type of object is blocking us
@@ -2541,7 +2538,6 @@ void State::IgnoreSiblingLights( idAI *owner, idLight *light ) {
 		}
 	}
 }
-
 
 void State::OnVisualStimLightSource( idEntity *stimSource, idAI *owner ) {
 	// grayman #2603 - a number of changes were made in this method
@@ -3591,5 +3587,4 @@ void State::NeedToUseElevator( const eas::RouteInfoPtr &routeInfo ) {
 	owner->m_ElevatorQueued = true;
 	owner->movementSubsystem->PushTask( TaskPtr( new HandleElevatorTask( routeInfo ) ) );
 }
-
 } // namespace ai

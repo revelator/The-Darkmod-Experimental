@@ -149,7 +149,6 @@ public:
 	};
 	void AnalogMouseZoom( int mouseDeltaY );
 
-
 	bool RogueClipMode();
 	bool ClipMode();
 	void SetClipMode( bool bMode );
@@ -166,7 +165,6 @@ public:
 	bool PointMode();
 	void AddPointPoint( UINT nFlags, idVec3 *pVec );
 	void SetPointMode( bool b );
-
 
 	virtual ~CXYWnd();
 	void SetViewType( int n );
@@ -202,7 +200,6 @@ public:
 	int m_mouseX;
 	int m_mouseY;
 
-
 	// Generated message map functions
 protected:
 	int m_nUpdateBits;
@@ -232,7 +229,6 @@ protected:
 	float m_mcRight;
 	float m_mcTop;
 	float m_mcBottom;
-
 
 	friend CCamWnd;
 	//friend C3DFXCamWnd;

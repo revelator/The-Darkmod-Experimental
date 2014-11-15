@@ -51,7 +51,6 @@ public:
 	int		m_nRotateAmt;
 	//}}AFX_DATA
 
-
 	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CTextureBar)

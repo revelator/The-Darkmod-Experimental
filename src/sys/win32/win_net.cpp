@@ -41,7 +41,6 @@ idCVar net_socksPort( "net_socksPort", "1080", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR
 idCVar net_socksUsername( "net_socksUsername", "", CVAR_SYSTEM | CVAR_ARCHIVE, "" );
 idCVar net_socksPassword( "net_socksPassword", "", CVAR_SYSTEM | CVAR_ARCHIVE, "" );
 
-
 static struct sockaddr	socksRelayAddr;
 
 static SOCKET	ip_socket;
@@ -58,7 +57,6 @@ int				num_interfaces = 0;
 net_interface	netint[MAX_INTERFACES];
 
 //=============================================================================
-
 
 /*
 ====================
@@ -178,7 +176,6 @@ void Net_NetadrToSockadr( const netadr_t *a, struct sockaddr *s ) {
 	}
 	( ( struct sockaddr_in * )s )->sin_port = htons( ( short )a->port );
 }
-
 
 /*
 ====================
@@ -688,7 +685,6 @@ void Sys_InitNetworking( void ) {
 	free( pAdapterInfo );
 }
 
-
 /*
 ====================
 Sys_ShutdownNetworking
@@ -795,7 +791,6 @@ bool Sys_CompareNetAdrBase( const netadr_t a, const netadr_t b ) {
 }
 
 //=============================================================================
-
 
 #define MAX_UDP_MSG_SIZE	1400
 
@@ -1001,7 +996,6 @@ void idPort::SendPacket( const netadr_t to, const void *data, int size ) {
 		Net_SendUDPPacket( netSocket, size, data, to );
 	}
 }
-
 
 //=============================================================================
 

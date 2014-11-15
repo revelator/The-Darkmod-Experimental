@@ -27,8 +27,6 @@
 
 #define QE3_SPLITTER_STYLE (WS_CHILD | WS_VISIBLE | WS_CLIPCHILDREN | WS_CLIPSIBLINGS)
 
-
-
 #define QE_AUTOSAVE_INTERVAL  5       // number of minutes between autosaves
 
 #define	_3DFXCAMERA_WINDOW_CLASS	"Q3DFXCamera"
@@ -97,7 +95,6 @@
 // _D3XP
 #define EXCLUDE_MODELS		0x00080000
 
-
 //
 // menu indexes for modifying menus
 //
@@ -105,7 +102,6 @@
 #define	MENU_BSP		4
 #define	MENU_TEXTURE	6
 #define	MENU_PLUGIN	11
-
 
 // odd things not in windows header...
 #define	VK_COMMA		188
@@ -157,6 +153,5 @@ enum {
 // menu settings
 #define ENTITY_WIRE				0x00001
 #define ENTITY_SKINNED 			0x00002
-
 
 #endif

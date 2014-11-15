@@ -24,7 +24,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "tr_local.h"
 
-
 /*
 =================
 R_FinishDeform
@@ -456,8 +455,6 @@ static void R_FlareDeform( drawSurf_t *surf ) {
 	R_FinishDeform( surf, newTri, ac );
 }
 
-
-
 /*
 =====================
 R_ExpandDeform
@@ -588,14 +585,14 @@ static void AddTriangleToIsland_r( const srfTriangles_t *tri, int triangleNum, b
 		if( usedList[i] ) {
 			continue;
 		}
-		if( tri->indexes[i * 3 + 0] == a || 
-			tri->indexes[i * 3 + 1] == a || 
-			tri->indexes[i * 3 + 2] == a || 
-			tri->indexes[i * 3 + 0] == b || 
-			tri->indexes[i * 3 + 1] == b || 
-			tri->indexes[i * 3 + 2] == b || 
-			tri->indexes[i * 3 + 0] == c || 
-			tri->indexes[i * 3 + 1] == c || 
+		if( tri->indexes[i * 3 + 0] == a ||
+			tri->indexes[i * 3 + 1] == a ||
+			tri->indexes[i * 3 + 2] == a ||
+			tri->indexes[i * 3 + 0] == b ||
+			tri->indexes[i * 3 + 1] == b ||
+			tri->indexes[i * 3 + 2] == b ||
+			tri->indexes[i * 3 + 0] == c ||
+			tri->indexes[i * 3 + 1] == c ||
 			tri->indexes[i * 3 + 2] == c ) {
 			AddTriangleToIsland_r( tri, i, usedList, island );
 		}
@@ -721,7 +718,6 @@ static void R_EyeballDeform( drawSurf_t *surf ) {
 }
 
 //==========================================================================================
-
 
 /*
 =====================

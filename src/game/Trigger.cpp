@@ -228,7 +228,6 @@ void idTrigger::Spawn( void ) {
 	}
 }
 
-
 /*
 ===============================================================================
 
@@ -244,7 +243,6 @@ EVENT( EV_Touch,			idTrigger_Multi::Event_Touch )
 EVENT( EV_Activate,			idTrigger_Multi::Event_Trigger )
 EVENT( EV_TriggerAction,	idTrigger_Multi::Event_TriggerAction )
 END_CLASS
-
 
 /*
 ================
@@ -375,7 +373,6 @@ bool idTrigger_Multi::CheckFacing( idEntity *activator ) {
 	}
 	return true;
 }
-
 
 /*
 ================
@@ -917,7 +914,6 @@ EVENT( EV_Touch,		idTrigger_Hurt::Event_Touch )
 EVENT( EV_Activate,		idTrigger_Hurt::Event_Toggle )
 END_CLASS
 
-
 /*
 ================
 idTrigger_Hurt::idTrigger_Hurt
@@ -991,7 +987,6 @@ void idTrigger_Hurt::Event_Toggle( idEntity *activator ) {
 	on = !on;
 }
 
-
 /*
 ===============================================================================
 
@@ -1033,7 +1028,6 @@ void idTrigger_Fade::Event_Trigger( idEntity *activator ) {
 CLASS_DECLARATION( idTrigger, idTrigger_Touch )
 EVENT( EV_Activate,		idTrigger_Touch::Event_Trigger )
 END_CLASS
-
 
 /*
 ================

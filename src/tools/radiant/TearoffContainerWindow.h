@@ -45,5 +45,3 @@ public:
 	afx_msg void OnDestroy();
 	afx_msg void OnSetFocus( CWnd *pOldWnd );
 };
-
-

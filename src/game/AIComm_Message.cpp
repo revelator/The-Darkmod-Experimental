@@ -23,7 +23,6 @@
 *
 */
 
-
 /*
 *--------------------------------------------------------------------------
 * Includes
@@ -38,7 +37,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "AIComm_Message.h"
 
 namespace ai {
-
 /*
 *--------------------------------------------------------------------------
 * Constructor and Destructor
@@ -113,5 +111,4 @@ void CommMessage::Restore( idRestoreGame *savefile ) {
 	savefile->ReadVec3( m_positionOfIssuance );
 	savefile->ReadInt( m_msgTag ); // grayman #3355
 }
-
 } // namespace ai

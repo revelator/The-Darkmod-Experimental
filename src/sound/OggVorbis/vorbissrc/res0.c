@@ -33,11 +33,11 @@
 
 #ifdef TRAIN_RES
 #include <stdio.h>
-#endif 
+#endif
 
 typedef struct {
   vorbis_info_residue0 *info;
-  
+
   int         parts;
   int         stages;
   codebook   *fullbooks;
@@ -59,7 +59,6 @@ typedef struct {
   float     tmin;
   float     tmax;
 #endif
-
 } vorbis_look_residue0;
 
 void res0_free_info(vorbis_info_residue *i){
@@ -73,7 +72,6 @@ void res0_free_info(vorbis_info_residue *i){
 void res0_free_look(vorbis_look_residue *i){
   int j;
   if(i){
-
     vorbis_look_residue0 *look=(vorbis_look_residue0 *)i;
 
 #ifdef TRAIN_RES
@@ -86,16 +84,16 @@ void res0_free_look(vorbis_look_residue *i){
 	    char buffer[80];
 	    FILE *of;
 	    codebook *statebook=look->partbooks[j][k];
-	    
+
 	    /* long and short into the same bucket by current convention */
 	    sprintf(buffer,"res_part%d_pass%d.vqd",j,k);
 	    of=fopen(buffer,"a");
 
 	    for(l=0;l<statebook->entries;l++)
 	      fprintf(of,"%d:%ld\n",l,look->training_data[k][j][l]);
-	    
+
 	    fclose(of);
-	    
+
 	    /*fprintf(stderr,"%d(%.2f|%.2f) ",k,
 	      look->training_min[k][j],look->training_max[k][j]);*/
 
@@ -112,7 +110,6 @@ void res0_free_look(vorbis_look_residue *i){
 	    (float)(look->postbits+look->phrasebits)/look->frames);*/
 #endif
 
-
     /*vorbis_info_residue0 *info=look->info;
 
     fprintf(stderr,
@@ -120,7 +117,7 @@ void res0_free_look(vorbis_look_residue *i){
 	    "(%g/frame) \n",look->frames,look->phrasebits,
 	    look->resbitsflat,
 	    (look->phrasebits+look->resbitsflat)/(float)look->frames);
-    
+
     for(j=0;j<look->parts;j++){
       long acc=0;
       fprintf(stderr,"\t[%d] == ",j);
@@ -165,14 +162,13 @@ static int icount(unsigned int v){
   return(ret);
 }
 
-
 void res0_pack(vorbis_info_residue *vr,oggpack_buffer *opb){
   vorbis_info_residue0 *info=(vorbis_info_residue0 *)vr;
   int j,acc=0;
   oggpack_write(opb,info->begin,24);
   oggpack_write(opb,info->end,24);
 
-  oggpack_write(opb,info->grouping-1,24);  /* residue vectors to group and 
+  oggpack_write(opb,info->grouping-1,24);  /* residue vectors to group and
 					     code with a partitioned book */
   oggpack_write(opb,info->partitions-1,6); /* possible partition choices */
   oggpack_write(opb,info->groupbook,8);  /* group huffman book */
@@ -183,16 +179,15 @@ void res0_pack(vorbis_info_residue *vr,oggpack_buffer *opb){
   for(j=0;j<info->partitions;j++){
     if(ilog(info->secondstages[j])>3){
       /* yes, this is a minor hack due to not thinking ahead */
-      oggpack_write(opb,info->secondstages[j],3); 
+      oggpack_write(opb,info->secondstages[j],3);
       oggpack_write(opb,1,1);
-      oggpack_write(opb,info->secondstages[j]>>3,5); 
+      oggpack_write(opb,info->secondstages[j]>>3,5);
     }else
       oggpack_write(opb,info->secondstages[j],4); /* trailing zero */
     acc+=icount(info->secondstages[j]);
   }
   for(j=0;j<acc;j++)
     oggpack_write(opb,info->booklist[j],8);
-
 }
 
 /* vorbis_info is for range checking */
@@ -296,23 +291,21 @@ static int local_book_besterror(codebook *book,float *a){
     float val=a[--o];
     i=tt->threshvals>>1;
 
-    if(val<tt->quantthresh[i]){      
+    if(val<tt->quantthresh[i]){
       if(val<tt->quantthresh[i-1]){
 	for(--i;i>0;--i)
 	  if(val>=tt->quantthresh[i-1])
 	    break;
       }
     }else{
-      
       for(++i;i<tt->threshvals-1;++i)
 	if(val<tt->quantthresh[i])break;
-      
     }
-    
+
     best=(best*tt->quantvals)+tt->quantmap[i];
   }
   /* regular lattices are easy :-) */
-  
+
   if(book->c->lengthlist[best]<=0){
     const static_codebook *c=book->c;
     int i,j;
@@ -375,7 +368,7 @@ static long **_01class(vorbis_block *vb,vorbis_look_residue *vl,
   int samples_per_partition=info->grouping;
   int possible_partitions=info->partitions;
   int n=info->end-info->begin;
-  
+
   int partvals=n/samples_per_partition;
   long **partword=_vorbis_block_alloc(vb,ch*sizeof(*partword));
   float scale=100./samples_per_partition;
@@ -383,12 +376,12 @@ static long **_01class(vorbis_block *vb,vorbis_look_residue *vl,
   /* we find the partition type for each partition of each
      channel.  We'll go back and do the interleaved encoding in a
      bit.  For now, clarity */
- 
+
   for(i=0;i<ch;i++){
     partword[i]=_vorbis_block_alloc(vb,n/samples_per_partition*sizeof(*partword[i]));
     memset(partword[i],0,n/samples_per_partition*sizeof(*partword[i]));
   }
-  
+
   for(i=0;i<partvals;i++){
     int offset=i*samples_per_partition+info->begin;
     for(j=0;j<ch;j++){
@@ -399,13 +392,13 @@ static long **_01class(vorbis_block *vb,vorbis_look_residue *vl,
 	ent+=fabs(rint(in[j][offset+k]));
       }
       ent*=scale;
-      
+
       for(k=0;k<possible_partitions-1;k++)
 	if(max<=info->classmetric1[k] &&
 	   (info->classmetric2[k]<0 || (int)ent<info->classmetric2[k]))
 	  break;
-      
-      partword[j][i]=k;  
+
+      partword[j][i]=k;
     }
   }
 
@@ -413,7 +406,7 @@ static long **_01class(vorbis_block *vb,vorbis_look_residue *vl,
   {
     FILE *of;
     char buffer[80];
-  
+
     for(i=0;i<ch;i++){
       sprintf(buffer,"resaux_%d.vqd",look->train_seq);
       of=fopen(buffer,"a");
@@ -450,7 +443,7 @@ static long **_2class(vorbis_block *vb,vorbis_look_residue *vl,float **in,
   FILE *of;
   char buffer[80];
 #endif
-  
+
   partword[0]=_vorbis_block_alloc(vb,n*ch/samples_per_partition*sizeof(*partword[0]));
   memset(partword[0],0,n*ch/samples_per_partition*sizeof(*partword[0]));
 
@@ -470,9 +463,8 @@ static long **_2class(vorbis_block *vb,vorbis_look_residue *vl,float **in,
 	break;
 
     partword[0][i]=j;
+  }
 
-  }  
-  
 #ifdef TRAIN_RESAUX
   sprintf(buffer,"resaux_%d.vqd",look->train_seq);
   of=fopen(buffer,"a");
@@ -518,16 +510,14 @@ static int _01forward(vorbis_block *vb,vorbis_look_residue *vl,
 
   memset(resbits,0,sizeof(resbits));
   memset(resvals,0,sizeof(resvals));
-  
+
   /* we code the partition words for each channel, then the residual
      words for a partition per channel until we've written all the
      residual words for that partition word.  Then write the next
      partition channel words... */
 
   for(s=0;s<look->stages;s++){
-
     for(i=0;i<partvals;){
-
       /* first we encode a partition codeword for each channel */
       if(s==0){
 	for(j=0;j<ch;j++){
@@ -536,7 +526,7 @@ static int _01forward(vorbis_block *vb,vorbis_look_residue *vl,
 	    val*=possible_partitions;
 	    if(i+k<partvals)
 	      val+=partword[j][i+k];
-	  }	
+	  }
 
 	  /* training hack */
 	  if(val<look->phrasebook->entries)
@@ -545,14 +535,13 @@ static int _01forward(vorbis_block *vb,vorbis_look_residue *vl,
 	  else
 	    fprintf(stderr,"!");
 #endif
-	
 	}
       }
-      
+
       /* now we encode interleaved residual values for the partitions */
       for(k=0;k<partitions_per_word && i<partvals;k++,i++){
 	long offset=i*samples_per_partition+info->begin;
-	
+
 	for(j=0;j<ch;j++){
 	  if(s==0)resvals[partword[j][i]]+=samples_per_partition;
 	  if(info->secondstages[partword[j][i]]&(1<<s)){
@@ -574,7 +563,7 @@ static int _01forward(vorbis_block *vb,vorbis_look_residue *vl,
 		}
 	      }
 #endif
-	      
+
 	      ret=encode(&vb->opb,in[j]+offset,samples_per_partition,
 			 statebook,accumulator);
 
@@ -596,7 +585,7 @@ static int _01forward(vorbis_block *vb,vorbis_look_residue *vl,
       total+=resvals[k];
       totalbits+=resbits[k];
       }
-    
+
     fprintf(stderr,":: %ld:%1.2g\n",total,(double)totalbits/total);
     }*/
   return(0);
@@ -605,9 +594,8 @@ static int _01forward(vorbis_block *vb,vorbis_look_residue *vl,
 /* a truncated packet here just means 'stop working'; it's not an error */
 static int _01inverse(vorbis_block *vb,vorbis_look_residue *vl,
 		      float **in,int ch,
-		      long (*decodepart)(codebook *, float *, 
+		      long (*decodepart)(codebook *, float *,
 					 oggpack_buffer *,int)){
-
   long i,j,k,l,s;
   vorbis_look_residue0 *look=(vorbis_look_residue0 *)vl;
   vorbis_info_residue0 *info=look->info;
@@ -616,7 +604,7 @@ static int _01inverse(vorbis_block *vb,vorbis_look_residue *vl,
   int samples_per_partition=info->grouping;
   int partitions_per_word=look->phrasebook->dim;
   int n=info->end-info->begin;
-  
+
   int partvals=n/samples_per_partition;
   int partwords=(partvals+partitions_per_word-1)/partitions_per_word;
   int ***partword=alloca(ch*sizeof(*partword));
@@ -625,8 +613,7 @@ static int _01inverse(vorbis_block *vb,vorbis_look_residue *vl,
     partword[j]=_vorbis_block_alloc(vb,partwords*sizeof(*partword[j]));
 
   for(s=0;s<look->stages;s++){
-
-    /* each loop decodes on partition codeword containing 
+    /* each loop decodes on partition codeword containing
        partitions_pre_word partitions */
     for(i=0,l=0;i<partvals;l++){
       if(s==0){
@@ -638,7 +625,7 @@ static int _01inverse(vorbis_block *vb,vorbis_look_residue *vl,
 	  if(partword[j][l]==NULL)goto errout;
 	}
       }
-      
+
       /* now we decode residual values for the partitions */
       for(k=0;k<partitions_per_word && i<partvals;k++,i++)
 	for(j=0;j<ch;j++){
@@ -651,9 +638,9 @@ static int _01inverse(vorbis_block *vb,vorbis_look_residue *vl,
 	    }
 	  }
 	}
-    } 
+    }
   }
-  
+
  errout:
  eopbreak:
   return(0);
@@ -801,7 +788,7 @@ int res2_forward(vorbis_block *vb,vorbis_look_residue *vl,
     for(j=0,k=i;j<n;j++,k+=ch)
       work[k]=pcm[j];
   }
-  
+
   if(used){
     int ret=_01forward(vb,vl,&work,1,partword,_encodepart);
     /* update the sofar vector */
@@ -811,7 +798,6 @@ int res2_forward(vorbis_block *vb,vorbis_look_residue *vl,
 	float *sofar=out[i];
 	for(j=0,k=i;j<n;j++,k+=ch)
 	  sofar[j]+=pcm[j]-work[k];
-	
       }
     }
     return(ret);
@@ -841,7 +827,6 @@ int res2_inverse(vorbis_block *vb,vorbis_look_residue *vl,
 
   for(s=0;s<look->stages;s++){
     for(i=0,l=0;i<partvals;l++){
-
       if(s==0){
 	/* fetch the partition word */
 	int temp=vorbis_book_decode(look->phrasebook,&vb->opb);
@@ -854,7 +839,7 @@ int res2_inverse(vorbis_block *vb,vorbis_look_residue *vl,
       for(k=0;k<partitions_per_word && i<partvals;k++,i++)
 	if(info->secondstages[partword[l][k]]&(1<<s)){
 	  codebook *stagebook=look->partbooks[partword[l][k]][s];
-	  
+
 	  if(stagebook){
 	    if(vorbis_book_decodevv_add(stagebook,in,
 					i*samples_per_partition+info->begin,ch,
@@ -862,14 +847,13 @@ int res2_inverse(vorbis_block *vb,vorbis_look_residue *vl,
 	      goto eopbreak;
 	  }
 	}
-    } 
+    }
   }
-  
+
  errout:
  eopbreak:
   return(0);
 }
-
 
 vorbis_func_residue residue0_exportbundle={
   NULL,
@@ -903,4 +887,3 @@ vorbis_func_residue residue2_exportbundle={
   &res2_forward,
   &res2_inverse
 };
-

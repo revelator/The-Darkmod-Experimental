@@ -28,7 +28,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../EAS/EAS.h"
 
 namespace ai {
-
 // grayman #3050 - values for elevator ++++++++++
 
 #define RIDE_ELEVATOR_WAIT		 1500	// wait this long (ms) to give the elevator time to start moving
@@ -706,5 +705,4 @@ TaskLibrary::Registrar handleElevatorTaskRegistrar(
 	TASK_HANDLE_ELEVATOR, // Task Name
 	TaskLibrary::CreateInstanceFunc( &HandleElevatorTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

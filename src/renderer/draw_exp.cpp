@@ -790,7 +790,7 @@ void    RB_RenderShadowBuffer( viewLight_t	*vLight, int side ) {
 	GL_State( GLS_DEPTHFUNC_LESS | GLS_SRCBLEND_ONE | GLS_DSTBLEND_ZERO );	// make sure depth mask is off before clear
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	// draw all the occluders
-	glColor3f( 1, 1, 1 );
+	GL_Color( 1.0f, 1.0f, 1.0f );
 	GL_SelectTexture( 0 );
 	glEnableClientState( GL_TEXTURE_COORD_ARRAY );
 	backEnd.currentSpace = NULL;
@@ -1570,7 +1570,7 @@ void	RB_Exp_SelectFrustum( viewLight_t *vLight, int side ) {
 	glDepthFunc( GL_LEQUAL );
 	if( r_sb_showFrustumPixels.GetBool() ) {
 		glEnable( GL_TEXTURE_2D );
-		glColor3f( 1, 1, 1 );
+		GL_Color( 1.0f, 1.0f, 1.0f );
 	}
 	// after all the frustums have been drawn, the surfaces that have been drawn on will get interactions
 	// scissor may still be a win even with the stencil test for very fast rejects
@@ -1794,7 +1794,7 @@ void	RB_shadowResampleAlpha( void ) {
 	glDepthFunc( GL_LEQUAL );
 	if( r_sb_showFrustumPixels.GetBool() ) {
 		glEnable( GL_TEXTURE_2D );
-		glColor3f( 1, 1, 1 );
+		GL_Color( 1.0f, 1.0f, 1.0f );
 	}
 	// after all the frustums have been drawn, the surfaces that have been drawn on will get interactions
 	// scissor may still be a win even with the stencil test for very fast rejects
@@ -1848,7 +1848,7 @@ void RB_EXP_ReadFloatBuffer( void ) {
 	glLoadIdentity();
 	glMatrixMode( GL_PROJECTION );
 	GL_State( GLS_DEPTHFUNC_ALWAYS );
-	glColor3f( 1, 1, 1 );
+	GL_Color( 1.0f, 1.0f, 1.0f );
 	glPushMatrix();
 	glLoadIdentity();
 	glDisable( GL_TEXTURE_2D );

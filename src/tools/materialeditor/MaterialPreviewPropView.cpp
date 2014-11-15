@@ -21,14 +21,11 @@
 
 static bool versioned = RegisterVersionedFile( "$Id$" );
 
-
 #include "MaterialPreviewPropView.h"
-
 
 // MaterialPropTreeView
 
 IMPLEMENT_DYNCREATE( MaterialPreviewPropView, CPropTreeView )
-
 
 MaterialPreviewPropView::MaterialPreviewPropView() {
 	numLights = 0;
@@ -42,7 +39,6 @@ BEGIN_MESSAGE_MAP( MaterialPreviewPropView, CPropTreeView )
 	ON_NOTIFY( PTN_ITEMCHANGED, IDC_PROPERTYTREE, OnPropertyChangeNotification )
 	ON_NOTIFY( PTN_ITEMBUTTONCLICK, IDC_PROPERTYTREE, OnPropertyButtonClick )
 END_MESSAGE_MAP()
-
 
 void MaterialPreviewPropView::AddLight( void ) {
 	int i, count, lightShaderIndex = 0;
@@ -209,7 +205,6 @@ void MaterialPreviewPropView::Dump( CDumpContext &dc ) const {
 	CPropTreeView::Dump( dc );
 }
 #endif //_DEBUG
-
 
 void MaterialPreviewPropView::RegisterPreviewView( MaterialPreviewView *view ) {
 	materialPreview = view;

@@ -117,4 +117,3 @@ private:
 };
 
 #endif /* !__GAME_FUNC_SHOOTER_H__ */
-

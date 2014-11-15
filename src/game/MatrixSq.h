@@ -133,7 +133,6 @@ public:
 	const Type &GetRev( std::size_t row, std::size_t col ) const;
 };
 
-
 /****************************************************************
 * Begin CMatrixSq Implementation:
 *****************************************************************/

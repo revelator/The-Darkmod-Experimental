@@ -394,7 +394,6 @@ void ConvertTexMatWithQTexture( brushprimit_texdef_t	*texMat1, const idMaterial 
 	ConvertTexMatWithQTexture( texMat1->coords, qtex1, texMat2->coords, qtex2, sScale, tScale );
 }
 
-
 //
 // =======================================================================================================================
 //    texture locking
@@ -983,7 +982,6 @@ void Face_SetExplicitScale_BrushPrimit( face_t *face, float s, float t ) {
 	EmitBrushPrimitTextureCoordinates( face, face->face_winding );
 }
 
-
 void Face_FlipTexture_BrushPrimit( face_t *f, bool y ) {
 	float s, t, rot;
 	Face_GetScale_BrushPrimit( f, &s, &t, &rot );
@@ -1099,10 +1097,8 @@ void Face_SetAxialScale_BrushPrimit( face_t *face, bool y ) {
 		Os /= face->face_winding->numpoints;
 		Ot /= face->face_winding->numpoints;
 
-
 		//Os /= face->face_winding->numpoints;
 		//Ot /= face->face_winding->numpoints;
 
 	*/
 }
-

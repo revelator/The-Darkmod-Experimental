@@ -25,7 +25,6 @@
 #include <boost/shared_ptr.hpp>
 
 namespace eas {
-
 struct ClusterInfo {
 	int clusterNum;										// The number of this cluster
 	unsigned short numElevatorStations;				// the number of elevator stations in this cluster
@@ -85,7 +84,6 @@ struct ClusterInfo {
 	}
 };
 typedef boost::shared_ptr<ClusterInfo> ClusterInfoPtr;
-
 } // namespace eas
 
 #endif /* __AI_EAS_CLUSTERINFO_H__ */

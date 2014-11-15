@@ -135,7 +135,6 @@ const char *idSliderWindow::HandleEvent( const sysEvent_t *event, bool *updateVi
 	return "";
 }
 
-
 void idSliderWindow::SetBuddy( idWindow *buddy ) {
 	buddyWin = buddy;
 }
@@ -230,7 +229,6 @@ void idSliderWindow::Draw( int time, float x, float y ) {
 	}
 }
 
-
 void idSliderWindow::DrawBackground( const idRectangle &_drawRect ) {
 	if( !cvar && !buddyWin ) {
 		return;
@@ -304,7 +302,6 @@ const char *idSliderWindow::RouteMouseCoords( float xd, float yd ) {
 	return "";
 }
 
-
 void idSliderWindow::Activate( bool activate, idStr &act ) {
 	idWindow::Activate( activate, act );
 	if( activate ) {
@@ -377,4 +374,3 @@ void idSliderWindow::RunNamedEvent( const char *eventName ) {
 		}
 	}
 }
-

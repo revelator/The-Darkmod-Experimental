@@ -7,7 +7,6 @@
 
 static bool versioned = RegisterVersionedFile( "$Id$" );
 
-
 #include "PropTreeView.h"
 
 // CPropTreeView
@@ -27,14 +26,12 @@ BEGIN_MESSAGE_MAP( CPropTreeView, CView )
 	ON_WM_PAINT()
 END_MESSAGE_MAP()
 
-
 // CPropTreeView drawing
 
 void CPropTreeView::OnDraw( CDC *pDC ) {
 	CDocument *pDoc = GetDocument();
 	// TODO: add draw code here
 }
-
 
 // CPropTreeView diagnostics
 
@@ -47,7 +44,6 @@ void CPropTreeView::Dump( CDumpContext &dc ) const {
 	CView::Dump( dc );
 }
 #endif //_DEBUG
-
 
 BOOL CPropTreeView::Create( LPCTSTR lpszClassName, LPCTSTR lpszWindowName,
 							DWORD dwStyle, const RECT &rect, CWnd *pParentWnd,
@@ -83,7 +79,6 @@ void CPropTreeView::OnSize( UINT nType, int cx, int cy ) {
 		m_Tree.SetWindowPos( NULL, -1, -1, cx, cy, SWP_NOMOVE | SWP_NOZORDER );
 	}
 }
-
 
 void CPropTreeView::OnPaint() {
 	Default();

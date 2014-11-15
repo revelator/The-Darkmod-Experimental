@@ -26,7 +26,6 @@
 #include <boost/shared_ptr.hpp>
 
 namespace ai {
-
 #define MAX_DRAW_DURATION 2000  // grayman #3563
 
 class State {
@@ -209,10 +208,8 @@ private:
 		ESBO_2,
 		ENumSBOLevels,
 	};
-
 };
 typedef boost::shared_ptr<State> StatePtr;
-
 } // namespace ai
 
 #endif /* __AI_STATE_H__ */

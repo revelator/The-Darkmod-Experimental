@@ -49,7 +49,6 @@ typedef struct overlayMaterial_s {
 	idList<overlaySurface_t *>	surfaces;
 } overlayMaterial_t;
 
-
 class idRenderModelOverlay {
 public:
 	idRenderModelOverlay();

@@ -28,7 +28,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../States/TakeCoverState.h"
 
 namespace ai {
-
 FleeTask::FleeTask() :
 	_escapeSearchLevel( 5 ), // 5 means FIND_FRIENDLY_GUARDED // grayman #3548
 	_failureCount( 0 ), // This is used for _escapeSearchLevel 1 only
@@ -56,7 +55,6 @@ void FleeTask::Init( idAI *owner, Subsystem &subsystem ) {
 	owner->AI_MOVE_DONE = false;
 	owner->AI_RUN = true;
 }
-
 
 bool FleeTask::Perform( Subsystem &subsystem ) {
 	idAI *owner = _owner.GetEntity();
@@ -333,5 +331,4 @@ TaskLibrary::Registrar fleeTaskRegistrar(
 	TASK_FLEE, // Task Name
 	TaskLibrary::CreateInstanceFunc( &FleeTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

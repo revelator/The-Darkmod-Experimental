@@ -29,7 +29,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "SingleBarkTask.h"
 
 namespace ai {
-
 #define QUEUE_TIMEOUT 10000		// milliseconds (grayman #2345 - max time to wait in a door queue)
 #define DOOR_TIMEOUT 20000		// milliseconds (grayman #2700 - max time to execute a move to mid pos or back pos)
 #define QUEUE_DISTANCE 150		// grayman #2345 - distance from door where incoming AI pause
@@ -2112,5 +2111,4 @@ TaskLibrary::Registrar handleDoorTaskRegistrar(
 	TASK_HANDLE_DOOR, // Task Name
 	TaskLibrary::CreateInstanceFunc( &HandleDoorTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

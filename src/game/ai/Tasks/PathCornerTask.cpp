@@ -28,7 +28,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../../MultiStateMover.h" // grayman #3647
 
 namespace ai {
-
 PathCornerTask::PathCornerTask() :
 	PathTask(),
 	_moveInitiated( false ),
@@ -216,7 +215,6 @@ bool PathCornerTask::Perform( Subsystem &subsystem ) {
 	return false; // not finished yet
 }
 
-
 // Save/Restore methods
 void PathCornerTask::Save( idSaveGame *savefile ) const {
 	PathTask::Save( savefile );
@@ -245,5 +243,4 @@ TaskLibrary::Registrar pathCornerTaskRegistrar(
 	TASK_PATH_CORNER, // Task Name
 	TaskLibrary::CreateInstanceFunc( &PathCornerTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 PathWaitTask::PathWaitTask() :
 	PathTask() {
 }
@@ -75,7 +74,6 @@ bool PathWaitTask::Perform( Subsystem &subsystem ) {
 	return false;
 }
 
-
 // Save/Restore methods
 void PathWaitTask::Save( idSaveGame *savefile ) const {
 	PathTask::Save( savefile );
@@ -96,5 +94,4 @@ TaskLibrary::Registrar PathWaitTaskRegistrar(
 	TASK_PATH_WAIT, // Task Name
 	TaskLibrary::CreateInstanceFunc( &PathWaitTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

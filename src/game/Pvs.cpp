@@ -26,11 +26,9 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #define MAX_BOUNDS_AREAS	16
 
-
 typedef struct pvsPassage_s {
 	byte 				*canSee;		// bit set for all portals that can be seen through this passage
 } pvsPassage_t;
-
 
 typedef struct pvsPortal_s {
 	int					areaNum;	// area this portal leads to
@@ -43,19 +41,16 @@ typedef struct pvsPortal_s {
 	byte 				*mightSee;	// used during construction
 } pvsPortal_t;
 
-
 typedef struct pvsArea_s {
 	int					numPortals;	// number of portals in this area
 	idBounds			bounds;		// bounds of the whole area
 	pvsPortal_t 		**portals;	// array with pointers to the portals of this area
 } pvsArea_t;
 
-
 typedef struct pvsStack_s {
 	struct pvsStack_s 	*next;		// next stack entry
 	byte 				*mightSee;	// bit set for all portals that might be visible through this passage/portal stack
 } pvsStack_t;
-
 
 /*
 ================
@@ -1211,7 +1206,6 @@ void idPVS::ReadPVS( const pvsHandle_t handle, const idBitMsg &msg ) {
 }
 
 #endif
-
 
 /*
 ================

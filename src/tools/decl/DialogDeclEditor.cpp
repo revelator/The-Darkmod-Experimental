@@ -36,7 +36,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #define DEBUG_NEW new
 #endif
 
-
 // DialogDeclEditor dialog
 
 static UINT FindDialogMessage = ::RegisterWindowMessage( FINDMSGSTRING );
@@ -47,7 +46,6 @@ toolTip_t DialogDeclEditor::toolTips[] = {
 	{ IDCANCEL, "cancel" },
 	{ 0, NULL }
 };
-
 
 IMPLEMENT_DYNAMIC( DialogDeclEditor, CDialog )
 
@@ -257,7 +255,6 @@ BOOL DialogDeclEditor::OnInitDialog()  {
 	// EXCEPTION: OCX Property Pages should return FALSE
 }
 
-
 BEGIN_MESSAGE_MAP( DialogDeclEditor, CDialog )
 	ON_NOTIFY_EX_RANGE( TTN_NEEDTEXTW, 0, 0xFFFF, OnToolTipNotify )
 	ON_NOTIFY_EX_RANGE( TTN_NEEDTEXTA, 0, 0xFFFF, OnToolTipNotify )
@@ -278,7 +275,6 @@ BEGIN_MESSAGE_MAP( DialogDeclEditor, CDialog )
 	ON_BN_CLICKED( IDOK, OnBnClickedOk )
 	ON_BN_CLICKED( IDCANCEL, OnBnClickedCancel )
 END_MESSAGE_MAP()
-
 
 // DialogDeclEditor message handlers
 

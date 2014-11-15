@@ -33,7 +33,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 // Get the name of this state
 const idStr &UnreachableTargetState::GetName() const {
 	static idStr _name( STATE_UNREACHABLE_TARGET );
@@ -312,5 +311,4 @@ StateLibrary::Registrar unreachableTargetStateRegistrar(
 	STATE_UNREACHABLE_TARGET, // Task Name
 	StateLibrary::CreateInstanceFunc( &UnreachableTargetState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

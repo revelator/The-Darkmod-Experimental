@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 CommunicationTask::CommunicationTask() {
 }
 
@@ -92,5 +91,4 @@ void CommunicationTask::Restore( idRestoreGame *savefile ) {
 	savefile->ReadInt( _barkStartTime );
 	savefile->ReadInt( _barkLength );
 }
-
 } // namespace ai

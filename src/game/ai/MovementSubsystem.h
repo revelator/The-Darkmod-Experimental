@@ -28,7 +28,6 @@
 #include "Queue.h"
 
 namespace ai {
-
 class MovementSubsystem :
 	public Subsystem {
 public:
@@ -91,7 +90,6 @@ public:
 
 	virtual void ClearTasks();
 
-
 	// Save/Restore methods
 	virtual void Save( idSaveGame *savefile ) const;
 	virtual void Restore( idRestoreGame *savefile );
@@ -136,7 +134,6 @@ private:
 	void DebugDraw( idAI *owner );
 };
 typedef boost::shared_ptr<MovementSubsystem> MovementSubsystemPtr;
-
 } // namespace ai
 
 #endif /* __AI_MOVEMENTSUBSYSTEM_H__ */

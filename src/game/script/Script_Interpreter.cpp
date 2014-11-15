@@ -318,7 +318,6 @@ idThread *idInterpreter::GetThread( void ) const {
 	return thread;
 }
 
-
 /*
 ================
 idInterpreter::SetThread
@@ -1742,4 +1741,3 @@ bool idInterpreter::EnterFunctionVarArgVN( const function_t *func, bool clearSta
 Quit:
 	return rc;
 }
-

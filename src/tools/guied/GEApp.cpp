@@ -43,7 +43,6 @@ static INT_PTR CALLBACK AboutDlg_WndProc( HWND hwnd, UINT msg, WPARAM wParam, LP
 	return FALSE;
 }
 
-
 rvGEApp::rvGEApp( ) {
 	mMDIFrame			 = NULL;
 	mMDIClient			 = NULL;
@@ -123,7 +122,6 @@ bool rvGEApp::Initialize( void ) {
 	UpdateWindow( mMDIClient );
 	return true;
 }
-
 
 /*
 ================
@@ -1071,4 +1069,3 @@ Displays a modal message box
 int rvGEApp::MessageBox( const char *text, int flags ) {
 	return ::MessageBox( mMDIFrame, text, "Quake 4 GUI Editor", flags );
 }
-

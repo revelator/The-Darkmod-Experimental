@@ -959,4 +959,3 @@ void rvRollupPanel::AutoSize( void ) {
 	GetWindowRect( mWindow, &cr );
 	SetWindowPos( mWindow, NULL, 0, 0, width, cr.bottom - cr.top, SWP_NOMOVE | SWP_NOZORDER );
 }
-

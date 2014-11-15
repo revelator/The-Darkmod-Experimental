@@ -1,6 +1,5 @@
 // PropTreeItemFileEdit.cpp : implementation file
 
-
 //#include "stdafx.h"
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -27,7 +26,6 @@ CPropTreeItemFileEdit::CPropTreeItemFileEdit() {
 CPropTreeItemFileEdit::~CPropTreeItemFileEdit() {
 }
 
-
 BEGIN_MESSAGE_MAP( CPropTreeItemFileEdit, CPropTreeItemEdit )
 	//{{AFX_MSG_MAP(CPropTreeItemFileEdit)
 	//}}AFX_MSG_MAP
@@ -43,7 +41,6 @@ BEGIN_MESSAGE_MAP( CPropTreeItemFileEdit, CPropTreeItemEdit )
 	ON_COMMAND( ID_EDIT_SELECTALL, OnEditSelectAll )
 
 END_MESSAGE_MAP()
-
 
 void CPropTreeItemFileEdit::OnContextMenu( CWnd *pWnd, CPoint point ) {
 	CMenu FloatingMenu;

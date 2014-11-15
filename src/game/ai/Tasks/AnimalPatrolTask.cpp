@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 namespace {
 const float WANDER_RADIUS = 240;
 }
@@ -239,5 +238,4 @@ TaskLibrary::Registrar animalPatrolTaskRegistrar(
 	TASK_ANIMAL_PATROL, // Task Name
 	TaskLibrary::CreateInstanceFunc( &AnimalPatrolTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

@@ -42,7 +42,6 @@ class CGrabber : public idEntity {
 public:
 	CLASS_PROTOTYPE( CGrabber );
 
-
 	CGrabber( void );
 	~CGrabber( void );
 
@@ -51,7 +50,6 @@ public:
 
 	void					Save( idSaveGame *savefile ) const;
 	void					Restore( idRestoreGame *savefile );
-
 
 	void					Spawn( void );
 
@@ -391,6 +389,5 @@ protected:
 	int						m_EquippedEntContents;
 	int						m_EquippedEntClipMask;
 };
-
 
 #endif /* !__GRABBER_H__ */

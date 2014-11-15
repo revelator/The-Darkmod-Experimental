@@ -36,7 +36,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "TypeInfo.h"
 
-
 /***********************************************************************
 
   idTypeInfo
@@ -199,7 +198,6 @@ void idTypeInfo::Shutdown() {
 	typeNum = 0;
 	lastChild = 0;
 }
-
 
 /***********************************************************************
 

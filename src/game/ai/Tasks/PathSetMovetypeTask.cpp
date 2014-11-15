@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id: PathSetMovetypeTask.cpp 529
 #include "../Library.h"
 
 namespace ai {
-
 PathSetMovetypeTask::PathSetMovetypeTask() :
 	PathTask() {
 }
@@ -36,7 +35,6 @@ PathSetMovetypeTask::PathSetMovetypeTask( idPathCorner *path ) :
 	PathTask( path ) {
 	_path = path;
 }
-
 
 // Get the name of this task
 const idStr &PathSetMovetypeTask::GetName() const {
@@ -63,7 +61,6 @@ bool PathSetMovetypeTask::Perform( Subsystem &subsystem ) {
 	return true;
 }
 
-
 // Save/Restore methods
 void PathSetMovetypeTask::Save( idSaveGame *savefile ) const {
 	PathTask::Save( savefile );
@@ -82,5 +79,4 @@ TaskLibrary::Registrar pathSetMovetypeTaskRegistrar(
 	TASK_PATH_SET_MOVETYPE, // Task Name
 	TaskLibrary::CreateInstanceFunc( &PathSetMovetypeTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

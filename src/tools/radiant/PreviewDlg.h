@@ -20,7 +20,6 @@
 #include "afxcmn.h"
 #include "afxwin.h"
 
-
 // CPreviewDlg dialog
 
 struct CommentedItem {

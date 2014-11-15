@@ -89,5 +89,3 @@ struct ovectl_ratemanage_arg {
 #endif /* __cplusplus */
 
 #endif
-
-

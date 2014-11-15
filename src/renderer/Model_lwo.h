@@ -177,14 +177,12 @@
 #define ID_SHDR  LWID_('S','H','D','R')
 #define ID_DATA  LWID_('D','A','T','A')
 
-
 /* generic linked list */
 
 typedef struct st_lwNode {
 	struct st_lwNode *next, *prev;
 	void *data;
 } lwNode;
-
 
 /* plug-in reference */
 
@@ -195,7 +193,6 @@ typedef struct st_lwPlugin {
 	int            flags;
 	void          *data;
 } lwPlugin;
-
 
 /* envelopes */
 
@@ -229,7 +226,6 @@ typedef struct st_lwEnvelope {
 #define BEH_OFFSET     4
 #define BEH_LINEAR     5
 
-
 /* values that can be enveloped */
 
 typedef struct st_lwEParam {
@@ -241,7 +237,6 @@ typedef struct st_lwVParam {
 	float          val[ 3 ];
 	int            eindex;
 } lwVParam;
-
 
 /* clips */
 
@@ -302,7 +297,6 @@ typedef struct st_lwClip {
 	lwPlugin      *pfilter;             /* linked list of pixel filters */
 	int            npfilters;
 } lwClip;
-
 
 /* textures */
 
@@ -384,7 +378,6 @@ typedef struct st_lwTexture {
 	lwTMap         tmap;
 } lwTexture;
 
-
 /* values that can be textured */
 
 typedef struct st_lwTParam {
@@ -398,7 +391,6 @@ typedef struct st_lwCParam {
 	int            eindex;
 	lwTexture     *tex;                 /* linked list of texture layers */
 } lwCParam;
-
 
 /* surfaces */
 
@@ -450,7 +442,6 @@ typedef struct st_lwSurface {
 	int            nshaders;
 } lwSurface;
 
-
 /* vertex maps */
 
 typedef struct st_lwVMap {
@@ -472,7 +463,6 @@ typedef struct st_lwVMapPt {
 	lwVMap        *vmap;
 	int            index;               /* vindex or pindex element */
 } lwVMapPt;
-
 
 /* points and polygons */
 
@@ -516,7 +506,6 @@ typedef struct st_lwPolygonList {
 	lwPolygon     *pol;                 /* array of polygons */
 } lwPolygonList;
 
-
 /* geometry layers */
 
 typedef struct st_lwLayer {
@@ -533,7 +522,6 @@ typedef struct st_lwLayer {
 	lwVMap        *vmap;                /* linked list of vmaps */
 } lwLayer;
 
-
 /* tag strings */
 
 typedef struct st_lwTagList {
@@ -541,7 +529,6 @@ typedef struct st_lwTagList {
 	int            offset;              /* only used during reading */
 	char         **tag;                 /* array of strings */
 } lwTagList;
-
 
 /* an object */
 
@@ -557,7 +544,6 @@ typedef struct st_lwObject {
 	int				nclips;
 	int				nsurfs;
 } lwObject;
-
 
 /* lwo2.c */
 

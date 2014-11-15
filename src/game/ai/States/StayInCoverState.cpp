@@ -35,7 +35,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "UnreachableTargetState.h"
 
 namespace ai {
-
 // Get the name of this state
 const idStr &StayInCoverState::GetName() const {
 	static idStr _name( STATE_STAY_IN_COVER );
@@ -160,5 +159,4 @@ StateLibrary::Registrar stayInCoverStateRegistrar(
 	STATE_STAY_IN_COVER, // Task Name
 	StateLibrary::CreateInstanceFunc( &StayInCoverState::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

@@ -27,7 +27,6 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Library.h"
 
 namespace ai {
-
 // This should be unreachable if no target position is specified.
 MoveToPositionTask::MoveToPositionTask() :
 	_targetPosition( idMath::INFINITY, idMath::INFINITY, idMath::INFINITY ),
@@ -155,5 +154,4 @@ TaskLibrary::Registrar moveToPositionTaskRegistrar(
 	TASK_MOVE_TO_POSITION, // Task Name
 	TaskLibrary::CreateInstanceFunc( &MoveToPositionTask::CreateInstance ) // Instance creation callback
 );
-
 } // namespace ai

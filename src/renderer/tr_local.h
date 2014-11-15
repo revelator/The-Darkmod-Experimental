@@ -988,6 +988,15 @@ void	GL_ClearStateDelta( void );
 void	GL_State( int stateVector );
 void	GL_TexEnv( int env );
 void	GL_Cull( int cullType );
+void	GL_Scissor(int x /* left*/, int y /* bottom */, int w, int h);
+void	GL_Viewport(int x /* left */, int y /* bottom */, int w, int h);
+
+void	GL_Color(const idVec3 &color);
+void	GL_Color(const idVec4 &color);
+void	GL_Color(float r, float g, float b);
+void	GL_Color(float r, float g, float b, float a);
+void	GL_Color(byte r, byte g, byte b);
+void	GL_Color(byte r, byte g, byte b, byte a);
 
 const int GLS_SRCBLEND_ONE						= 0x0;
 const int GLS_SRCBLEND_ZERO						= 0x00000001;

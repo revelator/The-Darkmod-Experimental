@@ -89,7 +89,6 @@ typedef struct private_state {
 
 #include "highlevel.h"
 typedef struct codec_setup_info {
-
 	/* Vorbis supports only short and long blocks, but allows the
 	   encoder to choose the sizes */
 
@@ -131,4 +130,3 @@ extern vorbis_look_psy_global *_vp_global_look( vorbis_info *vi );
 extern void _vp_global_free( vorbis_look_psy_global *look );
 
 #endif
-

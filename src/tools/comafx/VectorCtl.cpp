@@ -21,7 +21,6 @@
 
 static bool versioned = RegisterVersionedFile( "$Id$" );
 
-
 #include "VectorCtl.h"
 #include <math.h>
 
@@ -58,7 +57,6 @@ CVectorCtl::CVectorCtl() :
 	lastPress.Zero();
 	radius = 0.6f;
 }
-
 
 CVectorCtl::~CVectorCtl() {
 	if( m_bBmpCreated ) {
@@ -162,7 +160,6 @@ COLORREF CVectorCtl::CalcLight( double dx, double dy, double dz ) {
 	return RGB( BYTE( r ), BYTE( g ), BYTE( b ) );
 }
 
-
 // Start memory buffer bitmap and measure it
 void CVectorCtl::InitBitmap( LPDRAWITEMSTRUCT lpDrawItemStruct, CDC *pDC ) {
 	m_iWidth = lpDrawItemStruct->rcItem.right - lpDrawItemStruct->rcItem.left;
@@ -212,7 +209,6 @@ void CVectorCtl::RotateByXandY( double XRot, double YRot ) {
 	Redraw();
 }
 
-
 void CVectorCtl::UpdateAxisControls() {
 	CString cs;
 	for( int i = 0; i < 3; i++ )
@@ -235,14 +231,12 @@ void CVectorCtl::SetRadius( UINT uRadius ) {
 	Redraw( TRUE );
 }
 
-
 void CVectorCtl::SetCenter( UINT uHorizPos, UINT uVertPos ) {
 	m_iXCenter = uHorizPos;
 	m_iYCenter = uVertPos;
 	CreateBackground();
 	Redraw( TRUE );
 }
-
 
 void CVectorCtl::SetAxis( double d, int nAxis ) {
 	if( fabs( d ) >= 1.0 ) {
@@ -270,7 +264,6 @@ void CVectorCtl::SetBackgroundColor( COLORREF clrStart, COLORREF clrEnd ) {
 	m_clrBackgroundEnd = clrEnd;
 	CreateBackground();
 }
-
 
 BOOL CVectorCtl::SetBackgroundImage( UINT uBackgroundBitmapID ) {
 	if( m_bBackgroundBitmapUsed ) {
@@ -322,7 +315,6 @@ void CVectorCtl::CreateBackground() {
 	DCtmp.SelectObject( m_pOldBitmap );
 	Redraw( TRUE );
 }
-
 
 void CVectorCtl::ClearBackgroundBitmap() {
 	if( !m_bBackgroundBitmapUsed ) {
@@ -383,5 +375,3 @@ void CVectorCtl::OnLButtonDown( UINT nFlags, CPoint point ) {
 void CVectorCtl::OnLButtonUp( UINT nFlags, CPoint point ) {
 	ReleaseCapture();
 }
-
-
