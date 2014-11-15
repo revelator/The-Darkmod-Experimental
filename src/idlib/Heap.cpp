@@ -309,7 +309,6 @@ idHeap::Allocate16
 */
 void *idHeap::Allocate16( const dword bytes ) {
 	byte *ptr, *alignedPtr;
-
 	ptr = (byte *) malloc( bytes + 16 + 4 );
 	if ( !ptr ) {
 		if ( defragBlock ) {
@@ -1053,11 +1052,12 @@ void *Mem_Alloc( const int size ) {
 	if ( !size ) {
 		return NULL;
 	}
+	GC_INIT();
 	if ( !mem_heap ) {
 #ifdef CRASH_ON_STATIC_ALLOCATION
 		*((int*)0x0) = 1;
 #endif
-		return malloc( size );
+		return GC_MALLOC( size );
 	}
 	void *mem = mem_heap->Allocate( size );
 	Mem_UpdateAllocStats( mem_heap->Msize( mem ) );
@@ -1077,7 +1077,7 @@ void Mem_Free( void *ptr ) {
 #ifdef CRASH_ON_STATIC_ALLOCATION
 		*((int*)0x0) = 1;
 #endif
-		free( ptr );
+		GC_FREE( ptr );
 		return;
 	}
 	Mem_UpdateFreeStats( mem_heap->Msize( ptr ) );
@@ -1093,11 +1093,12 @@ void *Mem_Alloc16( const int size ) {
 	if ( !size ) {
 		return NULL;
 	}
+	GC_INIT();
 	if ( !mem_heap ) {
 #ifdef CRASH_ON_STATIC_ALLOCATION
 		*((int*)0x0) = 1;
 #endif
-		return malloc( size );
+		return GC_MALLOC( size );
 	}
 	void *mem = mem_heap->Allocate16( size );
 	// make sure the memory is 16 byte aligned
@@ -1118,7 +1119,7 @@ void Mem_Free16( void *ptr ) {
 #ifdef CRASH_ON_STATIC_ALLOCATION
 		*((int*)0x0) = 1;
 #endif
-		free( ptr );
+		GC_FREE( ptr );
 		return;
 	}
 	// make sure the memory is 16 byte aligned

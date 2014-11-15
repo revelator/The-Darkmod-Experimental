@@ -99,6 +99,9 @@
 #include <math.h>
 //-----------------------------------------------------
 
+// boehm gc garbadge collector
+#include "../include/gc/gc.h"
+
 // non-portable system services
 #include "../sys/sys_public.h"
 

@@ -13,11 +13,11 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>$(SolutionDir)/include;$(SolutionDir)/include/glew;$(SolutionDir)/include/devil;$(SolutionDir)/include/libjpeg;$(SolutionDir)/win32/devil;$(SolutionDir)/idlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/include;$(SolutionDir)/include/gc;$(SolutionDir)/include/glew;$(SolutionDir)/include/devil;$(SolutionDir)/include/libjpeg;$(SolutionDir)/win32/devil;$(SolutionDir)/idlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)/win32/lib;$(SolutionDir)/win32/glew/lib;$(SolutionDir)/win32/devil/lib;$(SolutionDir)/win32/libjpeg/lib;$(SolutionDir)/win32/libpng/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32s.lib;DevIL.lib;libpng.lib;libjpeg.lib;ZipLoader.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)/win32/lib;$(SolutionDir)/win32/gc/lib;$(SolutionDir)/win32/glew/lib;$(SolutionDir)/win32/devil/lib;$(SolutionDir)/win32/libjpeg/lib;$(SolutionDir)/win32/libpng/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>gcmt-lib.lib;glew32s.lib;DevIL.lib;libpng.lib;libjpeg.lib;ZipLoader.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
 </Project>

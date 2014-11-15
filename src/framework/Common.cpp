@@ -818,7 +818,7 @@ void idCommonLocal::InitGameArguments() {
 				fseek( file, 0, SEEK_END );
 				size_t len = ftell( file );
 				fseek( file, 0, SEEK_SET );
-				char *buf = ( char * )malloc( len + 1 );
+				char *buf = ( char * )Mem_Alloc( len + 1 );
 				if( buf ) {
 					size_t bytesRead = fread( buf, 1, len, file );
 					if( bytesRead != len ) {
@@ -827,7 +827,7 @@ void idCommonLocal::InitGameArguments() {
 					buf[len] = 0;
 					mod = buf;
 					mod.StripTrailingWhitespace();
-					free( buf );
+					Mem_Free( buf );
 					fclose( file );
 				} else {
 					// cannot free an unallocated pointer

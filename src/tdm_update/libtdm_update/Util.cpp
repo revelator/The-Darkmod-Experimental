@@ -1,20 +1,20 @@
 /*****************************************************************************
                     The Dark Mod GPL Source Code
- 
- This file is part of the The Dark Mod Source Code, originally based 
+
+ This file is part of the The Dark Mod Source Code, originally based
  on the Doom 3 GPL Source Code as published in 2011.
- 
- The Dark Mod Source Code is free software: you can redistribute it 
- and/or modify it under the terms of the GNU General Public License as 
- published by the Free Software Foundation, either version 3 of the License, 
+
+ The Dark Mod Source Code is free software: you can redistribute it
+ and/or modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation, either version 3 of the License,
  or (at your option) any later version. For details, see LICENSE.TXT.
- 
+
  Project: The Dark Mod Updater (http://www.thedarkmod.com/)
- 
- $Revision$ (Revision of last commit) 
+
+ $Revision$ (Revision of last commit)
  $Date$ (Date of last commit)
  $Author$ (Author of last commit)
- 
+
 ******************************************************************************/
 
 #include "Util.h"
@@ -33,7 +33,6 @@ namespace fs = boost::filesystem;
 
 namespace tdm
 {
-
 bool Util::TDMIsRunning()
 {
 	DWORD processes[1024];
@@ -153,7 +152,6 @@ bool Util::DarkRadiantIsRunning()
 
 	return false;
 }
-
 } // namespace
 
 #elif defined(__linux__)
@@ -166,7 +164,6 @@ bool Util::DarkRadiantIsRunning()
 
 namespace tdm
 {
-
 namespace
 {
 	const std::string PROC_FOLDER("/proc/");
@@ -178,15 +175,15 @@ namespace
 		try
 		{
 			unsigned long pid = boost::lexical_cast<unsigned long>(name);
-		
+
 			// Was the PID read correctly?
 			if (pid == 0)
 			{
 				return false;
 			}
-			
+
 			const std::string cmdLineFileName = PROC_FOLDER + name + "/cmdline";
-			
+
 			std::ifstream cmdLineFile(cmdLineFileName.c_str());
 
 			if (cmdLineFile.is_open())
@@ -194,14 +191,14 @@ namespace
 				// Read the command line from the process file
 				std::string cmdLine;
 				getline(cmdLineFile, cmdLine);
-				
+
 				if (cmdLine.find(processName) != std::string::npos)
 				{
 					// Process found, return success
 					return true;
 				}
 			}
-			
+
 			// Close the file
 			cmdLineFile.close();
 		}
@@ -212,7 +209,6 @@ namespace
 
 		return false;
 	}
-
 } // namespace
 
 bool Util::TDMIsRunning()
@@ -225,7 +221,7 @@ bool Util::TDMIsRunning()
 			return true;
 		}
 	}
-	
+
 	return false;
 }
 
@@ -239,10 +235,9 @@ bool Util::DarkRadiantIsRunning()
 			return true;
 		}
 	}
-	
+
 	return false;
 }
-
 } // namespace
 
 #elif defined(MACOS_X)
@@ -256,50 +251,50 @@ bool Util::DarkRadiantIsRunning()
 
 namespace tdm
 {
-
 // greebo: Checks for a named process, modeled loosely after
 // http://developer.apple.com/library/mac/#qa/qa2001/qa1123.html
 bool FindProcessByName(const char* processName)
 {
     int name[4] = { CTL_KERN, KERN_PROC, KERN_PROC_ALL, 0 };
     size_t length = 0;
-	
+
 	// Call sysctl with a NULL buffer.
 	int err = sysctl(name, 4, NULL, &length, NULL, 0);
-	
+
 	if (err == -1)
 	{
 		TraceLog::WriteLine(LOG_ERROR, "Failed to receive buffer size for process list.");
 		return false;
 	}
-	
-    kinfo_proc* procList = static_cast<kinfo_proc*>(malloc(length));
-	
+	GC_INIT();
+
+    kinfo_proc* procList = static_cast<kinfo_proc*>(GC_MALLOC(length));
+
 	if (procList == NULL)
 	{
 		TraceLog::WriteLine(LOG_ERROR, "Out of Memory trying to allocate process buffer");
 		return false;
 	}
-	
+
 	// Load process info
 	sysctl(name, 4, procList, &length, NULL, 0);
-	
+
 	size_t procCount = length / sizeof(kinfo_proc);
 	bool result = false;
-	
+
 	for (size_t i = 0; i < procCount; ++i)
 	{
 		//TraceLog::WriteLine(LOG_STANDARD, procList[i].kp_proc.p_comm);
-		
+
 		if (strcmp(procList[i].kp_proc.p_comm, processName) == 0)
 		{
 			result = true;
 			break;
 		}
 	}
-	
-	free(procList);
-	
+
+	GC_FREE(procList);
+
 	return result;
 }
 
@@ -313,7 +308,6 @@ bool Util::DarkRadiantIsRunning()
 	// DarkRadiant isn't existing in Mac so far
 	return FindProcessByName("DarkRadiant");
 }
-
 } // namespace
 
 #else
