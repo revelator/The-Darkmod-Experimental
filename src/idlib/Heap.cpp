@@ -20,12 +20,81 @@
 #include "precompiled.h"
 #pragma hdrstop
 
-#ifndef USE_LIBC_MALLOC
-	#define USE_LIBC_MALLOC		0
-#endif
+//===============================================================
+//
+//	Boehm GC Wrappers
+//
+//===============================================================
 
-#ifndef CRASH_ON_STATIC_ALLOCATION
-//	#define CRASH_ON_STATIC_ALLOCATION
+/*
+==================
+GC_malloc_wrapper
+==================
+*/
+ID_INLINE void *GC_malloc_wrapper(size_t required_bytes) {
+	void *p;
+	GC_init();
+	if ((p = (void *)GC_malloc_uncollectable(required_bytes)) == NULL) {
+		return NULL;
+	}
+	return p;
+}
+
+/*
+==================
+GC_free_wrapper
+==================
+*/
+ID_INLINE void GC_free_wrapper(void *p) {
+	if (p != NULL) {
+		GC_free(p);
+	}
+}
+
+/*
+==================
+GC_aligned_malloc_wrapper
+
+Missing from Boehm GC
+==================
+*/
+ID_INLINE void *GC_aligned_malloc_wrapper(size_t required_bytes, size_t alignment) {
+	void *p1;	// original block
+	void **p2;	// aligned block
+	int offset = alignment - 1 + sizeof(void *);
+	GC_init();
+	if ((p1 = (void *)GC_malloc_uncollectable(required_bytes + offset)) == NULL) {
+		return NULL;
+	}
+	p2 = (void**)(((size_t)(p1) + offset) & ~(alignment - 1));
+	p2[-1] = p1;
+	return p2;
+}
+
+/*
+==================
+GC_aligned_malloc_wrapper
+
+Missing from Boehm GC
+==================
+*/
+ID_INLINE void GC_aligned_free_wrapper(void *p) {
+	if (p != NULL) {
+		GC_free(((void**)p)[-1]);
+	}
+}
+
+#define USE_GC_ALLOCATORS
+#ifdef USE_GC_ALLOCATORS
+#define GC_MALLOC_WRAPPER(x) GC_malloc_wrapper(x)
+#define GC_FREE_WRAPPER(x) GC_free_wrapper(x)
+#define GC_ALIGNED_MALLOC_WRAPPER(x, y) GC_aligned_malloc_wrapper(x, y)
+#define GC_ALIGNED_FREE_WRAPPER(x) GC_aligned_free_wrapper(x)
+#else
+#define GC_MALLOC_WRAPPER(x) malloc(x)
+#define GC_FREE_WRAPPER(x) free(x)
+#define GC_ALIGNED_MALLOC_WRAPPER(x, y) _aligned_malloc(x, y)
+#define GC_ALIGNED_FREE_WRAPPER(x) _aligned_free(x)
 #endif
 
 //===============================================================
@@ -233,7 +302,7 @@ void idHeap::AllocDefragBlock( void ) {
 #pragma warning( push )
 #pragma warning( disable : 4127 )
 	while( true ) {
-		defragBlock = malloc( size );
+		defragBlock = GC_MALLOC_WRAPPER( size );
 		if ( defragBlock ) {
 			break;
 		}
@@ -309,13 +378,13 @@ idHeap::Allocate16
 */
 void *idHeap::Allocate16( const dword bytes ) {
 	byte *ptr, *alignedPtr;
-	ptr = (byte *) malloc( bytes + 16 + 4 );
+	ptr = (byte *) GC_MALLOC_WRAPPER( bytes + 16 + 4 );
 	if ( !ptr ) {
 		if ( defragBlock ) {
 			idLib::common->Printf( "Freeing defragBlock on alloc of %i.\n", bytes );
-			free( defragBlock );
+			GC_FREE_WRAPPER( defragBlock );
 			defragBlock = NULL;
-			ptr = (byte *) malloc( bytes + 16 + 4 );
+			ptr = (byte *) GC_MALLOC_WRAPPER( bytes + 16 + 4 );
 			AllocDefragBlock();
 		}
 		if ( !ptr ) {
@@ -336,7 +405,7 @@ idHeap::Free16
 ================
 */
 void idHeap::Free16( void *p ) {
-	free( (void *) *((int *) (( (byte *) p ) - 4)) );
+	GC_FREE_WRAPPER( (void *) *((int *) (( (byte *) p ) - 4)) );
 }
 
 /*
@@ -1052,12 +1121,11 @@ void *Mem_Alloc( const int size ) {
 	if ( !size ) {
 		return NULL;
 	}
-	GC_INIT();
 	if ( !mem_heap ) {
 #ifdef CRASH_ON_STATIC_ALLOCATION
 		*((int*)0x0) = 1;
 #endif
-		return GC_MALLOC( size );
+		return GC_MALLOC_WRAPPER( size );
 	}
 	void *mem = mem_heap->Allocate( size );
 	Mem_UpdateAllocStats( mem_heap->Msize( mem ) );
@@ -1077,7 +1145,7 @@ void Mem_Free( void *ptr ) {
 #ifdef CRASH_ON_STATIC_ALLOCATION
 		*((int*)0x0) = 1;
 #endif
-		GC_FREE( ptr );
+		GC_FREE_WRAPPER( ptr );
 		return;
 	}
 	Mem_UpdateFreeStats( mem_heap->Msize( ptr ) );
@@ -1095,10 +1163,11 @@ void *Mem_Alloc16( const int size ) {
 	}
 	GC_INIT();
 	if ( !mem_heap ) {
+		const int paddedSize = (size + 15) & ~15;
 #ifdef CRASH_ON_STATIC_ALLOCATION
 		*((int*)0x0) = 1;
 #endif
-		return GC_MALLOC( size );
+		return GC_ALIGNED_MALLOC_WRAPPER( paddedSize, 16 );
 	}
 	void *mem = mem_heap->Allocate16( size );
 	// make sure the memory is 16 byte aligned
@@ -1119,7 +1188,7 @@ void Mem_Free16( void *ptr ) {
 #ifdef CRASH_ON_STATIC_ALLOCATION
 		*((int*)0x0) = 1;
 #endif
-		GC_FREE( ptr );
+		GC_ALIGNED_FREE_WRAPPER( ptr );
 		return;
 	}
 	// make sure the memory is 16 byte aligned
@@ -1557,7 +1626,12 @@ void *Mem_AllocDebugMemory( const int size, const char *fileName, const int line
 		*((int*)0x0) = 1;
 #endif
 		// NOTE: set a breakpoint here to find memory allocations before mem_heap is initialized
-		return malloc( size );
+		if (align16) {
+			const int paddedSize = (size + 15) & ~15;
+			return _aligned_malloc(paddedSize, 16);
+		} else {
+			return malloc(size);
+		}
 	}
 
 	if ( align16 ) {
@@ -1602,7 +1676,11 @@ void Mem_FreeDebugMemory( void *p, const char *fileName, const int lineNumber, c
 		*((int*)0x0) = 1;
 #endif
 		// NOTE: set a breakpoint here to find memory being freed before mem_heap is initialized
-		free( p );
+		if (align16) {
+			_aligned_free(p);
+		} else {
+			free(p);
+		}
 		return;
 	}
 
