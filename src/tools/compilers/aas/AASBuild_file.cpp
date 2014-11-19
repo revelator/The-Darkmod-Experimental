@@ -90,7 +90,7 @@ void idAASBuild::ClearHash( const idBounds &bounds ) {
 idAASBuild::HashVec
 ================
 */
-ID_FORCE_INLINE int idAASBuild::HashVec( const idVec3 &vec ) {
+ID_INLINE int idAASBuild::HashVec( const idVec3 &vec ) {
 	int x, y;
 	x = ( ( ( int )( vec[0] - aas_vertexBounds[0].x + 0.5 ) ) + 2 ) >> 2;
 	y = ( ( ( int )( vec[1] - aas_vertexBounds[0].y + 0.5 ) ) + 2 ) >> 2;

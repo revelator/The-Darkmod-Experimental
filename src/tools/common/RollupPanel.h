@@ -104,25 +104,25 @@ protected:
 	static HHOOK		mDialogHook;
 };
 
-ID_FORCE_INLINE int rvRollupPanel::GetItemCount( void ) {
+ID_INLINE int rvRollupPanel::GetItemCount( void ) {
 	return mItems.Num();
 }
 
-ID_FORCE_INLINE bool rvRollupPanel::IsItemExpanded( int index ) {
+ID_INLINE bool rvRollupPanel::IsItemExpanded( int index ) {
 	if( index >= mItems.Num() || index < 0 ) {
 		return false;
 	}
 	return mItems[index]->mExpanded;
 }
 
-ID_FORCE_INLINE bool rvRollupPanel::IsItemEnabled( int index ) {
+ID_INLINE bool rvRollupPanel::IsItemEnabled( int index ) {
 	if( index >= mItems.Num() || index < 0 ) {
 		return false;
 	}
 	return mItems[index]->mEnable;
 }
 
-ID_FORCE_INLINE HWND rvRollupPanel::GetWindow( void ) {
+ID_INLINE HWND rvRollupPanel::GetWindow( void ) {
 	return mWindow;
 }
 

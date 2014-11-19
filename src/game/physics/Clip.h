@@ -134,18 +134,18 @@ private:
 	static int				GetTraceModelHashKey( const idTraceModel &trm );
 };
 
-ID_FORCE_INLINE void idClipModel::Translate( const idVec3 &translation ) {
+ID_INLINE void idClipModel::Translate( const idVec3 &translation ) {
 	Unlink();
 	origin += translation;
 }
 
-ID_FORCE_INLINE void idClipModel::Rotate( const idRotation &rotation ) {
+ID_INLINE void idClipModel::Rotate( const idRotation &rotation ) {
 	Unlink();
 	origin *= rotation;
 	axis *= rotation.ToMat3();
 }
 
-ID_FORCE_INLINE void idClipModel::Scale( const idVec3 &scale ) {
+ID_INLINE void idClipModel::Scale( const idVec3 &scale ) {
 	if( IsTraceModel() ) {
 		// copy & scale the tracemodel
 		// Tels: Is the copy nec.?
@@ -155,91 +155,91 @@ ID_FORCE_INLINE void idClipModel::Scale( const idVec3 &scale ) {
 	}
 }
 
-ID_FORCE_INLINE void idClipModel::Enable( void ) {
+ID_INLINE void idClipModel::Enable( void ) {
 	enabled = true;
 }
 
-ID_FORCE_INLINE void idClipModel::Disable( void ) {
+ID_INLINE void idClipModel::Disable( void ) {
 	enabled = false;
 }
 
-ID_FORCE_INLINE void idClipModel::SetMaterial( const idMaterial *m ) {
+ID_INLINE void idClipModel::SetMaterial( const idMaterial *m ) {
 	material = m;
 }
 
-ID_FORCE_INLINE const idMaterial *idClipModel::GetMaterial( void ) const {
+ID_INLINE const idMaterial *idClipModel::GetMaterial( void ) const {
 	return material;
 }
 
-ID_FORCE_INLINE void idClipModel::SetContents( int newContents ) {
+ID_INLINE void idClipModel::SetContents( int newContents ) {
 	contents = newContents;
 }
 
-ID_FORCE_INLINE int idClipModel::GetContents( void ) const {
+ID_INLINE int idClipModel::GetContents( void ) const {
 	return contents;
 }
 
-ID_FORCE_INLINE void idClipModel::SetEntity( idEntity *newEntity ) {
+ID_INLINE void idClipModel::SetEntity( idEntity *newEntity ) {
 	entity = newEntity;
 }
 
-ID_FORCE_INLINE idEntity *idClipModel::GetEntity( void ) const {
+ID_INLINE idEntity *idClipModel::GetEntity( void ) const {
 	return entity;
 }
 
-ID_FORCE_INLINE void idClipModel::SetId( int newId ) {
+ID_INLINE void idClipModel::SetId( int newId ) {
 	id = newId;
 }
 
-ID_FORCE_INLINE int idClipModel::GetId( void ) const {
+ID_INLINE int idClipModel::GetId( void ) const {
 	return id;
 }
 
-ID_FORCE_INLINE void idClipModel::SetOwner( idEntity *newOwner ) {
+ID_INLINE void idClipModel::SetOwner( idEntity *newOwner ) {
 	owner = newOwner;
 }
 
-ID_FORCE_INLINE idEntity *idClipModel::GetOwner( void ) const {
+ID_INLINE idEntity *idClipModel::GetOwner( void ) const {
 	return owner;
 }
 
-ID_FORCE_INLINE const idBounds &idClipModel::GetBounds( void ) const {
+ID_INLINE const idBounds &idClipModel::GetBounds( void ) const {
 	return bounds;
 }
 
-ID_FORCE_INLINE const idBounds &idClipModel::GetAbsBounds( void ) const {
+ID_INLINE const idBounds &idClipModel::GetAbsBounds( void ) const {
 	return absBounds;
 }
 
-ID_FORCE_INLINE const idVec3 &idClipModel::GetOrigin( void ) const {
+ID_INLINE const idVec3 &idClipModel::GetOrigin( void ) const {
 	return origin;
 }
 
-ID_FORCE_INLINE const idMat3 &idClipModel::GetAxis( void ) const {
+ID_INLINE const idMat3 &idClipModel::GetAxis( void ) const {
 	return axis;
 }
 
-ID_FORCE_INLINE bool idClipModel::IsRenderModel( void ) const {
+ID_INLINE bool idClipModel::IsRenderModel( void ) const {
 	return ( renderModelHandle != -1 );
 }
 
-ID_FORCE_INLINE bool idClipModel::IsTraceModel( void ) const {
+ID_INLINE bool idClipModel::IsTraceModel( void ) const {
 	return ( traceModelIndex != -1 );
 }
 
-ID_FORCE_INLINE bool idClipModel::IsLinked( void ) const {
+ID_INLINE bool idClipModel::IsLinked( void ) const {
 	return ( clipLinks != NULL );
 }
 
-ID_FORCE_INLINE bool idClipModel::IsEnabled( void ) const {
+ID_INLINE bool idClipModel::IsEnabled( void ) const {
 	return enabled;
 }
 
-ID_FORCE_INLINE bool idClipModel::IsEqual( const idTraceModel &trm ) const {
+ID_INLINE bool idClipModel::IsEqual( const idTraceModel &trm ) const {
 	return ( traceModelIndex != -1 && *GetCachedTraceModel( traceModelIndex ) == trm );
 }
 
-ID_FORCE_INLINE const idTraceModel *idClipModel::GetTraceModel( void ) const {
+ID_INLINE const idTraceModel *idClipModel::GetTraceModel( void ) const {
 	if( !IsTraceModel() ) {
 		return NULL;
 	}
@@ -335,22 +335,22 @@ private:
 	void					TraceRenderModel( trace_t &trace, const idVec3 &start, const idVec3 &end, const float radius, const idMat3 &axis, idClipModel *touch ) const;
 };
 
-ID_FORCE_INLINE bool idClip::TracePoint( trace_t &results, const idVec3 &start, const idVec3 &end, int contentMask, const idEntity *passEntity ) {
+ID_INLINE bool idClip::TracePoint( trace_t &results, const idVec3 &start, const idVec3 &end, int contentMask, const idEntity *passEntity ) {
 	Translation( results, start, end, NULL, mat3_identity, contentMask, passEntity );
 	return ( results.fraction < 1.0f );
 }
 
-ID_FORCE_INLINE bool idClip::TraceBounds( trace_t &results, const idVec3 &start, const idVec3 &end, const idBounds &bounds, int contentMask, const idEntity *passEntity ) {
+ID_INLINE bool idClip::TraceBounds( trace_t &results, const idVec3 &start, const idVec3 &end, const idBounds &bounds, int contentMask, const idEntity *passEntity ) {
 	temporaryClipModel.LoadModel( idTraceModel( bounds ) );
 	Translation( results, start, end, &temporaryClipModel, mat3_identity, contentMask, passEntity );
 	return ( results.fraction < 1.0f );
 }
 
-ID_FORCE_INLINE const idBounds &idClip::GetWorldBounds( void ) const {
+ID_INLINE const idBounds &idClip::GetWorldBounds( void ) const {
 	return worldBounds;
 }
 
-ID_FORCE_INLINE idClipModel *idClip::DefaultClipModel( void ) {
+ID_INLINE idClipModel *idClip::DefaultClipModel( void ) {
 	return &defaultClipModel;
 }
 

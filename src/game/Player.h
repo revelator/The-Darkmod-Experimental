@@ -832,7 +832,7 @@ public:
 	// angua: Set ideal crouch state
 	void					EvaluateCrouch();
 
-	ID_FORCE_INLINE bool			GetIdealCrouchState() {
+	ID_INLINE bool			GetIdealCrouchState() {
 		return m_IdealCrouchState;
 	}
 
@@ -1430,35 +1430,35 @@ private:
 	void					Event_setSavePermissions( int sp );
 };
 
-ID_FORCE_INLINE bool idPlayer::IsReady( void ) {
+ID_INLINE bool idPlayer::IsReady( void ) {
 	return ready || forcedReady;
 }
 
-ID_FORCE_INLINE bool idPlayer::IsRespawning( void ) {
+ID_INLINE bool idPlayer::IsRespawning( void ) {
 	return respawning;
 }
 
-ID_FORCE_INLINE idPhysics *idPlayer::GetPlayerPhysics( void ) {
+ID_INLINE idPhysics *idPlayer::GetPlayerPhysics( void ) {
 	return &physicsObj;
 }
 
-ID_FORCE_INLINE bool idPlayer::IsInTeleport( void ) {
+ID_INLINE bool idPlayer::IsInTeleport( void ) {
 	return ( teleportEntity.GetEntity() != NULL );
 }
 
-ID_FORCE_INLINE void idPlayer::SetLeader( bool lead ) {
+ID_INLINE void idPlayer::SetLeader( bool lead ) {
 	leader = lead;
 }
 
-ID_FORCE_INLINE bool idPlayer::IsLeader( void ) {
+ID_INLINE bool idPlayer::IsLeader( void ) {
 	return leader;
 }
 
-ID_FORCE_INLINE bool idPlayer::SelfSmooth( void ) {
+ID_INLINE bool idPlayer::SelfSmooth( void ) {
 	return selfSmooth;
 }
 
-ID_FORCE_INLINE void idPlayer::SetSelfSmooth( bool b ) {
+ID_INLINE void idPlayer::SetSelfSmooth( bool b ) {
 	selfSmooth = b;
 }
 

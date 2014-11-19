@@ -25,7 +25,7 @@
 FloatCRC
 ===============
 */
-ID_FORCE_INLINE unsigned int FloatCRC( float f ) {
+ID_INLINE unsigned int FloatCRC( float f ) {
 	return *(unsigned int *)&f;
 }
 
@@ -34,7 +34,7 @@ ID_FORCE_INLINE unsigned int FloatCRC( float f ) {
 StringCRC
 ===============
 */
-ID_FORCE_INLINE unsigned int StringCRC( const char *str ) {
+ID_INLINE unsigned int StringCRC( const char *str ) {
 	unsigned int i, crc;
 	const unsigned char *ptr;
 

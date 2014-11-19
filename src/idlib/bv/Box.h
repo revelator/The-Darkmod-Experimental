@@ -113,158 +113,158 @@ private:
 
 extern idBox	box_zero;
 
-ID_FORCE_INLINE idBox::idBox( void ) {
+ID_INLINE idBox::idBox( void ) {
 }
 
-ID_FORCE_INLINE idBox::idBox( const idVec3 &center, const idVec3 &extents, const idMat3 &axis ) {
+ID_INLINE idBox::idBox( const idVec3 &center, const idVec3 &extents, const idMat3 &axis ) {
 	this->center = center;
 	this->extents = extents;
 	this->axis = axis;
 }
 
-ID_FORCE_INLINE idBox::idBox( const idVec3 &point ) {
+ID_INLINE idBox::idBox( const idVec3 &point ) {
 	this->center = point;
 	this->extents.Zero();
 	this->axis.Identity();
 }
 
-ID_FORCE_INLINE idBox::idBox( const idBounds &bounds ) {
+ID_INLINE idBox::idBox( const idBounds &bounds ) {
 	this->center = ( bounds[0] + bounds[1] ) * 0.5f;
 	this->extents = bounds[1] - this->center;
 	this->axis.Identity();
 }
 
-ID_FORCE_INLINE idBox::idBox( const idBounds &bounds, const idVec3 &origin, const idMat3 &axis ) {
+ID_INLINE idBox::idBox( const idBounds &bounds, const idVec3 &origin, const idMat3 &axis ) {
 	this->center = ( bounds[0] + bounds[1] ) * 0.5f;
 	this->extents = bounds[1] - this->center;
 	this->center = origin + this->center * axis;
 	this->axis = axis;
 }
 
-ID_FORCE_INLINE idBox idBox::operator+( const idVec3 &t ) const {
+ID_INLINE idBox idBox::operator+( const idVec3 &t ) const {
 	return idBox( center + t, extents, axis );
 }
 
-ID_FORCE_INLINE idBox &idBox::operator+=( const idVec3 &t ) {
+ID_INLINE idBox &idBox::operator+=( const idVec3 &t ) {
 	center += t;
 	return *this;
 }
 
-ID_FORCE_INLINE idBox idBox::operator*( const idMat3 &r ) const {
+ID_INLINE idBox idBox::operator*( const idMat3 &r ) const {
 	return idBox( center * r, extents, axis * r );
 }
 
-ID_FORCE_INLINE idBox &idBox::operator*=( const idMat3 &r ) {
+ID_INLINE idBox &idBox::operator*=( const idMat3 &r ) {
 	center *= r;
 	axis *= r;
 	return *this;
 }
 
-ID_FORCE_INLINE idBox idBox::operator+( const idBox &a ) const {
+ID_INLINE idBox idBox::operator+( const idBox &a ) const {
 	idBox newBox;
 	newBox = *this;
 	newBox.AddBox( a );
 	return newBox;
 }
 
-ID_FORCE_INLINE idBox &idBox::operator+=( const idBox &a ) {
+ID_INLINE idBox &idBox::operator+=( const idBox &a ) {
 	idBox::AddBox( a );
 	return *this;
 }
 
-ID_FORCE_INLINE idBox idBox::operator-( const idBox &a ) const {
+ID_INLINE idBox idBox::operator-( const idBox &a ) const {
 	return idBox( center, extents - a.extents, axis );
 }
 
-ID_FORCE_INLINE idBox &idBox::operator-=( const idBox &a ) {
+ID_INLINE idBox &idBox::operator-=( const idBox &a ) {
 	extents -= a.extents;
 	return *this;
 }
 
-ID_FORCE_INLINE bool idBox::Compare( const idBox &a ) const {
+ID_INLINE bool idBox::Compare( const idBox &a ) const {
 	return ( center.Compare( a.center ) && extents.Compare( a.extents ) && axis.Compare( a.axis ) );
 }
 
-ID_FORCE_INLINE bool idBox::Compare( const idBox &a, const float epsilon ) const {
+ID_INLINE bool idBox::Compare( const idBox &a, const float epsilon ) const {
 	return ( center.Compare( a.center, epsilon ) && extents.Compare( a.extents, epsilon ) && axis.Compare( a.axis, epsilon ) );
 }
 
-ID_FORCE_INLINE bool idBox::operator==( const idBox &a ) const {
+ID_INLINE bool idBox::operator==( const idBox &a ) const {
 	return Compare( a );
 }
 
-ID_FORCE_INLINE bool idBox::operator!=( const idBox &a ) const {
+ID_INLINE bool idBox::operator!=( const idBox &a ) const {
 	return !Compare( a );
 }
 
-ID_FORCE_INLINE void idBox::Clear( void ) {
+ID_INLINE void idBox::Clear( void ) {
 	center.Zero();
 	extents[0] = extents[1] = extents[2] = -idMath::INFINITY;
 	axis.Identity();
 }
 
-ID_FORCE_INLINE void idBox::Zero( void ) {
+ID_INLINE void idBox::Zero( void ) {
 	center.Zero();
 	extents.Zero();
 	axis.Identity();
 }
 
-ID_FORCE_INLINE const idVec3 &idBox::GetCenter( void ) const {
+ID_INLINE const idVec3 &idBox::GetCenter( void ) const {
 	return center;
 }
 
-ID_FORCE_INLINE const idVec3 &idBox::GetExtents( void ) const {
+ID_INLINE const idVec3 &idBox::GetExtents( void ) const {
 	return extents;
 }
 
-ID_FORCE_INLINE const idMat3 &idBox::GetAxis( void ) const {
+ID_INLINE const idMat3 &idBox::GetAxis( void ) const {
 	return axis;
 }
 
-ID_FORCE_INLINE float idBox::GetVolume( void ) const {
+ID_INLINE float idBox::GetVolume( void ) const {
 	return ( extents * 2.0f ).LengthSqr();
 }
 
-ID_FORCE_INLINE bool idBox::IsCleared( void ) const {
+ID_INLINE bool idBox::IsCleared( void ) const {
 	return extents[0] < 0.0f;
 }
 
-ID_FORCE_INLINE idBox idBox::Expand( const float d ) const {
+ID_INLINE idBox idBox::Expand( const float d ) const {
 	return idBox( center, extents + idVec3( d, d, d ), axis );
 }
 
-ID_FORCE_INLINE idBox &idBox::ExpandSelf( const float d ) {
+ID_INLINE idBox &idBox::ExpandSelf( const float d ) {
 	extents[0] += d;
 	extents[1] += d;
 	extents[2] += d;
 	return *this;
 }
 
-ID_FORCE_INLINE idBox idBox::Translate( const idVec3 &translation ) const {
+ID_INLINE idBox idBox::Translate( const idVec3 &translation ) const {
 	return idBox( center + translation, extents, axis );
 }
 
-ID_FORCE_INLINE idBox &idBox::TranslateSelf( const idVec3 &translation ) {
+ID_INLINE idBox &idBox::TranslateSelf( const idVec3 &translation ) {
 	center += translation;
 	return *this;
 }
 
-ID_FORCE_INLINE idBox idBox::Rotate( const idMat3 &rotation ) const {
+ID_INLINE idBox idBox::Rotate( const idMat3 &rotation ) const {
 	return idBox( center * rotation, extents, axis * rotation );
 }
 
-ID_FORCE_INLINE idBox &idBox::RotateSelf( const idMat3 &rotation ) {
+ID_INLINE idBox &idBox::RotateSelf( const idMat3 &rotation ) {
 	center *= rotation;
 	axis *= rotation;
 	return *this;
 }
 
-ID_FORCE_INLINE idBox &idBox::RotateSelfAroundCenter( const idMat3 &rotation ) {
+ID_INLINE idBox &idBox::RotateSelfAroundCenter( const idMat3 &rotation ) {
 	axis *= rotation;
 	return *this;
 }
 
-ID_FORCE_INLINE bool idBox::ContainsPoint( const idVec3 &p ) const {
+ID_INLINE bool idBox::ContainsPoint( const idVec3 &p ) const {
 	idVec3 lp = p - center;
 	if ( idMath::Fabs( lp * axis[0] ) > extents[0] ||
 			idMath::Fabs( lp * axis[1] ) > extents[1] ||
@@ -274,11 +274,11 @@ ID_FORCE_INLINE bool idBox::ContainsPoint( const idVec3 &p ) const {
 	return true;
 }
 
-ID_FORCE_INLINE idSphere idBox::ToSphere( void ) const {
+ID_INLINE idSphere idBox::ToSphere( void ) const {
 	return idSphere( center, extents.Length() );
 }
 
-ID_FORCE_INLINE void idBox::AxisProjection( const idVec3 &dir, float &min, float &max ) const {
+ID_INLINE void idBox::AxisProjection( const idVec3 &dir, float &min, float &max ) const {
 	float d1 = dir * center;
 	float d2 = idMath::Fabs( extents[0] * ( dir * axis[0] ) ) +
 				idMath::Fabs( extents[1] * ( dir * axis[1] ) ) +
@@ -287,7 +287,7 @@ ID_FORCE_INLINE void idBox::AxisProjection( const idVec3 &dir, float &min, float
 	max = d1 + d2;
 }
 
-ID_FORCE_INLINE void idBox::AxisProjection( const idMat3 &ax, idBounds &bounds ) const {
+ID_INLINE void idBox::AxisProjection( const idMat3 &ax, idBounds &bounds ) const {
 	for ( int i = 0; i < 3; i++ ) {
 		float d1 = ax[i] * center;
 		float d2 = idMath::Fabs( extents[0] * ( ax[i] * axis[0] ) ) +
@@ -298,7 +298,7 @@ ID_FORCE_INLINE void idBox::AxisProjection( const idMat3 &ax, idBounds &bounds )
 	}
 }
 
-ID_FORCE_INLINE void idBox::GetVerts(idVec3* verts) const
+ID_INLINE void idBox::GetVerts(idVec3* verts) const
 {
 	verts[0] = center + idVec3(extents.x, -extents.y, -extents.z) * axis;
 	verts[1] = center + idVec3(extents.x, extents.y, -extents.z) * axis;

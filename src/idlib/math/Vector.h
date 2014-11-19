@@ -94,28 +94,28 @@ public:
 extern idVec2 vec2_origin;
 #define vec2_zero vec2_origin
 
-ID_FORCE_INLINE idVec2::idVec2( void ) {
+ID_INLINE idVec2::idVec2( void ) {
 }
 
-ID_FORCE_INLINE idVec2::idVec2( const float x, const float y ) {
+ID_INLINE idVec2::idVec2( const float x, const float y ) {
 	this->x = x;
 	this->y = y;
 }
 
-ID_FORCE_INLINE void idVec2::Set( const float x, const float y ) {
+ID_INLINE void idVec2::Set( const float x, const float y ) {
 	this->x = x;
 	this->y = y;
 }
 
-ID_FORCE_INLINE void idVec2::Zero( void ) {
+ID_INLINE void idVec2::Zero( void ) {
 	x = y = 0.0f;
 }
 
-ID_FORCE_INLINE bool idVec2::Compare( const idVec2 &a ) const {
+ID_INLINE bool idVec2::Compare( const idVec2 &a ) const {
 	return ( ( x == a.x ) && ( y == a.y ) );
 }
 
-ID_FORCE_INLINE bool idVec2::Compare( const idVec2 &a, const float epsilon ) const {
+ID_INLINE bool idVec2::Compare( const idVec2 &a, const float epsilon ) const {
 	if ( idMath::Fabs( x - a.x ) > epsilon ) {
 		return false;
 	}
@@ -127,38 +127,38 @@ ID_FORCE_INLINE bool idVec2::Compare( const idVec2 &a, const float epsilon ) con
 	return true;
 }
 
-ID_FORCE_INLINE bool idVec2::operator==( const idVec2 &a ) const {
+ID_INLINE bool idVec2::operator==( const idVec2 &a ) const {
 	return Compare( a );
 }
 
-ID_FORCE_INLINE bool idVec2::operator!=( const idVec2 &a ) const {
+ID_INLINE bool idVec2::operator!=( const idVec2 &a ) const {
 	return !Compare( a );
 }
 
-ID_FORCE_INLINE float idVec2::operator[]( int index ) const {
+ID_INLINE float idVec2::operator[]( int index ) const {
 	return ( &x )[ index ];
 }
 
-ID_FORCE_INLINE float& idVec2::operator[]( int index ) {
+ID_INLINE float& idVec2::operator[]( int index ) {
 	return ( &x )[ index ];
 }
 
-ID_FORCE_INLINE float idVec2::Length( void ) const {
+ID_INLINE float idVec2::Length( void ) const {
 	return ( float )idMath::Sqrt( x * x + y * y );
 }
 
-ID_FORCE_INLINE float idVec2::LengthFast( void ) const {
+ID_INLINE float idVec2::LengthFast( void ) const {
 	float sqrLength;
 
 	sqrLength = x * x + y * y;
 	return sqrLength * idMath::RSqrt( sqrLength );
 }
 
-ID_FORCE_INLINE float idVec2::LengthSqr( void ) const {
+ID_INLINE float idVec2::LengthSqr( void ) const {
 	return ( x * x + y * y );
 }
 
-ID_FORCE_INLINE float idVec2::Normalize( void ) {
+ID_INLINE float idVec2::Normalize( void ) {
 	float sqrLength, invLength;
 
 	sqrLength = x * x + y * y;
@@ -168,7 +168,7 @@ ID_FORCE_INLINE float idVec2::Normalize( void ) {
 	return invLength * sqrLength;
 }
 
-ID_FORCE_INLINE float idVec2::NormalizeFast( void ) {
+ID_INLINE float idVec2::NormalizeFast( void ) {
 	float lengthSqr, invLength;
 
 	lengthSqr = x * x + y * y;
@@ -178,7 +178,7 @@ ID_FORCE_INLINE float idVec2::NormalizeFast( void ) {
 	return invLength * lengthSqr;
 }
 
-ID_FORCE_INLINE idVec2 &idVec2::Truncate( float length ) {
+ID_INLINE idVec2 &idVec2::Truncate( float length ) {
 	float length2;
 	float ilength;
 
@@ -197,7 +197,7 @@ ID_FORCE_INLINE idVec2 &idVec2::Truncate( float length ) {
 	return *this;
 }
 
-ID_FORCE_INLINE void idVec2::Clamp( const idVec2 &min, const idVec2 &max ) {
+ID_INLINE void idVec2::Clamp( const idVec2 &min, const idVec2 &max ) {
 	if ( x < min.x ) {
 		x = min.x;
 	} else if ( x > max.x ) {
@@ -210,60 +210,60 @@ ID_FORCE_INLINE void idVec2::Clamp( const idVec2 &min, const idVec2 &max ) {
 	}
 }
 
-ID_FORCE_INLINE void idVec2::Snap( void ) {
+ID_INLINE void idVec2::Snap( void ) {
 	x = floor( x + 0.5f );
 	y = floor( y + 0.5f );
 }
 
-ID_FORCE_INLINE void idVec2::SnapInt( void ) {
+ID_INLINE void idVec2::SnapInt( void ) {
 	x = float( int( x ) );
 	y = float( int( y ) );
 }
 
-ID_FORCE_INLINE idVec2 idVec2::operator-() const {
+ID_INLINE idVec2 idVec2::operator-() const {
 	return idVec2( -x, -y );
 }
 
-ID_FORCE_INLINE idVec2 idVec2::operator-( const idVec2 &a ) const {
+ID_INLINE idVec2 idVec2::operator-( const idVec2 &a ) const {
 	return idVec2( x - a.x, y - a.y );
 }
 
-ID_FORCE_INLINE float idVec2::operator*( const idVec2 &a ) const {
+ID_INLINE float idVec2::operator*( const idVec2 &a ) const {
 	return x * a.x + y * a.y;
 }
 
-ID_FORCE_INLINE idVec2 idVec2::operator*( const float a ) const {
+ID_INLINE idVec2 idVec2::operator*( const float a ) const {
 	return idVec2( x * a, y * a );
 }
 
-ID_FORCE_INLINE idVec2 idVec2::operator/( const float a ) const {
+ID_INLINE idVec2 idVec2::operator/( const float a ) const {
 	float inva = 1.0f / a;
 	return idVec2( x * inva, y * inva );
 }
 
-ID_FORCE_INLINE idVec2 operator*( const float a, const idVec2 b ) {
+ID_INLINE idVec2 operator*( const float a, const idVec2 b ) {
 	return idVec2( b.x * a, b.y * a );
 }
 
-ID_FORCE_INLINE idVec2 idVec2::operator+( const idVec2 &a ) const {
+ID_INLINE idVec2 idVec2::operator+( const idVec2 &a ) const {
 	return idVec2( x + a.x, y + a.y );
 }
 
-ID_FORCE_INLINE idVec2 &idVec2::operator+=( const idVec2 &a ) {
+ID_INLINE idVec2 &idVec2::operator+=( const idVec2 &a ) {
 	x += a.x;
 	y += a.y;
 
 	return *this;
 }
 
-ID_FORCE_INLINE idVec2 &idVec2::operator/=( const idVec2 &a ) {
+ID_INLINE idVec2 &idVec2::operator/=( const idVec2 &a ) {
 	x /= a.x;
 	y /= a.y;
 
 	return *this;
 }
 
-ID_FORCE_INLINE idVec2 &idVec2::operator/=( const float a ) {
+ID_INLINE idVec2 &idVec2::operator/=( const float a ) {
 	float inva = 1.0f / a;
 	x *= inva;
 	y *= inva;
@@ -271,29 +271,29 @@ ID_FORCE_INLINE idVec2 &idVec2::operator/=( const float a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idVec2 &idVec2::operator-=( const idVec2 &a ) {
+ID_INLINE idVec2 &idVec2::operator-=( const idVec2 &a ) {
 	x -= a.x;
 	y -= a.y;
 
 	return *this;
 }
 
-ID_FORCE_INLINE idVec2 &idVec2::operator*=( const float a ) {
+ID_INLINE idVec2 &idVec2::operator*=( const float a ) {
 	x *= a;
 	y *= a;
 
 	return *this;
 }
 
-ID_FORCE_INLINE int idVec2::GetDimension( void ) const {
+ID_INLINE int idVec2::GetDimension( void ) const {
 	return 2;
 }
 
-ID_FORCE_INLINE const float *idVec2::ToFloatPtr( void ) const {
+ID_INLINE const float *idVec2::ToFloatPtr( void ) const {
 	return &x;
 }
 
-ID_FORCE_INLINE float *idVec2::ToFloatPtr( void ) {
+ID_INLINE float *idVec2::ToFloatPtr( void ) {
 	return &x;
 }
 
@@ -382,74 +382,74 @@ extern idVec3 vec3_origin;
 #define vec3_zero vec3_origin
 
 // Default constructor
-ID_FORCE_INLINE idVec3::idVec3( void ):
+ID_INLINE idVec3::idVec3( void ):
 	x(0.0f), // OrbWeaver: let's not leave stuff uninitialised
 	y(0.0f),
 	z(0.0f)
 {
 }
 
-ID_FORCE_INLINE idVec3::idVec3( const float x, const float y, const float z ) {
+ID_INLINE idVec3::idVec3( const float x, const float y, const float z ) {
 	this->x = x;
 	this->y = y;
 	this->z = z;
 }
 
-ID_FORCE_INLINE float idVec3::operator[]( const int index ) const {
+ID_INLINE float idVec3::operator[]( const int index ) const {
 	return ( &x )[ index ];
 }
 
-ID_FORCE_INLINE float &idVec3::operator[]( const int index ) {
+ID_INLINE float &idVec3::operator[]( const int index ) {
 	return ( &x )[ index ];
 }
 
-ID_FORCE_INLINE void idVec3::Set( const float x, const float y, const float z ) {
+ID_INLINE void idVec3::Set( const float x, const float y, const float z ) {
 	this->x = x;
 	this->y = y;
 	this->z = z;
 }
 
-ID_FORCE_INLINE void idVec3::Zero( void ) {
+ID_INLINE void idVec3::Zero( void ) {
 	x = y = z = 0.0f;
 }
 
-ID_FORCE_INLINE idVec3 idVec3::operator-() const {
+ID_INLINE idVec3 idVec3::operator-() const {
 	return idVec3( -x, -y, -z );
 }
 
-ID_FORCE_INLINE idVec3 &idVec3::operator=( const idVec3 &a ) {
+ID_INLINE idVec3 &idVec3::operator=( const idVec3 &a ) {
 	x = a.x;
 	y = a.y;
 	z = a.z;
 	return *this;
 }
 
-ID_FORCE_INLINE idVec3 idVec3::operator-( const idVec3 &a ) const {
+ID_INLINE idVec3 idVec3::operator-( const idVec3 &a ) const {
 	return idVec3( x - a.x, y - a.y, z - a.z );
 }
 
-ID_FORCE_INLINE float idVec3::operator*( const idVec3 &a ) const {
+ID_INLINE float idVec3::operator*( const idVec3 &a ) const {
 	return x * a.x + y * a.y + z * a.z;
 }
 
-ID_FORCE_INLINE idVec3 idVec3::operator*( const float a ) const {
+ID_INLINE idVec3 idVec3::operator*( const float a ) const {
 	return idVec3( x * a, y * a, z * a );
 }
 
-ID_FORCE_INLINE idVec3 idVec3::operator/( const float a ) const {
+ID_INLINE idVec3 idVec3::operator/( const float a ) const {
 	float inva = 1.0f / a;
 	return idVec3( x * inva, y * inva, z * inva );
 }
 
-ID_FORCE_INLINE idVec3 operator*( const float a, const idVec3 b ) {
+ID_INLINE idVec3 operator*( const float a, const idVec3 b ) {
 	return idVec3( b.x * a, b.y * a, b.z * a );
 }
 
-ID_FORCE_INLINE idVec3 idVec3::operator+( const idVec3 &a ) const {
+ID_INLINE idVec3 idVec3::operator+( const idVec3 &a ) const {
 	return idVec3( x + a.x, y + a.y, z + a.z );
 }
 
-ID_FORCE_INLINE idVec3 &idVec3::operator+=( const idVec3 &a ) {
+ID_INLINE idVec3 &idVec3::operator+=( const idVec3 &a ) {
 	x += a.x;
 	y += a.y;
 	z += a.z;
@@ -457,7 +457,7 @@ ID_FORCE_INLINE idVec3 &idVec3::operator+=( const idVec3 &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idVec3 &idVec3::operator/=( const idVec3 &a ) {
+ID_INLINE idVec3 &idVec3::operator/=( const idVec3 &a ) {
 	x /= a.x;
 	y /= a.y;
 	z /= a.z;
@@ -465,7 +465,7 @@ ID_FORCE_INLINE idVec3 &idVec3::operator/=( const idVec3 &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idVec3 &idVec3::operator/=( const float a ) {
+ID_INLINE idVec3 &idVec3::operator/=( const float a ) {
 	float inva = 1.0f / a;
 	x *= inva;
 	y *= inva;
@@ -474,7 +474,7 @@ ID_FORCE_INLINE idVec3 &idVec3::operator/=( const float a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idVec3 &idVec3::operator-=( const idVec3 &a ) {
+ID_INLINE idVec3 &idVec3::operator-=( const idVec3 &a ) {
 	x -= a.x;
 	y -= a.y;
 	z -= a.z;
@@ -482,7 +482,7 @@ ID_FORCE_INLINE idVec3 &idVec3::operator-=( const idVec3 &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idVec3 &idVec3::operator*=( const float a ) {
+ID_INLINE idVec3 &idVec3::operator*=( const float a ) {
 	x *= a;
 	y *= a;
 	z *= a;
@@ -490,7 +490,7 @@ ID_FORCE_INLINE idVec3 &idVec3::operator*=( const float a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idVec3 &idVec3::MulCW( const idVec3 &a ) {
+ID_INLINE idVec3 &idVec3::MulCW( const idVec3 &a ) {
 	x *= a.x;
 	y *= a.y;
 	z *= a.z;
@@ -498,7 +498,7 @@ ID_FORCE_INLINE idVec3 &idVec3::MulCW( const idVec3 &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idVec3 &idVec3::DivCW( const idVec3 &a ) {
+ID_INLINE idVec3 &idVec3::DivCW( const idVec3 &a ) {
 	x /= a.x;
 	y /= a.y;
 	z /= a.z;
@@ -506,11 +506,11 @@ ID_FORCE_INLINE idVec3 &idVec3::DivCW( const idVec3 &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE bool idVec3::Compare( const idVec3 &a ) const {
+ID_INLINE bool idVec3::Compare( const idVec3 &a ) const {
 	return ( ( x == a.x ) && ( y == a.y ) && ( z == a.z ) );
 }
 
-ID_FORCE_INLINE bool idVec3::Compare( const idVec3 &a, const float epsilon ) const {
+ID_INLINE bool idVec3::Compare( const idVec3 &a, const float epsilon ) const {
 	if ( idMath::Fabs( x - a.x ) > epsilon ) {
 		return false;
 	}
@@ -526,15 +526,15 @@ ID_FORCE_INLINE bool idVec3::Compare( const idVec3 &a, const float epsilon ) con
 	return true;
 }
 
-ID_FORCE_INLINE bool idVec3::operator==( const idVec3 &a ) const {
+ID_INLINE bool idVec3::operator==( const idVec3 &a ) const {
 	return Compare( a );
 }
 
-ID_FORCE_INLINE bool idVec3::operator!=( const idVec3 &a ) const {
+ID_INLINE bool idVec3::operator!=( const idVec3 &a ) const {
 	return !Compare( a );
 }
 
-ID_FORCE_INLINE float idVec3::NormalizeFast( void ) {
+ID_INLINE float idVec3::NormalizeFast( void ) {
 	float sqrLength, invLength;
 
 	sqrLength = x * x + y * y + z * z;
@@ -545,7 +545,7 @@ ID_FORCE_INLINE float idVec3::NormalizeFast( void ) {
 	return invLength * sqrLength;
 }
 
-ID_FORCE_INLINE bool idVec3::FixDegenerateNormal( void ) {
+ID_INLINE bool idVec3::FixDegenerateNormal( void ) {
 	if ( x == 0.0f ) {
 		if ( y == 0.0f ) {
 			if ( z > 0.0f ) {
@@ -612,7 +612,7 @@ ID_FORCE_INLINE bool idVec3::FixDegenerateNormal( void ) {
 	return false;
 }
 
-ID_FORCE_INLINE bool idVec3::FixDenormals( void ) {
+ID_INLINE bool idVec3::FixDenormals( void ) {
 	bool denormal = false;
 	if ( fabs( x ) < 1e-30f ) {
 		x = 0.0f;
@@ -629,11 +629,11 @@ ID_FORCE_INLINE bool idVec3::FixDenormals( void ) {
 	return denormal;
 }
 
-ID_FORCE_INLINE idVec3 idVec3::Cross( const idVec3 &a ) const {
+ID_INLINE idVec3 idVec3::Cross( const idVec3 &a ) const {
 	return idVec3( y * a.z - z * a.y, z * a.x - x * a.z, x * a.y - y * a.x );
 }
 
-ID_FORCE_INLINE idVec3 &idVec3::Cross( const idVec3 &a, const idVec3 &b ) {
+ID_INLINE idVec3 &idVec3::Cross( const idVec3 &a, const idVec3 &b ) {
 	x = a.y * b.z - a.z * b.y;
 	y = a.z * b.x - a.x * b.z;
 	z = a.x * b.y - a.y * b.x;
@@ -641,22 +641,22 @@ ID_FORCE_INLINE idVec3 &idVec3::Cross( const idVec3 &a, const idVec3 &b ) {
 	return *this;
 }
 
-ID_FORCE_INLINE float idVec3::Length( void ) const {
+ID_INLINE float idVec3::Length( void ) const {
 	return ( float )idMath::Sqrt( x * x + y * y + z * z );
 }
 
-ID_FORCE_INLINE float idVec3::LengthSqr( void ) const {
+ID_INLINE float idVec3::LengthSqr( void ) const {
 	return ( x * x + y * y + z * z );
 }
 
-ID_FORCE_INLINE float idVec3::LengthFast( void ) const {
+ID_INLINE float idVec3::LengthFast( void ) const {
 	float sqrLength;
 
 	sqrLength = x * x + y * y + z * z;
 	return sqrLength * idMath::RSqrt( sqrLength );
 }
 
-ID_FORCE_INLINE float idVec3::Normalize( void ) {
+ID_INLINE float idVec3::Normalize( void ) {
 	float sqrLength, invLength;
 
 	sqrLength = x * x + y * y + z * z;
@@ -667,7 +667,7 @@ ID_FORCE_INLINE float idVec3::Normalize( void ) {
 	return invLength * sqrLength;
 }
 
-ID_FORCE_INLINE idVec3 &idVec3::Truncate( float length ) {
+ID_INLINE idVec3 &idVec3::Truncate( float length ) {
 	float length2;
 	float ilength;
 
@@ -687,7 +687,7 @@ ID_FORCE_INLINE idVec3 &idVec3::Truncate( float length ) {
 	return *this;
 }
 
-ID_FORCE_INLINE void idVec3::Clamp( const idVec3 &min, const idVec3 &max ) {
+ID_INLINE void idVec3::Clamp( const idVec3 &min, const idVec3 &max ) {
 	if ( x < min.x ) {
 		x = min.x;
 	} else if ( x > max.x ) {
@@ -705,39 +705,39 @@ ID_FORCE_INLINE void idVec3::Clamp( const idVec3 &min, const idVec3 &max ) {
 	}
 }
 
-ID_FORCE_INLINE void idVec3::Snap( void ) {
+ID_INLINE void idVec3::Snap( void ) {
 	x = floor( x + 0.5f );
 	y = floor( y + 0.5f );
 	z = floor( z + 0.5f );
 }
 
-ID_FORCE_INLINE void idVec3::SnapInt( void ) {
+ID_INLINE void idVec3::SnapInt( void ) {
 	x = float( int( x ) );
 	y = float( int( y ) );
 	z = float( int( z ) );
 }
 
-ID_FORCE_INLINE int idVec3::GetDimension( void ) const {
+ID_INLINE int idVec3::GetDimension( void ) const {
 	return 3;
 }
 
-ID_FORCE_INLINE const idVec2 &idVec3::ToVec2( void ) const {
+ID_INLINE const idVec2 &idVec3::ToVec2( void ) const {
 	return *reinterpret_cast<const idVec2 *>(this);
 }
 
-ID_FORCE_INLINE idVec2 &idVec3::ToVec2( void ) {
+ID_INLINE idVec2 &idVec3::ToVec2( void ) {
 	return *reinterpret_cast<idVec2 *>(this);
 }
 
-ID_FORCE_INLINE const float *idVec3::ToFloatPtr( void ) const {
+ID_INLINE const float *idVec3::ToFloatPtr( void ) const {
 	return &x;
 }
 
-ID_FORCE_INLINE float *idVec3::ToFloatPtr( void ) {
+ID_INLINE float *idVec3::ToFloatPtr( void ) {
 	return &x;
 }
 
-ID_FORCE_INLINE void idVec3::NormalVectors( idVec3 &left, idVec3 &down ) const {
+ID_INLINE void idVec3::NormalVectors( idVec3 &left, idVec3 &down ) const {
 	float d;
 
 	d = x * x + y * y;
@@ -754,7 +754,7 @@ ID_FORCE_INLINE void idVec3::NormalVectors( idVec3 &left, idVec3 &down ) const {
 	down = left.Cross( *this );
 }
 
-ID_FORCE_INLINE void idVec3::OrthogonalBasis( idVec3 &left, idVec3 &up ) const {
+ID_INLINE void idVec3::OrthogonalBasis( idVec3 &left, idVec3 &up ) const {
 	float l, s;
 
 	if ( idMath::Fabs( z ) > 0.7f ) {
@@ -779,7 +779,7 @@ ID_FORCE_INLINE void idVec3::OrthogonalBasis( idVec3 &left, idVec3 &up ) const {
 	}
 }
 
-ID_FORCE_INLINE void idVec3::ProjectOntoPlane( const idVec3 &normal, const float overBounce ) {
+ID_INLINE void idVec3::ProjectOntoPlane( const idVec3 &normal, const float overBounce ) {
 	float backoff;
 
 	backoff = *this * normal;
@@ -795,7 +795,7 @@ ID_FORCE_INLINE void idVec3::ProjectOntoPlane( const idVec3 &normal, const float
 	*this -= backoff * normal;
 }
 
-ID_FORCE_INLINE bool idVec3::ProjectAlongPlane( const idVec3 &normal, const float epsilon, const float overBounce ) {
+ID_INLINE bool idVec3::ProjectAlongPlane( const idVec3 &normal, const float epsilon, const float overBounce ) {
 	idVec3 cross;
 	float len;
 
@@ -872,65 +872,65 @@ public:
 extern idVec4 vec4_origin;
 #define vec4_zero vec4_origin
 
-ID_FORCE_INLINE idVec4::idVec4( void ) {
+ID_INLINE idVec4::idVec4( void ) {
 }
 
-ID_FORCE_INLINE idVec4::idVec4( const float x, const float y, const float z, const float w ) {
+ID_INLINE idVec4::idVec4( const float x, const float y, const float z, const float w ) {
 	this->x = x;
 	this->y = y;
 	this->z = z;
 	this->w = w;
 }
 
-ID_FORCE_INLINE void idVec4::Set( const float x, const float y, const float z, const float w ) {
+ID_INLINE void idVec4::Set( const float x, const float y, const float z, const float w ) {
 	this->x = x;
 	this->y = y;
 	this->z = z;
 	this->w = w;
 }
 
-ID_FORCE_INLINE void idVec4::Zero( void ) {
+ID_INLINE void idVec4::Zero( void ) {
 	x = y = z = w = 0.0f;
 }
 
-ID_FORCE_INLINE float idVec4::operator[]( int index ) const {
+ID_INLINE float idVec4::operator[]( int index ) const {
 	return ( &x )[ index ];
 }
 
-ID_FORCE_INLINE float& idVec4::operator[]( int index ) {
+ID_INLINE float& idVec4::operator[]( int index ) {
 	return ( &x )[ index ];
 }
 
-ID_FORCE_INLINE idVec4 idVec4::operator-() const {
+ID_INLINE idVec4 idVec4::operator-() const {
 	return idVec4( -x, -y, -z, -w );
 }
 
-ID_FORCE_INLINE idVec4 idVec4::operator-( const idVec4 &a ) const {
+ID_INLINE idVec4 idVec4::operator-( const idVec4 &a ) const {
 	return idVec4( x - a.x, y - a.y, z - a.z, w - a.w );
 }
 
-ID_FORCE_INLINE float idVec4::operator*( const idVec4 &a ) const {
+ID_INLINE float idVec4::operator*( const idVec4 &a ) const {
 	return x * a.x + y * a.y + z * a.z + w * a.w;
 }
 
-ID_FORCE_INLINE idVec4 idVec4::operator*( const float a ) const {
+ID_INLINE idVec4 idVec4::operator*( const float a ) const {
 	return idVec4( x * a, y * a, z * a, w * a );
 }
 
-ID_FORCE_INLINE idVec4 idVec4::operator/( const float a ) const {
+ID_INLINE idVec4 idVec4::operator/( const float a ) const {
 	float inva = 1.0f / a;
 	return idVec4( x * inva, y * inva, z * inva, w * inva );
 }
 
-ID_FORCE_INLINE idVec4 operator*( const float a, const idVec4 b ) {
+ID_INLINE idVec4 operator*( const float a, const idVec4 b ) {
 	return idVec4( b.x * a, b.y * a, b.z * a, b.w * a );
 }
 
-ID_FORCE_INLINE idVec4 idVec4::operator+( const idVec4 &a ) const {
+ID_INLINE idVec4 idVec4::operator+( const idVec4 &a ) const {
 	return idVec4( x + a.x, y + a.y, z + a.z, w + a.w );
 }
 
-ID_FORCE_INLINE idVec4 &idVec4::operator+=( const idVec4 &a ) {
+ID_INLINE idVec4 &idVec4::operator+=( const idVec4 &a ) {
 	x += a.x;
 	y += a.y;
 	z += a.z;
@@ -939,7 +939,7 @@ ID_FORCE_INLINE idVec4 &idVec4::operator+=( const idVec4 &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idVec4 &idVec4::operator/=( const idVec4 &a ) {
+ID_INLINE idVec4 &idVec4::operator/=( const idVec4 &a ) {
 	x /= a.x;
 	y /= a.y;
 	z /= a.z;
@@ -948,7 +948,7 @@ ID_FORCE_INLINE idVec4 &idVec4::operator/=( const idVec4 &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idVec4 &idVec4::operator/=( const float a ) {
+ID_INLINE idVec4 &idVec4::operator/=( const float a ) {
 	float inva = 1.0f / a;
 	x *= inva;
 	y *= inva;
@@ -958,7 +958,7 @@ ID_FORCE_INLINE idVec4 &idVec4::operator/=( const float a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idVec4 &idVec4::operator-=( const idVec4 &a ) {
+ID_INLINE idVec4 &idVec4::operator-=( const idVec4 &a ) {
 	x -= a.x;
 	y -= a.y;
 	z -= a.z;
@@ -967,7 +967,7 @@ ID_FORCE_INLINE idVec4 &idVec4::operator-=( const idVec4 &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idVec4 &idVec4::operator*=( const float a ) {
+ID_INLINE idVec4 &idVec4::operator*=( const float a ) {
 	x *= a;
 	y *= a;
 	z *= a;
@@ -976,11 +976,11 @@ ID_FORCE_INLINE idVec4 &idVec4::operator*=( const float a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE bool idVec4::Compare( const idVec4 &a ) const {
+ID_INLINE bool idVec4::Compare( const idVec4 &a ) const {
 	return ( ( x == a.x ) && ( y == a.y ) && ( z == a.z ) && w == a.w );
 }
 
-ID_FORCE_INLINE bool idVec4::Compare( const idVec4 &a, const float epsilon ) const {
+ID_INLINE bool idVec4::Compare( const idVec4 &a, const float epsilon ) const {
 	if ( idMath::Fabs( x - a.x ) > epsilon ) {
 		return false;
 	}
@@ -1000,23 +1000,23 @@ ID_FORCE_INLINE bool idVec4::Compare( const idVec4 &a, const float epsilon ) con
 	return true;
 }
 
-ID_FORCE_INLINE bool idVec4::operator==( const idVec4 &a ) const {
+ID_INLINE bool idVec4::operator==( const idVec4 &a ) const {
 	return Compare( a );
 }
 
-ID_FORCE_INLINE bool idVec4::operator!=( const idVec4 &a ) const {
+ID_INLINE bool idVec4::operator!=( const idVec4 &a ) const {
 	return !Compare( a );
 }
 
-ID_FORCE_INLINE float idVec4::Length( void ) const {
+ID_INLINE float idVec4::Length( void ) const {
 	return ( float )idMath::Sqrt( x * x + y * y + z * z + w * w );
 }
 
-ID_FORCE_INLINE float idVec4::LengthSqr( void ) const {
+ID_INLINE float idVec4::LengthSqr( void ) const {
 	return ( x * x + y * y + z * z + w * w );
 }
 
-ID_FORCE_INLINE float idVec4::Normalize( void ) {
+ID_INLINE float idVec4::Normalize( void ) {
 	float sqrLength, invLength;
 
 	sqrLength = x * x + y * y + z * z + w * w;
@@ -1028,7 +1028,7 @@ ID_FORCE_INLINE float idVec4::Normalize( void ) {
 	return invLength * sqrLength;
 }
 
-ID_FORCE_INLINE float idVec4::NormalizeFast( void ) {
+ID_INLINE float idVec4::NormalizeFast( void ) {
 	float sqrLength, invLength;
 
 	sqrLength = x * x + y * y + z * z + w * w;
@@ -1040,31 +1040,31 @@ ID_FORCE_INLINE float idVec4::NormalizeFast( void ) {
 	return invLength * sqrLength;
 }
 
-ID_FORCE_INLINE int idVec4::GetDimension( void ) const {
+ID_INLINE int idVec4::GetDimension( void ) const {
 	return 4;
 }
 
-ID_FORCE_INLINE const idVec2 &idVec4::ToVec2( void ) const {
+ID_INLINE const idVec2 &idVec4::ToVec2( void ) const {
 	return *reinterpret_cast<const idVec2 *>(this);
 }
 
-ID_FORCE_INLINE idVec2 &idVec4::ToVec2( void ) {
+ID_INLINE idVec2 &idVec4::ToVec2( void ) {
 	return *reinterpret_cast<idVec2 *>(this);
 }
 
-ID_FORCE_INLINE const idVec3 &idVec4::ToVec3( void ) const {
+ID_INLINE const idVec3 &idVec4::ToVec3( void ) const {
 	return *reinterpret_cast<const idVec3 *>(this);
 }
 
-ID_FORCE_INLINE idVec3 &idVec4::ToVec3( void ) {
+ID_INLINE idVec3 &idVec4::ToVec3( void ) {
 	return *reinterpret_cast<idVec3 *>(this);
 }
 
-ID_FORCE_INLINE const float *idVec4::ToFloatPtr( void ) const {
+ID_INLINE const float *idVec4::ToFloatPtr( void ) const {
 	return &x;
 }
 
-ID_FORCE_INLINE float *idVec4::ToFloatPtr( void ) {
+ID_INLINE float *idVec4::ToFloatPtr( void ) {
 	return &x;
 }
 
@@ -1104,10 +1104,10 @@ public:
 extern idVec5 vec5_origin;
 #define vec5_zero vec5_origin
 
-ID_FORCE_INLINE idVec5::idVec5( void ) {
+ID_INLINE idVec5::idVec5( void ) {
 }
 
-ID_FORCE_INLINE idVec5::idVec5( const idVec3 &xyz, const idVec2 &st ) {
+ID_INLINE idVec5::idVec5( const idVec3 &xyz, const idVec2 &st ) {
 	x = xyz.x;
 	y = xyz.y;
 	z = xyz.z;
@@ -1115,7 +1115,7 @@ ID_FORCE_INLINE idVec5::idVec5( const idVec3 &xyz, const idVec2 &st ) {
 	t = st[1];
 }
 
-ID_FORCE_INLINE idVec5::idVec5( const float x, const float y, const float z, const float s, const float t ) {
+ID_INLINE idVec5::idVec5( const float x, const float y, const float z, const float s, const float t ) {
 	this->x = x;
 	this->y = y;
 	this->z = z;
@@ -1123,15 +1123,15 @@ ID_FORCE_INLINE idVec5::idVec5( const float x, const float y, const float z, con
 	this->t = t;
 }
 
-ID_FORCE_INLINE float idVec5::operator[]( int index ) const {
+ID_INLINE float idVec5::operator[]( int index ) const {
 	return ( &x )[ index ];
 }
 
-ID_FORCE_INLINE float& idVec5::operator[]( int index ) {
+ID_INLINE float& idVec5::operator[]( int index ) {
 	return ( &x )[ index ];
 }
 
-ID_FORCE_INLINE idVec5 &idVec5::operator=( const idVec3 &a ) {
+ID_INLINE idVec5 &idVec5::operator=( const idVec3 &a ) {
 	x = a.x;
 	y = a.y;
 	z = a.z;
@@ -1139,23 +1139,23 @@ ID_FORCE_INLINE idVec5 &idVec5::operator=( const idVec3 &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE int idVec5::GetDimension( void ) const {
+ID_INLINE int idVec5::GetDimension( void ) const {
 	return 5;
 }
 
-ID_FORCE_INLINE const idVec3 &idVec5::ToVec3( void ) const {
+ID_INLINE const idVec3 &idVec5::ToVec3( void ) const {
 	return *reinterpret_cast<const idVec3 *>(this);
 }
 
-ID_FORCE_INLINE idVec3 &idVec5::ToVec3( void ) {
+ID_INLINE idVec3 &idVec5::ToVec3( void ) {
 	return *reinterpret_cast<idVec3 *>(this);
 }
 
-ID_FORCE_INLINE const float *idVec5::ToFloatPtr( void ) const {
+ID_INLINE const float *idVec5::ToFloatPtr( void ) const {
 	return &x;
 }
 
-ID_FORCE_INLINE float *idVec5::ToFloatPtr( void ) {
+ID_INLINE float *idVec5::ToFloatPtr( void ) {
 	return &x;
 }
 
@@ -1215,14 +1215,14 @@ extern idVec6 vec6_origin;
 #define vec6_zero vec6_origin
 extern idVec6 vec6_infinity;
 
-ID_FORCE_INLINE idVec6::idVec6( void ) {
+ID_INLINE idVec6::idVec6( void ) {
 }
 
-ID_FORCE_INLINE idVec6::idVec6( const float *a ) {
+ID_INLINE idVec6::idVec6( const float *a ) {
 	memcpy( p, a, 6 * sizeof( float ) );
 }
 
-ID_FORCE_INLINE idVec6::idVec6( const float a1, const float a2, const float a3, const float a4, const float a5, const float a6 ) {
+ID_INLINE idVec6::idVec6( const float a1, const float a2, const float a3, const float a4, const float a5, const float a6 ) {
 	p[0] = a1;
 	p[1] = a2;
 	p[2] = a3;
@@ -1231,27 +1231,27 @@ ID_FORCE_INLINE idVec6::idVec6( const float a1, const float a2, const float a3, 
 	p[5] = a6;
 }
 
-ID_FORCE_INLINE idVec6 idVec6::operator-() const {
+ID_INLINE idVec6 idVec6::operator-() const {
 	return idVec6( -p[0], -p[1], -p[2], -p[3], -p[4], -p[5] );
 }
 
-ID_FORCE_INLINE float idVec6::operator[]( const int index ) const {
+ID_INLINE float idVec6::operator[]( const int index ) const {
 	return p[index];
 }
 
-ID_FORCE_INLINE float &idVec6::operator[]( const int index ) {
+ID_INLINE float &idVec6::operator[]( const int index ) {
 	return p[index];
 }
 
-ID_FORCE_INLINE idVec6 idVec6::operator*( const float a ) const {
+ID_INLINE idVec6 idVec6::operator*( const float a ) const {
 	return idVec6( p[0]*a, p[1]*a, p[2]*a, p[3]*a, p[4]*a, p[5]*a );
 }
 
-ID_FORCE_INLINE float idVec6::operator*( const idVec6 &a ) const {
+ID_INLINE float idVec6::operator*( const idVec6 &a ) const {
 	return p[0] * a[0] + p[1] * a[1] + p[2] * a[2] + p[3] * a[3] + p[4] * a[4] + p[5] * a[5];
 }
 
-ID_FORCE_INLINE idVec6 idVec6::operator/( const float a ) const {
+ID_INLINE idVec6 idVec6::operator/( const float a ) const {
 	float inva;
 
 	assert( a != 0.0f );
@@ -1259,15 +1259,15 @@ ID_FORCE_INLINE idVec6 idVec6::operator/( const float a ) const {
 	return idVec6( p[0]*inva, p[1]*inva, p[2]*inva, p[3]*inva, p[4]*inva, p[5]*inva );
 }
 
-ID_FORCE_INLINE idVec6 idVec6::operator+( const idVec6 &a ) const {
+ID_INLINE idVec6 idVec6::operator+( const idVec6 &a ) const {
 	return idVec6( p[0] + a[0], p[1] + a[1], p[2] + a[2], p[3] + a[3], p[4] + a[4], p[5] + a[5] );
 }
 
-ID_FORCE_INLINE idVec6 idVec6::operator-( const idVec6 &a ) const {
+ID_INLINE idVec6 idVec6::operator-( const idVec6 &a ) const {
 	return idVec6( p[0] - a[0], p[1] - a[1], p[2] - a[2], p[3] - a[3], p[4] - a[4], p[5] - a[5] );
 }
 
-ID_FORCE_INLINE idVec6 &idVec6::operator*=( const float a ) {
+ID_INLINE idVec6 &idVec6::operator*=( const float a ) {
 	p[0] *= a;
 	p[1] *= a;
 	p[2] *= a;
@@ -1277,7 +1277,7 @@ ID_FORCE_INLINE idVec6 &idVec6::operator*=( const float a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idVec6 &idVec6::operator/=( const float a ) {
+ID_INLINE idVec6 &idVec6::operator/=( const float a ) {
 	float inva;
 
 	assert( a != 0.0f );
@@ -1291,7 +1291,7 @@ ID_FORCE_INLINE idVec6 &idVec6::operator/=( const float a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idVec6 &idVec6::operator+=( const idVec6 &a ) {
+ID_INLINE idVec6 &idVec6::operator+=( const idVec6 &a ) {
 	p[0] += a[0];
 	p[1] += a[1];
 	p[2] += a[2];
@@ -1301,7 +1301,7 @@ ID_FORCE_INLINE idVec6 &idVec6::operator+=( const idVec6 &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idVec6 &idVec6::operator-=( const idVec6 &a ) {
+ID_INLINE idVec6 &idVec6::operator-=( const idVec6 &a ) {
 	p[0] -= a[0];
 	p[1] -= a[1];
 	p[2] -= a[2];
@@ -1311,16 +1311,16 @@ ID_FORCE_INLINE idVec6 &idVec6::operator-=( const idVec6 &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idVec6 operator*( const float a, const idVec6 b ) {
+ID_INLINE idVec6 operator*( const float a, const idVec6 b ) {
 	return b * a;
 }
 
-ID_FORCE_INLINE bool idVec6::Compare( const idVec6 &a ) const {
+ID_INLINE bool idVec6::Compare( const idVec6 &a ) const {
 	return ( ( p[0] == a[0] ) && ( p[1] == a[1] ) && ( p[2] == a[2] ) &&
 			( p[3] == a[3] ) && ( p[4] == a[4] ) && ( p[5] == a[5] ) );
 }
 
-ID_FORCE_INLINE bool idVec6::Compare( const idVec6 &a, const float epsilon ) const {
+ID_INLINE bool idVec6::Compare( const idVec6 &a, const float epsilon ) const {
 	if ( idMath::Fabs( p[0] - a[0] ) > epsilon ) {
 		return false;
 	}
@@ -1348,15 +1348,15 @@ ID_FORCE_INLINE bool idVec6::Compare( const idVec6 &a, const float epsilon ) con
 	return true;
 }
 
-ID_FORCE_INLINE bool idVec6::operator==( const idVec6 &a ) const {
+ID_INLINE bool idVec6::operator==( const idVec6 &a ) const {
 	return Compare( a );
 }
 
-ID_FORCE_INLINE bool idVec6::operator!=( const idVec6 &a ) const {
+ID_INLINE bool idVec6::operator!=( const idVec6 &a ) const {
 	return !Compare( a );
 }
 
-ID_FORCE_INLINE void idVec6::Set( const float a1, const float a2, const float a3, const float a4, const float a5, const float a6 ) {
+ID_INLINE void idVec6::Set( const float a1, const float a2, const float a3, const float a4, const float a5, const float a6 ) {
 	p[0] = a1;
 	p[1] = a2;
 	p[2] = a3;
@@ -1365,19 +1365,19 @@ ID_FORCE_INLINE void idVec6::Set( const float a1, const float a2, const float a3
 	p[5] = a6;
 }
 
-ID_FORCE_INLINE void idVec6::Zero( void ) {
+ID_INLINE void idVec6::Zero( void ) {
 	p[0] = p[1] = p[2] = p[3] = p[4] = p[5] = 0.0f;
 }
 
-ID_FORCE_INLINE float idVec6::Length( void ) const {
+ID_INLINE float idVec6::Length( void ) const {
 	return ( float )idMath::Sqrt( p[0] * p[0] + p[1] * p[1] + p[2] * p[2] + p[3] * p[3] + p[4] * p[4] + p[5] * p[5] );
 }
 
-ID_FORCE_INLINE float idVec6::LengthSqr( void ) const {
+ID_INLINE float idVec6::LengthSqr( void ) const {
 	return ( p[0] * p[0] + p[1] * p[1] + p[2] * p[2] + p[3] * p[3] + p[4] * p[4] + p[5] * p[5] );
 }
 
-ID_FORCE_INLINE float idVec6::Normalize( void ) {
+ID_INLINE float idVec6::Normalize( void ) {
 	float sqrLength, invLength;
 
 	sqrLength = p[0] * p[0] + p[1] * p[1] + p[2] * p[2] + p[3] * p[3] + p[4] * p[4] + p[5] * p[5];
@@ -1391,7 +1391,7 @@ ID_FORCE_INLINE float idVec6::Normalize( void ) {
 	return invLength * sqrLength;
 }
 
-ID_FORCE_INLINE float idVec6::NormalizeFast( void ) {
+ID_INLINE float idVec6::NormalizeFast( void ) {
 	float sqrLength, invLength;
 
 	sqrLength = p[0] * p[0] + p[1] * p[1] + p[2] * p[2] + p[3] * p[3] + p[4] * p[4] + p[5] * p[5];
@@ -1405,23 +1405,23 @@ ID_FORCE_INLINE float idVec6::NormalizeFast( void ) {
 	return invLength * sqrLength;
 }
 
-ID_FORCE_INLINE int idVec6::GetDimension( void ) const {
+ID_INLINE int idVec6::GetDimension( void ) const {
 	return 6;
 }
 
-ID_FORCE_INLINE const idVec3 &idVec6::SubVec3( int index ) const {
+ID_INLINE const idVec3 &idVec6::SubVec3( int index ) const {
 	return *reinterpret_cast<const idVec3 *>(p + index * 3);
 }
 
-ID_FORCE_INLINE idVec3 &idVec6::SubVec3( int index ) {
+ID_INLINE idVec3 &idVec6::SubVec3( int index ) {
 	return *reinterpret_cast<idVec3 *>(p + index * 3);
 }
 
-ID_FORCE_INLINE const float *idVec6::ToFloatPtr( void ) const {
+ID_INLINE const float *idVec6::ToFloatPtr( void ) const {
 	return p;
 }
 
-ID_FORCE_INLINE float *idVec6::ToFloatPtr( void ) {
+ID_INLINE float *idVec6::ToFloatPtr( void ) {
 	return p;
 }
 
@@ -1511,41 +1511,41 @@ private:
 	void			SetTempSize( int size );
 };
 
-ID_FORCE_INLINE idVecX::idVecX( void ) {
+ID_INLINE idVecX::idVecX( void ) {
 	size = alloced = 0;
 	p = NULL;
 }
 
-ID_FORCE_INLINE idVecX::idVecX( int length ) {
+ID_INLINE idVecX::idVecX( int length ) {
 	size = alloced = 0;
 	p = NULL;
 	SetSize( length );
 }
 
-ID_FORCE_INLINE idVecX::idVecX( int length, float *data ) {
+ID_INLINE idVecX::idVecX( int length, float *data ) {
 	size = alloced = 0;
 	p = NULL;
 	SetData( length, data );
 }
 
-ID_FORCE_INLINE idVecX::~idVecX( void ) {
+ID_INLINE idVecX::~idVecX( void ) {
 	// if not temp memory
 	if ( p && ( p < idVecX::tempPtr || p >= idVecX::tempPtr + VECX_MAX_TEMP ) && alloced != -1 ) {
 		Mem_Free16( p );
 	}
 }
 
-ID_FORCE_INLINE float idVecX::operator[]( const int index ) const {
+ID_INLINE float idVecX::operator[]( const int index ) const {
 	assert( index >= 0 && index < size );
 	return p[index];
 }
 
-ID_FORCE_INLINE float &idVecX::operator[]( const int index ) {
+ID_INLINE float &idVecX::operator[]( const int index ) {
 	assert( index >= 0 && index < size );
 	return p[index];
 }
 
-ID_FORCE_INLINE idVecX idVecX::operator-() const {
+ID_INLINE idVecX idVecX::operator-() const {
 	int i;
 	idVecX m;
 
@@ -1556,7 +1556,7 @@ ID_FORCE_INLINE idVecX idVecX::operator-() const {
 	return m;
 }
 
-ID_FORCE_INLINE idVecX &idVecX::operator=( const idVecX &a ) {
+ID_INLINE idVecX &idVecX::operator=( const idVecX &a ) {
 	SetSize( a.size );
 #ifdef VECX_SIMD
 	SIMDProcessor->Copy16( p, a.p, a.size );
@@ -1567,7 +1567,7 @@ ID_FORCE_INLINE idVecX &idVecX::operator=( const idVecX &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idVecX idVecX::operator+( const idVecX &a ) const {
+ID_INLINE idVecX idVecX::operator+( const idVecX &a ) const {
 	idVecX m;
 
 	assert( size == a.size );
@@ -1583,7 +1583,7 @@ ID_FORCE_INLINE idVecX idVecX::operator+( const idVecX &a ) const {
 	return m;
 }
 
-ID_FORCE_INLINE idVecX idVecX::operator-( const idVecX &a ) const {
+ID_INLINE idVecX idVecX::operator-( const idVecX &a ) const {
 	idVecX m;
 
 	assert( size == a.size );
@@ -1599,7 +1599,7 @@ ID_FORCE_INLINE idVecX idVecX::operator-( const idVecX &a ) const {
 	return m;
 }
 
-ID_FORCE_INLINE idVecX &idVecX::operator+=( const idVecX &a ) {
+ID_INLINE idVecX &idVecX::operator+=( const idVecX &a ) {
 	assert( size == a.size );
 #ifdef VECX_SIMD
 	SIMDProcessor->AddAssign16( p, a.p, size );
@@ -1613,7 +1613,7 @@ ID_FORCE_INLINE idVecX &idVecX::operator+=( const idVecX &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idVecX &idVecX::operator-=( const idVecX &a ) {
+ID_INLINE idVecX &idVecX::operator-=( const idVecX &a ) {
 	assert( size == a.size );
 #ifdef VECX_SIMD
 	SIMDProcessor->SubAssign16( p, a.p, size );
@@ -1627,7 +1627,7 @@ ID_FORCE_INLINE idVecX &idVecX::operator-=( const idVecX &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idVecX idVecX::operator*( const float a ) const {
+ID_INLINE idVecX idVecX::operator*( const float a ) const {
 	idVecX m;
 
 	m.SetTempSize( size );
@@ -1642,7 +1642,7 @@ ID_FORCE_INLINE idVecX idVecX::operator*( const float a ) const {
 	return m;
 }
 
-ID_FORCE_INLINE idVecX &idVecX::operator*=( const float a ) {
+ID_INLINE idVecX &idVecX::operator*=( const float a ) {
 #ifdef VECX_SIMD
 	SIMDProcessor->MulAssign16( p, a, size );
 #else
@@ -1654,22 +1654,22 @@ ID_FORCE_INLINE idVecX &idVecX::operator*=( const float a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idVecX idVecX::operator/( const float a ) const {
+ID_INLINE idVecX idVecX::operator/( const float a ) const {
 	assert( a != 0.0f );
 	return (*this) * ( 1.0f / a );
 }
 
-ID_FORCE_INLINE idVecX &idVecX::operator/=( const float a ) {
+ID_INLINE idVecX &idVecX::operator/=( const float a ) {
 	assert( a != 0.0f );
 	(*this) *= ( 1.0f / a );
 	return *this;
 }
 
-ID_FORCE_INLINE idVecX operator*( const float a, const idVecX b ) {
+ID_INLINE idVecX operator*( const float a, const idVecX b ) {
 	return b * a;
 }
 
-ID_FORCE_INLINE float idVecX::operator*( const idVecX &a ) const {
+ID_INLINE float idVecX::operator*( const idVecX &a ) const {
 	int i;
 	float sum = 0.0f;
 
@@ -1680,7 +1680,7 @@ ID_FORCE_INLINE float idVecX::operator*( const idVecX &a ) const {
 	return sum;
 }
 
-ID_FORCE_INLINE bool idVecX::Compare( const idVecX &a ) const {
+ID_INLINE bool idVecX::Compare( const idVecX &a ) const {
 	int i;
 
 	assert( size == a.size );
@@ -1692,7 +1692,7 @@ ID_FORCE_INLINE bool idVecX::Compare( const idVecX &a ) const {
 	return true;
 }
 
-ID_FORCE_INLINE bool idVecX::Compare( const idVecX &a, const float epsilon ) const {
+ID_INLINE bool idVecX::Compare( const idVecX &a, const float epsilon ) const {
 	int i;
 
 	assert( size == a.size );
@@ -1704,15 +1704,15 @@ ID_FORCE_INLINE bool idVecX::Compare( const idVecX &a, const float epsilon ) con
 	return true;
 }
 
-ID_FORCE_INLINE bool idVecX::operator==( const idVecX &a ) const {
+ID_INLINE bool idVecX::operator==( const idVecX &a ) const {
 	return Compare( a );
 }
 
-ID_FORCE_INLINE bool idVecX::operator!=( const idVecX &a ) const {
+ID_INLINE bool idVecX::operator!=( const idVecX &a ) const {
 	return !Compare( a );
 }
 
-ID_FORCE_INLINE void idVecX::SetSize( int newSize ) {
+ID_INLINE void idVecX::SetSize( int newSize ) {
 	int alloc = ( newSize + 3 ) & ~3;
 	if ( alloc > alloced && alloced != -1 ) {
 		if ( p ) {
@@ -1725,7 +1725,7 @@ ID_FORCE_INLINE void idVecX::SetSize( int newSize ) {
 	VECX_CLEAREND();
 }
 
-ID_FORCE_INLINE void idVecX::ChangeSize( int newSize, bool makeZero ) {
+ID_INLINE void idVecX::ChangeSize( int newSize, bool makeZero ) {
 	int alloc = ( newSize + 3 ) & ~3;
 	if ( alloc > alloced && alloced != -1 ) {
 		float *oldVec = p;
@@ -1748,7 +1748,7 @@ ID_FORCE_INLINE void idVecX::ChangeSize( int newSize, bool makeZero ) {
 	VECX_CLEAREND();
 }
 
-ID_FORCE_INLINE void idVecX::SetTempSize( int newSize ) {
+ID_INLINE void idVecX::SetTempSize( int newSize ) {
 	size = newSize;
 	alloced = ( newSize + 3 ) & ~3;
 	assert( alloced < VECX_MAX_TEMP );
@@ -1760,7 +1760,7 @@ ID_FORCE_INLINE void idVecX::SetTempSize( int newSize ) {
 	VECX_CLEAREND();
 }
 
-ID_FORCE_INLINE void idVecX::SetData( int length, float *data ) {
+ID_INLINE void idVecX::SetData( int length, float *data ) {
 	if ( p && ( p < idVecX::tempPtr || p >= idVecX::tempPtr + VECX_MAX_TEMP ) && alloced != -1 ) {
 		Mem_Free16( p );
 	}
@@ -1771,7 +1771,7 @@ ID_FORCE_INLINE void idVecX::SetData( int length, float *data ) {
 	VECX_CLEAREND();
 }
 
-ID_FORCE_INLINE void idVecX::Zero( void ) {
+ID_INLINE void idVecX::Zero( void ) {
 #ifdef VECX_SIMD
 	SIMDProcessor->Zero16( p, size );
 #else
@@ -1779,7 +1779,7 @@ ID_FORCE_INLINE void idVecX::Zero( void ) {
 #endif
 }
 
-ID_FORCE_INLINE void idVecX::Zero( int length ) {
+ID_INLINE void idVecX::Zero( int length ) {
 	SetSize( length );
 #ifdef VECX_SIMD
 	SIMDProcessor->Zero16( p, length );
@@ -1788,7 +1788,7 @@ ID_FORCE_INLINE void idVecX::Zero( int length ) {
 #endif
 }
 
-ID_FORCE_INLINE void idVecX::Random( int seed, float l, float u ) {
+ID_INLINE void idVecX::Random( int seed, float l, float u ) {
 	int i;
 	float c;
 	idRandom rnd( seed );
@@ -1799,7 +1799,7 @@ ID_FORCE_INLINE void idVecX::Random( int seed, float l, float u ) {
 	}
 }
 
-ID_FORCE_INLINE void idVecX::Random( int length, int seed, float l, float u ) {
+ID_INLINE void idVecX::Random( int length, int seed, float l, float u ) {
 	int i;
 	float c;
 	idRandom rnd( seed );
@@ -1811,7 +1811,7 @@ ID_FORCE_INLINE void idVecX::Random( int length, int seed, float l, float u ) {
 	}
 }
 
-ID_FORCE_INLINE void idVecX::Negate( void ) {
+ID_INLINE void idVecX::Negate( void ) {
 #ifdef VECX_SIMD
 	SIMDProcessor->Negate16( p, size );
 #else
@@ -1822,7 +1822,7 @@ ID_FORCE_INLINE void idVecX::Negate( void ) {
 #endif
 }
 
-ID_FORCE_INLINE void idVecX::Clamp( float min, float max ) {
+ID_INLINE void idVecX::Clamp( float min, float max ) {
 	int i;
 	for ( i = 0; i < size; i++ ) {
 		if ( p[i] < min ) {
@@ -1833,7 +1833,7 @@ ID_FORCE_INLINE void idVecX::Clamp( float min, float max ) {
 	}
 }
 
-ID_FORCE_INLINE idVecX &idVecX::SwapElements( int e1, int e2 ) {
+ID_INLINE idVecX &idVecX::SwapElements( int e1, int e2 ) {
 	float tmp;
 	tmp = p[e1];
 	p[e1] = p[e2];
@@ -1841,7 +1841,7 @@ ID_FORCE_INLINE idVecX &idVecX::SwapElements( int e1, int e2 ) {
 	return *this;
 }
 
-ID_FORCE_INLINE float idVecX::Length( void ) const {
+ID_INLINE float idVecX::Length( void ) const {
 	int i;
 	float sum = 0.0f;
 
@@ -1851,7 +1851,7 @@ ID_FORCE_INLINE float idVecX::Length( void ) const {
 	return idMath::Sqrt( sum );
 }
 
-ID_FORCE_INLINE float idVecX::LengthSqr( void ) const {
+ID_INLINE float idVecX::LengthSqr( void ) const {
 	int i;
 	float sum = 0.0f;
 
@@ -1861,7 +1861,7 @@ ID_FORCE_INLINE float idVecX::LengthSqr( void ) const {
 	return sum;
 }
 
-ID_FORCE_INLINE idVecX idVecX::Normalize( void ) const {
+ID_INLINE idVecX idVecX::Normalize( void ) const {
 	int i;
 	idVecX m;
 	float invSqrt, sum = 0.0f;
@@ -1877,7 +1877,7 @@ ID_FORCE_INLINE idVecX idVecX::Normalize( void ) const {
 	return m;
 }
 
-ID_FORCE_INLINE float idVecX::NormalizeSelf( void ) {
+ID_INLINE float idVecX::NormalizeSelf( void ) {
 	float invSqrt, sum = 0.0f;
 	int i;
 	for ( i = 0; i < size; i++ ) {
@@ -1890,35 +1890,35 @@ ID_FORCE_INLINE float idVecX::NormalizeSelf( void ) {
 	return invSqrt * sum;
 }
 
-ID_FORCE_INLINE int idVecX::GetDimension( void ) const {
+ID_INLINE int idVecX::GetDimension( void ) const {
 	return size;
 }
 
-ID_FORCE_INLINE idVec3 &idVecX::SubVec3( int index ) {
+ID_INLINE idVec3 &idVecX::SubVec3( int index ) {
 	assert( index >= 0 && index * 3 + 3 <= size );
 	return *reinterpret_cast<idVec3 *>(p + index * 3);
 }
 
-ID_FORCE_INLINE const idVec3 &idVecX::SubVec3( int index ) const {
+ID_INLINE const idVec3 &idVecX::SubVec3( int index ) const {
 	assert( index >= 0 && index * 3 + 3 <= size );
 	return *reinterpret_cast<const idVec3 *>(p + index * 3);
 }
 
-ID_FORCE_INLINE idVec6 &idVecX::SubVec6( int index ) {
+ID_INLINE idVec6 &idVecX::SubVec6( int index ) {
 	assert( index >= 0 && index * 6 + 6 <= size );
 	return *reinterpret_cast<idVec6 *>(p + index * 6);
 }
 
-ID_FORCE_INLINE const idVec6 &idVecX::SubVec6( int index ) const {
+ID_INLINE const idVec6 &idVecX::SubVec6( int index ) const {
 	assert( index >= 0 && index * 6 + 6 <= size );
 	return *reinterpret_cast<const idVec6 *>(p + index * 6);
 }
 
-ID_FORCE_INLINE const float *idVecX::ToFloatPtr( void ) const {
+ID_INLINE const float *idVecX::ToFloatPtr( void ) const {
 	return p;
 }
 
-ID_FORCE_INLINE float *idVecX::ToFloatPtr( void ) {
+ID_INLINE float *idVecX::ToFloatPtr( void ) {
 	return p;
 }
 
@@ -1946,50 +1946,50 @@ public:
 	idVec3			ToVec3( void ) const;
 };
 
-ID_FORCE_INLINE idPolar3::idPolar3( void ) {
+ID_INLINE idPolar3::idPolar3( void ) {
 }
 
-ID_FORCE_INLINE idPolar3::idPolar3( const float radius, const float theta, const float phi ) {
+ID_INLINE idPolar3::idPolar3( const float radius, const float theta, const float phi ) {
 	assert( radius > 0 );
 	this->radius = radius;
 	this->theta = theta;
 	this->phi = phi;
 }
 
-ID_FORCE_INLINE idPolar3::idPolar3( const idVec3 vec3 ) {
+ID_INLINE idPolar3::idPolar3( const idVec3 vec3 ) {
 	assert( vec3.x > 0 );
 	this->radius = vec3.x;
 	this->theta = vec3.y;
 	this->phi = vec3.z;
 }
 
-ID_FORCE_INLINE void idPolar3::Set( const float radius, const float theta, const float phi ) {
+ID_INLINE void idPolar3::Set( const float radius, const float theta, const float phi ) {
 	assert( radius > 0 );
 	this->radius = radius;
 	this->theta = theta;
 	this->phi = phi;
 }
 
-ID_FORCE_INLINE float idPolar3::operator[]( const int index ) const {
+ID_INLINE float idPolar3::operator[]( const int index ) const {
 	return ( &radius )[ index ];
 }
 
-ID_FORCE_INLINE float &idPolar3::operator[]( const int index ) {
+ID_INLINE float &idPolar3::operator[]( const int index ) {
 	return ( &radius )[ index ];
 }
 
-ID_FORCE_INLINE idPolar3 idPolar3::operator-() const {
+ID_INLINE idPolar3 idPolar3::operator-() const {
 	return idPolar3( radius, -theta, -phi );
 }
 
-ID_FORCE_INLINE idPolar3 &idPolar3::operator=( const idPolar3 &a ) {
+ID_INLINE idPolar3 &idPolar3::operator=( const idPolar3 &a ) {
 	radius = a.radius;
 	theta = a.theta;
 	phi = a.phi;
 	return *this;
 }
 
-ID_FORCE_INLINE idVec3 idPolar3::ToVec3( void ) const {
+ID_INLINE idVec3 idPolar3::ToVec3( void ) const {
 	float sp, cp, st, ct;
 	idMath::SinCos( phi, sp, cp );
 	idMath::SinCos( theta, st, ct );

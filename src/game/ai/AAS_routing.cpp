@@ -663,7 +663,7 @@ idReachability *idAASLocal::GetAreaReachability( int areaNum, int reachabilityNu
 idAASLocal::ClusterAreaNum
 ============
 */
-ID_FORCE_INLINE int idAASLocal::ClusterAreaNum( int clusterNum, int areaNum ) const {
+ID_INLINE int idAASLocal::ClusterAreaNum( int clusterNum, int areaNum ) const {
 	int side, areaCluster;
 	areaCluster = file->GetArea( areaNum ).cluster;
 	if( areaCluster > 0 ) {

@@ -30,7 +30,7 @@
 #endif
 
 #ifdef MACOS_X
-// greebo: Include this for ID_FORCE_INLINE
+// greebo: Include this for ID_INLINE
 #include "../../sys/sys_public.h"
 
 // for square root estimate instruction
@@ -93,19 +93,19 @@
 #define IEEE_DBLE_EXPONENT_BIAS	0
 #define IEEE_DBLE_SIGN_BIT		79
 
-template<class T> ID_FORCE_INLINE T	Max( T x, T y ) { return ( x > y ) ? x : y; }
-template<class T> ID_FORCE_INLINE T	Min( T x, T y ) { return ( x < y ) ? x : y; }
-template<class T> ID_FORCE_INLINE int	MaxIndex( T x, T y ) { return  ( x > y ) ? 0 : 1; }
-template<class T> ID_FORCE_INLINE int	MinIndex( T x, T y ) { return ( x < y ) ? 0 : 1; }
+template<class T> ID_INLINE T	Max( T x, T y ) { return ( x > y ) ? x : y; }
+template<class T> ID_INLINE T	Min( T x, T y ) { return ( x < y ) ? x : y; }
+template<class T> ID_INLINE int	MaxIndex( T x, T y ) { return  ( x > y ) ? 0 : 1; }
+template<class T> ID_INLINE int	MinIndex( T x, T y ) { return ( x < y ) ? 0 : 1; }
 
-template<class T> ID_FORCE_INLINE T	Max3( T x, T y, T z ) { return ( x > y ) ? ( ( x > z ) ? x : z ) : ( ( y > z ) ? y : z ); }
-template<class T> ID_FORCE_INLINE T	Min3( T x, T y, T z ) { return ( x < y ) ? ( ( x < z ) ? x : z ) : ( ( y < z ) ? y : z ); }
-template<class T> ID_FORCE_INLINE int	Max3Index( T x, T y, T z ) { return ( x > y ) ? ( ( x > z ) ? 0 : 2 ) : ( ( y > z ) ? 1 : 2 ); }
-template<class T> ID_FORCE_INLINE int	Min3Index( T x, T y, T z ) { return ( x < y ) ? ( ( x < z ) ? 0 : 2 ) : ( ( y < z ) ? 1 : 2 ); }
+template<class T> ID_INLINE T	Max3( T x, T y, T z ) { return ( x > y ) ? ( ( x > z ) ? x : z ) : ( ( y > z ) ? y : z ); }
+template<class T> ID_INLINE T	Min3( T x, T y, T z ) { return ( x < y ) ? ( ( x < z ) ? x : z ) : ( ( y < z ) ? y : z ); }
+template<class T> ID_INLINE int	Max3Index( T x, T y, T z ) { return ( x > y ) ? ( ( x > z ) ? 0 : 2 ) : ( ( y > z ) ? 1 : 2 ); }
+template<class T> ID_INLINE int	Min3Index( T x, T y, T z ) { return ( x < y ) ? ( ( x < z ) ? 0 : 2 ) : ( ( y < z ) ? 1 : 2 ); }
 
-template<class T> ID_FORCE_INLINE T	Sign( T f ) { return ( f > 0 ) ? 1 : ( ( f < 0 ) ? -1 : 0 ); }
-template<class T> ID_FORCE_INLINE T	Square( T x ) { return x * x; }
-template<class T> ID_FORCE_INLINE T	Cube( T x ) { return x * x * x; }
+template<class T> ID_INLINE T	Sign( T f ) { return ( f > 0 ) ? 1 : ( ( f < 0 ) ? -1 : 0 ); }
+template<class T> ID_INLINE T	Square( T x ) { return x * x; }
+template<class T> ID_INLINE T	Cube( T x ) { return x * x * x; }
 
 class idMath {
 public:
@@ -241,7 +241,7 @@ private:
 	static bool					initialized;
 };
 
-ID_FORCE_INLINE float idMath::RSqrt( float x ) {
+ID_INLINE float idMath::RSqrt( float x ) {
 	long i;
 	float y, r;
 
@@ -253,7 +253,7 @@ ID_FORCE_INLINE float idMath::RSqrt( float x ) {
 	return r;
 }
 
-ID_FORCE_INLINE float idMath::InvSqrt16( float x ) {
+ID_INLINE float idMath::InvSqrt16( float x ) {
 	dword a = ((union _flint*)(&x))->i;
 	union _flint seed;
 
@@ -266,7 +266,7 @@ ID_FORCE_INLINE float idMath::InvSqrt16( float x ) {
 	return (float) r;
 }
 
-ID_FORCE_INLINE float idMath::InvSqrt( float x ) {
+ID_INLINE float idMath::InvSqrt( float x ) {
 	dword a = ((union _flint*)(&x))->i;
 	union _flint seed;
 
@@ -280,7 +280,7 @@ ID_FORCE_INLINE float idMath::InvSqrt( float x ) {
 	return (float) r;
 }
 
-ID_FORCE_INLINE double idMath::InvSqrt64( float x ) {
+ID_INLINE double idMath::InvSqrt64( float x ) {
 	dword a = ((union _flint*)(&x))->i;
 	union _flint seed;
 
@@ -295,23 +295,23 @@ ID_FORCE_INLINE double idMath::InvSqrt64( float x ) {
 	return r;
 }
 
-ID_FORCE_INLINE float idMath::Sqrt16( float x ) {
+ID_INLINE float idMath::Sqrt16( float x ) {
 	return x * InvSqrt16( x );
 }
 
-ID_FORCE_INLINE float idMath::Sqrt( float x ) {
+ID_INLINE float idMath::Sqrt( float x ) {
 	return x * InvSqrt( x );
 }
 
-ID_FORCE_INLINE double idMath::Sqrt64( float x ) {
+ID_INLINE double idMath::Sqrt64( float x ) {
 	return x * InvSqrt64( x );
 }
 
-ID_FORCE_INLINE float idMath::Sin( float a ) {
+ID_INLINE float idMath::Sin( float a ) {
 	return sinf( a );
 }
 
-ID_FORCE_INLINE float idMath::Sin16( float a ) {
+ID_INLINE float idMath::Sin16( float a ) {
 	float s;
 
 	if ( ( a < 0.0f ) || ( a >= TWO_PI ) ) {
@@ -339,15 +339,15 @@ ID_FORCE_INLINE float idMath::Sin16( float a ) {
 	return a * ( ( ( ( ( -2.39e-08f * s + 2.7526e-06f ) * s - 1.98409e-04f ) * s + 8.3333315e-03f ) * s - 1.666666664e-01f ) * s + 1.0f );
 }
 
-ID_FORCE_INLINE double idMath::Sin64( float a ) {
+ID_INLINE double idMath::Sin64( float a ) {
 	return sin( a );
 }
 
-ID_FORCE_INLINE float idMath::Cos( float a ) {
+ID_INLINE float idMath::Cos( float a ) {
 	return cosf( a );
 }
 
-ID_FORCE_INLINE float idMath::Cos16( float a ) {
+ID_INLINE float idMath::Cos16( float a ) {
 	float s, d;
 
 	if ( ( a < 0.0f ) || ( a >= TWO_PI ) ) {
@@ -383,11 +383,11 @@ ID_FORCE_INLINE float idMath::Cos16( float a ) {
 	return d * ( ( ( ( ( -2.605e-07f * s + 2.47609e-05f ) * s - 1.3888397e-03f ) * s + 4.16666418e-02f ) * s - 4.999999963e-01f ) * s + 1.0f );
 }
 
-ID_FORCE_INLINE double idMath::Cos64( float a ) {
+ID_INLINE double idMath::Cos64( float a ) {
 	return cos( a );
 }
 
-ID_FORCE_INLINE void idMath::SinCos( float a, float &s, float &c ) {
+ID_INLINE void idMath::SinCos( float a, float &s, float &c ) {
 #ifdef _WIN32
 	_asm {
 		fld		a
@@ -403,7 +403,7 @@ ID_FORCE_INLINE void idMath::SinCos( float a, float &s, float &c ) {
 #endif
 }
 
-ID_FORCE_INLINE void idMath::SinCos16( float a, float &s, float &c ) {
+ID_INLINE void idMath::SinCos16( float a, float &s, float &c ) {
 	float t, d;
 
 	if ( ( a < 0.0f ) || ( a >= idMath::TWO_PI ) ) {
@@ -440,7 +440,7 @@ ID_FORCE_INLINE void idMath::SinCos16( float a, float &s, float &c ) {
 	c = d * ( ( ( ( ( -2.605e-07f * t + 2.47609e-05f ) * t - 1.3888397e-03f ) * t + 4.16666418e-02f ) * t - 4.999999963e-01f ) * t + 1.0f );
 }
 
-ID_FORCE_INLINE void idMath::SinCos64( float a, double &s, double &c ) {
+ID_INLINE void idMath::SinCos64( float a, double &s, double &c ) {
 #ifdef _WIN32
 	_asm {
 		fld		a
@@ -456,11 +456,11 @@ ID_FORCE_INLINE void idMath::SinCos64( float a, double &s, double &c ) {
 #endif
 }
 
-ID_FORCE_INLINE float idMath::Tan( float a ) {
+ID_INLINE float idMath::Tan( float a ) {
 	return tanf( a );
 }
 
-ID_FORCE_INLINE float idMath::Tan16( float a ) {
+ID_INLINE float idMath::Tan16( float a ) {
 	float s;
 	bool reciprocal;
 
@@ -502,11 +502,11 @@ ID_FORCE_INLINE float idMath::Tan16( float a ) {
 	}
 }
 
-ID_FORCE_INLINE double idMath::Tan64( float a ) {
+ID_INLINE double idMath::Tan64( float a ) {
 	return tan( a );
 }
 
-ID_FORCE_INLINE float idMath::ASin( float a ) {
+ID_INLINE float idMath::ASin( float a ) {
 	if ( a <= -1.0f ) {
 		return -HALF_PI;
 	}
@@ -516,7 +516,7 @@ ID_FORCE_INLINE float idMath::ASin( float a ) {
 	return asinf( a );
 }
 
-ID_FORCE_INLINE float idMath::ASin16( float a ) {
+ID_INLINE float idMath::ASin16( float a ) {
 	if ( FLOATSIGNBITSET( a ) ) {
 		if ( a <= -1.0f ) {
 			return -HALF_PI;
@@ -531,7 +531,7 @@ ID_FORCE_INLINE float idMath::ASin16( float a ) {
 	}
 }
 
-ID_FORCE_INLINE double idMath::ASin64( float a ) {
+ID_INLINE double idMath::ASin64( float a ) {
 	if ( a <= -1.0f ) {
 		return -HALF_PI;
 	}
@@ -541,7 +541,7 @@ ID_FORCE_INLINE double idMath::ASin64( float a ) {
 	return asin( a );
 }
 
-ID_FORCE_INLINE float idMath::ACos( float a ) {
+ID_INLINE float idMath::ACos( float a ) {
 	if ( a <= -1.0f ) {
 		return PI;
 	}
@@ -551,7 +551,7 @@ ID_FORCE_INLINE float idMath::ACos( float a ) {
 	return acosf( a );
 }
 
-ID_FORCE_INLINE float idMath::ACos16( float a ) {
+ID_INLINE float idMath::ACos16( float a ) {
 	if ( FLOATSIGNBITSET( a ) ) {
 		if ( a <= -1.0f ) {
 			return PI;
@@ -566,7 +566,7 @@ ID_FORCE_INLINE float idMath::ACos16( float a ) {
 	}
 }
 
-ID_FORCE_INLINE double idMath::ACos64( float a ) {
+ID_INLINE double idMath::ACos64( float a ) {
 	if ( a <= -1.0f ) {
 		return PI;
 	}
@@ -576,11 +576,11 @@ ID_FORCE_INLINE double idMath::ACos64( float a ) {
 	return acos( a );
 }
 
-ID_FORCE_INLINE float idMath::ATan( float a ) {
+ID_INLINE float idMath::ATan( float a ) {
 	return atanf( a );
 }
 
-ID_FORCE_INLINE float idMath::ATan16( float a ) {
+ID_INLINE float idMath::ATan16( float a ) {
 	float s;
 
 	if ( fabs( a ) > 1.0f ) {
@@ -600,15 +600,15 @@ ID_FORCE_INLINE float idMath::ATan16( float a ) {
 	}
 }
 
-ID_FORCE_INLINE double idMath::ATan64( float a ) {
+ID_INLINE double idMath::ATan64( float a ) {
 	return atan( a );
 }
 
-ID_FORCE_INLINE float idMath::ATan( float y, float x ) {
+ID_INLINE float idMath::ATan( float y, float x ) {
 	return atan2f( y, x );
 }
 
-ID_FORCE_INLINE float idMath::ATan16( float y, float x ) {
+ID_INLINE float idMath::ATan16( float y, float x ) {
 	float a, s;
 
 	if ( fabs( y ) > fabs( x ) ) {
@@ -629,27 +629,27 @@ ID_FORCE_INLINE float idMath::ATan16( float y, float x ) {
 	}
 }
 
-ID_FORCE_INLINE double idMath::ATan64( float y, float x ) {
+ID_INLINE double idMath::ATan64( float y, float x ) {
 	return atan2( y, x );
 }
 
-ID_FORCE_INLINE float idMath::Pow( float x, float y ) {
+ID_INLINE float idMath::Pow( float x, float y ) {
 	return powf( x, y );
 }
 
-ID_FORCE_INLINE float idMath::Pow16( float x, float y ) {
+ID_INLINE float idMath::Pow16( float x, float y ) {
 	return Exp16( y * Log16( x ) );
 }
 
-ID_FORCE_INLINE double idMath::Pow64( float x, float y ) {
+ID_INLINE double idMath::Pow64( float x, float y ) {
 	return pow( x, y );
 }
 
-ID_FORCE_INLINE float idMath::Exp( float f ) {
+ID_INLINE float idMath::Exp( float f ) {
 	return expf( f );
 }
 
-ID_FORCE_INLINE float idMath::Exp16( float f ) {
+ID_INLINE float idMath::Exp16( float f ) {
 	int i, s, e, m, exponent;
 	float x, x2, y, p, q;
 
@@ -680,15 +680,15 @@ ID_FORCE_INLINE float idMath::Exp16( float f ) {
 	return x;
 }
 
-ID_FORCE_INLINE double idMath::Exp64( float f ) {
+ID_INLINE double idMath::Exp64( float f ) {
 	return exp( f );
 }
 
-ID_FORCE_INLINE float idMath::Log( float f ) {
+ID_INLINE float idMath::Log( float f ) {
 	return logf( f );
 }
 
-ID_FORCE_INLINE float idMath::Log16( float f ) {
+ID_INLINE float idMath::Log16( float f ) {
 	int i, exponent;
 	float y, y2;
 
@@ -704,43 +704,43 @@ ID_FORCE_INLINE float idMath::Log16( float f ) {
 	return y;
 }
 
-ID_FORCE_INLINE double idMath::Log64( float f ) {
+ID_INLINE double idMath::Log64( float f ) {
 	return log( f );
 }
 
-ID_FORCE_INLINE int idMath::IPow( int x, int y ) {
+ID_INLINE int idMath::IPow( int x, int y ) {
 	int r; for( r = x; y > 1; y-- ) { r *= x; } return r;
 }
 
-ID_FORCE_INLINE int idMath::ILog2( float f ) {
+ID_INLINE int idMath::ILog2( float f ) {
 	return ( ( (*reinterpret_cast<int *>(&f)) >> IEEE_FLT_MANTISSA_BITS ) & ( ( 1 << IEEE_FLT_EXPONENT_BITS ) - 1 ) ) - IEEE_FLT_EXPONENT_BIAS;
 }
 
-ID_FORCE_INLINE int idMath::ILog2( int i ) {
+ID_INLINE int idMath::ILog2( int i ) {
 	return ILog2( (float)i );
 }
 
-ID_FORCE_INLINE int idMath::BitsForFloat( float f ) {
+ID_INLINE int idMath::BitsForFloat( float f ) {
 	return ILog2( f ) + 1;
 }
 
-ID_FORCE_INLINE int idMath::BitsForInteger( int i ) {
+ID_INLINE int idMath::BitsForInteger( int i ) {
 	return ILog2( (float)i ) + 1;
 }
 
-ID_FORCE_INLINE int idMath::MaskForFloatSign( float f ) {
+ID_INLINE int idMath::MaskForFloatSign( float f ) {
 	return ( (*reinterpret_cast<int *>(&f)) >> 31 );
 }
 
-ID_FORCE_INLINE int idMath::MaskForIntegerSign( int i ) {
+ID_INLINE int idMath::MaskForIntegerSign( int i ) {
 	return ( i >> 31 );
 }
 
-ID_FORCE_INLINE int idMath::FloorPowerOfTwo( int x ) {
+ID_INLINE int idMath::FloorPowerOfTwo( int x ) {
 	return CeilPowerOfTwo( x ) >> 1;
 }
 
-ID_FORCE_INLINE int idMath::CeilPowerOfTwo( int x ) {
+ID_INLINE int idMath::CeilPowerOfTwo( int x ) {
 	x--;
 	x |= x >> 1;
 	x |= x >> 2;
@@ -751,11 +751,11 @@ ID_FORCE_INLINE int idMath::CeilPowerOfTwo( int x ) {
 	return x;
 }
 
-ID_FORCE_INLINE bool idMath::IsPowerOfTwo( int x ) {
+ID_INLINE bool idMath::IsPowerOfTwo( int x ) {
 	return ( x & ( x - 1 ) ) == 0 && x > 0;
 }
 
-ID_FORCE_INLINE int idMath::BitCount( int x ) {
+ID_INLINE int idMath::BitCount( int x ) {
 	x -= ( ( x >> 1 ) & 0x55555555 );
 	x = ( ( ( x >> 2 ) & 0x33333333 ) + ( x & 0x33333333 ) );
 	x = ( ( ( x >> 4 ) + x ) & 0x0f0f0f0f );
@@ -763,7 +763,7 @@ ID_FORCE_INLINE int idMath::BitCount( int x ) {
 	return ( ( x + ( x >> 16 ) ) & 0x0000003f );
 }
 
-ID_FORCE_INLINE int idMath::BitReverse( int x ) {
+ID_INLINE int idMath::BitReverse( int x ) {
 	x = ( ( ( x >> 1 ) & 0x55555555 ) | ( ( x & 0x55555555 ) << 1 ) );
 	x = ( ( ( x >> 2 ) & 0x33333333 ) | ( ( x & 0x33333333 ) << 2 ) );
 	x = ( ( ( x >> 4 ) & 0x0f0f0f0f ) | ( ( x & 0x0f0f0f0f ) << 4 ) );
@@ -771,34 +771,34 @@ ID_FORCE_INLINE int idMath::BitReverse( int x ) {
 	return ( ( x >> 16 ) | ( x << 16 ) );
 }
 
-ID_FORCE_INLINE int idMath::Abs( int x ) {
+ID_INLINE int idMath::Abs( int x ) {
    int y = x >> 31;
    return ( ( x ^ y ) - y );
 }
 
-ID_FORCE_INLINE float idMath::Fabs( float f ) {
+ID_INLINE float idMath::Fabs( float f ) {
 	int tmp = *reinterpret_cast<int *>( &f );
 	tmp &= 0x7FFFFFFF;
 	return *reinterpret_cast<float *>( &tmp );
 }
 
-ID_FORCE_INLINE float idMath::Floor( float f ) {
+ID_INLINE float idMath::Floor( float f ) {
 	return floorf( f );
 }
 
-ID_FORCE_INLINE float idMath::Ceil( float f ) {
+ID_INLINE float idMath::Ceil( float f ) {
 	return ceilf( f );
 }
 
-ID_FORCE_INLINE float idMath::Rint( float f ) {
+ID_INLINE float idMath::Rint( float f ) {
 	return floorf( f + 0.5f );
 }
 
-ID_FORCE_INLINE int idMath::Ftoi( float f ) {
+ID_INLINE int idMath::Ftoi( float f ) {
 	return (int) f;
 }
 
-ID_FORCE_INLINE int idMath::FtoiFast( float f ) {
+ID_INLINE int idMath::FtoiFast( float f ) {
 #ifdef _WIN32
 	int i;
 	__asm fld		f
@@ -826,11 +826,11 @@ ID_FORCE_INLINE int idMath::FtoiFast( float f ) {
 #endif
 }
 
-ID_FORCE_INLINE unsigned long idMath::Ftol( float f ) {
+ID_INLINE unsigned long idMath::Ftol( float f ) {
 	return (unsigned long) f;
 }
 
-ID_FORCE_INLINE unsigned long idMath::FtolFast( float f ) {
+ID_INLINE unsigned long idMath::FtolFast( float f ) {
 #ifdef _WIN32
 	// FIXME: this overflows on 31bits still .. same as FtoiFast
 	unsigned long i;
@@ -860,7 +860,7 @@ ID_FORCE_INLINE unsigned long idMath::FtolFast( float f ) {
 #endif
 }
 
-ID_FORCE_INLINE signed char idMath::ClampChar( int i ) {
+ID_INLINE signed char idMath::ClampChar( int i ) {
 	if ( i < -128 ) {
 		return -128;
 	}
@@ -870,7 +870,7 @@ ID_FORCE_INLINE signed char idMath::ClampChar( int i ) {
 	return i;
 }
 
-ID_FORCE_INLINE signed short idMath::ClampShort( int i ) {
+ID_INLINE signed short idMath::ClampShort( int i ) {
 	if ( i < -32768 ) {
 		return -32768;
 	}
@@ -880,7 +880,7 @@ ID_FORCE_INLINE signed short idMath::ClampShort( int i ) {
 	return i;
 }
 
-ID_FORCE_INLINE int idMath::ClampInt( int min, int max, int value ) {
+ID_INLINE int idMath::ClampInt( int min, int max, int value ) {
 	if ( value < min ) {
 		return min;
 	}
@@ -890,7 +890,7 @@ ID_FORCE_INLINE int idMath::ClampInt( int min, int max, int value ) {
 	return value;
 }
 
-ID_FORCE_INLINE float idMath::ClampFloat( float min, float max, float value ) {
+ID_INLINE float idMath::ClampFloat( float min, float max, float value ) {
 	if ( value < min ) {
 		return min;
 	}
@@ -901,7 +901,7 @@ ID_FORCE_INLINE float idMath::ClampFloat( float min, float max, float value ) {
 }
 
 // added a version to clamp byte values (revelator)
-ID_FORCE_INLINE byte idMath::ClampByte(byte min, byte max, int value) {
+ID_INLINE byte idMath::ClampByte(byte min, byte max, int value) {
 	if (value < min) {
 		return min;
 	}
@@ -911,14 +911,14 @@ ID_FORCE_INLINE byte idMath::ClampByte(byte min, byte max, int value) {
 	return value;
 }
 
-ID_FORCE_INLINE float idMath::AngleNormalize360( float angle ) {
+ID_INLINE float idMath::AngleNormalize360( float angle ) {
 	if ( ( angle >= 360.0f ) || ( angle < 0.0f ) ) {
 		angle -= floor( angle / 360.0f ) * 360.0f;
 	}
 	return angle;
 }
 
-ID_FORCE_INLINE float idMath::AngleNormalize180( float angle ) {
+ID_INLINE float idMath::AngleNormalize180( float angle ) {
 	angle = AngleNormalize360( angle );
 	if ( angle > 180.0f ) {
 		angle -= 360.0f;
@@ -926,11 +926,11 @@ ID_FORCE_INLINE float idMath::AngleNormalize180( float angle ) {
 	return angle;
 }
 
-ID_FORCE_INLINE float idMath::AngleDelta( float angle1, float angle2 ) {
+ID_INLINE float idMath::AngleDelta( float angle1, float angle2 ) {
 	return AngleNormalize180( angle1 - angle2 );
 }
 
-ID_FORCE_INLINE int idMath::FloatHash( const float *array, const int numFloats ) {
+ID_INLINE int idMath::FloatHash( const float *array, const int numFloats ) {
 	int i, hash = 0;
 	const int *ptr;
 

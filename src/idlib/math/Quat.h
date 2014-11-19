@@ -89,31 +89,31 @@ public:
 	idQuat &		Slerp( const idQuat &from, const idQuat &to, float t );
 };
 
-ID_FORCE_INLINE idQuat::idQuat( void ) {
+ID_INLINE idQuat::idQuat( void ) {
 }
 
-ID_FORCE_INLINE idQuat::idQuat( float x, float y, float z, float w ) {
+ID_INLINE idQuat::idQuat( float x, float y, float z, float w ) {
 	this->x = x;
 	this->y = y;
 	this->z = z;
 	this->w = w;
 }
 
-ID_FORCE_INLINE float idQuat::operator[]( int index ) const {
+ID_INLINE float idQuat::operator[]( int index ) const {
 	assert( ( index >= 0 ) && ( index < 4 ) );
 	return ( &x )[ index ];
 }
 
-ID_FORCE_INLINE float& idQuat::operator[]( int index ) {
+ID_INLINE float& idQuat::operator[]( int index ) {
 	assert( ( index >= 0 ) && ( index < 4 ) );
 	return ( &x )[ index ];
 }
 
-ID_FORCE_INLINE idQuat idQuat::operator-() const {
+ID_INLINE idQuat idQuat::operator-() const {
 	return idQuat( -x, -y, -z, -w );
 }
 
-ID_FORCE_INLINE idQuat &idQuat::operator=( const idQuat &a ) {
+ID_INLINE idQuat &idQuat::operator=( const idQuat &a ) {
 	x = a.x;
 	y = a.y;
 	z = a.z;
@@ -122,11 +122,11 @@ ID_FORCE_INLINE idQuat &idQuat::operator=( const idQuat &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idQuat idQuat::operator+( const idQuat &a ) const {
+ID_INLINE idQuat idQuat::operator+( const idQuat &a ) const {
 	return idQuat( x + a.x, y + a.y, z + a.z, w + a.w );
 }
 
-ID_FORCE_INLINE idQuat& idQuat::operator+=( const idQuat &a ) {
+ID_INLINE idQuat& idQuat::operator+=( const idQuat &a ) {
 	x += a.x;
 	y += a.y;
 	z += a.z;
@@ -135,11 +135,11 @@ ID_FORCE_INLINE idQuat& idQuat::operator+=( const idQuat &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idQuat idQuat::operator-( const idQuat &a ) const {
+ID_INLINE idQuat idQuat::operator-( const idQuat &a ) const {
 	return idQuat( x - a.x, y - a.y, z - a.z, w - a.w );
 }
 
-ID_FORCE_INLINE idQuat& idQuat::operator-=( const idQuat &a ) {
+ID_INLINE idQuat& idQuat::operator-=( const idQuat &a ) {
 	x -= a.x;
 	y -= a.y;
 	z -= a.z;
@@ -148,14 +148,14 @@ ID_FORCE_INLINE idQuat& idQuat::operator-=( const idQuat &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idQuat idQuat::operator*( const idQuat &a ) const {
+ID_INLINE idQuat idQuat::operator*( const idQuat &a ) const {
 	return idQuat(	w*a.x + x*a.w + y*a.z - z*a.y,
 					w*a.y + y*a.w + z*a.x - x*a.z,
 					w*a.z + z*a.w + x*a.y - y*a.x,
 					w*a.w - x*a.x - y*a.y - z*a.z );
 }
 
-ID_FORCE_INLINE idVec3 idQuat::operator*( const idVec3 &a ) const {
+ID_INLINE idVec3 idQuat::operator*( const idVec3 &a ) const {
 #if 0
 	// it's faster to do the conversion to a 3x3 matrix and multiply the vector by this 3x3 matrix
 	return ( ToMat3() * a );
@@ -179,25 +179,25 @@ ID_FORCE_INLINE idVec3 idQuat::operator*( const idVec3 &a ) const {
 #endif
 }
 
-ID_FORCE_INLINE idQuat idQuat::operator*( float a ) const {
+ID_INLINE idQuat idQuat::operator*( float a ) const {
 	return idQuat( x * a, y * a, z * a, w * a );
 }
 
-ID_FORCE_INLINE idQuat operator*( const float a, const idQuat &b ) {
+ID_INLINE idQuat operator*( const float a, const idQuat &b ) {
 	return b * a;
 }
 
-ID_FORCE_INLINE idVec3 operator*( const idVec3 &a, const idQuat &b ) {
+ID_INLINE idVec3 operator*( const idVec3 &a, const idQuat &b ) {
 	return b * a;
 }
 
-ID_FORCE_INLINE idQuat& idQuat::operator*=( const idQuat &a ) {
+ID_INLINE idQuat& idQuat::operator*=( const idQuat &a ) {
 	*this = *this * a;
 
 	return *this;
 }
 
-ID_FORCE_INLINE idQuat& idQuat::operator*=( float a ) {
+ID_INLINE idQuat& idQuat::operator*=( float a ) {
 	x *= a;
 	y *= a;
 	z *= a;
@@ -206,11 +206,11 @@ ID_FORCE_INLINE idQuat& idQuat::operator*=( float a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE bool idQuat::Compare( const idQuat &a ) const {
+ID_INLINE bool idQuat::Compare( const idQuat &a ) const {
 	return ( ( x == a.x ) && ( y == a.y ) && ( z == a.z ) && ( w == a.w ) );
 }
 
-ID_FORCE_INLINE bool idQuat::Compare( const idQuat &a, const float epsilon ) const {
+ID_INLINE bool idQuat::Compare( const idQuat &a, const float epsilon ) const {
 	if ( idMath::Fabs( x - a.x ) > epsilon ) {
 		return false;
 	}
@@ -226,33 +226,33 @@ ID_FORCE_INLINE bool idQuat::Compare( const idQuat &a, const float epsilon ) con
 	return true;
 }
 
-ID_FORCE_INLINE bool idQuat::operator==( const idQuat &a ) const {
+ID_INLINE bool idQuat::operator==( const idQuat &a ) const {
 	return Compare( a );
 }
 
-ID_FORCE_INLINE bool idQuat::operator!=( const idQuat &a ) const {
+ID_INLINE bool idQuat::operator!=( const idQuat &a ) const {
 	return !Compare( a );
 }
 
-ID_FORCE_INLINE void idQuat::Set( float x, float y, float z, float w ) {
+ID_INLINE void idQuat::Set( float x, float y, float z, float w ) {
 	this->x = x;
 	this->y = y;
 	this->z = z;
 	this->w = w;
 }
 
-ID_FORCE_INLINE idQuat idQuat::Inverse( void ) const {
+ID_INLINE idQuat idQuat::Inverse( void ) const {
 	return idQuat( -x, -y, -z, w );
 }
 
-ID_FORCE_INLINE float idQuat::Length( void ) const {
+ID_INLINE float idQuat::Length( void ) const {
 	float len;
 
 	len = x * x + y * y + z * z + w * w;
 	return idMath::Sqrt( len );
 }
 
-ID_FORCE_INLINE idQuat& idQuat::Normalize( void ) {
+ID_INLINE idQuat& idQuat::Normalize( void ) {
 	float len;
 	float ilength;
 
@@ -267,20 +267,20 @@ ID_FORCE_INLINE idQuat& idQuat::Normalize( void ) {
 	return *this;
 }
 
-ID_FORCE_INLINE float idQuat::CalcW( void ) const {
+ID_INLINE float idQuat::CalcW( void ) const {
 	// take the absolute value because floating point rounding may cause the dot of x,y,z to be larger than 1
 	return sqrt( fabs( 1.0f - ( x * x + y * y + z * z ) ) );
 }
 
-ID_FORCE_INLINE int idQuat::GetDimension( void ) const {
+ID_INLINE int idQuat::GetDimension( void ) const {
 	return 4;
 }
 
-ID_FORCE_INLINE const float *idQuat::ToFloatPtr( void ) const {
+ID_INLINE const float *idQuat::ToFloatPtr( void ) const {
 	return &x;
 }
 
-ID_FORCE_INLINE float *idQuat::ToFloatPtr( void ) {
+ID_INLINE float *idQuat::ToFloatPtr( void ) {
 	return &x;
 }
 
@@ -323,36 +323,36 @@ public:
 	const char *	ToString( int precision = 2 ) const;
 };
 
-ID_FORCE_INLINE idCQuat::idCQuat( void ) {
+ID_INLINE idCQuat::idCQuat( void ) {
 }
 
-ID_FORCE_INLINE idCQuat::idCQuat( float x, float y, float z ) {
+ID_INLINE idCQuat::idCQuat( float x, float y, float z ) {
 	this->x = x;
 	this->y = y;
 	this->z = z;
 }
 
-ID_FORCE_INLINE void idCQuat::Set( float x, float y, float z ) {
+ID_INLINE void idCQuat::Set( float x, float y, float z ) {
 	this->x = x;
 	this->y = y;
 	this->z = z;
 }
 
-ID_FORCE_INLINE float idCQuat::operator[]( int index ) const {
+ID_INLINE float idCQuat::operator[]( int index ) const {
 	assert( ( index >= 0 ) && ( index < 3 ) );
 	return ( &x )[ index ];
 }
 
-ID_FORCE_INLINE float& idCQuat::operator[]( int index ) {
+ID_INLINE float& idCQuat::operator[]( int index ) {
 	assert( ( index >= 0 ) && ( index < 3 ) );
 	return ( &x )[ index ];
 }
 
-ID_FORCE_INLINE bool idCQuat::Compare( const idCQuat &a ) const {
+ID_INLINE bool idCQuat::Compare( const idCQuat &a ) const {
 	return ( ( x == a.x ) && ( y == a.y ) && ( z == a.z ) );
 }
 
-ID_FORCE_INLINE bool idCQuat::Compare( const idCQuat &a, const float epsilon ) const {
+ID_INLINE bool idCQuat::Compare( const idCQuat &a, const float epsilon ) const {
 	if ( idMath::Fabs( x - a.x ) > epsilon ) {
 		return false;
 	}
@@ -365,28 +365,28 @@ ID_FORCE_INLINE bool idCQuat::Compare( const idCQuat &a, const float epsilon ) c
 	return true;
 }
 
-ID_FORCE_INLINE bool idCQuat::operator==( const idCQuat &a ) const {
+ID_INLINE bool idCQuat::operator==( const idCQuat &a ) const {
 	return Compare( a );
 }
 
-ID_FORCE_INLINE bool idCQuat::operator!=( const idCQuat &a ) const {
+ID_INLINE bool idCQuat::operator!=( const idCQuat &a ) const {
 	return !Compare( a );
 }
 
-ID_FORCE_INLINE int idCQuat::GetDimension( void ) const {
+ID_INLINE int idCQuat::GetDimension( void ) const {
 	return 3;
 }
 
-ID_FORCE_INLINE idQuat idCQuat::ToQuat( void ) const {
+ID_INLINE idQuat idCQuat::ToQuat( void ) const {
 	// take the absolute value because floating point rounding may cause the dot of x,y,z to be larger than 1
 	return idQuat( x, y, z, sqrt( fabs( 1.0f - ( x * x + y * y + z * z ) ) ) );
 }
 
-ID_FORCE_INLINE const float *idCQuat::ToFloatPtr( void ) const {
+ID_INLINE const float *idCQuat::ToFloatPtr( void ) const {
 	return &x;
 }
 
-ID_FORCE_INLINE float *idCQuat::ToFloatPtr( void ) {
+ID_INLINE float *idCQuat::ToFloatPtr( void ) {
 	return &x;
 }
 

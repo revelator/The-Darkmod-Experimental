@@ -180,7 +180,7 @@ public:
 	/*!
 	* Get the number of spots in the entire tree
 	*/
-	ID_FORCE_INLINE unsigned long getNumSpots() {
+	ID_INLINE unsigned long getNumSpots() {
 		return numSpots;
 	}
 

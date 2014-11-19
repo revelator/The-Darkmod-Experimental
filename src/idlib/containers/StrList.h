@@ -40,7 +40,7 @@ Compares two pointers to strings. Used to sort a list of string pointers alphabe
 ================
 */
 template<>
-ID_FORCE_INLINE int idListSortCompare<idStrPtr>( const idStrPtr *a, const idStrPtr *b ) {
+ID_INLINE int idListSortCompare<idStrPtr>( const idStrPtr *a, const idStrPtr *b ) {
 	return ( *a )->Icmp( **b );
 }
 
@@ -53,7 +53,7 @@ pointer list. Then copies the strings into another list using the ordered list o
 ================
 */
 template<>
-ID_FORCE_INLINE void idStrList::Sort( cmp_t *compare ) {
+ID_INLINE void idStrList::Sort( cmp_t *compare ) {
 	int i;
 
 	if ( !num ) {
@@ -87,7 +87,7 @@ Sorts a subsection of the list of strings alphabetically.
 ================
 */
 template<>
-ID_FORCE_INLINE void idStrList::SortSubSection( int startIndex, int endIndex, cmp_t *compare ) {
+ID_INLINE void idStrList::SortSubSection( int startIndex, int endIndex, cmp_t *compare ) {
 	int i, s;
 
 	if ( !num ) {
@@ -127,7 +127,7 @@ idStrList::Size
 ================
 */
 template<>
-ID_FORCE_INLINE size_t idStrList::Size( void ) const {
+ID_INLINE size_t idStrList::Size( void ) const {
 	size_t s;
 	int i;
 
@@ -155,7 +155,7 @@ Compares two pointers to strings. Used to sort a list of string pointers alphabe
 ================
 */
 template<class idStrPtr>
-ID_FORCE_INLINE int idListSortComparePaths( const idStrPtr *a, const idStrPtr *b ) {
+ID_INLINE int idListSortComparePaths( const idStrPtr *a, const idStrPtr *b ) {
 	return ( *a )->IcmpPath( **b );
 }
 
@@ -166,7 +166,7 @@ idStrListSortPaths
 Sorts the list of path strings alphabetically and makes sure folders come first.
 ================
 */
-ID_FORCE_INLINE void idStrListSortPaths( idStrList &list ) {
+ID_INLINE void idStrListSortPaths( idStrList &list ) {
 	int i;
 
 	if ( !list.Num() ) {

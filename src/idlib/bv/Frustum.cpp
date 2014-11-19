@@ -2586,7 +2586,7 @@ static int capPointIndex[4][2] = {
 	{ 2, 3 }
 };
 
-ID_FORCE_INLINE bool idFrustum::AddLocalCapsToProjectionBounds( const idVec3 endPoints[4], const int endPointCull[4], const idVec3 &point, int pointCull, int pointClip, idBounds &projectionBounds ) const {
+ID_INLINE bool idFrustum::AddLocalCapsToProjectionBounds( const idVec3 endPoints[4], const int endPointCull[4], const idVec3 &point, int pointCull, int pointClip, idBounds &projectionBounds ) const {
 	int *p;
 
 	if ( pointClip < 0 ) {

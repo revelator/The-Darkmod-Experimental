@@ -1286,7 +1286,7 @@ void R_DeriveTangentsWithoutNormals( srfTriangles_t *tri ) {
 	tri->tangentsCalculated = true;
 }
 
-static ID_FORCE_INLINE void VectorNormalizeFast2( const idVec3 &v, idVec3 &out ) {
+static ID_INLINE void VectorNormalizeFast2( const idVec3 &v, idVec3 &out ) {
 	float	ilength;
 	ilength = idMath::RSqrt( v[0] * v[0] + v[1] * v[1] + v[2] * v[2] );
 	out[0] = v[0] * ilength;

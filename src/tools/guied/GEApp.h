@@ -128,39 +128,39 @@ private:
 	static LRESULT CALLBACK	MDIChildProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
 };
 
-ID_FORCE_INLINE bool rvGEApp::IsActive( void ) {
+ID_INLINE bool rvGEApp::IsActive( void ) {
 	return mMDIFrame ? true : false;
 }
 
-ID_FORCE_INLINE rvGENavigator &rvGEApp::GetNavigator( void ) {
+ID_INLINE rvGENavigator &rvGEApp::GetNavigator( void ) {
 	return mNavigator;
 }
 
-ID_FORCE_INLINE rvGEProperties &rvGEApp::GetProperties( void ) {
+ID_INLINE rvGEProperties &rvGEApp::GetProperties( void ) {
 	return mProperties;
 }
 
-ID_FORCE_INLINE rvGETransformer &rvGEApp::GetTransformer( void ) {
+ID_INLINE rvGETransformer &rvGEApp::GetTransformer( void ) {
 	return mTransformer;
 }
 
-ID_FORCE_INLINE rvGEOptions &rvGEApp::GetOptions( void ) {
+ID_INLINE rvGEOptions &rvGEApp::GetOptions( void ) {
 	return mOptions;
 }
 
-ID_FORCE_INLINE HINSTANCE rvGEApp::GetInstance( void ) {
+ID_INLINE HINSTANCE rvGEApp::GetInstance( void ) {
 	return mInstance;
 }
 
-ID_FORCE_INLINE rvGEStatusBar &rvGEApp::GetStatusBar( void ) {
+ID_INLINE rvGEStatusBar &rvGEApp::GetStatusBar( void ) {
 	return mStatusBar;
 }
 
-ID_FORCE_INLINE HWND rvGEApp::GetMDIFrame( void ) {
+ID_INLINE HWND rvGEApp::GetMDIFrame( void ) {
 	return mMDIFrame;
 }
 
-ID_FORCE_INLINE HWND rvGEApp::GetMDIClient( void ) {
+ID_INLINE HWND rvGEApp::GetMDIClient( void ) {
 	return mMDIClient;
 }
 

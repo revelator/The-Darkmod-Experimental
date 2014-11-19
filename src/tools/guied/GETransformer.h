@@ -47,7 +47,7 @@ private:
 	static LRESULT FAR PASCAL	GetMsgProc( int nCode, WPARAM wParam, LPARAM lParam );
 };
 
-ID_FORCE_INLINE HWND rvGETransformer::GetWindow( void ) {
+ID_INLINE HWND rvGETransformer::GetWindow( void ) {
 	return mWnd;
 }
 

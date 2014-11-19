@@ -1417,19 +1417,6 @@ void	idImage::ActuallyLoadImage( bool checkForPrecompressed, bool fromBackEnd ) 
 			MakeDefault();
 			return;
 		}
-		/*
-				// swap the red and alpha for rxgb support
-				// do this even on tga normal maps so we only have to use
-				// one fragment program
-				// if the image is precompressed ( either in palletized mode or true rxgb mode )
-				// then it is loaded above and the swap never happens here
-				if ( depth == TD_BUMP && globalImages->image_useNormalCompression.GetInteger() != 1 ) {
-					for ( int i = 0; i < width * height * 4; i += 4 ) {
-						pic[ i + 3 ] = pic[ i ];
-						pic[ i ] = 0;
-					}
-				}
-		*/
 		// build a hash for checking duplicate image files
 		// NOTE: takes about 10% of image load times (SD)
 		// may not be strictly necessary, but some code uses it, so let's leave it in
@@ -1638,11 +1625,6 @@ void idImage::CopyFramebuffer( int x, int y, int imageWidth, int imageHeight, bo
 			// this might be a 16+ meg allocation, which could fail on _alloca
 			junk = ( byte * )Mem_Alloc( potWidth * potHeight * 4 );
 			memset( junk, 0, potWidth * potHeight * 4 );		//!@#
-#if 0 // Disabling because it's unnecessary and introduces a green strip on edge of _currentRender
-			for( int i = 0 ; i < potWidth * potHeight * 4 ; i += 4 ) {
-				junk[i + 1] = 255;
-			}
-#endif
 			glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, potWidth, potHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, junk );
 			Mem_Free( junk );
 			glCopyTexSubImage2D( GL_TEXTURE_2D, 0, 0, 0, x, y, imageWidth, imageHeight );

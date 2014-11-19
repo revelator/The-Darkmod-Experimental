@@ -58,7 +58,7 @@ private:
 	static LRESULT CALLBACK WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam );
 };
 
-ID_FORCE_INLINE HWND rvGEViewer::GetWindow( void ) {
+ID_INLINE HWND rvGEViewer::GetWindow( void ) {
 	return mWnd;
 }
 

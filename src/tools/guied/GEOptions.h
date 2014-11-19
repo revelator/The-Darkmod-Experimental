@@ -110,158 +110,158 @@ protected:
 	rvRegistryOptions	mRegistry;
 };
 
-ID_FORCE_INLINE void rvGEOptions::SetModified( bool mod ) {
+ID_INLINE void rvGEOptions::SetModified( bool mod ) {
 	mModified = mod;
 }
 
-ID_FORCE_INLINE void rvGEOptions::ConvertColor( COLORREF src, idVec4 &dest ) {
+ID_INLINE void rvGEOptions::ConvertColor( COLORREF src, idVec4 &dest ) {
 	dest[0] = ( float )GetRValue( src ) / 255.0f;
 	dest[1] = ( float )GetGValue( src ) / 255.0f;
 	dest[2] = ( float )GetBValue( src ) / 255.0f;
 	dest[3] = 1.0f;
 }
 
-ID_FORCE_INLINE void rvGEOptions::SetGridWidth( int width ) {
+ID_INLINE void rvGEOptions::SetGridWidth( int width ) {
 	mGridWidth = width;
 	SetModified( true );
 }
 
-ID_FORCE_INLINE void rvGEOptions::SetGridHeight( int height ) {
+ID_INLINE void rvGEOptions::SetGridHeight( int height ) {
 	mGridHeight = height;
 	SetModified( true );
 }
 
-ID_FORCE_INLINE void rvGEOptions::SetGridSnap( bool snap ) {
+ID_INLINE void rvGEOptions::SetGridSnap( bool snap ) {
 	mGridSnap = snap;
 	SetModified( true );
 }
 
-ID_FORCE_INLINE void rvGEOptions::SetGridVisible( bool vis ) {
+ID_INLINE void rvGEOptions::SetGridVisible( bool vis ) {
 	mGridVisible = vis;
 	SetModified( true );
 }
 
-ID_FORCE_INLINE void rvGEOptions::SetStatusBarVisible( bool vis ) {
+ID_INLINE void rvGEOptions::SetStatusBarVisible( bool vis ) {
 	mStatusBarVisible = vis;
 	SetModified( true );
 }
 
-ID_FORCE_INLINE void rvGEOptions::SetGridColor( COLORREF color ) {
+ID_INLINE void rvGEOptions::SetGridColor( COLORREF color ) {
 	ConvertColor( color, mGridColor );
 	SetModified( true );
 }
 
-ID_FORCE_INLINE void rvGEOptions::SetSelectionColor( idVec4 &color ) {
+ID_INLINE void rvGEOptions::SetSelectionColor( idVec4 &color ) {
 	VectorCopy( color, mSelectionColor );
 	SetModified( true );
 }
 
-ID_FORCE_INLINE void rvGEOptions::SetSelectionColor( COLORREF color ) {
+ID_INLINE void rvGEOptions::SetSelectionColor( COLORREF color ) {
 	ConvertColor( color, mSelectionColor );
 	SetModified( true );
 }
 
-ID_FORCE_INLINE void rvGEOptions::SetGridColor( idVec4 &color ) {
+ID_INLINE void rvGEOptions::SetGridColor( idVec4 &color ) {
 	VectorCopy( color, mGridColor );
 	SetModified( true );
 }
 
-ID_FORCE_INLINE void rvGEOptions::SetNavigatorVisible( bool vis ) {
+ID_INLINE void rvGEOptions::SetNavigatorVisible( bool vis ) {
 	mNavigatorVisible = vis;
 	SetModified( true );
 }
 
-ID_FORCE_INLINE void rvGEOptions::SetPropertiesVisible( bool vis ) {
+ID_INLINE void rvGEOptions::SetPropertiesVisible( bool vis ) {
 	mPropertiesVisible = vis;
 	SetModified( true );
 }
 
-ID_FORCE_INLINE void rvGEOptions::SetTransformerVisible( bool vis ) {
+ID_INLINE void rvGEOptions::SetTransformerVisible( bool vis ) {
 	mTransformerVisible = vis;
 	SetModified( true );
 }
 
-ID_FORCE_INLINE idVec4 &rvGEOptions::GetGridColor( void ) {
+ID_INLINE idVec4 &rvGEOptions::GetGridColor( void ) {
 	return mGridColor;
 }
 
-ID_FORCE_INLINE int rvGEOptions::GetGridWidth( void ) {
+ID_INLINE int rvGEOptions::GetGridWidth( void ) {
 	return mGridWidth;
 }
 
-ID_FORCE_INLINE int rvGEOptions::GetGridHeight( void ) {
+ID_INLINE int rvGEOptions::GetGridHeight( void ) {
 	return mGridHeight;
 }
 
-ID_FORCE_INLINE bool rvGEOptions::GetGridVisible( void ) {
+ID_INLINE bool rvGEOptions::GetGridVisible( void ) {
 	return mGridVisible;
 }
 
-ID_FORCE_INLINE bool rvGEOptions::GetGridSnap( void ) {
+ID_INLINE bool rvGEOptions::GetGridSnap( void ) {
 	return mGridSnap;
 }
 
-ID_FORCE_INLINE idVec4 &rvGEOptions::GetWorkspaceColor( void ) {
+ID_INLINE idVec4 &rvGEOptions::GetWorkspaceColor( void ) {
 	return mWorkspaceColor;
 }
 
-ID_FORCE_INLINE int rvGEOptions::GetLastOptionsPage( void ) {
+ID_INLINE int rvGEOptions::GetLastOptionsPage( void ) {
 	return mLastOptionsPage;
 }
 
-ID_FORCE_INLINE void rvGEOptions::SetLastOptionsPage( int page ) {
+ID_INLINE void rvGEOptions::SetLastOptionsPage( int page ) {
 	mLastOptionsPage = page;
 }
 
-ID_FORCE_INLINE bool rvGEOptions::GetNavigatorVisible( void ) {
+ID_INLINE bool rvGEOptions::GetNavigatorVisible( void ) {
 	return mNavigatorVisible;
 }
 
-ID_FORCE_INLINE bool rvGEOptions::GetPropertiesVisible( void ) {
+ID_INLINE bool rvGEOptions::GetPropertiesVisible( void ) {
 	return mPropertiesVisible;
 }
 
-ID_FORCE_INLINE bool rvGEOptions::GetTransformerVisible( void ) {
+ID_INLINE bool rvGEOptions::GetTransformerVisible( void ) {
 	return mTransformerVisible;
 }
 
-ID_FORCE_INLINE bool rvGEOptions::GetStatusBarVisible( void ) {
+ID_INLINE bool rvGEOptions::GetStatusBarVisible( void ) {
 	return mStatusBarVisible;
 }
 
-ID_FORCE_INLINE idVec4 &rvGEOptions::GetSelectionColor( void ) {
+ID_INLINE idVec4 &rvGEOptions::GetSelectionColor( void ) {
 	return mSelectionColor;
 }
 
-ID_FORCE_INLINE COLORREF *rvGEOptions::GetCustomColors( void ) {
+ID_INLINE COLORREF *rvGEOptions::GetCustomColors( void ) {
 	return mCustomColors;
 }
 
-ID_FORCE_INLINE void rvGEOptions::SetIgnoreDesktopSelect( bool ignore ) {
+ID_INLINE void rvGEOptions::SetIgnoreDesktopSelect( bool ignore ) {
 	mIgnoreDesktopSelect = ignore;
 }
 
-ID_FORCE_INLINE bool rvGEOptions::GetIgnoreDesktopSelect( void ) {
+ID_INLINE bool rvGEOptions::GetIgnoreDesktopSelect( void ) {
 	return mIgnoreDesktopSelect;
 }
 
-ID_FORCE_INLINE void rvGEOptions::SetWindowPlacement( const char *name, HWND hwnd ) {
+ID_INLINE void rvGEOptions::SetWindowPlacement( const char *name, HWND hwnd ) {
 	mRegistry.SetWindowPlacement( name, hwnd );
 }
 
-ID_FORCE_INLINE bool rvGEOptions::GetWindowPlacement( const char *name, HWND hwnd ) {
+ID_INLINE bool rvGEOptions::GetWindowPlacement( const char *name, HWND hwnd ) {
 	return mRegistry.GetWindowPlacement( name, hwnd );
 }
 
-ID_FORCE_INLINE void rvGEOptions::AddRecentFile( const char *filename ) {
+ID_INLINE void rvGEOptions::AddRecentFile( const char *filename ) {
 	mRegistry.AddRecentFile( filename );
 }
 
-ID_FORCE_INLINE int rvGEOptions::GetRecentFileCount( void ) {
+ID_INLINE int rvGEOptions::GetRecentFileCount( void ) {
 	return mRegistry.GetRecentFileCount( );
 }
 
-ID_FORCE_INLINE const char *rvGEOptions::GetRecentFile( int index ) {
+ID_INLINE const char *rvGEOptions::GetRecentFile( int index ) {
 	return mRegistry.GetRecentFile( index );
 }
 

@@ -149,7 +149,7 @@ public:
 idEvent::GetData
 ================
 */
-ID_FORCE_INLINE byte *idEvent::GetData( void ) {
+ID_INLINE byte *idEvent::GetData( void ) {
 	return data;
 }
 
@@ -158,11 +158,11 @@ ID_FORCE_INLINE byte *idEvent::GetData( void ) {
 idEventDef::GetName
 ================
 */
-ID_FORCE_INLINE const char *idEventDef::GetName( void ) const {
+ID_INLINE const char *idEventDef::GetName( void ) const {
 	return name;
 }
 
-ID_FORCE_INLINE const char *idEventDef::GetDescription() const {
+ID_INLINE const char *idEventDef::GetDescription() const {
 	return description;
 }
 
@@ -171,7 +171,7 @@ ID_FORCE_INLINE const char *idEventDef::GetDescription() const {
 idEventDef::GetArgFormat
 ================
 */
-ID_FORCE_INLINE const char *idEventDef::GetArgFormat( void ) const {
+ID_INLINE const char *idEventDef::GetArgFormat( void ) const {
 	return formatspec;
 }
 
@@ -180,7 +180,7 @@ ID_FORCE_INLINE const char *idEventDef::GetArgFormat( void ) const {
 idEventDef::GetFormatspecIndex
 ================
 */
-ID_FORCE_INLINE unsigned int idEventDef::GetFormatspecIndex( void ) const {
+ID_INLINE unsigned int idEventDef::GetFormatspecIndex( void ) const {
 	return formatspecIndex;
 }
 
@@ -189,7 +189,7 @@ ID_FORCE_INLINE unsigned int idEventDef::GetFormatspecIndex( void ) const {
 idEventDef::GetReturnType
 ================
 */
-ID_FORCE_INLINE char idEventDef::GetReturnType( void ) const {
+ID_INLINE char idEventDef::GetReturnType( void ) const {
 	return returnType;
 }
 
@@ -198,15 +198,15 @@ ID_FORCE_INLINE char idEventDef::GetReturnType( void ) const {
 idEventDef::GetNumArgs
 ================
 */
-ID_FORCE_INLINE int idEventDef::GetNumArgs( void ) const {
+ID_INLINE int idEventDef::GetNumArgs( void ) const {
 	return numargs;
 }
 
-ID_FORCE_INLINE const EventArg &idEventDef::GetArg( int argIndex ) const {
+ID_INLINE const EventArg &idEventDef::GetArg( int argIndex ) const {
 	return args[argIndex];
 }
 
-ID_FORCE_INLINE const EventArgs &idEventDef::GetArgs() const {
+ID_INLINE const EventArgs &idEventDef::GetArgs() const {
 	return args;
 }
 
@@ -215,7 +215,7 @@ ID_FORCE_INLINE const EventArgs &idEventDef::GetArgs() const {
 idEventDef::GetArgSize
 ================
 */
-ID_FORCE_INLINE size_t idEventDef::GetArgSize( void ) const {
+ID_INLINE size_t idEventDef::GetArgSize( void ) const {
 	return argsize;
 }
 
@@ -224,7 +224,7 @@ ID_FORCE_INLINE size_t idEventDef::GetArgSize( void ) const {
 idEventDef::GetArgOffset
 ================
 */
-ID_FORCE_INLINE int idEventDef::GetArgOffset( int arg ) const {
+ID_INLINE int idEventDef::GetArgOffset( int arg ) const {
 	assert( ( arg >= 0 ) && ( arg < D_EVENT_MAXARGS ) );
 	return argOffset[ arg ];
 }
@@ -234,7 +234,7 @@ ID_FORCE_INLINE int idEventDef::GetArgOffset( int arg ) const {
 idEventDef::GetEventNum
 ================
 */
-ID_FORCE_INLINE int idEventDef::GetEventNum( void ) const {
+ID_INLINE int idEventDef::GetEventNum( void ) const {
 	return eventnum;
 }
 

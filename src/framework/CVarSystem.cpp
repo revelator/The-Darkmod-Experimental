@@ -1032,7 +1032,7 @@ idCVarSystemLocal::ListByFlags
 */
 // NOTE: the const wonkyness is required to make msvc happy
 template<>
-ID_FORCE_INLINE int idListSortCompare( const idInternalCVar *const *a, const idInternalCVar *const *b ) {
+ID_INLINE int idListSortCompare( const idInternalCVar *const *a, const idInternalCVar *const *b ) {
 	return idStr::Icmp( ( *a )->GetName(), ( *b )->GetName() );
 }
 

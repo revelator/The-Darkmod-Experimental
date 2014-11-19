@@ -345,27 +345,27 @@ private:
 	int				NumLinesCrossed( void );
 };
 
-ID_FORCE_INLINE const char *idLexer::GetFileName( void ) {
+ID_INLINE const char *idLexer::GetFileName( void ) {
 	return idLexer::filename;
 }
 
-ID_FORCE_INLINE const int idLexer::GetFileOffset( void ) {
+ID_INLINE const int idLexer::GetFileOffset( void ) {
 	return idLexer::script_p - idLexer::buffer;
 }
 
-ID_FORCE_INLINE const ID_TIME_T idLexer::GetFileTime( void ) {
+ID_INLINE const ID_TIME_T idLexer::GetFileTime( void ) {
 	return idLexer::fileTime;
 }
 
-ID_FORCE_INLINE const int idLexer::GetLineNum( void ) {
+ID_INLINE const int idLexer::GetLineNum( void ) {
 	return idLexer::line;
 }
 
-ID_FORCE_INLINE void idLexer::SetFlags( int flags ) {
+ID_INLINE void idLexer::SetFlags( int flags ) {
 	idLexer::flags = flags;
 }
 
-ID_FORCE_INLINE int idLexer::GetFlags( void ) {
+ID_INLINE int idLexer::GetFlags( void ) {
 	return idLexer::flags;
 }
 

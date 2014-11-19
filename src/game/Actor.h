@@ -617,7 +617,7 @@ public:
 	int GetNumMeleeWeapons();
 	int GetNumRangedWeapons();
 
-	ID_FORCE_INLINE float GetMeleeRange() const {
+	ID_INLINE float GetMeleeRange() const {
 		return melee_range;
 	}
 

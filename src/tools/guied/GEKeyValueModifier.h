@@ -41,7 +41,7 @@ protected:
 	idStr		mUndoValue;
 };
 
-ID_FORCE_INLINE bool rvGEKeyValueModifier::CanMerge( rvGEModifier *merge ) {
+ID_INLINE bool rvGEKeyValueModifier::CanMerge( rvGEModifier *merge ) {
 	return !( ( rvGEKeyValueModifier * )merge )->mKey.Icmp( mKey );
 }
 

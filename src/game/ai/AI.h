@@ -591,15 +591,15 @@ public:
 	// greebo: Accessor methods for the array of subsystems
 	ai::Subsystem *GetSubsystem( ai::SubsystemId id );
 
-	ID_FORCE_INLINE ai::MindPtr &GetMind() {
+	ID_INLINE ai::MindPtr &GetMind() {
 		return mind;
 	}
 
-	ID_FORCE_INLINE ai::Memory &GetMemory() const {
+	ID_INLINE ai::Memory &GetMemory() const {
 		return mind->GetMemory();
 	}
 
-	ID_FORCE_INLINE idAAS *GetAAS() const {
+	ID_INLINE idAAS *GetAAS() const {
 		return aas;
 	}
 
@@ -1604,11 +1604,11 @@ public: // greebo: Made these public for now, I didn't want to write an accessor
 	bool					GetMovePos( idVec3 &seekPos );
 	bool					MoveDone( void ) const;
 
-	ID_FORCE_INLINE moveType_t	GetMoveType() const {
+	ID_INLINE moveType_t	GetMoveType() const {
 		return move.moveType;
 	}
 
-	ID_FORCE_INLINE int			GetMoveStartTime() const { // grayman #3492
+	ID_INLINE int			GetMoveStartTime() const { // grayman #3492
 		return move.startTime;
 	}
 
@@ -1640,12 +1640,12 @@ public: // greebo: Made these public for now, I didn't want to write an accessor
 	float					GetReachTolerance(); // grayman #3029
 
 	// angua: if the focusTime > gameLocal.time, the AI is currently looking at a specified entity or location
-	ID_FORCE_INLINE int			GetFocusTime() {
+	ID_INLINE int			GetFocusTime() {
 		return focusTime;
 	}
 
 	// grayman #3473
-	ID_FORCE_INLINE void			SetFocusTime( int t ) {
+	ID_INLINE void			SetFocusTime( int t ) {
 		focusTime = t;
 	}
 
@@ -1774,16 +1774,16 @@ public: // greebo: Made these public for now, I didn't want to write an accessor
 	void					Turn( const idVec3 &pivotOffset = idVec3( 0, 0, 0 ) );
 	bool					TurnToward( float yaw );
 	bool					TurnToward( const idVec3 &pos );
-	ID_FORCE_INLINE float			GetCurrentYaw() {
+	ID_INLINE float			GetCurrentYaw() {
 		return current_yaw;
 	}
-	ID_FORCE_INLINE float			GetIdealYaw() {
+	ID_INLINE float			GetIdealYaw() {
 		return ideal_yaw;    // grayman #2345
 	}
-	ID_FORCE_INLINE float			GetTurnRate() {
+	ID_INLINE float			GetTurnRate() {
 		return turnRate;
 	}
-	ID_FORCE_INLINE void			SetTurnRate( float newTurnRate ) {
+	ID_INLINE void			SetTurnRate( float newTurnRate ) {
 		turnRate = newTurnRate;
 	}
 

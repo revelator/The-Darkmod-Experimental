@@ -300,13 +300,13 @@ protected:
 
 char *					va( const char *fmt, ... ) id_attribute((format(printf,1,2)));
 
-ID_FORCE_INLINE void idStr::EnsureAlloced( int amount, bool keepold ) {
+ID_INLINE void idStr::EnsureAlloced( int amount, bool keepold ) {
 	if ( amount > alloced ) {
 		ReAllocate( amount, keepold );
 	}
 }
 
-ID_FORCE_INLINE void idStr::Init( void ) {
+ID_INLINE void idStr::Init( void ) {
 	len = 0;
 	alloced = STR_ALLOC_BASE;
 	data = baseBuffer;
@@ -316,11 +316,11 @@ ID_FORCE_INLINE void idStr::Init( void ) {
 #endif
 }
 
-ID_FORCE_INLINE idStr::idStr( void ) {
+ID_INLINE idStr::idStr( void ) {
 	Init();
 }
 
-ID_FORCE_INLINE idStr::idStr( const idStr &text ) {
+ID_INLINE idStr::idStr( const idStr &text ) {
 	int l;
 
 	Init();
@@ -330,7 +330,7 @@ ID_FORCE_INLINE idStr::idStr( const idStr &text ) {
 	len = l;
 }
 
-ID_FORCE_INLINE idStr::idStr( const idStr &text, int start, int end ) {
+ID_INLINE idStr::idStr( const idStr &text, int start, int end ) {
 	int i;
 	int l;
 
@@ -359,7 +359,7 @@ ID_FORCE_INLINE idStr::idStr( const idStr &text, int start, int end ) {
 	len = l;
 }
 
-ID_FORCE_INLINE idStr::idStr( const char *text ) {
+ID_INLINE idStr::idStr( const char *text ) {
 	int l;
 
 	Init();
@@ -371,7 +371,7 @@ ID_FORCE_INLINE idStr::idStr( const char *text ) {
 	}
 }
 
-ID_FORCE_INLINE idStr::idStr( const char *text, int start, int end ) {
+ID_INLINE idStr::idStr( const char *text, int start, int end ) {
 	int i;
 	int l = strlen( text );
 
@@ -400,7 +400,7 @@ ID_FORCE_INLINE idStr::idStr( const char *text, int start, int end ) {
 	len = l;
 }
 
-ID_FORCE_INLINE idStr::idStr( const bool b ) {
+ID_INLINE idStr::idStr( const bool b ) {
 	Init();
 	EnsureAlloced( 2 );
 	data[ 0 ] = b ? '1' : '0';
@@ -408,7 +408,7 @@ ID_FORCE_INLINE idStr::idStr( const bool b ) {
 	len = 1;
 }
 
-ID_FORCE_INLINE idStr::idStr( const char c ) {
+ID_INLINE idStr::idStr( const char c ) {
 	Init();
 	EnsureAlloced( 2 );
 	data[ 0 ] = c;
@@ -416,7 +416,7 @@ ID_FORCE_INLINE idStr::idStr( const char c ) {
 	len = 1;
 }
 
-ID_FORCE_INLINE idStr::idStr( const int i ) {
+ID_INLINE idStr::idStr( const int i ) {
 	char text[ 64 ];
 	int l;
 
@@ -427,7 +427,7 @@ ID_FORCE_INLINE idStr::idStr( const int i ) {
 	len = l;
 }
 
-ID_FORCE_INLINE idStr::idStr( const unsigned u ) {
+ID_INLINE idStr::idStr( const unsigned u ) {
 	char text[ 64 ];
 	int l;
 
@@ -438,7 +438,7 @@ ID_FORCE_INLINE idStr::idStr( const unsigned u ) {
 	len = l;
 }
 
-ID_FORCE_INLINE idStr::idStr( const float f ) {
+ID_INLINE idStr::idStr( const float f ) {
 	char text[ 64 ];
 	int l;
 
@@ -451,37 +451,37 @@ ID_FORCE_INLINE idStr::idStr( const float f ) {
 	len = l;
 }
 
-ID_FORCE_INLINE idStr::~idStr( void ) {
+ID_INLINE idStr::~idStr( void ) {
 	FreeData();
 }
 
-ID_FORCE_INLINE size_t idStr::Size( void ) const {
+ID_INLINE size_t idStr::Size( void ) const {
 	return sizeof( *this ) + Allocated();
 }
 
-ID_FORCE_INLINE const char *idStr::c_str( void ) const {
+ID_INLINE const char *idStr::c_str( void ) const {
 	return data;
 }
 
-ID_FORCE_INLINE idStr::operator const char *( void ) {
+ID_INLINE idStr::operator const char *( void ) {
 	return c_str();
 }
 
-ID_FORCE_INLINE idStr::operator const char *( void ) const {
+ID_INLINE idStr::operator const char *( void ) const {
 	return c_str();
 }
 
-ID_FORCE_INLINE char idStr::operator[]( int index ) const {
+ID_INLINE char idStr::operator[]( int index ) const {
 	assert( ( index >= 0 ) && ( index <= len ) );
 	return data[ index ];
 }
 
-ID_FORCE_INLINE char &idStr::operator[]( int index ) {
+ID_INLINE char &idStr::operator[]( int index ) {
 	assert( ( index >= 0 ) && ( index <= len ) );
 	return data[ index ];
 }
 
-ID_FORCE_INLINE void idStr::operator=( const idStr &text ) {
+ID_INLINE void idStr::operator=( const idStr &text ) {
 	int l;
 
 	l = text.Length();
@@ -491,37 +491,37 @@ ID_FORCE_INLINE void idStr::operator=( const idStr &text ) {
 	len = l;
 }
 
-ID_FORCE_INLINE idStr operator+( const idStr &a, const idStr &b ) {
+ID_INLINE idStr operator+( const idStr &a, const idStr &b ) {
 	idStr result( a );
 	result.Append( b );
 	return result;
 }
 
-ID_FORCE_INLINE idStr operator+( const idStr &a, const char *b ) {
+ID_INLINE idStr operator+( const idStr &a, const char *b ) {
 	idStr result( a );
 	result.Append( b );
 	return result;
 }
 
-ID_FORCE_INLINE idStr operator+( const char *a, const idStr &b ) {
+ID_INLINE idStr operator+( const char *a, const idStr &b ) {
 	idStr result( a );
 	result.Append( b );
 	return result;
 }
 
-ID_FORCE_INLINE idStr operator+( const idStr &a, const bool b ) {
+ID_INLINE idStr operator+( const idStr &a, const bool b ) {
 	idStr result( a );
 	result.Append( b ? "true" : "false" );
 	return result;
 }
 
-ID_FORCE_INLINE idStr operator+( const idStr &a, const char b ) {
+ID_INLINE idStr operator+( const idStr &a, const char b ) {
 	idStr result( a );
 	result.Append( b );
 	return result;
 }
 
-ID_FORCE_INLINE idStr operator+( const idStr &a, const float b ) {
+ID_INLINE idStr operator+( const idStr &a, const float b ) {
 	char	text[ 64 ];
 	idStr	result( a );
 
@@ -531,7 +531,7 @@ ID_FORCE_INLINE idStr operator+( const idStr &a, const float b ) {
 	return result;
 }
 
-ID_FORCE_INLINE idStr operator+( const idStr &a, const int b ) {
+ID_INLINE idStr operator+( const idStr &a, const int b ) {
 	char	text[ 64 ];
 	idStr	result( a );
 
@@ -541,7 +541,7 @@ ID_FORCE_INLINE idStr operator+( const idStr &a, const int b ) {
 	return result;
 }
 
-ID_FORCE_INLINE idStr operator+( const idStr &a, const unsigned b ) {
+ID_INLINE idStr operator+( const idStr &a, const unsigned b ) {
 	char	text[ 64 ];
 	idStr	result( a );
 
@@ -551,7 +551,7 @@ ID_FORCE_INLINE idStr operator+( const idStr &a, const unsigned b ) {
 	return result;
 }
 
-ID_FORCE_INLINE idStr &idStr::operator+=( const float a ) {
+ID_INLINE idStr &idStr::operator+=( const float a ) {
 	char text[ 64 ];
 
 	sprintf( text, "%f", a );
@@ -560,7 +560,7 @@ ID_FORCE_INLINE idStr &idStr::operator+=( const float a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idStr &idStr::operator+=( const int a ) {
+ID_INLINE idStr &idStr::operator+=( const int a ) {
 	char text[ 64 ];
 
 	sprintf( text, "%d", a );
@@ -569,7 +569,7 @@ ID_FORCE_INLINE idStr &idStr::operator+=( const int a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idStr &idStr::operator+=( const unsigned a ) {
+ID_INLINE idStr &idStr::operator+=( const unsigned a ) {
 	char text[ 64 ];
 
 	sprintf( text, "%u", a );
@@ -578,107 +578,107 @@ ID_FORCE_INLINE idStr &idStr::operator+=( const unsigned a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idStr &idStr::operator+=( const idStr &a ) {
+ID_INLINE idStr &idStr::operator+=( const idStr &a ) {
 	Append( a );
 	return *this;
 }
 
-ID_FORCE_INLINE idStr &idStr::operator+=( const char *a ) {
+ID_INLINE idStr &idStr::operator+=( const char *a ) {
 	Append( a );
 	return *this;
 }
 
-ID_FORCE_INLINE idStr &idStr::operator+=( const char a ) {
+ID_INLINE idStr &idStr::operator+=( const char a ) {
 	Append( a );
 	return *this;
 }
 
-ID_FORCE_INLINE idStr &idStr::operator+=( const bool a ) {
+ID_INLINE idStr &idStr::operator+=( const bool a ) {
 	Append( a ? "true" : "false" );
 	return *this;
 }
 
-ID_FORCE_INLINE bool operator==( const idStr &a, const idStr &b ) {
+ID_INLINE bool operator==( const idStr &a, const idStr &b ) {
 	return ( !idStr::Cmp( a.data, b.data ) );
 }
 
-ID_FORCE_INLINE bool operator==( const idStr &a, const char *b ) {
+ID_INLINE bool operator==( const idStr &a, const char *b ) {
 	assert( b );
 	return ( !idStr::Cmp( a.data, b ) );
 }
 
-ID_FORCE_INLINE bool operator==( const char *a, const idStr &b ) {
+ID_INLINE bool operator==( const char *a, const idStr &b ) {
 	assert( a );
 	return ( !idStr::Cmp( a, b.data ) );
 }
 
-ID_FORCE_INLINE bool operator!=( const idStr &a, const idStr &b ) {
+ID_INLINE bool operator!=( const idStr &a, const idStr &b ) {
 	return !( a == b );
 }
 
-ID_FORCE_INLINE bool operator!=( const idStr &a, const char *b ) {
+ID_INLINE bool operator!=( const idStr &a, const char *b ) {
 	return !( a == b );
 }
 
-ID_FORCE_INLINE bool operator!=( const char *a, const idStr &b ) {
+ID_INLINE bool operator!=( const char *a, const idStr &b ) {
 	return !( a == b );
 }
 
-ID_FORCE_INLINE int idStr::Cmp( const char *text ) const {
+ID_INLINE int idStr::Cmp( const char *text ) const {
 	assert( text );
 	return idStr::Cmp( data, text );
 }
 
-ID_FORCE_INLINE int idStr::Cmpn( const char *text, int n ) const {
+ID_INLINE int idStr::Cmpn( const char *text, int n ) const {
 	assert( text );
 	return idStr::Cmpn( data, text, n );
 }
 
-ID_FORCE_INLINE int idStr::CmpPrefix( const char *text ) const {
+ID_INLINE int idStr::CmpPrefix( const char *text ) const {
 	assert( text );
 	return idStr::Cmpn( data, text, strlen( text ) );
 }
 
-ID_FORCE_INLINE int idStr::Icmp( const char *text ) const {
+ID_INLINE int idStr::Icmp( const char *text ) const {
 	assert( text );
 	return idStr::Icmp( data, text );
 }
 
-ID_FORCE_INLINE int idStr::Icmpn( const char *text, int n ) const {
+ID_INLINE int idStr::Icmpn( const char *text, int n ) const {
 	assert( text );
 	return idStr::Icmpn( data, text, n );
 }
 
-ID_FORCE_INLINE int idStr::IcmpPrefix( const char *text ) const {
+ID_INLINE int idStr::IcmpPrefix( const char *text ) const {
 	assert( text );
 	return idStr::Icmpn( data, text, strlen( text ) );
 }
 
-ID_FORCE_INLINE int idStr::IcmpNoColor( const char *text ) const {
+ID_INLINE int idStr::IcmpNoColor( const char *text ) const {
 	assert( text );
 	return idStr::IcmpNoColor( data, text );
 }
 
-ID_FORCE_INLINE int idStr::IcmpPath( const char *text ) const {
+ID_INLINE int idStr::IcmpPath( const char *text ) const {
 	assert( text );
 	return idStr::IcmpPath( data, text );
 }
 
-ID_FORCE_INLINE int idStr::IcmpnPath( const char *text, int n ) const {
+ID_INLINE int idStr::IcmpnPath( const char *text, int n ) const {
 	assert( text );
 	return idStr::IcmpnPath( data, text, n );
 }
 
-ID_FORCE_INLINE int idStr::IcmpPrefixPath( const char *text ) const {
+ID_INLINE int idStr::IcmpPrefixPath( const char *text ) const {
 	assert( text );
 	return idStr::IcmpnPath( data, text, strlen( text ) );
 }
 
-ID_FORCE_INLINE int idStr::Length( void ) const {
+ID_INLINE int idStr::Length( void ) const {
 	return len;
 }
 
-ID_FORCE_INLINE int idStr::Allocated( void ) const {
+ID_INLINE int idStr::Allocated( void ) const {
 	if ( data != baseBuffer ) {
 		return alloced;
 	} else {
@@ -686,29 +686,29 @@ ID_FORCE_INLINE int idStr::Allocated( void ) const {
 	}
 }
 
-ID_FORCE_INLINE void idStr::Empty( void ) {
+ID_INLINE void idStr::Empty( void ) {
 	EnsureAlloced( 1 );
 	data[ 0 ] = '\0';
 	len = 0;
 }
 
-ID_FORCE_INLINE bool idStr::IsEmpty( void ) const {
+ID_INLINE bool idStr::IsEmpty( void ) const {
 	return ( idStr::Cmp( data, "" ) == 0 );
 }
 
-ID_FORCE_INLINE void idStr::Clear( void ) {
+ID_INLINE void idStr::Clear( void ) {
 	FreeData();
 	Init();
 }
 
-ID_FORCE_INLINE void idStr::Append( const char a ) {
+ID_INLINE void idStr::Append( const char a ) {
 	EnsureAlloced( len + 2 );
 	data[ len ] = a;
 	len++;
 	data[ len ] = '\0';
 }
 
-ID_FORCE_INLINE void idStr::Append( const idStr &text ) {
+ID_INLINE void idStr::Append( const idStr &text ) {
 	int newLen;
 	int i;
 
@@ -721,7 +721,7 @@ ID_FORCE_INLINE void idStr::Append( const idStr &text ) {
 	data[ len ] = '\0';
 }
 
-ID_FORCE_INLINE void idStr::Append( const char *text ) {
+ID_INLINE void idStr::Append( const char *text ) {
 	int newLen;
 	int i;
 
@@ -736,7 +736,7 @@ ID_FORCE_INLINE void idStr::Append( const char *text ) {
 	}
 }
 
-ID_FORCE_INLINE void idStr::Append( const char *text, int l ) {
+ID_INLINE void idStr::Append( const char *text, int l ) {
 	int newLen;
 	int i;
 
@@ -751,7 +751,7 @@ ID_FORCE_INLINE void idStr::Append( const char *text, int l ) {
 	}
 }
 
-ID_FORCE_INLINE void idStr::Insert( const char a, int index ) {
+ID_INLINE void idStr::Insert( const char a, int index ) {
 	int i, l;
 
 	if ( index < 0 ) {
@@ -769,7 +769,7 @@ ID_FORCE_INLINE void idStr::Insert( const char a, int index ) {
 	len++;
 }
 
-ID_FORCE_INLINE void idStr::Insert( const char *text, int index ) {
+ID_INLINE void idStr::Insert( const char *text, int index ) {
 	int i, l;
 
 	if ( index < 0 ) {
@@ -789,7 +789,7 @@ ID_FORCE_INLINE void idStr::Insert( const char *text, int index ) {
 	len += l;
 }
 
-ID_FORCE_INLINE void idStr::ToLower( void ) {
+ID_INLINE void idStr::ToLower( void ) {
 	for (int i = 0; data[i]; i++ ) {
 		if ( CharIsUpper( data[i] ) ) {
 			data[i] += ( 'a' - 'A' );
@@ -797,7 +797,7 @@ ID_FORCE_INLINE void idStr::ToLower( void ) {
 	}
 }
 
-ID_FORCE_INLINE void idStr::ToUpper( void ) {
+ID_INLINE void idStr::ToUpper( void ) {
 	for (int i = 0; data[i]; i++ ) {
 		if ( CharIsLower( data[i] ) ) {
 			data[i] -= ( 'a' - 'A' );
@@ -805,33 +805,33 @@ ID_FORCE_INLINE void idStr::ToUpper( void ) {
 	}
 }
 
-ID_FORCE_INLINE bool idStr::IsNumeric( void ) const {
+ID_INLINE bool idStr::IsNumeric( void ) const {
 	return idStr::IsNumeric( data );
 }
 
-ID_FORCE_INLINE bool idStr::IsColor( void ) const {
+ID_INLINE bool idStr::IsColor( void ) const {
 	return idStr::IsColor( data );
 }
 
-ID_FORCE_INLINE bool idStr::HasLower( void ) const {
+ID_INLINE bool idStr::HasLower( void ) const {
 	return idStr::HasLower( data );
 }
 
-ID_FORCE_INLINE bool idStr::HasUpper( void ) const {
+ID_INLINE bool idStr::HasUpper( void ) const {
 	return idStr::HasUpper( data );
 }
 
-ID_FORCE_INLINE idStr &idStr::RemoveColors( void ) {
+ID_INLINE idStr &idStr::RemoveColors( void ) {
 	idStr::RemoveColors( data );
 	len = Length( data );
 	return *this;
 }
 
-ID_FORCE_INLINE int idStr::LengthWithoutColors( void ) const {
+ID_INLINE int idStr::LengthWithoutColors( void ) const {
 	return idStr::LengthWithoutColors( data );
 }
 
-ID_FORCE_INLINE void idStr::CapLength( int newlen ) {
+ID_INLINE void idStr::CapLength( int newlen ) {
 	if ( len <= newlen ) {
 		return;
 	}
@@ -839,43 +839,43 @@ ID_FORCE_INLINE void idStr::CapLength( int newlen ) {
 	len = newlen;
 }
 
-ID_FORCE_INLINE void idStr::Fill( const char ch, int newlen ) {
+ID_INLINE void idStr::Fill( const char ch, int newlen ) {
 	EnsureAlloced( newlen + 1 );
 	len = newlen;
 	memset( data, ch, len );
 	data[ len ] = 0;
 }
 
-ID_FORCE_INLINE int idStr::Count( const char c, int start, int end ) const {
+ID_INLINE int idStr::Count( const char c, int start, int end ) const {
 	if ( end == -1 ) {
 		end = len;
 	}
 	return idStr::CountChar( data, c, start, end );
 }
 
-ID_FORCE_INLINE int idStr::Find( const char c, int start, int end ) const {
+ID_INLINE int idStr::Find( const char c, int start, int end ) const {
 	if ( end == -1 ) {
 		end = len;
 	}
 	return idStr::FindChar( data, c, start, end );
 }
 
-ID_FORCE_INLINE int idStr::Find( const char *text, bool casesensitive, int start, int end ) const {
+ID_INLINE int idStr::Find( const char *text, bool casesensitive, int start, int end ) const {
 	if ( end == -1 ) {
 		end = len;
 	}
 	return idStr::FindText( data, text, casesensitive, start, end );
 }
 
-ID_FORCE_INLINE bool idStr::Filter( const char *filter, bool casesensitive ) const {
+ID_INLINE bool idStr::Filter( const char *filter, bool casesensitive ) const {
 	return idStr::Filter( filter, data, casesensitive );
 }
 
-ID_FORCE_INLINE const char *idStr::Left( const int len, idStr &result ) const {
+ID_INLINE const char *idStr::Left( const int len, idStr &result ) const {
 	return Mid( 0, len, result );
 }
 
-ID_FORCE_INLINE const char *idStr::Right( const int len, idStr &result ) const {
+ID_INLINE const char *idStr::Right( const int len, idStr &result ) const {
 	if ( len >= Length() ) {
 		result = *this;
 		return result;
@@ -883,38 +883,38 @@ ID_FORCE_INLINE const char *idStr::Right( const int len, idStr &result ) const {
 	return Mid( Length() - len, len, result );
 }
 
-ID_FORCE_INLINE idStr idStr::Left( const int len ) const {
+ID_INLINE idStr idStr::Left( const int len ) const {
 	return Mid( 0, len );
 }
 
-ID_FORCE_INLINE idStr idStr::Right( const int len ) const {
+ID_INLINE idStr idStr::Right( const int len ) const {
 	if ( len >= Length() ) {
 		return *this;
 	}
 	return Mid( Length() - len, len );
 }
 
-ID_FORCE_INLINE void idStr::Strip( const char c ) {
+ID_INLINE void idStr::Strip( const char c ) {
 	StripLeading( c );
 	StripTrailing( c );
 }
 
-ID_FORCE_INLINE void idStr::Strip( const char *string ) {
+ID_INLINE void idStr::Strip( const char *string ) {
 	StripLeading( string );
 	StripTrailing( string );
 }
 
-ID_FORCE_INLINE bool idStr::CheckExtension( const char *ext ) {
+ID_INLINE bool idStr::CheckExtension( const char *ext ) {
 	return idStr::CheckExtension( data, ext );
 }
 
-ID_FORCE_INLINE int idStr::Length( const char *s ) {
+ID_INLINE int idStr::Length( const char *s ) {
 	int i;
 	for ( i = 0; s[i]; i++ ) {}
 	return i;
 }
 
-ID_FORCE_INLINE char *idStr::ToLower( char *s ) {
+ID_INLINE char *idStr::ToLower( char *s ) {
 	for ( int i = 0; s[i]; i++ ) {
 		if ( CharIsUpper( s[i] ) ) {
 			s[i] += ( 'a' - 'A' );
@@ -923,7 +923,7 @@ ID_FORCE_INLINE char *idStr::ToLower( char *s ) {
 	return s;
 }
 
-ID_FORCE_INLINE char *idStr::ToUpper( char *s ) {
+ID_INLINE char *idStr::ToUpper( char *s ) {
 	for ( int i = 0; s[i]; i++ ) {
 		if ( CharIsLower( s[i] ) ) {
 			s[i] -= ( 'a' - 'A' );
@@ -932,7 +932,7 @@ ID_FORCE_INLINE char *idStr::ToUpper( char *s ) {
 	return s;
 }
 
-ID_FORCE_INLINE int idStr::Hash( const char *string ) {
+ID_INLINE int idStr::Hash( const char *string ) {
 	int i, hash = 0;
 	for ( i = 0; *string != '\0'; i++ ) {
 		hash += ( *string++ ) * ( i + 119 );
@@ -940,7 +940,7 @@ ID_FORCE_INLINE int idStr::Hash( const char *string ) {
 	return hash;
 }
 
-ID_FORCE_INLINE int idStr::Hash( const char *string, int length ) {
+ID_INLINE int idStr::Hash( const char *string, int length ) {
 	int i, hash = 0;
 	for ( i = 0; i < length; i++ ) {
 		hash += ( *string++ ) * ( i + 119 );
@@ -948,7 +948,7 @@ ID_FORCE_INLINE int idStr::Hash( const char *string, int length ) {
 	return hash;
 }
 
-ID_FORCE_INLINE int idStr::IHash( const char *string ) {
+ID_INLINE int idStr::IHash( const char *string ) {
 	int i, hash = 0;
 	for( i = 0; *string != '\0'; i++ ) {
 		hash += ToLower( *string++ ) * ( i + 119 );
@@ -956,7 +956,7 @@ ID_FORCE_INLINE int idStr::IHash( const char *string ) {
 	return hash;
 }
 
-ID_FORCE_INLINE int idStr::IHash( const char *string, int length ) {
+ID_INLINE int idStr::IHash( const char *string, int length ) {
 	int i, hash = 0;
 	for ( i = 0; i < length; i++ ) {
 		hash += ToLower( *string++ ) * ( i + 119 );
@@ -964,62 +964,62 @@ ID_FORCE_INLINE int idStr::IHash( const char *string, int length ) {
 	return hash;
 }
 
-ID_FORCE_INLINE bool idStr::IsColor( const char *s ) {
+ID_INLINE bool idStr::IsColor( const char *s ) {
 	return ( s[0] == C_COLOR_ESCAPE && s[1] != '\0' && s[1] != ' ' );
 }
 
-ID_FORCE_INLINE char idStr::ToLower( char c ) {
+ID_INLINE char idStr::ToLower( char c ) {
 	if ( c <= 'Z' && c >= 'A' ) {
 		return ( c + ( 'a' - 'A' ) );
 	}
 	return c;
 }
 
-ID_FORCE_INLINE char idStr::ToUpper( char c ) {
+ID_INLINE char idStr::ToUpper( char c ) {
 	if ( c >= 'a' && c <= 'z' ) {
 		return ( c - ( 'a' - 'A' ) );
 	}
 	return c;
 }
 
-ID_FORCE_INLINE bool idStr::CharIsPrintable( int c ) {
+ID_INLINE bool idStr::CharIsPrintable( int c ) {
 	// test for regular ascii and western European high-ascii chars
 	return ( c >= 0x20 && c <= 0x7E ) || ( c >= 0xA1 && c <= 0xFF );
 }
 
-ID_FORCE_INLINE bool idStr::CharIsLower( int c ) {
+ID_INLINE bool idStr::CharIsLower( int c ) {
 	// test for regular ascii and western European high-ascii chars
 	return ( c >= 'a' && c <= 'z' ) || ( c >= 0xE0 && c <= 0xFF );
 }
 
-ID_FORCE_INLINE bool idStr::CharIsUpper( int c ) {
+ID_INLINE bool idStr::CharIsUpper( int c ) {
 	// test for regular ascii and western European high-ascii chars
 	return ( c <= 'Z' && c >= 'A' ) || ( c >= 0xC0 && c <= 0xDF );
 }
 
-ID_FORCE_INLINE bool idStr::CharIsAlpha( int c ) {
+ID_INLINE bool idStr::CharIsAlpha( int c ) {
 	// test for regular ascii and western European high-ascii chars
 	return ( ( c >= 'a' && c <= 'z' ) || ( c >= 'A' && c <= 'Z' ) ||
 			 ( c >= 0xC0 && c <= 0xFF ) );
 }
 
-ID_FORCE_INLINE bool idStr::CharIsNumeric( int c ) {
+ID_INLINE bool idStr::CharIsNumeric( int c ) {
 	return ( c <= '9' && c >= '0' );
 }
 
-ID_FORCE_INLINE bool idStr::CharIsNewLine( char c ) {
+ID_INLINE bool idStr::CharIsNewLine( char c ) {
 	return ( c == '\n' || c == '\r' || c == '\v' );
 }
 
-ID_FORCE_INLINE bool idStr::CharIsTab( char c ) {
+ID_INLINE bool idStr::CharIsTab( char c ) {
 	return ( c == '\t' );
 }
 
-ID_FORCE_INLINE int idStr::ColorIndex( int c ) {
+ID_INLINE int idStr::ColorIndex( int c ) {
 	return ( c & 15 );
 }
 
-ID_FORCE_INLINE int idStr::DynamicMemoryUsed() const {
+ID_INLINE int idStr::DynamicMemoryUsed() const {
 	return ( data == baseBuffer ) ? 0 : alloced;
 }
 

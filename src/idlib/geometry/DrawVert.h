@@ -54,16 +54,16 @@ public:
 	dword			GetColor( void ) const;
 };
 
-ID_FORCE_INLINE float idDrawVert::operator[]( const int index ) const {
+ID_INLINE float idDrawVert::operator[]( const int index ) const {
 	assert( index >= 0 && index < 5 );
 	return ((float *)(&xyz))[index];
 }
-ID_FORCE_INLINE float	&idDrawVert::operator[]( const int index ) {
+ID_INLINE float	&idDrawVert::operator[]( const int index ) {
 	assert( index >= 0 && index < 5 );
 	return ((float *)(&xyz))[index];
 }
 
-ID_FORCE_INLINE void idDrawVert::Clear( void ) {
+ID_INLINE void idDrawVert::Clear( void ) {
 	xyz.Zero();
 	st.Zero();
 	normal.Zero();
@@ -72,12 +72,12 @@ ID_FORCE_INLINE void idDrawVert::Clear( void ) {
 	color[0] = color[1] = color[2] = color[3] = 0;
 }
 
-ID_FORCE_INLINE void idDrawVert::Lerp( const idDrawVert &a, const idDrawVert &b, const float f ) {
+ID_INLINE void idDrawVert::Lerp( const idDrawVert &a, const idDrawVert &b, const float f ) {
 	xyz = a.xyz + f * ( b.xyz - a.xyz );
 	st = a.st + f * ( b.st - a.st );
 }
 
-ID_FORCE_INLINE void idDrawVert::LerpAll( const idDrawVert &a, const idDrawVert &b, const float f ) {
+ID_INLINE void idDrawVert::LerpAll( const idDrawVert &a, const idDrawVert &b, const float f ) {
 	xyz = a.xyz + f * ( b.xyz - a.xyz );
 	st = a.st + f * ( b.st - a.st );
 	normal = a.normal + f * ( b.normal - a.normal );
@@ -89,15 +89,15 @@ ID_FORCE_INLINE void idDrawVert::LerpAll( const idDrawVert &a, const idDrawVert 
 	color[3] = (byte)( a.color[3] + f * ( b.color[3] - a.color[3] ) );
 }
 
-ID_FORCE_INLINE void idDrawVert::SetColor( dword color ) {
+ID_INLINE void idDrawVert::SetColor( dword color ) {
 	*reinterpret_cast<dword *>(this->color) = color;
 }
 
-ID_FORCE_INLINE dword idDrawVert::GetColor( void ) const {
+ID_INLINE dword idDrawVert::GetColor( void ) const {
 	return *reinterpret_cast<const dword *>(this->color);
 }
 
-ID_FORCE_INLINE void idDrawVert::ScaleToUnitNormal( void ) {
+ID_INLINE void idDrawVert::ScaleToUnitNormal( void ) {
 	float invNormLen = idMath::RSqrt(normal.LengthSqr());
 	if (invNormLen == 1.0f) return;
 	normal *= invNormLen;

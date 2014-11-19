@@ -452,7 +452,7 @@ protected:
 	idWinBool	hideCursor;
 };
 
-ID_FORCE_INLINE void idWindow::AddDefinedVar( idWinVar *var ) {
+ID_INLINE void idWindow::AddDefinedVar( idWinVar *var ) {
 	definedVars.AddUnique( var );
 }
 

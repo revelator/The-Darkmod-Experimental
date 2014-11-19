@@ -563,7 +563,7 @@ void idInteraction::MakeEmpty( void ) {
 idInteraction::HasShadows
 ===============
 */
-ID_FORCE_INLINE bool idInteraction::HasShadows( void ) const {
+ID_INLINE bool idInteraction::HasShadows( void ) const {
 	return ( !lightDef->parms.noShadows && !entityDef->parms.noShadow && lightDef->lightShader->LightCastsShadows() );
 }
 

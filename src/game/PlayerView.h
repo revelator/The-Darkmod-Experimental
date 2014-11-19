@@ -107,10 +107,10 @@ private:
 			m_strImage( a_strImage ),
 			m_matImage( declManager->FindMaterial( a_strImage ) ) {
 		}
-		ID_FORCE_INLINE operator const char *() const {
+		ID_INLINE operator const char *() const {
 			return m_strImage.c_str();
 		}
-		ID_FORCE_INLINE operator const idMaterial *() const {
+		ID_INLINE operator const idMaterial *() const {
 			return m_matImage;
 		}
 	};

@@ -50,24 +50,24 @@ protected:
 	bool					mMergeBlock;
 };
 
-ID_FORCE_INLINE bool rvGEModifierStack::CanRedo( void ) {
+ID_INLINE bool rvGEModifierStack::CanRedo( void ) {
 	return mCurrentModifier < mModifiers.Num() - 1;
 }
 
-ID_FORCE_INLINE bool rvGEModifierStack::CanUndo( void ) {
+ID_INLINE bool rvGEModifierStack::CanUndo( void ) {
 	return mCurrentModifier >= 0;
 }
 
-ID_FORCE_INLINE void rvGEModifierStack::BlockNextMerge( void ) {
+ID_INLINE void rvGEModifierStack::BlockNextMerge( void ) {
 	mMergeBlock = true;
 }
 
-ID_FORCE_INLINE rvGEModifier *rvGEModifierStack::GetUndoModifier( void ) {
+ID_INLINE rvGEModifier *rvGEModifierStack::GetUndoModifier( void ) {
 	assert( CanUndo( ) );
 	return mModifiers[mCurrentModifier];
 }
 
-ID_FORCE_INLINE rvGEModifier *rvGEModifierStack::GetRedoModifier( void ) {
+ID_INLINE rvGEModifier *rvGEModifierStack::GetRedoModifier( void ) {
 	assert( CanRedo( ) );
 	return mModifiers[mCurrentModifier + 1];
 }

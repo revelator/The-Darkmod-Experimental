@@ -80,7 +80,7 @@ private:
 idSurface_Patch::idSurface_Patch
 =================
 */
-ID_FORCE_INLINE idSurface_Patch::idSurface_Patch( void ) {
+ID_INLINE idSurface_Patch::idSurface_Patch( void ) {
 	height = width = maxHeight = maxWidth = 0;
 	expanded = false;
 }
@@ -90,7 +90,7 @@ ID_FORCE_INLINE idSurface_Patch::idSurface_Patch( void ) {
 idSurface_Patch::idSurface_Patch
 =================
 */
-ID_FORCE_INLINE idSurface_Patch::idSurface_Patch( int maxPatchWidth, int maxPatchHeight ) {
+ID_INLINE idSurface_Patch::idSurface_Patch( int maxPatchWidth, int maxPatchHeight ) {
 	width = height = 0;
 	maxWidth = maxPatchWidth;
 	maxHeight = maxPatchHeight;
@@ -103,7 +103,7 @@ ID_FORCE_INLINE idSurface_Patch::idSurface_Patch( int maxPatchWidth, int maxPatc
 idSurface_Patch::idSurface_Patch
 =================
 */
-ID_FORCE_INLINE idSurface_Patch::idSurface_Patch( const idSurface_Patch &patch ) {
+ID_INLINE idSurface_Patch::idSurface_Patch( const idSurface_Patch &patch ) {
 	(*this) = patch;
 }
 
@@ -112,7 +112,7 @@ ID_FORCE_INLINE idSurface_Patch::idSurface_Patch( const idSurface_Patch &patch )
 idSurface_Patch::~idSurface_Patch
 =================
 */
-ID_FORCE_INLINE idSurface_Patch::~idSurface_Patch() {
+ID_INLINE idSurface_Patch::~idSurface_Patch() {
 }
 
 /*
@@ -120,7 +120,7 @@ ID_FORCE_INLINE idSurface_Patch::~idSurface_Patch() {
 idSurface_Patch::GetWidth
 =================
 */
-ID_FORCE_INLINE int idSurface_Patch::GetWidth( void ) const {
+ID_INLINE int idSurface_Patch::GetWidth( void ) const {
 	return width;
 }
 
@@ -129,7 +129,7 @@ ID_FORCE_INLINE int idSurface_Patch::GetWidth( void ) const {
 idSurface_Patch::GetHeight
 =================
 */
-ID_FORCE_INLINE int idSurface_Patch::GetHeight( void ) const {
+ID_INLINE int idSurface_Patch::GetHeight( void ) const {
 	return height;
 }
 

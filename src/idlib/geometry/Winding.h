@@ -119,18 +119,18 @@ protected:
 	virtual bool	ReAllocate( int n, bool keep = false );
 };
 
-ID_FORCE_INLINE idWinding::idWinding( void ) {
+ID_INLINE idWinding::idWinding( void ) {
 	numPoints = allocedSize = 0;
 	p = NULL;
 }
 
-ID_FORCE_INLINE idWinding::idWinding( int n ) {
+ID_INLINE idWinding::idWinding( int n ) {
 	numPoints = allocedSize = 0;
 	p = NULL;
 	EnsureAlloced( n );
 }
 
-ID_FORCE_INLINE idWinding::idWinding( const idVec3 *verts, const int n ) {
+ID_INLINE idWinding::idWinding( const idVec3 *verts, const int n ) {
 	int i;
 
 	numPoints = allocedSize = 0;
@@ -146,19 +146,19 @@ ID_FORCE_INLINE idWinding::idWinding( const idVec3 *verts, const int n ) {
 	numPoints = n;
 }
 
-ID_FORCE_INLINE idWinding::idWinding( const idVec3 &normal, const float dist ) {
+ID_INLINE idWinding::idWinding( const idVec3 &normal, const float dist ) {
 	numPoints = allocedSize = 0;
 	p = NULL;
 	BaseForPlane( normal, dist );
 }
 
-ID_FORCE_INLINE idWinding::idWinding( const idPlane &plane ) {
+ID_INLINE idWinding::idWinding( const idPlane &plane ) {
 	numPoints = allocedSize = 0;
 	p = NULL;
 	BaseForPlane( plane );
 }
 
-ID_FORCE_INLINE idWinding::idWinding( const idWinding &winding ) {
+ID_INLINE idWinding::idWinding( const idWinding &winding ) {
 	int i;
 	if ( !EnsureAlloced( winding.GetNumPoints() ) ) {
 		numPoints = 0;
@@ -170,12 +170,12 @@ ID_FORCE_INLINE idWinding::idWinding( const idWinding &winding ) {
 	numPoints = winding.GetNumPoints();
 }
 
-ID_FORCE_INLINE idWinding::~idWinding( void ) {
+ID_INLINE idWinding::~idWinding( void ) {
 	delete[] p;
 	p = NULL;
 }
 
-ID_FORCE_INLINE idWinding &idWinding::operator=( const idWinding &winding ) {
+ID_INLINE idWinding &idWinding::operator=( const idWinding &winding ) {
 	int i;
 
 	if ( !EnsureAlloced( winding.numPoints ) ) {
@@ -189,27 +189,27 @@ ID_FORCE_INLINE idWinding &idWinding::operator=( const idWinding &winding ) {
 	return *this;
 }
 
-ID_FORCE_INLINE const idVec5 &idWinding::operator[]( const int index ) const {
+ID_INLINE const idVec5 &idWinding::operator[]( const int index ) const {
 	//assert( index >= 0 && index < numPoints );
 	return p[ index ];
 }
 
-ID_FORCE_INLINE idVec5 &idWinding::operator[]( const int index ) {
+ID_INLINE idVec5 &idWinding::operator[]( const int index ) {
 	//assert( index >= 0 && index < numPoints );
 	return p[ index ];
 }
 
-ID_FORCE_INLINE idWinding &idWinding::operator+=( const idVec3 &v ) {
+ID_INLINE idWinding &idWinding::operator+=( const idVec3 &v ) {
 	AddPoint( v );
 	return *this;
 }
 
-ID_FORCE_INLINE idWinding &idWinding::operator+=( const idVec5 &v ) {
+ID_INLINE idWinding &idWinding::operator+=( const idVec5 &v ) {
 	AddPoint( v );
 	return *this;
 }
 
-ID_FORCE_INLINE void idWinding::AddPoint( const idVec3 &v ) {
+ID_INLINE void idWinding::AddPoint( const idVec3 &v ) {
 	if ( !EnsureAlloced(numPoints+1, true) ) {
 		return;
 	}
@@ -217,7 +217,7 @@ ID_FORCE_INLINE void idWinding::AddPoint( const idVec3 &v ) {
 	numPoints++;
 }
 
-ID_FORCE_INLINE void idWinding::AddPoint( const idVec5 &v ) {
+ID_INLINE void idWinding::AddPoint( const idVec5 &v ) {
 	if ( !EnsureAlloced(numPoints+1, true) ) {
 		return;
 	}
@@ -225,28 +225,28 @@ ID_FORCE_INLINE void idWinding::AddPoint( const idVec5 &v ) {
 	numPoints++;
 }
 
-ID_FORCE_INLINE int idWinding::GetNumPoints( void ) const {
+ID_INLINE int idWinding::GetNumPoints( void ) const {
 	return numPoints;
 }
 
-ID_FORCE_INLINE void idWinding::SetNumPoints( int n ) {
+ID_INLINE void idWinding::SetNumPoints( int n ) {
 	if ( !EnsureAlloced( n, true ) ) {
 		return;
 	}
 	numPoints = n;
 }
 
-ID_FORCE_INLINE void idWinding::Clear( void ) {
+ID_INLINE void idWinding::Clear( void ) {
 	numPoints = 0;
 	delete[] p;
 	p = NULL;
 }
 
-ID_FORCE_INLINE void idWinding::BaseForPlane( const idPlane &plane ) {
+ID_INLINE void idWinding::BaseForPlane( const idPlane &plane ) {
 	BaseForPlane( plane.Normal(), plane.Dist() );
 }
 
-ID_FORCE_INLINE bool idWinding::EnsureAlloced( int n, bool keep ) {
+ID_INLINE bool idWinding::EnsureAlloced( int n, bool keep ) {
 	if ( n > allocedSize ) {
 		return ReAllocate( n, keep );
 	}
@@ -292,19 +292,19 @@ protected:
 	virtual bool	ReAllocate( int n, bool keep = false );
 };
 
-ID_FORCE_INLINE idFixedWinding::idFixedWinding( void ) {
+ID_INLINE idFixedWinding::idFixedWinding( void ) {
 	numPoints = 0;
 	p = data;
 	allocedSize = MAX_POINTS_ON_WINDING;
 }
 
-ID_FORCE_INLINE idFixedWinding::idFixedWinding( int n ) {
+ID_INLINE idFixedWinding::idFixedWinding( int n ) {
 	numPoints = 0;
 	p = data;
 	allocedSize = MAX_POINTS_ON_WINDING;
 }
 
-ID_FORCE_INLINE idFixedWinding::idFixedWinding( const idVec3 *verts, const int n ) {
+ID_INLINE idFixedWinding::idFixedWinding( const idVec3 *verts, const int n ) {
 	int i;
 
 	numPoints = 0;
@@ -321,21 +321,21 @@ ID_FORCE_INLINE idFixedWinding::idFixedWinding( const idVec3 *verts, const int n
 	numPoints = n;
 }
 
-ID_FORCE_INLINE idFixedWinding::idFixedWinding( const idVec3 &normal, const float dist ) {
+ID_INLINE idFixedWinding::idFixedWinding( const idVec3 &normal, const float dist ) {
 	numPoints = 0;
 	p = data;
 	allocedSize = MAX_POINTS_ON_WINDING;
 	BaseForPlane( normal, dist );
 }
 
-ID_FORCE_INLINE idFixedWinding::idFixedWinding( const idPlane &plane ) {
+ID_INLINE idFixedWinding::idFixedWinding( const idPlane &plane ) {
 	numPoints = 0;
 	p = data;
 	allocedSize = MAX_POINTS_ON_WINDING;
 	BaseForPlane( plane );
 }
 
-ID_FORCE_INLINE idFixedWinding::idFixedWinding( const idWinding &winding ) {
+ID_INLINE idFixedWinding::idFixedWinding( const idWinding &winding ) {
 	int i;
 
 	p = data;
@@ -350,7 +350,7 @@ ID_FORCE_INLINE idFixedWinding::idFixedWinding( const idWinding &winding ) {
 	numPoints = winding.GetNumPoints();
 }
 
-ID_FORCE_INLINE idFixedWinding::idFixedWinding( const idFixedWinding &winding ) {
+ID_INLINE idFixedWinding::idFixedWinding( const idFixedWinding &winding ) {
 	int i;
 
 	p = data;
@@ -365,11 +365,11 @@ ID_FORCE_INLINE idFixedWinding::idFixedWinding( const idFixedWinding &winding ) 
 	numPoints = winding.GetNumPoints();
 }
 
-ID_FORCE_INLINE idFixedWinding::~idFixedWinding( void ) {
+ID_INLINE idFixedWinding::~idFixedWinding( void ) {
 	p = NULL;	// otherwise it tries to free the fixed buffer
 }
 
-ID_FORCE_INLINE idFixedWinding &idFixedWinding::operator=( const idWinding &winding ) {
+ID_INLINE idFixedWinding &idFixedWinding::operator=( const idWinding &winding ) {
 	int i;
 
 	if ( !EnsureAlloced( winding.GetNumPoints() ) ) {
@@ -383,7 +383,7 @@ ID_FORCE_INLINE idFixedWinding &idFixedWinding::operator=( const idWinding &wind
 	return *this;
 }
 
-ID_FORCE_INLINE void idFixedWinding::Clear( void ) {
+ID_INLINE void idFixedWinding::Clear( void ) {
 	numPoints = 0;
 }
 #endif	/* !__WINDING_H__ */

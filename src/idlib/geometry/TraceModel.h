@@ -149,31 +149,31 @@ private:
 	int					GetOrderedSilhouetteEdges( const int edgeIsSilEdge[MAX_TRACEMODEL_EDGES+1], int silEdges[MAX_TRACEMODEL_EDGES] ) const;
 };
 
-ID_FORCE_INLINE idTraceModel::idTraceModel( void ) {
+ID_INLINE idTraceModel::idTraceModel( void ) {
 	type = TRM_INVALID;
 	numVerts = numEdges = numPolys = 0;
 	bounds.Zero();
 }
 
-ID_FORCE_INLINE idTraceModel::idTraceModel( const idBounds &boxBounds ) {
+ID_INLINE idTraceModel::idTraceModel( const idBounds &boxBounds ) {
 	InitBox();
 	SetupBox( boxBounds );
 }
 
-ID_FORCE_INLINE idTraceModel::idTraceModel( const idBounds &cylBounds, const int numSides ) {
+ID_INLINE idTraceModel::idTraceModel( const idBounds &cylBounds, const int numSides ) {
 	SetupCylinder( cylBounds, numSides );
 }
 
-ID_FORCE_INLINE idTraceModel::idTraceModel( const float length, const float width ) {
+ID_INLINE idTraceModel::idTraceModel( const float length, const float width ) {
 	InitBone();
 	SetupBone( length, width );
 }
 
-ID_FORCE_INLINE bool idTraceModel::operator==( const idTraceModel &trm ) const {
+ID_INLINE bool idTraceModel::operator==( const idTraceModel &trm ) const {
 	return Compare( trm );
 }
 
-ID_FORCE_INLINE bool idTraceModel::operator!=( const idTraceModel &trm ) const {
+ID_INLINE bool idTraceModel::operator!=( const idTraceModel &trm ) const {
 	return !Compare( trm );
 }
 

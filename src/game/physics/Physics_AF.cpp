@@ -4037,7 +4037,7 @@ idAFBody::InverseWorldSpatialInertiaMultiply
   dst = this->inverseWorldSpatialInertia * v;
 ================
 */
-ID_FORCE_INLINE void idAFBody::InverseWorldSpatialInertiaMultiply( idVecX &dst, const float *v ) const {
+ID_INLINE void idAFBody::InverseWorldSpatialInertiaMultiply( idVecX &dst, const float *v ) const {
 	const float *mPtr = inverseWorldSpatialInertia.ToFloatPtr();
 	const float *vPtr = v;
 	float *dstPtr = dst.ToFloatPtr();

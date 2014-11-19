@@ -58,14 +58,14 @@ private:
 	idStr				stackName[128];
 };
 
-ID_FORCE_INLINE void idPathTreeStack::PushRoot( HTREEITEM root ) {
+ID_INLINE void idPathTreeStack::PushRoot( HTREEITEM root ) {
 	assert( size == 0 );
 	stackItem[size] = root;
 	stackName[size] = "";
 	size++;
 }
 
-ID_FORCE_INLINE void idPathTreeStack::Push( HTREEITEM item, const char *name ) {
+ID_INLINE void idPathTreeStack::Push( HTREEITEM item, const char *name ) {
 	assert( size < 127 );
 	stackItem[size] = item;
 	stackName[size] = stackName[size - 1] + name + "/";

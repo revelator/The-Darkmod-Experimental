@@ -142,43 +142,43 @@ private:
 	int				ReadDelta( int oldValue, int numBits ) const;
 };
 
-ID_FORCE_INLINE void idBitMsg::Init( byte *data, int length ) {
+ID_INLINE void idBitMsg::Init( byte *data, int length ) {
 	writeData = data;
 	readData = data;
 	maxSize = length;
 }
 
-ID_FORCE_INLINE void idBitMsg::Init( const byte *data, int length ) {
+ID_INLINE void idBitMsg::Init( const byte *data, int length ) {
 	writeData = NULL;
 	readData = data;
 	maxSize = length;
 }
 
-ID_FORCE_INLINE byte *idBitMsg::GetData( void ) {
+ID_INLINE byte *idBitMsg::GetData( void ) {
 	return writeData;
 }
 
-ID_FORCE_INLINE const byte *idBitMsg::GetData( void ) const {
+ID_INLINE const byte *idBitMsg::GetData( void ) const {
 	return readData;
 }
 
-ID_FORCE_INLINE int idBitMsg::GetMaxSize( void ) const {
+ID_INLINE int idBitMsg::GetMaxSize( void ) const {
 	return maxSize;
 }
 
-ID_FORCE_INLINE void idBitMsg::SetAllowOverflow( bool set ) {
+ID_INLINE void idBitMsg::SetAllowOverflow( bool set ) {
 	allowOverflow = set;
 }
 
-ID_FORCE_INLINE bool idBitMsg::IsOverflowed( void ) const {
+ID_INLINE bool idBitMsg::IsOverflowed( void ) const {
 	return overflowed;
 }
 
-ID_FORCE_INLINE int idBitMsg::GetSize( void ) const {
+ID_INLINE int idBitMsg::GetSize( void ) const {
 	return curSize;
 }
 
-ID_FORCE_INLINE void idBitMsg::SetSize( int size ) {
+ID_INLINE void idBitMsg::SetSize( int size ) {
 	if ( size > maxSize ) {
 		curSize = maxSize;
 	} else {
@@ -186,31 +186,31 @@ ID_FORCE_INLINE void idBitMsg::SetSize( int size ) {
 	}
 }
 
-ID_FORCE_INLINE int idBitMsg::GetWriteBit( void ) const {
+ID_INLINE int idBitMsg::GetWriteBit( void ) const {
 	return writeBit;
 }
 
-ID_FORCE_INLINE void idBitMsg::SetWriteBit( int bit ) {
+ID_INLINE void idBitMsg::SetWriteBit( int bit ) {
 	writeBit = bit & 7;
 	if ( writeBit ) {
 		writeData[curSize - 1] &= ( 1 << writeBit ) - 1;
 	}
 }
 
-ID_FORCE_INLINE int idBitMsg::GetNumBitsWritten( void ) const {
+ID_INLINE int idBitMsg::GetNumBitsWritten( void ) const {
 	return ( ( curSize << 3 ) - ( ( 8 - writeBit ) & 7 ) );
 }
 
-ID_FORCE_INLINE int idBitMsg::GetRemainingWriteBits( void ) const {
+ID_INLINE int idBitMsg::GetRemainingWriteBits( void ) const {
 	return ( maxSize << 3 ) - GetNumBitsWritten();
 }
 
-ID_FORCE_INLINE void idBitMsg::SaveWriteState( int &s, int &b ) const {
+ID_INLINE void idBitMsg::SaveWriteState( int &s, int &b ) const {
 	s = curSize;
 	b = writeBit;
 }
 
-ID_FORCE_INLINE void idBitMsg::RestoreWriteState( int s, int b ) {
+ID_INLINE void idBitMsg::RestoreWriteState( int s, int b ) {
 	curSize = s;
 	writeBit = b & 7;
 	if ( writeBit ) {
@@ -218,200 +218,200 @@ ID_FORCE_INLINE void idBitMsg::RestoreWriteState( int s, int b ) {
 	}
 }
 
-ID_FORCE_INLINE int idBitMsg::GetReadCount( void ) const {
+ID_INLINE int idBitMsg::GetReadCount( void ) const {
 	return readCount;
 }
 
-ID_FORCE_INLINE void idBitMsg::SetReadCount( int bytes ) {
+ID_INLINE void idBitMsg::SetReadCount( int bytes ) {
 	readCount = bytes;
 }
 
-ID_FORCE_INLINE int idBitMsg::GetReadBit( void ) const {
+ID_INLINE int idBitMsg::GetReadBit( void ) const {
 	return readBit;
 }
 
-ID_FORCE_INLINE void idBitMsg::SetReadBit( int bit ) {
+ID_INLINE void idBitMsg::SetReadBit( int bit ) {
 	readBit = bit & 7;
 }
 
-ID_FORCE_INLINE int idBitMsg::GetNumBitsRead( void ) const {
+ID_INLINE int idBitMsg::GetNumBitsRead( void ) const {
 	return ( ( readCount << 3 ) - ( ( 8 - readBit ) & 7 ) );
 }
 
-ID_FORCE_INLINE int idBitMsg::GetRemainingReadBits( void ) const {
+ID_INLINE int idBitMsg::GetRemainingReadBits( void ) const {
 	return ( curSize << 3 ) - GetNumBitsRead();
 }
 
-ID_FORCE_INLINE void idBitMsg::SaveReadState( int &c, int &b ) const {
+ID_INLINE void idBitMsg::SaveReadState( int &c, int &b ) const {
 	c = readCount;
 	b = readBit;
 }
 
-ID_FORCE_INLINE void idBitMsg::RestoreReadState( int c, int b ) {
+ID_INLINE void idBitMsg::RestoreReadState( int c, int b ) {
 	readCount = c;
 	readBit = b & 7;
 }
 
-ID_FORCE_INLINE void idBitMsg::BeginWriting( void ) {
+ID_INLINE void idBitMsg::BeginWriting( void ) {
 	curSize = 0;
 	overflowed = false;
 	writeBit = 0;
 }
 
-ID_FORCE_INLINE int idBitMsg::GetRemainingSpace( void ) const {
+ID_INLINE int idBitMsg::GetRemainingSpace( void ) const {
 	return maxSize - curSize;
 }
 
-ID_FORCE_INLINE void idBitMsg::WriteByteAlign( void ) {
+ID_INLINE void idBitMsg::WriteByteAlign( void ) {
 	writeBit = 0;
 }
 
-ID_FORCE_INLINE void idBitMsg::WriteChar( int c ) {
+ID_INLINE void idBitMsg::WriteChar( int c ) {
 	WriteBits( c, -8 );
 }
 
-ID_FORCE_INLINE void idBitMsg::WriteByte( int c ) {
+ID_INLINE void idBitMsg::WriteByte( int c ) {
 	WriteBits( c, 8 );
 }
 
-ID_FORCE_INLINE void idBitMsg::WriteShort( int c ) {
+ID_INLINE void idBitMsg::WriteShort( int c ) {
 	WriteBits( c, -16 );
 }
 
-ID_FORCE_INLINE void idBitMsg::WriteUShort( int c ) {
+ID_INLINE void idBitMsg::WriteUShort( int c ) {
 	WriteBits( c, 16 );
 }
 
-ID_FORCE_INLINE void idBitMsg::WriteLong( int c ) {
+ID_INLINE void idBitMsg::WriteLong( int c ) {
 	WriteBits( c, 32 );
 }
 
-ID_FORCE_INLINE void idBitMsg::WriteFloat( float f ) {
+ID_INLINE void idBitMsg::WriteFloat( float f ) {
 	WriteBits( *reinterpret_cast<int *>(&f), 32 );
 }
 
-ID_FORCE_INLINE void idBitMsg::WriteFloat( float f, int exponentBits, int mantissaBits ) {
+ID_INLINE void idBitMsg::WriteFloat( float f, int exponentBits, int mantissaBits ) {
 	int bits = idMath::FloatToBits( f, exponentBits, mantissaBits );
 	WriteBits( bits, 1 + exponentBits + mantissaBits );
 }
 
-ID_FORCE_INLINE void idBitMsg::WriteAngle8( float f ) {
+ID_INLINE void idBitMsg::WriteAngle8( float f ) {
 	WriteByte( ANGLE2BYTE( f ) );
 }
 
-ID_FORCE_INLINE void idBitMsg::WriteAngle16( float f ) {
+ID_INLINE void idBitMsg::WriteAngle16( float f ) {
 	WriteShort( ANGLE2SHORT(f) );
 }
 
-ID_FORCE_INLINE void idBitMsg::WriteDir( const idVec3 &dir, int numBits ) {
+ID_INLINE void idBitMsg::WriteDir( const idVec3 &dir, int numBits ) {
 	WriteBits( DirToBits( dir, numBits ), numBits );
 }
 
-ID_FORCE_INLINE void idBitMsg::WriteDeltaChar( int oldValue, int newValue ) {
+ID_INLINE void idBitMsg::WriteDeltaChar( int oldValue, int newValue ) {
 	WriteDelta( oldValue, newValue, -8 );
 }
 
-ID_FORCE_INLINE void idBitMsg::WriteDeltaByte( int oldValue, int newValue ) {
+ID_INLINE void idBitMsg::WriteDeltaByte( int oldValue, int newValue ) {
 	WriteDelta( oldValue, newValue, 8 );
 }
 
-ID_FORCE_INLINE void idBitMsg::WriteDeltaShort( int oldValue, int newValue ) {
+ID_INLINE void idBitMsg::WriteDeltaShort( int oldValue, int newValue ) {
 	WriteDelta( oldValue, newValue, -16 );
 }
 
-ID_FORCE_INLINE void idBitMsg::WriteDeltaLong( int oldValue, int newValue ) {
+ID_INLINE void idBitMsg::WriteDeltaLong( int oldValue, int newValue ) {
 	WriteDelta( oldValue, newValue, 32 );
 }
 
-ID_FORCE_INLINE void idBitMsg::WriteDeltaFloat( float oldValue, float newValue ) {
+ID_INLINE void idBitMsg::WriteDeltaFloat( float oldValue, float newValue ) {
 	WriteDelta( *reinterpret_cast<int *>(&oldValue), *reinterpret_cast<int *>(&newValue), 32 );
 }
 
-ID_FORCE_INLINE void idBitMsg::WriteDeltaFloat( float oldValue, float newValue, int exponentBits, int mantissaBits ) {
+ID_INLINE void idBitMsg::WriteDeltaFloat( float oldValue, float newValue, int exponentBits, int mantissaBits ) {
 	int oldBits = idMath::FloatToBits( oldValue, exponentBits, mantissaBits );
 	int newBits = idMath::FloatToBits( newValue, exponentBits, mantissaBits );
 	WriteDelta( oldBits, newBits, 1 + exponentBits + mantissaBits );
 }
 
-ID_FORCE_INLINE void idBitMsg::BeginReading( void ) const {
+ID_INLINE void idBitMsg::BeginReading( void ) const {
 	readCount = 0;
 	readBit = 0;
 }
 
-ID_FORCE_INLINE int idBitMsg::GetRemaingData( void ) const {
+ID_INLINE int idBitMsg::GetRemaingData( void ) const {
 	return curSize - readCount;
 }
 
-ID_FORCE_INLINE void idBitMsg::ReadByteAlign( void ) const {
+ID_INLINE void idBitMsg::ReadByteAlign( void ) const {
 	readBit = 0;
 }
 
-ID_FORCE_INLINE int idBitMsg::ReadChar( void ) const {
+ID_INLINE int idBitMsg::ReadChar( void ) const {
 	return (signed char)ReadBits( -8 );
 }
 
-ID_FORCE_INLINE int idBitMsg::ReadByte( void ) const {
+ID_INLINE int idBitMsg::ReadByte( void ) const {
 	return (unsigned char)ReadBits( 8 );
 }
 
-ID_FORCE_INLINE int idBitMsg::ReadShort( void ) const {
+ID_INLINE int idBitMsg::ReadShort( void ) const {
 	return (short)ReadBits( -16 );
 }
 
-ID_FORCE_INLINE int idBitMsg::ReadUShort( void ) const {
+ID_INLINE int idBitMsg::ReadUShort( void ) const {
 	return (unsigned short)ReadBits( 16 );
 }
 
-ID_FORCE_INLINE int idBitMsg::ReadLong( void ) const {
+ID_INLINE int idBitMsg::ReadLong( void ) const {
 	return ReadBits( 32 );
 }
 
-ID_FORCE_INLINE float idBitMsg::ReadFloat( void ) const {
+ID_INLINE float idBitMsg::ReadFloat( void ) const {
 	float value;
 	*reinterpret_cast<int *>(&value) = ReadBits( 32 );
 	return value;
 }
 
-ID_FORCE_INLINE float idBitMsg::ReadFloat( int exponentBits, int mantissaBits ) const {
+ID_INLINE float idBitMsg::ReadFloat( int exponentBits, int mantissaBits ) const {
 	int bits = ReadBits( 1 + exponentBits + mantissaBits );
 	return idMath::BitsToFloat( bits, exponentBits, mantissaBits );
 }
 
-ID_FORCE_INLINE float idBitMsg::ReadAngle8( void ) const {
+ID_INLINE float idBitMsg::ReadAngle8( void ) const {
 	return BYTE2ANGLE( ReadByte() );
 }
 
-ID_FORCE_INLINE float idBitMsg::ReadAngle16( void ) const {
+ID_INLINE float idBitMsg::ReadAngle16( void ) const {
 	return SHORT2ANGLE( ReadShort() );
 }
 
-ID_FORCE_INLINE idVec3 idBitMsg::ReadDir( int numBits ) const {
+ID_INLINE idVec3 idBitMsg::ReadDir( int numBits ) const {
 	return BitsToDir( ReadBits( numBits ), numBits );
 }
 
-ID_FORCE_INLINE int idBitMsg::ReadDeltaChar( int oldValue ) const {
+ID_INLINE int idBitMsg::ReadDeltaChar( int oldValue ) const {
 	return (signed char)ReadDelta( oldValue, -8 );
 }
 
-ID_FORCE_INLINE int idBitMsg::ReadDeltaByte( int oldValue ) const {
+ID_INLINE int idBitMsg::ReadDeltaByte( int oldValue ) const {
 	return (unsigned char)ReadDelta( oldValue, 8 );
 }
 
-ID_FORCE_INLINE int idBitMsg::ReadDeltaShort( int oldValue ) const {
+ID_INLINE int idBitMsg::ReadDeltaShort( int oldValue ) const {
 	return (short)ReadDelta( oldValue, -16 );
 }
 
-ID_FORCE_INLINE int idBitMsg::ReadDeltaLong( int oldValue ) const {
+ID_INLINE int idBitMsg::ReadDeltaLong( int oldValue ) const {
 	return ReadDelta( oldValue, 32 );
 }
 
-ID_FORCE_INLINE float idBitMsg::ReadDeltaFloat( float oldValue ) const {
+ID_INLINE float idBitMsg::ReadDeltaFloat( float oldValue ) const {
 	float value;
 	*reinterpret_cast<int *>(&value) = ReadDelta( *reinterpret_cast<int *>(&oldValue), 32 );
 	return value;
 }
 
-ID_FORCE_INLINE float idBitMsg::ReadDeltaFloat( float oldValue, int exponentBits, int mantissaBits ) const {
+ID_INLINE float idBitMsg::ReadDeltaFloat( float oldValue, int exponentBits, int mantissaBits ) const {
 	int oldBits = idMath::FloatToBits( oldValue, exponentBits, mantissaBits );
 	int newBits = ReadDelta( oldBits, 1 + exponentBits + mantissaBits );
 	return idMath::BitsToFloat( newBits, exponentBits, mantissaBits );
@@ -496,7 +496,7 @@ private:
 	int				ReadDelta( int oldValue, int numBits ) const;
 };
 
-ID_FORCE_INLINE idBitMsgDelta::idBitMsgDelta() {
+ID_INLINE idBitMsgDelta::idBitMsgDelta() {
 	base = NULL;
 	newBase = NULL;
 	writeDelta = NULL;
@@ -504,7 +504,7 @@ ID_FORCE_INLINE idBitMsgDelta::idBitMsgDelta() {
 	changed = false;
 }
 
-ID_FORCE_INLINE void idBitMsgDelta::Init( const idBitMsg *base, idBitMsg *newBase, idBitMsg *delta ) {
+ID_INLINE void idBitMsgDelta::Init( const idBitMsg *base, idBitMsg *newBase, idBitMsg *delta ) {
 	this->base = base;
 	this->newBase = newBase;
 	this->writeDelta = delta;
@@ -512,7 +512,7 @@ ID_FORCE_INLINE void idBitMsgDelta::Init( const idBitMsg *base, idBitMsg *newBas
 	this->changed = false;
 }
 
-ID_FORCE_INLINE void idBitMsgDelta::Init( const idBitMsg *base, idBitMsg *newBase, const idBitMsg *delta ) {
+ID_INLINE void idBitMsgDelta::Init( const idBitMsg *base, idBitMsg *newBase, const idBitMsg *delta ) {
 	this->base = base;
 	this->newBase = newBase;
 	this->writeDelta = NULL;
@@ -520,143 +520,143 @@ ID_FORCE_INLINE void idBitMsgDelta::Init( const idBitMsg *base, idBitMsg *newBas
 	this->changed = false;
 }
 
-ID_FORCE_INLINE bool idBitMsgDelta::HasChanged( void ) const {
+ID_INLINE bool idBitMsgDelta::HasChanged( void ) const {
 	return changed;
 }
 
-ID_FORCE_INLINE void idBitMsgDelta::WriteChar( int c ) {
+ID_INLINE void idBitMsgDelta::WriteChar( int c ) {
 	WriteBits( c, -8 );
 }
 
-ID_FORCE_INLINE void idBitMsgDelta::WriteByte( int c ) {
+ID_INLINE void idBitMsgDelta::WriteByte( int c ) {
 	WriteBits( c, 8 );
 }
 
-ID_FORCE_INLINE void idBitMsgDelta::WriteShort( int c ) {
+ID_INLINE void idBitMsgDelta::WriteShort( int c ) {
 	WriteBits( c, -16 );
 }
 
-ID_FORCE_INLINE void idBitMsgDelta::WriteUShort( int c ) {
+ID_INLINE void idBitMsgDelta::WriteUShort( int c ) {
 	WriteBits( c, 16 );
 }
 
-ID_FORCE_INLINE void idBitMsgDelta::WriteLong( int c ) {
+ID_INLINE void idBitMsgDelta::WriteLong( int c ) {
 	WriteBits( c, 32 );
 }
 
-ID_FORCE_INLINE void idBitMsgDelta::WriteFloat( float f ) {
+ID_INLINE void idBitMsgDelta::WriteFloat( float f ) {
 	WriteBits( *reinterpret_cast<int *>(&f), 32 );
 }
 
-ID_FORCE_INLINE void idBitMsgDelta::WriteFloat( float f, int exponentBits, int mantissaBits ) {
+ID_INLINE void idBitMsgDelta::WriteFloat( float f, int exponentBits, int mantissaBits ) {
 	int bits = idMath::FloatToBits( f, exponentBits, mantissaBits );
 	WriteBits( bits, 1 + exponentBits + mantissaBits );
 }
 
-ID_FORCE_INLINE void idBitMsgDelta::WriteAngle8( float f ) {
+ID_INLINE void idBitMsgDelta::WriteAngle8( float f ) {
 	WriteBits( ANGLE2BYTE( f ), 8 );
 }
 
-ID_FORCE_INLINE void idBitMsgDelta::WriteAngle16( float f ) {
+ID_INLINE void idBitMsgDelta::WriteAngle16( float f ) {
 	WriteBits( ANGLE2SHORT(f), 16 );
 }
 
-ID_FORCE_INLINE void idBitMsgDelta::WriteDir( const idVec3 &dir, int numBits ) {
+ID_INLINE void idBitMsgDelta::WriteDir( const idVec3 &dir, int numBits ) {
 	WriteBits( idBitMsg::DirToBits( dir, numBits ), numBits );
 }
 
-ID_FORCE_INLINE void idBitMsgDelta::WriteDeltaChar( int oldValue, int newValue ) {
+ID_INLINE void idBitMsgDelta::WriteDeltaChar( int oldValue, int newValue ) {
 	WriteDelta( oldValue, newValue, -8 );
 }
 
-ID_FORCE_INLINE void idBitMsgDelta::WriteDeltaByte( int oldValue, int newValue ) {
+ID_INLINE void idBitMsgDelta::WriteDeltaByte( int oldValue, int newValue ) {
 	WriteDelta( oldValue, newValue, 8 );
 }
 
-ID_FORCE_INLINE void idBitMsgDelta::WriteDeltaShort( int oldValue, int newValue ) {
+ID_INLINE void idBitMsgDelta::WriteDeltaShort( int oldValue, int newValue ) {
 	WriteDelta( oldValue, newValue, -16 );
 }
 
-ID_FORCE_INLINE void idBitMsgDelta::WriteDeltaLong( int oldValue, int newValue ) {
+ID_INLINE void idBitMsgDelta::WriteDeltaLong( int oldValue, int newValue ) {
 	WriteDelta( oldValue, newValue, 32 );
 }
 
-ID_FORCE_INLINE void idBitMsgDelta::WriteDeltaFloat( float oldValue, float newValue ) {
+ID_INLINE void idBitMsgDelta::WriteDeltaFloat( float oldValue, float newValue ) {
 	WriteDelta( *reinterpret_cast<int *>(&oldValue), *reinterpret_cast<int *>(&newValue), 32 );
 }
 
-ID_FORCE_INLINE void idBitMsgDelta::WriteDeltaFloat( float oldValue, float newValue, int exponentBits, int mantissaBits ) {
+ID_INLINE void idBitMsgDelta::WriteDeltaFloat( float oldValue, float newValue, int exponentBits, int mantissaBits ) {
 	int oldBits = idMath::FloatToBits( oldValue, exponentBits, mantissaBits );
 	int newBits = idMath::FloatToBits( newValue, exponentBits, mantissaBits );
 	WriteDelta( oldBits, newBits, 1 + exponentBits + mantissaBits );
 }
 
-ID_FORCE_INLINE int idBitMsgDelta::ReadChar( void ) const {
+ID_INLINE int idBitMsgDelta::ReadChar( void ) const {
 	return (signed char)ReadBits( -8 );
 }
 
-ID_FORCE_INLINE int idBitMsgDelta::ReadByte( void ) const {
+ID_INLINE int idBitMsgDelta::ReadByte( void ) const {
 	return (unsigned char)ReadBits( 8 );
 }
 
-ID_FORCE_INLINE int idBitMsgDelta::ReadShort( void ) const {
+ID_INLINE int idBitMsgDelta::ReadShort( void ) const {
 	return (short)ReadBits( -16 );
 }
 
-ID_FORCE_INLINE int idBitMsgDelta::ReadUShort( void ) const {
+ID_INLINE int idBitMsgDelta::ReadUShort( void ) const {
 	return (unsigned short)ReadBits( 16 );
 }
 
-ID_FORCE_INLINE int idBitMsgDelta::ReadLong( void ) const {
+ID_INLINE int idBitMsgDelta::ReadLong( void ) const {
 	return ReadBits( 32 );
 }
 
-ID_FORCE_INLINE float idBitMsgDelta::ReadFloat( void ) const {
+ID_INLINE float idBitMsgDelta::ReadFloat( void ) const {
 	float value;
 	*reinterpret_cast<int *>(&value) = ReadBits( 32 );
 	return value;
 }
 
-ID_FORCE_INLINE float idBitMsgDelta::ReadFloat( int exponentBits, int mantissaBits ) const {
+ID_INLINE float idBitMsgDelta::ReadFloat( int exponentBits, int mantissaBits ) const {
 	int bits = ReadBits( 1 + exponentBits + mantissaBits );
 	return idMath::BitsToFloat( bits, exponentBits, mantissaBits );
 }
 
-ID_FORCE_INLINE float idBitMsgDelta::ReadAngle8( void ) const {
+ID_INLINE float idBitMsgDelta::ReadAngle8( void ) const {
 	return BYTE2ANGLE( ReadByte() );
 }
 
-ID_FORCE_INLINE float idBitMsgDelta::ReadAngle16( void ) const {
+ID_INLINE float idBitMsgDelta::ReadAngle16( void ) const {
 	return SHORT2ANGLE( ReadShort() );
 }
 
-ID_FORCE_INLINE idVec3 idBitMsgDelta::ReadDir( int numBits ) const {
+ID_INLINE idVec3 idBitMsgDelta::ReadDir( int numBits ) const {
 	return idBitMsg::BitsToDir( ReadBits( numBits ), numBits );
 }
 
-ID_FORCE_INLINE int idBitMsgDelta::ReadDeltaChar( int oldValue ) const {
+ID_INLINE int idBitMsgDelta::ReadDeltaChar( int oldValue ) const {
 	return (signed char)ReadDelta( oldValue, -8 );
 }
 
-ID_FORCE_INLINE int idBitMsgDelta::ReadDeltaByte( int oldValue ) const {
+ID_INLINE int idBitMsgDelta::ReadDeltaByte( int oldValue ) const {
 	return (unsigned char)ReadDelta( oldValue, 8 );
 }
 
-ID_FORCE_INLINE int idBitMsgDelta::ReadDeltaShort( int oldValue ) const {
+ID_INLINE int idBitMsgDelta::ReadDeltaShort( int oldValue ) const {
 	return (short)ReadDelta( oldValue, -16 );
 }
 
-ID_FORCE_INLINE int idBitMsgDelta::ReadDeltaLong( int oldValue ) const {
+ID_INLINE int idBitMsgDelta::ReadDeltaLong( int oldValue ) const {
 	return ReadDelta( oldValue, 32 );
 }
 
-ID_FORCE_INLINE float idBitMsgDelta::ReadDeltaFloat( float oldValue ) const {
+ID_INLINE float idBitMsgDelta::ReadDeltaFloat( float oldValue ) const {
 	float value;
 	*reinterpret_cast<int *>(&value) = ReadDelta( *reinterpret_cast<int *>(&oldValue), 32 );
 	return value;
 }
 
-ID_FORCE_INLINE float idBitMsgDelta::ReadDeltaFloat( float oldValue, int exponentBits, int mantissaBits ) const {
+ID_INLINE float idBitMsgDelta::ReadDeltaFloat( float oldValue, int exponentBits, int mantissaBits ) const {
 	int oldBits = idMath::FloatToBits( oldValue, exponentBits, mantissaBits );
 	int newBits = ReadDelta( oldBits, 1 + exponentBits + mantissaBits );
 	return idMath::BitsToFloat( newBits, exponentBits, mantissaBits );

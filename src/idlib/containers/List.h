@@ -42,13 +42,13 @@ idListSortCompare<type>
 #ifdef __INTEL_COMPILER
 // the intel compiler doesn't do the right thing here
 template< class type >
-ID_FORCE_INLINE int idListSortCompare( const type *a, const type *b ) {
+ID_INLINE int idListSortCompare( const type *a, const type *b ) {
 	assert( 0 );
 	return 0;
 }
 #else
 template< class type >
-ID_FORCE_INLINE int idListSortCompare( const type *a, const type *b ) {
+ID_INLINE int idListSortCompare( const type *a, const type *b ) {
 	return *a - *b;
 }
 #endif
@@ -59,7 +59,7 @@ idListNewElement<type>
 ================
 */
 template< class type >
-ID_FORCE_INLINE type *idListNewElement( void ) {
+ID_INLINE type *idListNewElement( void ) {
 	return new type;
 }
 
@@ -69,7 +69,7 @@ idSwap<type>
 ================
 */
 template< class type >
-ID_FORCE_INLINE void idSwap( type &a, type &b ) {
+ID_INLINE void idSwap( type &a, type &b ) {
 	type c = a;
 	a = b;
 	b = c;
@@ -140,7 +140,7 @@ idList<type>::idList( int )
 ================
 */
 template< class type >
-ID_FORCE_INLINE idList<type>::idList( int newgranularity ) {
+ID_INLINE idList<type>::idList( int newgranularity ) {
 	assert( newgranularity > 0 );
 
 	list		= NULL;
@@ -154,7 +154,7 @@ idList<type>::idList( const idList<type> &other )
 ================
 */
 template< class type >
-ID_FORCE_INLINE idList<type>::idList( const idList<type> &other ) {
+ID_INLINE idList<type>::idList( const idList<type> &other ) {
 	list = NULL;
 	*this = other;
 }
@@ -165,7 +165,7 @@ idList<type>::~idList<type>
 ================
 */
 template< class type >
-ID_FORCE_INLINE idList<type>::~idList( void ) {
+ID_INLINE idList<type>::~idList( void ) {
 	Clear();
 }
 
@@ -177,7 +177,7 @@ Frees up the memory allocated by the list.  Assumes that type automatically hand
 ================
 */
 template< class type >
-ID_FORCE_INLINE void idList<type>::Clear( void ) {
+ID_INLINE void idList<type>::Clear( void ) {
 	if ( list ) {
 		delete[] list;
 	}
@@ -200,7 +200,7 @@ list to NULL.
 ================
 */
 template< class type >
-ID_FORCE_INLINE void idList<type>::DeleteContents( bool clear ) {
+ID_INLINE void idList<type>::DeleteContents( bool clear ) {
 	int i;
 
 	for( i = 0; i < num; i++ ) {
@@ -223,7 +223,7 @@ return total memory allocated for the list in bytes, but doesn't take into accou
 ================
 */
 template< class type >
-ID_FORCE_INLINE size_t idList<type>::Allocated( void ) const {
+ID_INLINE size_t idList<type>::Allocated( void ) const {
 	return size * sizeof( type );
 }
 
@@ -235,7 +235,7 @@ return total size of list in bytes, but doesn't take into account additional mem
 ================
 */
 template< class type >
-ID_FORCE_INLINE size_t idList<type>::Size( void ) const {
+ID_INLINE size_t idList<type>::Size( void ) const {
 	return sizeof( idList<type> ) + Allocated();
 }
 
@@ -245,7 +245,7 @@ idList<type>::MemoryUsed
 ================
 */
 template< class type >
-ID_FORCE_INLINE size_t idList<type>::MemoryUsed( void ) const {
+ID_INLINE size_t idList<type>::MemoryUsed( void ) const {
 	return num * sizeof( *list );
 }
 
@@ -258,7 +258,7 @@ Note that this is NOT an indication of the memory allocated.
 ================
 */
 template< class type >
-ID_FORCE_INLINE int idList<type>::Num( void ) const {
+ID_INLINE int idList<type>::Num( void ) const {
 	return num;
 }
 
@@ -270,7 +270,7 @@ Returns the number of elements currently allocated for.
 ================
 */
 template< class type >
-ID_FORCE_INLINE int idList<type>::NumAllocated( void ) const {
+ID_INLINE int idList<type>::NumAllocated( void ) const {
 	return size;
 }
 
@@ -282,7 +282,7 @@ Resize to the exact size specified irregardless of granularity
 ================
 */
 template< class type >
-ID_FORCE_INLINE void idList<type>::SetNum( int newnum, bool resize ) {
+ID_INLINE void idList<type>::SetNum( int newnum, bool resize ) {
 	assert( newnum >= 0 );
 	if ( resize || newnum > size ) {
 		Resize( newnum );
@@ -298,7 +298,7 @@ Sets the base size of the array and resizes the array to match.
 ================
 */
 template< class type >
-ID_FORCE_INLINE void idList<type>::SetGranularity( int newgranularity ) {
+ID_INLINE void idList<type>::SetGranularity( int newgranularity ) {
 	int newsize;
 
 	assert( newgranularity > 0 );
@@ -322,7 +322,7 @@ Get the current granularity.
 ================
 */
 template< class type >
-ID_FORCE_INLINE int idList<type>::GetGranularity( void ) const {
+ID_INLINE int idList<type>::GetGranularity( void ) const {
 	return granularity;
 }
 
@@ -334,7 +334,7 @@ Resizes the array to exactly the number of elements it contains or frees up memo
 ================
 */
 template< class type >
-ID_FORCE_INLINE void idList<type>::Condense( void ) {
+ID_INLINE void idList<type>::Condense( void ) {
 	if ( list ) {
 		if ( num ) {
 			Resize( num );
@@ -353,7 +353,7 @@ Contents are copied using their = operator so that data is correnctly instantiat
 ================
 */
 template< class type >
-ID_FORCE_INLINE void idList<type>::Resize( int newsize ) {
+ID_INLINE void idList<type>::Resize( int newsize ) {
 	type	*temp;
 	int		i;
 
@@ -397,7 +397,7 @@ Contents are copied using their = operator so that data is correnctly instantiat
 ================
 */
 template< class type >
-ID_FORCE_INLINE void idList<type>::Resize( int newsize, int newgranularity ) {
+ID_INLINE void idList<type>::Resize( int newsize, int newgranularity ) {
 	type	*temp;
 	int		i;
 
@@ -438,7 +438,7 @@ Makes sure the list has at least the given number of elements.
 ================
 */
 template< class type >
-ID_FORCE_INLINE void idList<type>::AssureSize( int newSize ) {
+ID_INLINE void idList<type>::AssureSize( int newSize ) {
 	int newNum = newSize;
 
 	if ( newSize > size ) {
@@ -462,7 +462,7 @@ Makes sure the list has at least the given number of elements and initialize any
 ================
 */
 template< class type >
-ID_FORCE_INLINE void idList<type>::AssureSize( int newSize, const type &initValue ) {
+ID_INLINE void idList<type>::AssureSize( int newSize, const type &initValue ) {
 	int newNum = newSize;
 
 	if ( newSize > size ) {
@@ -494,7 +494,7 @@ on non-pointer lists will cause a compiler error.
 ================
 */
 template< class type >
-ID_FORCE_INLINE void idList<type>::AssureSizeAlloc( int newSize, new_t *allocator ) {
+ID_INLINE void idList<type>::AssureSizeAlloc( int newSize, new_t *allocator ) {
 	int newNum = newSize;
 
 	if ( newSize > size ) {
@@ -523,7 +523,7 @@ Copies the contents and size attributes of another list.
 ================
 */
 template< class type >
-ID_FORCE_INLINE idList<type> &idList<type>::operator=( const idList<type> &other ) {
+ID_INLINE idList<type> &idList<type>::operator=( const idList<type> &other ) {
 	int	i;
 
 	Clear();
@@ -551,7 +551,7 @@ Release builds do no range checking.
 ================
 */
 template< class type >
-ID_FORCE_INLINE const type &idList<type>::operator[]( int index ) const {
+ID_INLINE const type &idList<type>::operator[]( int index ) const {
 	assert( index >= 0 );
 	assert( index < num );
 
@@ -567,7 +567,7 @@ Release builds do no range checking.
 ================
 */
 template< class type >
-ID_FORCE_INLINE type &idList<type>::operator[]( int index ) {
+ID_INLINE type &idList<type>::operator[]( int index ) {
 	assert( index >= 0 );
 	assert( index < num );
 
@@ -586,7 +586,7 @@ FIXME: Create an iterator template for this kind of thing.
 ================
 */
 template< class type >
-ID_FORCE_INLINE type *idList<type>::Ptr( void ) {
+ID_INLINE type *idList<type>::Ptr( void ) {
 	return list;
 }
 
@@ -602,7 +602,7 @@ FIXME: Create an iterator template for this kind of thing.
 ================
 */
 template< class type >
-const ID_FORCE_INLINE type *idList<type>::Ptr( void ) const {
+const ID_INLINE type *idList<type>::Ptr( void ) const {
 	return list;
 }
 
@@ -614,7 +614,7 @@ Returns a reference to a new data element at the end of the list.
 ================
 */
 template< class type >
-ID_FORCE_INLINE type &idList<type>::Alloc( void ) {
+ID_INLINE type &idList<type>::Alloc( void ) {
 	if ( !list ) {
 		Resize( granularity );
 	}
@@ -643,7 +643,7 @@ to the "old" memory location will be invalid and crashes are ahead.
 ================
 */
 template< class type >
-ID_FORCE_INLINE int idList<type>::Append( type const & obj ) {
+ID_INLINE int idList<type>::Append( type const & obj ) {
 	if ( !list ) {
 		Resize( granularity );
 	}
@@ -675,7 +675,7 @@ Returns the index of the new element.
 ================
 */
 template< class type >
-ID_FORCE_INLINE int idList<type>::Insert( type const & obj, int index ) {
+ID_INLINE int idList<type>::Insert( type const & obj, int index ) {
 	if ( !list ) {
 		Resize( granularity );
 	}
@@ -714,7 +714,7 @@ Returns the size of the new combined list
 ================
 */
 template< class type >
-ID_FORCE_INLINE int idList<type>::Append( const idList<type> &other ) {
+ID_INLINE int idList<type>::Append( const idList<type> &other ) {
 	// Tels: Old code, with quadratic (O(N*N) performance, it would call Resize
 	// 	 every so often, which is a O(N) copy operation.
 /*	if ( !list ) {
@@ -756,7 +756,7 @@ Adds the data to the list if it doesn't already exist.  Returns the index of the
 ================
 */
 template< class type >
-ID_FORCE_INLINE int idList<type>::AddUnique( type const & obj ) {
+ID_INLINE int idList<type>::AddUnique( type const & obj ) {
 	int index;
 
 	index = FindIndex( obj );
@@ -775,7 +775,7 @@ Searches for the specified data in the list and returns it's index.  Returns -1 
 ================
 */
 template< class type >
-ID_FORCE_INLINE int idList<type>::FindIndex( type const & obj ) const {
+ID_INLINE int idList<type>::FindIndex( type const & obj ) const {
 	int i;
 
 	for( i = 0; i < num; i++ ) {
@@ -796,7 +796,7 @@ Searches for the specified data in the list and returns it's address. Returns NU
 ================
 */
 template< class type >
-ID_FORCE_INLINE type *idList<type>::Find( type const & obj ) const {
+ID_INLINE type *idList<type>::Find( type const & obj ) const {
 	int i;
 
 	i = FindIndex( obj );
@@ -818,7 +818,7 @@ on non-pointer lists will cause a compiler error.
 ================
 */
 template< class type >
-ID_FORCE_INLINE int idList<type>::FindNull( void ) const {
+ID_INLINE int idList<type>::FindNull( void ) const {
 	int i;
 
 	for( i = 0; i < num; i++ ) {
@@ -842,7 +842,7 @@ but remains silent in release builds.
 ================
 */
 template< class type >
-ID_FORCE_INLINE int idList<type>::IndexOf( type const *objptr ) const {
+ID_INLINE int idList<type>::IndexOf( type const *objptr ) const {
 	int index;
 
 	index = objptr - list;
@@ -863,7 +863,7 @@ Note that the element is not destroyed, so any memory used by it may not be free
 ================
 */
 template< class type >
-ID_FORCE_INLINE bool idList<type>::RemoveIndex( int index ) {
+ID_INLINE bool idList<type>::RemoveIndex( int index ) {
 	int i;
 
 	assert( list != NULL );
@@ -893,7 +893,7 @@ Note that the element is not destroyed, so any memory used by it may not be free
 ================
 */
 template< class type >
-ID_FORCE_INLINE bool idList<type>::RemoveIndex( const int index, const bool keepSorted ) {
+ID_INLINE bool idList<type>::RemoveIndex( const int index, const bool keepSorted ) {
 	assert( list != NULL );
 	assert( index >= 0 );
 	assert( index < num );
@@ -933,7 +933,7 @@ the element is not destroyed, so any memory used by it may not be freed until th
 ================
 */
 template< class type >
-ID_FORCE_INLINE bool idList<type>::Remove( type const & obj ) {
+ID_INLINE bool idList<type>::Remove( type const & obj ) {
 	int index;
 
 	index = FindIndex( obj );
@@ -953,7 +953,7 @@ list, so any pointers to data within the list may no longer be valid.
 ================
 */
 template< class type >
-ID_FORCE_INLINE void idList<type>::Sort( cmp_t *compare ) {
+ID_INLINE void idList<type>::Sort( cmp_t *compare ) {
 	if ( !list ) {
 		return;
 	}
@@ -971,7 +971,7 @@ Sorts a subsection of the list.
 ================
 */
 template< class type >
-ID_FORCE_INLINE void idList<type>::SortSubSection( int startIndex, int endIndex, cmp_t *compare ) {
+ID_INLINE void idList<type>::SortSubSection( int startIndex, int endIndex, cmp_t *compare ) {
 	if ( !list ) {
 		return;
 	}
@@ -998,7 +998,7 @@ Swaps the contents of two lists
 ================
 */
 template< class type >
-ID_FORCE_INLINE void idList<type>::Swap( idList<type> &other ) {
+ID_INLINE void idList<type>::Swap( idList<type> &other ) {
 	idSwap( num, other.num );
 	idSwap( size, other.size );
 	idSwap( granularity, other.granularity );

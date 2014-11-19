@@ -114,61 +114,61 @@ private:
 
 extern idBounds	bounds_zero;
 
-ID_FORCE_INLINE idBounds::idBounds( void ) {
+ID_INLINE idBounds::idBounds( void ) {
 }
 
-ID_FORCE_INLINE idBounds::idBounds( const idVec3 &mins, const idVec3 &maxs ) {
+ID_INLINE idBounds::idBounds( const idVec3 &mins, const idVec3 &maxs ) {
 	b[0] = mins;
 	b[1] = maxs;
 }
 
-ID_FORCE_INLINE idBounds::idBounds( const idVec3 &point ) {
+ID_INLINE idBounds::idBounds( const idVec3 &point ) {
 	b[0] = point;
 	b[1] = point;
 }
 
-ID_FORCE_INLINE const idVec3 &idBounds::operator[]( const int index ) const {
+ID_INLINE const idVec3 &idBounds::operator[]( const int index ) const {
 	return b[index];
 }
 
-ID_FORCE_INLINE idVec3 &idBounds::operator[]( const int index ) {
+ID_INLINE idVec3 &idBounds::operator[]( const int index ) {
 	return b[index];
 }
 
-ID_FORCE_INLINE idBounds idBounds::operator+( const idVec3 &t ) const {
+ID_INLINE idBounds idBounds::operator+( const idVec3 &t ) const {
 	return idBounds( b[0] + t, b[1] + t );
 }
 
-ID_FORCE_INLINE idBounds &idBounds::operator+=( const idVec3 &t ) {
+ID_INLINE idBounds &idBounds::operator+=( const idVec3 &t ) {
 	b[0] += t;
 	b[1] += t;
 	return *this;
 }
 
-ID_FORCE_INLINE idBounds idBounds::operator*( const idMat3 &r ) const {
+ID_INLINE idBounds idBounds::operator*( const idMat3 &r ) const {
 	idBounds bounds;
 	bounds.FromTransformedBounds( *this, vec3_origin, r );
 	return bounds;
 }
 
-ID_FORCE_INLINE idBounds &idBounds::operator*=( const idMat3 &r ) {
+ID_INLINE idBounds &idBounds::operator*=( const idMat3 &r ) {
 	this->FromTransformedBounds( *this, vec3_origin, r );
 	return *this;
 }
 
-ID_FORCE_INLINE idBounds idBounds::operator+( const idBounds &a ) const {
+ID_INLINE idBounds idBounds::operator+( const idBounds &a ) const {
 	idBounds newBounds;
 	newBounds = *this;
 	newBounds.AddBounds( a );
 	return newBounds;
 }
 
-ID_FORCE_INLINE idBounds &idBounds::operator+=( const idBounds &a ) {
+ID_INLINE idBounds &idBounds::operator+=( const idBounds &a ) {
 	idBounds::AddBounds( a );
 	return *this;
 }
 
-ID_FORCE_INLINE idBounds idBounds::operator-( const idBounds &a ) const {
+ID_INLINE idBounds idBounds::operator-( const idBounds &a ) const {
 	assert( b[1][0] - b[0][0] > a.b[1][0] - a.b[0][0] &&
 				b[1][1] - b[0][1] > a.b[1][1] - a.b[0][1] &&
 					b[1][2] - b[0][2] > a.b[1][2] - a.b[0][2] );
@@ -176,7 +176,7 @@ ID_FORCE_INLINE idBounds idBounds::operator-( const idBounds &a ) const {
 					idVec3( b[1][0] + a.b[0][0], b[1][1] + a.b[0][1], b[1][2] + a.b[0][2] ) );
 }
 
-ID_FORCE_INLINE idBounds &idBounds::operator-=( const idBounds &a ) {
+ID_INLINE idBounds &idBounds::operator-=( const idBounds &a ) {
 	assert( b[1][0] - b[0][0] > a.b[1][0] - a.b[0][0] &&
 				b[1][1] - b[0][1] > a.b[1][1] - a.b[0][1] &&
 					b[1][2] - b[0][2] > a.b[1][2] - a.b[0][2] );
@@ -185,37 +185,37 @@ ID_FORCE_INLINE idBounds &idBounds::operator-=( const idBounds &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE bool idBounds::Compare( const idBounds &a ) const {
+ID_INLINE bool idBounds::Compare( const idBounds &a ) const {
 	return ( b[0].Compare( a.b[0] ) && b[1].Compare( a.b[1] ) );
 }
 
-ID_FORCE_INLINE bool idBounds::Compare( const idBounds &a, const float epsilon ) const {
+ID_INLINE bool idBounds::Compare( const idBounds &a, const float epsilon ) const {
 	return ( b[0].Compare( a.b[0], epsilon ) && b[1].Compare( a.b[1], epsilon ) );
 }
 
-ID_FORCE_INLINE bool idBounds::operator==( const idBounds &a ) const {
+ID_INLINE bool idBounds::operator==( const idBounds &a ) const {
 	return Compare( a );
 }
 
-ID_FORCE_INLINE bool idBounds::operator!=( const idBounds &a ) const {
+ID_INLINE bool idBounds::operator!=( const idBounds &a ) const {
 	return !Compare( a );
 }
 
-ID_FORCE_INLINE void idBounds::Clear( void ) {
+ID_INLINE void idBounds::Clear( void ) {
 	b[0][0] = b[0][1] = b[0][2] = idMath::INFINITY;
 	b[1][0] = b[1][1] = b[1][2] = -idMath::INFINITY;
 }
 
-ID_FORCE_INLINE void idBounds::Zero( void ) {
+ID_INLINE void idBounds::Zero( void ) {
 	b[0][0] = b[0][1] = b[0][2] =
 	b[1][0] = b[1][1] = b[1][2] = 0;
 }
 
-ID_FORCE_INLINE idVec3 idBounds::GetCenter( void ) const {
+ID_INLINE idVec3 idBounds::GetCenter( void ) const {
 	return idVec3( ( b[1][0] + b[0][0] ) * 0.5f, ( b[1][1] + b[0][1] ) * 0.5f, ( b[1][2] + b[0][2] ) * 0.5f );
 }
 
-ID_FORCE_INLINE float idBounds::GetVolume( void ) const {
+ID_INLINE float idBounds::GetVolume( void ) const {
 	if ( b[0][0] >= b[1][0] || b[0][1] >= b[1][1] || b[0][2] >= b[1][2] ) {
 		return 0.0f;
 	}
@@ -225,15 +225,15 @@ ID_FORCE_INLINE float idBounds::GetVolume( void ) const {
 /**
 * Tels: Get the size of the bounds, that is b1 - b0
 */
-ID_FORCE_INLINE idVec3 idBounds::GetSize( void ) const {
+ID_INLINE idVec3 idBounds::GetSize( void ) const {
 	return idVec3( b[1][0] - b[0][0], b[1][1] - b[0][1], b[1][2] - b[0][2] );
 }
 
-ID_FORCE_INLINE bool idBounds::IsCleared( void ) const {
+ID_INLINE bool idBounds::IsCleared( void ) const {
 	return b[0][0] > b[1][0];
 }
 
-ID_FORCE_INLINE bool idBounds::AddPoint( const idVec3 &v ) {
+ID_INLINE bool idBounds::AddPoint( const idVec3 &v ) {
 	bool expanded = false;
 	if ( v[0] < b[0][0]) {
 		b[0][0] = v[0];
@@ -262,7 +262,7 @@ ID_FORCE_INLINE bool idBounds::AddPoint( const idVec3 &v ) {
 	return expanded;
 }
 
-ID_FORCE_INLINE bool idBounds::AddBounds( const idBounds &a ) {
+ID_INLINE bool idBounds::AddBounds( const idBounds &a ) {
 	bool expanded = false;
 	if ( a.b[0][0] < b[0][0] ) {
 		b[0][0] = a.b[0][0];
@@ -291,7 +291,7 @@ ID_FORCE_INLINE bool idBounds::AddBounds( const idBounds &a ) {
 	return expanded;
 }
 
-ID_FORCE_INLINE idBounds idBounds::Intersect( const idBounds &a ) const {
+ID_INLINE idBounds idBounds::Intersect( const idBounds &a ) const {
 	idBounds n;
 
 	// grayman #2734 - Check for intersecting first. Note that if there's
@@ -312,7 +312,7 @@ ID_FORCE_INLINE idBounds idBounds::Intersect( const idBounds &a ) const {
 	return n;
 }
 
-ID_FORCE_INLINE idBounds &idBounds::IntersectSelf( const idBounds &a ) {
+ID_INLINE idBounds &idBounds::IntersectSelf( const idBounds &a ) {
 	// grayman #2734 - Check for intersecting first. Note that if there's
 	// no intersection, "this" bounds' max point is set to the min point, so
 	// if that matters, you should check for that at the spot where this
@@ -353,12 +353,12 @@ ID_FORCE_INLINE idBounds &idBounds::IntersectSelf( const idBounds &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idBounds idBounds::Expand( const float d ) const {
+ID_INLINE idBounds idBounds::Expand( const float d ) const {
 	return idBounds( idVec3( b[0][0] - d, b[0][1] - d, b[0][2] - d ),
 						idVec3( b[1][0] + d, b[1][1] + d, b[1][2] + d ) );
 }
 
-ID_FORCE_INLINE idBounds &idBounds::ExpandSelf( const float d ) {
+ID_INLINE idBounds &idBounds::ExpandSelf( const float d ) {
 	b[0][0] -= d;
 	b[0][1] -= d;
 	b[0][2] -= d;
@@ -368,28 +368,28 @@ ID_FORCE_INLINE idBounds &idBounds::ExpandSelf( const float d ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idBounds idBounds::Translate( const idVec3 &translation ) const {
+ID_INLINE idBounds idBounds::Translate( const idVec3 &translation ) const {
 	return idBounds( b[0] + translation, b[1] + translation );
 }
 
-ID_FORCE_INLINE idBounds &idBounds::TranslateSelf( const idVec3 &translation ) {
+ID_INLINE idBounds &idBounds::TranslateSelf( const idVec3 &translation ) {
 	b[0] += translation;
 	b[1] += translation;
 	return *this;
 }
 
-ID_FORCE_INLINE idBounds idBounds::Rotate( const idMat3 &rotation ) const {
+ID_INLINE idBounds idBounds::Rotate( const idMat3 &rotation ) const {
 	idBounds bounds;
 	bounds.FromTransformedBounds( *this, vec3_origin, rotation );
 	return bounds;
 }
 
-ID_FORCE_INLINE idBounds &idBounds::RotateSelf( const idMat3 &rotation ) {
+ID_INLINE idBounds &idBounds::RotateSelf( const idMat3 &rotation ) {
 	FromTransformedBounds( *this, vec3_origin, rotation );
 	return *this;
 }
 
-ID_FORCE_INLINE bool idBounds::ContainsPoint( const idVec3 &p ) const {
+ID_INLINE bool idBounds::ContainsPoint( const idVec3 &p ) const {
 	if ( p[0] < b[0][0] || p[1] < b[0][1] || p[2] < b[0][2]
 		|| p[0] > b[1][0] || p[1] > b[1][1] || p[2] > b[1][2] ) {
 		return false;
@@ -397,7 +397,7 @@ ID_FORCE_INLINE bool idBounds::ContainsPoint( const idVec3 &p ) const {
 	return true;
 }
 
-ID_FORCE_INLINE bool idBounds::IntersectsBounds( const idBounds &a ) const {
+ID_INLINE bool idBounds::IntersectsBounds( const idBounds &a ) const {
 	if ( a.b[1][0] < b[0][0] || a.b[1][1] < b[0][1] || a.b[1][2] < b[0][2]
 		|| a.b[0][0] > b[1][0] || a.b[0][1] > b[1][1] || a.b[0][2] > b[1][2] ) {
 		return false;
@@ -405,14 +405,14 @@ ID_FORCE_INLINE bool idBounds::IntersectsBounds( const idBounds &a ) const {
 	return true;
 }
 
-ID_FORCE_INLINE idSphere idBounds::ToSphere( void ) const {
+ID_INLINE idSphere idBounds::ToSphere( void ) const {
 	idSphere sphere;
 	sphere.SetOrigin( ( b[0] + b[1] ) * 0.5f );
 	sphere.SetRadius( ( b[1] - sphere.GetOrigin() ).Length() );
 	return sphere;
 }
 
-ID_FORCE_INLINE void idBounds::AxisProjection( const idVec3 &dir, float &min, float &max ) const {
+ID_INLINE void idBounds::AxisProjection( const idVec3 &dir, float &min, float &max ) const {
 	float d1, d2;
 	idVec3 center, extents;
 
@@ -428,7 +428,7 @@ ID_FORCE_INLINE void idBounds::AxisProjection( const idVec3 &dir, float &min, fl
 	max = d1 + d2;
 }
 
-ID_FORCE_INLINE void idBounds::AxisProjection( const idVec3 &origin, const idMat3 &axis, const idVec3 &dir, float &min, float &max ) const {
+ID_INLINE void idBounds::AxisProjection( const idVec3 &origin, const idMat3 &axis, const idVec3 &dir, float &min, float &max ) const {
 	float d1, d2;
 	idVec3 center, extents;
 

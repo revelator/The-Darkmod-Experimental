@@ -38,7 +38,7 @@ protected:
 	idRectangle		mOldRect;
 };
 
-ID_FORCE_INLINE bool rvGESizeModifier::CanMerge( rvGEModifier *merge ) {
+ID_INLINE bool rvGESizeModifier::CanMerge( rvGEModifier *merge ) {
 	return true;
 }
 

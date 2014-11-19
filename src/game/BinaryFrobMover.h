@@ -70,16 +70,16 @@ public:
 	 * as the default values are statically bound and lead to problems
 	 * if subclasses want to override that default value.
 	 */
-	ID_FORCE_INLINE void			Open()		{
+	ID_INLINE void			Open()		{
 		Open( true );
 	}
-	ID_FORCE_INLINE void			Close()		{
+	ID_INLINE void			Close()		{
 		Close( true );
 	}
-	ID_FORCE_INLINE void			Lock()		{
+	ID_INLINE void			Lock()		{
 		Lock( true );
 	}
-	ID_FORCE_INLINE void			Unlock()	{
+	ID_INLINE void			Unlock()	{
 		Unlock( true );
 	}
 
@@ -177,25 +177,25 @@ public:
 	*/
 	virtual bool			IsChangingState();
 
-	ID_FORCE_INLINE const idVec3	&GetOpenPos() const {
+	ID_INLINE const idVec3	&GetOpenPos() const {
 		return m_OpenPos;
 	}
 
-	ID_FORCE_INLINE const idVec3	&GetClosedPos() const {
+	ID_INLINE const idVec3	&GetClosedPos() const {
 		return m_ClosedPos;
 	}
 
-	ID_FORCE_INLINE const idVec3	&GetOpenDir() const {
+	ID_INLINE const idVec3	&GetOpenDir() const {
 		return m_OpenDir;
 	}
 
-	ID_FORCE_INLINE const idAngles &GetClosedAngles() const {
+	ID_INLINE const idAngles &GetClosedAngles() const {
 		return m_ClosedAngles;
 	}
 
 	idVec3 GetCurrentPos();
 
-	ID_FORCE_INLINE const idVec3 &GetTranslation() const {
+	ID_INLINE const idVec3 &GetTranslation() const {
 		return m_Translation;
 	}
 

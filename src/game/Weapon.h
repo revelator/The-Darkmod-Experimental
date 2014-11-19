@@ -375,15 +375,15 @@ private:
 	void					Event_NetEndReload( void );
 };
 
-ID_FORCE_INLINE bool idWeapon::IsLinked( void ) {
+ID_INLINE bool idWeapon::IsLinked( void ) {
 	return isLinked;
 }
 
-ID_FORCE_INLINE bool idWeapon::IsWorldModelReady( void ) {
+ID_INLINE bool idWeapon::IsWorldModelReady( void ) {
 	return ( worldModel.GetEntity() != NULL );
 }
 
-ID_FORCE_INLINE idPlayer *idWeapon::GetOwner( void ) {
+ID_INLINE idPlayer *idWeapon::GetOwner( void ) {
 	return owner;
 }
 

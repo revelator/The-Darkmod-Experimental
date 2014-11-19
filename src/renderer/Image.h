@@ -251,7 +251,7 @@ public:
 	int					refCount;				// overall ref count
 };
 
-ID_FORCE_INLINE idImage::idImage() {
+ID_INLINE idImage::idImage() {
 	texnum = TEXTURE_NOT_LOADED;
 	partialImage = NULL;
 	type = TT_DISABLED;

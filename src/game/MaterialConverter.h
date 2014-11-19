@@ -63,7 +63,7 @@ struct ConversionStat_s {
 		m_strStatusReport( a_strStatusReport ),
 		m_uiCount( 0 ) {
 	}
-	ID_FORCE_INLINE void operator ++( int ) {
+	ID_INLINE void operator ++( int ) {
 		m_uiCount ++;
 	}
 };
@@ -82,7 +82,7 @@ private:
 public:
 	MaterialConversionStatusReport();
 
-	ID_FORCE_INLINE ConversionStat_s &operator []( eMaterialConversionStatus a_matStatus ) {
+	ID_INLINE ConversionStat_s &operator []( eMaterialConversionStatus a_matStatus ) {
 		return arrErrorMessages[ a_matStatus ];
 	}
 };
@@ -111,7 +111,7 @@ public:
 	static void							Cmd_ConvertMaterialsFromFile_f( const idCmdArgs &args );
 	static void							Cmd_ConvertMaterial_f( const idCmdArgs &args );
 
-	ID_FORCE_INLINE static void				ArgCompletion_MaterialFileName( const idCmdArgs &args, void( *callback )( const char *s ) ) {
+	ID_INLINE static void				ArgCompletion_MaterialFileName( const idCmdArgs &args, void( *callback )( const char *s ) ) {
 		cmdSystem->ArgCompletion_FolderExtension( args, callback, "materials/", false, ".mtr", NULL );
 	}
 };

@@ -297,7 +297,7 @@ extern const char *g_LCString[];
 #define DARKMOD_NOTE                            __FILE__ "(" DARKMOD_NOTE_AUX_LINE ") : DARKMOD_NOTE: "
 
 // A generic function to handle linear interpolation. J.C.Denton
-template<class T> ID_FORCE_INLINE T Lerp( const T &v1, const T &v2, const float l ) {
+template<class T> ID_INLINE T Lerp( const T &v1, const T &v2, const float l ) {
 	T tRetVal;
 	if( l <= 0.0f ) {
 		tRetVal = v1;

@@ -132,7 +132,7 @@ static dword colorMask[2] = { 255, 0 };
 ColorFloatToByte
 ================
 */
-ID_FORCE_INLINE static byte ColorFloatToByte( float c ) {
+ID_INLINE static byte ColorFloatToByte( float c ) {
 	return (byte) ( ( (dword) ( c * 255.0f ) ) & colorMask[FLOATSIGNBITSET(c)] );
 }
 

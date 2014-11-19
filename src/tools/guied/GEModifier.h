@@ -46,23 +46,23 @@ protected:
 	idStr				mName;
 };
 
-ID_FORCE_INLINE bool rvGEModifier::IsValid( void ) {
+ID_INLINE bool rvGEModifier::IsValid( void ) {
 	return true;
 }
 
-ID_FORCE_INLINE idWindow *rvGEModifier::GetWindow( void ) {
+ID_INLINE idWindow *rvGEModifier::GetWindow( void ) {
 	return mWindow;
 }
 
-ID_FORCE_INLINE const char *rvGEModifier::GetName( void ) {
+ID_INLINE const char *rvGEModifier::GetName( void ) {
 	return mName;
 }
 
-ID_FORCE_INLINE bool rvGEModifier::CanMerge( rvGEModifier *merge ) {
+ID_INLINE bool rvGEModifier::CanMerge( rvGEModifier *merge ) {
 	return false;
 }
 
-ID_FORCE_INLINE bool rvGEModifier::Merge( rvGEModifier *merge ) {
+ID_INLINE bool rvGEModifier::Merge( rvGEModifier *merge ) {
 	return false;
 }
 

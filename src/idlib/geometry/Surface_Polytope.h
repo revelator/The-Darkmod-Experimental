@@ -54,7 +54,7 @@ protected:
 idSurface_Polytope::idSurface_Polytope
 ====================
 */
-ID_FORCE_INLINE idSurface_Polytope::idSurface_Polytope( void ) {
+ID_INLINE idSurface_Polytope::idSurface_Polytope( void ) {
 }
 
 #endif /* !__SURFACE_POLYTOPE_H__ */

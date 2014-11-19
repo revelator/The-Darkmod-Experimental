@@ -801,7 +801,7 @@ public:
 	void					PrepareForMissionEnd();
 
 	void					 SetMissionResult( EMissionResult result );
-	ID_FORCE_INLINE EMissionResult GetMissionResult() const;
+	ID_INLINE EMissionResult GetMissionResult() const;
 
 	idEntity 				*SpawnEntityType( const idTypeInfo &classdef, const idDict *args = NULL, bool bIsClientReadSnapshot = false );
 	bool					SpawnEntityDef( const idDict &args, idEntity **ent = NULL, bool setDefaults = true );
@@ -1170,22 +1170,22 @@ extern idAnimManager		animationLib;
 //============================================================================
 
 template< class type >
-ID_FORCE_INLINE idEntityPtr<type>::idEntityPtr() {
+ID_INLINE idEntityPtr<type>::idEntityPtr() {
 	spawnId = 0;
 }
 
 template< class type >
-ID_FORCE_INLINE void idEntityPtr<type>::Save( idSaveGame *savefile ) const {
+ID_INLINE void idEntityPtr<type>::Save( idSaveGame *savefile ) const {
 	savefile->WriteInt( spawnId );
 }
 
 template< class type >
-ID_FORCE_INLINE void idEntityPtr<type>::Restore( idRestoreGame *savefile ) {
+ID_INLINE void idEntityPtr<type>::Restore( idRestoreGame *savefile ) {
 	savefile->ReadInt( spawnId );
 }
 
 template< class type >
-ID_FORCE_INLINE idEntityPtr<type> &idEntityPtr<type>::operator=( type *ent ) {
+ID_INLINE idEntityPtr<type> &idEntityPtr<type>::operator=( type *ent ) {
 	if( ent == NULL ) {
 		spawnId = 0;
 	} else {
@@ -1195,12 +1195,12 @@ ID_FORCE_INLINE idEntityPtr<type> &idEntityPtr<type>::operator=( type *ent ) {
 }
 
 template< class type >
-ID_FORCE_INLINE bool idEntityPtr<type>::operator==( const idEntityPtr<type> &other ) const {
+ID_INLINE bool idEntityPtr<type>::operator==( const idEntityPtr<type> &other ) const {
 	return spawnId == other.spawnId;
 }
 
 template< class type >
-ID_FORCE_INLINE bool idEntityPtr<type>::SetSpawnId( int id ) {
+ID_INLINE bool idEntityPtr<type>::SetSpawnId( int id ) {
 	// the reason for this first check is unclear:
 	// the function returning false may mean the spawnId is already set right, or the entity is missing
 	if( id == spawnId ) {
@@ -1214,12 +1214,12 @@ ID_FORCE_INLINE bool idEntityPtr<type>::SetSpawnId( int id ) {
 }
 
 template< class type >
-ID_FORCE_INLINE bool idEntityPtr<type>::IsValid( void ) const {
+ID_INLINE bool idEntityPtr<type>::IsValid( void ) const {
 	return ( gameLocal.spawnIds[ spawnId & ( ( 1 << GENTITYNUM_BITS ) - 1 ) ] == ( spawnId >> GENTITYNUM_BITS ) );
 }
 
 template< class type >
-ID_FORCE_INLINE type *idEntityPtr<type>::GetEntity( void ) const {
+ID_INLINE type *idEntityPtr<type>::GetEntity( void ) const {
 	int entityNum = spawnId & ( ( 1 << GENTITYNUM_BITS ) - 1 );
 	if( ( gameLocal.spawnIds[ entityNum ] == ( spawnId >> GENTITYNUM_BITS ) ) ) {
 		return static_cast<type *>( gameLocal.entities[ entityNum ] );
@@ -1228,7 +1228,7 @@ ID_FORCE_INLINE type *idEntityPtr<type>::GetEntity( void ) const {
 }
 
 template< class type >
-ID_FORCE_INLINE int idEntityPtr<type>::GetEntityNum( void ) const {
+ID_INLINE int idEntityPtr<type>::GetEntityNum( void ) const {
 	return ( spawnId & ( ( 1 << GENTITYNUM_BITS ) - 1 ) );
 }
 

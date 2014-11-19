@@ -2103,7 +2103,7 @@ void idCollisionModelManagerLocal::ClearHash( idBounds &bounds ) {
 idCollisionModelManagerLocal::HashVec
 ================
 */
-ID_FORCE_INLINE int idCollisionModelManagerLocal::HashVec( const idVec3 &vec ) {
+ID_INLINE int idCollisionModelManagerLocal::HashVec( const idVec3 &vec ) {
 	/*
 	int x, y;
 

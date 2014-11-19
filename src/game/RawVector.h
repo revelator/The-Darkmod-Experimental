@@ -34,13 +34,13 @@ public:
 	CRawVector();
 	~CRawVector();
 
-	ID_FORCE_INLINE int size() const {
+	ID_INLINE int size() const {
 		return m_Size;
 	}
-	ID_FORCE_INLINE char &operator[]( int i ) {
+	ID_INLINE char &operator[]( int i ) {
 		return m_Pointer[i];
 	}
-	ID_FORCE_INLINE const char &operator[]( int i ) const {
+	ID_INLINE const char &operator[]( int i ) const {
 		return m_Pointer[i];
 	}
 

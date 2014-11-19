@@ -112,11 +112,11 @@ public:
 	const idVec4 &ToVec4() const;
 };
 
-ID_FORCE_INLINE const idVec4 &idRectangle::ToVec4() const {
+ID_INLINE const idVec4 &idRectangle::ToVec4() const {
 	return *reinterpret_cast<const idVec4 *>( &x );
 }
 
-ID_FORCE_INLINE idRectangle &idRectangle::operator+=( const idRectangle &a ) {
+ID_INLINE idRectangle &idRectangle::operator+=( const idRectangle &a ) {
 	x += a.x;
 	y += a.y;
 	w += a.w;
@@ -124,7 +124,7 @@ ID_FORCE_INLINE idRectangle &idRectangle::operator+=( const idRectangle &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idRectangle &idRectangle::operator/=( const idRectangle &a ) {
+ID_INLINE idRectangle &idRectangle::operator/=( const idRectangle &a ) {
 	x /= a.x;
 	y /= a.y;
 	w /= a.w;
@@ -132,7 +132,7 @@ ID_FORCE_INLINE idRectangle &idRectangle::operator/=( const idRectangle &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idRectangle &idRectangle::operator/=( const float a ) {
+ID_INLINE idRectangle &idRectangle::operator/=( const float a ) {
 	float inva = 1.0f / a;
 	x *= inva;
 	y *= inva;
@@ -141,7 +141,7 @@ ID_FORCE_INLINE idRectangle &idRectangle::operator/=( const float a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idRectangle &idRectangle::operator-=( const idRectangle &a ) {
+ID_INLINE idRectangle &idRectangle::operator-=( const idRectangle &a ) {
 	x -= a.x;
 	y -= a.y;
 	w -= a.w;
@@ -149,7 +149,7 @@ ID_FORCE_INLINE idRectangle &idRectangle::operator-=( const idRectangle &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idRectangle &idRectangle::operator*=( const float a ) {
+ID_INLINE idRectangle &idRectangle::operator*=( const float a ) {
 	x *= a;
 	y *= a;
 	w *= a;
@@ -157,7 +157,7 @@ ID_FORCE_INLINE idRectangle &idRectangle::operator*=( const float a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idRectangle &idRectangle::operator=( const idVec4 v ) {
+ID_INLINE idRectangle &idRectangle::operator=( const idVec4 v ) {
 	x = v.x;
 	y = v.y;
 	w = v.z;
@@ -165,11 +165,11 @@ ID_FORCE_INLINE idRectangle &idRectangle::operator=( const idVec4 v ) {
 	return *this;
 }
 
-ID_FORCE_INLINE int idRectangle::operator==( const idRectangle &a ) const {
+ID_INLINE int idRectangle::operator==( const idRectangle &a ) const {
 	return ( x == a.x && y == a.y && w == a.w && a.h );
 }
 
-ID_FORCE_INLINE float &idRectangle::operator[]( int index ) {
+ID_INLINE float &idRectangle::operator[]( int index ) {
 	return ( &x )[ index ];
 }
 

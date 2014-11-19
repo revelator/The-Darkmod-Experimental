@@ -58,7 +58,7 @@ public:
 
 	float					GetMoveSpeed( void ); // grayman #3029
 
-	ID_FORCE_INLINE idPhysics_Parametric	*GetMoverPhysics() {
+	ID_INLINE idPhysics_Parametric	*GetMoverPhysics() {
 		return &physicsObj;
 	}
 

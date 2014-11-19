@@ -330,7 +330,7 @@ Checks if the object's class is a subclass of the class defined by the
 passed in idTypeInfo.
 ================
 */
-ID_FORCE_INLINE bool idTypeInfo::IsType( const idTypeInfo &type ) const {
+ID_INLINE bool idTypeInfo::IsType( const idTypeInfo &type ) const {
 	return ( ( typeNum >= type.typeNum ) && ( typeNum <= type.lastChild ) );
 }
 
@@ -339,7 +339,7 @@ ID_FORCE_INLINE bool idTypeInfo::IsType( const idTypeInfo &type ) const {
 idTypeInfo::RespondsTo
 ================
 */
-ID_FORCE_INLINE bool idTypeInfo::RespondsTo( const idEventDef &ev ) const {
+ID_INLINE bool idTypeInfo::RespondsTo( const idEventDef &ev ) const {
 	assert( idEvent::initialized );
 	if( !eventMap[ ev.GetEventNum() ] ) {
 		// we don't respond to this event
@@ -356,7 +356,7 @@ Checks if the object's class is a subclass of the class defined by the
 passed in idTypeInfo.
 ================
 */
-ID_FORCE_INLINE bool idClass::IsType( const idTypeInfo &superclass ) const {
+ID_INLINE bool idClass::IsType( const idTypeInfo &superclass ) const {
 	idTypeInfo *subclass;
 	subclass = GetType();
 	return subclass->IsType( superclass );
@@ -367,7 +367,7 @@ ID_FORCE_INLINE bool idClass::IsType( const idTypeInfo &superclass ) const {
 idClass::RespondsTo
 ================
 */
-ID_FORCE_INLINE bool idClass::RespondsTo( const idEventDef &ev ) const {
+ID_INLINE bool idClass::RespondsTo( const idEventDef &ev ) const {
 	const idTypeInfo *c;
 	assert( idEvent::initialized );
 	c = GetType();

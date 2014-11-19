@@ -71,51 +71,51 @@ private:
 	idStr			mBaseKey;
 };
 
-ID_FORCE_INLINE void rvRegistryOptions::SetFloat( const char *name, float v ) {
+ID_INLINE void rvRegistryOptions::SetFloat( const char *name, float v ) {
 	mValues.SetFloat( name, v );
 }
 
-ID_FORCE_INLINE void rvRegistryOptions::SetLong( const char *name, long v ) {
+ID_INLINE void rvRegistryOptions::SetLong( const char *name, long v ) {
 	mValues.SetInt( name, v );
 }
 
-ID_FORCE_INLINE void rvRegistryOptions::SetBool( const char *name, bool v ) {
+ID_INLINE void rvRegistryOptions::SetBool( const char *name, bool v ) {
 	mValues.SetBool( name, v );
 }
 
-ID_FORCE_INLINE void rvRegistryOptions::SetString( const char *name, const char *v ) {
+ID_INLINE void rvRegistryOptions::SetString( const char *name, const char *v ) {
 	mValues.Set( name, v );
 }
 
-ID_FORCE_INLINE void rvRegistryOptions::SetVec4( const char *name, idVec4 &v ) {
+ID_INLINE void rvRegistryOptions::SetVec4( const char *name, idVec4 &v ) {
 	mValues.SetVec4( name, v );
 }
 
-ID_FORCE_INLINE float rvRegistryOptions::GetFloat( const char *name ) {
+ID_INLINE float rvRegistryOptions::GetFloat( const char *name ) {
 	return mValues.GetFloat( name );
 }
 
-ID_FORCE_INLINE long rvRegistryOptions::GetLong( const char *name ) {
+ID_INLINE long rvRegistryOptions::GetLong( const char *name ) {
 	return mValues.GetInt( name );
 }
 
-ID_FORCE_INLINE bool rvRegistryOptions::GetBool( const char *name ) {
+ID_INLINE bool rvRegistryOptions::GetBool( const char *name ) {
 	return mValues.GetBool( name );
 }
 
-ID_FORCE_INLINE const char *rvRegistryOptions::GetString( const char *name ) {
+ID_INLINE const char *rvRegistryOptions::GetString( const char *name ) {
 	return mValues.GetString( name );
 }
 
-ID_FORCE_INLINE idVec4 rvRegistryOptions::GetVec4( const char *name ) {
+ID_INLINE idVec4 rvRegistryOptions::GetVec4( const char *name ) {
 	return mValues.GetVec4( name );
 }
 
-ID_FORCE_INLINE int rvRegistryOptions::GetRecentFileCount( void ) {
+ID_INLINE int rvRegistryOptions::GetRecentFileCount( void ) {
 	return mRecentFiles.Num( );
 }
 
-ID_FORCE_INLINE const char *rvRegistryOptions::GetRecentFile( int index ) {
+ID_INLINE const char *rvRegistryOptions::GetRecentFile( int index ) {
 	return mRecentFiles[index].c_str( );
 }
 

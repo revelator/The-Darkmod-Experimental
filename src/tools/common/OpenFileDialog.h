@@ -69,30 +69,30 @@ private:
 	static INT_PTR CALLBACK DlgProc( HWND wnd, UINT msg, WPARAM wparam, LPARAM lparam );
 };
 
-ID_FORCE_INLINE const char *rvOpenFileDialog::GetFilename( void ) {
+ID_INLINE const char *rvOpenFileDialog::GetFilename( void ) {
 	return mFilename.c_str( );
 }
 
-ID_FORCE_INLINE void rvOpenFileDialog::SetTitle( const char *title ) {
+ID_INLINE void rvOpenFileDialog::SetTitle( const char *title ) {
 	mTitle = title;
 }
 
-ID_FORCE_INLINE void rvOpenFileDialog::SetOKTitle( const char *title ) {
+ID_INLINE void rvOpenFileDialog::SetOKTitle( const char *title ) {
 	mOKTitle = title;
 }
 
-ID_FORCE_INLINE void rvOpenFileDialog::SetInitialPath( const char *path ) {
+ID_INLINE void rvOpenFileDialog::SetInitialPath( const char *path ) {
 	if( !idStr::Cmpn( mLookin, path, strlen( path ) ) ) {
 		return;
 	}
 	idStr::Copynz( mLookin, path, sizeof( mLookin ) );
 }
 
-ID_FORCE_INLINE void rvOpenFileDialog::SetFlags( int flags ) {
+ID_INLINE void rvOpenFileDialog::SetFlags( int flags ) {
 	mFlags = flags;
 }
 
-ID_FORCE_INLINE const char *rvOpenFileDialog::GetInitialPath( void ) {
+ID_INLINE const char *rvOpenFileDialog::GetInitialPath( void ) {
 	return mLookin;
 }
 

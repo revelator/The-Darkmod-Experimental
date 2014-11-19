@@ -3449,12 +3449,12 @@ void idActor::Event_PlayAnim( int channel, const char *animname ) {
 	if( !anim ) {
 #ifndef SUPPRESS_CONSOLE_WARNINGS
 		if( ( channel == ANIMCHANNEL_HEAD ) && head.GetEntity() ) {
-			gameLocal.Printf( "missing '%s' animation on '%s' (%s)\n", animname, name.c_str(), spawnArgs.GetString( "def_head", "" ) );
+			gameLocal.DPrintf( "missing '%s' animation on '%s' (%s)\n", animname, name.c_str(), spawnArgs.GetString( "def_head", "" ) );
 		} else {
-			//gameLocal.Printf( "missing '%s' animation on '%s' (%s)\n", animname, name.c_str(), GetEntityDefName() );
+			gameLocal.DPrintf( "missing '%s' animation on '%s' (%s)\n", animname, name.c_str(), GetEntityDefName() );
 		}
 #endif
-		idThread::ReturnInt( 0 );
+		idThread::ReturnInt( false );
 		return;
 	}
 	switch( channel ) {
@@ -3510,7 +3510,7 @@ void idActor::Event_PlayAnim( int channel, const char *animname ) {
 		gameLocal.Error( "Unknown anim group" );
 		break;
 	}
-	idThread::ReturnInt( 1 );
+	idThread::ReturnInt( true );
 }
 
 /*
@@ -3525,9 +3525,9 @@ void idActor::Event_PlayCycle( int channel, const char *animname ) {
 	if( !anim ) {
 #ifndef SUPPRESS_CONSOLE_WARNINGS
 		if( ( channel == ANIMCHANNEL_HEAD ) && head.GetEntity() ) {
-			gameLocal.Printf( "missing '%s' animation on '%s' (%s)\n", animname, name.c_str(), spawnArgs.GetString( "def_head", "" ) );
+			gameLocal.DPrintf( "missing '%s' animation on '%s' (%s)\n", animname, name.c_str(), spawnArgs.GetString( "def_head", "" ) );
 		} else {
-			gameLocal.Printf( "missing '%s' animation on '%s' (%s)\n", animname, name.c_str(), GetEntityDefName() );
+			gameLocal.DPrintf( "missing '%s' animation on '%s' (%s)\n", animname, name.c_str(), GetEntityDefName() );
 		}
 #endif
 		idThread::ReturnInt( false );
@@ -3612,9 +3612,9 @@ void idActor::Event_IdleAnim( int channel, const char *animname ) {
 	if( !anim ) {
 #ifndef SUPPRESS_CONSOLE_WARNINGS
 		if( ( channel == ANIMCHANNEL_HEAD ) && head.GetEntity() ) {
-			gameLocal.Printf( "missing '%s' animation on '%s' (%s)\n", animname, name.c_str(), spawnArgs.GetString( "def_head", "" ) );
+			gameLocal.DPrintf( "missing '%s' animation on '%s' (%s)\n", animname, name.c_str(), spawnArgs.GetString( "def_head", "" ) );
 		} else {
-			gameLocal.Printf( "missing '%s' animation on '%s' (%s)\n", animname, name.c_str(), GetEntityDefName() );
+			gameLocal.DPrintf( "missing '%s' animation on '%s' (%s)\n", animname, name.c_str(), GetEntityDefName() );
 		}
 #endif
 		switch( channel ) {
@@ -4789,7 +4789,7 @@ void idActor::Event_LookupReplacementAnim( const char *animName ) {
 
 void idActor::Event_GetAttackFlag( int combatType ) {
 	if( combatType < COMBAT_NONE || combatType >= NUM_COMBAT_TYPES ) {
-		idThread::ReturnInt( 0 );
+		idThread::ReturnInt( false );
 	}
 	idThread::ReturnInt( GetAttackFlag( static_cast<ECombatType>( combatType ) ) ? 1 : 0 );
 }

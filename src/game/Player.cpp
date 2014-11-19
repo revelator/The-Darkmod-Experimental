@@ -8612,7 +8612,7 @@ void idPlayer::Event_HoldEntity( idEntity *ent ) {
 		idThread::ReturnInt( successful );
 	} else {
 		gameLocal.m_Grabber->Update( this, false );
-		idThread::ReturnInt( 1 );
+		idThread::ReturnInt( true );
 	}
 }
 

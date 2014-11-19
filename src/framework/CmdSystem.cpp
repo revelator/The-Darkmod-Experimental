@@ -118,7 +118,7 @@ idCmdSystemLocal::ListByFlags
 */
 // NOTE: the const wonkyness is required to make msvc happy
 template<>
-ID_FORCE_INLINE int idListSortCompare( const commandDef_t *const *a, const commandDef_t *const *b ) {
+ID_INLINE int idListSortCompare( const commandDef_t *const *a, const commandDef_t *const *b ) {
 	return idStr::Icmp( ( *a )->name, ( *b )->name );
 }
 

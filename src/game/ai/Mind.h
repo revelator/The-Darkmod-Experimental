@@ -100,13 +100,13 @@ public:
 	/**
 	 * Returns the reference to the current state (can be NULL).
 	 */
-	ID_FORCE_INLINE const StatePtr &GetState() const {
+	ID_INLINE const StatePtr &GetState() const {
 		assert( _stateQueue.size() > 0 );
 		return _stateQueue.front();
 	}
 
 	// Returns the Memory structure, which holds the various mind variables
-	ID_FORCE_INLINE Memory &GetMemory() {
+	ID_INLINE Memory &GetMemory() {
 		return _memory;
 	}
 

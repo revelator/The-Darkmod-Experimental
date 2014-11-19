@@ -44,25 +44,25 @@ protected:
 	int		mTriangles;
 };
 
-ID_FORCE_INLINE HWND rvGEStatusBar::GetWindow( void ) {
+ID_INLINE HWND rvGEStatusBar::GetWindow( void ) {
 	return mWnd;
 }
 
-ID_FORCE_INLINE void rvGEStatusBar::SetZoom( int zoom ) {
+ID_INLINE void rvGEStatusBar::SetZoom( int zoom ) {
 	if( mZoom != zoom ) {
 		mZoom = zoom;
 		Update( );
 	}
 }
 
-ID_FORCE_INLINE void rvGEStatusBar::SetTriangles( int triangles ) {
+ID_INLINE void rvGEStatusBar::SetTriangles( int triangles ) {
 	if( triangles != mTriangles ) {
 		mTriangles = triangles;
 		Update( );
 	}
 }
 
-ID_FORCE_INLINE void rvGEStatusBar::SetSimple( bool simple ) {
+ID_INLINE void rvGEStatusBar::SetSimple( bool simple ) {
 	if( mSimple != simple ) {
 		mSimple = simple;
 		Update( );

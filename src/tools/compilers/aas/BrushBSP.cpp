@@ -504,7 +504,7 @@ void idBrushBSP::Free_r( idBrushBSPNode *node ) {
 idBrushBSP::IsValidSplitter
 ============
 */
-ID_FORCE_INLINE bool idBrushBSP::IsValidSplitter( const idBrushSide *side ) {
+ID_INLINE bool idBrushBSP::IsValidSplitter( const idBrushSide *side ) {
 	return !( side->GetFlags() & ( SFL_SPLIT | SFL_USED_SPLITTER ) );
 }
 

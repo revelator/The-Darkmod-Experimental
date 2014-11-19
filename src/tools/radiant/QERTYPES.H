@@ -228,7 +228,7 @@ typedef struct {
 	// NOTE: casting can be done with a GETPLUGINTEXDEF defined in isurfaceplugin.h
 	// TODO: if the __ISURFACEPLUGIN_H_ header is used, use a union { void *pData; IPluginTexdef *pPluginTexdef } kind of thing ?
 	void 		*pData;
-	ID_FORCE_INLINE idDrawVert &ctrl( int col, int row ) {
+	ID_INLINE idDrawVert &ctrl( int col, int row ) {
 		if( col < 0 || col >= width || row < 0 || row >= height ) {
 			common->Warning( "patchMesh_t::ctrl: control point out of range" );
 			return verts[0];

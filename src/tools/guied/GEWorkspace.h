@@ -245,63 +245,63 @@ private:
 	HCURSOR					mHandCursor;
 };
 
-ID_FORCE_INLINE rvGEWorkspace::EZoomLevel rvGEWorkspace::GetZoom( void ) {
+ID_INLINE rvGEWorkspace::EZoomLevel rvGEWorkspace::GetZoom( void ) {
 	return ( EZoomLevel )mZoom;
 }
 
-ID_FORCE_INLINE rvGEWorkspace *rvGEWorkspace::GetWorkspace( HWND wnd ) {
+ID_INLINE rvGEWorkspace *rvGEWorkspace::GetWorkspace( HWND wnd ) {
 	return ( rvGEWorkspace * ) GetWindowLong( wnd, GWL_USERDATA );
 }
 
-ID_FORCE_INLINE const char *rvGEWorkspace::GetFilename( void ) {
+ID_INLINE const char *rvGEWorkspace::GetFilename( void ) {
 	return mFilename;
 }
 
-ID_FORCE_INLINE bool rvGEWorkspace::IsModified( void ) {
+ID_INLINE bool rvGEWorkspace::IsModified( void ) {
 	return mModified;
 }
 
-ID_FORCE_INLINE bool rvGEWorkspace::IsNew( void ) {
+ID_INLINE bool rvGEWorkspace::IsNew( void ) {
 	return mNew;
 }
 
-ID_FORCE_INLINE rvGEModifierStack &rvGEWorkspace::GetModifierStack( void ) {
+ID_INLINE rvGEModifierStack &rvGEWorkspace::GetModifierStack( void ) {
 	return mModifiers;
 }
 
-ID_FORCE_INLINE rvGESelectionMgr &rvGEWorkspace::GetSelectionMgr( void ) {
+ID_INLINE rvGESelectionMgr &rvGEWorkspace::GetSelectionMgr( void ) {
 	return mSelections;
 }
 
-ID_FORCE_INLINE void rvGEWorkspace::ShowHidden( void ) {
+ID_INLINE void rvGEWorkspace::ShowHidden( void ) {
 	AddModifierShowAll( );
 }
 
-ID_FORCE_INLINE void rvGEWorkspace::AddModifierMoveNudge( float x, float y, bool snap ) {
+ID_INLINE void rvGEWorkspace::AddModifierMoveNudge( float x, float y, bool snap ) {
 	AddModifierMove( "Nudge Move", x, y, snap );
 }
 
-ID_FORCE_INLINE void rvGEWorkspace::AddModifierSizeNudge( float w, float h, bool snap ) {
+ID_INLINE void rvGEWorkspace::AddModifierSizeNudge( float w, float h, bool snap ) {
 	AddModifierSize( "Nudge Size", 0, 0, w, h, snap );
 }
 
-ID_FORCE_INLINE idUserInterfaceLocal *rvGEWorkspace::GetInterface( void ) {
+ID_INLINE idUserInterfaceLocal *rvGEWorkspace::GetInterface( void ) {
 	return mInterface;
 }
 
-ID_FORCE_INLINE rvGEApp *rvGEWorkspace::GetApplication( void ) {
+ID_INLINE rvGEApp *rvGEWorkspace::GetApplication( void ) {
 	return mApplication;
 }
 
-ID_FORCE_INLINE HWND rvGEWorkspace::GetWindow( void ) {
+ID_INLINE HWND rvGEWorkspace::GetWindow( void ) {
 	return mWnd;
 }
 
-ID_FORCE_INLINE idList<rvGEClipboardItem *> rvGEWorkspace::GetClipboard( void ) {
+ID_INLINE idList<rvGEClipboardItem *> rvGEWorkspace::GetClipboard( void ) {
 	return mClipboard;
 }
 
-ID_FORCE_INLINE rvGEWorkspace::ESourceControlState rvGEWorkspace::GetSourceControlState( void ) {
+ID_INLINE rvGEWorkspace::ESourceControlState rvGEWorkspace::GetSourceControlState( void ) {
 	return mSourceControlState;
 }
 

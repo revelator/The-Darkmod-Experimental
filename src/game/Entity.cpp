@@ -6160,12 +6160,12 @@ idEntity::Event_IsType
 void idEntity::Event_IsType( const char *pstr_typeName ) {
 	idTypeInfo *p_namedType = GetClass( pstr_typeName );
 	if( p_namedType == NULL ) {
-		idThread::ReturnInt( 0 );
+		idThread::ReturnInt( false );
 	} else {
 		if( IsType( *p_namedType ) ) {
-			idThread::ReturnInt( 1 );
+			idThread::ReturnInt( true );
 		} else {
-			idThread::ReturnInt( 0 );
+			idThread::ReturnInt( false );
 		}
 	}
 }
@@ -9324,10 +9324,10 @@ void idEntity::Event_LoadExternalData( const char *xdFile, const char *prefix ) 
 			kv = data->GetKeyVal( i );
 			spawnArgs.Set( prefix + kv->GetKey(), kv->GetValue() );
 		}
-		idThread::ReturnInt( 1 );
+		idThread::ReturnInt( true );
 	} else {
 		gameLocal.Warning( "Non-existant xdata declaration: %s", xdFile );
-		idThread::ReturnInt( 0 );
+		idThread::ReturnInt( false );
 	}
 }
 

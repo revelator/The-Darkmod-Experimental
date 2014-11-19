@@ -192,22 +192,22 @@ public:
 };
 
 template<class type, etype_t etype, class returnType>
-ID_FORCE_INLINE idScriptVariable<type, etype, returnType>::idScriptVariable() {
+ID_INLINE idScriptVariable<type, etype, returnType>::idScriptVariable() {
 	data = NULL;
 }
 
 template<class type, etype_t etype, class returnType>
-ID_FORCE_INLINE bool idScriptVariable<type, etype, returnType>::IsLinked( void ) const {
+ID_INLINE bool idScriptVariable<type, etype, returnType>::IsLinked( void ) const {
 	return ( data != NULL );
 }
 
 template<class type, etype_t etype, class returnType>
-ID_FORCE_INLINE void idScriptVariable<type, etype, returnType>::Unlink( void ) {
+ID_INLINE void idScriptVariable<type, etype, returnType>::Unlink( void ) {
 	data = NULL;
 }
 
 template<class type, etype_t etype, class returnType>
-ID_FORCE_INLINE void idScriptVariable<type, etype, returnType>::LinkTo( idScriptObject &obj, const char *name ) {
+ID_INLINE void idScriptVariable<type, etype, returnType>::LinkTo( idScriptObject &obj, const char *name ) {
 	data = ( type * )obj.GetVariable( name, etype );
 	if( !data ) {
 		gameError( "Missing '%s' field in script object '%s'", name, obj.GetTypeName() );
@@ -215,7 +215,7 @@ ID_FORCE_INLINE void idScriptVariable<type, etype, returnType>::LinkTo( idScript
 }
 
 template<class type, etype_t etype, class returnType>
-ID_FORCE_INLINE idScriptVariable<type, etype, returnType> &idScriptVariable<type, etype, returnType>::operator=( const returnType &value ) {
+ID_INLINE idScriptVariable<type, etype, returnType> &idScriptVariable<type, etype, returnType>::operator=( const returnType &value ) {
 	// check if we attempt to access the object before it's been linked
 	assert( data );
 	// make sure we don't crash if we don't have a pointer
@@ -226,7 +226,7 @@ ID_FORCE_INLINE idScriptVariable<type, etype, returnType> &idScriptVariable<type
 }
 
 template<class type, etype_t etype, class returnType>
-ID_FORCE_INLINE idScriptVariable<type, etype, returnType>::operator returnType() const {
+ID_INLINE idScriptVariable<type, etype, returnType>::operator returnType() const {
 	// check if we attempt to access the object before it's been linked
 	assert( data );
 	// make sure we don't crash if we don't have a pointer
@@ -548,7 +548,7 @@ private:
 idProgram::GetStatement
 ================
 */
-ID_FORCE_INLINE statement_t &idProgram::GetStatement( int index ) {
+ID_INLINE statement_t &idProgram::GetStatement( int index ) {
 	return statements[ index ];
 }
 
@@ -557,7 +557,7 @@ ID_FORCE_INLINE statement_t &idProgram::GetStatement( int index ) {
 idProgram::GetFunction
 ================
 */
-ID_FORCE_INLINE function_t *idProgram::GetFunction( int index ) {
+ID_INLINE function_t *idProgram::GetFunction( int index ) {
 	return &functions[ index ];
 }
 
@@ -566,7 +566,7 @@ ID_FORCE_INLINE function_t *idProgram::GetFunction( int index ) {
 idProgram::GetFunctionIndex
 ================
 */
-ID_FORCE_INLINE int idProgram::GetFunctionIndex( const function_t *func ) {
+ID_INLINE int idProgram::GetFunctionIndex( const function_t *func ) {
 	return func - &functions[0];
 }
 
@@ -575,7 +575,7 @@ ID_FORCE_INLINE int idProgram::GetFunctionIndex( const function_t *func ) {
 idProgram::GetReturnedInteger
 ================
 */
-ID_FORCE_INLINE int idProgram::GetReturnedInteger( void ) {
+ID_INLINE int idProgram::GetReturnedInteger( void ) {
 	return *returnDef->value.intPtr;
 }
 
@@ -584,7 +584,7 @@ ID_FORCE_INLINE int idProgram::GetReturnedInteger( void ) {
 idProgram::ReturnFloat
 ================
 */
-ID_FORCE_INLINE void idProgram::ReturnFloat( float value ) {
+ID_INLINE void idProgram::ReturnFloat( float value ) {
 	*returnDef->value.floatPtr = value;
 }
 
@@ -593,7 +593,7 @@ ID_FORCE_INLINE void idProgram::ReturnFloat( float value ) {
 idProgram::ReturnInteger
 ================
 */
-ID_FORCE_INLINE void idProgram::ReturnInteger( int value ) {
+ID_INLINE void idProgram::ReturnInteger( int value ) {
 	*returnDef->value.intPtr = value;
 }
 
@@ -602,7 +602,7 @@ ID_FORCE_INLINE void idProgram::ReturnInteger( int value ) {
 idProgram::ReturnVector
 ================
 */
-ID_FORCE_INLINE void idProgram::ReturnVector( idVec3 const &vec ) {
+ID_INLINE void idProgram::ReturnVector( idVec3 const &vec ) {
 	*returnDef->value.vectorPtr = vec;
 }
 
@@ -611,7 +611,7 @@ ID_FORCE_INLINE void idProgram::ReturnVector( idVec3 const &vec ) {
 idProgram::ReturnString
 ================
 */
-ID_FORCE_INLINE void idProgram::ReturnString( const char *string ) {
+ID_INLINE void idProgram::ReturnString( const char *string ) {
 	idStr::Copynz( returnStringDef->value.stringPtr, string, MAX_STRING_LEN );
 }
 
@@ -620,7 +620,7 @@ ID_FORCE_INLINE void idProgram::ReturnString( const char *string ) {
 idProgram::GetFilename
 ================
 */
-ID_FORCE_INLINE const char *idProgram::GetFilename( int num ) {
+ID_INLINE const char *idProgram::GetFilename( int num ) {
 	return fileList[ num ];
 }
 
@@ -629,7 +629,7 @@ ID_FORCE_INLINE const char *idProgram::GetFilename( int num ) {
 idProgram::GetLineNumberForStatement
 ================
 */
-ID_FORCE_INLINE int idProgram::GetLineNumberForStatement( int index ) {
+ID_INLINE int idProgram::GetLineNumberForStatement( int index ) {
 	return statements[ index ].linenumber;
 }
 
@@ -638,7 +638,7 @@ ID_FORCE_INLINE int idProgram::GetLineNumberForStatement( int index ) {
 idProgram::GetFilenameForStatement
 ================
 */
-ID_FORCE_INLINE const char *idProgram::GetFilenameForStatement( int index ) {
+ID_INLINE const char *idProgram::GetFilenameForStatement( int index ) {
 	return GetFilename( statements[ index ].file );
 }
 

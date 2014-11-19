@@ -77,7 +77,7 @@ private:
 	float			mat[3*4];
 };
 
-ID_FORCE_INLINE void idJointMat::SetRotation( const idMat3 &m ) {
+ID_INLINE void idJointMat::SetRotation( const idMat3 &m ) {
 	// NOTE: idMat3 is transposed because it is column-major
 	mat[0 * 4 + 0] = m[0][0];
 	mat[0 * 4 + 1] = m[1][0];
@@ -90,25 +90,25 @@ ID_FORCE_INLINE void idJointMat::SetRotation( const idMat3 &m ) {
 	mat[2 * 4 + 2] = m[2][2];
 }
 
-ID_FORCE_INLINE void idJointMat::SetTranslation( const idVec3 &t ) {
+ID_INLINE void idJointMat::SetTranslation( const idVec3 &t ) {
 	mat[0 * 4 + 3] = t[0];
 	mat[1 * 4 + 3] = t[1];
 	mat[2 * 4 + 3] = t[2];
 }
 
-ID_FORCE_INLINE idVec3 idJointMat::operator*( const idVec3 &v ) const {
+ID_INLINE idVec3 idJointMat::operator*( const idVec3 &v ) const {
 	return idVec3(	mat[0 * 4 + 0] * v[0] + mat[0 * 4 + 1] * v[1] + mat[0 * 4 + 2] * v[2],
 					mat[1 * 4 + 0] * v[0] + mat[1 * 4 + 1] * v[1] + mat[1 * 4 + 2] * v[2],
 					mat[2 * 4 + 0] * v[0] + mat[2 * 4 + 1] * v[1] + mat[2 * 4 + 2] * v[2] );
 }
 
-ID_FORCE_INLINE idVec3 idJointMat::operator*( const idVec4 &v ) const {
+ID_INLINE idVec3 idJointMat::operator*( const idVec4 &v ) const {
 	return idVec3(	mat[0 * 4 + 0] * v[0] + mat[0 * 4 + 1] * v[1] + mat[0 * 4 + 2] * v[2] + mat[0 * 4 + 3] * v[3],
 					mat[1 * 4 + 0] * v[0] + mat[1 * 4 + 1] * v[1] + mat[1 * 4 + 2] * v[2] + mat[1 * 4 + 3] * v[3],
 					mat[2 * 4 + 0] * v[0] + mat[2 * 4 + 1] * v[1] + mat[2 * 4 + 2] * v[2] + mat[2 * 4 + 3] * v[3] );
 }
 
-ID_FORCE_INLINE idJointMat &idJointMat::operator*=( const idJointMat &a ) {
+ID_INLINE idJointMat &idJointMat::operator*=( const idJointMat &a ) {
 	float dst[3];
 
 	dst[0] = mat[0 * 4 + 0] * a.mat[0 * 4 + 0] + mat[1 * 4 + 0] * a.mat[0 * 4 + 1] + mat[2 * 4 + 0] * a.mat[0 * 4 + 2];
@@ -146,7 +146,7 @@ ID_FORCE_INLINE idJointMat &idJointMat::operator*=( const idJointMat &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idJointMat &idJointMat::operator/=( const idJointMat &a ) {
+ID_INLINE idJointMat &idJointMat::operator/=( const idJointMat &a ) {
 	float dst[3];
 
 	mat[0 * 4 + 3] -= a.mat[0 * 4 + 3];
@@ -184,7 +184,7 @@ ID_FORCE_INLINE idJointMat &idJointMat::operator/=( const idJointMat &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE bool idJointMat::Compare( const idJointMat &a ) const {
+ID_INLINE bool idJointMat::Compare( const idJointMat &a ) const {
 	int i;
 
 	for ( i = 0; i < 12; i++ ) {
@@ -195,7 +195,7 @@ ID_FORCE_INLINE bool idJointMat::Compare( const idJointMat &a ) const {
 	return true;
 }
 
-ID_FORCE_INLINE bool idJointMat::Compare( const idJointMat &a, const float epsilon ) const {
+ID_INLINE bool idJointMat::Compare( const idJointMat &a, const float epsilon ) const {
 	int i;
 
 	for ( i = 0; i < 12; i++ ) {
@@ -206,29 +206,29 @@ ID_FORCE_INLINE bool idJointMat::Compare( const idJointMat &a, const float epsil
 	return true;
 }
 
-ID_FORCE_INLINE bool idJointMat::operator==( const idJointMat &a ) const {
+ID_INLINE bool idJointMat::operator==( const idJointMat &a ) const {
 	return Compare( a );
 }
 
-ID_FORCE_INLINE bool idJointMat::operator!=( const idJointMat &a ) const {
+ID_INLINE bool idJointMat::operator!=( const idJointMat &a ) const {
 	return !Compare( a );
 }
 
-ID_FORCE_INLINE idMat3 idJointMat::ToMat3( void ) const {
+ID_INLINE idMat3 idJointMat::ToMat3( void ) const {
 	return idMat3(	mat[0 * 4 + 0], mat[1 * 4 + 0], mat[2 * 4 + 0],
 					mat[0 * 4 + 1], mat[1 * 4 + 1], mat[2 * 4 + 1],
 					mat[0 * 4 + 2], mat[1 * 4 + 2], mat[2 * 4 + 2] );
 }
 
-ID_FORCE_INLINE idVec3 idJointMat::ToVec3( void ) const {
+ID_INLINE idVec3 idJointMat::ToVec3( void ) const {
 	return idVec3( mat[0 * 4 + 3], mat[1 * 4 + 3], mat[2 * 4 + 3] );
 }
 
-ID_FORCE_INLINE const float *idJointMat::ToFloatPtr( void ) const {
+ID_INLINE const float *idJointMat::ToFloatPtr( void ) const {
 	return mat;
 }
 
-ID_FORCE_INLINE float *idJointMat::ToFloatPtr( void ) {
+ID_INLINE float *idJointMat::ToFloatPtr( void ) {
 	return mat;
 }
 

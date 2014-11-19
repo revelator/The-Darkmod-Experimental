@@ -2952,7 +2952,7 @@ void idAI::Event_GetRelationEnt( idEntity *ent ) {
 	idActor *actor;
 	if( !ent->IsType( idActor::Type ) ) {
 		// inanimate objects are neutral to everyone
-		idThread::ReturnInt( 0 );
+		idThread::ReturnInt( false );
 	}
 	actor = static_cast<idActor *>( ent );
 	idThread::ReturnInt( gameLocal.m_RelationsManager->GetRelNum( team, actor->team ) );
@@ -3072,11 +3072,11 @@ void idAI::Event_StartSearchForHidingSpots
 								   );
 		// Wait at least one frame for other AIs to indicate they want to share
 		// this search. Return result indicating search is not done yet.
-		idThread::ReturnInt( 1 );
+		idThread::ReturnInt( true );
 	} else {
 		DM_LOG( LC_AI, LT_ERROR )LOGSTRING( "Cannot perform Event_StartSearchForHidingSpots if no AAS is set for the AI\r" );
 		// Search is done since there is no search
-		idThread::ReturnInt( 0 );
+		idThread::ReturnInt( false );
 	}
 }
 

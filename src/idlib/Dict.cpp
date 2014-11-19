@@ -671,7 +671,7 @@ idDictStringSortCmp
 */
 // NOTE: the const wonkyness is required to make msvc happy
 template<>
-ID_FORCE_INLINE int idListSortCompare( const idPoolStr * const *a, const idPoolStr * const *b ) {
+ID_INLINE int idListSortCompare( const idPoolStr * const *a, const idPoolStr * const *b ) {
 	return (*a)->Icmp( **b );
 }
 

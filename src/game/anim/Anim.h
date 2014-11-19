@@ -41,7 +41,7 @@ const int ANIMCHANNEL_HEAD			= 3;
 const int ANIMCHANNEL_EYELIDS		= 4;
 
 // for converting from 24 frames per second to milliseconds
-ID_FORCE_INLINE int FRAME2MS( int framenum ) {
+ID_INLINE int FRAME2MS( int framenum ) {
 	return ( framenum * 1000 ) / 24;
 }
 
@@ -548,7 +548,7 @@ public:
 	idVec3						origin;
 };
 
-ID_FORCE_INLINE idAFPoseJointMod::idAFPoseJointMod( void ) {
+ID_INLINE idAFPoseJointMod::idAFPoseJointMod( void ) {
 	mod = AF_JOINTMOD_AXIS;
 	axis.Identity();
 	origin.Zero();

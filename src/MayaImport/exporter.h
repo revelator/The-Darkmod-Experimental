@@ -201,7 +201,7 @@ typedef struct {
 	idVec2					uv[ 3 ];
 } exportUV_t;
 
-ID_FORCE_INLINE int operator==( exportVertex_t a, exportVertex_t b ) {
+ID_INLINE int operator==( exportVertex_t a, exportVertex_t b ) {
 	if ( a.pos != b.pos ) {
 		return false;
 	}

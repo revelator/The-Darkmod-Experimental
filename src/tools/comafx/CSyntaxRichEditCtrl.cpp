@@ -232,7 +232,7 @@ void CSyntaxRichEditCtrl::Init( void ) {
 CSyntaxRichEditCtrl::FindKeyWord
 ================
 */
-ID_FORCE_INLINE int CSyntaxRichEditCtrl::FindKeyWord( const char *keyWord, int length ) const {
+ID_INLINE int CSyntaxRichEditCtrl::FindKeyWord( const char *keyWord, int length ) const {
 	int i, hash;
 	if( caseSensitive ) {
 		hash = idStr::Hash( keyWord, length );

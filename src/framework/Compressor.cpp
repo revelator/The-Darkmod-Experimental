@@ -284,7 +284,7 @@ void idCompressor_BitStream::Init( idFile *f, bool compress, int wordLength ) {
 idCompressor_BitStream::InitCompress
 ================
 */
-ID_FORCE_INLINE void idCompressor_BitStream::InitCompress( const void *inData, const int inLength ) {
+ID_INLINE void idCompressor_BitStream::InitCompress( const void *inData, const int inLength ) {
 	readLength = inLength;
 	readByte = 0;
 	readBit = 0;
@@ -302,7 +302,7 @@ ID_FORCE_INLINE void idCompressor_BitStream::InitCompress( const void *inData, c
 idCompressor_BitStream::InitDecompress
 ================
 */
-ID_FORCE_INLINE void idCompressor_BitStream::InitDecompress( void *outData, int outLength ) {
+ID_INLINE void idCompressor_BitStream::InitDecompress( void *outData, int outLength ) {
 	if( !readLength ) {
 		readLength = file->Read( buffer, sizeof( buffer ) );
 		readByte = 0;

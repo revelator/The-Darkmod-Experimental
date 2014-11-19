@@ -53,11 +53,11 @@ protected:
 	rvGEWorkspace		*mWorkspace;
 };
 
-ID_FORCE_INLINE HWND rvGEProperties::GetWindow( void ) {
+ID_INLINE HWND rvGEProperties::GetWindow( void ) {
 	return mWnd;
 }
 
-ID_FORCE_INLINE void rvGEProperties::SetWorkspace( rvGEWorkspace *workspace ) {
+ID_INLINE void rvGEProperties::SetWorkspace( rvGEWorkspace *workspace ) {
 	mWorkspace = workspace;
 	Update( );
 }

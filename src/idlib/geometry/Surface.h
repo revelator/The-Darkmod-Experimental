@@ -98,7 +98,7 @@ protected:
 idSurface::idSurface
 ====================
 */
-ID_FORCE_INLINE idSurface::idSurface( void ) {
+ID_INLINE idSurface::idSurface( void ) {
 }
 
 /*
@@ -106,7 +106,7 @@ ID_FORCE_INLINE idSurface::idSurface( void ) {
 idSurface::idSurface
 =================
 */
-ID_FORCE_INLINE idSurface::idSurface( const idDrawVert *verts, const int numVerts, const int *indexes, const int numIndexes ) {
+ID_INLINE idSurface::idSurface( const idDrawVert *verts, const int numVerts, const int *indexes, const int numIndexes ) {
 	assert( verts != NULL && indexes != NULL && numVerts > 0 && numIndexes > 0 );
 	this->verts.SetNum( numVerts );
 	memcpy( this->verts.Ptr(), verts, numVerts * sizeof( verts[0] ) );
@@ -120,7 +120,7 @@ ID_FORCE_INLINE idSurface::idSurface( const idDrawVert *verts, const int numVert
 idSurface::idSurface
 ====================
 */
-ID_FORCE_INLINE idSurface::idSurface( const idSurface &surf ) {
+ID_INLINE idSurface::idSurface( const idSurface &surf ) {
 	this->verts = surf.verts;
 	this->indexes = surf.indexes;
 	this->edges = surf.edges;
@@ -132,7 +132,7 @@ ID_FORCE_INLINE idSurface::idSurface( const idSurface &surf ) {
 idSurface::~idSurface
 ====================
 */
-ID_FORCE_INLINE idSurface::~idSurface( void ) {
+ID_INLINE idSurface::~idSurface( void ) {
 }
 
 /*
@@ -140,7 +140,7 @@ ID_FORCE_INLINE idSurface::~idSurface( void ) {
 idSurface::operator[]
 =================
 */
-ID_FORCE_INLINE const idDrawVert &idSurface::operator[]( const int index ) const {
+ID_INLINE const idDrawVert &idSurface::operator[]( const int index ) const {
 	return verts[ index ];
 };
 
@@ -149,7 +149,7 @@ ID_FORCE_INLINE const idDrawVert &idSurface::operator[]( const int index ) const
 idSurface::operator[]
 =================
 */
-ID_FORCE_INLINE idDrawVert &idSurface::operator[]( const int index ) {
+ID_INLINE idDrawVert &idSurface::operator[]( const int index ) {
 	return verts[ index ];
 };
 
@@ -158,7 +158,7 @@ ID_FORCE_INLINE idDrawVert &idSurface::operator[]( const int index ) {
 idSurface::operator+=
 =================
 */
-ID_FORCE_INLINE idSurface &idSurface::operator+=( const idSurface &surf ) {
+ID_INLINE idSurface &idSurface::operator+=( const idSurface &surf ) {
 	int i, m, n;
 	n = verts.Num();
 	m = indexes.Num();
@@ -176,7 +176,7 @@ ID_FORCE_INLINE idSurface &idSurface::operator+=( const idSurface &surf ) {
 idSurface::Clear
 =================
 */
-ID_FORCE_INLINE void idSurface::Clear( void ) {
+ID_INLINE void idSurface::Clear( void ) {
 	verts.Clear();
 	indexes.Clear();
 	edges.Clear();
@@ -188,7 +188,7 @@ ID_FORCE_INLINE void idSurface::Clear( void ) {
 idSurface::SwapTriangles
 =================
 */
-ID_FORCE_INLINE void idSurface::SwapTriangles( idSurface &surf ) {
+ID_INLINE void idSurface::SwapTriangles( idSurface &surf ) {
 	verts.Swap( surf.verts );
 	indexes.Swap( surf.indexes );
 	edges.Swap( surf.edges );
@@ -200,7 +200,7 @@ ID_FORCE_INLINE void idSurface::SwapTriangles( idSurface &surf ) {
 idSurface::TranslateSelf
 =================
 */
-ID_FORCE_INLINE void idSurface::TranslateSelf( const idVec3 &translation ) {
+ID_INLINE void idSurface::TranslateSelf( const idVec3 &translation ) {
 	for ( int i = 0; i < verts.Num(); i++ ) {
 		verts[i].xyz += translation;
 	}
@@ -211,7 +211,7 @@ ID_FORCE_INLINE void idSurface::TranslateSelf( const idVec3 &translation ) {
 idSurface::RotateSelf
 =================
 */
-ID_FORCE_INLINE void idSurface::RotateSelf( const idMat3 &rotation ) {
+ID_INLINE void idSurface::RotateSelf( const idMat3 &rotation ) {
 	for ( int i = 0; i < verts.Num(); i++ ) {
 		verts[i].xyz *= rotation;
 		verts[i].normal *= rotation;

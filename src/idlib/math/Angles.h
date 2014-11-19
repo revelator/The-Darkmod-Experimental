@@ -99,60 +99,60 @@ public:
 extern idAngles ang_zero;
 
 // Default constructor
-ID_FORCE_INLINE idAngles::idAngles( void )
+ID_INLINE idAngles::idAngles( void )
 : pitch(0), yaw(0), roll(0)
 {
 }
 
-ID_FORCE_INLINE idAngles::idAngles( float pitch, float yaw, float roll ) {
+ID_INLINE idAngles::idAngles( float pitch, float yaw, float roll ) {
 	this->pitch = pitch;
 	this->yaw	= yaw;
 	this->roll	= roll;
 }
 
-ID_FORCE_INLINE idAngles::idAngles( const idVec3 &v ) {
+ID_INLINE idAngles::idAngles( const idVec3 &v ) {
 	this->pitch = v[0];
 	this->yaw	= v[1];
 	this->roll	= v[2];
 }
 
-ID_FORCE_INLINE void idAngles::Set( float pitch, float yaw, float roll ) {
+ID_INLINE void idAngles::Set( float pitch, float yaw, float roll ) {
 	this->pitch = pitch;
 	this->yaw	= yaw;
 	this->roll	= roll;
 }
 
-ID_FORCE_INLINE idAngles &idAngles::Zero( void ) {
+ID_INLINE idAngles &idAngles::Zero( void ) {
 	pitch = yaw = roll = 0.0f;
 	return *this;
 }
 
-ID_FORCE_INLINE float idAngles::operator[]( int index ) const {
+ID_INLINE float idAngles::operator[]( int index ) const {
 	assert( ( index >= 0 ) && ( index < 3 ) );
 	return ( &pitch )[ index ];
 }
 
-ID_FORCE_INLINE float &idAngles::operator[]( int index ) {
+ID_INLINE float &idAngles::operator[]( int index ) {
 	assert( ( index >= 0 ) && ( index < 3 ) );
 	return ( &pitch )[ index ];
 }
 
-ID_FORCE_INLINE idAngles idAngles::operator-() const {
+ID_INLINE idAngles idAngles::operator-() const {
 	return idAngles( -pitch, -yaw, -roll );
 }
 
-ID_FORCE_INLINE idAngles &idAngles::operator=( const idAngles &a ) {
+ID_INLINE idAngles &idAngles::operator=( const idAngles &a ) {
 	pitch	= a.pitch;
 	yaw		= a.yaw;
 	roll	= a.roll;
 	return *this;
 }
 
-ID_FORCE_INLINE idAngles idAngles::operator+( const idAngles &a ) const {
+ID_INLINE idAngles idAngles::operator+( const idAngles &a ) const {
 	return idAngles( pitch + a.pitch, yaw + a.yaw, roll + a.roll );
 }
 
-ID_FORCE_INLINE idAngles& idAngles::operator+=( const idAngles &a ) {
+ID_INLINE idAngles& idAngles::operator+=( const idAngles &a ) {
 	pitch	+= a.pitch;
 	yaw		+= a.yaw;
 	roll	+= a.roll;
@@ -160,11 +160,11 @@ ID_FORCE_INLINE idAngles& idAngles::operator+=( const idAngles &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idAngles idAngles::operator-( const idAngles &a ) const {
+ID_INLINE idAngles idAngles::operator-( const idAngles &a ) const {
 	return idAngles( pitch - a.pitch, yaw - a.yaw, roll - a.roll );
 }
 
-ID_FORCE_INLINE idAngles& idAngles::operator-=( const idAngles &a ) {
+ID_INLINE idAngles& idAngles::operator-=( const idAngles &a ) {
 	pitch	-= a.pitch;
 	yaw		-= a.yaw;
 	roll	-= a.roll;
@@ -172,23 +172,23 @@ ID_FORCE_INLINE idAngles& idAngles::operator-=( const idAngles &a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idAngles idAngles::operator*( const float a ) const {
+ID_INLINE idAngles idAngles::operator*( const float a ) const {
 	return idAngles( pitch * a, yaw * a, roll * a );
 }
 
-ID_FORCE_INLINE idAngles& idAngles::operator*=( float a ) {
+ID_INLINE idAngles& idAngles::operator*=( float a ) {
 	pitch	*= a;
 	yaw		*= a;
 	roll	*= a;
 	return *this;
 }
 
-ID_FORCE_INLINE idAngles idAngles::operator/( const float a ) const {
+ID_INLINE idAngles idAngles::operator/( const float a ) const {
 	float inva = 1.0f / a;
 	return idAngles( pitch * inva, yaw * inva, roll * inva );
 }
 
-ID_FORCE_INLINE idAngles& idAngles::operator/=( float a ) {
+ID_INLINE idAngles& idAngles::operator/=( float a ) {
 	float inva = 1.0f / a;
 	pitch	*= inva;
 	yaw		*= inva;
@@ -196,15 +196,15 @@ ID_FORCE_INLINE idAngles& idAngles::operator/=( float a ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idAngles operator*( const float a, const idAngles &b ) {
+ID_INLINE idAngles operator*( const float a, const idAngles &b ) {
 	return idAngles( a * b.pitch, a * b.yaw, a * b.roll );
 }
 
-ID_FORCE_INLINE bool idAngles::Compare( const idAngles &a ) const {
+ID_INLINE bool idAngles::Compare( const idAngles &a ) const {
 	return ( ( a.pitch == pitch ) && ( a.yaw == yaw ) && ( a.roll == roll ) );
 }
 
-ID_FORCE_INLINE bool idAngles::Compare( const idAngles &a, const float epsilon ) const {
+ID_INLINE bool idAngles::Compare( const idAngles &a, const float epsilon ) const {
 	if ( idMath::Fabs( pitch - a.pitch ) > epsilon ) {
 		return false;
 	}
@@ -220,15 +220,15 @@ ID_FORCE_INLINE bool idAngles::Compare( const idAngles &a, const float epsilon )
 	return true;
 }
 
-ID_FORCE_INLINE bool idAngles::operator==( const idAngles &a ) const {
+ID_INLINE bool idAngles::operator==( const idAngles &a ) const {
 	return Compare( a );
 }
 
-ID_FORCE_INLINE bool idAngles::operator!=( const idAngles &a ) const {
+ID_INLINE bool idAngles::operator!=( const idAngles &a ) const {
 	return !Compare( a );
 }
 
-ID_FORCE_INLINE void idAngles::Clamp( const idAngles &min, const idAngles &max ) {
+ID_INLINE void idAngles::Clamp( const idAngles &min, const idAngles &max ) {
 	if ( pitch < min.pitch ) {
 		pitch = min.pitch;
 	} else if ( pitch > max.pitch ) {
@@ -246,15 +246,15 @@ ID_FORCE_INLINE void idAngles::Clamp( const idAngles &min, const idAngles &max )
 	}
 }
 
-ID_FORCE_INLINE int idAngles::GetDimension( void ) const {
+ID_INLINE int idAngles::GetDimension( void ) const {
 	return 3;
 }
 
-ID_FORCE_INLINE const float *idAngles::ToFloatPtr( void ) const {
+ID_INLINE const float *idAngles::ToFloatPtr( void ) const {
 	return &pitch;
 }
 
-ID_FORCE_INLINE float *idAngles::ToFloatPtr( void ) {
+ID_INLINE float *idAngles::ToFloatPtr( void ) {
 	return &pitch;
 }
 

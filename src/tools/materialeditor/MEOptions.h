@@ -82,64 +82,64 @@ protected:
 	int					previewPropHeadingWidth;
 };
 
-ID_FORCE_INLINE void MEOptions::SetWindowPlacement( const char *name, HWND hwnd ) {
+ID_INLINE void MEOptions::SetWindowPlacement( const char *name, HWND hwnd ) {
 	registry.SetWindowPlacement( name, hwnd );
 }
 
-ID_FORCE_INLINE bool MEOptions::GetWindowPlacement( const char *name, HWND hwnd ) {
+ID_INLINE bool MEOptions::GetWindowPlacement( const char *name, HWND hwnd ) {
 	return registry.GetWindowPlacement( name, hwnd );
 }
 
-ID_FORCE_INLINE void MEOptions::SetMaterialTreeWidth( int width ) {
+ID_INLINE void MEOptions::SetMaterialTreeWidth( int width ) {
 	materialTreeWidth = width;
 	SetModified( true );
 }
 
-ID_FORCE_INLINE int MEOptions::GetMaterialTreeWidth() {
+ID_INLINE int MEOptions::GetMaterialTreeWidth() {
 	return materialTreeWidth;
 }
 
-ID_FORCE_INLINE void MEOptions::SetStageWidth( int width ) {
+ID_INLINE void MEOptions::SetStageWidth( int width ) {
 	stageWidth = width;
 	SetModified( true );
 }
 
-ID_FORCE_INLINE int MEOptions::GetStageWidth() {
+ID_INLINE int MEOptions::GetStageWidth() {
 	return stageWidth;
 }
 
-ID_FORCE_INLINE void MEOptions::SetPreviewPropertiesWidth( int width ) {
+ID_INLINE void MEOptions::SetPreviewPropertiesWidth( int width ) {
 	previewPropertiesWidth = width;
 	SetModified( true );
 }
 
-ID_FORCE_INLINE int MEOptions::GetPreviewPropertiesWidth() {
+ID_INLINE int MEOptions::GetPreviewPropertiesWidth() {
 	return previewPropertiesWidth;
 }
 
-ID_FORCE_INLINE void MEOptions::SetMaterialEditHeight( int height ) {
+ID_INLINE void MEOptions::SetMaterialEditHeight( int height ) {
 	materialEditHeight = height;
 	SetModified( true );
 }
 
-ID_FORCE_INLINE int MEOptions::GetMaterialEditHeight() {
+ID_INLINE int MEOptions::GetMaterialEditHeight() {
 	return materialEditHeight;
 }
 
-ID_FORCE_INLINE void MEOptions::SetMaterialPropHeadingWidth( int width ) {
+ID_INLINE void MEOptions::SetMaterialPropHeadingWidth( int width ) {
 	materialPropHeadingWidth = width;
 	SetModified( true );
 }
 
-ID_FORCE_INLINE int MEOptions::GetMaterialPropHeadingWidth() {
+ID_INLINE int MEOptions::GetMaterialPropHeadingWidth() {
 	return materialPropHeadingWidth;
 }
 
-ID_FORCE_INLINE void MEOptions::SetPreviewPropHeadingWidth( int width ) {
+ID_INLINE void MEOptions::SetPreviewPropHeadingWidth( int width ) {
 	previewPropHeadingWidth = width;
 	SetModified( true );
 }
 
-ID_FORCE_INLINE int MEOptions::GetPreviewPropHeadingWidth() {
+ID_INLINE int MEOptions::GetPreviewPropHeadingWidth() {
 	return previewPropHeadingWidth;
 }

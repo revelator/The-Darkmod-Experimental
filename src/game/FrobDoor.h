@@ -114,7 +114,7 @@ public:
 	virtual bool			IsFrobbed() const;
 
 	// angua: returns the number of open peers
-	ID_FORCE_INLINE int			GetOpenPeersNum() {
+	ID_INLINE int			GetOpenPeersNum() {
 		return m_OpenPeers.Num();
 	}
 

@@ -133,7 +133,7 @@ public:
 idInterpreter::PopParms
 ====================
 */
-ID_FORCE_INLINE void idInterpreter::PopParms( int numParms ) {
+ID_INLINE void idInterpreter::PopParms( int numParms ) {
 	// pop our parms off the stack
 	if( localstackUsed < numParms ) {
 		Error( "locals stack underflow\n" );
@@ -146,7 +146,7 @@ ID_FORCE_INLINE void idInterpreter::PopParms( int numParms ) {
 idInterpreter::Push
 ====================
 */
-ID_FORCE_INLINE void idInterpreter::Push( int value ) {
+ID_INLINE void idInterpreter::Push( int value ) {
 	if( localstackUsed + sizeof( int ) > LOCALSTACK_SIZE ) {
 		Error( "Push: locals stack overflow\n" );
 	}
@@ -159,7 +159,7 @@ ID_FORCE_INLINE void idInterpreter::Push( int value ) {
 idInterpreter::PushString
 ====================
 */
-ID_FORCE_INLINE void idInterpreter::PushString( const char *string ) {
+ID_INLINE void idInterpreter::PushString( const char *string ) {
 	if( localstackUsed + MAX_STRING_LEN > LOCALSTACK_SIZE ) {
 		Error( "PushString: locals stack overflow\n" );
 	}
@@ -172,7 +172,7 @@ ID_FORCE_INLINE void idInterpreter::PushString( const char *string ) {
 idInterpreter::FloatToString
 ====================
 */
-ID_FORCE_INLINE const char *idInterpreter::FloatToString( float value ) {
+ID_INLINE const char *idInterpreter::FloatToString( float value ) {
 	static char	text[ 32 ];
 	if( value == ( float )( int )value ) {
 		sprintf( text, "%d", ( int )value );
@@ -187,7 +187,7 @@ ID_FORCE_INLINE const char *idInterpreter::FloatToString( float value ) {
 idInterpreter::AppendString
 ====================
 */
-ID_FORCE_INLINE void idInterpreter::AppendString( idVarDef *def, const char *from ) {
+ID_INLINE void idInterpreter::AppendString( idVarDef *def, const char *from ) {
 	if( def->initialized == idVarDef::stackVariable ) {
 		idStr::Append( ( char * )&localstack[ localstackBase + def->value.stackOffset ], MAX_STRING_LEN, from );
 	} else {
@@ -200,7 +200,7 @@ ID_FORCE_INLINE void idInterpreter::AppendString( idVarDef *def, const char *fro
 idInterpreter::SetString
 ====================
 */
-ID_FORCE_INLINE void idInterpreter::SetString( idVarDef *def, const char *from ) {
+ID_INLINE void idInterpreter::SetString( idVarDef *def, const char *from ) {
 	if( def->initialized == idVarDef::stackVariable ) {
 		idStr::Copynz( ( char * )&localstack[ localstackBase + def->value.stackOffset ], from, MAX_STRING_LEN );
 	} else {
@@ -213,7 +213,7 @@ ID_FORCE_INLINE void idInterpreter::SetString( idVarDef *def, const char *from )
 idInterpreter::GetString
 ====================
 */
-ID_FORCE_INLINE const char *idInterpreter::GetString( idVarDef *def ) {
+ID_INLINE const char *idInterpreter::GetString( idVarDef *def ) {
 	if( def->initialized == idVarDef::stackVariable ) {
 		return ( char * )&localstack[ localstackBase + def->value.stackOffset ];
 	} else {
@@ -226,7 +226,7 @@ ID_FORCE_INLINE const char *idInterpreter::GetString( idVarDef *def ) {
 idInterpreter::GetVariable
 ====================
 */
-ID_FORCE_INLINE varEval_t idInterpreter::GetVariable( idVarDef *def ) {
+ID_INLINE varEval_t idInterpreter::GetVariable( idVarDef *def ) {
 	if( def->initialized == idVarDef::stackVariable ) {
 		varEval_t val;
 		val.intPtr = ( int * )&localstack[ localstackBase + def->value.stackOffset ];
@@ -241,7 +241,7 @@ ID_FORCE_INLINE varEval_t idInterpreter::GetVariable( idVarDef *def ) {
 idInterpreter::GetEntity
 ================
 */
-ID_FORCE_INLINE idEntity *idInterpreter::GetEntity( int entnum ) const {
+ID_INLINE idEntity *idInterpreter::GetEntity( int entnum ) const {
 	assert( entnum <= MAX_GENTITIES );
 	if( ( entnum > 0 ) && ( entnum <= MAX_GENTITIES ) ) {
 		return gameLocal.entities[ entnum - 1 ];
@@ -254,7 +254,7 @@ ID_FORCE_INLINE idEntity *idInterpreter::GetEntity( int entnum ) const {
 idInterpreter::GetScriptObject
 ================
 */
-ID_FORCE_INLINE idScriptObject *idInterpreter::GetScriptObject( int entnum ) const {
+ID_INLINE idScriptObject *idInterpreter::GetScriptObject( int entnum ) const {
 	idEntity *ent;
 	assert( entnum <= MAX_GENTITIES );
 	if( ( entnum > 0 ) && ( entnum <= MAX_GENTITIES ) ) {
@@ -271,7 +271,7 @@ ID_FORCE_INLINE idScriptObject *idInterpreter::GetScriptObject( int entnum ) con
 idInterpreter::NextInstruction
 ====================
 */
-ID_FORCE_INLINE void idInterpreter::NextInstruction( int position ) {
+ID_INLINE void idInterpreter::NextInstruction( int position ) {
 	// Before we execute an instruction, we increment instructionPointer,
 	// therefore we need to compensate for that here.
 	instructionPointer = position - 1;

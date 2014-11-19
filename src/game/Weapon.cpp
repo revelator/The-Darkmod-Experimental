@@ -2508,7 +2508,7 @@ void idWeapon::Event_PlayAnim( int channel, const char *animname ) {
 		}
 	}
 	animBlendFrames = 0;
-	idThread::ReturnInt( 0 );
+	idThread::ReturnInt( false );
 }
 
 /*
@@ -2537,7 +2537,7 @@ void idWeapon::Event_PlayCycle( int channel, const char *animname ) {
 		}
 	}
 	animBlendFrames = 0;
-	idThread::ReturnInt( 0 );
+	idThread::ReturnInt( false );
 }
 
 /*
@@ -2916,7 +2916,7 @@ void idWeapon::Event_Melee( void ) {
 			float push = meleeDef->dict.GetFloat( "push" );
 			idVec3 impulse = -push * owner->PowerUpModifier( SPEED ) * tr.c.normal;
 			if( gameLocal.world->spawnArgs.GetBool( "no_Weapons" ) && ( ent->IsType( idActor::Type ) || ent->IsType( idAFAttachment::Type ) ) ) {
-				idThread::ReturnInt( 0 );
+				idThread::ReturnInt( false );
 				return;
 			}
 			ent->ApplyImpulse( this, tr.c.id, tr.c.point, impulse );
@@ -2991,7 +2991,7 @@ void idWeapon::Event_Melee( void ) {
 		owner->WeaponFireFeedback( &weaponDef->dict );
 		return;
 	}
-	idThread::ReturnInt( 0 );
+	idThread::ReturnInt( false );
 	owner->WeaponFireFeedback( &weaponDef->dict );
 }
 

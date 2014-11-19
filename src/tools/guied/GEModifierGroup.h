@@ -46,7 +46,7 @@ protected:
 	idList<rvGEModifier *>	mModifiers;
 };
 
-ID_FORCE_INLINE int rvGEModifierGroup::GetCount( void ) {
+ID_INLINE int rvGEModifierGroup::GetCount( void ) {
 	return mModifiers.Num( );
 }
 

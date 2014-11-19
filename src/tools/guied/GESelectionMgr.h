@@ -73,30 +73,30 @@ protected:
 	bool				mExpression;
 };
 
-ID_FORCE_INLINE int rvGESelectionMgr::Num( void ) {
+ID_INLINE int rvGESelectionMgr::Num( void ) {
 	return mSelections.Num( );
 }
 
-ID_FORCE_INLINE idWindow *&rvGESelectionMgr::operator[]( int index ) {
+ID_INLINE idWindow *&rvGESelectionMgr::operator[]( int index ) {
 	assert( index >= 0 );
 	assert( index < mSelections.Num() );
 	return mSelections[ index ];
 }
 
-ID_FORCE_INLINE void rvGESelectionMgr::SetWorkspace( rvGEWorkspace *workspace ) {
+ID_INLINE void rvGESelectionMgr::SetWorkspace( rvGEWorkspace *workspace ) {
 	mWorkspace = workspace;
 }
 
-ID_FORCE_INLINE idRectangle &rvGESelectionMgr::GetRect( void ) {
+ID_INLINE idRectangle &rvGESelectionMgr::GetRect( void ) {
 	UpdateRectangle( );
 	return mRect;
 }
 
-ID_FORCE_INLINE bool rvGESelectionMgr::IsSelected( idWindow *window ) {
+ID_INLINE bool rvGESelectionMgr::IsSelected( idWindow *window ) {
 	return mSelections.FindIndex( window ) != -1 ? true : false;
 }
 
-ID_FORCE_INLINE bool rvGESelectionMgr::IsExpression( void ) {
+ID_INLINE bool rvGESelectionMgr::IsExpression( void ) {
 	return mExpression;
 }
 

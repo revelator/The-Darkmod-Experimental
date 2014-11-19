@@ -886,7 +886,7 @@ idExportModel
 idExportModel::idExportModel
 ====================
 */
-ID_FORCE_INLINE idExportModel::idExportModel() {
+ID_INLINE idExportModel::idExportModel() {
 	export_joints		= 0;
 	skipjoints			= 0;
 	frameRate			= 24;
@@ -899,7 +899,7 @@ ID_FORCE_INLINE idExportModel::idExportModel() {
 idExportModel::~idExportModel
 ====================
 */
-ID_FORCE_INLINE idExportModel::~idExportModel() {
+ID_INLINE idExportModel::~idExportModel() {
 	meshes.DeleteContents( true );
 }
 

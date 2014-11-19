@@ -96,51 +96,77 @@ int Sys_GetDriveFreeSpace( const char *path ) {
 ================
 Sys_GetVideoRam
 returns in megabytes
+
+This function works but returned negative sizes.
+Fixed now.
 ================
 */
-int Sys_GetVideoRam( void ) {
+int Sys_GetVideoRam(void) {
 #ifdef	ID_DEDICATED
 	return 0;
 #else
-	unsigned int retSize = 64;
+	int retSize = 64;
 	CComPtr<IWbemLocator> spLoc = NULL;
-	HRESULT hr = CoCreateInstance( CLSID_WbemLocator, 0, CLSCTX_SERVER, IID_IWbemLocator, ( LPVOID * ) &spLoc );
-	if( hr != S_OK || spLoc == NULL ) {
-		return retSize;
+	HRESULT hr = CoCreateInstance(CLSID_WbemLocator, 0, CLSCTX_SERVER, IID_IWbemLocator, (LPVOID *)&spLoc);
+	if (hr != S_OK || spLoc == NULL) {
+		if (retSize < 0)	{
+			return retSize = -retSize;
+		}
+		else {
+			return abs(retSize);
+		}
 	}
-	CComBSTR bstrNamespace( _T( "\\\\.\\root\\CIMV2" ) );
+	CComBSTR bstrNamespace(_T("\\\\.\\root\\CIMV2"));
 	CComPtr<IWbemServices> spServices;
 	// Connect to CIM
-	hr = spLoc->ConnectServer( bstrNamespace, NULL, NULL, 0, NULL, 0, 0, &spServices );
-	if( hr != WBEM_S_NO_ERROR ) {
-		return retSize;
+	hr = spLoc->ConnectServer(bstrNamespace, NULL, NULL, 0, NULL, 0, 0, &spServices);
+	if (hr != WBEM_S_NO_ERROR) {
+		if (retSize < 0)	{
+			return retSize = -retSize;
+		}
+		else {
+			return abs(retSize);
+		}
 	}
 	// Switch the security level to IMPERSONATE so that provider will grant access to system-level objects.
-	hr = CoSetProxyBlanket( spServices, RPC_C_AUTHN_WINNT, RPC_C_AUTHZ_NONE, NULL, RPC_C_AUTHN_LEVEL_CALL, RPC_C_IMP_LEVEL_IMPERSONATE, NULL, EOAC_NONE );
-	if( hr != S_OK ) {
-		return retSize;
+	hr = CoSetProxyBlanket(spServices, RPC_C_AUTHN_WINNT, RPC_C_AUTHZ_NONE, NULL, RPC_C_AUTHN_LEVEL_CALL, RPC_C_IMP_LEVEL_IMPERSONATE, NULL, EOAC_NONE);
+	if (hr != S_OK) {
+		if (retSize < 0)	{
+			return retSize = -retSize;
+		}
+		else {
+			return abs(retSize);
+		}
 	}
 	// Get the vid controller
 	CComPtr<IEnumWbemClassObject> spEnumInst = NULL;
-	hr = spServices->CreateInstanceEnum( CComBSTR( "Win32_VideoController" ), WBEM_FLAG_SHALLOW, NULL, &spEnumInst );
-	if( hr != WBEM_S_NO_ERROR || spEnumInst == NULL ) {
-		return retSize;
+	hr = spServices->CreateInstanceEnum(CComBSTR("Win32_VideoController"), WBEM_FLAG_SHALLOW, NULL, &spEnumInst);
+	if (hr != WBEM_S_NO_ERROR || spEnumInst == NULL) {
+		if (retSize < 0)	{
+			return retSize = -retSize;
+		}
+		else {
+			return abs(retSize);
+		}
 	}
 	ULONG uNumOfInstances = 0;
 	CComPtr<IWbemClassObject> spInstance = NULL;
-	hr = spEnumInst->Next( 10000, 1, &spInstance, &uNumOfInstances );
-	if( hr == S_OK && spInstance ) {
+	hr = spEnumInst->Next(10000, 1, &spInstance, &uNumOfInstances);
+	if (hr == S_OK && spInstance) {
 		// Get properties from the object
 		CComVariant varSize;
-		hr = spInstance->Get( CComBSTR( _T( "AdapterRAM" ) ), 0, &varSize, 0, 0 );
-		if( hr == S_OK ) {
-			retSize = varSize.intVal / ( 1024 * 1024 );
-			if( retSize == 0 ) {
+		hr = spInstance->Get(CComBSTR(_T("AdapterRAM")), 0, &varSize, 0, 0);
+		if (hr == S_OK) {
+			retSize = varSize.intVal / (1024 * 1024);
+			if (retSize == 0) {
 				retSize = 64;
 			}
 		}
 	}
-	return retSize;
+	if (retSize < 0)	{
+		return retSize = -retSize;
+	}
+	return abs(retSize);
 #endif
 }
 

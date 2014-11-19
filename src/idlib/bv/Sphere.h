@@ -89,83 +89,83 @@ private:
 
 extern idSphere	sphere_zero;
 
-ID_FORCE_INLINE idSphere::idSphere( void ) {
+ID_INLINE idSphere::idSphere( void ) {
 }
 
-ID_FORCE_INLINE idSphere::idSphere( const idVec3 &point ) {
+ID_INLINE idSphere::idSphere( const idVec3 &point ) {
 	origin = point;
 	radius = 0.0f;
 }
 
-ID_FORCE_INLINE idSphere::idSphere( const idVec3 &point, const float r ) {
+ID_INLINE idSphere::idSphere( const idVec3 &point, const float r ) {
 	origin = point;
 	radius = r;
 }
 
-ID_FORCE_INLINE float idSphere::operator[]( const int index ) const {
+ID_INLINE float idSphere::operator[]( const int index ) const {
 	return ((float *) &origin)[index];
 }
 
-ID_FORCE_INLINE float &idSphere::operator[]( const int index ) {
+ID_INLINE float &idSphere::operator[]( const int index ) {
 	return ((float *) &origin)[index];
 }
 
-ID_FORCE_INLINE idSphere idSphere::operator+( const idVec3 &t ) const {
+ID_INLINE idSphere idSphere::operator+( const idVec3 &t ) const {
 	return idSphere( origin + t, radius );
 }
 
-ID_FORCE_INLINE idSphere &idSphere::operator+=( const idVec3 &t ) {
+ID_INLINE idSphere &idSphere::operator+=( const idVec3 &t ) {
 	origin += t;
 	return *this;
 }
 
-ID_FORCE_INLINE bool idSphere::Compare( const idSphere &a ) const {
+ID_INLINE bool idSphere::Compare( const idSphere &a ) const {
 	return ( origin.Compare( a.origin ) && radius == a.radius );
 }
 
-ID_FORCE_INLINE bool idSphere::Compare( const idSphere &a, const float epsilon ) const {
+ID_INLINE bool idSphere::Compare( const idSphere &a, const float epsilon ) const {
 	return ( origin.Compare( a.origin, epsilon ) && idMath::Fabs( radius - a.radius ) <= epsilon );
 }
 
-ID_FORCE_INLINE bool idSphere::operator==( const idSphere &a ) const {
+ID_INLINE bool idSphere::operator==( const idSphere &a ) const {
 	return Compare( a );
 }
 
-ID_FORCE_INLINE bool idSphere::operator!=( const idSphere &a ) const {
+ID_INLINE bool idSphere::operator!=( const idSphere &a ) const {
 	return !Compare( a );
 }
 
-ID_FORCE_INLINE void idSphere::Clear( void ) {
+ID_INLINE void idSphere::Clear( void ) {
 	origin.Zero();
 	radius = -1.0f;
 }
 
-ID_FORCE_INLINE void idSphere::Zero( void ) {
+ID_INLINE void idSphere::Zero( void ) {
 	origin.Zero();
 	radius = 0.0f;
 }
 
-ID_FORCE_INLINE void idSphere::SetOrigin( const idVec3 &o ) {
+ID_INLINE void idSphere::SetOrigin( const idVec3 &o ) {
 	origin = o;
 }
 
-ID_FORCE_INLINE void idSphere::SetRadius( const float r ) {
+ID_INLINE void idSphere::SetRadius( const float r ) {
 	radius = r;
 }
 
-ID_FORCE_INLINE const idVec3 &idSphere::GetOrigin( void ) const {
+ID_INLINE const idVec3 &idSphere::GetOrigin( void ) const {
 	return origin;
 }
 
-ID_FORCE_INLINE float idSphere::GetRadius( void ) const {
+ID_INLINE float idSphere::GetRadius( void ) const {
 	return radius;
 }
 
-ID_FORCE_INLINE bool idSphere::IsCleared( void ) const {
+ID_INLINE bool idSphere::IsCleared( void ) const {
 	return ( radius < 0.0f );
 }
 
-ID_FORCE_INLINE bool idSphere::AddPoint( const idVec3 &p ) {
+ID_INLINE bool idSphere::AddPoint( const idVec3 &p ) {
 	if ( radius < 0.0f ) {
 		origin = p;
 		radius = 0.0f;
@@ -183,7 +183,7 @@ ID_FORCE_INLINE bool idSphere::AddPoint( const idVec3 &p ) {
 	}
 }
 
-ID_FORCE_INLINE bool idSphere::AddSphere( const idSphere &s ) {
+ID_INLINE bool idSphere::AddSphere( const idSphere &s ) {
 	if ( radius < 0.0f ) {
 		origin = s.origin;
 		radius = s.radius;
@@ -201,32 +201,32 @@ ID_FORCE_INLINE bool idSphere::AddSphere( const idSphere &s ) {
 	}
 }
 
-ID_FORCE_INLINE idSphere idSphere::Expand( const float d ) const {
+ID_INLINE idSphere idSphere::Expand( const float d ) const {
 	return idSphere( origin, radius + d );
 }
 
-ID_FORCE_INLINE idSphere &idSphere::ExpandSelf( const float d ) {
+ID_INLINE idSphere &idSphere::ExpandSelf( const float d ) {
 	radius += d;
 	return *this;
 }
 
-ID_FORCE_INLINE idSphere idSphere::Translate( const idVec3 &translation ) const {
+ID_INLINE idSphere idSphere::Translate( const idVec3 &translation ) const {
 	return idSphere( origin + translation, radius );
 }
 
-ID_FORCE_INLINE idSphere &idSphere::TranslateSelf( const idVec3 &translation ) {
+ID_INLINE idSphere &idSphere::TranslateSelf( const idVec3 &translation ) {
 	origin += translation;
 	return *this;
 }
 
-ID_FORCE_INLINE bool idSphere::ContainsPoint( const idVec3 &p ) const {
+ID_INLINE bool idSphere::ContainsPoint( const idVec3 &p ) const {
 	if ( ( p - origin ).LengthSqr() > radius * radius ) {
 		return false;
 	}
 	return true;
 }
 
-ID_FORCE_INLINE bool idSphere::IntersectsSphere( const idSphere &s ) const {
+ID_INLINE bool idSphere::IntersectsSphere( const idSphere &s ) const {
 	float r = s.radius + radius;
 	if ( ( s.origin - origin ).LengthSqr() > r * r ) {
 		return false;
@@ -234,29 +234,29 @@ ID_FORCE_INLINE bool idSphere::IntersectsSphere( const idSphere &s ) const {
 	return true;
 }
 
-ID_FORCE_INLINE void idSphere::FromPointTranslation( const idVec3 &point, const idVec3 &translation ) {
+ID_INLINE void idSphere::FromPointTranslation( const idVec3 &point, const idVec3 &translation ) {
 	origin = point + 0.5f * translation;
 	radius = idMath::Sqrt( 0.5f * translation.LengthSqr() );
 }
 
-ID_FORCE_INLINE void idSphere::FromSphereTranslation( const idSphere &sphere, const idVec3 &start, const idVec3 &translation ) {
+ID_INLINE void idSphere::FromSphereTranslation( const idSphere &sphere, const idVec3 &start, const idVec3 &translation ) {
 	origin = start + sphere.origin + 0.5f * translation;
 	radius = idMath::Sqrt( 0.5f * translation.LengthSqr() ) + sphere.radius;
 }
 
-ID_FORCE_INLINE void idSphere::FromPointRotation( const idVec3 &point, const idRotation &rotation ) {
+ID_INLINE void idSphere::FromPointRotation( const idVec3 &point, const idRotation &rotation ) {
 	idVec3 end = rotation * point;
 	origin = ( point + end ) * 0.5f;
 	radius = idMath::Sqrt( 0.5f * ( end - point ).LengthSqr() );
 }
 
-ID_FORCE_INLINE void idSphere::FromSphereRotation( const idSphere &sphere, const idVec3 &start, const idRotation &rotation ) {
+ID_INLINE void idSphere::FromSphereRotation( const idSphere &sphere, const idVec3 &start, const idRotation &rotation ) {
 	idVec3 end = rotation * sphere.origin;
 	origin = start + ( sphere.origin + end ) * 0.5f;
 	radius = idMath::Sqrt( 0.5f * ( end - sphere.origin ).LengthSqr() ) + sphere.radius;
 }
 
-ID_FORCE_INLINE void idSphere::AxisProjection( const idVec3 &dir, float &min, float &max ) const {
+ID_INLINE void idSphere::AxisProjection( const idVec3 &dir, float &min, float &max ) const {
 	float d;
 	d = dir * origin;
 	min = d - radius;

@@ -139,19 +139,19 @@ private:
 	bool			ClipLine( const idVec3 localPoints[8], const idVec3 points[8], int startIndex, int endIndex, idVec3 &start, idVec3 &end, int &startClip, int &endClip ) const;
 };
 
-ID_FORCE_INLINE idFrustum::idFrustum( void ) {
+ID_INLINE idFrustum::idFrustum( void ) {
 	dNear = dFar = 0.0f;
 }
 
-ID_FORCE_INLINE void idFrustum::SetOrigin( const idVec3 &origin ) {
+ID_INLINE void idFrustum::SetOrigin( const idVec3 &origin ) {
 	this->origin = origin;
 }
 
-ID_FORCE_INLINE void idFrustum::SetAxis( const idMat3 &axis ) {
+ID_INLINE void idFrustum::SetAxis( const idMat3 &axis ) {
 	this->axis = axis;
 }
 
-ID_FORCE_INLINE void idFrustum::SetSize( float dNear, float dFar, float dLeft, float dUp ) {
+ID_INLINE void idFrustum::SetSize( float dNear, float dFar, float dLeft, float dUp ) {
 	assert( dNear >= 0.0f && dFar > dNear && dLeft > 0.0f && dUp > 0.0f );
 	this->dNear = dNear;
 	this->dFar = dFar;
@@ -160,7 +160,7 @@ ID_FORCE_INLINE void idFrustum::SetSize( float dNear, float dFar, float dLeft, f
 	this->invFar = 1.0f / dFar;
 }
 
-ID_FORCE_INLINE void idFrustum::SetPyramid( float dNear, float dFar ) {
+ID_INLINE void idFrustum::SetPyramid( float dNear, float dFar ) {
 	assert( dNear >= 0.0f && dFar > dNear );
 	this->dNear = dNear;
 	this->dFar = dFar;
@@ -169,12 +169,12 @@ ID_FORCE_INLINE void idFrustum::SetPyramid( float dNear, float dFar ) {
 	this->invFar = 1.0f / dFar;
 }
 
-ID_FORCE_INLINE void idFrustum::MoveNearDistance( float dNear ) {
+ID_INLINE void idFrustum::MoveNearDistance( float dNear ) {
 	assert( dNear >= 0.0f );
 	this->dNear = dNear;
 }
 
-ID_FORCE_INLINE void idFrustum::MoveFarDistance( float dFar ) {
+ID_INLINE void idFrustum::MoveFarDistance( float dFar ) {
 	assert( dFar > this->dNear );
 	float scale = dFar / this->dFar;
 	this->dFar = dFar;
@@ -183,39 +183,39 @@ ID_FORCE_INLINE void idFrustum::MoveFarDistance( float dFar ) {
 	this->invFar = 1.0f / dFar;
 }
 
-ID_FORCE_INLINE const idVec3 &idFrustum::GetOrigin( void ) const {
+ID_INLINE const idVec3 &idFrustum::GetOrigin( void ) const {
 	return origin;
 }
 
-ID_FORCE_INLINE const idMat3 &idFrustum::GetAxis( void ) const {
+ID_INLINE const idMat3 &idFrustum::GetAxis( void ) const {
 	return axis;
 }
 
-ID_FORCE_INLINE idVec3 idFrustum::GetCenter( void ) const {
+ID_INLINE idVec3 idFrustum::GetCenter( void ) const {
 	return ( origin + axis[0] * ( ( dFar - dNear ) * 0.5f ) );
 }
 
-ID_FORCE_INLINE bool idFrustum::IsValid( void ) const {
+ID_INLINE bool idFrustum::IsValid( void ) const {
 	return ( dFar > dNear );
 }
 
-ID_FORCE_INLINE float idFrustum::GetNearDistance( void ) const {
+ID_INLINE float idFrustum::GetNearDistance( void ) const {
 	return dNear;
 }
 
-ID_FORCE_INLINE float idFrustum::GetFarDistance( void ) const {
+ID_INLINE float idFrustum::GetFarDistance( void ) const {
 	return dFar;
 }
 
-ID_FORCE_INLINE float idFrustum::GetLeft( void ) const {
+ID_INLINE float idFrustum::GetLeft( void ) const {
 	return dLeft;
 }
 
-ID_FORCE_INLINE float idFrustum::GetUp( void ) const {
+ID_INLINE float idFrustum::GetUp( void ) const {
 	return dUp;
 }
 
-ID_FORCE_INLINE idFrustum idFrustum::Expand( const float d ) const {
+ID_INLINE idFrustum idFrustum::Expand( const float d ) const {
 	idFrustum f = *this;
 	f.origin -= d * f.axis[0];
 	f.dFar += 2.0f * d;
@@ -225,7 +225,7 @@ ID_FORCE_INLINE idFrustum idFrustum::Expand( const float d ) const {
 	return f;
 }
 
-ID_FORCE_INLINE idFrustum &idFrustum::ExpandSelf( const float d ) {
+ID_INLINE idFrustum &idFrustum::ExpandSelf( const float d ) {
 	origin -= d * axis[0];
 	dFar += 2.0f * d;
 	dLeft = dFar * dLeft * invFar;
@@ -234,24 +234,24 @@ ID_FORCE_INLINE idFrustum &idFrustum::ExpandSelf( const float d ) {
 	return *this;
 }
 
-ID_FORCE_INLINE idFrustum idFrustum::Translate( const idVec3 &translation ) const {
+ID_INLINE idFrustum idFrustum::Translate( const idVec3 &translation ) const {
 	idFrustum f = *this;
 	f.origin += translation;
 	return f;
 }
 
-ID_FORCE_INLINE idFrustum &idFrustum::TranslateSelf( const idVec3 &translation ) {
+ID_INLINE idFrustum &idFrustum::TranslateSelf( const idVec3 &translation ) {
 	origin += translation;
 	return *this;
 }
 
-ID_FORCE_INLINE idFrustum idFrustum::Rotate( const idMat3 &rotation ) const {
+ID_INLINE idFrustum idFrustum::Rotate( const idMat3 &rotation ) const {
 	idFrustum f = *this;
 	f.axis *= rotation;
 	return f;
 }
 
-ID_FORCE_INLINE idFrustum &idFrustum::RotateSelf( const idMat3 &rotation ) {
+ID_INLINE idFrustum &idFrustum::RotateSelf( const idMat3 &rotation ) {
 	axis *= rotation;
 	return *this;
 }
