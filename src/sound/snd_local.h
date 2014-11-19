@@ -77,13 +77,7 @@ class idSoundWorldLocal;
 ===================================================================================
 */
 
-#ifdef WIN32
-#pragma pack(1)
-#endif
-#ifdef __MWERKS__
-#pragma pack (push, 1)
-#endif
-struct waveformatex_s {
+PACKED(waveformatex_s{
 	word    wFormatTag;        /* format type */
 	word    nChannels;         /* number of channels (i.e. mono, stereo...) */
 	dword   nSamplesPerSec;    /* sample rate */
@@ -91,47 +85,48 @@ struct waveformatex_s {
 	word    nBlockAlign;       /* block size of data */
 	word    wBitsPerSample;    /* Number of bits per sample of mono data */
 	word    cbSize;            /* The count in bytes of the size of
-                                    extra information (after cbSize) */
-} PACKED;
+									extra information (after cbSize) */
+});
 
 typedef waveformatex_s waveformatex_t;
 
 /* OLD general waveform format structure (information common to all formats) */
-struct waveformat_s {
+PACKED(waveformat_s{
 	word    wFormatTag;        /* format type */
 	word    nChannels;         /* number of channels (i.e. mono, stereo, etc.) */
 	dword   nSamplesPerSec;    /* sample rate */
 	dword   nAvgBytesPerSec;   /* for buffer estimation */
 	word    nBlockAlign;       /* block size of data */
-} PACKED;
+});
 
 typedef waveformat_s waveformat_t;
 
 /* flags for wFormatTag field of WAVEFORMAT */
 enum {
-	WAVE_FORMAT_TAG_PCM		= 1,
-	WAVE_FORMAT_TAG_OGG		= 2
+	WAVE_FORMAT_TAG_PCM = 1,
+	WAVE_FORMAT_TAG_OGG = 2
 };
 
 /* specific waveform format structure for PCM data */
-struct pcmwaveformat_s {
+PACKED(pcmwaveformat_s{
 	waveformat_t	wf;
 	word			wBitsPerSample;
-} PACKED;
+});
 
 typedef pcmwaveformat_s pcmwaveformat_t;
 
 #ifndef mmioFOURCC
-#define mmioFOURCC( ch0, ch1, ch2, ch3 )				\
-		( (dword)(byte)(ch0) | ( (dword)(byte)(ch1) << 8 ) |	\
-		( (dword)(byte)(ch2) << 16 ) | ( (dword)(byte)(ch3) << 24 ) )
+#define mmioFOURCC(ch0, ch1, ch2, ch3)				\
+		((dword) (byte) (ch0) | ((dword) (byte) (ch1) << 8) |	\
+		((dword) (byte) (ch2) << 16) | ((dword) (byte) (ch3) << 24))
 #endif
 
 #define fourcc_riff     mmioFOURCC('R', 'I', 'F', 'F')
 
-struct waveformatextensible_s {
+PACKED(waveformatextensible_s{
 	waveformatex_t    Format;
-	union {
+	union
+	{
 		word wValidBitsPerSample;       /* bits of precision  */
 		word wSamplesPerBlock;          /* valid if wBitsPerSample==0*/
 		word wReserved;                 /* If neither applies, set to zero*/
@@ -139,28 +134,21 @@ struct waveformatextensible_s {
 	dword           dwChannelMask;      /* which channels are */
 	/* present in stream  */
 	int            SubFormat;
-} PACKED;
+});
 
 typedef waveformatextensible_s waveformatextensible_t;
 
 typedef dword fourcc;
 
 /* RIFF chunk information data structure */
-struct mminfo_s {
+PACKED(mminfo_s{
 	fourcc			ckid;           /* chunk ID */
 	dword			cksize;         /* chunk size */
 	fourcc			fccType;        /* form type or list type */
 	dword			dwDataOffset;   /* offset of data portion of chunk */
-} PACKED;
+});
 
 typedef mminfo_s mminfo_t;
-
-#ifdef WIN32
-#pragma pack()
-#endif
-#ifdef __MWERKS__
-#pragma pack (pop)
-#endif
 
 /*
 ===================================================================================

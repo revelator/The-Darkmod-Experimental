@@ -84,7 +84,6 @@ ID_INLINE void GC_aligned_free_wrapper(void *p) {
 	}
 }
 
-#define USE_GC_ALLOCATORS
 #ifdef USE_GC_ALLOCATORS
 #define GC_MALLOC_WRAPPER(x) GC_malloc_wrapper(x)
 #define GC_FREE_WRAPPER(x) GC_free_wrapper(x)

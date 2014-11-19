@@ -28,6 +28,31 @@
 ===============================================================================
 */
 
+// Revelator: If we're not using GNU C linux or mac, elide __attribute__
+#if !(defined(__GNUC__) || defined(__linux__) || defined(MACOS_X) || defined(__APPLE__))
+#define __attribute__( x )				/* NOTHING */
+#endif
+#define id_attribute( x )				__attribute__( x )
+
+// Revelator: workaround for msvc's missing __attribute__( ( packed ) )
+// only used in snd_local.h which will need some rewriting.
+#ifdef _MSC_VER
+#  define PACKED( __type__ ) \
+	__pragma( pack( push, 1 ) ) struct __type__ __pragma( pack( pop ) )
+#elif defined(__GNUC__) || defined(__linux__) || defined(MACOS_X) || defined(__APPLE__)
+#  define PACKED( __type__ ) \
+	id_attribute( ( packed ) ) struct __type__
+#endif
+
+// DG: _CRT_ALIGN seems to be MSVC specific, so provide implementation..
+#ifndef _CRT_ALIGN
+#if defined(__GNUC__) || defined(__linux__) || defined(MACOS_X) || defined(__APPLE__)	// also applies for clang
+#define _CRT_ALIGN( x )					id_attribute ( ( __aligned__ ( x ) ) )
+#elif defined(_MSC_VER)																	// also for MSVC, just to be sure
+#define _CRT_ALIGN( x )					__declspec( align( x ) )
+#endif
+#endif
+
 // Win32
 #if defined(WIN32) || defined(_WIN32)
 
@@ -36,10 +61,18 @@
 #define	CPUSTRING						"x86"
 #define CPU_EASYARGS					1
 
-#define ALIGN16( x )					__declspec(align(16)) x
-#define PACKED
+#define ALIGN16( x )					_CRT_ALIGN(16) x
+#define ALIGN32( x )					_CRT_ALIGN(32) x
+#define ALIGN64( x )					_CRT_ALIGN(64) x
+#define ALIGN128( x )					_CRT_ALIGN(128) x
+#define ALIGNPTR( x, a )				( ( ( x ) + ((a)-1) ) & ~((a)-1) )
 
-#define _alloca16( x )					((void *)((((int)_alloca( (x)+15 )) + 15) & ~15))
+// can use _alloca8 instead of plain _alloca with guaranteed 8 bit alignment
+#define _alloca8( x )					((void *)ALIGNPTR( (int)_alloca( ALIGNPTR( x, 8 ) + 8 ), 8 ) )			// default alignment
+#define _alloca16( x )					((void *)ALIGNPTR( (int)_alloca( ALIGNPTR( x, 16 ) + 16 ), 16 ) )		// 64 bit alignment
+#define _alloca32( x )					((void *)ALIGNPTR( (int)_alloca( ALIGNPTR( x, 32 ) + 32 ), 32 ) )		// SSE types mostly
+#define _alloca64( x )					((void *)ALIGNPTR( (int)_alloca( ALIGNPTR( x, 64 ) + 64 ), 64 ) )		// SSE types mostly
+#define _alloca128( x )					((void *)ALIGNPTR( (int)_alloca( ALIGNPTR( x, 128 ) + 128 ), 128 ) )	// SSE types mostly
 
 #define PATHSEPERATOR_STR				"\\"
 #define PATHSEPERATOR_CHAR				'\\'
@@ -58,27 +91,32 @@
 // Mac OSX
 #if defined(MACOS_X) || defined(__APPLE__)
 
-#define BUILD_STRING				"MacOSX-universal"
-#define BUILD_OS_ID					1
+#define BUILD_STRING					"MacOSX-universal"
+#define BUILD_OS_ID						1
 #ifdef __ppc__
-#define	CPUSTRING					"ppc"
-#define CPU_EASYARGS				0
+#define	CPUSTRING						"ppc"
+#define CPU_EASYARGS					0
 #elif defined(__i386__)
-#define	CPUSTRING					"x86"
-#define CPU_EASYARGS				1
+#define	CPUSTRING						"x86"
+#define CPU_EASYARGS					1
 #endif
 
-#define ALIGN16( x )					x __attribute__ ((aligned (16)))
+#define ALIGN16( x )					_CRT_ALIGN(16) x
+#define ALIGN32( x )					_CRT_ALIGN(32) x
+#define ALIGN64( x )					_CRT_ALIGN(64) x
+#define ALIGN128( x )					_CRT_ALIGN(128) x
 
 #ifdef __MWERKS__
-#define PACKED
 #include <alloca.h>
-#else
-#define PACKED							__attribute__((packed))
 #endif
 
 #define _alloca							alloca
-#define _alloca16( x )					((void *)((((int)alloca( (x)+15 )) + 15) & ~15))
+// can use _alloca8 instead of plain _alloca with guaranteed 8 bit alignment
+#define _alloca8( x )					((void *)ALIGNPTR( (int)_alloca( ALIGNPTR( x, 8 ) + 8 ), 8 ) )			// default alignment
+#define _alloca16( x )					((void *)ALIGNPTR( (int)_alloca( ALIGNPTR( x, 16 ) + 16 ), 16 ) )		// 64 bit alignment
+#define _alloca32( x )					((void *)ALIGNPTR( (int)_alloca( ALIGNPTR( x, 32 ) + 32 ), 32 ) )		// SSE types mostly
+#define _alloca64( x )					((void *)ALIGNPTR( (int)_alloca( ALIGNPTR( x, 64 ) + 64 ), 64 ) )		// SSE types mostly
+#define _alloca128( x )					((void *)ALIGNPTR( (int)_alloca( ALIGNPTR( x, 128 ) + 128 ), 128 ) )	// SSE types mostly
 
 #define PATHSEPERATOR_STR				"/"
 #define PATHSEPERATOR_CHAR				'/'
@@ -87,8 +125,8 @@
 #define ASSERT							assert
 
 #define ID_INLINE						inline
-#define ID_FORCE_INLINE					__attribute__((always_inline))
-#define ID_STATIC_TEMPLATE
+#define ID_FORCE_INLINE					id_attribute((always_inline))
+#define ID_STATIC_TEMPLATE				/* does static not apply on mac ? */
 
 #define assertmem( x, y )
 
@@ -98,21 +136,28 @@
 #ifdef __linux__
 
 #ifdef __i386__
-#define	BUILD_STRING				"linux-x86"
-#define BUILD_OS_ID					2
-#define CPUSTRING					"x86"
-#define CPU_EASYARGS				1
+#define	BUILD_STRING					"linux-x86"
+#define BUILD_OS_ID						2
+#define CPUSTRING						"x86"
+#define CPU_EASYARGS					1
 #elif defined(__ppc__)
-#define	BUILD_STRING				"linux-ppc"
-#define CPUSTRING					"ppc"
-#define CPU_EASYARGS				0
+#define	BUILD_STRING					"linux-ppc"
+#define CPUSTRING						"ppc"
+#define CPU_EASYARGS					0
 #endif
 
-#define _alloca							alloca
-#define _alloca16( x )					((void *)((((int)alloca( (x)+15 )) + 15) & ~15))
+#define ALIGN16( x )					_CRT_ALIGN(16) x
+#define ALIGN32( x )					_CRT_ALIGN(32) x
+#define ALIGN64( x )					_CRT_ALIGN(64) x
+#define ALIGN128( x )					_CRT_ALIGN(128) x
 
-#define ALIGN16( x )					x
-#define PACKED							__attribute__((packed))
+#define _alloca							alloca
+// can use _alloca8 instead of plain _alloca with guaranteed 8 bit alignment
+#define _alloca8( x )					((void *)ALIGNPTR( (int)_alloca( ALIGNPTR( x, 8 ) + 8 ), 8 ) )			// default alignment
+#define _alloca16( x )					((void *)ALIGNPTR( (int)_alloca( ALIGNPTR( x, 16 ) + 16 ), 16 ) )		// 64 bit alignment
+#define _alloca32( x )					((void *)ALIGNPTR( (int)_alloca( ALIGNPTR( x, 32 ) + 32 ), 32 ) )		// SSE types mostly
+#define _alloca64( x )					((void *)ALIGNPTR( (int)_alloca( ALIGNPTR( x, 64 ) + 64 ), 64 ) )		// SSE types mostly
+#define _alloca128( x )					((void *)ALIGNPTR( (int)_alloca( ALIGNPTR( x, 128 ) + 128 ), 128 ) )	// SSE types mostly
 
 #define PATHSEPERATOR_STR				"/"
 #define PATHSEPERATOR_CHAR				'/'
@@ -121,17 +166,11 @@
 #define ASSERT							assert
 
 #define ID_INLINE						inline
-#define ID_FORCE_INLINE					__attribute__((always_inline))
-#define ID_STATIC_TEMPLATE
+#define ID_FORCE_INLINE					id_attribute((always_inline))
+#define ID_STATIC_TEMPLATE				/* does static not apply on linux ? */
 
 #define assertmem( x, y )
 
-#endif
-
-#ifdef __GNUC__
-#define id_attribute(x) __attribute__(x)
-#else
-#define id_attribute(x)
 #endif
 
 typedef enum {
