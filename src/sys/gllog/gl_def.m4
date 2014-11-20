@@ -1093,7 +1093,6 @@ define(`f361_params', ``Display *dpy, GLXDrawable drawable, GLXContext ctx'')
 define(`f362_ret', `void')
 define(`f362_name', `SwapBuffers')
 define(`f362_params', ``Display *dpy, GLXDrawable drawable'')
-define(`f363_ret', `GLExtension_t')
 define(`f363_name', `GetProcAddressARB')
 define(`f363_params', ``const GLubyte *procname'')
 

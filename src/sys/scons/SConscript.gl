@@ -75,7 +75,6 @@ for i_m4 in m4_list:
 #gl_env.Depends( enforce, '../gllog/gl_def.m4' )
 
 # logging functions, python generated ( that's beyond my m4-fu )
-
 gl_env.Depends( '../linux/glimp_logging.cpp', '../linux/glimp_logfuncs.cpp' )
 
 logfuncs = gl_env.Command( '../linux/glimp_logfuncs.cpp', '../gllog/logfunc.py', build_logfuncs )

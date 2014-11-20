@@ -3,4 +3,4 @@ GLXContext;qglX;CreateContext;Display *dpy, XVisualInfo *vis, GLXContext shareLi
 void;qglX;DestroyContext;Display *dpy, GLXContext ctx
 Bool;qglX;MakeCurrent;Display *dpy, GLXDrawable drawable, GLXContext ctx
 void;qglX;SwapBuffers;Display *dpy, GLXDrawable drawable
-GLExtension_t;qglX;GetProcAddressARB;const GLubyte *procName
+
