@@ -230,6 +230,11 @@ int idXErrorHandler( Display *l_dpy, XErrorEvent *ev ) {
 	return 0;
 }
 
+/*
+===============
+GLimp_OpenDisplay
+===============
+*/
 bool GLimp_OpenDisplay( void ) {
 	if( dpy ) {
 		return true;
@@ -251,6 +256,23 @@ bool GLimp_OpenDisplay( void ) {
 		return false;
 	}
 	scrnum = DefaultScreen( dpy );
+	return true;
+}
+
+/*
+===============
+Glimp_GLEW_Init
+
+Initialize GLEW
+===============
+*/
+bool Glimp_GLEW_Init( void ) {
+	GLenum GlewInitResult = glewInit();
+	if ( GLEW_OK != GlewInitResult ) {
+		common->Printf( "ERROR: %s\n", glewGetErrorString(GlewInitResult) );
+		return false;
+	}
+	common->Printf( "INFO: OpenGL Version: %s\n", glGetString(GL_VERSION) );
 	return true;
 }
 
@@ -493,6 +515,9 @@ parameters and try again.
 */
 bool GLimp_Init( glimpParms_t a ) {
 	if( !GLimp_OpenDisplay() ) {
+		return false;
+	}
+	if( !Glimp_GLEW_Init() ) {
 		return false;
 	}
 #ifndef ID_GL_HARDLINK

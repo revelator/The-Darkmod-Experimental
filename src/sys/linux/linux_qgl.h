@@ -26,23 +26,21 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 /*
-** WIN_QGL.H
+** LINUX_QGL.H
 */
 
-#ifndef __WIN_QGL_H__
-#define __WIN_QGL_H__
+#ifndef __LINUX_QGL_H__
+#define __LINUX_QGL_H__
 
 // the idlib parser gets really pissy if there are the slightest mistake in defines.
-// unless we define _WIN32 here typeinfo will throw an error about _MSC_VER not being defined.
-#if defined(_WIN32)
+#if defined( __linux__ )
 #include "../../include/glew/glew.h"
-#include "../../include/glew/wglew.h"		// windows OpenGL extensions
+#include "../../include/glew/glxew.h"		// linux OpenGL extensions
 #endif
 
-//
-// function declarations
-//
-bool QGL_Init(const char *dllname);
-void QGL_Shutdown(void);
+#ifndef ID_GL_HARDLINK
+bool GLimp_dlopen();
+void GLimp_dlclose();
+#endif
 
 #endif

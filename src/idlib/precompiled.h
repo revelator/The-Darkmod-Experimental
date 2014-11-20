@@ -105,8 +105,12 @@
 // non-portable system services
 #include "../sys/sys_public.h"
 
-// OpenGL pointers
+// OpenGL function pointers
+#if defined(__GNUC__) || defined(__linux__) || defined(MACOS_X) || defined(__APPLE__)
+#include "../sys/linux/linux_qgl.h"
+#else
 #include "../sys/win32/win_qgl.h"
+#endif
 
 // id lib
 #include "../idlib/Lib.h"

@@ -44,9 +44,6 @@ void Sys_XUninstallGrabs();
 #define X_MASK (KEY_MASK | MOUSE_MASK | VisibilityChangeMask | StructureNotifyMask )
 
 #ifndef ID_GL_HARDLINK
-bool GLimp_dlopen();
-void GLimp_dlclose();
-
 void GLimp_BindLogging();
 void GLimp_BindNative();
 #endif
