@@ -2415,8 +2415,7 @@ void idCommonLocal::SetMachineSpec( void ) {
 	int vidRam = Sys_GetVideoRam();
 	int sysRam = Sys_GetSystemRam();
 	bool oldCard = false;
-	bool nv10or20 = false;
-	renderSystem->GetCardCaps( oldCard, nv10or20 );
+	renderSystem->GetCardCaps( oldCard );
 	Printf( "Detected\n \t%.2f GHz CPU\n\t%i MB of System memory\n\t%i MB of Video memory on %s\n\n", ghz, sysRam, vidRam, ( oldCard ) ? "a less than optimal video architecture" : "an optimal video architecture" );
 	if( ghz >= 2.75f && vidRam >= 512 && sysRam >= 1024 && !oldCard ) {
 		Printf( "This system qualifies for Ultra quality!\n" );

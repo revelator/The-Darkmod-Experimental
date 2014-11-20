@@ -426,50 +426,41 @@ we should also look at surface evaluations, which would let surfaces
 overbright past 1.0
 =================
 */
-void RB_DetermineLightScale( void ) {
+void RB_DetermineLightScale(void) {
 	viewLight_t			*vLight;
 	const idMaterial	*shader;
-	float				max, v;
-	int					numStages;
+	float				max;
+	int					i, j, numStages;
 	const shaderStage_t	*stage;
 	// the light scale will be based on the largest color component of any surface
 	// that will be drawn.
 	// should we consider separating rgb scales?
 	// if there are no lights, this will remain at 1.0, so GUI-only
 	// rendering will not lose any bits of precision
-	max = v = 0.0f;
-	for( vLight = backEnd.viewDef->viewLights ; vLight ; vLight = vLight->next ) {
+	max = 1.0f;
+	for (vLight = backEnd.viewDef->viewLights; vLight; vLight = vLight->next) {
 		// lights with no surfaces or shaderparms may still be present
 		// for debug display
-		if( !vLight->localInteractions && !vLight->globalInteractions && !vLight->translucentInteractions ) {
+		if (!vLight->localInteractions && !vLight->globalInteractions && !vLight->translucentInteractions) {
 			continue;
 		}
 		shader = vLight->lightShader;
 		numStages = shader->GetNumStages();
-		for( int i = 0 ; i < numStages ; i++ ) {
-			stage = shader->GetStage( i );
-			for( int j = 0 ; j < 3 ; j++ ) {
-				v = r_lightScale.GetFloat() * vLight->shaderRegisters[ stage->color.registers[j] ];
-				if( v > max ) {
+		for (i = 0; i < numStages; i++) {
+			stage = shader->GetStage(i);
+			for (j = 0; j < 3; j++) {
+				float	v = r_lightScale.GetFloat() * vLight->shaderRegisters[stage->color.registers[j]];
+				if (v > max) {
 					max = v;
 				}
 			}
 		}
 	}
-#if 1
+	// this is just for printing the max light value.
 	backEnd.pc.maxLightValue = max;
-	backEnd.lightScale = r_lightScale.GetFloat();
-	backEnd.overBright = 1.0f;
-#else
-	backEnd.pc.maxLightValue = max;
-	if( max <= tr.backEndRendererMaxLight ) {
-		backEnd.lightScale = r_lightScale.GetFloat();
-		backEnd.overBright = 1.0f;
-	} else {
-		backEnd.lightScale = r_lightScale.GetFloat() * tr.backEndRendererMaxLight / max;
-		backEnd.overBright = max / tr.backEndRendererMaxLight;
-	}
-#endif
+	// killed of the backend light scale function and just made it infinite revelator.
+	backEnd.lightScale = r_lightScale.GetFloat() / max;
+	backEnd.overBright = max;
 }
 
 /*
@@ -554,20 +545,6 @@ void R_SetDrawInteraction( const shaderStage_t *surfaceStage, const float *surfa
 		color[1] = surfaceRegs[surfaceStage->color.registers[1]];
 		color[2] = surfaceRegs[surfaceStage->color.registers[2]];
 		color[3] = surfaceRegs[surfaceStage->color.registers[3]];
-		// Serp - I dont think this is very useful with current cards
-#if 0
-		for( int i = 0 ; i < 4 ; i++ ) {
-			color[i] = surfaceRegs[surfaceStage->color.registers[i]];
-			// clamp here, so card with greater range don't look different.
-			// we could perform overbrighting like we do for lights, but
-			// it doesn't currently look worth it.
-			if( color[i] < 0 ) {
-				color[i] = 0.0f;
-			} else if( color[i] > 1.0f ) {
-				color[i] = 1.0f;
-			}
-		}
-#endif
 	}
 }
 
@@ -587,28 +564,10 @@ static void RB_SubmittInteraction( drawInteraction_t *din, void ( *DrawInteracti
 		din->diffuseImage = globalImages->blackImage;
 	}
 	// rebb: even ambient light has some specularity
-	if( !din->specularImage || r_skipSpecular.GetBool() /* || din->ambientLight */ ) {
+	if( !din->specularImage || r_skipSpecular.GetBool() ) {
 		din->specularImage = globalImages->blackImage;
 	}
 	DrawInteraction( din );
-	// Serp - This check is more expensive than just making extra calls, I am not sure if the calls might result in
-	// things which should not be lit, being lit. Welp, we'll see.
-#if 0
-	// if we wouldn't draw anything, don't call the Draw function
-	if( (
-				din->diffuseImage != globalImages->blackImage && (
-					din->diffuseColor[0] > 0.0f ||
-					din->diffuseColor[1] > 0.0f ||
-					din->diffuseColor[2] > 0.0f ) )
-			|| (
-				din->specularImage != globalImages->blackImage && (
-					din->specularColor[0] > 0.0f ||
-					din->specularColor[1] > 0.0f ||
-					din->specularColor[2] > 0.0f ) )
-	  ) {
-		DrawInteraction( din );
-	}
-#endif
 }
 
 /*
@@ -695,54 +654,54 @@ void RB_CreateSingleDrawInteractions( const drawSurf_t *surf, void ( *DrawIntera
 		for( int surfaceStageNum = 0 ; surfaceStageNum < surfaceShader->GetNumStages() ; surfaceStageNum++ ) {
 			const shaderStage_t	*surfaceStage = surfaceShader->GetStage( surfaceStageNum );
 			switch( surfaceStage->lighting ) {
-			case SL_AMBIENT: {
-				// ignore ambient stages while drawing interactions
-				break;
-			}
-			case SL_BUMP: {
-				// ignore stage that fails the condition
-				if( !surfaceRegs[ surfaceStage->conditionRegister ] ) {
+				case SL_AMBIENT: {
+					// ignore ambient stages while drawing interactions
 					break;
 				}
-				// draw any previous interaction
-				RB_SubmittInteraction( &inter, DrawInteraction );
-				inter.diffuseImage = NULL;
-				inter.specularImage = NULL;
-				R_SetDrawInteraction( surfaceStage, surfaceRegs, &inter.bumpImage, inter.bumpMatrix, NULL );
-				break;
-			}
-			case SL_DIFFUSE: {
-				// ignore stage that fails the condition
-				if( !surfaceRegs[ surfaceStage->conditionRegister ] ) {
-					break;
-				} else if( inter.diffuseImage ) {
+				case SL_BUMP: {
+					// ignore stage that fails the condition
+					if( !surfaceRegs[ surfaceStage->conditionRegister ] ) {
+						break;
+					}
+					// draw any previous interaction
 					RB_SubmittInteraction( &inter, DrawInteraction );
-				}
-				R_SetDrawInteraction( surfaceStage, surfaceRegs, &inter.diffuseImage,
-									  inter.diffuseMatrix, inter.diffuseColor.ToFloatPtr() );
-				inter.diffuseColor[0] *= lightColor[0];
-				inter.diffuseColor[1] *= lightColor[1];
-				inter.diffuseColor[2] *= lightColor[2];
-				inter.diffuseColor[3] *= lightColor[3];
-				inter.vertexColor = surfaceStage->vertexColor;
-				break;
-			}
-			case SL_SPECULAR: {
-				// ignore stage that fails the condition
-				if( !surfaceRegs[ surfaceStage->conditionRegister ] ) {
+					inter.diffuseImage = NULL;
+					inter.specularImage = NULL;
+					R_SetDrawInteraction( surfaceStage, surfaceRegs, &inter.bumpImage, inter.bumpMatrix, NULL );
 					break;
-				} else if( inter.specularImage ) {
-					RB_SubmittInteraction( &inter, DrawInteraction );
 				}
-				R_SetDrawInteraction( surfaceStage, surfaceRegs, &inter.specularImage,
-									  inter.specularMatrix, inter.specularColor.ToFloatPtr() );
-				inter.specularColor[0] *= lightColor[0];
-				inter.specularColor[1] *= lightColor[1];
-				inter.specularColor[2] *= lightColor[2];
-				inter.specularColor[3] *= lightColor[3];
-				inter.vertexColor = surfaceStage->vertexColor;
-				break;
-			}
+				case SL_DIFFUSE: {
+					// ignore stage that fails the condition
+					if( !surfaceRegs[ surfaceStage->conditionRegister ] ) {
+						break;
+					} else if( inter.diffuseImage ) {
+						RB_SubmittInteraction( &inter, DrawInteraction );
+					}
+					R_SetDrawInteraction( surfaceStage, surfaceRegs, &inter.diffuseImage,
+										  inter.diffuseMatrix, inter.diffuseColor.ToFloatPtr() );
+					inter.diffuseColor[0] *= lightColor[0];
+					inter.diffuseColor[1] *= lightColor[1];
+					inter.diffuseColor[2] *= lightColor[2];
+					inter.diffuseColor[3] *= lightColor[3];
+					inter.vertexColor = surfaceStage->vertexColor;
+					break;
+				}
+				case SL_SPECULAR: {
+					// ignore stage that fails the condition
+					if( !surfaceRegs[ surfaceStage->conditionRegister ] ) {
+						break;
+					} else if( inter.specularImage ) {
+						RB_SubmittInteraction( &inter, DrawInteraction );
+					}
+					R_SetDrawInteraction( surfaceStage, surfaceRegs, &inter.specularImage,
+										  inter.specularMatrix, inter.specularColor.ToFloatPtr() );
+					inter.specularColor[0] *= lightColor[0];
+					inter.specularColor[1] *= lightColor[1];
+					inter.specularColor[2] *= lightColor[2];
+					inter.specularColor[3] *= lightColor[3];
+					inter.vertexColor = surfaceStage->vertexColor;
+					break;
+				}
 			}
 		}
 		// draw the final interaction

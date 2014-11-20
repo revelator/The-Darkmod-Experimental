@@ -30,10 +30,9 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #endif
 
 // functions that are not called every frame
-
 glconfig_t	glConfig;
 
-const char *r_rendererArgs[] = { "best", "arb", "arb2", "Cg", "exp", "nv10", "nv20", "r200", NULL };
+const char *r_rendererArgs[] = { "best", "arb", "arb2", "nv10", "nv20", "r200", NULL };
 
 idCVar r_inhibitFragmentProgram( "r_inhibitFragmentProgram", "0", CVAR_RENDERER | CVAR_BOOL, "ignore the fragment program extension" );
 idCVar r_glDriver( "r_glDriver", "", CVAR_RENDERER, "\"opengl32\", etc." );
@@ -450,15 +449,42 @@ typedef struct vidmode_s {
 } vidmode_t;
 
 vidmode_t r_vidModes[] = {
-	{ "Mode  0: 320x240",		320,	240 },
-	{ "Mode  1: 400x300",		400,	300 },
-	{ "Mode  2: 512x384",		512,	384 },
-	{ "Mode  3: 640x480",		640,	480 },
-	{ "Mode  4: 800x600",		800,	600 },
-	{ "Mode  5: 1024x768",		1024,	768 },
-	{ "Mode  6: 1152x864",		1152,	864 },
-	{ "Mode  7: 1280x1024",		1280,	1024 },
-	{ "Mode  8: 1600x1200",		1600,	1200 },
+	{ "Mode  0: 320x240", 320, 240 },
+	{ "Mode  1: 400x300", 400, 300 },
+	{ "Mode  2: 512x384", 512, 384 },
+	{ "Mode  3: 640x480", 640, 480 },
+
+	{ "Mode  4: 720x405", 720, 405 },
+	{ "Mode  5: 720x480", 720, 480 },
+	{ "Mode  6: 720x576", 720, 576 },
+	{ "Mode  7: 800x600", 800, 600 },
+
+	{ "Mode  8: 960x540", 960, 540 },
+	{ "Mode  9: 960x600", 960, 600 },
+	{ "Mode  10: 960x720", 960, 720 },
+
+	{ "Mode  11: 1024x576", 1024, 576 },
+	{ "Mode  12: 1024x640", 1024, 640 },
+	{ "Mode  13: 1024x768", 1024, 768 },
+	{ "Mode  14: 1152x864", 1152, 864 },
+
+	{ "Mode  15: 1280x720", 1280, 720 },
+	{ "Mode  16: 1280x768", 1280, 768 },
+	{ "Mode  17: 1280x960", 1280, 960 },
+	{ "Mode  18: 1280x1024", 1280, 1024 },
+
+	{ "Mode  19: 1440x810", 1440, 810 },
+	{ "Mode  20: 1440x900", 1440, 900 },
+	{ "Mode  21: 1440x1080", 1440, 1080 },
+
+	{ "Mode  22: 1600x900", 1600, 900 },
+	{ "Mode  23: 1600x1000", 1600, 1000 },
+	{ "Mode  24: 1600x1200", 1600, 1200 },
+	{ "Mode  25: 1680x1050", 1680, 1050 },
+
+	{ "Mode  26: 1920x1080", 1920, 1080 },
+	{ "Mode  27: 1920x1200", 1920, 1200 },
+	{ "Mode  28: 1920x1440", 1920, 1440 },
 };
 static int	s_numVidModes = ( sizeof( r_vidModes ) / sizeof( r_vidModes[0] ) );
 
@@ -562,7 +588,6 @@ void R_InitOpenGL( void ) {
 	R_CheckPortableExtensions();
 	// parse our vertex and fragment programs, possibly disably support for
 	// one of the paths if there was an error
-	R_NV10_Init();
 	R_NV20_Init();
 	R_R200_Init();
 	R_ARB2_Init();
@@ -833,12 +858,12 @@ void R_ReportImageDuplication_f( const idCmdArgs &args ) {
 		R_LoadImageProgram( image1->imgName, &data1, &w1, &h1, NULL );
 		for( int j = 0 ; j < i ; j++ ) {
 			idImage	*image2 = globalImages->images[j];
-			if( image2->isPartialImage     ||  // ignore background loading stubs
-					image2->generatorFunction  || // ignore procedural images
-					image2->type != TT_2D		|| // ignore cube maps
-					image2->imageHash == 0		|| // FIXME: This is a hack - Some images are not being hashed - Fonts/gui mainly
-					image2->imageHash == -1	|| // FIXME: This is a hack - Some images are not being hashed - Fonts/gui mainly
-					image2->defaulted ) {
+			if( image2->isPartialImage		||  // ignore background loading stubs
+				image2->generatorFunction	|| // ignore procedural images
+				image2->type != TT_2D		|| // ignore cube maps
+				image2->imageHash == 0		|| // FIXME: This is a hack - Some images are not being hashed - Fonts/gui mainly
+				image2->imageHash == -1		|| // FIXME: This is a hack - Some images are not being hashed - Fonts/gui mainly
+				image2->defaulted ) {
 				continue;
 			} else if( image1->imageHash    != image2->imageHash    ||
 					   image1->uploadWidth  != image2->uploadWidth  ||
@@ -1319,15 +1344,13 @@ Saves out env/<basename>_amb_ft.tga, etc
 ==================
 */
 void R_MakeAmbientMap_f( const idCmdArgs &args ) {
-	//const static char *cubeExtensions[6] = { "_px.tga", "_nx.tga", "_py.tga", "_ny.tga", "_pz.tga", "_nz.tga" };
-	idStr		fullname;
-	const char	*baseName;
+	idStr			fullname;
+	const char		*baseName;
 	renderView_t	ref;
-	viewDef_t	primary;
-	//int		downSample;
-	int			outSize;
-	byte		*buffers[6];
-	int			width, height;
+	viewDef_t		primary;
+	int				outSize;
+	byte			*buffers[6];
+	int				width, height;
 	if( args.Argc() != 2 && args.Argc() != 3 ) {
 		common->Printf( "USAGE: ambientshot <basename> [size]\n" );
 		return;
@@ -1496,12 +1519,6 @@ void GfxInfo_f( const idCmdArgs &args ) {
 	}
 	common->Printf( "CPU: %s\n", Sys_GetProcessorString() );
 	const char *active[2] = { "", " (ACTIVE)" };
-	common->Printf( "ARB path ENABLED%s\n", active[tr.backEndRenderer == BE_ARB] );
-	if( glConfig.allowNV10Path ) {
-		common->Printf( "NV10 path ENABLED%s\n", active[tr.backEndRenderer == BE_NV10] );
-	} else {
-		common->Printf( "NV10 path disabled\n" );
-	}
 	if( glConfig.allowNV20Path ) {
 		common->Printf( "NV20 path ENABLED%s\n", active[tr.backEndRenderer == BE_NV20] );
 	} else {
@@ -1528,7 +1545,7 @@ void GfxInfo_f( const idCmdArgs &args ) {
 	// WGL_EXT_swap_interval
 	typedef BOOL ( WINAPI * PFNWGLSWAPINTERVALEXTPROC )( int interval );
 	extern	PFNWGLSWAPINTERVALEXTPROC wglSwapIntervalEXT;
-	if( r_swapInterval.GetInteger() && wglSwapIntervalEXT ) {
+	if( r_swapInterval.GetInteger() && glewIsSupported("WGL_EXT_swap_control") ) {
 		common->Printf( "swapInterval forced (%i)\n", r_swapInterval.GetInteger() );
 	} else {
 		common->Printf( "swapInterval not forced\n" );
@@ -1741,8 +1758,6 @@ void idRenderSystemLocal::Clear( void ) {
 	tiledViewport[0] = 0;
 	tiledViewport[1] = 0;
 	backEndRenderer = BE_BAD;
-	backEndRendererHasVertexPrograms = false;
-	backEndRendererMaxLight = 1.0f;
 	ambientLightVector.Zero();
 	sortOffset = 0;
 	worlds.Clear();
@@ -1935,7 +1950,6 @@ int idRenderSystemLocal::GetScreenHeight( void ) const {
 idRenderSystemLocal::GetCardCaps
 ========================
 */
-void idRenderSystemLocal::GetCardCaps( bool &oldCard, bool &nv10or20 ) {
-	nv10or20 = ( tr.backEndRenderer == BE_NV10 || tr.backEndRenderer == BE_NV20 );
-	oldCard = ( tr.backEndRenderer == BE_ARB || tr.backEndRenderer == BE_R200 || tr.backEndRenderer == BE_NV10 || tr.backEndRenderer == BE_NV20 );
+void idRenderSystemLocal::GetCardCaps( bool &oldCard ) {
+	oldCard = ( tr.backEndRenderer == BE_R200 || tr.backEndRenderer == BE_NV20 );
 }

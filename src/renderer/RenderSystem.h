@@ -247,7 +247,7 @@ public:
 	virtual void			CaptureRenderToBuffer( unsigned char *buffer ) = 0;
 
 	virtual void			UnCrop() = 0;
-	virtual void			GetCardCaps( bool &oldCard, bool &nv10or20 ) = 0;
+	virtual void			GetCardCaps( bool &oldCard ) = 0;
 
 	// the image has to be already loaded ( most straightforward way would be through a FindMaterial )
 	// texture filter / mipmapping / repeat won't be modified by the upload

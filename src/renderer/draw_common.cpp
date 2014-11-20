@@ -125,7 +125,7 @@ void RB_PrepareStageTexturing( const shaderStage_t *pStage,  const drawSurf_t *s
 		glTexGenfv( GL_Q, GL_OBJECT_PLANE, plane );
 	}
 	if( pStage->texture.texgen == TG_GLASSWARP ) {
-		if( tr.backEndRenderer == BE_ARB2 /*|| tr.backEndRenderer == BE_NV30*/ ) {
+		if( tr.backEndRenderer == BE_ARB2 ) {
 			glBindProgramARB( GL_FRAGMENT_PROGRAM_ARB, FPROG_GLASSWARP );
 			glEnable( GL_FRAGMENT_PROGRAM_ARB );
 			GL_SelectTexture( 2 );
@@ -916,7 +916,7 @@ the shadow volumes face INSIDE
 static void RB_T_Shadow( const drawSurf_t *surf ) {
 	const srfTriangles_t	*tri;
 	// set the light position if we are using a vertex program to project the rear surfaces
-	if( tr.backEndRendererHasVertexPrograms && r_useShadowVertexProgram.GetBool() && surf->space != backEnd.currentSpace ) {
+	if( r_useShadowVertexProgram.GetBool() && surf->space != backEnd.currentSpace ) {
 		idVec4 localLight;
 		R_GlobalPointToLocal( surf->space->modelMatrix, backEnd.vLight->globalLightOrigin, localLight.ToVec3() );
 		localLight.w = 0.0f;
@@ -1337,7 +1337,7 @@ static void RB_FogPass( const drawSurf_t *drawSurfs,  const drawSurf_t *drawSurf
 	// calculate the falloff planes
 	float	a;
 	// if they left the default value on, set a fog distance of 500
-	if( backEnd.lightColor[3] <= 1.0 ) {
+	if( backEnd.lightColor[3] <= 1.0f ) {
 		a = -0.5f / DEFAULT_FOG_DISTANCE;
 	} else {
 		// otherwise, distance = alpha color
@@ -1347,7 +1347,6 @@ static void RB_FogPass( const drawSurf_t *drawSurfs,  const drawSurf_t *drawSurf
 	// texture 0 is the falloff image
 	GL_SelectTexture( 0 );
 	globalImages->fogImage->Bind();
-	//GL_Bind( tr.whiteImage );
 	glDisableClientState( GL_TEXTURE_COORD_ARRAY );
 	glEnable( GL_TEXTURE_GEN_S );
 	glEnable( GL_TEXTURE_GEN_T );
@@ -1461,11 +1460,11 @@ void RB_STD_LightScale( void ) {
 	glDisable( GL_DEPTH_TEST );
 	glDisable( GL_STENCIL_TEST );
 	v = 1;
-	while( idMath::Fabs( v - backEnd.overBright ) > 0.01 ) {	// a little extra slop
+	while( idMath::Fabs( v - backEnd.overBright ) > 0.01f ) {	// a little extra slop
 		f = backEnd.overBright / v;
-		f /= 2;
-		if( f > 1 ) {
-			f = 1;
+		f /= 2.0f;
+		if( f > 1.0f ) {
+			f = 1.0f;
 		}
 		GL_Color( f, f, f );
 		v = v * f * 2;
@@ -1500,35 +1499,18 @@ void	RB_STD_DrawView( void ) {
 	// clear the z buffer, set the projection matrix, etc
 	RB_BeginDrawingView();
 	// decide how much overbrighting we are going to do
-	//RB_DetermineLightScale();
-	backEnd.lightScale = r_lightScale.GetFloat();
-	backEnd.overBright = 1.0f;
+	RB_DetermineLightScale();
 	// fill the depth buffer and clear color buffer to black except on
 	// subviews
 	RB_STD_FillDepthBuffer( drawSurfs, numDrawSurfs );
 	globalImages->BindNull();
 	// main light renderer
 	switch( tr.backEndRenderer ) {
-	case BE_ARB:
-		RB_ARB_DrawInteractions();
-		break;
 	case BE_ARB2:
-		/*
-		RB_ARB2_DrawInteractions(false);
-
-		globalImages->currentNoShadowImage->CopyFramebuffer( backEnd.viewDef->viewport.x1,
-				backEnd.viewDef->viewport.y1,  backEnd.viewDef->viewport.x2 -  backEnd.viewDef->viewport.x1 + 1,
-				backEnd.viewDef->viewport.y2 -  backEnd.viewDef->viewport.y1 + 1, true );
-
-		RB_STD_FillDepthBuffer( drawSurfs, numDrawSurfs );
-		*/
 		RB_ARB2_DrawInteractions( backEnd.viewDef->renderView.noshadows );
 		break;
 	case BE_NV20:
 		RB_NV20_DrawInteractions();
-		break;
-	case BE_NV10:
-		RB_NV10_DrawInteractions();
 		break;
 	case BE_R200:
 		RB_R200_DrawInteractions();

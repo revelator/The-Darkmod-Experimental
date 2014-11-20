@@ -484,17 +484,10 @@ void idRenderSystemLocal::SetBackEndRenderer() {
 	if( !r_renderer.IsModified() ) {
 		return;
 	}
-	bool oldVPstate = backEndRendererHasVertexPrograms;
 	backEndRenderer = BE_BAD;
-	if( idStr::Icmp( r_renderer.GetString(), "arb" ) == 0 ) {
-		backEndRenderer = BE_ARB;
-	} else if( idStr::Icmp( r_renderer.GetString(), "arb2" ) == 0 ) {
+	if( idStr::Icmp( r_renderer.GetString(), "arb2" ) == 0 ) {
 		if( glConfig.allowARB2Path ) {
 			backEndRenderer = BE_ARB2;
-		}
-	} else if( idStr::Icmp( r_renderer.GetString(), "nv10" ) == 0 ) {
-		if( glConfig.allowNV10Path ) {
-			backEndRenderer = BE_NV10;
 		}
 	} else if( idStr::Icmp( r_renderer.GetString(), "nv20" ) == 0 ) {
 		if( glConfig.allowNV20Path ) {
@@ -514,46 +507,22 @@ void idRenderSystemLocal::SetBackEndRenderer() {
 			backEndRenderer = BE_R200;
 		} else if( glConfig.allowNV20Path ) {
 			backEndRenderer = BE_NV20;
-		} else if( glConfig.allowNV10Path ) {
-			backEndRenderer = BE_NV10;
 		} else {
-			// the others are considered experimental
-			backEndRenderer = BE_ARB;
+			common->FatalError( "SetbackEndRenderer: no suitable back end" );
 		}
 	}
-	backEndRendererHasVertexPrograms = false;
-	backEndRendererMaxLight = 1.0;
 	switch( backEndRenderer ) {
-	case BE_ARB:
-		common->Printf( "using ARB renderSystem\n" );
-		break;
-	case BE_NV10:
-		common->Printf( "using NV10 renderSystem\n" );
-		break;
 	case BE_NV20:
 		common->Printf( "using NV20 renderSystem\n" );
-		backEndRendererHasVertexPrograms = true;
 		break;
 	case BE_R200:
 		common->Printf( "using R200 renderSystem\n" );
-		backEndRendererHasVertexPrograms = true;
 		break;
 	case BE_ARB2:
 		common->Printf( "using ARB2 renderSystem\n" );
-		backEndRendererHasVertexPrograms = true;
-		backEndRendererMaxLight = 999;
 		break;
 	default:
 		common->FatalError( "SetbackEndRenderer: bad back end" );
-	}
-	// clear the vertex cache if we are changing between
-	// using vertex programs and not, because specular and
-	// shadows will be different data
-	if( oldVPstate != backEndRendererHasVertexPrograms ) {
-		vertexCache.PurgeAll();
-		if( primaryWorld ) {
-			primaryWorld->FreeInteractions();
-		}
 	}
 	r_renderer.ClearModified();
 }

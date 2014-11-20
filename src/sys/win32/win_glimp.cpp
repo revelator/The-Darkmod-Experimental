@@ -796,7 +796,7 @@ void GLimp_SwapBuffers( void ) {
 	// so we must check for it here instead of portably
 	if( r_swapInterval.IsModified() ) {
 		r_swapInterval.ClearModified();
-		if( wglSwapIntervalEXT ) {
+		if( glewIsSupported("WGL_EXT_swap_control") ) {
 			wglSwapIntervalEXT( r_swapInterval.GetInteger() );
 		}
 	}

@@ -2526,6 +2526,7 @@ void idWeapon::Event_PlayCycle( int channel, const char *animname ) {
 		animator.Clear( channel, gameLocal.time, FRAME2MS( animBlendFrames ) );
 		animDoneTime = 0;
 	} else {
+		// removed empty else clause here revelator
 		if( !( owner && owner->GetInfluenceLevel() ) ) {
 			Show();
 		}

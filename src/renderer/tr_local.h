@@ -644,8 +644,6 @@ const int MAX_GUI_SURFACES	= 1024;		// default size of the drawSurfs list for gu
 // be automatically expanded as needed
 
 typedef enum {
-	BE_ARB,
-	BE_NV10,
 	BE_NV20,
 	BE_R200,
 	BE_ARB2,
@@ -705,7 +703,7 @@ public:
 	virtual void			CaptureRenderToFile( const char *fileName, bool fixAlpha );
 	virtual void			CaptureRenderToBuffer( unsigned char *buffer );
 	virtual void			UnCrop();
-	virtual void			GetCardCaps( bool &oldCard, bool &nv10or20 );
+	virtual void			GetCardCaps( bool &oldCard );
 	virtual bool			UploadImage( const char *imageName, const byte *data, int width, int height );
 
 	virtual void			setDrawShadows( bool ds );
@@ -739,8 +737,6 @@ public:
 
 	// determines which back end to use, and if vertex programs are in use
 	backEndName_t			backEndRenderer;
-	bool					backEndRendererHasVertexPrograms;
-	float					backEndRendererMaxLight;	// 1.0 for standard, unlimited for floats
 	// determines how much overbrighting needs
 	// to be done post-process
 
@@ -1175,7 +1171,6 @@ void R_LinkLightSurf( const drawSurf_t **link, const srfTriangles_t *tri, const 
 					  const idRenderLightLocal *light, const idMaterial *shader, const idScreenRect &scissor, bool viewInsideShadow );
 
 bool R_CreateAmbientCache( srfTriangles_t *tri, bool needsLighting );
-bool R_CreateLightingCache( const idRenderEntityLocal *ent, const idRenderLightLocal *light, srfTriangles_t *tri );
 void R_CreatePrivateShadowCache( srfTriangles_t *tri );
 void R_CreateVertexProgramShadowCache( srfTriangles_t *tri );
 
@@ -1286,13 +1281,8 @@ DRAW_*
 ============================================================
 */
 
-void	RB_ARB_DrawInteractions( void );
-
 void	R_R200_Init( void );
 void	RB_R200_DrawInteractions( void );
-
-void	R_NV10_Init( void );
-void	RB_NV10_DrawInteractions( void );
 
 void	R_NV20_Init( void );
 void	RB_NV20_DrawInteractions( void );
