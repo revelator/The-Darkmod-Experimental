@@ -38,8 +38,8 @@ If you have questions concerning this license or the applicable additional terms
 #include "glew.h"
 #include "wglew.h"		// windows OpenGL extensions
 #elif defined( __linux__ )
-#include "glew.h"
-#include "glxew.h"		// linux OpenGL extensions
+#include "glew/glew.h"
+#include "glew/glxew.h"		// linux OpenGL extensions
 #endif
 
 //

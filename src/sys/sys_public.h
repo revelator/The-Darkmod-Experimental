@@ -105,6 +105,7 @@
 #define ALIGN32( x )					_CRT_ALIGN(32) x
 #define ALIGN64( x )					_CRT_ALIGN(64) x
 #define ALIGN128( x )					_CRT_ALIGN(128) x
+#define ALIGNPTR( x, a )				( ( ( x ) + ((a)-1) ) & ~((a)-1) )
 
 #ifdef __MWERKS__
 #include <alloca.h>
@@ -150,6 +151,7 @@
 #define ALIGN32( x )					_CRT_ALIGN(32) x
 #define ALIGN64( x )					_CRT_ALIGN(64) x
 #define ALIGN128( x )					_CRT_ALIGN(128) x
+#define ALIGNPTR( x, a )				( ( ( x ) + ((a)-1) ) & ~((a)-1) )
 
 #define _alloca							alloca
 // can use _alloca8 instead of plain _alloca with guaranteed 8 bit alignment
