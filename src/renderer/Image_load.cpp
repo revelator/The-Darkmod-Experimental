@@ -553,25 +553,7 @@ void idImage::GenerateImage( const byte *pic, int width, int height,
 		char *ext = strrchr( filename, '.' );
 		if( ext ) {
 			strcpy( ext, ".tga" );
-			// swap the red/alpha for the write
-			/*
-			if ( depth == TD_BUMP ) {
-				for ( int i = 0; i < scaled_width * scaled_height * 4; i += 4 ) {
-					scaledBuffer[ i ] = scaledBuffer[ i + 3 ];
-					scaledBuffer[ i + 3 ] = 0;
-				}
-			}
-			*/
 			R_WriteTGA( filename, scaledBuffer, scaled_width, scaled_height, false );
-			// put it back
-			/*
-			if ( depth == TD_BUMP ) {
-				for ( int i = 0; i < scaled_width * scaled_height * 4; i += 4 ) {
-					scaledBuffer[ i + 3 ] = scaledBuffer[ i ];
-					scaledBuffer[ i ] = 0;
-				}
-			}
-			*/
 		}
 	}
 	// swap the red and alpha for rxgb support
@@ -588,14 +570,6 @@ void idImage::GenerateImage( const byte *pic, int width, int height,
 	// upload the main image level
 	Bind();
 	if( internalFormat == GL_COLOR_INDEX8_EXT ) {
-		/*
-		if ( depth == TD_BUMP ) {
-			for ( int i = 0; i < scaled_width * scaled_height * 4; i += 4 ) {
-				scaledBuffer[ i ] = scaledBuffer[ i + 3 ];
-				scaledBuffer[ i + 3 ] = 0;
-			}
-		}
-		*/
 		UploadCompressedNormalMap( scaled_width, scaled_height, scaledBuffer, 0 );
 	} else {
 		glTexImage2D( GL_TEXTURE_2D, 0, internalFormat, scaled_width, scaled_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, scaledBuffer );
@@ -1166,10 +1140,6 @@ bool idImage::CheckPrecompressedImage( bool fullLoad ) {
 	if( !glConfig.isInitialized || !glConfig.textureCompressionAvailable ) {
 		return false;
 	}
-	// Allow grabbing of DDS's from original Doom pak files
-	//if ( depth == TD_BUMP && globalImages->image_useNormalCompression.GetInteger() >= 2 ) {
-	//	return false;
-	//}
 	// god i love last minute hacks :-)
 	if( com_machineSpec.GetInteger() >= 1 && com_videoRam.GetInteger() >= 128 && imgName.Icmpn( "lights/", 7 ) == 0 ) {
 		return false;
@@ -1747,14 +1717,14 @@ void idImage::UploadScratch( const byte *data, int cols, int rows ) {
 		glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
 		// these probably should be clamp, but we have a lot of issues with editor
 		// geometry coming out with texcoords slightly off one side, resulting in
-		// a smear across the entire polygon
-#if 1
-		glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
-		glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
-#else
-		glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
-		glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE );
-#endif
+		// a smear across the entire polygon (fixored revelator)
+		if (com_editorActive) {
+			glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
+			glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
+		} else {
+			glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
+			glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE );
+		}
 	}
 }
 

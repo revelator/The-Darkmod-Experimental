@@ -962,26 +962,26 @@ static void RB_T_Shadow( const drawSurf_t *surf ) {
 	if( r_showShadows.GetInteger() ) {
 		if( r_showShadows.GetInteger() == 3 ) {
 			if( external ) {
-				GL_Color( 0.1 / backEnd.overBright, 1 / backEnd.overBright, 0.1 / backEnd.overBright );
+				GL_Color( 0.1f / backEnd.overBright, 1 / backEnd.overBright, 0.1f / backEnd.overBright );
 			} else {
 				// these are the surfaces that require the reverse
-				GL_Color( 1 / backEnd.overBright, 0.1 / backEnd.overBright, 0.1 / backEnd.overBright );
+				GL_Color( 1.0f / backEnd.overBright, 0.1f / backEnd.overBright, 0.1f / backEnd.overBright );
 			}
 		} else {
 			// draw different color for turboshadows
 			if( surf->geo->shadowCapPlaneBits & SHADOW_CAP_INFINITE ) {
 				if( numIndexes == tri->numIndexes ) {
-					GL_Color( 1 / backEnd.overBright, 0.1 / backEnd.overBright, 0.1 / backEnd.overBright );
+					GL_Color( 1.0f / backEnd.overBright, 0.1f / backEnd.overBright, 0.1f / backEnd.overBright );
 				} else {
-					GL_Color( 1 / backEnd.overBright, 0.4 / backEnd.overBright, 0.1 / backEnd.overBright );
+					GL_Color( 1.0f / backEnd.overBright, 0.4f / backEnd.overBright, 0.1f / backEnd.overBright );
 				}
 			} else {
 				if( numIndexes == tri->numIndexes ) {
-					GL_Color( 0.1 / backEnd.overBright, 1 / backEnd.overBright, 0.1 / backEnd.overBright );
+					GL_Color( 0.1f / backEnd.overBright, 1 / backEnd.overBright, 0.1f / backEnd.overBright );
 				} else if( numIndexes == tri->numShadowIndexesNoFrontCaps ) {
-					GL_Color( 0.1 / backEnd.overBright, 1 / backEnd.overBright, 0.6 / backEnd.overBright );
+					GL_Color( 0.1f / backEnd.overBright, 1 / backEnd.overBright, 0.6f / backEnd.overBright );
 				} else {
-					GL_Color( 0.6 / backEnd.overBright, 1 / backEnd.overBright, 0.1 / backEnd.overBright );
+					GL_Color( 0.6f / backEnd.overBright, 1 / backEnd.overBright, 0.1f / backEnd.overBright );
 				}
 			}
 		}

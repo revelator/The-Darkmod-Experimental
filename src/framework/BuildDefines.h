@@ -73,6 +73,11 @@
 #define	ID_ALLOW_TOOLS
 #endif
 
+// suppress console debug spam
+#ifndef SUPPRESS_CONSOLE_WARNINGS
+#define SUPPRESS_CONSOLE_WARNINGS 1
+#endif
+
 // don't do backtraces in release builds.
 // atm, we have no useful way to reconstruct the trace, so let's leave it off
 #define ID_BT_STUB

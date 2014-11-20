@@ -74,7 +74,6 @@ at the border we throw things out on the border, because if any one
 vertex is clearly inside, the entire triangle will be accepted.
 =====================
 */
-static const double	LIGHT_CLIP_EPSILON = 0.00001f; // double precision
 void R_CalcInteractionCullBits( const idRenderEntityLocal *ent, const srfTriangles_t *tri, const idRenderLightLocal *light, srfCullInfo_t &cullInfo ) {
 	int i, frontBits;
 	if( cullInfo.cullBits != NULL ) {
@@ -257,9 +256,11 @@ static srfTriangles_t *R_CreateLightTris( const idRenderEntityLocal *ent,
 	numIndexes = 0;
 	indexes = NULL;
 	// it is debatable if non-shadowing lights should light back faces. we aren't at the moment
-	if( r_lightAllBackFaces.GetBool() || light->lightShader->LightEffectsBackSides()
-			|| shader->ReceivesLightingOnBackSides()
-			|| ent->parms.noSelfShadow || ent->parms.noShadow ) {
+	if( r_lightAllBackFaces.GetBool() ||
+		light->lightShader->LightEffectsBackSides() ||
+		shader->ReceivesLightingOnBackSides() ||
+		ent->parms.noSelfShadow ||
+		ent->parms.noShadow ) {
 		includeBackFaces = true;
 	} else {
 		includeBackFaces = false;
@@ -988,11 +989,11 @@ void idInteraction::AddActiveInteraction( void ) {
 			// check for view specific shadow suppression (player shadows, etc)
 			if( !r_skipSuppress.GetBool() ) {
 				if( entityDef->parms.suppressShadowInViewID &&
-						entityDef->parms.suppressShadowInViewID == tr.viewDef->renderView.viewID ) {
+					entityDef->parms.suppressShadowInViewID == tr.viewDef->renderView.viewID ) {
 					continue;
 				}
 				if( entityDef->parms.suppressShadowInLightID &&
-						entityDef->parms.suppressShadowInLightID == lightDef->parms.lightId ) {
+					entityDef->parms.suppressShadowInLightID == lightDef->parms.lightId ) {
 					continue;
 				}
 			}

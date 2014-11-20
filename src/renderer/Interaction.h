@@ -35,6 +35,8 @@
 #define LIGHT_TRIS_DEFERRED			((srfTriangles_t *)-1)
 #define LIGHT_CULL_ALL_FRONT		((byte *)-1)
 
+static const double	LIGHT_CLIP_EPSILON = 0.1f; // double precision
+
 typedef struct {
 	// For each triangle a byte set to 1 if facing the light origin.
 	byte 					*facing;

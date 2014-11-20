@@ -312,7 +312,6 @@ I have some worries about edge flag cases when polygons are clipped
 multiple times near the epsilon.
 =============
 */
-static const double	LIGHT_CLIP_EPSILON = 0.00001f; // double precision
 static int R_ChopWinding(clipTri_t clipTris[2], int inNum, const idPlane &plane) {
 	clipTri_t	*in, *out;
 	float		dists[MAX_CLIPPED_POINTS];
