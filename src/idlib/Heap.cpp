@@ -73,7 +73,7 @@ ID_INLINE void *GC_aligned_malloc_wrapper(size_t required_bytes, size_t alignmen
 
 /*
 ==================
-GC_aligned_malloc_wrapper
+GC_aligned_free_wrapper
 
 Missing from Boehm GC
 ==================
@@ -84,16 +84,53 @@ ID_INLINE void GC_aligned_free_wrapper(void *p) {
 	}
 }
 
+// aligned versions of malloc and free do not exist on linux and other unix based os sigh.
+#if defined(__GNUC__) || defined(__linux__) || defined(MACOS_X) || defined(__APPLE__)
+/*
+==================
+linux_aligned_malloc
+==================
+*/
+ID_INLINE void *linux_aligned_malloc(size_t required_bytes, size_t alignment) {
+	void *p1;	// original block
+	void **p2;	// aligned block
+	int offset = alignment - 1 + sizeof(void *);
+	GC_init();
+	if ((p1 = (void *)malloc(required_bytes + offset)) == NULL) {
+		return NULL;
+	}
+	p2 = (void**)(((size_t)(p1) + offset) & ~(alignment - 1));
+	p2[-1] = p1;
+	return p2;
+}
+
+/*
+==================
+linux_aligned_free
+==================
+*/
+ID_INLINE void linux_aligned_free(void *p) {
+	if (p != NULL) {
+		free(((void**)p)[-1]);
+	}
+}
+#endif
+
 #ifdef USE_GC_ALLOCATORS
-#define GC_MALLOC_WRAPPER(x) GC_malloc_wrapper(x)
-#define GC_FREE_WRAPPER(x) GC_free_wrapper(x)
-#define GC_ALIGNED_MALLOC_WRAPPER(x, y) GC_aligned_malloc_wrapper(x, y)
-#define GC_ALIGNED_FREE_WRAPPER(x) GC_aligned_free_wrapper(x)
+  #define GC_MALLOC_WRAPPER(x) GC_malloc_wrapper(x)
+  #define GC_FREE_WRAPPER(x) GC_free_wrapper(x)
+  #define GC_ALIGNED_MALLOC_WRAPPER(x, y) GC_aligned_malloc_wrapper(x, y)
+  #define GC_ALIGNED_FREE_WRAPPER(x) GC_aligned_free_wrapper(x)
 #else
 #define GC_MALLOC_WRAPPER(x) malloc(x)
 #define GC_FREE_WRAPPER(x) free(x)
-#define GC_ALIGNED_MALLOC_WRAPPER(x, y) _aligned_malloc(x, y)
-#define GC_ALIGNED_FREE_WRAPPER(x) _aligned_free(x)
+  #if defined(__GNUC__) || defined(__linux__) || defined(MACOS_X) || defined(__APPLE__)
+	#define GC_ALIGNED_MALLOC_WRAPPER(x, y) linux_aligned_malloc(x, y)
+	#define GC_ALIGNED_FREE_WRAPPER(x) linux_aligned_free(x)
+  #else
+	#define GC_ALIGNED_MALLOC_WRAPPER(x, y) _aligned_malloc(x, y)
+	#define GC_ALIGNED_FREE_WRAPPER(x) _aligned_free(x)
+  #endif
 #endif
 
 //===============================================================
