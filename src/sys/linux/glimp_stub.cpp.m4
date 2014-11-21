@@ -39,13 +39,6 @@ dnl =====================================================
 dnl glX stubs
 dnl =====================================================
 
-define(`override_GetProcAddressARB', `')
-
-define(`instance_funcptr', ``$1' glX`$2'(`$3'){}')
-define(`try_instance_funcptr', `ifdef(`override_'$2, ,`instance_funcptr(`$1', `$2', `$3')')')
-forloop(`i', glX_start, glX_end, `try_instance_funcptr(indir(`f'i`_ret'), indir(`f'i`_name'), indir(`f'i`_params'))
-')
-
 GLenum glGetError(void){return 0;}
 
 GLuint glGenLists(GLsizei range){return 0;}

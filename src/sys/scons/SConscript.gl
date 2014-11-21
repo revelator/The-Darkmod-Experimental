@@ -59,7 +59,6 @@ if ( local_dedicated == 1 ):
 # files we are going to generate from their M4 counterparts
 
 m4_list = (
-	'../gllog/gl_extensions.cpp',
 	'../linux/glimp_dlopen.cpp',
 	'../linux/glimp_logging.cpp',
 	'../linux/glimp_stub.cpp',
@@ -81,7 +80,6 @@ logfuncs = gl_env.Command( '../linux/glimp_logfuncs.cpp', '../gllog/logfunc.py',
 gl_env.Depends( logfuncs, '../gllog/gl_def.m4' )
 
 sources = []
-sources.append( '../gllog/gl_extensions.cpp' )
 
 if ( local_dedicated == 1 ):
 	sources.append( '../linux/glimp_stub.cpp' )
