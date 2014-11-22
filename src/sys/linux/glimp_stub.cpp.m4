@@ -6,36 +6,6 @@
 #pragma hdrstop
 
 dnl =====================================================
-dnl utils
-dnl =====================================================
-
-define(`forloop', 
-	`pushdef(`$1', `$2')_forloop(`$1', `$2', `$3', `$4')popdef(`$1')')
-define(`_forloop',
-	`$4`'ifelse($1, `$3', ,
-	`define(`$1', incr($1))_forloop(`$1', `$2', `$3', `$4')')')
-	
-dnl =====================================================
-dnl the gl wgl glX definitions
-dnl =====================================================
-include(../gllog/gl_def.m4)
-
-dnl =====================================================
-dnl gl stubs
-dnl there is a number of functions for which we have special case code
-dnl =====================================================
-
-define(`override_GetError', `')
-define(`override_GenLists', `')
-define(`override_GetIntegerv', `')
-define(`override_GetString', `')
-
-define(`instance_funcptr', ``$1' gl`$2'(`$3'){}')
-define(`try_instance_funcptr', `ifdef(`override_'$2, ,`instance_funcptr(`$1', `$2', `$3')')')
-forloop(`i', gl_start, gl_end, `try_instance_funcptr(indir(`f'i`_ret'), indir(`f'i`_name'), indir(`f'i`_params'))
-')
-
-dnl =====================================================
 dnl glX stubs
 dnl =====================================================
 

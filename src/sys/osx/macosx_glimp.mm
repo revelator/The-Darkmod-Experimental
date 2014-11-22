@@ -1395,8 +1395,6 @@ void GLimp_ActivateContext( void ) {
 	[OSX_GetNSGLContext() makeCurrentContext];
 }
 
-void GLimp_EnableLogging(bool stat) { }
-
 NSDictionary *Sys_GetMatchingDisplayMode( glimpParms_t parms ) {
 	NSArray *displayModes;
 	NSDictionary *mode;

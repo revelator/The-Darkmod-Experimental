@@ -43,9 +43,4 @@ void Sys_XUninstallGrabs();
 #define MOUSE_MASK (ButtonPressMask | ButtonReleaseMask | PointerMotionMask | ButtonMotionMask )
 #define X_MASK (KEY_MASK | MOUSE_MASK | VisibilityChangeMask | StructureNotifyMask )
 
-#ifndef ID_GL_HARDLINK
-void GLimp_BindLogging();
-void GLimp_BindNative();
-#endif
-
 #endif

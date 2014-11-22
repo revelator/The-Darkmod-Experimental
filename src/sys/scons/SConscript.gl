@@ -60,24 +60,11 @@ if ( local_dedicated == 1 ):
 
 m4_list = (
 	'../linux/glimp_dlopen.cpp',
-	'../linux/glimp_logging.cpp',
-	'../linux/glimp_stub.cpp',
-	'../linux/glimp_local.h' )
+	'../linux/glimp_stub.cpp' )
 
 for i_m4 in m4_list:
 	gl_env.M4( i_m4, i_m4 + '.m4' )
 	gl_env.Depends( i_m4, '../gllog/gl_def.m4' )
-
-# enable if you need to generate again
-# FIXME: conflicts when several environements are used. move that to seperate script
-#enforce = gl_env.M4( '#sys/linux/qgl_enforce.h', '../linux/qgl_enforce.h.m4' )
-#gl_env.Depends( enforce, '../gllog/gl_def.m4' )
-
-# logging functions, python generated ( that's beyond my m4-fu )
-gl_env.Depends( '../linux/glimp_logging.cpp', '../linux/glimp_logfuncs.cpp' )
-
-logfuncs = gl_env.Command( '../linux/glimp_logfuncs.cpp', '../gllog/logfunc.py', build_logfuncs )
-gl_env.Depends( logfuncs, '../gllog/gl_def.m4' )
 
 sources = []
 
@@ -85,14 +72,12 @@ if ( local_dedicated == 1 ):
 	sources.append( '../linux/glimp_stub.cpp' )
 else:
 	sources.append( '../linux/glimp_dlopen.cpp' )
-	sources.append( '../linux/glimp_logging.cpp' )
 
 #if ( DEDICATED != '0' ):
 #	sources.append( '../linux/glimp_stub.cpp' )
 #
 #if ( GL_HARDLINK == '0' ):
 #	sources.append( '../linux/glimp_dlopen.cpp' )
-#	sources.append( '../linux/glimp_logging.cpp' )
 
 lib = gl_env.StaticLibrary( 'glimp', sources )
 #gl_env.Install( '../..', lib )
