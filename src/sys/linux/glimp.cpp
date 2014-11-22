@@ -336,7 +336,7 @@ int GLX_Init( glimpParms_t a ) {
 			best_fit = -1;
 			for( i = 0; i < num_vidmodes; i++ ) {
 				if( a.width > vidmodes[i]->hdisplay ||
-						a.height > vidmodes[i]->vdisplay ) {
+					a.height > vidmodes[i]->vdisplay ) {
 					continue;
 				}
 				x = a.width - vidmodes[i]->hdisplay;
