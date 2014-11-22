@@ -1,8 +1,5 @@
 #!/bin/bash
 
 # get build depends
-sudo apt-get install g++ scons libglew1.5-dev libpng12-dev libjpeg62-dev
-#sudo apt-get install m4 libxxf86vm-dev libopenal-dev libasound2-dev g++-multilib gcc-multilib zlib1g-dev libxext-dev
-
-# make sure we have a libpng to link to
-sudo ln -s /lib32/libpng12.so.0 /lib32/libpng.so
+sudo apt-get install g++ scons libglew1.10-dev libglew1.10-dev:i386 libpng12-dev libpng12-dev:i386 libjpeg62-dev libjpeg62-dev:i386
+sudo apt-get install m4 libxxf86vm-dev libxxf86vm-dev:i386 libopenal-dev libopenal-dev:i386 libasound2-dev libasound2-dev:i386 g++-multilib gcc-multilib zlib1g-dev zlib1g-dev:i386 libxext-dev libxext-dev:i386
