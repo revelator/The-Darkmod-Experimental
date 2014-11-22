@@ -20,8 +20,6 @@
 #include "../idlib/precompiled.h"
 #pragma hdrstop
 
-//#include <windows.h>
-//#include <GL/gl.h>
 #include "cg_explicit.h"
 
 PFNCGCREATECONTEXTPROC cgCreateContext;
@@ -479,22 +477,6 @@ bool init_explicit_Cg() {
 	if( 0 == ( cgGLSetStateMatrixParameter = ( PFNCGGLSETSTATEMATRIXPARAMETERPROC )GetProcAddress( hmod, "cgGLSetStateMatrixParameter" ) ) ) {
 		failed++;
 	}
-	//if(0 == (cgGLSetMatrixParameterArrayfc = (PFNCGGLSETMATRIXPARAMETERARRAYFCPROC)GetProcAddress( hmod, "cgGLSetMatrixParameterArrayfc" )))
-	//   failed++;
-	//if(0 == (cgGLSetMatrixParameterArrayfr = (PFNCGGLSETMATRIXPARAMETERARRAYFRPROC)GetProcAddress( hmod, "cgGLSetMatrixParameterArrayfr" )))
-	//   failed++;
-	//if(0 == (cgGLSetMatrixParameterArraydc = (PFNCGGLSETMATRIXPARAMETERARRAYDCPROC)GetProcAddress( hmod, "cgGLSetMatrixParameterArraydc" )))
-	//   failed++;
-	//if(0 == (cgGLSetMatrixParameterArraydr = (PFNCGGLSETMATRIXPARAMETERARRAYDRPROC)GetProcAddress( hmod, "cgGLSetMatrixParameterArraydr" )))
-	//   failed++;
-	//if(0 == (cgGLGetMatrixParameterArrayfc = (PFNCGGLGETMATRIXPARAMETERARRAYFCPROC)GetProcAddress( hmod, "cgGLGetMatrixParameterArrayfc" )))
-	//   failed++;
-	//if(0 == (cgGLGetMatrixParameterArrayfr = (PFNCGGLGETMATRIXPARAMETERARRAYFRPROC)GetProcAddress( hmod, "cgGLGetMatrixParameterArrayfr" )))
-	//   failed++;
-	//if(0 == (cgGLGetMatrixParameterArraydc = (PFNCGGLGETMATRIXPARAMETERARRAYDCPROC)GetProcAddress( hmod, "cgGLGetMatrixParameterArraydc" )))
-	//   failed++;
-	//if(0 == (cgGLGetMatrixParameterArraydr = (PFNCGGLGETMATRIXPARAMETERARRAYDRPROC)GetProcAddress( hmod, "cgGLGetMatrixParameterArraydr" )))
-	//   failed++;
 	if( 0 == ( cgGLSetTextureParameter = ( PFNCGGLSETTEXTUREPARAMETERPROC )GetProcAddress( hmod, "cgGLSetTextureParameter" ) ) ) {
 		failed++;
 	}

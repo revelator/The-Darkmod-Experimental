@@ -74,11 +74,9 @@
 		8122586A0912BC79005D34B9 /* Model_sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812257080912BC79005D34B9 /* Model_sprite.cpp */; };
 		8122586B0912BC79005D34B9 /* cg_explicit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812257090912BC79005D34B9 /* cg_explicit.cpp */; };
 		8122586C0912BC79005D34B9 /* Cinematic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8122570B0912BC79005D34B9 /* Cinematic.cpp */; };
-		8122586D0912BC79005D34B9 /* draw_arb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8122570D0912BC79005D34B9 /* draw_arb.cpp */; };
 		8122586E0912BC79005D34B9 /* draw_arb2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8122570E0912BC79005D34B9 /* draw_arb2.cpp */; };
 		8122586F0912BC79005D34B9 /* draw_common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8122570F0912BC79005D34B9 /* draw_common.cpp */; };
 		812258710912BC79005D34B9 /* draw_exp_stub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812257110912BC79005D34B9 /* draw_exp_stub.cpp */; };
-		812258720912BC79005D34B9 /* draw_nv10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812257120912BC79005D34B9 /* draw_nv10.cpp */; };
 		812258730912BC79005D34B9 /* draw_nv20.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812257130912BC79005D34B9 /* draw_nv20.cpp */; };
 		812258740912BC79005D34B9 /* draw_r200.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812257140912BC79005D34B9 /* draw_r200.cpp */; };
 		812258750912BC79005D34B9 /* GuiModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812257160912BC79005D34B9 /* GuiModel.cpp */; };
