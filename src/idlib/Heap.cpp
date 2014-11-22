@@ -20,70 +20,6 @@
 #include "precompiled.h"
 #pragma hdrstop
 
-//===============================================================
-//
-//	Boehm GC Wrappers
-//
-//===============================================================
-
-/*
-==================
-GC_malloc_wrapper
-==================
-*/
-ID_INLINE void *GC_malloc_wrapper(size_t required_bytes) {
-	void *p;
-	GC_init();
-	if ((p = (void *)GC_malloc_uncollectable(required_bytes)) == NULL) {
-		return NULL;
-	}
-	return p;
-}
-
-/*
-==================
-GC_free_wrapper
-==================
-*/
-ID_INLINE void GC_free_wrapper(void *p) {
-	if (p != NULL) {
-		GC_free(p);
-	}
-}
-
-/*
-==================
-GC_aligned_malloc_wrapper
-
-Missing from Boehm GC
-==================
-*/
-ID_INLINE void *GC_aligned_malloc_wrapper(size_t required_bytes, size_t alignment) {
-	void *p1;	// original block
-	void **p2;	// aligned block
-	int offset = alignment - 1 + sizeof(void *);
-	GC_init();
-	if ((p1 = (void *)GC_malloc_uncollectable(required_bytes + offset)) == NULL) {
-		return NULL;
-	}
-	p2 = (void**)(((size_t)(p1) + offset) & ~(alignment - 1));
-	p2[-1] = p1;
-	return p2;
-}
-
-/*
-==================
-GC_aligned_free_wrapper
-
-Missing from Boehm GC
-==================
-*/
-ID_INLINE void GC_aligned_free_wrapper(void *p) {
-	if (p != NULL) {
-		GC_free(((void**)p)[-1]);
-	}
-}
-
 // aligned versions of malloc and free do not exist on linux and other unix based os sigh.
 #if defined(__GNUC__) || defined(__linux__) || defined(MACOS_X) || defined(__APPLE__)
 /*
@@ -91,7 +27,7 @@ ID_INLINE void GC_aligned_free_wrapper(void *p) {
 linux_aligned_malloc
 ==================
 */
-ID_INLINE void *linux_aligned_malloc(size_t required_bytes, size_t alignment) {
+ID_INLINE void *_aligned_malloc(size_t required_bytes, size_t alignment) {
 	void *p1;	// original block
 	void **p2;	// aligned block
 	int offset = alignment - 1 + sizeof(void *);
@@ -109,28 +45,11 @@ ID_INLINE void *linux_aligned_malloc(size_t required_bytes, size_t alignment) {
 linux_aligned_free
 ==================
 */
-ID_INLINE void linux_aligned_free(void *p) {
+ID_INLINE void _aligned_free(void *p) {
 	if (p != NULL) {
 		free(((void**)p)[-1]);
 	}
 }
-#endif
-
-#ifdef USE_GC_ALLOCATORS
-  #define GC_MALLOC_WRAPPER(x) GC_malloc_wrapper(x)
-  #define GC_FREE_WRAPPER(x) GC_free_wrapper(x)
-  #define GC_ALIGNED_MALLOC_WRAPPER(x, y) GC_aligned_malloc_wrapper(x, y)
-  #define GC_ALIGNED_FREE_WRAPPER(x) GC_aligned_free_wrapper(x)
-#else
-#define GC_MALLOC_WRAPPER(x) malloc(x)
-#define GC_FREE_WRAPPER(x) free(x)
-  #if defined(__GNUC__) || defined(__linux__) || defined(MACOS_X) || defined(__APPLE__)
-	#define GC_ALIGNED_MALLOC_WRAPPER(x, y) linux_aligned_malloc(x, y)
-	#define GC_ALIGNED_FREE_WRAPPER(x) linux_aligned_free(x)
-  #else
-	#define GC_ALIGNED_MALLOC_WRAPPER(x, y) _aligned_malloc(x, y)
-	#define GC_ALIGNED_FREE_WRAPPER(x) _aligned_free(x)
-  #endif
 #endif
 
 //===============================================================
@@ -338,7 +257,7 @@ void idHeap::AllocDefragBlock( void ) {
 #pragma warning( push )
 #pragma warning( disable : 4127 )
 	while( true ) {
-		defragBlock = GC_MALLOC_WRAPPER( size );
+		defragBlock = malloc( size );
 		if ( defragBlock ) {
 			break;
 		}
@@ -414,13 +333,13 @@ idHeap::Allocate16
 */
 void *idHeap::Allocate16( const dword bytes ) {
 	byte *ptr, *alignedPtr;
-	ptr = (byte *) GC_MALLOC_WRAPPER( bytes + 16 + 4 );
+	ptr = (byte *) malloc( bytes + 16 + 4 );
 	if ( !ptr ) {
 		if ( defragBlock ) {
 			idLib::common->Printf( "Freeing defragBlock on alloc of %i.\n", bytes );
-			GC_FREE_WRAPPER( defragBlock );
+			free( defragBlock );
 			defragBlock = NULL;
-			ptr = (byte *) GC_MALLOC_WRAPPER( bytes + 16 + 4 );
+			ptr = (byte *) malloc( bytes + 16 + 4 );
 			AllocDefragBlock();
 		}
 		if ( !ptr ) {
@@ -441,7 +360,7 @@ idHeap::Free16
 ================
 */
 void idHeap::Free16( void *p ) {
-	GC_FREE_WRAPPER( (void *) *((int *) (( (byte *) p ) - 4)) );
+	free( (void *) *((int *) (( (byte *) p ) - 4)) );
 }
 
 /*
@@ -1161,7 +1080,7 @@ void *Mem_Alloc( const int size ) {
 #ifdef CRASH_ON_STATIC_ALLOCATION
 		*((int*)0x0) = 1;
 #endif
-		return GC_MALLOC_WRAPPER( size );
+		return malloc( size );
 	}
 	void *mem = mem_heap->Allocate( size );
 	Mem_UpdateAllocStats( mem_heap->Msize( mem ) );
@@ -1181,7 +1100,7 @@ void Mem_Free( void *ptr ) {
 #ifdef CRASH_ON_STATIC_ALLOCATION
 		*((int*)0x0) = 1;
 #endif
-		GC_FREE_WRAPPER( ptr );
+		free( ptr );
 		return;
 	}
 	Mem_UpdateFreeStats( mem_heap->Msize( ptr ) );
@@ -1197,13 +1116,12 @@ void *Mem_Alloc16( const int size ) {
 	if ( !size ) {
 		return NULL;
 	}
-	GC_INIT();
 	if ( !mem_heap ) {
 		const int paddedSize = (size + 15) & ~15;
 #ifdef CRASH_ON_STATIC_ALLOCATION
 		*((int*)0x0) = 1;
 #endif
-		return GC_ALIGNED_MALLOC_WRAPPER( paddedSize, 16 );
+		return _aligned_malloc( paddedSize, 16 );
 	}
 	void *mem = mem_heap->Allocate16( size );
 	// make sure the memory is 16 byte aligned
@@ -1224,7 +1142,7 @@ void Mem_Free16( void *ptr ) {
 #ifdef CRASH_ON_STATIC_ALLOCATION
 		*((int*)0x0) = 1;
 #endif
-		GC_ALIGNED_FREE_WRAPPER( ptr );
+		_aligned_free( ptr );
 		return;
 	}
 	// make sure the memory is 16 byte aligned

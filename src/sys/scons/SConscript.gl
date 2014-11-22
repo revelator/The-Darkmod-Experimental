@@ -17,6 +17,7 @@ Import(GLOBALS)
 gl_env = g_env.Clone()
 gl_env.Append( CPPPATH = '#' )
 gl_env.Append( CPPFLAGS = '-DGLIMP' )
+gl_env.Append( CPPFLAGS = '-DGLEW_NO_GLU' )
 
 if ( local_dedicated == 1 ):
 	gl_env.Append( CPPFLAGS = '-DID_DEDICATED' )
