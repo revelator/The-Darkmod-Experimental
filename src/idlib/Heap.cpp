@@ -31,7 +31,6 @@ ID_INLINE void *_aligned_malloc(size_t required_bytes, size_t alignment) {
 	void *p1;	// original block
 	void **p2;	// aligned block
 	int offset = alignment - 1 + sizeof(void *);
-	GC_init();
 	if ((p1 = (void *)malloc(required_bytes + offset)) == NULL) {
 		return NULL;
 	}
