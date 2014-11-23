@@ -296,10 +296,15 @@ BASECPPFLAGS.append( '-fpermissive' )
 if ( g_os == 'Linux' ):
 	# gcc 4.x option only - only export what we mean to from the game SO
 	BASECPPFLAGS.append( '-fvisibility=hidden' )
+
 	# get the 64 bits machine on the distcc array to produce 32 bit binaries :)
 	BASECPPFLAGS.append( '-m32' )
 	BASELINKFLAGS.append( '-m32' )
     
+	# help 64 bit machines to find the compatibility 32bit libraries: added from tdm_update <revelator>
+	BASELINKFLAGS.append( '-L/lib32' )
+	BASELINKFLAGS.append( '-L/usr/lib32' )
+
 	if ( OPENMP != '0' ):
 		# openmp support for changes made to the renderer
 		BASECPPFLAGS.append( '-fopenmp' )
