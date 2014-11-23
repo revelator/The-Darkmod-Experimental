@@ -317,6 +317,7 @@ if ( local_dedicated == 0 ):
 	local_env.Append( LIBPATH = [ '/usr/X11R6/lib' ] )
 	local_env.Append( LIBS = [ 'GL' ] )						# revelator: added for glew
 	local_env.Append( LIBS = [ 'GLU' ] )					# revelator: added for glew
+	local_env.Append( LIBS = [ 'GLEW' ] )					# revelator: added for glew
 
 # greebo: Add boost and image libraries
 local_env.Append(LIBS = [
@@ -339,7 +340,6 @@ source_list += sound_lib
 source_list += [ '../../openal/stubs.cpp' ]
 
 # greebo: Use custom compiled devIL and libjpeg (since the engine requires 4 bytes per pixel format) in Linux
-source_list += SConscript( '../../sys/scons/SConscript.libglew' )
 source_list += SConscript( '../../sys/scons/SConscript.devil' )
 source_list += SConscript( '../../sys/scons/SConscript.libjpeg' )
 

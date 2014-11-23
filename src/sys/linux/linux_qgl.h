@@ -34,8 +34,8 @@ If you have questions concerning this license or the applicable additional terms
 
 // the idlib parser gets really pissy if there are the slightest mistake in defines.
 #if defined( __linux__ )
-#include "../../include/glew/glew.h"
-#include "../../include/glew/glxew.h"		// linux OpenGL extensions
+#include <GL/glew.h>
+#include <GL/glxew.h>		// linux OpenGL extensions
 #endif
 
 #ifndef ID_GL_HARDLINK

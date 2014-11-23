@@ -322,7 +322,7 @@ if NO_GCH == '0':
 
 	local_env['GchSh'] = local_env.GchSh('#game/precompiled_game.h', CPPFLAGS = GCH_CPPFLAGS)[0]
 
-# greebo: Use custom compiled devIL and libjpeg in Linux
+# greebo: Use custom compiled GLEW devIL and libjpeg in Linux
 devil_list = SConscript( '../../sys/scons/SConscript.devil' )
 libjpeg_list = SConscript( '../../sys/scons/SConscript.libjpeg' )
 
