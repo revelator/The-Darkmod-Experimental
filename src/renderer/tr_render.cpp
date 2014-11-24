@@ -506,6 +506,29 @@ void RB_BeginDrawingView( void ) {
 }
 
 /*
+=================
+RB_ClearMatrixInteractions
+
+clear all matrix interactions
+this was done to get rid of some interactions
+interfering with the gui like the POM shader.
+=================
+*/
+static void RB_ClearMatrixInteractions(idVec4 matrix[2]) {
+	// first stage
+	matrix[0][0] = 1.0f;
+	matrix[0][1] = 0.0f;
+	matrix[0][2] = 0.0f;
+	matrix[0][3] = 0.0f;
+	// next stage
+	matrix[1][0] = 0.0f;
+	matrix[1][1] = 1.0f;
+	matrix[1][2] = 0.0f;
+	matrix[1][3] = 0.0f;
+	// thats all she wrote folks
+}
+
+/*
 ==================
 R_SetDrawInteractions
 ==================
@@ -531,20 +554,13 @@ void R_SetDrawInteraction( const shaderStage_t *surfaceStage, const float *surfa
 			matrix[1][3] -= ( int )matrix[1][3];
 		}
 	} else {
-		matrix[0][0] = 1;
-		matrix[0][1] = 0;
-		matrix[0][2] = 0;
-		matrix[0][3] = 0;
-		matrix[1][0] = 0;
-		matrix[1][1] = 1;
-		matrix[1][2] = 0;
-		matrix[1][3] = 0;
+		RB_ClearMatrixInteractions(matrix);
 	}
 	if( color ) {
-		color[0] = surfaceRegs[surfaceStage->color.registers[0]];
-		color[1] = surfaceRegs[surfaceStage->color.registers[1]];
-		color[2] = surfaceRegs[surfaceStage->color.registers[2]];
-		color[3] = surfaceRegs[surfaceStage->color.registers[3]];
+		color[0] = idMath::ClampFloat(0.0f, 1.0f, surfaceRegs[surfaceStage->color.registers[0]]);
+		color[1] = idMath::ClampFloat(0.0f, 1.0f, surfaceRegs[surfaceStage->color.registers[1]]);
+		color[2] = idMath::ClampFloat(0.0f, 1.0f, surfaceRegs[surfaceStage->color.registers[2]]);
+		color[3] = idMath::ClampFloat(0.0f, 1.0f, surfaceRegs[surfaceStage->color.registers[3]]);
 	}
 }
 
@@ -555,16 +571,22 @@ RB_SubmittInteraction
 */
 static void RB_SubmittInteraction( drawInteraction_t *din, void ( *DrawInteraction )( const drawInteraction_t * ) ) {
 	if( !din->bumpImage ) {
+		RB_ClearMatrixInteractions(din->bumpMatrix);
+		RB_ClearMatrixInteractions(din->specularMatrix);
+		RB_ClearMatrixInteractions(din->diffuseMatrix);
 		return;
 	}
 	if( r_skipBump.GetBool() ) {
+		RB_ClearMatrixInteractions(din->bumpMatrix);
 		din->bumpImage = globalImages->flatNormalMap;
 	}
 	if( !din->diffuseImage || r_skipDiffuse.GetBool() ) {
+		RB_ClearMatrixInteractions(din->diffuseMatrix);
 		din->diffuseImage = globalImages->blackImage;
 	}
 	// rebb: even ambient light has some specularity
 	if( !din->specularImage || r_skipSpecular.GetBool() ) {
+		RB_ClearMatrixInteractions(din->specularMatrix);
 		din->specularImage = globalImages->blackImage;
 	}
 	DrawInteraction( din );

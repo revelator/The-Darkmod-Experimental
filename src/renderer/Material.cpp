@@ -1002,7 +1002,7 @@ void idMaterial::ParseStage( idLexer &src, const textureRepeat_t trpDefault ) {
 			ts->texgen = TG_SCREEN2;
 			continue;
 		} else if( !token.Icmp( "glassWarp" ) ) {
-			ts->texgen = TG_GLASSWARP;
+			// glasswarp was newer used
 			continue;
 		} else if( !token.Icmp( "videomap" ) ) {
 			// note that videomaps will always be in clamp mode, so texture

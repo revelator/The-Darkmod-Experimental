@@ -124,37 +124,6 @@ void RB_PrepareStageTexturing( const shaderStage_t *pStage,  const drawSurf_t *s
 		plane[3] = mat[15];
 		glTexGenfv( GL_Q, GL_OBJECT_PLANE, plane );
 	}
-	if( pStage->texture.texgen == TG_GLASSWARP ) {
-		if( tr.backEndRenderer == BE_ARB2 ) {
-			glBindProgramARB( GL_FRAGMENT_PROGRAM_ARB, FPROG_GLASSWARP );
-			glEnable( GL_FRAGMENT_PROGRAM_ARB );
-			GL_SelectTexture( 2 );
-			globalImages->scratchImage->Bind();
-			GL_SelectTexture( 1 );
-			globalImages->scratchImage2->Bind();
-			glEnable( GL_TEXTURE_GEN_S );
-			glEnable( GL_TEXTURE_GEN_T );
-			glEnable( GL_TEXTURE_GEN_Q );
-			float	mat[16], plane[4];
-			myGlMultMatrix( surf->space->modelViewMatrix, backEnd.viewDef->projectionMatrix, mat );
-			plane[0] = mat[0];
-			plane[1] = mat[4];
-			plane[2] = mat[8];
-			plane[3] = mat[12];
-			glTexGenfv( GL_S, GL_OBJECT_PLANE, plane );
-			plane[0] = mat[1];
-			plane[1] = mat[5];
-			plane[2] = mat[9];
-			plane[3] = mat[13];
-			glTexGenfv( GL_T, GL_OBJECT_PLANE, plane );
-			plane[0] = mat[3];
-			plane[1] = mat[7];
-			plane[2] = mat[11];
-			plane[3] = mat[15];
-			glTexGenfv( GL_Q, GL_OBJECT_PLANE, plane );
-			GL_SelectTexture( 0 );
-		}
-	}
 	if( pStage->texture.texgen == TG_REFLECT_CUBE ) {
 		if( tr.backEndRenderer == BE_ARB2 ) {
 			// see if there is also a bump map specified
@@ -226,22 +195,6 @@ void RB_FinishStageTexturing( const shaderStage_t *pStage, const drawSurf_t *sur
 		glDisable( GL_TEXTURE_GEN_S );
 		glDisable( GL_TEXTURE_GEN_T );
 		glDisable( GL_TEXTURE_GEN_Q );
-	}
-	if( pStage->texture.texgen == TG_GLASSWARP ) {
-		if( tr.backEndRenderer == BE_ARB2 /*|| tr.backEndRenderer == BE_NV30*/ ) {
-			GL_SelectTexture( 2 );
-			globalImages->BindNull();
-			GL_SelectTexture( 1 );
-			if( pStage->texture.hasMatrix ) {
-				RB_LoadShaderTextureMatrix( surf->shaderRegisters, &pStage->texture );
-			}
-			glDisable( GL_TEXTURE_GEN_S );
-			glDisable( GL_TEXTURE_GEN_T );
-			glDisable( GL_TEXTURE_GEN_Q );
-			glDisable( GL_FRAGMENT_PROGRAM_ARB );
-			globalImages->BindNull();
-			GL_SelectTexture( 0 );
-		}
 	}
 	if( pStage->texture.texgen == TG_REFLECT_CUBE ) {
 		if( tr.backEndRenderer == BE_ARB2 ) {
@@ -515,14 +468,14 @@ void RB_SetProgramEnvironment( void ) {
 	int	 w = backEnd.viewDef->viewport.x2 - backEnd.viewDef->viewport.x1 + 1;
 	pot = globalImages->currentRenderImage->uploadWidth;
 	if( w == pot ) {
-		parm[0] = 1.0;
+		parm[0] = 1.0f;
 	} else {
 		parm[0] = ( float )( w - 1 ) / pot;
 	}
 	int	 h = backEnd.viewDef->viewport.y2 - backEnd.viewDef->viewport.y1 + 1;
 	pot = globalImages->currentRenderImage->uploadHeight;
 	if( h == pot ) {
-		parm[1] = 1.0;
+		parm[1] = 1.0f;
 	} else {
 		parm[1] = ( float )( h - 1 ) / pot;
 	}
@@ -538,16 +491,16 @@ void RB_SetProgramEnvironment( void ) {
 	int	 h = backEnd.viewDef->viewport.y2 - backEnd.viewDef->viewport.y1 + 1;
 	pot = globalImages->currentRenderImage->uploadHeight;
 	parm[1] = ( float )h / pot;
-	parm[2] = 0;
-	parm[3] = 1;
+	parm[2] = 0.0f;
+	parm[3] = 1.0f;
 	glProgramEnvParameter4fvARB( GL_VERTEX_PROGRAM_ARB, 0, parm );
 #endif
 	glProgramEnvParameter4fvARB( GL_FRAGMENT_PROGRAM_ARB, 0, parm );
 	// window coord to 0.0 to 1.0 conversion
-	parm[0] = 1.0 / w;
-	parm[1] = 1.0 / h;
-	parm[2] = 0;
-	parm[3] = 1;
+	parm[0] = 1.0f / w;
+	parm[1] = 1.0f / h;
+	parm[2] = 0.0f;
+	parm[3] = 1.0f;
 	glProgramEnvParameter4fvARB( GL_FRAGMENT_PROGRAM_ARB, 1, parm );
 	// #3877: Allow shaders to access depth buffer.
 	// See notes in header above for why we want a new parameter.
@@ -556,8 +509,8 @@ void RB_SetProgramEnvironment( void ) {
 	// a texture coordinate: the reciprocal of the texture size is enough. See issue #3883 for more details.
 	parm[0] = 1.0f / globalImages->currentDepthImage->uploadWidth;
 	parm[1] = 1.0f / globalImages->currentDepthImage->uploadHeight;
-	parm[2] = 0;
-	parm[3] = 1;
+	parm[2] = 0.0f;
+	parm[3] = 1.0f;
 	glProgramEnvParameter4fvARB( GL_FRAGMENT_PROGRAM_ARB, 4, parm );
 	//
 	// set eye position in global space
@@ -565,7 +518,7 @@ void RB_SetProgramEnvironment( void ) {
 	parm[0] = backEnd.viewDef->renderView.vieworg[0];
 	parm[1] = backEnd.viewDef->renderView.vieworg[1];
 	parm[2] = backEnd.viewDef->renderView.vieworg[2];
-	parm[3] = 1.0;
+	parm[3] = 1.0f;
 	glProgramEnvParameter4fvARB( GL_VERTEX_PROGRAM_ARB, 1, parm );
 }
 
