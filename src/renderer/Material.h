@@ -506,6 +506,11 @@ public:
 	bool				IsAmbientLight() const {
 		return ambientLight;
 	}
+	
+	// customLights can define ARB programs in the material def
+	bool				IsCustomLight() const {
+		return customLight;
+	}
 
 	// implicitly no-shadows lights (ambients, fogs, etc) will never cast shadows
 	// but individual light entities can also override this value
@@ -752,6 +757,7 @@ private:
 	bool				fogLight;
 	bool				blendLight;
 	bool				ambientLight;
+	bool				customLight;
 	bool				unsmoothedTangents;
 	bool				hasSubview;			// mirror, remote render, etc
 	bool				allowOverlays;
