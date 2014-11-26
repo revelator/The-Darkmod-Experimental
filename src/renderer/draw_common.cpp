@@ -570,6 +570,10 @@ static void RB_STD_T_RenderShaderPassesStage1(const drawSurf_t *surf, const srfT
 	if (!glConfig.ARBVertexProgramAvailable) {
 		return;
 	}
+	// prevent stage processing of ARB programs in customLight def
+	if ( backEnd.vLight->lightShader->IsCustomLight() ) {
+		return;
+		
 	if (r_skipNewAmbient.GetBool()) {
 		return;
 	}
