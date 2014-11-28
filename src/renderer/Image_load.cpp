@@ -241,9 +241,9 @@ GLenum idImage::SelectInternalFormat( const byte **dataPtrs, int numDataPtrs, in
 		} else if( globalImages->image_useCompression.GetBool() && globalImages->image_useNormalCompression.GetInteger() == 2 && glConfig.textureCompressionAvailable ) {
 			// image_useNormalCompression == 2 uses rxgb format which produces really good quality for medium settings
 			return GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
-	//	} else if( globalImages->image_useCompression.GetBool() && globalImages->image_useNormalCompression.GetInteger() == 7 && glConfig.textureCompressionAvailable ) {
+		} else if( globalImages->image_useCompression.GetBool() && globalImages->image_useNormalCompression.GetInteger() == 7 && glConfig.textureCompressionAvailable ) {
 			// image_useNormalCompression == 7 uses rgtc compression the best available format
-		//	return GL_COMPRESSED_RED_GREEN_RGTC2_EXT;
+			return GL_COMPRESSED_RED_GREEN_RGTC2_EXT;
 		} else {
 			// we always need the alpha channel for bump maps for swizzling
 			return GL_RGBA8;
