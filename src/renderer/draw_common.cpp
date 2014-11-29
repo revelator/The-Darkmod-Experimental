@@ -565,15 +565,16 @@ RB_STD_T_RenderShaderPassesStage1
 Stage rendering for vertex programs
 ==================
 */
-static void RB_STD_T_RenderShaderPassesStage1(const drawSurf_t *surf, const srfTriangles_t *tri, idDrawVert *ac, const shaderStage_t *pStage, const float *regs) {
+void RB_STD_T_RenderShaderPassesStage1(const drawSurf_t *surf, const srfTriangles_t *tri, idDrawVert *ac, const shaderStage_t *pStage, const float *regs) {
 	// completely skip the stage if we don't have the capability
 	if (!glConfig.ARBVertexProgramAvailable) {
 		return;
 	}
 	// prevent stage processing of ARB programs in customLight def
-	if ( backEnd.vLight->lightShader->IsCustomLight() ) {
+	if (backEnd.vLight->lightShader->IsCustomLight()) {
 		return;
-		
+	}
+	// allowing stage processing of customlight.def
 	if (r_skipNewAmbient.GetBool()) {
 		return;
 	}
@@ -640,7 +641,7 @@ RB_STD_T_RenderShaderPassesStage2
 Old style stage rendering
 ==================
 */
-static void RB_STD_T_RenderShaderPassesStage2(const drawSurf_t *surf, const srfTriangles_t *tri, idDrawVert *ac, const shaderStage_t *pStage, const float *regs) {
+void RB_STD_T_RenderShaderPassesStage2(const drawSurf_t *surf, const srfTriangles_t *tri, idDrawVert *ac, const shaderStage_t *pStage, const float *regs) {
 	// set the color
 	const float color[4] = {
 		regs[pStage->color.registers[0]],
@@ -713,7 +714,7 @@ static void RB_STD_T_RenderShaderPassesStage2(const drawSurf_t *surf, const srfT
 	}
 }
 
-static void RB_STD_T_RenderShaderPasses(const drawSurf_t *surf) {
+void RB_STD_T_RenderShaderPasses(const drawSurf_t *surf) {
 	int						stage;
 	const idMaterial		*shader;
 	const shaderStage_t		*pStage;

@@ -1310,6 +1310,10 @@ typedef enum {
 	FPROG_TEST,
 	VPROG_AMBIENT,
 	FPROG_AMBIENT,
+	VPROG_MEGATEXTURE,
+	FPROG_MEGATEXTURE,
+	VPROG_CUSTOMLIGHT,
+	FPROG_CUSTOMLIGHT,
 	// rebb: direct light interactions, related to r_dedicatedAmbient
 	VPROG_TEST_DIRECT,
 	FPROG_TEST_DIRECT,

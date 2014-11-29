@@ -35,24 +35,8 @@
 
 #define WINVER				0x501
 
-#if 0
-// Dedicated server hits unresolved when trying to link this way now. Likely because of the 2010/Win7 transition? - TTimo
-
-#ifdef	ID_DEDICATED
-// dedicated sets windows version here
-#define	_WIN32_WINNT WINVER
-#define	WIN32_LEAN_AND_MEAN
-#else
-// non-dedicated includes MFC and sets windows version here
-#include "../tools/comafx/StdAfx.h"			// this will go away when MFC goes away
-#endif
-
-#else
-
 #ifndef NO_MFC
 #include "../tools/comafx/StdAfx.h"
-#endif
-
 #endif
 
 #include <winsock2.h>
@@ -74,7 +58,7 @@
 #pragma warning(disable : 4996)				// unsafe string operations
 
 #include <malloc.h>							// no malloc.h on mac or unix
-#include <winsock2.h>						// greebo: Include this before windows.h
+#include <winsock2.h>
 #include <windows.h>						// for gl.h
 #undef FindText								// stupid namespace poluting Microsoft monkeys
 
@@ -97,6 +81,7 @@
 #include <typeinfo>
 #include <errno.h>
 #include <math.h>
+
 //-----------------------------------------------------
 
 // non-portable system services
