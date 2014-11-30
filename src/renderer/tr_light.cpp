@@ -659,8 +659,8 @@ void R_AddLightSurfaces( void ) {
 				//lightRegs[ registers[1] ] = 1.5483369e-005f;
 				//lightRegs[ registers[2] ] = 1.7014690e-005f;
 				if( lightRegs[ registers[0] ] > 0.0f ||
-						lightRegs[ registers[1] ] > 0.0f ||
-						lightRegs[ registers[2] ] > 0.0f ) {
+					lightRegs[ registers[1] ] > 0.0f ||
+					lightRegs[ registers[2] ] > 0.0f ) {
 					break;
 				}
 			}

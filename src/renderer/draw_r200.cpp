@@ -135,7 +135,7 @@ static void RB_R200_ARB_DrawInteraction( const drawInteraction_t *din ) {
 	// texture 4 = surface bump
 	// texture 5 = normalization cube map
 	GL_SelectTexture( 5 );
-	if( din->ambientLight ) {
+	if (din->ambientLight) {
 		globalImages->ambientNormalMap->Bind();
 	} else {
 		globalImages->normalCubeMapImage->Bind();
@@ -241,6 +241,9 @@ void RB_R200_DrawInteractions( void ) {
 			continue;
 		}
 		if( vLight->lightShader->IsBlendLight() ) {
+			continue;
+		}
+		if (vLight->lightShader->IsCustomLight()) {
 			continue;
 		}
 		backEnd.vLight = vLight;

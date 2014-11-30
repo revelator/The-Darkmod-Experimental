@@ -109,10 +109,9 @@ void	RB_ARB2_DrawInteraction(const drawInteraction_t *din) {
 /*
 =============
 RB_ARB2_CreateDrawInteractions
-
 =============
 */
-void RB_ARB2_CreateDrawInteractions(const drawSurf_t *surf) {
+static void RB_ARB2_CreateDrawInteractions(const drawSurf_t *surf) {
 	if (!surf) {
 		return;
 	}
@@ -137,20 +136,13 @@ void RB_ARB2_CreateDrawInteractions(const drawSurf_t *surf) {
 		}
 	}
 	else {
-		// allow backend processing of custom lighting: revelator cleaned this up a bit.
-		if (backEnd.vLight->lightShader->IsCustomLight()) {
-			glBindProgramARB(GL_VERTEX_PROGRAM_ARB, VPROG_CUSTOMLIGHT);
-			glBindProgramARB(GL_FRAGMENT_PROGRAM_ARB, FPROG_CUSTOMLIGHT);
+		if (r_testARBProgram.GetBool()) {
+			glBindProgramARB(GL_VERTEX_PROGRAM_ARB, VPROG_TEST);
+			glBindProgramARB(GL_FRAGMENT_PROGRAM_ARB, FPROG_TEST);
 		}
 		else {
-			if (r_testARBProgram.GetBool()) {
-				glBindProgramARB(GL_VERTEX_PROGRAM_ARB, VPROG_TEST);
-				glBindProgramARB(GL_FRAGMENT_PROGRAM_ARB, FPROG_TEST);
-			}
-			else {
-				glBindProgramARB(GL_VERTEX_PROGRAM_ARB, VPROG_INTERACTION);
-				glBindProgramARB(GL_FRAGMENT_PROGRAM_ARB, FPROG_INTERACTION);
-			}
+			glBindProgramARB(GL_VERTEX_PROGRAM_ARB, VPROG_INTERACTION);
+			glBindProgramARB(GL_FRAGMENT_PROGRAM_ARB, FPROG_INTERACTION);
 		}
 	}
 	glEnable(GL_VERTEX_PROGRAM_ARB);
@@ -177,7 +169,7 @@ void RB_ARB2_CreateDrawInteractions(const drawSurf_t *surf) {
 	else {
 		globalImages->specularTableImage->Bind();
 	}
-	for (; surf; surf = surf->nextOnLight) {
+	for (/**/; surf; surf = surf->nextOnLight) {
 		// perform setup here that will not change over multiple interaction passes
 		// set the vertex pointers
 		idDrawVert	*ac = (idDrawVert *)vertexCache.Position(surf->geo->ambientCache);
@@ -187,7 +179,7 @@ void RB_ARB2_CreateDrawInteractions(const drawSurf_t *surf) {
 		glVertexAttribPointerARB(9, 3, GL_FLOAT, false, sizeof(idDrawVert), ac->tangents[0].ToFloatPtr());
 		glVertexAttribPointerARB(8, 2, GL_FLOAT, false, sizeof(idDrawVert), ac->st.ToFloatPtr());
 		glVertexPointer(3, GL_FLOAT, sizeof(idDrawVert), ac->xyz.ToFloatPtr());
-		// this may cause RB_ARB2_DrawInteraction to be exacuted multiple
+		// this may cause RB_ARB2_DrawInteraction to be executed multiple
 		// times with different colors and images if the surface or light have multiple layers
 		RB_CreateSingleDrawInteractions(surf, RB_ARB2_DrawInteraction);
 	}
@@ -230,11 +222,14 @@ void RB_ARB2_DrawInteractions(bool noshadows) {
 	//
 	for (vLight = backEnd.viewDef->viewLights; vLight; vLight = vLight->next) {
 		backEnd.vLight = vLight;
-		// do fogging later
+		// do fogging and custom light types later
 		if (vLight->lightShader->IsFogLight()) {
 			continue;
 		}
 		if (vLight->lightShader->IsBlendLight()) {
+			continue;
+		}
+		if (vLight->lightShader->IsCustomLight()) {
 			continue;
 		}
 		if (!vLight->localInteractions && !vLight->globalInteractions
@@ -334,9 +329,6 @@ static progDef_t	progs[MAX_GLPROGS] = {
 		// revelator: this was probably intended to be here when megatexture support was finished.
 		{ GL_VERTEX_PROGRAM_ARB, VPROG_MEGATEXTURE, "megaTexture.vfp" },
 		{ GL_FRAGMENT_PROGRAM_ARB, FPROG_MEGATEXTURE, "megaTexture.vfp" },
-		// revelator: added new types for custom lighting
-		{ GL_VERTEX_PROGRAM_ARB, VPROG_CUSTOMLIGHT, "customLight.vfp" },
-		{ GL_FRAGMENT_PROGRAM_ARB, FPROG_CUSTOMLIGHT, "customLight.vfp" },
 		// rebb: direct light interaction files for performance testing
 		{ GL_VERTEX_PROGRAM_ARB, VPROG_TEST_DIRECT, "test_direct.vfp" },
 		{ GL_FRAGMENT_PROGRAM_ARB, FPROG_TEST_DIRECT, "test_direct.vfp" },
@@ -405,13 +397,10 @@ void R_LoadARBProgram(int progIndex) {
 	}
 	end[3] = 0;
 	glBindProgramARB(progs[progIndex].target, progs[progIndex].ident);
-	//glGetError();
-	glProgramStringARB(progs[progIndex].target, GL_PROGRAM_FORMAT_ASCII_ARB,
-		strlen(start), (unsigned char *)start);
+	glProgramStringARB(progs[progIndex].target, GL_PROGRAM_FORMAT_ASCII_ARB, strlen(start), (unsigned char *)start);
 	// this is pretty important for quick shader debugging, better have it in always
-	//#ifdef _DEBUG
 	int err = glGetError();
-	int		ofs;
+	int	ofs;
 	glGetIntegerv(GL_PROGRAM_ERROR_POSITION_ARB, (GLint *)&ofs);
 	if (err == GL_INVALID_OPERATION) {
 		const GLubyte *str = glGetString(GL_PROGRAM_ERROR_STRING_ARB);
@@ -431,7 +420,6 @@ void R_LoadARBProgram(int progIndex) {
 		common->Printf("\nGL_PROGRAM_ERROR_POSITION_ARB != -1 without error\n");
 		return;
 	}
-	//#endif
 	common->Printf("\n");
 }
 

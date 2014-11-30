@@ -140,7 +140,7 @@ static void RB_NV20_DI_BumpAndLightPass( const drawInteraction_t *din, bool mono
 #else
 	GL_SelectTextureNoClient( 0 );
 #endif
-	if( din->ambientLight ) {
+	if (din->ambientLight) {
 		globalImages->ambientNormalMap->Bind();
 	} else {
 		globalImages->normalCubeMapImage->Bind();
@@ -668,6 +668,9 @@ void RB_NV20_DrawInteractions( void ) {
 			continue;
 		}
 		if( vLight->lightShader->IsBlendLight() ) {
+			continue;
+		}
+		if (vLight->lightShader->IsCustomLight()) {
 			continue;
 		}
 		if( !vLight->localInteractions && !vLight->globalInteractions
