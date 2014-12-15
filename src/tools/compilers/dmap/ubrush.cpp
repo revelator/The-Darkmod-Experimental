@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -41,7 +41,7 @@ CountBrushList
 int	CountBrushList( uBrush_t *brushes ) {
 	int	c;
 	c = 0;
-	for( ; brushes ; brushes = brushes->next ) {
+	for( ; brushes; brushes = brushes->next ) {
 		c++;
 	}
 	return c;
@@ -77,7 +77,7 @@ FreeBrush
 */
 void FreeBrush( uBrush_t *brushes ) {
 	int			i;
-	for( i = 0 ; i < brushes->numsides ; i++ ) {
+	for( i = 0; i < brushes->numsides; i++ ) {
 		if( brushes->sides[i].winding ) {
 			delete brushes->sides[i].winding;
 		}
@@ -96,7 +96,7 @@ FreeBrushList
 */
 void FreeBrushList( uBrush_t *brushes ) {
 	uBrush_t	*next;
-	for( ; brushes ; brushes = next ) {
+	for( ; brushes; brushes = next ) {
 		next = brushes->next;
 		FreeBrush( brushes );
 	}
@@ -116,7 +116,7 @@ uBrush_t *CopyBrush( uBrush_t *brush ) {
 	size = BrushSizeForSides( brush->numsides );
 	newbrush = AllocBrush( brush->numsides );
 	memcpy( newbrush, brush, size );
-	for( i = 0 ; i < brush->numsides ; i++ ) {
+	for( i = 0; i < brush->numsides; i++ ) {
 		if( brush->sides[i].winding ) {
 			newbrush->sides[i].winding = brush->sides[i].winding->Copy();
 		}
@@ -133,8 +133,8 @@ void DrawBrushList( uBrush_t *brush ) {
 	int		i;
 	side_t	*s;
 	GLS_BeginScene();
-	for( ; brush ; brush = brush->next ) {
-		for( i = 0 ; i < brush->numsides ; i++ ) {
+	for( ; brush; brush = brush->next ) {
+		for( i = 0; i < brush->numsides; i++ ) {
 			s = &brush->sides[i];
 			if( !s->winding ) {
 				continue;
@@ -153,7 +153,7 @@ PrintBrush
 void PrintBrush( uBrush_t *brush ) {
 	int		i;
 	common->Printf( "brush: %p\n", brush );
-	for( i = 0; i < brush->numsides ; i++ ) {
+	for( i = 0; i < brush->numsides; i++ ) {
 		brush->sides[i].winding->Print();
 		common->Printf( "\n" );
 	}
@@ -214,7 +214,7 @@ bool CreateBrushWindings( uBrush_t *brush ) {
 				continue;		// back side clipaway
 			}
 			plane = &dmapGlobals.mapPlanes[brush->sides[j].planenum ^ 1];
-			w = w->Clip( *plane, 0 );//CLIP_EPSILON);
+			w = w->Clip( *plane, 0 ); //CLIP_EPSILON);
 		}
 		if( side->winding ) {
 			delete side->winding;
@@ -237,7 +237,7 @@ uBrush_t	*BrushFromBounds( const idBounds &bounds ) {
 	idPlane		plane;
 	b = AllocBrush( 6 );
 	b->numsides = 6;
-	for( i = 0 ; i < 3 ; i++ ) {
+	for( i = 0; i < 3; i++ ) {
 		plane[0] = plane[1] = plane[2] = 0;
 		plane[i] = 1;
 		plane[3] = -bounds[1][i];
@@ -311,9 +311,9 @@ void WriteBspBrushMap( const char *name, uBrush_t *list ) {
 		common->Error( "Can't write %s\b", name );
 	}
 	f->Printf( "{\n\"classname\" \"worldspawn\"\n" );
-	for( ; list ; list = list->next ) {
+	for( ; list; list = list->next ) {
 		f->Printf( "{\n" );
-		for( i = 0, s = list->sides ; i < list->numsides ; i++, s++ ) {
+		for( i = 0, s = list->sides; i < list->numsides; i++, s++ ) {
 			w = new idWinding( dmapGlobals.mapPlanes[s->planenum] );
 			f->Printf( "( %i %i %i ) ", ( int )( *w )[0][0], ( int )( *w )[0][1], ( int )( *w )[0][2] );
 			f->Printf( "( %i %i %i ) ", ( int )( *w )[1][0], ( int )( *w )[1][1], ( int )( *w )[1][2] );
@@ -377,7 +377,7 @@ void FilterBrushesIntoTree( uEntity_t *e ) {
 	common->Printf( "----- FilterBrushesIntoTree -----\n" );
 	c_unique = 0;
 	c_clusters = 0;
-	for( prim = e->primitives ; prim ; prim = prim->next ) {
+	for( prim = e->primitives; prim; prim = prim->next ) {
 		b = prim->brush;
 		if( !b ) {
 			continue;
@@ -539,10 +539,10 @@ void SplitBrush( uBrush_t *brush, int planenum, uBrush_t **front, uBrush_t **bac
 			/*
 						if ( cw[j]->IsTiny() )
 						{
-							delete cw[j];
-							continue;
+						delete cw[j];
+						continue;
 						}
-			*/
+						*/
 			cs = &b[j]->sides[b[j]->numsides];
 			b[j]->numsides++;
 			*cs = *s;
@@ -550,7 +550,7 @@ void SplitBrush( uBrush_t *brush, int planenum, uBrush_t **front, uBrush_t **bac
 		}
 	}
 	// see if we have valid polygons on both sides
-	for( i = 0 ; i < 2 ; i++ ) {
+	for( i = 0; i < 2; i++ ) {
 		if( !BoundBrush( b[i] ) ) {
 			break;
 		}
@@ -576,7 +576,7 @@ void SplitBrush( uBrush_t *brush, int planenum, uBrush_t **front, uBrush_t **bac
 		return;
 	}
 	// add the midwinding to both sides
-	for( i = 0 ; i < 2 ; i++ ) {
+	for( i = 0; i < 2; i++ ) {
 		cs = &b[i]->sides[b[i]->numsides];
 		b[i]->numsides++;
 		cs->planenum = planenum ^ i ^ 1;
@@ -590,7 +590,7 @@ void SplitBrush( uBrush_t *brush, int planenum, uBrush_t **front, uBrush_t **bac
 	{
 		float	v1;
 		int		i;
-		for( i = 0 ; i < 2 ; i++ ) {
+		for( i = 0; i < 2; i++ ) {
 			v1 = BrushVolume( b[i] );
 			if( v1 < 1.0 ) {
 				FreeBrush( b[i] );

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #include "precompiled_engine.h"
 #pragma hdrstop
 
@@ -719,7 +719,7 @@ Sys_NetAdrToString
 */
 const char *Sys_NetAdrToString( const netadr_t a ) {
 	static int index = 0;
-	static char buf[ 4 ][ 64 ];	// flip/flop
+	static char buf[4][64];	// flip/flop
 	char *s;
 	s = buf[index];
 	index = ( index + 1 ) & 3;
@@ -861,7 +861,7 @@ bool idPort::InitForPort( int portNumber ) {
 		NET_OpenSocks( portNumber );
 	}
 #endif
-	udpPorts[ bound_to.port ] = new idUDPLag;
+	udpPorts[bound_to.port] = new idUDPLag;
 	return true;
 }
 
@@ -872,9 +872,9 @@ idPort::Close
 */
 void idPort::Close() {
 	if( netSocket ) {
-		if( udpPorts[ bound_to.port ] ) {
-			delete udpPorts[ bound_to.port ];
-			udpPorts[ bound_to.port ] = NULL;
+		if( udpPorts[bound_to.port] ) {
+			delete udpPorts[bound_to.port];
+			udpPorts[bound_to.port] = NULL;
 		}
 		closesocket( netSocket );
 		netSocket = 0;
@@ -904,33 +904,33 @@ bool idPort::GetPacket( netadr_t &from, void *data, int &size, int maxSize ) {
 		bytesRead += size;
 		if( net_forceLatency.GetInteger() > 0 ) {
 			assert( size <= MAX_UDP_MSG_SIZE );
-			msg = udpPorts[ bound_to.port ]->udpMsgAllocator.Alloc();
+			msg = udpPorts[bound_to.port]->udpMsgAllocator.Alloc();
 			memcpy( msg->data, data, size );
 			msg->size = size;
 			msg->address = from;
 			msg->time = Sys_Milliseconds();
 			msg->next = NULL;
-			if( udpPorts[ bound_to.port ]->recieveLast ) {
-				udpPorts[ bound_to.port ]->recieveLast->next = msg;
+			if( udpPorts[bound_to.port]->recieveLast ) {
+				udpPorts[bound_to.port]->recieveLast->next = msg;
 			} else {
-				udpPorts[ bound_to.port ]->recieveFirst = msg;
+				udpPorts[bound_to.port]->recieveFirst = msg;
 			}
-			udpPorts[ bound_to.port ]->recieveLast = msg;
+			udpPorts[bound_to.port]->recieveLast = msg;
 		} else {
 			break;
 		}
 	}
-	if( net_forceLatency.GetInteger() > 0 || ( udpPorts[ bound_to.port] && udpPorts[ bound_to.port ]->recieveFirst ) ) {
-		msg = udpPorts[ bound_to.port ]->recieveFirst;
+	if( net_forceLatency.GetInteger() > 0 || ( udpPorts[bound_to.port] && udpPorts[bound_to.port]->recieveFirst ) ) {
+		msg = udpPorts[bound_to.port]->recieveFirst;
 		if( msg && msg->time <= Sys_Milliseconds() - net_forceLatency.GetInteger() ) {
 			memcpy( data, msg->data, msg->size );
 			size = msg->size;
 			from = msg->address;
-			udpPorts[ bound_to.port ]->recieveFirst = udpPorts[ bound_to.port ]->recieveFirst->next;
-			if( !udpPorts[ bound_to.port ]->recieveFirst ) {
-				udpPorts[ bound_to.port ]->recieveLast = NULL;
+			udpPorts[bound_to.port]->recieveFirst = udpPorts[bound_to.port]->recieveFirst->next;
+			if( !udpPorts[bound_to.port]->recieveFirst ) {
+				udpPorts[bound_to.port]->recieveLast = NULL;
 			}
-			udpPorts[ bound_to.port ]->udpMsgAllocator.Free( msg );
+			udpPorts[bound_to.port]->udpMsgAllocator.Free( msg );
 			return true;
 		}
 		return false;
@@ -970,27 +970,27 @@ void idPort::SendPacket( const netadr_t to, const void *data, int size ) {
 			return;
 		}
 	}
-	if( net_forceLatency.GetInteger() > 0 || ( udpPorts[ bound_to.port ] && udpPorts[ bound_to.port ]->sendFirst ) ) {
+	if( net_forceLatency.GetInteger() > 0 || ( udpPorts[bound_to.port] && udpPorts[bound_to.port]->sendFirst ) ) {
 		assert( size <= MAX_UDP_MSG_SIZE );
-		msg = udpPorts[ bound_to.port ]->udpMsgAllocator.Alloc();
+		msg = udpPorts[bound_to.port]->udpMsgAllocator.Alloc();
 		memcpy( msg->data, data, size );
 		msg->size = size;
 		msg->address = to;
 		msg->time = Sys_Milliseconds();
 		msg->next = NULL;
-		if( udpPorts[ bound_to.port ]->sendLast ) {
-			udpPorts[ bound_to.port ]->sendLast->next = msg;
+		if( udpPorts[bound_to.port]->sendLast ) {
+			udpPorts[bound_to.port]->sendLast->next = msg;
 		} else {
-			udpPorts[ bound_to.port ]->sendFirst = msg;
+			udpPorts[bound_to.port]->sendFirst = msg;
 		}
-		udpPorts[ bound_to.port ]->sendLast = msg;
-		for( msg = udpPorts[ bound_to.port ]->sendFirst; msg && msg->time <= Sys_Milliseconds() - net_forceLatency.GetInteger(); msg = udpPorts[ bound_to.port ]->sendFirst ) {
+		udpPorts[bound_to.port]->sendLast = msg;
+		for( msg = udpPorts[bound_to.port]->sendFirst; msg && msg->time <= Sys_Milliseconds() - net_forceLatency.GetInteger(); msg = udpPorts[bound_to.port]->sendFirst ) {
 			Net_SendUDPPacket( netSocket, msg->size, msg->data, msg->address );
-			udpPorts[ bound_to.port ]->sendFirst = udpPorts[ bound_to.port ]->sendFirst->next;
-			if( !udpPorts[ bound_to.port ]->sendFirst ) {
-				udpPorts[ bound_to.port ]->sendLast = NULL;
+			udpPorts[bound_to.port]->sendFirst = udpPorts[bound_to.port]->sendFirst->next;
+			if( !udpPorts[bound_to.port]->sendFirst ) {
+				udpPorts[bound_to.port]->sendLast = NULL;
 			}
-			udpPorts[ bound_to.port ]->udpMsgAllocator.Free( msg );
+			udpPorts[bound_to.port]->udpMsgAllocator.Free( msg );
 		}
 	} else {
 		Net_SendUDPPacket( netSocket, size, data, to );

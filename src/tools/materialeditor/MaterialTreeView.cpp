@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #include "precompiled_engine.h"
 #pragma hdrstop
 
@@ -40,31 +40,31 @@ IMPLEMENT_DYNCREATE( MaterialTreeView, CTreeView )
 
 BEGIN_MESSAGE_MAP( MaterialTreeView, CTreeView )
 	ON_WM_CREATE()
-	ON_NOTIFY_REFLECT( TVN_SELCHANGED,		OnTvnSelchanged )
-	ON_NOTIFY_REFLECT( TVN_BEGINLABELEDIT,	OnTvnBeginlabeledit )
-	ON_NOTIFY_REFLECT( TVN_ENDLABELEDIT,		OnTvnEndlabeledit )
+	ON_NOTIFY_REFLECT( TVN_SELCHANGED, OnTvnSelchanged )
+	ON_NOTIFY_REFLECT( TVN_BEGINLABELEDIT, OnTvnBeginlabeledit )
+	ON_NOTIFY_REFLECT( TVN_ENDLABELEDIT, OnTvnEndlabeledit )
 	ON_WM_CONTEXTMENU()
-	ON_NOTIFY_REFLECT( NM_RCLICK,			OnNMRclick )
+	ON_NOTIFY_REFLECT( NM_RCLICK, OnNMRclick )
 	ON_WM_CHAR()
-	ON_NOTIFY_REFLECT( TVN_BEGINDRAG,		OnTvnBegindrag )
+	ON_NOTIFY_REFLECT( TVN_BEGINDRAG, OnTvnBegindrag )
 	ON_WM_MOUSEMOVE()
 	ON_WM_LBUTTONUP()
 
-	ON_COMMAND( ID_POPUP_APPLYMATERIAL,		OnApplyMaterial )
-	ON_COMMAND( ID_POPUP_APPLYFILE,			OnApplyFile )
-	ON_COMMAND( ID_POPUP_APPLYALL,			OnApplyAll )
-	ON_COMMAND( ID_POPUP_SAVEMATERIAL,		OnSaveMaterial )
-	ON_COMMAND( ID_POPUP_SAVEFILE,			OnSaveFile )
-	ON_COMMAND( ID_POPUP_SAVEALL,			OnSaveAll )
-	ON_COMMAND( ID_POPUP_RENAMEMATERIAL,		OnRenameMaterial )
-	ON_COMMAND( ID_POPUP_ADDMATERIAL,		OnAddMaterial )
-	ON_COMMAND( ID_POPUP_ADDFOLDER,			OnAddFolder )
-	ON_COMMAND( ID_POPUP_DELETEMATERIAL,		OnDeleteMaterial )
-	ON_COMMAND( ID_POPUP_RELOADFILE,			OnReloadFile )
+	ON_COMMAND( ID_POPUP_APPLYMATERIAL, OnApplyMaterial )
+	ON_COMMAND( ID_POPUP_APPLYFILE, OnApplyFile )
+	ON_COMMAND( ID_POPUP_APPLYALL, OnApplyAll )
+	ON_COMMAND( ID_POPUP_SAVEMATERIAL, OnSaveMaterial )
+	ON_COMMAND( ID_POPUP_SAVEFILE, OnSaveFile )
+	ON_COMMAND( ID_POPUP_SAVEALL, OnSaveAll )
+	ON_COMMAND( ID_POPUP_RENAMEMATERIAL, OnRenameMaterial )
+	ON_COMMAND( ID_POPUP_ADDMATERIAL, OnAddMaterial )
+	ON_COMMAND( ID_POPUP_ADDFOLDER, OnAddFolder )
+	ON_COMMAND( ID_POPUP_DELETEMATERIAL, OnDeleteMaterial )
+	ON_COMMAND( ID_POPUP_RELOADFILE, OnReloadFile )
 
-	ON_COMMAND( ID_POPUP_CUT,				OnCut )
-	ON_COMMAND( ID_POPUP_COPY,				OnCopy )
-	ON_COMMAND( ID_POPUP_PASTE,				OnPaste )
+	ON_COMMAND( ID_POPUP_CUT, OnCut )
+	ON_COMMAND( ID_POPUP_COPY, OnCopy )
+	ON_COMMAND( ID_POPUP_PASTE, OnPaste )
 
 	ON_MESSAGE( MSG_RENAME_FOLDER_COMPLETE, OnRenameFolderComplete )
 	ON_MESSAGE( MSG_RENAME_MATERIAL_COMPLETE, OnRenameMaterialComplete )
@@ -1392,7 +1392,7 @@ void MaterialTreeView::PopupMenu( CPoint *pt ) {
 	CTreeCtrl &tree = GetTreeCtrl();
 	UINT test;
 	HTREEITEM item = tree.HitTest( *pt, &test );
-	if( item == NULL ||  !( test & TVHT_ONITEM ) ) {
+	if( item == NULL || !( test & TVHT_ONITEM ) ) {
 		return;
 	}
 	ClientToScreen( pt );

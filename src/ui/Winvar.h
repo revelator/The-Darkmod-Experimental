@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __WINVAR_H__
 #define __WINVAR_H__
@@ -42,7 +42,7 @@ public:
 		return "";
 	}
 	void SetName( const char *_name ) {
-		delete []name;
+		delete[]name;
 		name = NULL;
 		if( _name ) {
 			name = new char[strlen( _name ) + 1];
@@ -100,10 +100,10 @@ public:
 			data = guiDict->GetBool( GetName() );
 		}
 	}
-	int	operator==(	const bool &other ) {
+	int	operator==( const bool &other ) {
 		return ( other == data );
 	}
-	bool &operator=(	const bool &other ) {
+	bool &operator=( const bool &other ) {
 		data = other;
 		if( guiDict ) {
 			guiDict->SetBool( GetName(), data );
@@ -166,13 +166,13 @@ public:
 			data = guiDict->GetString( GetName() );
 		}
 	}
-	int	operator==(	const idStr &other ) const {
+	int	operator==( const idStr &other ) const {
 		return ( other == data );
 	}
-	int	operator==(	const char *other ) const {
+	int	operator==( const char *other ) const {
 		return ( data == other );
 	}
-	idStr &operator=(	const idStr &other ) {
+	idStr &operator=( const idStr &other ) {
 		data = other;
 		if( guiDict ) {
 			guiDict->Set( GetName(), data );
@@ -264,12 +264,12 @@ public:
 	idWinInt() : idWinVar() {};
 	~idWinInt() {};
 	virtual void Init( const char *_name, idWindow *win ) {
-		idWinVar::Init( _name,  win );
+		idWinVar::Init( _name, win );
 		if( guiDict ) {
 			data = guiDict->GetInt( GetName() );
 		}
 	}
-	int &operator=(	const int &other ) {
+	int &operator=( const int &other ) {
 		data = other;
 		if( guiDict ) {
 			guiDict->SetInt( GetName(), data );
@@ -281,7 +281,7 @@ public:
 		data = other.data;
 		return *this;
 	}
-	operator int () const {
+	operator int() const {
 		return data;
 	}
 	virtual void Set( const char *val ) {
@@ -336,7 +336,7 @@ public:
 		data = other.data;
 		return *this;
 	}
-	float &operator=(	const float &other ) {
+	float &operator=( const float &other ) {
 		data = other;
 		if( guiDict ) {
 			guiDict->SetFloat( GetName(), data );
@@ -393,7 +393,7 @@ public:
 		}
 	}
 
-	int	operator==(	const idRectangle &other ) const {
+	int	operator==( const idRectangle &other ) const {
 		return ( other == data );
 	}
 
@@ -402,7 +402,7 @@ public:
 		data = other.data;
 		return *this;
 	}
-	idRectangle &operator=(	const idVec4 &other ) {
+	idRectangle &operator=( const idVec4 &other ) {
 		data = other;
 		if( guiDict ) {
 			guiDict->SetVec4( GetName(), other );
@@ -410,7 +410,7 @@ public:
 		return data;
 	}
 
-	idRectangle &operator=(	const idRectangle &other ) {
+	idRectangle &operator=( const idRectangle &other ) {
 		data = other;
 		if( guiDict ) {
 			idVec4 v = data.ToVec4();
@@ -495,7 +495,7 @@ public:
 			data = guiDict->GetVec2( GetName() );
 		}
 	}
-	int	operator==(	const idVec2 &other ) const {
+	int	operator==( const idVec2 &other ) const {
 		return ( other == data );
 	}
 	idWinVec2 &operator=( const idWinVec2 &other ) {
@@ -504,7 +504,7 @@ public:
 		return *this;
 	}
 
-	idVec2 &operator=(	const idVec2 &other ) {
+	idVec2 &operator=( const idVec2 &other ) {
 		data = other;
 		if( guiDict ) {
 			guiDict->SetVec2( GetName(), data );
@@ -566,7 +566,7 @@ public:
 			data = guiDict->GetVec4( GetName() );
 		}
 	}
-	int	operator==(	const idVec4 &other ) const {
+	int	operator==( const idVec4 &other ) const {
 		return ( other == data );
 	}
 	idWinVec4 &operator=( const idWinVec4 &other ) {
@@ -574,7 +574,7 @@ public:
 		data = other.data;
 		return *this;
 	}
-	idVec4 &operator=(	const idVec4 &other ) {
+	idVec4 &operator=( const idVec4 &other ) {
 		data = other;
 		if( guiDict ) {
 			guiDict->SetVec4( GetName(), data );
@@ -654,7 +654,7 @@ public:
 			data = guiDict->GetVector( GetName() );
 		}
 	}
-	int	operator==(	const idVec3 &other ) const {
+	int	operator==( const idVec3 &other ) const {
 		return ( other == data );
 	}
 	idWinVec3 &operator=( const idWinVec3 &other ) {
@@ -662,7 +662,7 @@ public:
 		data = other.data;
 		return *this;
 	}
-	idVec3 &operator=(	const idVec3 &other ) {
+	idVec3 &operator=( const idVec3 &other ) {
 		data = other;
 		if( guiDict ) {
 			guiDict->SetVector( GetName(), data );
@@ -733,13 +733,13 @@ public:
 			data = guiDict->GetString( GetName() );
 		}
 	}
-	int	operator==(	const idStr &other ) const {
+	int	operator==( const idStr &other ) const {
 		return ( other == data );
 	}
-	int	operator==(	const char *other ) const {
+	int	operator==( const char *other ) const {
 		return ( data == other );
 	}
-	idStr &operator=(	const idStr &other ) {
+	idStr &operator=( const idStr &other ) {
 		data = other;
 		if( guiDict ) {
 			guiDict->Set( GetName(), data );
@@ -855,7 +855,7 @@ idMultiWinVar
 multiplexes access to a list if idWinVar*
 ================
 */
-class idMultiWinVar : public idList< idWinVar * > {
+class idMultiWinVar : public idList < idWinVar * > {
 public:
 	void Set( const char *val );
 	void Update( void );

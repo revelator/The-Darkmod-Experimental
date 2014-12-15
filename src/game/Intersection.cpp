@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -455,10 +455,10 @@ bool LineSegTriangleIntersect( const idVec3 Seg[LSG_COUNT], idVec3 Tri[3], idVec
 	/*
 		if(t < 0.0 || t > 1.0)
 		{
-			DM_LOG(LC_MATH, LT_DEBUG)LOGSTRING("No triangle intersection  t = %f\r", t);
-			goto Quit;
+		DM_LOG(LC_MATH, LT_DEBUG)LOGSTRING("No triangle intersection  t = %f\r", t);
+		goto Quit;
 		}
-	*/
+		*/
 	DM_LOG( LC_MATH, LT_DEBUG )LOGSTRING( "Triangle intersection t = %f\r", t );
 	rc = true;
 Quit:
@@ -528,7 +528,7 @@ void R_SetLightFrustum( const idPlane lightProject[4], idPlane frustum[6] ) {
 	frustum[5] = lightProject[3];
 	frustum[5][3] -= 1.0f;
 	frustum[5] = -frustum[5];
-	for( i = 0 ; i < 6 ; i++ ) {
+	for( i = 0; i < 6; i++ ) {
 		float	l;
 		frustum[i] = -frustum[i];
 		l = frustum[i].Normalize();
@@ -546,12 +546,12 @@ EIntersection IntersectLineLightCone( const idVec3 rkLine[LSG_COUNT],
 	float t;
 	idPlane lightProject[4];
 	idPlane frustum[6];
-	int sides[6][2] = { {0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0}
+	int sides[6][2] = { { 0, 0 },
+		{ 0, 0 },
+		{ 0, 0 },
+		{ 0, 0 },
+		{ 0, 0 },
+		{ 0, 0 }
 	};
 	int sidesBack = 0;
 	idStr txt;
@@ -573,12 +573,12 @@ EIntersection IntersectLineLightCone( const idVec3 rkLine[LSG_COUNT],
 		DM_LOGPLANE(LC_MATH, LT_DEBUG, "Light[1]", lightProject[1]);
 		DM_LOGPLANE(LC_MATH, LT_DEBUG, "Light[2]", lightProject[2]);
 		DM_LOGPLANE(LC_MATH, LT_DEBUG, "Light[3]", lightProject[3]);
-	 */
+		*/
 	n = format.Length();
 	// grayman #3584 - determine whether the start and end points of the line segment
 	// lie on the back (inside) or front (outside) of each of the 6 planes of the light cone
 	intersectionCount = 0;
-	for( i = 0 ; i < 6 ; i++ ) {
+	for( i = 0; i < 6; i++ ) {
 		sprintf( txt, format, i );
 		DM_LOGPLANE( LC_MATH, LT_DEBUG, txt, frustum[i] );
 		sides[i][0] = frustum[i].Side( rkLine[LSG_ORIGIN], idMath::FLT_EPSILON );
@@ -607,7 +607,7 @@ EIntersection IntersectLineLightCone( const idVec3 rkLine[LSG_COUNT],
 	} else { // calculate an intersection
 		// We've determined that at least one of the endpoints is possibly inside
 		// the frustum (light volume).
-		for( i = 0 ; i < 6 ; i++ ) {
+		for( i = 0; i < 6; i++ ) {
 			if( sides[i][0] != sides[i][1] ) {
 				// the line crosses the plane, so calculate an intersection
 				if( frustum[i].RayIntersection( rkLine[LSG_ORIGIN], rkLine[LSG_DIRECTION], t ) ) // grayman #3584
@@ -618,7 +618,7 @@ EIntersection IntersectLineLightCone( const idVec3 rkLine[LSG_COUNT],
 					// So check that, except for the plane you just intersected, because
 					// you know that will return INTERSECT_ON, which is okay.
 					bool inside = true;
-					for( int j = 0 ; j < 6 ; j++ ) {
+					for( int j = 0; j < 6; j++ ) {
 						if( j == i ) {
 							continue; // skip the plane you just intersected
 						}
@@ -656,7 +656,7 @@ EIntersection IntersectLineLightCone( const idVec3 rkLine[LSG_COUNT],
 			Intersect[1] = rkLine[LSG_ORIGIN]; // assume it's the line origin
 			inside[0] = true;
 			inside[1] = false;
-			for( i = 0 ; i < 6 ; i++ ) {
+			for( i = 0; i < 6; i++ ) {
 				if( sides[i][0] == PLANESIDE_FRONT ) {
 					Intersect[1] = EndPoint; // nope, it must be the line end
 					inside[0] = false;
@@ -673,24 +673,24 @@ EIntersection IntersectLineLightCone( const idVec3 rkLine[LSG_COUNT],
 						bool bEnd = true;
 						for ( i = 0 ; i < 6 ; i++ )
 						{
-							x = frustum[i].Side(Intersect[0], idMath::FLT_EPSILON);
-							DM_LOG(LC_MATH, LT_DEBUG)LOGSTRING("Frustum[%u/0] intersection test returns %u\r", i, x);
-							if (x != PLANESIDE_BACK)
-							{
-								bStart = false;
-							}
+						x = frustum[i].Side(Intersect[0], idMath::FLT_EPSILON);
+						DM_LOG(LC_MATH, LT_DEBUG)LOGSTRING("Frustum[%u/0] intersection test returns %u\r", i, x);
+						if (x != PLANESIDE_BACK)
+						{
+						bStart = false;
+						}
 
-							x = frustum[i].Side(Intersect[1], idMath::FLT_EPSILON);
-							DM_LOG(LC_MATH, LT_DEBUG)LOGSTRING("Frustum[%u/1] intersection test returns %u\r", i, x);
-							if (x != PLANESIDE_BACK)
-							{
-								bEnd = false;
-							}
+						x = frustum[i].Side(Intersect[1], idMath::FLT_EPSILON);
+						DM_LOG(LC_MATH, LT_DEBUG)LOGSTRING("Frustum[%u/1] intersection test returns %u\r", i, x);
+						if (x != PLANESIDE_BACK)
+						{
+						bEnd = false;
+						}
 						}
 
 						if (bStart == false && bEnd == false)
 						{
-							rc = INTERSECT_OUTSIDE;
+						rc = INTERSECT_OUTSIDE;
 						}*/
 		}
 	}
@@ -731,7 +731,7 @@ EIntersection IntersectLineCone( const idVec3 rkLine[LSG_COUNT],
 		DM_LOGPLANE(LC_MATH, LT_DEBUG, "Light[1]", lightProject[1]);
 		DM_LOGPLANE(LC_MATH, LT_DEBUG, "Light[2]", lightProject[2]);
 		DM_LOGPLANE(LC_MATH, LT_DEBUG, "Light[3]", lightProject[3]);
-	*/
+		*/
 	n = format.Length();
 	// Calculate the angle between the target and the lightvector.
 	angle = rkCone[ELA_TARGET].Length() * rkLine[LSG_DIRECTION].Length();
@@ -746,7 +746,7 @@ EIntersection IntersectLineCone( const idVec3 rkLine[LSG_COUNT],
 	}
 	bCalcIntersection = false;
 	l = 0;
-	for( i = 0 ; i < 6 ; i++ ) {
+	for( i = 0; i < 6; i++ ) {
 		sprintf( txt, format, i );
 		DM_LOGPLANE( LC_MATH, LT_DEBUG, txt, frustum[i] );
 		Start[i] = frustum[i].Side( rkLine[LSG_ORIGIN], idMath::FLT_EPSILON );

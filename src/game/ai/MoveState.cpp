@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #include "MoveState.h"
@@ -29,26 +29,26 @@ idMoveState::idMoveState
 =====================
 */
 idMoveState::idMoveState() {
-	moveType			= MOVETYPE_ANIM;
-	moveCommand			= MOVE_NONE;
-	moveStatus			= MOVE_STATUS_DONE;
+	moveType = MOVETYPE_ANIM;
+	moveCommand = MOVE_NONE;
+	moveStatus = MOVE_STATUS_DONE;
 	moveDest.Zero();
 	moveDir.Set( 1.0f, 0.0f, 0.0f );
-	goalEntity			= NULL;
+	goalEntity = NULL;
 	goalEntityOrigin.Zero();
-	toAreaNum			= 0;
-	startTime			= 0;
-	duration			= 0;
-	speed				= 0.0f;
-	range				= 0.0f;
-	wanderYaw			= 0;
-	nextWanderTime		= 0;
-	blockTime			= 0;
-	obstacle			= NULL;
-	lastMoveOrigin		= vec3_origin;
-	lastMoveTime		= 0;
-	anim				= 0;
-	accuracy			= -1;
+	toAreaNum = 0;
+	startTime = 0;
+	duration = 0;
+	speed = 0.0f;
+	range = 0.0f;
+	wanderYaw = 0;
+	nextWanderTime = 0;
+	blockTime = 0;
+	obstacle = NULL;
+	lastMoveOrigin = vec3_origin;
+	lastMoveTime = 0;
+	anim = 0;
+	accuracy = -1;
 }
 
 /*

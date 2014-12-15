@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -84,7 +84,7 @@ void idLedge::AddPoint( const idVec3 &v ) {
 ============
 idLedge::CreateBevels
 
-  NOTE: this assumes the gravity is vertical
+NOTE: this assumes the gravity is vertical
 ============
 */
 void idLedge::CreateBevels( const idVec3 &gravityDir ) {
@@ -255,8 +255,8 @@ void idAASBuild::LedgeSubdivFlood_r( idBrushBSPNode *node, const idLedge *ledge 
 ============
 idAASBuild::LedgeSubdivLeafNodes_r
 
-  The node the ledge was originally part of might be split by other ledges.
-  Here we recurse down the tree from the original node to find all the new leaf nodes the ledge might be part of.
+The node the ledge was originally part of might be split by other ledges.
+Here we recurse down the tree from the original node to find all the new leaf nodes the ledge might be part of.
 ============
 */
 void idAASBuild::LedgeSubdivLeafNodes_r( idBrushBSPNode *node, const idLedge *ledge ) {
@@ -486,8 +486,8 @@ void idAASBuild::WriteLedgeMap( const idStr &fileName, const idStr &ext ) {
 ============
 idAASBuild::LedgeSubdivision
 
-  NOTE: this assumes the bounding box is higher than the maximum step height
-		only ledges with vertical sides are considered
+NOTE: this assumes the bounding box is higher than the maximum step height
+only ledges with vertical sides are considered
 ============
 */
 void idAASBuild::LedgeSubdivision( idBrushBSP &bsp ) {

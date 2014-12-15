@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #pragma once
 
@@ -31,11 +31,11 @@
 * This defines hiding spot characteristics as bit flags
 */
 enum darkModHidingSpotType {
-	NONE_HIDING_SPOT_TYPE				= 0x00,
-	PVS_AREA_HIDING_SPOT_TYPE			= 0x01,				// Hidden by the world geometry (ie, around a corner, through a closed portal)
-	DARKNESS_HIDING_SPOT_TYPE			= 0x02,				// Hidden by darkness
-	VISUAL_OCCLUSION_HIDING_SPOT_TYPE	= 0x04,				// Hidden by visual occlusions (objects, entities, water, etc..)
-	ANY_HIDING_SPOT_TYPE				= 0xFFFFFFFF		// Utility combination value
+	NONE_HIDING_SPOT_TYPE = 0x00,
+	PVS_AREA_HIDING_SPOT_TYPE = 0x01,				// Hidden by the world geometry (ie, around a corner, through a closed portal)
+	DARKNESS_HIDING_SPOT_TYPE = 0x02,				// Hidden by darkness
+	VISUAL_OCCLUSION_HIDING_SPOT_TYPE = 0x04,				// Hidden by visual occlusions (objects, entities, water, etc..)
+	ANY_HIDING_SPOT_TYPE = 0xFFFFFFFF		// Utility combination value
 };
 
 /*!
@@ -80,7 +80,7 @@ protected:
 	idVec3 hideFromPosition;
 
 	// Local PVS area list used to hold the areas being hidden FROM
-	int	hideFromPVSAreas[ idEntity::MAX_PVS_AREAS ];
+	int	hideFromPVSAreas[idEntity::MAX_PVS_AREAS];
 	int numHideFromPVSAreas;
 
 	// The handle to the PVS system describing the PVS areas we are hiding from
@@ -89,7 +89,7 @@ protected:
 
 	// PVS areas we need to test as good hiding spots
 	int numPVSAreas;
-	int	PVSAreas[ idEntity::MAX_PVS_AREAS ];
+	int	PVSAreas[idEntity::MAX_PVS_AREAS];
 
 	// The number of PVS areas iterated so far
 	int numPVSAreasIterated;
@@ -136,7 +136,7 @@ protected:
 	* @param aas Pointer to the Area Awareness System in use
 	* @param AASAreaNum The index of the AAS area being tested for hiding spots
 	* @param searchLimits The limiting bounds which may be smaller or greater than the area being
-			searched.  The searched region is the intersection of the two.
+	searched.  The searched region is the intersection of the two.
 	* @param hidingSpotTypesAllowed The types of hiding spot characteristics for which we should test
 	* @param p_ignoreEntity An entity that should be ignored for testing visual occlusions (usually the self)
 	*/
@@ -220,8 +220,8 @@ protected:
 	// DEPRECATED
 	static void insertHidingSpotWithQualitySorting
 	(
-		darkModHidingSpot& hidingSpot,
-		idList<darkModHidingSpot>& inout_hidingSpots
+	darkModHidingSpot& hidingSpot,
+	idList<darkModHidingSpot>& inout_hidingSpots
 	);
 	*/
 
@@ -334,7 +334,7 @@ public:
 	*/
 	CDarkmodAASHidingSpotFinder
 	(
-		const idVec3 &hideFromPos ,
+		const idVec3 &hideFromPos,
 		float in_hidingHeight,
 		idBounds in_searchLimits,
 		idBounds in_searchIgnoreLimits,
@@ -363,7 +363,7 @@ public:
 	*/
 	bool initialize
 	(
-		const idVec3 &hideFromPos ,
+		const idVec3 &hideFromPos,
 		//idAAS* in_p_aas,
 		float in_hidingHeight,
 		idBounds in_searchLimits,

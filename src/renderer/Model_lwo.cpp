@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -27,7 +27,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 ======================================================================
 
-	Converted from lwobject sample prog from LW 6.5 SDK.
+Converted from lwobject sample prog from LW 6.5 SDK.
 
 ======================================================================
 */
@@ -41,8 +41,8 @@ Free memory used by an lwClip.
 
 void lwFreeClip( lwClip *clip ) {
 	if( clip ) {
-		lwListFree( clip->ifilter, ( void ( __cdecl * )( void * ) )lwFreePlugin );
-		lwListFree( clip->pfilter, ( void ( __cdecl * )( void * ) )lwFreePlugin );
+		lwListFree( clip->ifilter, ( void( __cdecl * )( void * ) )lwFreePlugin );
+		lwListFree( clip->pfilter, ( void( __cdecl * )( void * ) )lwFreePlugin );
 		switch( clip->type ) {
 		case ID_STIL: {
 			if( clip->source.still.name ) {
@@ -125,27 +125,27 @@ lwClip *lwGetClip( idFile *fp, int cksize ) {
 		clip->source.still.name = getS0( fp );
 		break;
 	case ID_ISEQ:
-		clip->source.seq.digits  = getU1( fp );
-		clip->source.seq.flags   = getU1( fp );
-		clip->source.seq.offset  = getI2( fp );
-		clip->source.seq.start   = getI2( fp );
-		clip->source.seq.end     = getI2( fp );
-		clip->source.seq.prefix  = getS0( fp );
-		clip->source.seq.suffix  = getS0( fp );
+		clip->source.seq.digits = getU1( fp );
+		clip->source.seq.flags = getU1( fp );
+		clip->source.seq.offset = getI2( fp );
+		clip->source.seq.start = getI2( fp );
+		clip->source.seq.end = getI2( fp );
+		clip->source.seq.prefix = getS0( fp );
+		clip->source.seq.suffix = getS0( fp );
 		break;
 	case ID_ANIM:
-		clip->source.anim.name   = getS0( fp );
+		clip->source.anim.name = getS0( fp );
 		clip->source.anim.server = getS0( fp );
 		rlen = get_flen();
-		clip->source.anim.data   = getbytes( fp, sz - rlen );
+		clip->source.anim.data = getbytes( fp, sz - rlen );
 		break;
 	case ID_XREF:
-		clip->source.xref.index  = getI4( fp );
+		clip->source.xref.index = getI4( fp );
 		clip->source.xref.string = getS0( fp );
 		break;
 	case ID_STCC:
-		clip->source.cycle.lo   = getI2( fp );
-		clip->source.cycle.hi   = getI2( fp );
+		clip->source.cycle.lo = getI2( fp );
+		clip->source.cycle.hi = getI2( fp );
 		clip->source.cycle.name = getS0( fp );
 		break;
 	default:
@@ -294,7 +294,7 @@ void lwFreeEnvelope( lwEnvelope *env ) {
 			Mem_Free( env->name );
 		}
 		lwListFree( env->key, lwFree );
-		lwListFree( env->cfilter, ( void ( __cdecl * )( void * ) )lwFreePlugin );
+		lwListFree( env->cfilter, ( void( __cdecl * )( void * ) )lwFreePlugin );
 		Mem_Free( env );
 	}
 }
@@ -316,7 +316,7 @@ lwEnvelope *lwGetEnvelope( idFile *fp, int cksize ) {
 	lwPlugin *plug;
 	unsigned int id;
 	unsigned short sz;
-	float f[ 4 ];
+	float f[4];
 	int i, nparams, pos, rlen;
 	/* allocate the Envelope structure */
 	env = ( lwEnvelope * )Mem_ClearedAlloc( sizeof( lwEnvelope ) );
@@ -346,10 +346,10 @@ lwEnvelope *lwGetEnvelope( idFile *fp, int cksize ) {
 			env->name = getS0( fp );
 			break;
 		case ID_PRE:
-			env->behavior[ 0 ] = getU2( fp );
+			env->behavior[0] = getU2( fp );
 			break;
 		case ID_POST:
-			env->behavior[ 1 ] = getU2( fp );
+			env->behavior[1] = getU2( fp );
 			break;
 		case ID_KEY:
 			key = ( lwKey * )Mem_ClearedAlloc( sizeof( lwKey ) );
@@ -358,7 +358,7 @@ lwEnvelope *lwGetEnvelope( idFile *fp, int cksize ) {
 			}
 			key->time = getF4( fp );
 			key->value = getF4( fp );
-			lwListInsert( ( void ** )&env->key, key, ( int ( __cdecl * )( void *, void * ) )compare_keys );
+			lwListInsert( ( void ** )&env->key, key, ( int( __cdecl * )( void *, void * ) )compare_keys );
 			env->nkeys++;
 			break;
 		case ID_SPAN:
@@ -371,19 +371,19 @@ lwEnvelope *lwGetEnvelope( idFile *fp, int cksize ) {
 				nparams = 4;
 			}
 			for( i = 0; i < nparams; i++ ) {
-				f[ i ] = getF4( fp );
+				f[i] = getF4( fp );
 			}
 			switch( key->shape ) {
 			case ID_TCB:
-				key->tension = f[ 0 ];
-				key->continuity = f[ 1 ];
-				key->bias = f[ 2 ];
+				key->tension = f[0];
+				key->continuity = f[1];
+				key->bias = f[2];
 				break;
 			case ID_BEZI:
 			case ID_HERM:
 			case ID_BEZ2:
 				for( i = 0; i < nparams; i++ ) {
-					key->param[ i ] = f[ i ];
+					key->param[i] = f[i];
 				}
 				break;
 			}
@@ -460,7 +460,7 @@ Given the value v of a periodic function, returns the equivalent value
 v2 in the principal interval [lo, hi].  If i isn't NULL, it receives
 the number of wavelengths between v and v2.
 
-   v2 = v - i * (hi - lo)
+v2 = v - i * (hi - lo)
 
 For example, range( 3 pi, 0, 2 pi, i ) returns pi, with i = 1.
 ====================================================================== */
@@ -473,7 +473,7 @@ static float range( float v, float lo, float hi, int *i ) {
 		}
 		return lo;
 	}
-	v2 = lo + v - r * ( float ) floor( ( double ) v / r );
+	v2 = lo + v - r * ( float )floor( ( double )v / r );
 	if( i ) {
 		*i = -( int )( ( v2 - v ) / r + ( v2 > v ? 0.5 : -0.5 ) );
 	}
@@ -551,18 +551,18 @@ Interpolate the value of a BEZ2 curve.
 static float bez2( lwKey *key0, lwKey *key1, float time ) {
 	float x, y, t, t0 = 0.0f, t1 = 1.0f;
 	if( key0->shape == ID_BEZ2 ) {
-		x = key0->time + key0->param[ 2 ];
+		x = key0->time + key0->param[2];
 	} else {
 		x = key0->time + ( key1->time - key0->time ) / 3.0f;
 	}
-	t = bez2_time( key0->time, x, key1->time + key1->param[ 0 ], key1->time,
+	t = bez2_time( key0->time, x, key1->time + key1->param[0], key1->time,
 				   time, &t0, &t1 );
 	if( key0->shape == ID_BEZ2 ) {
-		y = key0->value + key0->param[ 3 ];
+		y = key0->value + key0->param[3];
 	} else {
-		y = key0->value + key0->param[ 1 ] / 3.0f;
+		y = key0->value + key0->param[1] / 3.0f;
 	}
-	return bezier( key0->value, y, key1->param[ 1 ] + key1->value, key1->value, t );
+	return bezier( key0->value, y, key1->param[1] + key1->value, key1->value, t );
 }
 
 /*
@@ -603,15 +603,15 @@ static float outgoing( lwKey *key0, lwKey *key1 ) {
 		break;
 	case ID_BEZI:
 	case ID_HERM:
-		out = key0->param[ 1 ];
+		out = key0->param[1];
 		if( key0->prev ) {
 			out *= ( key1->time - key0->time ) / ( key1->time - key0->prev->time );
 		}
 		break;
 	case ID_BEZ2:
-		out = key0->param[ 3 ] * ( key1->time - key0->time );
-		if( idMath::Fabs( key0->param[ 2 ] ) > 1e-5f ) {
-			out /= key0->param[ 2 ];
+		out = key0->param[3] * ( key1->time - key0->time );
+		if( idMath::Fabs( key0->param[2] ) > 1e-5f ) {
+			out /= key0->param[2];
 		} else {
 			out *= 1e5f;
 		}
@@ -661,16 +661,16 @@ static float incoming( lwKey *key0, lwKey *key1 ) {
 		break;
 	case ID_BEZI:
 	case ID_HERM:
-		in = key1->param[ 0 ];
+		in = key1->param[0];
 		if( key1->next ) {
 			in *= ( key1->time - key0->time ) / ( key1->next->time - key0->time );
 		}
 		break;
 		return in;
 	case ID_BEZ2:
-		in = key1->param[ 1 ] * ( key1->time - key0->time );
-		if( idMath::Fabs( key1->param[ 0 ] ) > 1e-5f ) {
-			in /= key1->param[ 0 ];
+		in = key1->param[1] * ( key1->time - key0->time );
+		if( idMath::Fabs( key1->param[0] ) > 1e-5f ) {
+			in /= key1->param[0];
 		} else {
 			in *= 1e5f;
 		}
@@ -710,7 +710,7 @@ float evalEnvelope( lwEnvelope *env, float time ) {
 	}
 	/* use pre-behavior if time is before first key time */
 	if( time < skey->time ) {
-		switch( env->behavior[ 0 ] ) {
+		switch( env->behavior[0] ) {
 		case BEH_RESET:
 			return 0.0f;
 		case BEH_CONSTANT:
@@ -736,7 +736,7 @@ float evalEnvelope( lwEnvelope *env, float time ) {
 	}
 	/* use post-behavior if time is after last key time */
 	else if( time > ekey->time ) {
-		switch( env->behavior[ 1 ] ) {
+		switch( env->behavior[1] ) {
 		case BEH_RESET:
 			return 0.0f;
 		case BEH_CONSTANT:
@@ -801,9 +801,9 @@ lwListFree()
 Free the items in a list.
 ====================================================================== */
 
-void lwListFree( void *list, void ( *freeNode )( void * ) ) {
+void lwListFree( void *list, void( *freeNode )( void * ) ) {
 	lwNode *node, *next;
-	node = ( lwNode * ) list;
+	node = ( lwNode * )list;
 	while( node ) {
 		next = node->next;
 		freeNode( node );
@@ -820,7 +820,7 @@ Append a node to a list.
 
 void lwListAdd( void **list, void *node ) {
 	lwNode *head, *tail;
-	head = *( ( lwNode ** ) list );
+	head = *( ( lwNode ** )list );
 	if( !head ) {
 		*list = node;
 		return;
@@ -829,8 +829,8 @@ void lwListAdd( void **list, void *node ) {
 		tail = head;
 		head = head->next;
 	}
-	tail->next = ( lwNode * ) node;
-	( ( lwNode * ) node )->prev = tail;
+	tail->next = ( lwNode * )node;
+	( ( lwNode * )node )->prev = tail;
 }
 
 /*
@@ -840,14 +840,14 @@ lwListInsert()
 Insert a node into a list in sorted order.
 ====================================================================== */
 
-void lwListInsert( void **vlist, void *vitem, int ( *compare )( void *, void * ) ) {
+void lwListInsert( void **vlist, void *vitem, int( *compare )( void *, void * ) ) {
 	lwNode **list, *item, *node, *prev;
 	if( !*vlist ) {
 		*vlist = vitem;
 		return;
 	}
-	list = ( lwNode ** ) vlist;
-	item = ( lwNode * ) vitem;
+	list = ( lwNode ** )vlist;
+	item = ( lwNode * )vitem;
 	node = *list;
 	prev = NULL;
 	while( node ) {
@@ -1081,7 +1081,7 @@ char *getS0( idFile *fp ) {
 		return NULL;
 	}
 	pos = fp->Tell();
-	for( i = 1; ; i++ ) {
+	for( i = 1;; i++ ) {
 		c = 0;
 		if( fp->Read( &c, 1 ) == -1 ) {
 			flen = FLEN_ERROR;
@@ -1172,7 +1172,7 @@ unsigned short sgetU2( unsigned char **bp ) {
 	if( flen == FLEN_ERROR ) {
 		return 0;
 	}
-	i = ( buf[ 0 ] << 8 ) | buf[ 1 ];
+	i = ( buf[0] << 8 ) | buf[1];
 	flen += 2;
 	*bp += 2;
 	return i;
@@ -1196,12 +1196,12 @@ int sgetVX( unsigned char **bp ) {
 	if( flen == FLEN_ERROR ) {
 		return 0;
 	}
-	if( buf[ 0 ] != 0xFF ) {
-		i = buf[ 0 ] << 8 | buf[ 1 ];
+	if( buf[0] != 0xFF ) {
+		i = buf[0] << 8 | buf[1];
 		flen += 2;
 		*bp += 2;
 	} else {
-		i = ( buf[ 1 ] << 16 ) | ( buf[ 2 ] << 8 ) | buf[ 3 ];
+		i = ( buf[1] << 16 ) | ( buf[2] << 8 ) | buf[3];
 		flen += 4;
 		*bp += 4;
 	}
@@ -1262,7 +1262,7 @@ void lwFreeLayer( lwLayer *layer ) {
 		}
 		lwFreePoints( &layer->point );
 		lwFreePolygons( &layer->polygon );
-		lwListFree( layer->vmap, ( void ( __cdecl * )( void * ) )lwFreeVMap );
+		lwListFree( layer->vmap, ( void( __cdecl * )( void * ) )lwFreeVMap );
 		Mem_Free( layer );
 	}
 }
@@ -1276,10 +1276,10 @@ Free memory used by an lwObject.
 
 void lwFreeObject( lwObject *object ) {
 	if( object ) {
-		lwListFree( object->layer, ( void ( __cdecl * )( void * ) )lwFreeLayer );
-		lwListFree( object->env, ( void ( __cdecl * )( void * ) )lwFreeEnvelope );
-		lwListFree( object->clip, ( void ( __cdecl * )( void * ) )lwFreeClip );
-		lwListFree( object->surf, ( void ( __cdecl * )( void * ) )lwFreeSurface );
+		lwListFree( object->layer, ( void( __cdecl * )( void * ) )lwFreeLayer );
+		lwListFree( object->env, ( void( __cdecl * )( void * ) )lwFreeEnvelope );
+		lwListFree( object->clip, ( void( __cdecl * )( void * ) )lwFreeClip );
+		lwListFree( object->surf, ( void( __cdecl * )( void * ) )lwFreeSurface );
 		lwFreeTags( &object->taglist );
 		Mem_Free( object );
 	}
@@ -1294,14 +1294,14 @@ NULL if the file couldn't be loaded.  On failure, failID and failpos
 can be used to diagnose the cause.
 
 1.  If the file isn't an LWO2 or an LWOB, failpos will contain 12 and
-    failID will be unchanged.
+failID will be unchanged.
 
 2.  If an error occurs while reading, failID will contain the most
-    recently read IFF chunk ID, and failpos will contain the value
-    returned by fp->Tell() at the time of the failure.
+recently read IFF chunk ID, and failpos will contain the value
+returned by fp->Tell() at the time of the failure.
 
 3.  If the file couldn't be opened, or an error occurs while reading
-    the first 12 bytes, both failID and failpos will be unchanged.
+the first 12 bytes, both failID and failpos will be unchanged.
 
 If you don't need this information, failID and failpos can be NULL.
 ====================================================================== */
@@ -1319,9 +1319,9 @@ lwObject *lwGetObject( const char *filename, unsigned int *failID, int *failpos 
 	}
 	/* read the first 12 bytes */
 	set_flen( 0 );
-	id       = getU4( fp );
+	id = getU4( fp );
 	formsize = getU4( fp );
-	type     = getU4( fp );
+	type = getU4( fp );
 	if( 12 != get_flen() ) {
 		fileSystem->CloseFile( fp );
 		return NULL;
@@ -1378,9 +1378,9 @@ lwObject *lwGetObject( const char *filename, unsigned int *failID, int *failpos 
 			set_flen( 0 );
 			layer->index = getU2( fp );
 			layer->flags = getU2( fp );
-			layer->pivot[ 0 ] = getF4( fp );
-			layer->pivot[ 1 ] = getF4( fp );
-			layer->pivot[ 2 ] = getF4( fp );
+			layer->pivot[0] = getF4( fp );
+			layer->pivot[1] = getF4( fp );
+			layer->pivot[2] = getF4( fp );
 			layer->name = getS0( fp );
 			rlen = get_flen();
 			if( rlen < 0 || rlen > cksize ) {
@@ -1407,8 +1407,8 @@ lwObject *lwGetObject( const char *filename, unsigned int *failID, int *failpos 
 			break;
 		case ID_VMAP:
 		case ID_VMAD:
-			node = ( lwNode * ) lwGetVMap( fp, cksize, layer->point.offset,
-										   layer->polygon.offset, id == ID_VMAD );
+			node = ( lwNode * )lwGetVMap( fp, cksize, layer->point.offset,
+										  layer->polygon.offset, id == ID_VMAD );
 			if( !node ) {
 				goto Fail;
 			}
@@ -1424,7 +1424,7 @@ lwObject *lwGetObject( const char *filename, unsigned int *failID, int *failpos 
 		case ID_BBOX:
 			set_flen( 0 );
 			for( i = 0; i < 6; i++ ) {
-				layer->bbox[ i ] = getF4( fp );
+				layer->bbox[i] = getF4( fp );
 			}
 			rlen = get_flen();
 			if( rlen < 0 || rlen > cksize ) {
@@ -1440,7 +1440,7 @@ lwObject *lwGetObject( const char *filename, unsigned int *failID, int *failpos 
 			}
 			break;
 		case ID_ENVL:
-			node = ( lwNode * ) lwGetEnvelope( fp, cksize );
+			node = ( lwNode * )lwGetEnvelope( fp, cksize );
 			if( !node ) {
 				goto Fail;
 			}
@@ -1448,7 +1448,7 @@ lwObject *lwGetObject( const char *filename, unsigned int *failID, int *failpos 
 			object->nenvs++;
 			break;
 		case ID_CLIP:
-			node = ( lwNode * ) lwGetClip( fp, cksize );
+			node = ( lwNode * )lwGetClip( fp, cksize );
 			if( !node ) {
 				goto Fail;
 			}
@@ -1456,7 +1456,7 @@ lwObject *lwGetObject( const char *filename, unsigned int *failID, int *failpos 
 			object->nclips++;
 			break;
 		case ID_SURF:
-			node = ( lwNode * ) lwGetSurface( fp, cksize );
+			node = ( lwNode * )lwGetSurface( fp, cksize );
 			if( !node ) {
 				goto Fail;
 			}
@@ -1573,7 +1573,7 @@ static int add_clip( char *s, lwClip **clist, int *nclips ) {
 	clip->saturation.val = 1.0f;
 	clip->gamma.val = 1.0f;
 	if( p = strstr( s, "(sequence)" ) ) {
-		p[ -1 ] = 0;
+		p[-1] = 0;
 		clip->type = ID_ISEQ;
 		clip->source.seq.prefix = s;
 		clip->source.seq.digits = 3;
@@ -1607,10 +1607,10 @@ static int add_tvel( float pos[], float vel[], lwEnvelope **elist, int *nenvs ) 
 			return 0;
 		}
 		key0->next = key1;
-		key0->value = pos[ i ];
+		key0->value = pos[i];
 		key0->time = 0.0f;
 		key1->prev = key0;
-		key1->value = pos[ i ] + vel[ i ] * 30.0f;
+		key1->value = pos[i] + vel[i] * 30.0f;
 		key1->time = 1.0f;
 		key0->shape = key1->shape = ID_LINE;
 		env->index = *nenvs + i + 1;
@@ -1618,12 +1618,12 @@ static int add_tvel( float pos[], float vel[], lwEnvelope **elist, int *nenvs ) 
 		env->name = ( char * )Mem_ClearedAlloc( 11 );
 		if( env->name ) {
 			strcpy( env->name, "Position.X" );
-			env->name[ 9 ] += i;
+			env->name[9] += i;
 		}
 		env->key = key0;
 		env->nkeys = 2;
-		env->behavior[ 0 ] = BEH_LINEAR;
-		env->behavior[ 1 ] = BEH_LINEAR;
+		env->behavior[0] = BEH_LINEAR;
+		env->behavior[1] = BEH_LINEAR;
 		lwListAdd( ( void ** )elist, env );
 	}
 	*nenvs += 3;
@@ -1643,9 +1643,9 @@ static lwTexture *get_texture( char *s ) {
 	if( !tex ) {
 		return NULL;
 	}
-	tex->tmap.size.val[ 0 ] =
-		tex->tmap.size.val[ 1 ] =
-			tex->tmap.size.val[ 2 ] = 1.0f;
+	tex->tmap.size.val[0] =
+		tex->tmap.size.val[1] =
+			tex->tmap.size.val[2] = 1.0f;
 	tex->opacity.val = 1.0f;
 	tex->enabled = 1;
 	if( strstr( s, "Image Map" ) ) {
@@ -1683,7 +1683,7 @@ lwSurface *lwGetSurface5( idFile *fp, int cksize, lwObject *obj ) {
 	lwTexture *tex;
 	lwPlugin *shdr;
 	char *s;
-	float v[ 3 ];
+	float v[3];
 	unsigned int id, flags;
 	unsigned short sz;
 	int pos, rlen, i;
@@ -1693,14 +1693,14 @@ lwSurface *lwGetSurface5( idFile *fp, int cksize, lwObject *obj ) {
 		goto Fail;
 	}
 	/* non-zero defaults */
-	surf->color.rgb[ 0 ] = 0.78431f;
-	surf->color.rgb[ 1 ] = 0.78431f;
-	surf->color.rgb[ 2 ] = 0.78431f;
-	surf->diffuse.val    = 1.0f;
+	surf->color.rgb[0] = 0.78431f;
+	surf->color.rgb[1] = 0.78431f;
+	surf->color.rgb[2] = 0.78431f;
+	surf->diffuse.val = 1.0f;
 	surf->glossiness.val = 0.4f;
-	surf->bump.val       = 1.0f;
-	surf->eta.val        = 1.0f;
-	surf->sideflags      = 1;
+	surf->bump.val = 1.0f;
+	surf->eta.val = 1.0f;
+	surf->sideflags = 1;
 	/* remember where we started */
 	set_flen( 0 );
 	pos = fp->Tell();
@@ -1718,19 +1718,19 @@ lwSurface *lwGetSurface5( idFile *fp, int cksize, lwObject *obj ) {
 		set_flen( 0 );
 		switch( id ) {
 		case ID_COLR:
-			surf->color.rgb[ 0 ] = getU1( fp ) / 255.0f;
-			surf->color.rgb[ 1 ] = getU1( fp ) / 255.0f;
-			surf->color.rgb[ 2 ] = getU1( fp ) / 255.0f;
+			surf->color.rgb[0] = getU1( fp ) / 255.0f;
+			surf->color.rgb[1] = getU1( fp ) / 255.0f;
+			surf->color.rgb[2] = getU1( fp ) / 255.0f;
 			break;
 		case ID_FLAG:
 			flags = getU2( fp );
-			if( flags &   4 ) {
+			if( flags & 4 ) {
 				surf->smooth = 1.56207f;
 			}
-			if( flags &   8 ) {
+			if( flags & 8 ) {
 				surf->color_hilite.val = 1.0f;
 			}
-			if( flags &  16 ) {
+			if( flags & 16 ) {
 				surf->color_filter.val = 1.0f;
 			}
 			if( flags & 128 ) {
@@ -1762,7 +1762,7 @@ lwSurface *lwGetSurface5( idFile *fp, int cksize, lwObject *obj ) {
 			surf->specularity.val = getF4( fp );
 			break;
 		case ID_GLOS:
-			surf->glossiness.val = ( float ) logf( ( float ) getU2( fp ) ) / 20.7944f;
+			surf->glossiness.val = ( float )logf( ( float )getU2( fp ) ) / 20.7944f;
 			break;
 		case ID_SMAN:
 			surf->smooth = getF4( fp );
@@ -1839,7 +1839,7 @@ lwSurface *lwGetSurface5( idFile *fp, int cksize, lwObject *obj ) {
 			} else {
 				tex->param.proc.axis = i;
 			}
-			if( flags &  8 ) {
+			if( flags & 8 ) {
 				tex->tmap.coord_sys = 1;
 			}
 			if( flags & 16 ) {
@@ -1855,22 +1855,22 @@ lwSurface *lwGetSurface5( idFile *fp, int cksize, lwObject *obj ) {
 			break;
 		case ID_TSIZ:
 			for( i = 0; i < 3; i++ ) {
-				tex->tmap.size.val[ i ] = getF4( fp );
+				tex->tmap.size.val[i] = getF4( fp );
 			}
 			break;
 		case ID_TCTR:
 			for( i = 0; i < 3; i++ ) {
-				tex->tmap.center.val[ i ] = getF4( fp );
+				tex->tmap.center.val[i] = getF4( fp );
 			}
 			break;
 		case ID_TFAL:
 			for( i = 0; i < 3; i++ ) {
-				tex->tmap.falloff.val[ i ] = getF4( fp );
+				tex->tmap.falloff.val[i] = getF4( fp );
 			}
 			break;
 		case ID_TVEL:
 			for( i = 0; i < 3; i++ ) {
-				v[ i ] = getF4( fp );
+				v[i] = getF4( fp );
 			}
 			tex->tmap.center.eindex = add_tvel( tex->tmap.center.val, v,
 												&obj->env, &obj->nenvs );
@@ -1878,11 +1878,11 @@ lwSurface *lwGetSurface5( idFile *fp, int cksize, lwObject *obj ) {
 		case ID_TCLR:
 			if( tex->type == ID_PROC )
 				for( i = 0; i < 3; i++ ) {
-					tex->param.proc.value[ i ] = getU1( fp ) / 255.0f;
+					tex->param.proc.value[i] = getU1( fp ) / 255.0f;
 				}
 			break;
 		case ID_TVAL:
-			tex->param.proc.value[ 0 ] = getI2( fp ) / 256.0f;
+			tex->param.proc.value[0] = getI2( fp ) / 256.0f;
 			break;
 		case ID_TAMP:
 			if( tex->type == ID_IMAP ) {
@@ -1999,7 +1999,7 @@ int lwGetPolygons5( idFile *fp, int cksize, lwPolygonList *plist, int ptoffset )
 	/* fill in the new polygons */
 	bp = buf;
 	pp = plist->pol + plist->offset;
-	pv = plist->pol[ 0 ].v + plist->voffset;
+	pv = plist->pol[0].v + plist->voffset;
 	for( i = 0; i < npols; i++ ) {
 		nv = sgetU2( &bp );
 		pp->nverts = nv;
@@ -2008,7 +2008,7 @@ int lwGetPolygons5( idFile *fp, int cksize, lwPolygonList *plist, int ptoffset )
 			pp->v = pv;
 		}
 		for( j = 0; j < nv; j++ ) {
-			pv[ j ].index = sgetU2( &bp ) + ptoffset;
+			pv[j].index = sgetU2( &bp ) + ptoffset;
 		}
 		j = sgetI2( &bp );
 		if( j < 0 ) {
@@ -2016,7 +2016,7 @@ int lwGetPolygons5( idFile *fp, int cksize, lwPolygonList *plist, int ptoffset )
 			bp += 2;
 		}
 		j -= 1;
-		pp->surf = ( lwSurface * ) j;
+		pp->surf = ( lwSurface * )j;
 		pp++;
 		pv += nv;
 	}
@@ -2039,14 +2039,14 @@ file couldn't be loaded.  On failure, failID and failpos can be used
 to diagnose the cause.
 
 1.  If the file isn't an LWOB, failpos will contain 12 and failID will
-    be unchanged.
+be unchanged.
 
 2.  If an error occurs while reading an LWOB, failID will contain the
-    most recently read IFF chunk ID, and failpos will contain the
-    value returned by fp->Tell() at the time of the failure.
+most recently read IFF chunk ID, and failpos will contain the
+value returned by fp->Tell() at the time of the failure.
 
 3.  If the file couldn't be opened, or an error occurs while reading
-    the first 12 bytes, both failID and failpos will be unchanged.
+the first 12 bytes, both failID and failpos will be unchanged.
 
 If you don't need this information, failID and failpos can be NULL.
 ====================================================================== */
@@ -2066,9 +2066,9 @@ lwObject *lwGetObject5( const char *filename, unsigned int *failID, int *failpos
 		return NULL;
 	}
 	set_flen( 0 );
-	id       = getU4( fp );
+	id = getU4( fp );
 	formsize = getU4( fp );
-	type     = getU4( fp );
+	type = getU4( fp );
 	if( 12 != get_flen() ) {
 		fileSystem->CloseFile( fp );
 		return NULL;
@@ -2119,7 +2119,7 @@ lwObject *lwGetObject5( const char *filename, unsigned int *failID, int *failpos
 			}
 			break;
 		case ID_SURF:
-			node = ( lwNode * ) lwGetSurface5( fp, cksize, object );
+			node = ( lwNode * )lwGetSurface5( fp, cksize, object );
 			if( !node ) {
 				goto Fail2;
 			}
@@ -2181,11 +2181,11 @@ void lwFreePoints( lwPointList *point ) {
 	if( point ) {
 		if( point->pt ) {
 			for( i = 0; i < point->count; i++ ) {
-				if( point->pt[ i ].pol ) {
-					Mem_Free( point->pt[ i ].pol );
+				if( point->pt[i].pol ) {
+					Mem_Free( point->pt[i].pol );
 				}
-				if( point->pt[ i ].vm ) {
-					Mem_Free( point->pt[ i ].vm );
+				if( point->pt[i].vm ) {
+					Mem_Free( point->pt[i].vm );
 				}
 			}
 			Mem_Free( point->pt );
@@ -2206,15 +2206,15 @@ void lwFreePolygons( lwPolygonList *plist ) {
 	if( plist ) {
 		if( plist->pol ) {
 			for( i = 0; i < plist->count; i++ ) {
-				if( plist->pol[ i ].v ) {
-					for( j = 0; j < plist->pol[ i ].nverts; j++ )
-						if( plist->pol[ i ].v[ j ].vm ) {
-							Mem_Free( plist->pol[ i ].v[ j ].vm );
+				if( plist->pol[i].v ) {
+					for( j = 0; j < plist->pol[i].nverts; j++ )
+						if( plist->pol[i].v[j].vm ) {
+							Mem_Free( plist->pol[i].v[j].vm );
 						}
 				}
 			}
-			if( plist->pol[ 0 ].v ) {
-				Mem_Free( plist->pol[ 0 ].v );
+			if( plist->pol[0].v ) {
+				Mem_Free( plist->pol[0].v );
 			}
 			Mem_Free( plist->pol );
 		}
@@ -2249,18 +2249,18 @@ int lwGetPoints( idFile *fp, int cksize, lwPointList *point ) {
 		memcpy( point->pt, oldpt, point->offset * sizeof( lwPoint ) );
 		Mem_Free( oldpt );
 	}
-	memset( &point->pt[ point->offset ], 0, np * sizeof( lwPoint ) );
+	memset( &point->pt[point->offset], 0, np * sizeof( lwPoint ) );
 	/* read the whole chunk */
-	f = ( float * ) getbytes( fp, cksize );
+	f = ( float * )getbytes( fp, cksize );
 	if( !f ) {
 		return 0;
 	}
 	BigRevBytes( f, 4, np * 3 );
 	/* assign position values */
 	for( i = 0, j = 0; i < np; i++, j += 3 ) {
-		point->pt[ i ].pos[ 0 ] = f[ j ];
-		point->pt[ i ].pos[ 1 ] = f[ j + 1 ];
-		point->pt[ i ].pos[ 2 ] = f[ j + 2 ];
+		point->pt[i].pos[0] = f[j];
+		point->pt[i].pos[1] = f[j + 1];
+		point->pt[i].pos[2] = f[j + 2];
 	}
 	Mem_Free( f );
 	return 1;
@@ -2280,18 +2280,18 @@ void lwGetBoundingBox( lwPointList *point, float bbox[] ) {
 		return;
 	}
 	for( i = 0; i < 6; i++ )
-		if( bbox[ i ] != 0.0f ) {
+		if( bbox[i] != 0.0f ) {
 			return;
 		}
-	bbox[ 0 ] = bbox[ 1 ] = bbox[ 2 ] = 1e20f;
-	bbox[ 3 ] = bbox[ 4 ] = bbox[ 5 ] = -1e20f;
+	bbox[0] = bbox[1] = bbox[2] = 1e20f;
+	bbox[3] = bbox[4] = bbox[5] = -1e20f;
 	for( i = 0; i < point->count; i++ ) {
 		for( j = 0; j < 3; j++ ) {
-			if( bbox[ j ] > point->pt[ i ].pos[ j ] ) {
-				bbox[ j ] = point->pt[ i ].pos[ j ];
+			if( bbox[j] > point->pt[i].pos[j] ) {
+				bbox[j] = point->pt[i].pos[j];
 			}
-			if( bbox[ j + 3 ] < point->pt[ i ].pos[ j ] ) {
-				bbox[ j + 3 ] = point->pt[ i ].pos[ j ];
+			if( bbox[j + 3] < point->pt[i].pos[j] ) {
+				bbox[j + 3] = point->pt[i].pos[j];
 			}
 		}
 	}
@@ -2322,17 +2322,17 @@ int lwAllocPolygons( lwPolygonList *plist, int npols, int nverts ) {
 	plist->vcount += nverts;
 	lwPolVert *oldpolv = plist->pol[0].v;
 	plist->pol[0].v = ( lwPolVert * )Mem_Alloc( plist->vcount * sizeof( lwPolVert ) );
-	if( !plist->pol[ 0 ].v ) {
+	if( !plist->pol[0].v ) {
 		return 0;
 	}
 	if( oldpolv ) {
 		memcpy( plist->pol[0].v, oldpolv, plist->voffset * sizeof( lwPolVert ) );
 		Mem_Free( oldpolv );
 	}
-	memset( plist->pol[ 0 ].v + plist->voffset, 0, nverts * sizeof( lwPolVert ) );
+	memset( plist->pol[0].v + plist->voffset, 0, nverts * sizeof( lwPolVert ) );
 	/* fix up the old vertex pointers */
 	for( i = 1; i < plist->offset; i++ ) {
-		plist->pol[ i ].v = plist->pol[ i - 1 ].v + plist->pol[ i - 1 ].nverts;
+		plist->pol[i].v = plist->pol[i - 1].v + plist->pol[i - 1].nverts;
 	}
 	return 1;
 }
@@ -2380,7 +2380,7 @@ int lwGetPolygons( idFile *fp, int cksize, lwPolygonList *plist, int ptoffset ) 
 	/* fill in the new polygons */
 	bp = buf;
 	pp = plist->pol + plist->offset;
-	pv = plist->pol[ 0 ].v + plist->voffset;
+	pv = plist->pol[0].v + plist->voffset;
 	for( i = 0; i < npols; i++ ) {
 		nv = sgetU2( &bp );
 		flags = nv & 0xFC00;
@@ -2392,7 +2392,7 @@ int lwGetPolygons( idFile *fp, int cksize, lwPolygonList *plist, int ptoffset ) 
 			pp->v = pv;
 		}
 		for( j = 0; j < nv; j++ ) {
-			pp->v[ j ].index = sgetVX( &bp ) + ptoffset;
+			pp->v[j].index = sgetVX( &bp ) + ptoffset;
 		}
 		pp++;
 		pv += nv;
@@ -2418,23 +2418,23 @@ undefined for one- and two-point polygons.
 
 void lwGetPolyNormals( lwPointList *point, lwPolygonList *polygon ) {
 	int i, j;
-	float p1[ 3 ], p2[ 3 ], pn[ 3 ], v1[ 3 ], v2[ 3 ];
+	float p1[3], p2[3], pn[3], v1[3], v2[3];
 	for( i = 0; i < polygon->count; i++ ) {
-		if( polygon->pol[ i ].nverts < 3 ) {
+		if( polygon->pol[i].nverts < 3 ) {
 			continue;
 		}
 		for( j = 0; j < 3; j++ ) {
 			// FIXME: track down why indexes are way out of range
-			p1[ j ] = point->pt[ polygon->pol[ i ].v[ 0 ].index ].pos[ j ];
-			p2[ j ] = point->pt[ polygon->pol[ i ].v[ 1 ].index ].pos[ j ];
-			pn[ j ] = point->pt[ polygon->pol[ i ].v[ polygon->pol[ i ].nverts - 1 ].index ].pos[ j ];
+			p1[j] = point->pt[polygon->pol[i].v[0].index].pos[j];
+			p2[j] = point->pt[polygon->pol[i].v[1].index].pos[j];
+			pn[j] = point->pt[polygon->pol[i].v[polygon->pol[i].nverts - 1].index].pos[j];
 		}
 		for( j = 0; j < 3; j++ ) {
-			v1[ j ] = p2[ j ] - p1[ j ];
-			v2[ j ] = pn[ j ] - p1[ j ];
+			v1[j] = p2[j] - p1[j];
+			v2[j] = pn[j] - p1[j];
 		}
-		cross( v1, v2, polygon->pol[ i ].norm );
-		normalize( polygon->pol[ i ].norm );
+		cross( v1, v2, polygon->pol[i].norm );
+		normalize( polygon->pol[i].norm );
 	}
 }
 
@@ -2451,26 +2451,26 @@ int lwGetPointPolygons( lwPointList *point, lwPolygonList *polygon ) {
 	int i, j, k;
 	/* count the number of polygons per point */
 	for( i = 0; i < polygon->count; i++ )
-		for( j = 0; j < polygon->pol[ i ].nverts; j++ ) {
-			++point->pt[ polygon->pol[ i ].v[ j ].index ].npols;
+		for( j = 0; j < polygon->pol[i].nverts; j++ ) {
+			++point->pt[polygon->pol[i].v[j].index].npols;
 		}
 	/* alloc per-point polygon arrays */
 	for( i = 0; i < point->count; i++ ) {
-		if( point->pt[ i ].npols == 0 ) {
+		if( point->pt[i].npols == 0 ) {
 			continue;
 		}
-		point->pt[ i ].pol = ( int * )Mem_ClearedAlloc( point->pt[ i ].npols * sizeof( int ) );
-		if( !point->pt[ i ].pol ) {
+		point->pt[i].pol = ( int * )Mem_ClearedAlloc( point->pt[i].npols * sizeof( int ) );
+		if( !point->pt[i].pol ) {
 			return 0;
 		}
-		point->pt[ i ].npols = 0;
+		point->pt[i].npols = 0;
 	}
 	/* fill in polygon array for each point */
 	for( i = 0; i < polygon->count; i++ ) {
-		for( j = 0; j < polygon->pol[ i ].nverts; j++ ) {
-			k = polygon->pol[ i ].v[ j ].index;
-			point->pt[ k ].pol[ point->pt[ k ].npols ] = i;
-			++point->pt[ k ].npols;
+		for( j = 0; j < polygon->pol[i].nverts; j++ ) {
+			k = polygon->pol[i].v[j].index;
+			point->pt[k].pol[point->pt[k].npols] = i;
+			++point->pt[k].npols;
 		}
 	}
 	return 1;
@@ -2499,32 +2499,32 @@ int lwResolvePolySurfaces( lwPolygonList *polygon, lwTagList *tlist,
 	for( i = 0; i < tlist->count; i++ ) {
 		st = *surf;
 		while( st ) {
-			if( !strcmp( st->name, tlist->tag[ i ] ) ) {
-				s[ i ] = st;
+			if( !strcmp( st->name, tlist->tag[i] ) ) {
+				s[i] = st;
 				break;
 			}
 			st = st->next;
 		}
 	}
 	for( i = 0; i < polygon->count; i++ ) {
-		index = ( int ) polygon->pol[ i ].surf;
+		index = ( int )polygon->pol[i].surf;
 		if( index < 0 || index > tlist->count ) {
 			return 0;
 		}
-		if( !s[ index ] ) {
-			s[ index ] = lwDefaultSurface();
-			if( !s[ index ] ) {
+		if( !s[index] ) {
+			s[index] = lwDefaultSurface();
+			if( !s[index] ) {
 				return 0;
 			}
-			s[ index ]->name = ( char * )Mem_ClearedAlloc( strlen( tlist->tag[ index ] ) + 1 );
-			if( !s[ index ]->name ) {
+			s[index]->name = ( char * )Mem_ClearedAlloc( strlen( tlist->tag[index] ) + 1 );
+			if( !s[index]->name ) {
 				return 0;
 			}
-			strcpy( s[ index ]->name, tlist->tag[ index ] );
-			lwListAdd( ( void ** )surf, s[ index ] );
+			strcpy( s[index]->name, tlist->tag[index] );
+			lwListAdd( ( void ** )surf, s[index] );
 			*nsurfs = *nsurfs + 1;
 		}
-		polygon->pol[ i ].surf = s[ index ];
+		polygon->pol[i].surf = s[index];
 	}
 	Mem_Free( s );
 	return 1;
@@ -2549,31 +2549,31 @@ void lwGetVertNormals( lwPointList *point, lwPolygonList *polygon ) {
 	int j, k, n, g, h, p;
 	float a;
 	for( j = 0; j < polygon->count; j++ ) {
-		for( n = 0; n < polygon->pol[ j ].nverts; n++ ) {
+		for( n = 0; n < polygon->pol[j].nverts; n++ ) {
 			for( k = 0; k < 3; k++ ) {
-				polygon->pol[ j ].v[ n ].norm[ k ] = polygon->pol[ j ].norm[ k ];
+				polygon->pol[j].v[n].norm[k] = polygon->pol[j].norm[k];
 			}
-			if( polygon->pol[ j ].surf->smooth <= 0 ) {
+			if( polygon->pol[j].surf->smooth <= 0 ) {
 				continue;
 			}
-			p = polygon->pol[ j ].v[ n ].index;
-			for( g = 0; g < point->pt[ p ].npols; g++ ) {
-				h = point->pt[ p ].pol[ g ];
+			p = polygon->pol[j].v[n].index;
+			for( g = 0; g < point->pt[p].npols; g++ ) {
+				h = point->pt[p].pol[g];
 				if( h == j ) {
 					continue;
 				}
-				if( polygon->pol[ j ].smoothgrp != polygon->pol[ h ].smoothgrp ) {
+				if( polygon->pol[j].smoothgrp != polygon->pol[h].smoothgrp ) {
 					continue;
 				}
-				a = vecangle( polygon->pol[ j ].norm, polygon->pol[ h ].norm );
-				if( a > polygon->pol[ j ].surf->smooth ) {
+				a = vecangle( polygon->pol[j].norm, polygon->pol[h].norm );
+				if( a > polygon->pol[j].surf->smooth ) {
 					continue;
 				}
 				for( k = 0; k < 3; k++ ) {
-					polygon->pol[ j ].v[ n ].norm[ k ] += polygon->pol[ h ].norm[ k ];
+					polygon->pol[j].v[n].norm[k] += polygon->pol[h].norm[k];
 				}
 			}
-			normalize( polygon->pol[ j ].v[ n ].norm );
+			normalize( polygon->pol[j].v[n].norm );
 		}
 	}
 }
@@ -2590,8 +2590,8 @@ void lwFreeTags( lwTagList *tlist ) {
 	if( tlist ) {
 		if( tlist->tag ) {
 			for( i = 0; i < tlist->count; i++ )
-				if( tlist->tag[ i ] ) {
-					Mem_Free( tlist->tag[ i ] );
+				if( tlist->tag[i] ) {
+					Mem_Free( tlist->tag[i] );
 				}
 			Mem_Free( tlist->tag );
 		}
@@ -2640,11 +2640,11 @@ int lwGetTags( idFile *fp, int cksize, lwTagList *tlist ) {
 		memcpy( tlist->tag, oldtag, tlist->offset * sizeof( char * ) );
 		Mem_Free( oldtag );
 	}
-	memset( &tlist->tag[ tlist->offset ], 0, ntags * sizeof( char * ) );
+	memset( &tlist->tag[tlist->offset], 0, ntags * sizeof( char * ) );
 	/* copy the new tags to the tag array */
 	bp = buf;
 	for( i = 0; i < ntags; i++ ) {
-		tlist->tag[ i + tlist->offset ] = sgetS0( ( unsigned char ** )&bp );
+		tlist->tag[i + tlist->offset] = sgetS0( ( unsigned char ** )&bp );
 	}
 	Mem_Free( buf );
 	return 1;
@@ -2684,13 +2684,13 @@ int lwGetPolygonTags( idFile *fp, int cksize, lwTagList *tlist, lwPolygonList *p
 		}
 		switch( type ) {
 		case ID_SURF:
-			plist->pol[ i ].surf = ( lwSurface * ) j;
+			plist->pol[i].surf = ( lwSurface * )j;
 			break;
 		case ID_PART:
-			plist->pol[ i ].part = j;
+			plist->pol[i].part = j;
 			break;
 		case ID_SMGP:
-			plist->pol[ i ].smoothgrp = j;
+			plist->pol[i].smoothgrp = j;
 			break;
 		}
 	}
@@ -2776,17 +2776,17 @@ void lwFreeSurface( lwSurface *surf ) {
 		if( surf->srcname ) {
 			Mem_Free( surf->srcname );
 		}
-		lwListFree( surf->shader, ( void ( __cdecl * )( void * ) )lwFreePlugin );
-		lwListFree( surf->color.tex, ( void ( __cdecl * )( void * ) )lwFreeTexture );
-		lwListFree( surf->luminosity.tex, ( void ( __cdecl * )( void * ) )lwFreeTexture );
-		lwListFree( surf->diffuse.tex, ( void ( __cdecl * )( void * ) )lwFreeTexture );
-		lwListFree( surf->specularity.tex, ( void ( __cdecl * )( void * ) )lwFreeTexture );
-		lwListFree( surf->glossiness.tex, ( void ( __cdecl * )( void * ) )lwFreeTexture );
-		lwListFree( surf->reflection.val.tex, ( void ( __cdecl * )( void * ) )lwFreeTexture );
-		lwListFree( surf->transparency.val.tex, ( void ( __cdecl * )( void * ) )lwFreeTexture );
-		lwListFree( surf->eta.tex, ( void ( __cdecl * )( void * ) )lwFreeTexture );
-		lwListFree( surf->translucency.tex, ( void ( __cdecl * )( void * ) )lwFreeTexture );
-		lwListFree( surf->bump.tex, ( void ( __cdecl * )( void * ) )lwFreeTexture );
+		lwListFree( surf->shader, ( void( __cdecl * )( void * ) )lwFreePlugin );
+		lwListFree( surf->color.tex, ( void( __cdecl * )( void * ) )lwFreeTexture );
+		lwListFree( surf->luminosity.tex, ( void( __cdecl * )( void * ) )lwFreeTexture );
+		lwListFree( surf->diffuse.tex, ( void( __cdecl * )( void * ) )lwFreeTexture );
+		lwListFree( surf->specularity.tex, ( void( __cdecl * )( void * ) )lwFreeTexture );
+		lwListFree( surf->glossiness.tex, ( void( __cdecl * )( void * ) )lwFreeTexture );
+		lwListFree( surf->reflection.val.tex, ( void( __cdecl * )( void * ) )lwFreeTexture );
+		lwListFree( surf->transparency.val.tex, ( void( __cdecl * )( void * ) )lwFreeTexture );
+		lwListFree( surf->eta.tex, ( void( __cdecl * )( void * ) )lwFreeTexture );
+		lwListFree( surf->translucency.tex, ( void( __cdecl * )( void * ) )lwFreeTexture );
+		lwListFree( surf->bump.tex, ( void( __cdecl * )( void * ) )lwFreeTexture );
 		Mem_Free( surf );
 	}
 }
@@ -2889,26 +2889,26 @@ int lwGetTMap( idFile *fp, int tmapsz, lwTMap *tmap ) {
 		switch( id ) {
 		case ID_SIZE:
 			for( i = 0; i < 3; i++ ) {
-				tmap->size.val[ i ] = getF4( fp );
+				tmap->size.val[i] = getF4( fp );
 			}
 			tmap->size.eindex = getVX( fp );
 			break;
 		case ID_CNTR:
 			for( i = 0; i < 3; i++ ) {
-				tmap->center.val[ i ] = getF4( fp );
+				tmap->center.val[i] = getF4( fp );
 			}
 			tmap->center.eindex = getVX( fp );
 			break;
 		case ID_ROTA:
 			for( i = 0; i < 3; i++ ) {
-				tmap->rotate.val[ i ] = getF4( fp );
+				tmap->rotate.val[i] = getF4( fp );
 			}
 			tmap->rotate.eindex = getVX( fp );
 			break;
 		case ID_FALL:
 			tmap->fall_type = getU2( fp );
 			for( i = 0; i < 3; i++ ) {
-				tmap->falloff.val[ i ] = getF4( fp );
+				tmap->falloff.val[i] = getF4( fp );
 			}
 			tmap->falloff.eindex = getVX( fp );
 			break;
@@ -3069,12 +3069,12 @@ int lwGetProcedural( idFile *fp, int rsz, lwTexture *tex ) {
 			tex->param.proc.axis = getU2( fp );
 			break;
 		case ID_VALU:
-			tex->param.proc.value[ 0 ] = getF4( fp );
+			tex->param.proc.value[0] = getF4( fp );
 			if( sz >= 8 ) {
-				tex->param.proc.value[ 1 ] = getF4( fp );
+				tex->param.proc.value[1] = getF4( fp );
 			}
 			if( sz >= 12 ) {
-				tex->param.proc.value[ 2 ] = getF4( fp );
+				tex->param.proc.value[2] = getF4( fp );
 			}
 			break;
 		case ID_FUNC:
@@ -3158,9 +3158,9 @@ int lwGetGradient( idFile *fp, int rsz, lwTexture *tex ) {
 				return 0;
 			}
 			for( i = 0; i < nkeys; i++ ) {
-				tex->param.grad.key[ i ].value = getF4( fp );
+				tex->param.grad.key[i].value = getF4( fp );
 				for( j = 0; j < 4; j++ ) {
-					tex->param.grad.key[ i ].rgba[ j ] = getF4( fp );
+					tex->param.grad.key[i].rgba[j] = getF4( fp );
 				}
 			}
 			break;
@@ -3171,7 +3171,7 @@ int lwGetGradient( idFile *fp, int rsz, lwTexture *tex ) {
 				return 0;
 			}
 			for( i = 0; i < nkeys; i++ ) {
-				tex->param.grad.ikey[ i ] = getU2( fp );
+				tex->param.grad.ikey[i] = getU2( fp );
 			}
 			break;
 		default:
@@ -3218,9 +3218,9 @@ lwTexture *lwGetTexture( idFile *fp, int bloksz, unsigned int type ) {
 		return NULL;
 	}
 	tex->type = type;
-	tex->tmap.size.val[ 0 ] =
-		tex->tmap.size.val[ 1 ] =
-			tex->tmap.size.val[ 2 ] = 1.0f;
+	tex->tmap.size.val[0] =
+		tex->tmap.size.val[1] =
+			tex->tmap.size.val[2] = 1.0f;
 	tex->opacity.val = 1.0f;
 	tex->enabled = 1;
 	sz = getU2( fp );
@@ -3393,7 +3393,7 @@ static int add_texture( lwSurface *surf, lwTexture *tex ) {
 	default:
 		return 0;
 	}
-	lwListInsert( ( void ** )list, tex, ( int ( __cdecl * )( void *, void * ) )compare_textures );
+	lwListInsert( ( void ** )list, tex, ( int( __cdecl * )( void *, void * ) )compare_textures );
 	return 1;
 }
 
@@ -3410,14 +3410,14 @@ lwSurface *lwDefaultSurface( void ) {
 	if( !surf ) {
 		return NULL;
 	}
-	surf->color.rgb[ 0 ] = 0.78431f;
-	surf->color.rgb[ 1 ] = 0.78431f;
-	surf->color.rgb[ 2 ] = 0.78431f;
-	surf->diffuse.val    = 1.0f;
+	surf->color.rgb[0] = 0.78431f;
+	surf->color.rgb[1] = 0.78431f;
+	surf->color.rgb[2] = 0.78431f;
+	surf->diffuse.val = 1.0f;
 	surf->glossiness.val = 0.4f;
-	surf->bump.val       = 1.0f;
-	surf->eta.val        = 1.0f;
-	surf->sideflags      = 1;
+	surf->bump.val = 1.0f;
+	surf->eta.val = 1.0f;
+	surf->sideflags = 1;
 	return surf;
 }
 
@@ -3441,14 +3441,14 @@ lwSurface *lwGetSurface( idFile *fp, int cksize ) {
 		goto Fail;
 	}
 	/* non-zero defaults */
-	surf->color.rgb[ 0 ] = 0.78431f;
-	surf->color.rgb[ 1 ] = 0.78431f;
-	surf->color.rgb[ 2 ] = 0.78431f;
-	surf->diffuse.val    = 1.0f;
+	surf->color.rgb[0] = 0.78431f;
+	surf->color.rgb[1] = 0.78431f;
+	surf->color.rgb[2] = 0.78431f;
+	surf->diffuse.val = 1.0f;
 	surf->glossiness.val = 0.4f;
-	surf->bump.val       = 1.0f;
-	surf->eta.val        = 1.0f;
-	surf->sideflags      = 1;
+	surf->bump.val = 1.0f;
+	surf->eta.val = 1.0f;
+	surf->sideflags = 1;
 	/* remember where we started */
 	set_flen( 0 );
 	pos = fp->Tell();
@@ -3467,9 +3467,9 @@ lwSurface *lwGetSurface( idFile *fp, int cksize ) {
 		set_flen( 0 );
 		switch( id ) {
 		case ID_COLR:
-			surf->color.rgb[ 0 ] = getF4( fp );
-			surf->color.rgb[ 1 ] = getF4( fp );
-			surf->color.rgb[ 2 ] = getF4( fp );
+			surf->color.rgb[0] = getF4( fp );
+			surf->color.rgb[1] = getF4( fp );
+			surf->color.rgb[2] = getF4( fp );
 			surf->color.eindex = getVX( fp );
 			break;
 		case ID_LUMI:
@@ -3588,7 +3588,7 @@ lwSurface *lwGetSurface( idFile *fp, int cksize ) {
 				if( !shdr ) {
 					goto Fail;
 				}
-				lwListInsert( ( void ** )&surf->shader, shdr, ( int ( __cdecl * )( void *, void * ) )compare_shaders );
+				lwListInsert( ( void ** )&surf->shader, shdr, ( int( __cdecl * )( void *, void * ) )compare_shaders );
 				++surf->nshaders;
 				set_flen( 4 + get_flen() );
 				break;
@@ -3627,22 +3627,22 @@ Fail:
 }
 
 float dot( float a[], float b[] ) {
-	return a[ 0 ] * b[ 0 ] + a[ 1 ] * b[ 1 ] + a[ 2 ] * b[ 2 ];
+	return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 }
 
 void cross( float a[], float b[], float c[] ) {
-	c[ 0 ] = a[ 1 ] * b[ 2 ] - a[ 2 ] * b[ 1 ];
-	c[ 1 ] = a[ 2 ] * b[ 0 ] - a[ 0 ] * b[ 2 ];
-	c[ 2 ] = a[ 0 ] * b[ 1 ] - a[ 1 ] * b[ 0 ];
+	c[0] = a[1] * b[2] - a[2] * b[1];
+	c[1] = a[2] * b[0] - a[0] * b[2];
+	c[2] = a[0] * b[1] - a[1] * b[0];
 }
 
 void normalize( float v[] ) {
 	float r;
-	r = ( float ) idMath::Sqrt( dot( v, v ) );
+	r = ( float )idMath::Sqrt( dot( v, v ) );
 	if( r > 0 ) {
-		v[ 0 ] /= r;
-		v[ 1 ] /= r;
-		v[ 2 ] /= r;
+		v[0] /= r;
+		v[1] /= r;
+		v[2] /= r;
 	}
 }
 
@@ -3665,8 +3665,8 @@ void lwFreeVMap( lwVMap *vmap ) {
 			Mem_Free( vmap->pindex );
 		}
 		if( vmap->val ) {
-			if( vmap->val[ 0 ] ) {
-				Mem_Free( vmap->val[ 0 ] );
+			if( vmap->val[0] ) {
+				Mem_Free( vmap->val[0] );
 			}
 			Mem_Free( vmap->val );
 		}
@@ -3703,7 +3703,7 @@ lwVMap *lwGetVMap( idFile *fp, int cksize, int ptoffset, int poloffset,
 	bp = buf;
 	set_flen( 0 );
 	vmap->type = sgetU4( &bp );
-	vmap->dim  = sgetU2( &bp );
+	vmap->dim = sgetU2( &bp );
 	vmap->name = sgetS0( &bp );
 	rlen = get_flen();
 	/* count the vmap records */
@@ -3738,18 +3738,18 @@ lwVMap *lwGetVMap( idFile *fp, int cksize, int ptoffset, int poloffset,
 			goto Fail;
 		}
 		for( i = 0; i < npts; i++ ) {
-			vmap->val[ i ] = f + i * vmap->dim;
+			vmap->val[i] = f + i * vmap->dim;
 		}
 	}
 	/* fill in the vmap values */
 	bp = buf + rlen;
 	for( i = 0; i < npts; i++ ) {
-		vmap->vindex[ i ] = sgetVX( &bp );
+		vmap->vindex[i] = sgetVX( &bp );
 		if( perpoly ) {
-			vmap->pindex[ i ] = sgetVX( &bp );
+			vmap->pindex[i] = sgetVX( &bp );
 		}
 		for( j = 0; j < vmap->dim; j++ ) {
-			vmap->val[ i ][ j ] = sgetF4( &bp );
+			vmap->val[i][j] = sgetF4( &bp );
 		}
 	}
 	Mem_Free( buf );
@@ -3777,18 +3777,18 @@ int lwGetPointVMaps( lwPointList *point, lwVMap *vmap ) {
 	while( vm ) {
 		if( !vm->perpoly )
 			for( i = 0; i < vm->nverts; i++ ) {
-				++point->pt[ vm->vindex[ i ]].nvmaps;
+				++point->pt[vm->vindex[i]].nvmaps;
 			}
 		vm = vm->next;
 	}
 	/* allocate vmap references for each mapped point */
 	for( i = 0; i < point->count; i++ ) {
-		if( point->pt[ i ].nvmaps ) {
-			point->pt[ i ].vm = ( lwVMapPt * )Mem_ClearedAlloc( point->pt[ i ].nvmaps * sizeof( lwVMapPt ) );
-			if( !point->pt[ i ].vm ) {
+		if( point->pt[i].nvmaps ) {
+			point->pt[i].vm = ( lwVMapPt * )Mem_ClearedAlloc( point->pt[i].nvmaps * sizeof( lwVMapPt ) );
+			if( !point->pt[i].vm ) {
 				return 0;
 			}
-			point->pt[ i ].nvmaps = 0;
+			point->pt[i].nvmaps = 0;
 		}
 	}
 	/* fill in vmap references for each mapped point */
@@ -3796,11 +3796,11 @@ int lwGetPointVMaps( lwPointList *point, lwVMap *vmap ) {
 	while( vm ) {
 		if( !vm->perpoly ) {
 			for( i = 0; i < vm->nverts; i++ ) {
-				j = vm->vindex[ i ];
-				n = point->pt[ j ].nvmaps;
-				point->pt[ j ].vm[ n ].vmap = vm;
-				point->pt[ j ].vm[ n ].index = i;
-				++point->pt[ j ].nvmaps;
+				j = vm->vindex[i];
+				n = point->pt[j].nvmaps;
+				point->pt[j].vm[n].vmap = vm;
+				point->pt[j].vm[n].index = i;
+				++point->pt[j].nvmaps;
 			}
 		}
 		vm = vm->next;
@@ -3824,9 +3824,9 @@ int lwGetPolyVMaps( lwPolygonList *polygon, lwVMap *vmap ) {
 	while( vm ) {
 		if( vm->perpoly ) {
 			for( i = 0; i < vm->nverts; i++ ) {
-				for( j = 0; j < polygon->pol[ vm->pindex[ i ]].nverts; j++ ) {
-					pv = &polygon->pol[ vm->pindex[ i ]].v[ j ];
-					if( vm->vindex[ i ] == pv->index ) {
+				for( j = 0; j < polygon->pol[vm->pindex[i]].nverts; j++ ) {
+					pv = &polygon->pol[vm->pindex[i]].v[j];
+					if( vm->vindex[i] == pv->index ) {
 						++pv->nvmaps;
 						break;
 					}
@@ -3837,8 +3837,8 @@ int lwGetPolyVMaps( lwPolygonList *polygon, lwVMap *vmap ) {
 	}
 	/* allocate vmap references for each mapped vertex */
 	for( i = 0; i < polygon->count; i++ ) {
-		for( j = 0; j < polygon->pol[ i ].nverts; j++ ) {
-			pv = &polygon->pol[ i ].v[ j ];
+		for( j = 0; j < polygon->pol[i].nverts; j++ ) {
+			pv = &polygon->pol[i].v[j];
 			if( pv->nvmaps ) {
 				pv->vm = ( lwVMapPt * )Mem_ClearedAlloc( pv->nvmaps * sizeof( lwVMapPt ) );
 				if( !pv->vm ) {
@@ -3853,11 +3853,11 @@ int lwGetPolyVMaps( lwPolygonList *polygon, lwVMap *vmap ) {
 	while( vm ) {
 		if( vm->perpoly ) {
 			for( i = 0; i < vm->nverts; i++ ) {
-				for( j = 0; j < polygon->pol[ vm->pindex[ i ]].nverts; j++ ) {
-					pv = &polygon->pol[ vm->pindex[ i ]].v[ j ];
-					if( vm->vindex[ i ] == pv->index ) {
-						pv->vm[ pv->nvmaps ].vmap = vm;
-						pv->vm[ pv->nvmaps ].index = i;
+				for( j = 0; j < polygon->pol[vm->pindex[i]].nverts; j++ ) {
+					pv = &polygon->pol[vm->pindex[i]].v[j];
+					if( vm->vindex[i] == pv->index ) {
+						pv->vm[pv->nvmaps].vmap = vm;
+						pv->vm[pv->nvmaps].index = i;
 						++pv->nvmaps;
 						break;
 					}

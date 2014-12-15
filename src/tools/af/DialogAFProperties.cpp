@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -331,7 +331,7 @@ void DialogAFProperties::OnEnChangeEditClipmask() {
 }
 
 void DialogAFProperties::OnEnChangeEditLinearfriction() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_LINEARFRICTION ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_LINEARFRICTION ) ) ) {
 		UpdateFile();
 		if( file && file->bodies.Num() && MessageBox( "Apply to all bodies ?", "Linear Friction", MB_YESNO | MB_ICONQUESTION ) == IDYES ) {
 			for( int i = 0; i < file->bodies.Num(); i++ ) {
@@ -340,7 +340,7 @@ void DialogAFProperties::OnEnChangeEditLinearfriction() {
 			bodyDlg->LoadFile( file );
 		}
 	} else {
-		m_linearFriction = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_LINEARFRICTION ), false );
+		m_linearFriction = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_LINEARFRICTION ), false );
 	}
 }
 
@@ -352,7 +352,7 @@ void DialogAFProperties::OnDeltaposSpinLinearfriction( NMHDR *pNMHDR, LRESULT *p
 }
 
 void DialogAFProperties::OnEnChangeEditAngularfriction() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANGULARFRICTION ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANGULARFRICTION ) ) ) {
 		UpdateFile();
 		if( file && file->bodies.Num() && MessageBox( "Apply to all bodies ?", "Angular Friction", MB_YESNO | MB_ICONQUESTION ) == IDYES ) {
 			for( int i = 0; i < file->bodies.Num(); i++ ) {
@@ -361,7 +361,7 @@ void DialogAFProperties::OnEnChangeEditAngularfriction() {
 			bodyDlg->LoadFile( file );
 		}
 	} else {
-		m_angularFriction = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_ANGULARFRICTION ), false );
+		m_angularFriction = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_ANGULARFRICTION ), false );
 	}
 }
 
@@ -373,7 +373,7 @@ void DialogAFProperties::OnDeltaposSpinAngularfriction( NMHDR *pNMHDR, LRESULT *
 }
 
 void DialogAFProperties::OnEnChangeEditContactfriction() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_CONTACTFRICTION ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_CONTACTFRICTION ) ) ) {
 		UpdateFile();
 		if( file && file->bodies.Num() && MessageBox( "Apply to all bodies ?", "Contact Friction", MB_YESNO | MB_ICONQUESTION ) == IDYES ) {
 			for( int i = 0; i < file->bodies.Num(); i++ ) {
@@ -382,7 +382,7 @@ void DialogAFProperties::OnEnChangeEditContactfriction() {
 			bodyDlg->LoadFile( file );
 		}
 	} else {
-		m_contactFriction = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_CONTACTFRICTION ), false );
+		m_contactFriction = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_CONTACTFRICTION ), false );
 	}
 }
 
@@ -394,7 +394,7 @@ void DialogAFProperties::OnDeltaposSpinContactfriction( NMHDR *pNMHDR, LRESULT *
 }
 
 void DialogAFProperties::OnEnChangeEditConstraintfriction() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_CONSTRAINTFRICTION ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_CONSTRAINTFRICTION ) ) ) {
 		UpdateFile();
 		if( file && file->constraints.Num() && MessageBox( "Apply to all constraints ?", "Constraint Friction", MB_YESNO | MB_ICONQUESTION ) == IDYES ) {
 			for( int i = 0; i < file->constraints.Num(); i++ ) {
@@ -403,7 +403,7 @@ void DialogAFProperties::OnEnChangeEditConstraintfriction() {
 			constraintDlg->LoadFile( file );
 		}
 	} else {
-		EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_CONSTRAINTFRICTION ), false );
+		EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_CONSTRAINTFRICTION ), false );
 	}
 }
 
@@ -415,7 +415,7 @@ void DialogAFProperties::OnDeltaposSpinConstraintfriction( NMHDR *pNMHDR, LRESUL
 }
 
 void DialogAFProperties::OnEnChangeEditTotalmass() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_TOTALMASS ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_TOTALMASS ) ) ) {
 		UpdateFile();
 	}
 }
@@ -428,55 +428,55 @@ void DialogAFProperties::OnDeltaposSpinTotalmass( NMHDR *pNMHDR, LRESULT *pResul
 }
 
 void DialogAFProperties::OnEnChangeEditLinearvelocity() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_LINEARVELOCITY ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_LINEARVELOCITY ) ) ) {
 		UpdateFile();
 	}
 }
 
 void DialogAFProperties::OnEnChangeEditAngularvelocity() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANGULARVELOCITY ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANGULARVELOCITY ) ) ) {
 		UpdateFile();
 	}
 }
 
 void DialogAFProperties::OnEnChangeEditLinearacceleration() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_LINEARACCELERATION ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_LINEARACCELERATION ) ) ) {
 		UpdateFile();
 	}
 }
 
 void DialogAFProperties::OnEnChangeEditAngularacceleration() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANGULARACCELERATION ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANGULARACCELERATION ) ) ) {
 		UpdateFile();
 	}
 }
 
 void DialogAFProperties::OnEnChangeEditNomovetime() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_NO_MOVE_TIME ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_NO_MOVE_TIME ) ) ) {
 		UpdateFile();
 	}
 }
 
 void DialogAFProperties::OnEnChangeEditMinimummovetime() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_MINIMUM_MOVE_TIME ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_MINIMUM_MOVE_TIME ) ) ) {
 		UpdateFile();
 	}
 }
 
 void DialogAFProperties::OnEnChangeEditMaximummovetime() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_MAXIMUM_MOVE_TIME ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_MAXIMUM_MOVE_TIME ) ) ) {
 		UpdateFile();
 	}
 }
 
 void DialogAFProperties::OnEnChangeEditLineartolerance() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_LINEAR_TOLERANCE ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_LINEAR_TOLERANCE ) ) ) {
 		UpdateFile();
 	}
 }
 
 void DialogAFProperties::OnEnChangeEditAngulartolerance() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANGULAR_TOLERANCE ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANGULAR_TOLERANCE ) ) ) {
 		UpdateFile();
 	}
 }

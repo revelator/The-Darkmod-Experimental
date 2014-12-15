@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -307,9 +307,9 @@ void idGLDrawableView::addLight( void ) {
 	viewLight.lightDefHandle = world->AddLightDef( &viewLight.renderLight );
 	viewLight.origin = viewLight.renderLight.origin;
 	viewLight.shader = declManager->FindMaterial( "lights/defaultPointLight", false );
-	viewLight.color.x = viewLight.renderLight.shaderParms[ SHADERPARM_RED ];
-	viewLight.color.y = viewLight.renderLight.shaderParms[ SHADERPARM_GREEN ];
-	viewLight.color.z = viewLight.renderLight.shaderParms[ SHADERPARM_BLUE ];
+	viewLight.color.x = viewLight.renderLight.shaderParms[SHADERPARM_RED];
+	viewLight.color.y = viewLight.renderLight.shaderParms[SHADERPARM_GREEN];
+	viewLight.color.z = viewLight.renderLight.shaderParms[SHADERPARM_BLUE];
 	viewLight.radius = 300.f;
 	viewLight.allowMove = true;
 	// Add light to the list
@@ -383,9 +383,9 @@ void idGLDrawableView::UpdateLights( void ) {
 	for( i = 0; i < viewLights.Num(); i++ ) {
 		lightInfo_t	*vLight = &viewLights[i];
 		vLight->renderLight.shader = vLight->shader;
-		vLight->renderLight.shaderParms[ SHADERPARM_RED ] = vLight->color.x;
-		vLight->renderLight.shaderParms[ SHADERPARM_GREEN ] = vLight->color.y;
-		vLight->renderLight.shaderParms[ SHADERPARM_BLUE ] = vLight->color.z;
+		vLight->renderLight.shaderParms[SHADERPARM_RED] = vLight->color.x;
+		vLight->renderLight.shaderParms[SHADERPARM_GREEN] = vLight->color.y;
+		vLight->renderLight.shaderParms[SHADERPARM_BLUE] = vLight->color.z;
 		vLight->renderLight.lightRadius[0] = vLight->renderLight.lightRadius[1] =
 				vLight->renderLight.lightRadius[2] = vLight->radius;
 		vLight->renderLight.origin = vLight->origin;
@@ -425,7 +425,7 @@ void idGLDrawableView::draw( int x, int y, int w, int h ) {
 		UpdateCamera( &refdef );
 		// Copy global shaderparms to view
 		for( i = 0; i < MAX_GLOBAL_SHADER_PARMS; i++ ) {
-			refdef.shaderParms[ i ] = globalParms[ i ];
+			refdef.shaderParms[i] = globalParms[i];
 		}
 		refdef.width = SCREEN_WIDTH;
 		refdef.height = SCREEN_HEIGHT;
@@ -480,7 +480,7 @@ void idGLDrawableView::setLocalParm( int parmNum, float value ) {
 	if( parmNum < 0 || parmNum >= MAX_ENTITY_SHADER_PARMS ) {
 		return;
 	}
-	worldEntity.shaderParms[ parmNum ] = value;
+	worldEntity.shaderParms[parmNum] = value;
 	UpdateModel();
 }
 
@@ -488,31 +488,31 @@ void idGLDrawableView::setGlobalParm( int parmNum, float value ) {
 	if( parmNum < 0 || parmNum >= MAX_GLOBAL_SHADER_PARMS ) {
 		return;
 	}
-	globalParms[ parmNum ] = value;
+	globalParms[parmNum] = value;
 }
 
 void idGLDrawableView::setLightShader( const int lightId, const idStr shaderName ) {
 	if( lightId < viewLights.Num() ) {
-		viewLights[ lightId ].shader = declManager->FindMaterial( shaderName, false );
+		viewLights[lightId].shader = declManager->FindMaterial( shaderName, false );
 	}
 }
 
 void idGLDrawableView::setLightColor( const int lightId, const idVec3 &value ) {
 	if( lightId < viewLights.Num() ) {
 		// Update this lights color
-		viewLights[ lightId ].color = value;
+		viewLights[lightId].color = value;
 	}
 }
 
 void idGLDrawableView::setLightRadius( const int lightId, const float radius ) {
 	if( lightId < viewLights.Num() ) {
-		viewLights[ lightId ].radius = radius;
+		viewLights[lightId].radius = radius;
 	}
 }
 
 void idGLDrawableView::setLightAllowMove( const int lightId, const bool move ) {
 	if( lightId < viewLights.Num() ) {
-		viewLights[ lightId ].allowMove = move;
+		viewLights[lightId].allowMove = move;
 	}
 }
 

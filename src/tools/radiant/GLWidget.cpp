@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -379,7 +379,7 @@ void idGLDrawableMaterial::draw( int x, int y, int w, int h ) {
 			renderEntity_t worldEntity;
 			memset( &worldEntity, 0, sizeof( worldEntity ) );
 			if( mat->HasGui() ) {
-				worldEntity.gui[ 0 ] = mat->GlobalGui();
+				worldEntity.gui[0] = mat->GlobalGui();
 			}
 			worldEntity.hModel = worldModel;
 			worldEntity.axis = mat3_default;
@@ -492,7 +492,7 @@ void idGLDrawableModel::mouseMove( float x, float y ) {
 			axis.Cross( to, lastPress );
 			float len = ( lastPress - to ).Length() / ( 2.0f * radius );
 			len = idMath::ClampFloat( -1.0f, 1.0f, len );
-			float phi = 2.0f * asin( len ) ;
+			float phi = 2.0f * asin( len );
 			axis.Normalize();
 			axis *= sin( phi / 2.0f );
 			idQuat rot( axis.z, axis.y, axis.x, cos( phi / 2.0f ) );

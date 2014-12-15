@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #if !defined(AFX_ENTKEYFINDREPLACE_H__1AE54C31_FC22_11D3_8A60_00500424438B__INCLUDED_)
 #define AFX_ENTKEYFINDREPLACE_H__1AE54C31_FC22_11D3_8A60_00500424438B__INCLUDED_
 
@@ -42,7 +42,7 @@ public:
 						CString *p_strReplaceValue,
 						bool	*p_bWholeStringMatchOnly,
 						bool	*p_bSelectAllMatchingEnts,
-						CWnd	*pParent = NULL );  // standard constructor
+						CWnd	*pParent = NULL ); // standard constructor
 
 	// Dialog Data
 	//{{AFX_DATA(CEntKeyFindReplace)
@@ -59,7 +59,7 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CEntKeyFindReplace)
 protected:
-	virtual void DoDataExchange( CDataExchange *pDX );  // DDX/DDV support
+	virtual void DoDataExchange( CDataExchange *pDX ); // DDX/DDV support
 	//}}AFX_VIRTUAL
 
 	// Implementation

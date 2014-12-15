@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -127,7 +127,7 @@ idCVar idConsoleLocal::con_noPrint( "con_noPrint", "1", CVAR_BOOL | CVAR_SYSTEM 
 /*
 =============================================================================
 
-	Misc stats
+Misc stats
 
 =============================================================================
 */
@@ -169,26 +169,26 @@ SCR_DrawFPS
 MH's correct FPS counter.
 ==================
 */
-float SCR_DrawFPS(float y) {
+float SCR_DrawFPS( float y ) {
 	static int frames = 0;
 	static int starttime = 0;
 	static bool first = true;
 	static float fps = 0.0f;
 	int t = Sys_Milliseconds();
-	if (first) {
+	if( first ) {
 		starttime = t;
 		first = false;
 		return y + BIGCHAR_HEIGHT + 4;
 	}
 	frames++;
-	if (t - starttime > 100 && frames > 10) {
-		fps = (float)(frames * 1000) / (float)(t - starttime);
+	if( t - starttime > 100 && frames > 10 ) {
+		fps = ( float )( frames * 1000 ) / ( float )( t - starttime );
 		starttime = t;
 		frames = 0;
 	}
-	char	*s = va("%ifps", (int)(fps + 0.5f));
-	int		w = strlen(s) * BIGCHAR_WIDTH;
-	renderSystem->DrawBigStringExt(635 - w, idMath::FtoiFast(y) + 2, s, colorWhite, true, localConsole.charSetShader);
+	char	*s = va( "%ifps", ( int )( fps + 0.5f ) );
+	int		w = strlen( s ) * BIGCHAR_WIDTH;
+	renderSystem->DrawBigStringExt( 635 - w, idMath::FtoiFast( y ) + 2, s, colorWhite, true, localConsole.charSetShader );
 	return y + BIGCHAR_HEIGHT + 4;
 }
 
@@ -315,7 +315,7 @@ void idConsoleLocal::Init( void ) {
 	nextKeyEvent = CONSOLE_FIRSTREPEAT;
 	consoleField.Clear();
 	consoleField.SetWidthInChars( LINE_WIDTH );
-	for( int i = 0 ; i < COMMAND_HISTORY ; i++ ) {
+	for( int i = 0; i < COMMAND_HISTORY; i++ ) {
 		historyEditLines[i].Clear();
 		historyEditLines[i].SetWidthInChars( LINE_WIDTH );
 	}
@@ -362,7 +362,7 @@ idConsoleLocal::ClearNotifyLines
 ================
 */
 void idConsoleLocal::ClearNotifyLines() {
-	for( int i = 0 ; i < NUM_CON_TIMES ; i++ ) {
+	for( int i = 0; i < NUM_CON_TIMES; i++ ) {
 		times[i] = 0;
 	}
 }
@@ -385,7 +385,7 @@ idConsoleLocal::Clear
 ================
 */
 void idConsoleLocal::Clear() {
-	for( int i = 0 ; i < CON_TEXTSIZE ; i++ ) {
+	for( int i = 0; i < CON_TEXTSIZE; i++ ) {
 		text[i] = ( idStr::ColorIndex( C_COLOR_CYAN ) << 8 ) | ' ';
 	}
 	Bottom();		// go to end
@@ -413,7 +413,7 @@ void idConsoleLocal::Dump( const char *fileName ) {
 	if( l < 0 ) {
 		l = 0;
 	}
-	for( ; l <= current ; l++ ) {
+	for( ; l <= current; l++ ) {
 		line = text + ( l % TOTAL_LINES ) * LINE_WIDTH;
 		for( x = 0; x < LINE_WIDTH; x++ )
 			if( ( line[x] & 0xff ) > ' ' ) {
@@ -536,7 +536,7 @@ void idConsoleLocal::KeyDownEvent( int key ) {
 		if( nextHistoryLine - historyLine < COMMAND_HISTORY && historyLine > 0 ) {
 			historyLine--;
 		}
-		consoleField = historyEditLines[ historyLine % COMMAND_HISTORY ];
+		consoleField = historyEditLines[historyLine % COMMAND_HISTORY];
 		return;
 	}
 	if( key == K_DOWNARROW || ( key == 'n' && idKeyInput::IsDown( K_CTRL ) ) ) {
@@ -544,7 +544,7 @@ void idConsoleLocal::KeyDownEvent( int key ) {
 			return;
 		}
 		historyLine++;
-		consoleField = historyEditLines[ historyLine % COMMAND_HISTORY ];
+		consoleField = historyEditLines[historyLine % COMMAND_HISTORY];
 		return;
 	}
 	// console scrolling
@@ -588,7 +588,7 @@ Scroll
 deals with scrolling text because we don't have key repeat
 ==============
 */
-void idConsoleLocal::Scroll( ) {
+void idConsoleLocal::Scroll() {
 	if( lastKeyEvent == -1 || ( lastKeyEvent + 200 ) > eventLoop->Milliseconds() ) {
 		return;
 	}
@@ -629,7 +629,7 @@ void idConsoleLocal::UpdateDisplayFraction( void ) {
 		fracTime = com_frameTime;
 		displayFrac = finalFrac;
 		return;
-	} else if( finalFrac < displayFrac ) {  // scroll towards the destination height
+	} else if( finalFrac < displayFrac ) { // scroll towards the destination height
 		displayFrac -= consolespeed * ( com_frameTime - fracTime ) * 0.001f;
 		if( finalFrac > displayFrac ) {
 			displayFrac = finalFrac;
@@ -768,7 +768,7 @@ void idConsoleLocal::Print( const char *txt ) {
 		// if we should wrap to the new line
 		if( c > ' ' && ( x == 0 || text[y * LINE_WIDTH + x - 1] <= ' ' ) ) {
 			// count word length
-			for( l = 0 ; l < LINE_WIDTH ; l++ ) {
+			for( l = 0; l < LINE_WIDTH; l++ ) {
 				if( txt[l] <= ' ' ) {
 					break;
 				}

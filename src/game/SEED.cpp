@@ -1,22 +1,22 @@
 // vim:ts=4:sw=4:cindent
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 // Copyright (C) 2010-2011 Tels (Donated to The Dark Mod Team)
 
@@ -26,46 +26,46 @@
   Manage other entities based on LOD (e.g. distance), as well as create entities
   based on rules in semi-random places/rotations/sizes and colors.
 
-Nice-to-have:
+  Nice-to-have:
 
-TODO: add console command to save all SEED entities as prefab?
-TODO: take over LOD changes from entity
-TODO: add a "pseudoclass" bit so into the entity flags field, so we can use much
-	  smaller structs for pseudo classes (we might have thousands
-	  of pseudoclass structs due to each having a different hmodel)
+  TODO: add console command to save all SEED entities as prefab?
+  TODO: take over LOD changes from entity
+  TODO: add a "pseudoclass" bit so into the entity flags field, so we can use much
+  smaller structs for pseudo classes (we might have thousands
+  of pseudoclass structs due to each having a different hmodel)
 
-Optimizations:
+  Optimizations:
 
-TODO: Make the max-combine-distance setting depending on the LOD stages, if the model
-	  has none + hide, or none and no hide, we can use a bigger distance because the
-	  rendermodel will be less often (or never) be rebuild. Also benchmark wether
-	  a bigger distance is slower/faster even with rendermodel rebuilds.
-TODO: Make it so we can also combine entities from different classes, e.g. not just
-	  take their class and skin, instead build a set of surfaces for each entities
-	  *after* the skin is applied, then use this set for matching. F.i. cattails2
-	  and cattails4 can be combined as they have the same surface, but cattails2-yellow
-	  cannot, as they don't share a surface. This will lead to better combining and
-	  thus reduce the drawcalls. Problem: different clipmodels and LOD stages might
-	  prevent this from working - but it could work for non-solids and things without
-	  any LOD stages at all (like the cattails).
-TODO: add a "entity" field (int) to the offsets list, so we avoid having to
-	  construct a sortOffsets list first, then truncated and rebuild the offsets
-	  list from that. (But benchmark if that isn't actually faster as the sortedOffsets
-	  list contans only one int and a ptr)
-TODO: Sort all the generated entities into multiple lists, keyed on a hash-key that
-	  contains all the relevant info for combining entities, so only entities that
-	  could be combined have the same hash key. F.i. "skin-name,model-name,class-name,etc".
-	  Then only look at entities from one list when combining, this will reduce the
-	  O(N*N) to something like O( (N/X)*(N/X) ) where X is the set of combinable entities.
-TODO: We currently determine the material by doing a point-trace, then when the material
-	  is suitable, we do a trace with the bounds/box downwards. This has two implications:
-	  * It is slower to do two traces if we actually need both
-	  * the point trace can "miss" f.i. a table, hit grass and say "ok place here", and then
-	    the box trace will collide with the table, placing the entity in mid-air nex to the
-		table surface.
-      This needs re-organistion.
-	  In addition, the trace do not take entity rotation into account.
-*/
+  TODO: Make the max-combine-distance setting depending on the LOD stages, if the model
+  has none + hide, or none and no hide, we can use a bigger distance because the
+  rendermodel will be less often (or never) be rebuild. Also benchmark wether
+  a bigger distance is slower/faster even with rendermodel rebuilds.
+  TODO: Make it so we can also combine entities from different classes, e.g. not just
+  take their class and skin, instead build a set of surfaces for each entities
+  *after* the skin is applied, then use this set for matching. F.i. cattails2
+  and cattails4 can be combined as they have the same surface, but cattails2-yellow
+  cannot, as they don't share a surface. This will lead to better combining and
+  thus reduce the drawcalls. Problem: different clipmodels and LOD stages might
+  prevent this from working - but it could work for non-solids and things without
+  any LOD stages at all (like the cattails).
+  TODO: add a "entity" field (int) to the offsets list, so we avoid having to
+  construct a sortOffsets list first, then truncated and rebuild the offsets
+  list from that. (But benchmark if that isn't actually faster as the sortedOffsets
+  list contans only one int and a ptr)
+  TODO: Sort all the generated entities into multiple lists, keyed on a hash-key that
+  contains all the relevant info for combining entities, so only entities that
+  could be combined have the same hash key. F.i. "skin-name,model-name,class-name,etc".
+  Then only look at entities from one list when combining, this will reduce the
+  O(N*N) to something like O( (N/X)*(N/X) ) where X is the set of combinable entities.
+  TODO: We currently determine the material by doing a point-trace, then when the material
+  is suitable, we do a trace with the bounds/box downwards. This has two implications:
+  * It is slower to do two traces if we actually need both
+  * the point trace can "miss" f.i. a table, hit grass and say "ok place here", and then
+  the box trace will collide with the table, placing the entity in mid-air nex to the
+  table surface.
+  This needs re-organistion.
+  In addition, the trace do not take entity rotation into account.
+  */
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -109,10 +109,10 @@ const idEventDef EV_CullAll( "cullAll", EventArgs(), EV_RETURNS_VOID, "Cull (rem
 */
 
 CLASS_DECLARATION( idStaticEntity, Seed )
-EVENT( EV_Activate,				Seed::Event_Activate )
-EVENT( EV_Enable,				Seed::Event_Enable )
-EVENT( EV_Disable,				Seed::Event_Disable )
-EVENT( EV_CullAll,				Seed::Event_CullAll )
+EVENT( EV_Activate, Seed::Event_Activate )
+EVENT( EV_Enable, Seed::Event_Enable )
+EVENT( EV_Disable, Seed::Event_Disable )
+EVENT( EV_CullAll, Seed::Event_CullAll )
 END_CLASS
 
 /*
@@ -675,7 +675,7 @@ void Seed::Spawn( void ) {
 		// gameLocal.random.RandomInt() always returns 1 hence it is unusable:
 		// add the entity number so that different seeds spawned in the same second
 		// don't display the same pattern
-		unsigned long seconds = ( unsigned long ) time( NULL ) + ( unsigned long ) entityNumber;
+		unsigned long seconds = ( unsigned long )time( NULL ) + ( unsigned long )entityNumber;
 		m_iSeed_2 = ( int )( 1664525L * seconds + 1013904223L ) & 0x7FFFFFFFL;
 	}
 	// to restart the same sequence, f.i. when the user changes level of detail in GUI
@@ -691,7 +691,7 @@ void Seed::Spawn( void ) {
 	}
 	// cache in which PVS(s) we are, so we can later check if we are in Player PVS
 	// calculate our bounds
-	idBounds b = idBounds( - size / 2, size / 2 );	// a size/2 bunds centered around 0, will below move to m_origin
+	idBounds b = idBounds( -size / 2, size / 2 );	// a size/2 bunds centered around 0, will below move to m_origin
 	idBounds modelAbsBounds;
 	modelAbsBounds.FromTransformedBounds( b, m_origin, axis );
 	m_iNumPVSAreas = gameLocal.pvs.GetPVSAreas( modelAbsBounds, m_iPVSAreas, sizeof( m_iPVSAreas ) / sizeof( m_iPVSAreas[0] ) );
@@ -699,21 +699,21 @@ void Seed::Spawn( void ) {
 	/*
 		// how to get the current model (rough outline)
 
-	   get number of surfaces:
+		get number of surfaces:
 		// NumBaseSurfaces will not count any overlays added to dynamic models
-	    virtual int                                     NumBaseSurfaces() const = 0;
+		virtual int                                     NumBaseSurfaces() const = 0;
 
-	   get all surfaces:
-	    // get a pointer to a surface
-	    virtual const modelSurface_t *Surface( int surfaceNum ) const = 0;
+		get all surfaces:
+		// get a pointer to a surface
+		virtual const modelSurface_t *Surface( int surfaceNum ) const = 0;
 
-	   for each surface, get all vertices
+		for each surface, get all vertices
 
-	   then from these vertices, create a vertic-list and from this a trcemodel:
+		then from these vertices, create a vertic-list and from this a trcemodel:
 
 		idTraceModel trace = idTraceModel();
 		trace.SetupPolygon( vertices, int );
-	*/
+		*/
 	// the Seed itself is sneaky and hides itself
 	Hide();
 	// And is nonsolid, too!
@@ -929,7 +929,7 @@ void Seed::AddClassFromEntity( idEntity *ent, const bool watch, const bool getSp
 	SeedClass.materialName = "";
 	if( m_bDebugColors ) {
 		// select one at random
-		SeedClass.materialName = idStr( "textures/darkmod/debug/" ) + seed_debug_materials[ gameLocal.random.RandomInt( SEED_DEBUG_MATERIAL_COUNT ) ];
+		SeedClass.materialName = idStr( "textures/darkmod/debug/" ) + seed_debug_materials[gameLocal.random.RandomInt( SEED_DEBUG_MATERIAL_COUNT )];
 	}
 	SeedClass.score = 0;
 	if( !SeedClass.watch ) {
@@ -942,7 +942,7 @@ void Seed::AddClassFromEntity( idEntity *ent, const bool watch, const bool getSp
 	// get all "skin" and "skin_xx", as well as "random_skin" spawnargs
 	SeedClass.skins.Clear();
 	// if no skin spawnarg exists, add the empty skin so we at least have one entry
-	if( ! ent->spawnArgs.FindKey( "skin" ) ) {
+	if( !ent->spawnArgs.FindKey( "skin" ) ) {
 		SeedClass.skins.Append( 0 );
 	}
 	kv = ent->spawnArgs.MatchPrefix( "skin", NULL );
@@ -1174,7 +1174,7 @@ void Seed::AddClassFromEntity( idEntity *ent, const bool watch, const bool getSp
 					// first fmod => -w .. +w => +w => 0 .. 2 * w => fmod => 0 .. w
 					int x1 = fmod( fmod( x * xs + xo, wd ) + wd, wd );
 					int y1 = fmod( fmod( y * ys + yo, hd ) + hd, hd );
-					fImgDensity += ( float )imgData[ w * y1 + x1 ];	// 0 .. 255
+					fImgDensity += ( float )imgData[w * y1 + x1];	// 0 .. 255
 				}
 			}
 			// divide the sum by W and H and 256 so we arrive at 0 .. 1.0
@@ -1185,7 +1185,7 @@ void Seed::AddClassFromEntity( idEntity *ent, const bool watch, const bool getSp
 			fImgDensity = 1 - fImgDensity;
 		}
 		gameLocal.Printf( "SEED %s: Using %s: %ix%i px, %i bpp, average density %0.4f.\n",
-						  GetName(), gameLocal.m_ImageMapManager->GetMapName( SeedClass.imgmap ) ,
+						  GetName(), gameLocal.m_ImageMapManager->GetMapName( SeedClass.imgmap ),
 						  w, h, bpp, fImgDensity );
 		if( fImgDensity < 0.001f ) {
 			gameLocal.Warning( "The average density of this image map is very low." );
@@ -1199,11 +1199,11 @@ void Seed::AddClassFromEntity( idEntity *ent, const bool watch, const bool getSp
 		SeedClass.bunching = 0;
 	}
 	if( SeedClass.spacing > 0 ) {
-		SeedClass.nocollide	= NOCOLLIDE_ATALL;
+		SeedClass.nocollide = NOCOLLIDE_ATALL;
 	} else {
 		// don't collide with other existing statics, but collide with the autogenerated ones
 		// TODO: parse from "seed_nocollide" "same, other, world, static"
-		SeedClass.nocollide	= NOCOLLIDE_STATIC;
+		SeedClass.nocollide = NOCOLLIDE_STATIC;
 	}
 	idMat3 axis = ent->GetPhysics()->GetAxis();
 	// set rotation of entity to 0, so we get the unrotated bounds size
@@ -1297,14 +1297,14 @@ void Seed::AddClassFromEntity( idEntity *ent, const bool watch, const bool getSp
 	}
 	// uses color variance?
 	// fall back to SEED "color_mxx", if not set, fall back to entity color, if this is unset, use 1 1 1
-	SeedClass.color_min  = ent->spawnArgs.GetVector( "seed_color_min", spawnArgs.GetString( "color_min", ent->spawnArgs.GetString( "_color", "1 1 1" ) ) );
-	SeedClass.color_max  = ent->spawnArgs.GetVector( "seed_color_max", spawnArgs.GetString( "color_max", ent->spawnArgs.GetString( "_color", "1 1 1" ) ) );
+	SeedClass.color_min = ent->spawnArgs.GetVector( "seed_color_min", spawnArgs.GetString( "color_min", ent->spawnArgs.GetString( "_color", "1 1 1" ) ) );
+	SeedClass.color_max = ent->spawnArgs.GetVector( "seed_color_max", spawnArgs.GetString( "color_max", ent->spawnArgs.GetString( "_color", "1 1 1" ) ) );
 	SeedClass.color_min.Clamp( idVec3( 0, 0, 0 ), idVec3( 1, 1, 1 ) );
 	SeedClass.color_max.Clamp( SeedClass.color_min, idVec3( 1, 1, 1 ) );
 	// apply random impulse?
 	// fall back to SEED "impulse_mxx", if not set, use 0 0 0
-	SeedClass.impulse_min  = ent->spawnArgs.GetVector( "seed_impulse_min", spawnArgs.GetString( "impulse_min", "0 -90 0" ) );
-	SeedClass.impulse_max  = ent->spawnArgs.GetVector( "seed_impulse_max", spawnArgs.GetString( "impulse_max", "0 90 360" ) );
+	SeedClass.impulse_min = ent->spawnArgs.GetVector( "seed_impulse_min", spawnArgs.GetString( "impulse_min", "0 -90 0" ) );
+	SeedClass.impulse_max = ent->spawnArgs.GetVector( "seed_impulse_max", spawnArgs.GetString( "impulse_max", "0 90 360" ) );
 	// clamp to 0..360, -180..180, 0..1000
 	SeedClass.impulse_min.Clamp( idVec3( 0, -90, 0 ), idVec3( 1000, +90, 359.9f ) );
 	SeedClass.impulse_max.Clamp( SeedClass.impulse_min, idVec3( 1000, +90, 360 ) );
@@ -1315,7 +1315,7 @@ void Seed::AddClassFromEntity( idEntity *ent, const bool watch, const bool getSp
 		// hm, should we warn?
 		SeedClass.z_max = SeedClass.z_min;
 	}
-	SeedClass.z_fadein  = ent->spawnArgs.GetFloat( "seed_z_fadein",  spawnArgs.GetString( "z_fadein", "0" ) );
+	SeedClass.z_fadein = ent->spawnArgs.GetFloat( "seed_z_fadein", spawnArgs.GetString( "z_fadein", "0" ) );
 	SeedClass.z_fadeout = ent->spawnArgs.GetFloat( "seed_z_fadeout", spawnArgs.GetString( "z_fadeout", "0" ) );
 	if( SeedClass.z_fadein < 0 ) {
 		gameLocal.Warning( "SEED %s: Invalid z-fadein %0.2f (should be >= 0) for class %s, ignoring it.\n",
@@ -1437,7 +1437,7 @@ void Seed::ComputeEntityCount( void ) {
 		if( m_Classes[i].pseudo || m_Classes[i].watch ) {
 			continue;
 		}
-		numRealClasses ++;
+		numRealClasses++;
 		int newNum = 0;
 		if( max_entities > 0 ) {
 			// max entities is set on the SEED, so use the score to calculate the entities for each class
@@ -1469,7 +1469,7 @@ void Seed::ComputeEntityCount( void ) {
 	// We do no longer impose a limit, as no more than SPAWN_LIMIT will be existing:
 	/* if (m_iNumEntities > SPAWN_LIMIT)
 	{
-		m_iNumEntities = SPAWN_LIMIT;
+	m_iNumEntities = SPAWN_LIMIT;
 	}
 	*/
 }
@@ -1477,7 +1477,7 @@ void Seed::ComputeEntityCount( void ) {
 /*
    Given a class (and optional model, for class "func_static"), adds a class
    based on this entity.
-*/
+   */
 void Seed::AddTemplateFromEntityDef( idStr base, const idList<idStr> *sa ) {
 	idStr entityClass = spawnArgs.GetString( base );
 	idStr entityModel = "";
@@ -1564,7 +1564,7 @@ void Seed::Prepare( void ) {
 	m_Inhibitors.Clear();
 	m_Watched.Clear();
 	for( int i = 0; i < targets.Num(); i++ ) {
-		idEntity *ent = targets[ i ].GetEntity();
+		idEntity *ent = targets[i].GetEntity();
 		if( ent ) {
 			// if this is a SEED inhibitor, add it to our "forbidden zones":
 			if( idStr( ent->GetEntityDefName() ) == "atdm:no_seed" ) {
@@ -1594,7 +1594,7 @@ void Seed::Prepare( void ) {
 					SeedInhibitor.inhibit_only = true;
 				} else {
 					prefix = "noinhibit";
-					if( ! ent->spawnArgs.FindKey( prefix ) ) {
+					if( !ent->spawnArgs.FindKey( prefix ) ) {
 						// SeedInhibitor.inhibit_only = true;		// will be ignored anyway
 						prefix = "";
 					}
@@ -1712,7 +1712,7 @@ void Seed::Prepare( void ) {
 	PrepareEntities();
 	// remove all our targets from the game
 	for( int i = 0; i < targets.Num(); i++ ) {
-		idEntity *ent = targets[ i ].GetEntity();
+		idEntity *ent = targets[i].GetEntity();
 		if( ent ) {
 			ent->PostEventMS( &EV_SafeRemove, 0 );
 		}
@@ -1721,7 +1721,7 @@ void Seed::Prepare( void ) {
 	// also remove all entities on the remove list
 	int num = m_Remove.Num();
 	for( int i = 0; i < num; i++ ) {
-		idEntity *ent = gameLocal.entities[ m_Remove[ i ] ];
+		idEntity *ent = gameLocal.entities[m_Remove[i]];
 		if( ent ) {
 			ent->PostEventMS( &EV_SafeRemove, 0 );
 		}
@@ -1743,7 +1743,7 @@ void Seed::Prepare( void ) {
 			bool canRemoveMyself = true;
 			// for each of our "entities", do the distance check
 			for( int i = 0; i < num; i++ ) {
-				seed_class_t *entityClass = &m_Classes[ m_Entities[i].classIdx ];
+				seed_class_t *entityClass = &m_Classes[m_Entities[i].classIdx];
 				if( entityClass && entityClass->pseudo ) {
 					canRemoveMyself = false;
 					gameLocal.Printf( "SEED %s: Cannot remove myself, because I have at least one static multi.\n", GetName() );
@@ -1917,7 +1917,7 @@ void Seed::PrepareEntities( void ) {
 #endif
 					// subtract the SEED origin, as m_Entities[ bunchTarget ].origin already contains it and we would
 					// otherwise add it twice below:
-					SeedEntity.origin += m_Entities[ bunchTarget ].origin - m_origin;
+					SeedEntity.origin += m_Entities[bunchTarget].origin - m_origin;
 #ifdef M_DEBUG
 					gameLocal.Printf( "SEED %s: Random origin plus bunchTarget origin %0.2f %0.2f %0.2f\n",
 									  GetName(), SeedEntity.origin.x, SeedEntity.origin.y, SeedEntity.origin.z );
@@ -2118,7 +2118,7 @@ void Seed::PrepareEntities( void ) {
 						// TODO: angle-of-surface probability
 					} else {
 						// didn't hit anything, floating in air?
-						if( ! m_Classes[i].floating ) {
+						if( !m_Classes[i].floating ) {
 							// if not floating, skip
 #ifdef M_DEBUG
 							gameLocal.Printf( "SEED %s: No floaters allowed, skipping.\n", GetName() );
@@ -2142,7 +2142,7 @@ void Seed::PrepareEntities( void ) {
 					// TODO: adjust for different "down" directions
 					//vTest *= GetGravityNormal();
 					// bounds of the class entity
-					idVec3 b_1 = - m_Classes[i].size / 2;
+					idVec3 b_1 = -m_Classes[i].size / 2;
 					idVec3 b_2 = m_Classes[i].size / 2;
 					// assume the entity origin is at the entity bottom
 					b_1.z = 0;
@@ -2174,7 +2174,7 @@ void Seed::PrepareEntities( void ) {
 						gameLocal.Printf( "SEED %s: Hit nothing at %0.2f (%0.2f %0.2f %0.2f)\n",
 										  GetName(), trTest.fraction, SeedEntity.origin.x, SeedEntity.origin.y, SeedEntity.origin.z );
 #endif
-						if( ! m_Classes[i].floating ) {
+						if( !m_Classes[i].floating ) {
 							// if not floating, skip
 #ifdef M_DEBUG
 							gameLocal.Printf( "SEED %s: No floaters allowed, skipping.\n", GetName() );
@@ -2238,16 +2238,16 @@ void Seed::PrepareEntities( void ) {
 				// pitch, yaw, roll
 				SeedEntity.angles = idAngles(
 										class_rotate_min.pitch + RandomFloat() * ( class_rotate_max.pitch - class_rotate_min.pitch ),
-										class_rotate_min.yaw   + RandomFloat() * ( class_rotate_max.yaw   - class_rotate_min.yaw ),
-										class_rotate_min.roll  + RandomFloat() * ( class_rotate_max.roll  - class_rotate_min.roll ) );
+										class_rotate_min.yaw + RandomFloat() * ( class_rotate_max.yaw - class_rotate_min.yaw ),
+										class_rotate_min.roll + RandomFloat() * ( class_rotate_max.roll - class_rotate_min.roll ) );
 				/*
 				gameLocal.Printf ("SEED %s: rand rotate for (%0.2f %0.2f %0.2f) %0.2f %0.2f %0.2f => %s\n", GetName(),
-						class_rotate_min.pitch,
-						class_rotate_min.yaw,
-						class_rotate_min.roll,
-						class_rotate_min.pitch + RandomFloat() * (class_rotate_max.pitch - class_rotate_min.pitch),
-						class_rotate_min.yaw   + RandomFloat() * (class_rotate_max.yaw   - class_rotate_min.yaw  ),
-						class_rotate_min.roll  + RandomFloat() * (class_rotate_max.roll  - class_rotate_min.roll ), SeedEntity.angles.ToString() );
+				class_rotate_min.pitch,
+				class_rotate_min.yaw,
+				class_rotate_min.roll,
+				class_rotate_min.pitch + RandomFloat() * (class_rotate_max.pitch - class_rotate_min.pitch),
+				class_rotate_min.yaw   + RandomFloat() * (class_rotate_max.yaw   - class_rotate_min.yaw  ),
+				class_rotate_min.roll  + RandomFloat() * (class_rotate_max.roll  - class_rotate_min.roll ), SeedEntity.angles.ToString() );
 				*/
 				// inside SEED bounds?
 				// IntersectsBox() also includes touching, but we want the entity to be completely inside
@@ -2257,7 +2257,7 @@ void Seed::PrepareEntities( void ) {
 					//gameLocal.Printf( "SEED %s: Entity would be inside our box. Checking against inhibitors.\n", GetName() );
 					testBox = idBox( SeedEntity.origin, m_Classes[i].size, SeedEntity.angles.ToMat3() );
 					// only if this class can be inhibited
-					if( ! m_Classes[i].noinhibit ) {
+					if( !m_Classes[i].noinhibit ) {
 						bool inhibited = false;
 						for( int k = 0; k < m_Inhibitors.Num(); k++ ) {
 							// TODO: do a faster bounds check first?
@@ -2270,7 +2270,7 @@ void Seed::PrepareEntities( void ) {
 								if( n > 0 ) {
 									// "inhibit" set => inhibit_only true => start with false
 									// "noinhibit" set and "inhibit" not set => inhibit_only false => start with true
-									inhibited = ! m_Inhibitors[k].inhibit_only;
+									inhibited = !m_Inhibitors[k].inhibit_only;
 									for( int c = 0; c < n; c++ ) {
 										if( m_Inhibitors[k].classnames[c] == m_Classes[i].classname ) {
 											// flip the true/false value if we found a match
@@ -2381,7 +2381,7 @@ void Seed::PrepareEntities( void ) {
 			// and store it packed
 			SeedEntity.color = PackColor( color );
 			// choose skin randomly
-			SeedEntity.skinIdx = m_Classes[i].skins[ RandomFloat() * m_Classes[i].skins.Num() ];
+			SeedEntity.skinIdx = m_Classes[i].skins[RandomFloat() * m_Classes[i].skins.Num()];
 			//gameLocal.Printf( "SEED %s: Using skin %i.\n", GetName(), SeedEntity.skinIdx );
 			// will be automatically spawned when we are in range
 			SeedEntity.flags = SEED_ENTITY_HIDDEN; // but not SEED_ENTITY_EXISTS
@@ -2441,7 +2441,7 @@ void Seed::CreateWatchedList( void ) {
 						  GetName(), m_Classes[i].classname.c_str(), m_Classes[i].combine_as.c_str(), m_Classes[i].modelname.c_str() );
 		// go through all entities
 		for( int j = 0; j < gameLocal.num_entities; j++ ) {
-			idEntity *ent = gameLocal.entities[ j ];
+			idEntity *ent = gameLocal.entities[j];
 			if( !ent ) {
 				continue;
 			}
@@ -2527,7 +2527,7 @@ int SortOffsetsByDistance( const seed_sort_ofs_t *a, const seed_sort_ofs_t *b ) 
 }
 
 void Seed::CombineEntities( void ) {
-	bool multiPVS =				m_iNumPVSAreas > 1 ? true : false;
+	bool multiPVS = m_iNumPVSAreas > 1 ? true : false;
 	idList < int >				pvs;				//!< in which PVS is this entity?
 	idBounds					modelAbsBounds;		//!< for per-entity PVS check
 	idBounds					entityBounds;		//!< for per-entity PVS check
@@ -2567,7 +2567,7 @@ void Seed::CombineEntities( void ) {
 		// O(N)
 		for( int i = 0; i < m_Entities.Num(); i++ ) {
 			// find out in which PVS this entity is
-			idVec3 size = m_Classes[ m_Entities[i].classIdx ].size / 2;
+			idVec3 size = m_Classes[m_Entities[i].classIdx].size / 2;
 			modelAbsBounds.FromTransformedBounds( idBounds( -size, size ), m_Entities[i].origin, m_Entities[i].angles.ToMat3() );
 			int iNumPVSAreas = gameLocal.pvs.GetPVSAreas( modelAbsBounds, iPVSAreas, sizeof( iPVSAreas ) / sizeof( iPVSAreas[0] ) );
 			if( iNumPVSAreas > 1 ) {
@@ -2591,7 +2591,7 @@ void Seed::CombineEntities( void ) {
 			//gameLocal.Printf("SEED %s: Entity %i already combined into another entity, skipping it.\n", GetName(), i);
 			continue;
 		}
-		const seed_class_t *entityClass = & m_Classes[ m_Entities[i].classIdx ];
+		const seed_class_t *entityClass = &m_Classes[m_Entities[i].classIdx];
 		// if this class says no combine, skip it
 		if( entityClass->nocombine ) {
 			continue;
@@ -2601,7 +2601,7 @@ void Seed::CombineEntities( void ) {
 			// load model, then combine away
 			//			gameLocal.Warning("SEED %s: Load model %s for entity %i.", GetName(), entityClass->modelname.c_str(), i);
 			tempModel = renderModelManager->FindModel( entityClass->modelname );
-			if( ! tempModel ) {
+			if( !tempModel ) {
 				gameLocal.Warning( "SEED %s: Could not load model %s for entity %i, skipping it.", GetName(), entityClass->modelname.c_str(), i );
 				continue;
 			}
@@ -2617,12 +2617,12 @@ void Seed::CombineEntities( void ) {
 			ThinkAboutLOD( class_LOD, GetLODDistance( class_LOD, playerPos, m_Entities[i].origin, entityClass->size, m_fLODBias ) );
 		}
 		// 0 => default model, 1 => first stage etc
-		ofs.lod	   = m_LODLevel + 1;
+		ofs.lod = m_LODLevel + 1;
 		//		gameLocal.Warning("SEED %s: Using LOD model %i for base entity.", GetName(), ofs.lod );
 		// TODO: pack in the correct alpha value
-		ofs.color  = m_Entities[i].color;
-		ofs.scale  = m_Entities[i].scale;
-		ofs.flags  = 0;
+		ofs.color = m_Entities[i].color;
+		ofs.scale = m_Entities[i].scale;
+		ofs.flags = 0;
 		// restore our value (it is not used, anyway)
 		m_LODLevel = 0;
 		sortOfs.ofs = ofs;
@@ -2656,7 +2656,7 @@ void Seed::CombineEntities( void ) {
 				// have different skins
 #ifdef M_DEBUG_COMBINE
 				gameLocal.Printf( "SEED %s: Entity skins from %i (%s) and %i (%s) differ, skipping it.\n",
-								  GetName(), i, m_Skins[ m_Entities[i].skinIdx ].c_str(), j, m_Skins[ m_Entities[j].skinIdx ].c_str() );
+								  GetName(), i, m_Skins[m_Entities[i].skinIdx].c_str(), j, m_Skins[m_Entities[j].skinIdx].c_str() );
 #endif
 				continue;
 			}
@@ -2685,12 +2685,12 @@ void Seed::CombineEntities( void ) {
 				ThinkAboutLOD( class_LOD, GetLODDistance( class_LOD, playerPos, m_Entities[i].origin, entityClass->size, m_fLODBias ) );
 			}
 			// 0 => default model, 1 => level 0 etc.
-			ofs.lod		= m_LODLevel + 1;
+			ofs.lod = m_LODLevel + 1;
 			//			gameLocal.Warning("SEED %s: Using LOD model %i for combined entity %i.", GetName(), ofs.lod, j );
 			// TODO: pack in the new alpha value
-			ofs.color  = m_Entities[j].color;
-			ofs.scale  = m_Entities[j].scale;
-			ofs.flags  = 0;
+			ofs.color = m_Entities[j].color;
+			ofs.scale = m_Entities[j].scale;
+			ofs.flags = 0;
 			// restore our value (it is not used, anyway)
 			m_LODLevel = 0;
 			sortOfs.ofs = ofs;
@@ -2738,7 +2738,7 @@ void Seed::CombineEntities( void ) {
 						//					gameLocal.Warning("SEED %s: Trying to load LOD model #%i %s for entity %i.",
 						//							GetName(), mi, tmlod->ModelLOD[mi].c_str(), i);
 						const idStr *mName = &( tmlod->ModelLOD[mi] );
-						if( ! mName->IsEmpty() ) {
+						if( !mName->IsEmpty() ) {
 							idRenderModel *tModel = renderModelManager->FindModel( mName->c_str() );
 							if( !tModel ) {
 								gameLocal.Warning( "SEED %s: Could not load LOD model #%i %s for entity %i, skipping it.",
@@ -2751,9 +2751,9 @@ void Seed::CombineEntities( void ) {
 				}
 			}
 			// for this entity
-			merged ++;
+			merged++;
 			// overall
-			mergedCount ++;
+			mergedCount++;
 			//			gameLocal.Printf("SEED %s: Merging entity %i (origin %s) into entity %i (origin %s, dist %s).\n",
 			//					GetName(), j, m_Entities[j].origin.ToString(), i, m_Entities[i].origin.ToString(), dist.ToString() );
 			// mark as "already combined" so we can skip it
@@ -2797,7 +2797,7 @@ void Seed::CombineEntities( void ) {
 			PseudoClass.materialName = "";
 			if( m_bDebugColors ) {
 				// select one at random
-				PseudoClass.materialName = idStr( "textures/darkmod/debug/" ) + seed_debug_materials[ gameLocal.random.RandomInt( SEED_DEBUG_MATERIAL_COUNT ) ];
+				PseudoClass.materialName = idStr( "textures/darkmod/debug/" ) + seed_debug_materials[gameLocal.random.RandomInt( SEED_DEBUG_MATERIAL_COUNT )];
 			}
 			// replace the old class with the new pseudo class
 			m_Entities[i].classIdx = m_Classes.Append( PseudoClass );
@@ -2842,7 +2842,7 @@ Seed::SpawnEntity - spawn the entity with the given index, returns true if it wa
 
 bool Seed::SpawnEntity( const int idx, const bool managed ) {
 	struct seed_entity_t *ent = &m_Entities[idx];
-	struct seed_class_t  *lclass = &( m_Classes[ ent->classIdx ] );
+	struct seed_class_t  *lclass = &( m_Classes[ent->classIdx] );
 	if( ( ent->flags & SEED_ENTITY_EXISTS ) != 0 ) {
 		// already exists
 		return false;
@@ -2850,7 +2850,7 @@ bool Seed::SpawnEntity( const int idx, const bool managed ) {
 	// spawn the entity and note its number
 	if( m_iDebug ) {
 		gameLocal.Printf( "SEED %s: Spawning entity #%i (%s, skin %s, model %s), managed: %s.\n",
-						  GetName(), idx, lclass->classname.c_str(), m_Skins[ ent->skinIdx ].c_str(),
+						  GetName(), idx, lclass->classname.c_str(), m_Skins[ent->skinIdx].c_str(),
 						  lclass->modelname.c_str(),
 						  managed ? "yes" : "no" );
 	}
@@ -2876,7 +2876,7 @@ bool Seed::SpawnEntity( const int idx, const bool managed ) {
 		// move to right place
 		args.SetVector( "origin", ent->origin );
 		// set previously defined (possible random) skin
-		args.Set( "skin", m_Skins[ ent->skinIdx ] );
+		args.Set( "skin", m_Skins[ent->skinIdx] );
 		// disable any other random_skin on the entity class or it would interfere
 		args.Set( "random_skin", "" );
 		// set previously defined (possible random) color
@@ -2895,7 +2895,7 @@ bool Seed::SpawnEntity( const int idx, const bool managed ) {
 		args.SetBool( "noshadows", lclass->noshadows );
 		gameLocal.SpawnEntityDef( args, &ent2 );
 		if( ent2 ) {
-			m_iNumEntitiesInGame ++;
+			m_iNumEntitiesInGame++;
 			// TODO: check if the entity has been spawned for the first time and if so,
 			// 		 also take control of any attachments it has? Or spawn it during build
 			//		 and then parse the attachments as new class?
@@ -2917,13 +2917,13 @@ bool Seed::SpawnEntity( const int idx, const bool managed ) {
 			/* TODO: Disable LOD for attachments, too, then manage them outselves.
 			   Currently, if you spawn 100 entities with 1 attachement each, we
 			   save thinking on 100 entities, but still have 100 attachements think.
-			if (s_ent)
-			{
-				s_ent->StopLOD( true );
-			}
-			*/
-			m_iNumExisting ++;
-			m_iNumVisible ++;
+			   if (s_ent)
+			   {
+			   s_ent->StopLOD( true );
+			   }
+			   */
+			m_iNumExisting++;
+			m_iNumVisible++;
 			// Is this an idStaticEntity? If yes, simply spawning will not recreate the model
 			// so we need to do this manually.
 			if( lclass->pseudo || lclass->classname == FUNC_DUMMY ) {
@@ -2945,7 +2945,7 @@ bool Seed::SpawnEntity( const int idx, const bool managed ) {
 					// Let the StaticMulti store the nec. data to create the combined rendermodel
 					sment->SetLODData( ent->origin, lclass->m_LODHandle, lclass->lowestLOD, &lclass->offsets, lclass->materialName, lclass->hModel, lclass->clip );
 					// Register the new staticmulti entity with ourselves, so we can later Restore() it properly
-					m_iNumStaticMulties ++;
+					m_iNumStaticMulties++;
 					// enable thinking (mainly for debug draw)
 					ent2->BecomeActive( TH_THINK | TH_PHYSICS );
 				} else {
@@ -3016,12 +3016,12 @@ Seed::CullEntity - cull the entity with the given index, returns true if it was 
 */
 bool Seed::CullEntity( const int idx ) {
 	struct seed_entity_t *ent = &m_Entities[idx];
-	struct seed_class_t  *lclass = &( m_Classes[ ent->classIdx ] );
+	struct seed_class_t  *lclass = &( m_Classes[ent->classIdx] );
 	if( ( ent->flags & SEED_ENTITY_EXISTS ) == 0 ) {
 		return false;
 	}
 	// cull (remove) the entity
-	idEntity *ent2 = gameLocal.entities[ ent->entity ];
+	idEntity *ent2 = gameLocal.entities[ent->entity];
 	if( ent2 ) {
 		// Before we remove the entity, save it's position and angles
 		// That makes it work for moveables or anything else that
@@ -3039,15 +3039,15 @@ bool Seed::CullEntity( const int idx ) {
 			}
 		} else {
 			// deregister this static multi with us
-			m_iNumStaticMulties --;
+			m_iNumStaticMulties--;
 		}
 		// gameLocal.Printf( "SEED %s: Culling entity #%i (%0.2f > %0.2f).\n", GetName(), i, deltaSq, lclass->cullDist );
-		m_iNumEntitiesInGame --;
-		m_iNumExisting --;
-		m_iNumVisible --;
+		m_iNumEntitiesInGame--;
+		m_iNumExisting--;
+		m_iNumVisible--;
 		// add visible, reset exists, but keep the others (esp. ENTITY_WAS_SPAWNED and ENTITY_WATCHED)
 		ent->flags += SEED_ENTITY_HIDDEN;
-		ent->flags &= ( ! SEED_ENTITY_EXISTS );
+		ent->flags &= ( !SEED_ENTITY_EXISTS );
 		ent->entity = 0;
 		// TODO: Do we need to use SafeRemove?
 		ent2->PostEventMS( &EV_Remove, 0 );
@@ -3102,10 +3102,10 @@ void Seed::Think( void ) {
 		int numEntities = m_Entities.Num();
 		for( int i = 0; i < numEntities; i++ ) {
 			ent = &m_Entities[i];
-			lclass = &( m_Classes[ ent->classIdx ] );
+			lclass = &( m_Classes[ent->classIdx] );
 			// tell the CStaticMulti entity that it should track updates:
 			if( lclass->pseudo && ( ent->flags & SEED_ENTITY_EXISTS ) != 0 ) {
-				idEntity *ent2 = gameLocal.entities[ ent->entity ];
+				idEntity *ent2 = gameLocal.entities[ent->entity];
 				if( ent2 ) {
 					if( m_iDebug ) {
 						gameLocal.Printf( "Restoring LOD data for entity %i (%s).\n", i, ent2->GetName() );
@@ -3126,10 +3126,10 @@ void Seed::Think( void ) {
 		m_DistCheckTimeStamp = gameLocal.time;
 		// are we outside the player PVS?
 		if( m_iThinkCounter < 20 &&
-				! gameLocal.pvs.InCurrentPVS( gameLocal.GetPlayerPVS(), m_iPVSAreas, m_iNumPVSAreas ) ) {
+				!gameLocal.pvs.InCurrentPVS( gameLocal.GetPlayerPVS(), m_iPVSAreas, m_iNumPVSAreas ) ) {
 			// if so, do nothing until think counter is high enough again
 			//gameLocal.Printf( "SEED %s: Outside player PVS, think counter = %i, exiting.\n", GetName(), m_iThinkCounter );
-			m_iThinkCounter ++;
+			m_iThinkCounter++;
 			return;
 			// TODO: cull all entities if m_iNumExisting > 0?
 			// TODO: investigate if hiding brings us any performance, probably not, because
@@ -3142,15 +3142,15 @@ void Seed::Think( void ) {
 		float lodBias = cv_lod_bias.GetFloat();
 		m_iNumEntitiesInGame = 0;
 		for( int i = 0; i < gameLocal.num_entities; i++ ) {
-			if( gameLocal.entities[ i ] ) {
-				m_iNumEntitiesInGame ++;
+			if( gameLocal.entities[i] ) {
+				m_iNumEntitiesInGame++;
 			}
 		}
 		// for each of our "entities", do the distance check
 		int numEntities = m_Entities.Num();
 		for( int i = 0; i < numEntities; i++ ) {
 			ent = &m_Entities[i];
-			lclass = &( m_Classes[ ent->classIdx ] );
+			lclass = &( m_Classes[ent->classIdx] );
 			float deltaSq = 0;
 			if( lclass->m_LODHandle ) {
 				const lod_data_t *lod = gameLocal.m_ModelGenerator->GetLODDataPtr( lclass->m_LODHandle );
@@ -3164,7 +3164,7 @@ void Seed::Think( void ) {
 				// Spawn and manage LOD, except for CStaticMulti entities with a megamodel,
 				// these need to do their own LOD thinking:
 				if( SpawnEntity( i, lclass->pseudo ? false : true ) ) {
-					spawned ++;
+					spawned++;
 				}
 			} else {
 				// cull entities that are outside "hide_distance + fade_out_distance + cullRange
@@ -3172,7 +3172,7 @@ void Seed::Think( void ) {
 					// TODO: Limit number of entities to cull per frame
 					// TODO: Only cull invisible entities?
 					if( CullEntity( i ) ) {
-						culled ++;
+						culled++;
 					}
 				}
 				/*				// TODO: Normal LOD code here (replicate from entity)
@@ -3180,17 +3180,17 @@ void Seed::Think( void ) {
 								float fAlpha = ThinkAboutLOD( lclass->m_LOD, deltaSq );
 								if (fAlpha == 0.0f)
 								{
-									// hide the entity
+								// hide the entity
 								}
 								else
 								{
-									// if hidden, show the entity
+								// if hidden, show the entity
 
-									// if not combined entity
-									// setAlpha
-									// switchModel/switchSkin/noshadows
+								// if not combined entity
+								// setAlpha
+								// switchModel/switchSkin/noshadows
 								}
-				*/
+								*/
 			}
 		}
 		if( spawned > 0 || culled > 0 ) {
@@ -3245,7 +3245,7 @@ void Seed::CullAll( const bool watched ) {
 		if( watched || ( ( m_Entities[i].flags & SEED_ENTITY_WATCHED ) == 0 ) ) {
 			CullEntity( i );
 		} else {
-			survivors ++;
+			survivors++;
 		}
 	}
 	// this should be unnec. but just to be safe:

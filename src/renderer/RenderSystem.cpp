@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #include "precompiled_engine.h"
 #pragma hdrstop
 
@@ -220,7 +220,7 @@ void R_LockSurfaceScene( viewDef_t *parms ) {
 	tr.lockSurfacesCmd.viewDef->worldSpace = parms->worldSpace;
 	// update the view origin and axis, and all
 	// the entity matricies
-	for( vModel = tr.lockSurfacesCmd.viewDef->viewEntitys ; vModel ; vModel = vModel->next ) {
+	for( vModel = tr.lockSurfacesCmd.viewDef->viewEntitys; vModel; vModel = vModel->next ) {
 		myGlMultMatrix( vModel->modelMatrix,
 						tr.lockSurfacesCmd.viewDef->worldSpace.modelViewMatrix,
 						vModel->modelViewMatrix );
@@ -474,60 +474,6 @@ void idRenderSystemLocal::DrawBigStringExt( int x, int y, const char *string, co
 //======================================================================================
 
 /*
-==================
-SetBackEndRenderer
-
-Check for changes in the back end renderSystem, possibly invalidating cached data
-==================
-*/
-void idRenderSystemLocal::SetBackEndRenderer() {
-	if( !r_renderer.IsModified() ) {
-		return;
-	}
-	backEndRenderer = BE_BAD;
-	if( idStr::Icmp( r_renderer.GetString(), "arb2" ) == 0 ) {
-		if( glConfig.allowARB2Path ) {
-			backEndRenderer = BE_ARB2;
-		}
-	} else if( idStr::Icmp( r_renderer.GetString(), "nv20" ) == 0 ) {
-		if( glConfig.allowNV20Path ) {
-			backEndRenderer = BE_NV20;
-		}
-	} else if( idStr::Icmp( r_renderer.GetString(), "r200" ) == 0 ) {
-		if( glConfig.allowR200Path ) {
-			backEndRenderer = BE_R200;
-		}
-	}
-	// fallback
-	if( backEndRenderer == BE_BAD ) {
-		// choose the best
-		if( glConfig.allowARB2Path ) {
-			backEndRenderer = BE_ARB2;
-		} else if( glConfig.allowR200Path ) {
-			backEndRenderer = BE_R200;
-		} else if( glConfig.allowNV20Path ) {
-			backEndRenderer = BE_NV20;
-		} else {
-			common->FatalError( "SetbackEndRenderer: no suitable back end" );
-		}
-	}
-	switch( backEndRenderer ) {
-	case BE_NV20:
-		common->Printf( "using NV20 renderSystem\n" );
-		break;
-	case BE_R200:
-		common->Printf( "using R200 renderSystem\n" );
-		break;
-	case BE_ARB2:
-		common->Printf( "using ARB2 renderSystem\n" );
-		break;
-	default:
-		common->FatalError( "SetbackEndRenderer: bad back end" );
-	}
-	r_renderer.ClearModified();
-}
-
-/*
 ====================
 BeginFrame
 ====================
@@ -537,8 +483,6 @@ void idRenderSystemLocal::BeginFrame( int windowWidth, int windowHeight ) {
 	if( !glConfig.isInitialized ) {
 		return;
 	}
-	// determine which back end we will use
-	SetBackEndRenderer();
 	guiModel->Clear();
 	// for the larger-than-window tiled rendering screenshots
 	if( tiledViewport[0] ) {
@@ -660,7 +604,7 @@ void idRenderSystemLocal::RenderViewToViewport( const renderView_t *renderView, 
 
 static int RoundDownToPowerOfTwo( int v ) {
 	int	i;
-	for( i = 0 ; i < 20 ; i++ ) {
+	for( i = 0; i < 20; i++ ) {
 		if( ( 1 << i ) == v ) {
 			return v;
 		}
@@ -828,14 +772,14 @@ void idRenderSystemLocal::CaptureRenderToFile( const char *fileName, bool fixAlp
 	// GL_RGBA/GL_UNSIGNED_BYTE seems to be the safest option
 	glReadPixels( rc->x, rc->y, rc->width, rc->height, GL_RGBA, GL_UNSIGNED_BYTE, data );
 	byte *data2 = ( byte * )R_StaticAlloc( rc->width * rc->height * 4 );
-	for( int y = 0 ; y < rc->height ; y++ ) {
-		for( int x = 0 ; x < rc->width ; x++ ) {
+	for( int y = 0; y < rc->height; y++ ) {
+		for( int x = 0; x < rc->width; x++ ) {
 			int idx = y * pitch + x * 4;
 			int idx2 = ( y * rc->width + x ) * 4;
-			data2[ idx2 + 0 ] = data[ idx + 0 ];
-			data2[ idx2 + 1 ] = data[ idx + 1 ];
-			data2[ idx2 + 2 ] = data[ idx + 2 ];
-			data2[ idx2 + 3 ] = 0xff;
+			data2[idx2 + 0] = data[idx + 0];
+			data2[idx2 + 1] = data[idx + 1];
+			data2[idx2 + 2] = data[idx + 2];
+			data2[idx2 + 3] = 0xff;
 		}
 	}
 	R_WriteTGA( fileName, data2, rc->width, rc->height, true );

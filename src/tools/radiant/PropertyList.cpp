@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -107,7 +107,7 @@ void CPropertyList::DrawItem( LPDRAWITEMSTRUCT lpDIS ) {
 	UINT nIndex = lpDIS->itemID;
 	if( nIndex != ( UINT ) - 1 ) {
 		//get the CPropertyItem for the current row
-		CPropertyItem *pItem = ( CPropertyItem * ) GetItemDataPtr( nIndex );
+		CPropertyItem *pItem = ( CPropertyItem * )GetItemDataPtr( nIndex );
 		//draw two rectangles, one for each row column
 		if( pItem->m_nItemType == PIT_VAR ) {
 			dc.FillSolidRect( rect2, RGB( 220, 220, 220 ) );
@@ -168,7 +168,7 @@ void CPropertyList::OnSelchange() {
 	//m_curSel = GetCurSel();
 	GetItemRect( m_curSel, rect );
 	rect.left = m_nDivider;
-	CPropertyItem *pItem = ( CPropertyItem * ) GetItemDataPtr( m_curSel );
+	CPropertyItem *pItem = ( CPropertyItem * )GetItemDataPtr( m_curSel );
 	if( updateInspectors ) {
 		g_Inspectors->entityDlg.SetKeyVal( pItem->m_propName, pItem->m_curValue );
 	}
@@ -283,7 +283,7 @@ void CPropertyList::OnSelchangeCmbBox() {
 	CString selStr;
 	if( m_cmbBox ) {
 		m_cmbBox.GetLBText( m_cmbBox.GetCurSel(), selStr );
-		CPropertyItem *pItem = ( CPropertyItem * ) GetItemDataPtr( m_curSel );
+		CPropertyItem *pItem = ( CPropertyItem * )GetItemDataPtr( m_curSel );
 		pItem->m_curValue = selStr;
 		if( updateInspectors ) {
 			g_Inspectors->entityDlg.UpdateFromListBox();
@@ -294,12 +294,12 @@ void CPropertyList::OnSelchangeCmbBox() {
 void CPropertyList::OnChangeEditBox() {
 	CString newStr;
 	m_editBox.GetWindowText( newStr );
-	CPropertyItem *pItem = ( CPropertyItem * ) GetItemDataPtr( m_curSel );
+	CPropertyItem *pItem = ( CPropertyItem * )GetItemDataPtr( m_curSel );
 	pItem->m_curValue = newStr;
 }
 
 void CPropertyList::OnButton() {
-	CPropertyItem *pItem = ( CPropertyItem * ) GetItemDataPtr( m_curSel );
+	CPropertyItem *pItem = ( CPropertyItem * )GetItemDataPtr( m_curSel );
 	//display the appropriate common dialog depending on what type
 	//of chooser is associated with the property
 	if( pItem->m_nItemType == PIT_COLOR ) {
@@ -322,7 +322,7 @@ void CPropertyList::OnButton() {
 	} else if( pItem->m_nItemType == PIT_FILE ) {
 		CString SelectedFile;
 		CString Filter( "Gif Files (*.gif)|*.gif||" );
-		CFileDialog FileDlg( TRUE, NULL, NULL, NULL,	Filter );
+		CFileDialog FileDlg( TRUE, NULL, NULL, NULL, Filter );
 		CString currPath = pItem->m_curValue;
 		FileDlg.m_ofn.lpstrTitle = "Select file";
 		if( currPath.GetLength() > 0 ) {

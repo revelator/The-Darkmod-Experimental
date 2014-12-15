@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -140,7 +140,7 @@ void DialogAFConstraintBallAndSocket::InitJointLists( void ) {
 	}
 	int numJoints = model->NumJoints();
 	for( int i = 0; i < numJoints; i++ ) {
-		const char *jointName = model->GetJointName( ( jointHandle_t ) i );
+		const char *jointName = model->GetJointName( ( jointHandle_t )i );
 		m_comboAnchorJoint.AddString( jointName );
 		m_comboLimitJoint1.AddString( jointName );
 		m_comboLimitJoint2.AddString( jointName );
@@ -369,26 +369,26 @@ void DialogAFConstraintBallAndSocket::OnCbnSelchangeComboAnchorJoint() {
 }
 
 void DialogAFConstraintBallAndSocket::OnEnChangeEditAnchorX() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_X ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_X ) ) ) {
 		UpdateFile();
 	} else {
-		m_anchor_x = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_X ) );
+		m_anchor_x = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_X ) );
 	}
 }
 
 void DialogAFConstraintBallAndSocket::OnEnChangeEditAnchorY() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_Y ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_Y ) ) ) {
 		UpdateFile();
 	} else {
-		m_anchor_y = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_Y ) );
+		m_anchor_y = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_Y ) );
 	}
 }
 
 void DialogAFConstraintBallAndSocket::OnEnChangeEditAnchorZ() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_Z ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_Z ) ) ) {
 		UpdateFile();
 	} else {
-		m_anchor_z = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_Z ) );
+		m_anchor_z = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_Z ) );
 	}
 }
 
@@ -456,10 +456,10 @@ void DialogAFConstraintBallAndSocket::OnBnClickedRadioBasLimitPyramid() {
 }
 
 void DialogAFConstraintBallAndSocket::OnEnChangeEditBasLimitConeAngle() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_BAS_LIMIT_CONE_ANGLE ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_BAS_LIMIT_CONE_ANGLE ) ) ) {
 		UpdateFile();
 	} else {
-		m_coneAngle = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_BAS_LIMIT_CONE_ANGLE ), false );
+		m_coneAngle = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_BAS_LIMIT_CONE_ANGLE ), false );
 	}
 }
 
@@ -476,10 +476,10 @@ void DialogAFConstraintBallAndSocket::OnDeltaposSpinBasLimitConeAngle( NMHDR *pN
 }
 
 void DialogAFConstraintBallAndSocket::OnEnChangeEditBasLimitPyramidAngle1() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_BAS_LIMIT_PYRAMID_ANGLE1 ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_BAS_LIMIT_PYRAMID_ANGLE1 ) ) ) {
 		UpdateFile();
 	} else {
-		m_pyramidAngle1 = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_BAS_LIMIT_PYRAMID_ANGLE1 ), false );
+		m_pyramidAngle1 = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_BAS_LIMIT_PYRAMID_ANGLE1 ), false );
 	}
 }
 
@@ -496,10 +496,10 @@ void DialogAFConstraintBallAndSocket::OnDeltaposSpinBasLimitPyramidAngle1( NMHDR
 }
 
 void DialogAFConstraintBallAndSocket::OnEnChangeEditBasLimitPyramidAngle2() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_BAS_LIMIT_PYRAMID_ANGLE2 ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_BAS_LIMIT_PYRAMID_ANGLE2 ) ) ) {
 		UpdateFile();
 	} else {
-		m_pyramidAngle2 = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_BAS_LIMIT_PYRAMID_ANGLE2 ), false );
+		m_pyramidAngle2 = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_BAS_LIMIT_PYRAMID_ANGLE2 ), false );
 	}
 }
 
@@ -516,10 +516,10 @@ void DialogAFConstraintBallAndSocket::OnDeltaposSpinBasLimitPyramidAngle2( NMHDR
 }
 
 void DialogAFConstraintBallAndSocket::OnEnChangeEditBasLimitRoll() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_BAS_LIMIT_ROLL ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_BAS_LIMIT_ROLL ) ) ) {
 		UpdateFile();
 	} else {
-		m_limitRoll = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_BAS_LIMIT_ROLL ) );
+		m_limitRoll = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_BAS_LIMIT_ROLL ) );
 	}
 }
 
@@ -568,10 +568,10 @@ void DialogAFConstraintBallAndSocket::OnCbnSelchangeComboBasLimitJoint2() {
 }
 
 void DialogAFConstraintBallAndSocket::OnEnChangeEditBasLimitPitch() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_BAS_LIMIT_PITCH ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_BAS_LIMIT_PITCH ) ) ) {
 		UpdateFile();
 	} else {
-		m_limitPitch = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_BAS_LIMIT_PITCH ) );
+		m_limitPitch = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_BAS_LIMIT_PITCH ) );
 	}
 }
 
@@ -588,10 +588,10 @@ void DialogAFConstraintBallAndSocket::OnDeltaposSpinBasLimitPitch( NMHDR *pNMHDR
 }
 
 void DialogAFConstraintBallAndSocket::OnEnChangeEditBasLimitYaw() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_BAS_LIMIT_YAW ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_BAS_LIMIT_YAW ) ) ) {
 		UpdateFile();
 	} else {
-		m_limitYaw = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_BAS_LIMIT_YAW ) );
+		m_limitYaw = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_BAS_LIMIT_YAW ) );
 	}
 }
 
@@ -640,10 +640,10 @@ void DialogAFConstraintBallAndSocket::OnCbnSelchangeComboBasLimitAxisJoint2() {
 }
 
 void DialogAFConstraintBallAndSocket::OnEnChangeEditBasLimitAxisPitch() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_BAS_LIMIT_AXIS_PITCH ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_BAS_LIMIT_AXIS_PITCH ) ) ) {
 		UpdateFile();
 	} else {
-		m_limitAxisPitch = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_BAS_LIMIT_AXIS_PITCH ) );
+		m_limitAxisPitch = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_BAS_LIMIT_AXIS_PITCH ) );
 	}
 }
 
@@ -660,10 +660,10 @@ void DialogAFConstraintBallAndSocket::OnDeltaposSpinBasLimitAxisPitch( NMHDR *pN
 }
 
 void DialogAFConstraintBallAndSocket::OnEnChangeEditBasLimitAxisYaw() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_BAS_LIMIT_AXIS_YAW ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_BAS_LIMIT_AXIS_YAW ) ) ) {
 		UpdateFile();
 	} else {
-		m_limitAxisYaw = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_BAS_LIMIT_AXIS_YAW ) );
+		m_limitAxisYaw = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_BAS_LIMIT_AXIS_YAW ) );
 	}
 }
 

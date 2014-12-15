@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -193,7 +193,7 @@ void TextureAxisFromPlane( const idPlane &pln, idVec3 &xv, idVec3 &yv ) {
 ================
 ShadeForNormal
 
-  Light different planes differently to improve recognition
+Light different planes differently to improve recognition
 ================
 */
 float	lightaxis[3] = { 0.6f, 0.8f, 1.0f };
@@ -227,7 +227,7 @@ Face_Alloc
 */
 face_t *Face_Alloc( void ) {
 	brushprimit_texdef_t	bp;
-	face_t *f = ( face_t * ) Mem_ClearedAlloc( sizeof( *f ) );
+	face_t *f = ( face_t * )Mem_ClearedAlloc( sizeof( *f ) );
 	bp.coords[0][0] = 0.0f;
 	bp.coords[1][1] = 0.0f;
 	f->brushprimit_texdef = bp;
@@ -271,8 +271,8 @@ face_t *Face_Clone( face_t *f ) {
 ================
 Face_FullClone
 
-  Used by Undo.
-  Makes an exact copy of the face.
+Used by Undo.
+Makes an exact copy of the face.
 ================
 */
 face_t *Face_FullClone( face_t *f ) {
@@ -366,7 +366,7 @@ void Face_SetColor( brush_t *b, face_t *f, float fCurveColor ) {
 ================
 Face_TextureVectors
 
-  NOTE: this is never to get called while in brush primitives mode
+NOTE: this is never to get called while in brush primitives mode
 ================
 */
 void Face_TextureVectors( face_t *f, float STfromXYZ[2][4] ) {
@@ -470,7 +470,7 @@ void Face_MakePlane( face_t *f ) {
 	//	printf("WARNING: brush plane with no normal\n");
 	//}
 	f->plane.Normalize( false );
-	f->plane[3] = - ( t3 * f->plane.Normal() );
+	f->plane[3] = -( t3 * f->plane.Normal() );
 	if( !f->dirty && !f->plane.Compare( oldPlane, 0.01f ) ) {
 		f->dirty = true;
 	}
@@ -595,7 +595,7 @@ void DrawBrushEntityName( brush_t *b ) {
 ================
 Brush_MakeFaceWinding
 
-  returns the visible winding
+returns the visible winding
 ================
 */
 idWinding *Brush_MakeFaceWinding( brush_t *b, face_t *face, bool keepOnPlaneWinding ) {
@@ -643,9 +643,9 @@ idWinding *Brush_MakeFaceWinding( brush_t *b, face_t *face, bool keepOnPlaneWind
 ================
 Brush_Build
 
-  Builds a brush rendering data and also sets the min/max bounds
-  TTimo added a bConvert flag to convert between old and new brush texture formats
-  TTimo brush grouping: update the group treeview if necessary
+Builds a brush rendering data and also sets the min/max bounds
+TTimo added a bConvert flag to convert between old and new brush texture formats
+TTimo brush grouping: update the group treeview if necessary
 ================
 */
 void Brush_Build( brush_t *b, bool bSnap, bool bMarkMap, bool bConvert, bool updateLights ) {
@@ -682,7 +682,7 @@ void Brush_Build( brush_t *b, bool bSnap, bool bMarkMap, bool bConvert, bool upd
 ================
 Brush_SplitBrushByFace
 
-  The incoming brush is NOT freed. The incoming face is NOT left referenced.
+The incoming brush is NOT freed. The incoming face is NOT left referenced.
 ================
 */
 void Brush_SplitBrushByFace( brush_t *in, face_t *f, brush_t **front, brush_t **back ) {
@@ -729,7 +729,7 @@ void Brush_SplitBrushByFace( brush_t *in, face_t *f, brush_t **front, brush_t **
 ================
 Brush_BestSplitFace
 
-  returns the best face to split the brush with. return NULL if the brush is convex
+returns the best face to split the brush with. return NULL if the brush is convex
 ================
 */
 face_t *Brush_BestSplitFace( brush_t *b ) {
@@ -777,11 +777,11 @@ face_t *Brush_BestSplitFace( brush_t *b ) {
 ================
 Brush_MakeConvexBrushes
 
-  MrE FIXME: this doesn't work because the old Brush_SplitBrushByFace is used
-  Turns the brush into a minimal number of convex brushes.
-  If the input brush is convex then it will be returned. Otherwise the input
-  brush will be freed.
-  NOTE: the input brush should have windings for the faces.
+MrE FIXME: this doesn't work because the old Brush_SplitBrushByFace is used
+Turns the brush into a minimal number of convex brushes.
+If the input brush is convex then it will be returned. Otherwise the input
+brush will be freed.
+NOTE: the input brush should have windings for the faces.
 ================
 */
 brush_t *Brush_MakeConvexBrushes( brush_t *b ) {
@@ -813,7 +813,7 @@ brush_t *Brush_MakeConvexBrushes( brush_t *b ) {
 ================
 Brush_Convex
 
-  returns true if the brush is convex
+returns true if the brush is convex
 ================
 */
 int Brush_Convex( brush_t *b ) {
@@ -842,10 +842,10 @@ int Brush_Convex( brush_t *b ) {
 ================
 Brush_MoveVertexes
 
-  The input brush must be convex.
-  The input brush must have face windings.
-  The output brush will be convex.
-  Returns true if the WHOLE vertex movement is performed.
+The input brush must be convex.
+The input brush must have face windings.
+The output brush will be convex.
+Returns true if the WHOLE vertex movement is performed.
 ================
 */
 #define MAX_MOVE_FACES	64
@@ -1126,7 +1126,7 @@ int Brush_MoveVertex( brush_t *b, const idVec3 &vertex, const idVec3 &delta, idV
 ================
 Brush_InsertVertexBetween
 
-  Adds a vertex to the brush windings between the given two points.
+Adds a vertex to the brush windings between the given two points.
 ================
 */
 int Brush_InsertVertexBetween( brush_t *b, idVec3 p1, idVec3 p2 ) {
@@ -1148,7 +1148,7 @@ int Brush_InsertVertexBetween( brush_t *b, idVec3 p1, idVec3 p2 ) {
 		}
 		neww = NULL;
 		for( i = 0; i < w->GetNumPoints(); i++ ) {
-			if( ! p1.Compare( ( *w )[i].ToVec3(), TINY_EPSILON ) ) {
+			if( !p1.Compare( ( *w )[i].ToVec3(), TINY_EPSILON ) ) {
 				continue;
 			}
 			if( p2.Compare( ( *w )[( i + 1 ) % w->GetNumPoints()].ToVec3(), TINY_EPSILON ) ) {
@@ -1174,7 +1174,7 @@ int Brush_InsertVertexBetween( brush_t *b, idVec3 p1, idVec3 p2 ) {
 ================
 Brush_ResetFaceOriginals
 
-  reset points to original faces to NULL
+reset points to original faces to NULL
 ================
 */
 void Brush_ResetFaceOriginals( brush_t *b ) {
@@ -1188,9 +1188,9 @@ void Brush_ResetFaceOriginals( brush_t *b ) {
 ================
 Brush_Parse
 
-  The brush is NOT linked to any list
-  FIXME: when using old brush primitives, the test loop for "Brush" and "patchDef2" "patchDef3"
-  run before each face parsing. It works, but it's a performance hit
+The brush is NOT linked to any list
+FIXME: when using old brush primitives, the test loop for "Brush" and "patchDef2" "patchDef3"
+run before each face parsing. It works, but it's a performance hit
 ================
 */
 brush_t *Brush_Parse( idVec3 origin ) {
@@ -1330,8 +1330,8 @@ brush_t *Brush_Parse( idVec3 origin ) {
 ================
 QERApp_MapPrintf_FILE
 
-  callback for surface properties plugin must fit a PFN_QERAPP_MAPPRINTF ( see isurfaceplugin.h )
-  carefully initialize !
+callback for surface properties plugin must fit a PFN_QERAPP_MAPPRINTF ( see isurfaceplugin.h )
+carefully initialize !
 ================
 */
 FILE	*g_File;
@@ -1349,7 +1349,7 @@ void WINAPI QERApp_MapPrintf_FILE( char *text, ... ) {
 ================
 Brush_SetEpair
 
-  sets an epair for the given brush
+sets an epair for the given brush
 ================
 */
 void Brush_SetEpair( brush_t *b, const char *pKey, const char *pValue ) {
@@ -1386,7 +1386,7 @@ const char *Brush_GetKeyValue( brush_t *b, const char *pKey ) {
 ================
 Brush_Write
 
-	save all brushes as Brush primitive format
+save all brushes as Brush primitive format
 ================
 */
 void Brush_Write( brush_t *b, FILE *f, const idVec3 &origin, bool newFormat ) {
@@ -1517,8 +1517,8 @@ void Brush_Write( brush_t *b, FILE *f, const idVec3 &origin, bool newFormat ) {
 ================
 QERApp_MapPrintf_MEMFILE
 
-  callback for surface properties plugin must fit a PFN_QERAPP_MAPPRINTF ( see isurfaceplugin.h )
-  carefully initialize !
+callback for surface properties plugin must fit a PFN_QERAPP_MAPPRINTF ( see isurfaceplugin.h )
+carefully initialize !
 ================
 */
 CMemFile	*g_pMemFile;
@@ -1536,7 +1536,7 @@ void WINAPI QERApp_MapPrintf_MEMFILE( char *text, ... ) {
 ================
 Brush_Write
 
-  save all brushes as Brush primitive format to a CMemFile*
+save all brushes as Brush primitive format to a CMemFile*
 ================
 */
 void Brush_Write( brush_t *b, CMemFile *pMemFile, const idVec3 &origin, bool newFormat ) {
@@ -1670,7 +1670,7 @@ void Brush_Write( brush_t *b, CMemFile *pMemFile, const idVec3 &origin, bool new
 ================
 Brush_Create
 
-  Create non-textured blocks for entities The brush is NOT linked to any list
+Create non-textured blocks for entities The brush is NOT linked to any list
 ================
 */
 brush_t *Brush_Create( idVec3 mins, idVec3 maxs, texdef_t *texdef ) {
@@ -1746,7 +1746,7 @@ void Brush_Scale( brush_t *b ) {
 ================
 Brush_CreatePyramid
 
-  Create non-textured pyramid for light entities The brush is NOT linked to any list
+Create non-textured pyramid for light entities The brush is NOT linked to any list
 ================
 */
 brush_t *Brush_CreatePyramid( idVec3 mins, idVec3 maxs, texdef_t *texdef ) {
@@ -1804,7 +1804,7 @@ brush_t *Brush_CreatePyramid( idVec3 mins, idVec3 maxs, texdef_t *texdef ) {
 ================
 Brush_MakeSided
 
-  Makes the current brush have the given number of 2d sides
+Makes the current brush have the given number of 2d sides
 ================
 */
 void Brush_MakeSided( int sides ) {
@@ -1915,13 +1915,13 @@ void Brush_MakeSided( int sides ) {
 ================
 Brush_Free
 
-  Frees the brush with all of its faces and display list.
-  Unlinks the brush from whichever chain it is in.
-  Decrements the owner entity's brushcount.
-  Removes owner entity if this was the last brush unless owner is the world.
-  Removes from groups
+Frees the brush with all of its faces and display list.
+Unlinks the brush from whichever chain it is in.
+Decrements the owner entity's brushcount.
+Removes owner entity if this was the last brush unless owner is the world.
+Removes from groups
 
-  set bRemoveNode to false to avoid trying to delete the item in group view tree control
+set bRemoveNode to false to avoid trying to delete the item in group view tree control
 ================
 */
 void Brush_Free( brush_t *b, bool bRemoveNode ) {
@@ -1951,7 +1951,7 @@ void Brush_Free( brush_t *b, bool bRemoveNode ) {
 ================
 Face_MemorySize
 
-  returns the size in memory of the face
+returns the size in memory of the face
 ================
 */
 int Face_MemorySize( face_t *f ) {
@@ -1967,7 +1967,7 @@ int Face_MemorySize( face_t *f ) {
 ================
 Brush_MemorySize
 
-  returns the size in memory of the brush
+returns the size in memory of the brush
 ================
 */
 int Brush_MemorySize( brush_t *b ) {
@@ -1987,7 +1987,7 @@ int Brush_MemorySize( brush_t *b ) {
 ================
 Brush_Clone
 
-  does not add the brush to any lists
+does not add the brush to any lists
 ================
 */
 brush_t *Brush_Clone( brush_t *b ) {
@@ -2027,9 +2027,9 @@ brush_t *Brush_Clone( brush_t *b ) {
 ================
 Brush_FullClone
 
-  Used by Undo.
-  Makes an exact copy of the brush.
-  Does NOT add the new brush to any lists.
+Used by Undo.
+Makes an exact copy of the brush.
+Does NOT add the new brush to any lists.
 ================
 */
 brush_t *Brush_FullClone( brush_t *b ) {
@@ -2096,7 +2096,7 @@ brush_t *Brush_FullClone( brush_t *b ) {
 }
 
 extern bool GetMatrixForKey( entity_t *ent, const char *key, idMat3 &mat );
-extern bool Patch_Intersect( patchMesh_t *pm, idVec3 origin, idVec3 direction , float &scale );
+extern bool Patch_Intersect( patchMesh_t *pm, idVec3 origin, idVec3 direction, float &scale );
 extern bool RayIntersectsTri
 (
 	const idVec3	&origin,
@@ -2151,7 +2151,7 @@ bool Brush_ModelIntersect( brush_t *b, idVec3 origin, idVec3 dir, float &scale )
 				if( frame < 1 ) {
 					frame = 1;
 				}
-				if( !anim || !anim[ 0 ] ) {
+				if( !anim || !anim[0] ) {
 					anim = "idle";
 				}
 				model = gameEdit->ANIM_CreateMeshForAnim( md5, classname, anim, frame, false );
@@ -2174,7 +2174,7 @@ bool Brush_ModelIntersect( brush_t *b, idVec3 origin, idVec3 dir, float &scale )
 				s = c = 0;
 			}
 		}
-		for( int i = 0; i < model->NumSurfaces() ; i++ ) {
+		for( int i = 0; i < model->NumSurfaces(); i++ ) {
 			const modelSurface_t	*surf = model->Surface( i );
 			srfTriangles_t	*tri = surf->geometry;
 			for( int j = 0; j < tri->numIndexes; j += 3 ) {
@@ -2248,7 +2248,7 @@ face_t *Brush_Ray( idVec3 origin, idVec3 dir, brush_t *b, float *dist, bool test
 				*dist = 0;
 				return NULL;
 			}
-		} else if( b->modelHandle != NULL && dynamic_cast<idRenderModelPrt *>( b->modelHandle ) == NULL && dynamic_cast< idRenderModelLiquid *>( b->modelHandle ) == NULL ) {
+		} else if( b->modelHandle != NULL && dynamic_cast<idRenderModelPrt *>( b->modelHandle ) == NULL && dynamic_cast<idRenderModelLiquid *>( b->modelHandle ) == NULL ) {
 			if( !Brush_ModelIntersect( b, origin, dir, scale ) ) {
 				*dist = 0;
 				return NULL;
@@ -2320,12 +2320,12 @@ void Brush_RemoveFromList( brush_t *b ) {
 ================
 SetFaceTexdef
 
-  Doesn't set the curve flags.
-  NOTE: never trust f->d_texture here, f->texdef and f->d_texture are out of sync when
-  called by Brush_SetTexture use Texture_ForName() to find the right shader
-  FIXME: send the right shader ( qtexture_t * ) in the parameters ?
-  TTimo: surface plugin, added an IPluginTexdef* parameter if not NULL,
-  get ->Copy() of it into the face ( and remember to hook ) if NULL, ask for a default
+Doesn't set the curve flags.
+NOTE: never trust f->d_texture here, f->texdef and f->d_texture are out of sync when
+called by Brush_SetTexture use Texture_ForName() to find the right shader
+FIXME: send the right shader ( qtexture_t * ) in the parameters ?
+TTimo: surface plugin, added an IPluginTexdef* parameter if not NULL,
+get ->Copy() of it into the face ( and remember to hook ) if NULL, ask for a default
 ================
 */
 void SetFaceTexdef( brush_t *b, face_t *f, texdef_t *texdef, brushprimit_texdef_t *brushprimit_texdef, bool bFitScale ) {
@@ -2460,7 +2460,7 @@ void AddMovePlane( idPlane *p ) {
 ================
 Brush_SelectFaceForDragging
 
-  Adds the faces planepts to move_points, and rotates and adds the planepts of adjacent face if shear is set
+Adds the faces planepts to move_points, and rotates and adds the planepts of adjacent face if shear is set
 ================
 */
 void Brush_SelectFaceForDragging( brush_t *b, face_t *f, bool shear ) {
@@ -2556,7 +2556,7 @@ void Brush_SelectFaceForDragging( brush_t *b, face_t *f, bool shear ) {
 ================
 Brush_SideSelect
 
-  The mouse click did not hit the brush, so grab one or more side planes for dragging.
+The mouse click did not hit the brush, so grab one or more side planes for dragging.
 ================
 */
 void Brush_SideSelect( brush_t *b, idVec3 origin, idVec3 dir, bool shear ) {
@@ -2784,7 +2784,7 @@ void Brush_BuildWindings( brush_t *b, bool bSnap, bool keepOnPlaneWinding, bool 
 ================
 Brush_RemoveEmptyFaces
 
-  Frees any overconstraining faces
+Frees any overconstraining faces
 ================
 */
 void Brush_RemoveEmptyFaces( brush_t *b ) {
@@ -2928,7 +2928,7 @@ void Brush_Center( brush_t *b, idVec3 vNewCenter ) {
 ================
 Brush_Resize
 
-  the brush must be a true axial box
+the brush must be a true axial box
 ================
 */
 void Brush_Resize( brush_t *b, idVec3 vMin, idVec3 vMax ) {
@@ -3410,7 +3410,7 @@ void Brush_DrawModel( brush_t *b, bool camera, bool bSelected ) {
 				if( frame < 1 ) {
 					frame = 1;
 				}
-				if( !anim || !anim[ 0 ] ) {
+				if( !anim || !anim[0] ) {
 					anim = "idle";
 				}
 				model2 = gameEdit->ANIM_CreateMeshForAnim( model, classname, anim, frame, false );
@@ -3455,11 +3455,11 @@ void Brush_DrawModel( brush_t *b, bool camera, bool bSelected ) {
 			//draw selection tints
 			/*
 			if ( camera && g_PrefsDlg.m_nEntityShowState != ENTITY_WIREFRAME ) {
-			    glPolygonMode ( GL_FRONT_AND_BACK , GL_FILL );
-			    glColor3fv ( g_qeglobals.d_savedinfo.colors[COLOR_SELBRUSHES].ToFloatPtr () );
-			    glEnable ( GL_BLEND );
-			    glBlendFunc ( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-			    DrawRenderModel( model, b->owner->origin, axis, camera );
+			glPolygonMode ( GL_FRONT_AND_BACK , GL_FILL );
+			glColor3fv ( g_qeglobals.d_savedinfo.colors[COLOR_SELBRUSHES].ToFloatPtr () );
+			glEnable ( GL_BLEND );
+			glBlendFunc ( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+			DrawRenderModel( model, b->owner->origin, axis, camera );
 			}
 			*/
 			//draw white triangle outlines
@@ -3740,7 +3740,7 @@ void Brush_DrawCombatNode( brush_t *b, bool cameraView, bool bSelected ) {
 	idMat3 axis = idAngles( 0, yaw, 0 ).ToMat3();
 	idVec3 org = b->owner->origin + offset;
 	idVec3 entorg = b->owner->origin;
-	float cone_dot = cone_right * axis[ 1 ];
+	float cone_dot = cone_right * axis[1];
 	if( idMath::Fabs( cone_dot ) > 0.1 ) {
 		idVec3 pt, pt1, pt2, pt3, pt4;
 		float cone_dist = max_dist / cone_dot;
@@ -3905,9 +3905,9 @@ idSurface_SweptSpline *SplineToSweptSpline( idCurve<idVec3> *curve ) {
 	// must be either nurbs or catmull
 	idCurve_Spline<idVec4> *newCurve = NULL;
 	if( dynamic_cast<idCurve_NURBS<idVec3>*>( curve ) ) {
-		newCurve = new idCurve_NURBS<idVec4>;
+		newCurve = new idCurve_NURBS < idVec4 > ;
 	} else if( dynamic_cast<idCurve_CatmullRomSpline<idVec3>*>( curve ) ) {
-		newCurve = new idCurve_CatmullRomSpline<idVec4>;
+		newCurve = new idCurve_CatmullRomSpline < idVec4 > ;
 	}
 	if( curve == NULL || newCurve == NULL ) {
 		return NULL;
@@ -3960,43 +3960,43 @@ void Brush_DrawCurve( brush_t *b, bool bSelected, bool cam ) {
 		}
 		/*
 				if ( cam ) {
-					idSurface_SweptSpline *ss = SplineToSweptSpline( b->owner->curve );
-					if ( ss ) {
-						idMaterial *mat = declManager->FindMaterial( "_default" );
-						mat->GetEditorImage()->Bind();
-						glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
-						glBegin( GL_TRIANGLES );
-						const int *indexes = ss->GetIndexes();
-						const idDrawVert *verts = ss->GetVertices();
-						for ( j = 0; j < ss->GetNumIndexes(); j += 3 ) {
-							for ( k = 0; k < 3; k++ ) {
-								int	index = indexes[ j + 2 - k ];
-								float f = ShadeForNormal( verts[index].normal  );
-								GL_Color( f, f, f );
-								glTexCoord2fv( verts[index].st.ToFloatPtr() );
-								glVertex3fv( verts[index].xyz.ToFloatPtr() );
-							}
-						}
-						glEnd();
-						delete ss;
-					}
+				idSurface_SweptSpline *ss = SplineToSweptSpline( b->owner->curve );
+				if ( ss ) {
+				idMaterial *mat = declManager->FindMaterial( "_default" );
+				mat->GetEditorImage()->Bind();
+				glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
+				glBegin( GL_TRIANGLES );
+				const int *indexes = ss->GetIndexes();
+				const idDrawVert *verts = ss->GetVertices();
+				for ( j = 0; j < ss->GetNumIndexes(); j += 3 ) {
+				for ( k = 0; k < 3; k++ ) {
+				int	index = indexes[ j + 2 - k ];
+				float f = ShadeForNormal( verts[index].normal  );
+				GL_Color( f, f, f );
+				glTexCoord2fv( verts[index].st.ToFloatPtr() );
+				glVertex3fv( verts[index].xyz.ToFloatPtr() );
+				}
+				}
+				glEnd();
+				delete ss;
+				}
 				} else {
-		*/
+				*/
 		/*			glPointSize( 1.0f );
 					glBegin( GL_POINTS );
 					if ( i + 1  < maxage ) {
-						int start = b->owner->curve->GetTime( i );
-						int end = b->owner->curve->GetTime( i + 1 );
-						int inc = (end - start) / POINTS_PER_KNOT;
-						for ( int j = 0; j < POINTS_PER_KNOT; j++ ) {
-							idVec3 v = b->owner->curve->GetCurrentValue( start );
-							glVertex3f( v.x, v.y, v.z );
-							start += inc;
-						}
+					int start = b->owner->curve->GetTime( i );
+					int end = b->owner->curve->GetTime( i + 1 );
+					int inc = (end - start) / POINTS_PER_KNOT;
+					for ( int j = 0; j < POINTS_PER_KNOT; j++ ) {
+					idVec3 v = b->owner->curve->GetCurrentValue( start );
+					glVertex3f( v.x, v.y, v.z );
+					start += inc;
+					}
 					}*/
 		// DHM - _D3XP : Makes it easier to see curve
 		glBegin( GL_LINE_STRIP );
-		if( i + 1  < maxage ) {
+		if( i + 1 < maxage ) {
 			int start = b->owner->curve->GetTime( i );
 			int end = b->owner->curve->GetTime( i + 1 );
 			int inc = ( end - start ) / POINTS_PER_KNOT;
@@ -4009,7 +4009,7 @@ void Brush_DrawCurve( brush_t *b, bool bSelected, bool cam ) {
 		glEnd();
 		/*
 				}
-		*/
+				*/
 	}
 	glPointSize( 1 );
 }
@@ -4142,9 +4142,9 @@ void Brush_DrawXY( brush_t *b, int nViewType, bool bSelected, bool ignoreViewTyp
 		glEnd();
 		/*
 				for (i = 0; i < 3; i++) {
-					glLabeledPoint(idVec4(1, 0, 0, 1), face->planepts[i], 3, va("%i", i));
+				glLabeledPoint(idVec4(1, 0, 0, 1), face->planepts[i], 3, va("%i", i));
 				}
-		*/
+				*/
 	}
 	DrawBrushEntityName( b );
 }
@@ -4228,7 +4228,7 @@ void Brush_Move( brush_t *b, const idVec3 move, bool bSnap, bool updateOrigin ) 
 		}
 		//}
 		if( b->owner->eclass->nShowFlags & ECLASS_ENV ) {
-			const idKeyValue *arg  = b->owner->epairs.MatchPrefix( "body ", NULL );
+			const idKeyValue *arg = b->owner->epairs.MatchPrefix( "body ", NULL );
 			idStr val;
 			idVec3 org;
 			idAngles ang;
@@ -4291,7 +4291,7 @@ void Brush_Print( brush_t *b ) {
 ================
 Brush_MakeSidedCone
 
-  Makes the current brush have the given number of 2d sides and turns it into a cone
+Makes the current brush have the given number of 2d sides and turns it into a cone
 ================
 */
 void Brush_MakeSidedCone( int sides ) {
@@ -4367,7 +4367,7 @@ void Brush_MakeSidedCone( int sides ) {
 ================
 Brush_MakeSidedSphere
 
-  Makes the current brushhave the given number of 2d sides and turns it into a sphere
+Makes the current brushhave the given number of 2d sides and turns it into a sphere
 ================
 */
 void Brush_MakeSidedSphere( int sides ) {

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -404,13 +404,13 @@ bool HandleDoorTask::Perform( Subsystem &subsystem ) {
 
 				if ( ( controller != NULL ) && ( masterUser == owner ) && ( controller->GetUserManager().GetNumUsers() == 0 ) )
 				{
-					// We have an entity to control this door, interact with it
-					subsystem.PushTask(TaskPtr(new InteractionTask(controller)));
+				// We have an entity to control this door, interact with it
+				subsystem.PushTask(TaskPtr(new InteractionTask(controller)));
 
-					// After the InteractionTask completes, control will return
-					// to HandleDoorTask::Init().
+				// After the InteractionTask completes, control will return
+				// to HandleDoorTask::Init().
 
-					return false;
+				return false;
 				}*/
 			}
 			// grayman #3317 - use less position accuracy when running
@@ -445,16 +445,16 @@ bool HandleDoorTask::Perform( Subsystem &subsystem ) {
 
 					if (controller != NULL)
 					{
-						if (masterUser == owner && controller->GetUserManager().GetNumUsers() == 0)
-						{
-							// We have an entity to control this door, interact with it
-							subsystem.PushTask(TaskPtr(new InteractionTask(controller)));
+					if (masterUser == owner && controller->GetUserManager().GetNumUsers() == 0)
+					{
+					// We have an entity to control this door, interact with it
+					subsystem.PushTask(TaskPtr(new InteractionTask(controller)));
 
-							// After the InteractionTask completes, control will return
-							// to HandleDoorTask::Init().
+					// After the InteractionTask completes, control will return
+					// to HandleDoorTask::Init().
 
-							return false;
-						}
+					return false;
+					}
 					}*/
 					// grayman #3317 - use less position accuracy when running
 					if( !owner->MoveToPosition( _frontPos, owner->AI_RUN ? HANDLE_DOOR_ACCURACY_RUNNING : HANDLE_DOOR_ACCURACY ) ) {
@@ -1381,7 +1381,7 @@ bool HandleDoorTask::Perform( Subsystem &subsystem ) {
 				// If the door uses controllers, the lock is kept on
 				// them, not on the door
 				if( ( frobDoor->GetDoorController( DOOR_SIDE_FRONT ).GetEntity() != NULL ) ||
-						( frobDoor->GetDoorController( DOOR_SIDE_BACK ).GetEntity()  != NULL ) ) {
+						( frobDoor->GetDoorController( DOOR_SIDE_BACK ).GetEntity() != NULL ) ) {
 					frobDoor->LockControllers( false ); // lock all controllers
 				} else { // lock door directly
 					frobDoor->Lock( false ); // lock the door
@@ -1404,7 +1404,7 @@ bool HandleDoorTask::Perform( Subsystem &subsystem ) {
 						// If the door uses controllers, the lock is kept on
 						// them, not on the door
 						if( ( doubleDoor->GetDoorController( DOOR_SIDE_FRONT ).GetEntity() != NULL ) ||
-								( doubleDoor->GetDoorController( DOOR_SIDE_BACK ).GetEntity()  != NULL ) ) {
+								( doubleDoor->GetDoorController( DOOR_SIDE_BACK ).GetEntity() != NULL ) ) {
 							doubleDoor->LockControllers( false ); // lock all controllers
 						} else { // lock door directly
 							doubleDoor->Lock( false ); // lock the seconddoor
@@ -1776,7 +1776,7 @@ void PrintDoorQ( CFrobDoor *frobDoor ) {
 		return;
 	}
 	idVec3 doorOrigin = frobDoor->GetPhysics()->GetOrigin();
-	for( int j = 0 ; j < n ; j++ ) {
+	for( int j = 0; j < n; j++ ) {
 		idActor *u = frobDoor->GetUserManager().GetUserAtIndex( j );
 		if( u != NULL ) {
 			idVec3 dir = u->GetPhysics()->GetOrigin() - doorOrigin;
@@ -1811,7 +1811,7 @@ void HandleDoorTask::AddUser( idAI *newUser, CFrobDoor *frobDoor ) {
 		dir.z = 0;
 		float newUserDistanceSqr = dir.LengthSqr();
 		float qSqr = Square( QUEUE_DISTANCE );
-		for( int i = 0 ; i < numUsers ; i++ ) {
+		for( int i = 0; i < numUsers; i++ ) {
 			idActor *user = frobDoor->GetUserManager().GetUserAtIndex( i );
 			if( user != NULL ) {
 				idVec3 userDir = user->GetPhysics()->GetOrigin() - centerPos; // grayman #3104 - use center of closed door
@@ -1938,15 +1938,15 @@ void HandleDoorTask::DrawDebugOutput( idAI *owner ) {
 
 	Format is:
 
-		<DoorHandlingState> <DoorName> - <Position in door queue>/<# users in door queue>
+	<DoorHandlingState> <DoorName> - <Position in door queue>/<# users in door queue>
 
 	For example:
 
-		EStateMovingToFrontPos Door4 - 2/3
+	EStateMovingToFrontPos Door4 - 2/3
 
 	means the AI is moving toward the front of the door and is currently in the second
 	slot in a door queue of 3 users on door Door4.
-	 */
+	*/
 	idStr position = "";
 	if( owner->m_HandlingDoor ) {
 		if( frobDoor != NULL ) {

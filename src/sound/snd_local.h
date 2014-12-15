@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __SND_LOCAL_H__
 #define __SND_LOCAL_H__
@@ -52,13 +52,13 @@ typedef enum {
 	SCMD_FADE
 } soundDemoCommand_t;
 
-const int SOUND_MAX_CHANNELS		= 8;
-const int SOUND_DECODER_FREE_DELAY	= 1000 * MIXBUFFER_SAMPLES / USERCMD_MSEC;		// four seconds
+const int SOUND_MAX_CHANNELS = 8;
+const int SOUND_DECODER_FREE_DELAY = 1000 * MIXBUFFER_SAMPLES / USERCMD_MSEC;		// four seconds
 
-const int PRIMARYFREQ				= 44100;			// samples per second
-const float SND_EPSILON				= 1.0f / 32768.0f;	// if volume is below this, it will always multiply to zero
+const int PRIMARYFREQ = 44100;			// samples per second
+const float SND_EPSILON = 1.0f / 32768.0f;	// if volume is below this, it will always multiply to zero
 
-const int ROOM_SLICES_IN_BUFFER		= 10;
+const int ROOM_SLICES_IN_BUFFER = 10;
 
 class idAudioHardware;
 class idAudioBuffer;
@@ -71,13 +71,13 @@ class idSoundWorldLocal;
 /*
 ===================================================================================
 
-	General extended waveform format structure.
-	Use this for all NON PCM formats.
+General extended waveform format structure.
+Use this for all NON PCM formats.
 
 ===================================================================================
 */
 
-PACKED(waveformatex_s{
+PACKED( waveformatex_s {
 	word    wFormatTag;        /* format type */
 	word    nChannels;         /* number of channels (i.e. mono, stereo...) */
 	dword   nSamplesPerSec;    /* sample rate */
@@ -86,18 +86,18 @@ PACKED(waveformatex_s{
 	word    wBitsPerSample;    /* Number of bits per sample of mono data */
 	word    cbSize;            /* The count in bytes of the size of
 									extra information (after cbSize) */
-});
+} );
 
 typedef waveformatex_s waveformatex_t;
 
 /* OLD general waveform format structure (information common to all formats) */
-PACKED(waveformat_s{
+PACKED( waveformat_s {
 	word    wFormatTag;        /* format type */
 	word    nChannels;         /* number of channels (i.e. mono, stereo, etc.) */
 	dword   nSamplesPerSec;    /* sample rate */
 	dword   nAvgBytesPerSec;   /* for buffer estimation */
 	word    nBlockAlign;       /* block size of data */
-});
+} );
 
 typedef waveformat_s waveformat_t;
 
@@ -108,10 +108,10 @@ enum {
 };
 
 /* specific waveform format structure for PCM data */
-PACKED(pcmwaveformat_s{
+PACKED( pcmwaveformat_s {
 	waveformat_t	wf;
 	word			wBitsPerSample;
-});
+} );
 
 typedef pcmwaveformat_s pcmwaveformat_t;
 
@@ -123,7 +123,7 @@ typedef pcmwaveformat_s pcmwaveformat_t;
 
 #define fourcc_riff     mmioFOURCC('R', 'I', 'F', 'F')
 
-PACKED(waveformatextensible_s{
+PACKED( waveformatextensible_s {
 	waveformatex_t    Format;
 	union
 	{
@@ -134,19 +134,19 @@ PACKED(waveformatextensible_s{
 	dword           dwChannelMask;      /* which channels are */
 	/* present in stream  */
 	int            SubFormat;
-});
+} );
 
 typedef waveformatextensible_s waveformatextensible_t;
 
 typedef dword fourcc;
 
 /* RIFF chunk information data structure */
-PACKED(mminfo_s{
+PACKED( mminfo_s {
 	fourcc			ckid;           /* chunk ID */
 	dword			cksize;         /* chunk size */
 	fourcc			fccType;        /* form type or list type */
 	dword			dwDataOffset;   /* offset of data portion of chunk */
-});
+} );
 
 typedef mminfo_s mminfo_t;
 
@@ -218,7 +218,7 @@ public:
 
 	virtual					~idAudioHardware();
 
-	virtual bool			Initialize( ) = 0;
+	virtual bool			Initialize() = 0;
 
 	virtual bool			Lock( void **pDSLockedBuffer, ulong *dwDSLockedBufferSize ) = 0;
 	virtual bool			Unlock( void *pDSLockedBuffer, dword dwDSLockedBufferSize ) = 0;
@@ -261,10 +261,10 @@ idSoundEmitterLocal
 */
 
 typedef enum {
-	REMOVE_STATUS_INVALID				= -1,
-	REMOVE_STATUS_ALIVE					=  0,
-	REMOVE_STATUS_WAITSAMPLEFINISHED	=  1,
-	REMOVE_STATUS_SAMPLEFINISHED		=  2
+	REMOVE_STATUS_INVALID = -1,
+	REMOVE_STATUS_ALIVE = 0,
+	REMOVE_STATUS_WAITSAMPLEFINISHED = 1,
+	REMOVE_STATUS_SAMPLEFINISHED = 2
 } removeStatus_t;
 
 class idSoundFade {
@@ -645,7 +645,7 @@ public:
 			int current44kHz, int numSpeakers, float *finalMixBuffer );
 	void					MixLoop( int current44kHz, int numSpeakers, float *finalMixBuffer );
 	void					AVIUpdate( void );
-	bool					ResolveOrigin( const int stackDepth, const soundPortalTrace_t *prevStack, const int soundArea, const float dist, const float loss, const idVec3 &soundOrigin, idSoundEmitterLocal *def , SoundChainResults *results ); // grayman #3042
+	bool					ResolveOrigin( const int stackDepth, const soundPortalTrace_t *prevStack, const int soundArea, const float dist, const float loss, const idVec3 &soundOrigin, idSoundEmitterLocal *def, SoundChainResults *results ); // grayman #3042
 	float					FindAmplitude( idSoundEmitterLocal *sound, const int localTime, const idVec3 *listenerPosition, const s_channelType channel, bool shakesOnly );
 
 	//============================================
@@ -701,7 +701,7 @@ typedef struct {
 
 class idSoundSystemLocal : public idSoundSystem {
 public:
-	idSoundSystemLocal( ) {
+	idSoundSystemLocal() {
 		isInitialized = false;
 	}
 
@@ -852,7 +852,7 @@ extern	idSoundSystemLocal	soundSystemLocal;
 /*
 ===================================================================================
 
-  This class holds the actual wavefile bitmap, size, and info.
+This class holds the actual wavefile bitmap, size, and info.
 
 ===================================================================================
 */
@@ -892,7 +892,7 @@ public:
 /*
 ===================================================================================
 
-  Sound sample decoder.
+Sound sample decoder.
 
 ===================================================================================
 */
@@ -916,7 +916,7 @@ public:
 /*
 ===================================================================================
 
-  The actual sound cache.
+The actual sound cache.
 
 ===================================================================================
 */

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -96,7 +96,7 @@ void CZWnd::OnLButtonDown( UINT nFlags, CPoint point ) {
 	SetCapture();
 	CRect rctZ;
 	GetClientRect( rctZ );
-	Z_MouseDown( point.x, rctZ.Height() - 1 - point.y , nFlags );
+	Z_MouseDown( point.x, rctZ.Height() - 1 - point.y, nFlags );
 }
 
 void CZWnd::OnMButtonDown( UINT nFlags, CPoint point ) {
@@ -104,7 +104,7 @@ void CZWnd::OnMButtonDown( UINT nFlags, CPoint point ) {
 	SetCapture();
 	CRect rctZ;
 	GetClientRect( rctZ );
-	Z_MouseDown( point.x, rctZ.Height() - 1 - point.y , nFlags );
+	Z_MouseDown( point.x, rctZ.Height() - 1 - point.y, nFlags );
 }
 
 void CZWnd::OnRButtonDown( UINT nFlags, CPoint point ) {
@@ -112,7 +112,7 @@ void CZWnd::OnRButtonDown( UINT nFlags, CPoint point ) {
 	SetCapture();
 	CRect rctZ;
 	GetClientRect( rctZ );
-	Z_MouseDown( point.x, rctZ.Height() - 1 - point.y , nFlags );
+	Z_MouseDown( point.x, rctZ.Height() - 1 - point.y, nFlags );
 }
 
 void CZWnd::OnPaint() {
@@ -167,12 +167,12 @@ void CZWnd::OnNcCalcSize( BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR *lpncsp ) 
 
 void CZWnd::OnKillFocus( CWnd *pNewWnd ) {
 	CWnd::OnKillFocus( pNewWnd );
-	SendMessage( WM_NCACTIVATE, FALSE , 0 );
+	SendMessage( WM_NCACTIVATE, FALSE, 0 );
 }
 
 void CZWnd::OnSetFocus( CWnd *pOldWnd ) {
 	CWnd::OnSetFocus( pOldWnd );
-	SendMessage( WM_NCACTIVATE, TRUE , 0 );
+	SendMessage( WM_NCACTIVATE, TRUE, 0 );
 }
 
 void CZWnd::OnClose() {
@@ -212,9 +212,9 @@ BOOL CZWnd::PreCreateWindow( CREATESTRUCT &cs ) {
 	if( ::GetClassInfo( hInstance, Z_WINDOW_CLASS, &wc ) == FALSE ) {
 		// Register a new class
 		memset( &wc, 0, sizeof( wc ) );
-		wc.style         = CS_NOCLOSE;// | CS_OWNDC;
+		wc.style = CS_NOCLOSE;// | CS_OWNDC;
 		wc.lpszClassName = Z_WINDOW_CLASS;
-		wc.hCursor       = LoadCursor( NULL, IDC_ARROW );
+		wc.hCursor = LoadCursor( NULL, IDC_ARROW );
 		wc.lpfnWndProc = ::DefWindowProc;
 		if( AfxRegisterClass( &wc ) == FALSE ) {
 			Error( "CZWnd RegisterClass: failed" );

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -97,7 +97,7 @@ void DialogAFConstraintSlider::InitJointLists( void ) {
 	}
 	int numJoints = model->NumJoints();
 	for( int i = 0; i < numJoints; i++ ) {
-		const char *jointName = model->GetJointName( ( jointHandle_t ) i );
+		const char *jointName = model->GetJointName( ( jointHandle_t )i );
 		m_comboAxisJoint1.AddString( jointName );
 		m_comboAxisJoint2.AddString( jointName );
 	}
@@ -247,10 +247,10 @@ void DialogAFConstraintSlider::OnCbnSelchangeComboSliderAxisJoint2() {
 }
 
 void DialogAFConstraintSlider::OnEnChangeEditSliderAxisPitch() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_SLIDER_AXIS_PITCH ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_SLIDER_AXIS_PITCH ) ) ) {
 		UpdateFile();
 	} else {
-		EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_SLIDER_AXIS_PITCH ) );
+		EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_SLIDER_AXIS_PITCH ) );
 	}
 }
 
@@ -267,10 +267,10 @@ void DialogAFConstraintSlider::OnDeltaposSpinSliderAxisPitch( NMHDR *pNMHDR, LRE
 }
 
 void DialogAFConstraintSlider::OnEnChangeEditSliderAxisYaw() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_SLIDER_AXIS_YAW ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_SLIDER_AXIS_YAW ) ) ) {
 		UpdateFile();
 	} else {
-		EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_SLIDER_AXIS_YAW ) );
+		EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_SLIDER_AXIS_YAW ) );
 	}
 }
 

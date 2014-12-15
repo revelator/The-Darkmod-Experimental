@@ -1,28 +1,28 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 // Copyright (C) 2004 Id Software, Inc.
 //
 /*
 =============================================================================
 
-  MODEL TESTING
+MODEL TESTING
 
 Model viewing can begin with either "testmodel <modelname>"
 
@@ -35,9 +35,9 @@ Testmodel will create a fake entity 100 units in front of the current view
 position, directly facing the viewer.  It will remain immobile, so you can
 move around it to view it from different angles.
 
-  g_testModelRotate
-  g_testModelAnimate
-  g_testModelBlend
+g_testModelRotate
+g_testModelAnimate
+g_testModelBlend
 
 =============================================================================
 */
@@ -50,8 +50,8 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../Game_local.h"
 
 CLASS_DECLARATION( idAnimatedEntity, idTestModel )
-EVENT( EV_FootstepLeft,			idTestModel::Event_Footstep )
-EVENT( EV_FootstepRight,		idTestModel::Event_Footstep )
+EVENT( EV_FootstepLeft, idTestModel::Event_Footstep )
+EVENT( EV_FootstepRight, idTestModel::Event_Footstep )
 END_CLASS
 
 /*
@@ -116,8 +116,8 @@ void idTestModel::Spawn( void ) {
 		physicsObj.SetClipBox( bounds, 1.0f );
 		physicsObj.SetContents( 0 );
 	} else if( spawnArgs.GetVector( "size", NULL, size ) ) {
-		bounds[ 0 ].Set( size.x * -0.5f, size.y * -0.5f, 0.0f );
-		bounds[ 1 ].Set( size.x * 0.5f, size.y * 0.5f, size.z );
+		bounds[0].Set( size.x * -0.5f, size.y * -0.5f, 0.0f );
+		bounds[1].Set( size.x * 0.5f, size.y * 0.5f, size.z );
 		physicsObj.SetClipBox( bounds, 1.0f );
 		physicsObj.SetContents( 0 );
 	}
@@ -190,7 +190,7 @@ void idTestModel::Spawn( void ) {
 		}
 	}
 	// start any shader effects based off of the spawn time
-	renderEntity.shaderParms[ SHADERPARM_TIMEOFFSET ] = -MS2SEC( gameLocal.time );
+	renderEntity.shaderParms[SHADERPARM_TIMEOFFSET] = -MS2SEC( gameLocal.time );
 	SetPhysics( &physicsObj );
 	gameLocal.Printf( "Added testmodel at origin = '%s',  angles = '%s'\n", GetPhysics()->GetOrigin().ToString(), GetPhysics()->GetAxis().ToAngles().ToString() );
 	BecomeActive( TH_THINK );
@@ -334,16 +334,16 @@ void idTestModel::Think( void ) {
 		if( headAnimator ) {
 			// copy the animation from the body to the head
 			for( i = 0; i < copyJoints.Num(); i++ ) {
-				if( copyJoints[ i ].mod == JOINTMOD_WORLD_OVERRIDE ) {
+				if( copyJoints[i].mod == JOINTMOD_WORLD_OVERRIDE ) {
 					idMat3 mat = head.GetEntity()->GetPhysics()->GetAxis().Transpose();
-					GetJointWorldTransform( copyJoints[ i ].from, gameLocal.time, pos, axis );
+					GetJointWorldTransform( copyJoints[i].from, gameLocal.time, pos, axis );
 					pos -= head.GetEntity()->GetPhysics()->GetOrigin();
-					headAnimator->SetJointPos( copyJoints[ i ].to, copyJoints[ i ].mod, pos * mat );
-					headAnimator->SetJointAxis( copyJoints[ i ].to, copyJoints[ i ].mod, axis * mat );
+					headAnimator->SetJointPos( copyJoints[i].to, copyJoints[i].mod, pos * mat );
+					headAnimator->SetJointAxis( copyJoints[i].to, copyJoints[i].mod, axis * mat );
 				} else {
-					animator.GetJointLocalTransform( copyJoints[ i ].from, gameLocal.time, pos, axis );
-					headAnimator->SetJointPos( copyJoints[ i ].to, copyJoints[ i ].mod, pos );
-					headAnimator->SetJointAxis( copyJoints[ i ].to, copyJoints[ i ].mod, axis );
+					animator.GetJointLocalTransform( copyJoints[i].from, gameLocal.time, pos, axis );
+					headAnimator->SetJointPos( copyJoints[i].to, copyJoints[i].mod, pos );
+					headAnimator->SetJointAxis( copyJoints[i].to, copyJoints[i].mod, axis );
 				}
 			}
 		}
@@ -503,12 +503,12 @@ void idTestModel::TestAnim( const idCmdArgs &args ) {
 	name = args.Argv( 1 );
 #if 0
 	if( strstr( name, ".ma" ) || strstr( name, ".mb" ) ) {
-		const idMD5Anim	*md5anims[ ANIM_MaxSyncedAnims ];
+		const idMD5Anim	*md5anims[ANIM_MaxSyncedAnims];
 		idModelExport exporter;
 		exporter.ExportAnim( name );
 		name.SetFileExtension( MD5_ANIM_EXT );
-		md5anims[ 0 ] = animationLib.GetAnim( name );
-		if( md5anims[ 0 ] ) {
+		md5anims[0] = animationLib.GetAnim( name );
+		if( md5anims[0] ) {
 			customAnim.SetAnim( animator.ModelDef(), name, name, 1, md5anims );
 			newanim = &customAnim;
 		}
@@ -578,7 +578,7 @@ void idTestModel::BlendAnim( const idCmdArgs &args ) {
 
 	Testmodel console commands
 
-***********************************************************************/
+	***********************************************************************/
 
 /*
 =================
@@ -702,7 +702,7 @@ void idTestModel::TestModel_f( const idCmdArgs &args ) {
 		} else {
 			// allow map models with underscore prefixes to be tested during development
 			// without appending an ase
-			if( name[ 0 ] != '_' ) {
+			if( name[0] != '_' ) {
 				name.DefaultFileExtension( ".ase" );
 			}
 			if( strstr( name, ".ma" ) || strstr( name, ".mb" ) ) {
@@ -734,11 +734,11 @@ void idTestModel::ArgCompletion_TestModel( const idCmdArgs &args, void( *callbac
 	int i, num;
 	num = declManager->GetNumDecls( DECL_ENTITYDEF );
 	for( i = 0; i < num; i++ ) {
-		callback( idStr( args.Argv( 0 ) ) + " " + declManager->DeclByIndex( DECL_ENTITYDEF, i , false )->GetName() );
+		callback( idStr( args.Argv( 0 ) ) + " " + declManager->DeclByIndex( DECL_ENTITYDEF, i, false )->GetName() );
 	}
 	num = declManager->GetNumDecls( DECL_MODELDEF );
 	for( i = 0; i < num; i++ ) {
-		callback( idStr( args.Argv( 0 ) ) + " " + declManager->DeclByIndex( DECL_MODELDEF, i , false )->GetName() );
+		callback( idStr( args.Argv( 0 ) ) + " " + declManager->DeclByIndex( DECL_MODELDEF, i, false )->GetName() );
 	}
 	cmdSystem->ArgCompletion_FolderExtension( args, callback, "models/", false, ".lwo", ".ase", ".md5mesh", ".ma", ".mb", NULL );
 }

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __GAME_TRIGGER_H__
 #define __GAME_TRIGGER_H__
@@ -26,7 +26,7 @@ extern const idEventDef EV_Disable;
 /*
 ===============================================================================
 
-  Trigger base.
+Trigger base.
 
 ===============================================================================
 */
@@ -60,7 +60,7 @@ protected:
 /*
 ===============================================================================
 
-  Trigger which can be activated multiple times.
+Trigger which can be activated multiple times.
 
 ===============================================================================
 */
@@ -99,7 +99,7 @@ private:
 /*
 ===============================================================================
 
-  Trigger which can only be activated by an entity with a specific name.
+Trigger which can only be activated by an entity with a specific name.
 
 ===============================================================================
 */
@@ -133,7 +133,7 @@ private:
 /*
 ===============================================================================
 
-  Trigger which repeatedly fires targets.
+Trigger which repeatedly fires targets.
 
 ===============================================================================
 */
@@ -167,7 +167,7 @@ private:
 /*
 ===============================================================================
 
-  Trigger which fires targets after being activated a specific number of times.
+Trigger which fires targets after being activated a specific number of times.
 
 ===============================================================================
 */
@@ -195,7 +195,7 @@ private:
 /*
 ===============================================================================
 
-  Trigger which hurts touching entities.
+Trigger which hurts touching entities.
 
 ===============================================================================
 */
@@ -223,7 +223,7 @@ private:
 /*
 ===============================================================================
 
-  Trigger which fades the player view.
+Trigger which fades the player view.
 
 ===============================================================================
 */
@@ -240,7 +240,7 @@ private:
 /*
 ===============================================================================
 
-  Trigger which continuously tests whether other entities are touching it.
+Trigger which continuously tests whether other entities are touching it.
 
 ===============================================================================
 */

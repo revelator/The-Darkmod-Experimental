@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -150,7 +150,7 @@ void SoundEditorInit( const idDict *spawnArgs ) {
 				// FIXME: restore position
 				CRect rct;
 				g_SoundDialog->SetWindowPos( NULL, rct.left, rct.top, 0,0, SWP_NOSIZE );
-		*/
+				*/
 	}
 	idKeyInput::ClearStates();
 	g_SoundDialog->ShowWindow( SW_SHOW );
@@ -422,7 +422,7 @@ void CDialogSound::AddSounds( bool rootItems ) {
 	idStrList list( 1024 );
 	idStrList list2( 1024 );
 	HTREEITEM base = treeSounds.InsertItem( "Sound Shaders" );
-	for( i = 0; i < declManager->GetNumDecls( DECL_SOUND ) ; i++ ) {
+	for( i = 0; i < declManager->GetNumDecls( DECL_SOUND ); i++ ) {
 		const idSoundShader *poo = declManager->SoundByIndex( i, false );
 		list.AddUnique( poo->GetFileName() );
 	}
@@ -817,13 +817,13 @@ void CDialogSound::OnSelchangeComboSpeakers() {
 }
 
 void CDialogSound::OnBtnDown() {
-	fVolume	= -1.0;
+	fVolume = -1.0;
 	UpdateData( FALSE );
 	ApplyChanges( true, false );
 }
 
 void CDialogSound::OnBtnUp() {
-	fVolume	= 1.0;
+	fVolume = 1.0;
 	UpdateData( FALSE );
 	ApplyChanges( true, false );
 }

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __SOUND__
 #define __SOUND__
@@ -23,7 +23,7 @@
 /*
 ===============================================================================
 
-	SOUND SHADER DECL
+SOUND SHADER DECL
 
 ===============================================================================
 */
@@ -36,16 +36,16 @@ const float METERS_TO_DOOM = ( 1.0f / DOOM_TO_METERS );	// meters to doom
 class idSoundSample;
 
 // sound shader flags
-static const int	SSF_PRIVATE_SOUND =		BIT( 0 );	// only plays for the current listenerId
+static const int	SSF_PRIVATE_SOUND = BIT( 0 );	// only plays for the current listenerId
 static const int	SSF_ANTI_PRIVATE_SOUND = BIT( 1 );	// plays for everyone but the current listenerId
-static const int	SSF_NO_OCCLUSION =		BIT( 2 );	// don't flow through portals, only use straight line
-static const int	SSF_GLOBAL =			BIT( 3 );	// play full volume to all speakers and all listeners
-static const int	SSF_OMNIDIRECTIONAL =	BIT( 4 );	// fall off with distance, but play same volume in all speakers
-static const int	SSF_LOOPING =			BIT( 5 );	// repeat the sound continuously
-static const int	SSF_PLAY_ONCE =			BIT( 6 );	// never restart if already playing on any channel of a given emitter
-static const int	SSF_UNCLAMPED =			BIT( 7 );	// don't clamp calculated volumes at 1.0
-static const int	SSF_NO_FLICKER =		BIT( 8 );	// always return 1.0 for volume queries
-static const int	SSF_NO_DUPS =			BIT( 9 );	// try not to play the same sound twice in a row
+static const int	SSF_NO_OCCLUSION = BIT( 2 );	// don't flow through portals, only use straight line
+static const int	SSF_GLOBAL = BIT( 3 );	// play full volume to all speakers and all listeners
+static const int	SSF_OMNIDIRECTIONAL = BIT( 4 );	// fall off with distance, but play same volume in all speakers
+static const int	SSF_LOOPING = BIT( 5 );	// repeat the sound continuously
+static const int	SSF_PLAY_ONCE = BIT( 6 );	// never restart if already playing on any channel of a given emitter
+static const int	SSF_UNCLAMPED = BIT( 7 );	// don't clamp calculated volumes at 1.0
+static const int	SSF_NO_FLICKER = BIT( 8 );	// always return 1.0 for volume queries
+static const int	SSF_NO_DUPS = BIT( 9 );	// try not to play the same sound twice in a row
 
 // these options can be overriden from sound shader defaults on a per-emitter and per-channel basis
 typedef struct {
@@ -57,11 +57,11 @@ typedef struct {
 	int						soundClass;				// for global fading of sounds
 } soundShaderParms_t;
 
-const int		SOUND_MAX_LIST_WAVS		= 32;
+const int		SOUND_MAX_LIST_WAVS = 32;
 
 // sound classes are used to fade most sounds down inside cinematics, leaving dialog
 // flagged with a non-zero class full volume
-const int		SOUND_MAX_CLASSES		= 4;
+const int		SOUND_MAX_CLASSES = 4;
 
 // it is somewhat tempting to make this a virtual class to hide the private
 // details here, but that doesn't fit easily with the decl manager at the moment.
@@ -125,7 +125,7 @@ private:
 /*
 ===============================================================================
 
-	SOUND EMITTER
+SOUND EMITTER
 
 ===============================================================================
 */
@@ -175,7 +175,7 @@ public:
 /*
 ===============================================================================
 
-	SOUND WORLD
+SOUND WORLD
 
 There can be multiple independent sound worlds, just as there can be multiple
 independent render worlds.  The prime example is the editor sound preview
@@ -249,7 +249,7 @@ public:
 /*
 ===============================================================================
 
-	SOUND SYSTEM
+SOUND SYSTEM
 
 ===============================================================================
 */

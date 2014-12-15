@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -42,16 +42,16 @@ public:																											\
 	gameLocal.Printf( #block_tag" : %lf \n\n", m_timeStamp.Milliseconds() );									\
 	}																											\
 }	_profile_blockInstance_##block_tag;																			\
-
+ 
 #define PROFILE_BLOCK_START( block_tag )																		\
 	idTimer timer##block_tag;																					\
 	timer##block_tag.Start()																					\
-
+ 
 // PROFILE_BLOCK_END requires PROFILE_BLOCK_START to be placed before it, to work.
 #define PROFILE_BLOCK_END( block_tag )																			\
 	timer##block_tag.Stop();																					\
 	gameLocal.Printf( #block_tag": %lf \n", timer##block_tag.Milliseconds() )									\
-
+ 
 #else
 
 #define PROFILE_BLOCK( block_tag )
@@ -180,7 +180,7 @@ float LightGem::Calculate( idPlayer *player ) {
 		LGPos.y += ( Cam.y - LGPos.y ) * 0.3f + cv_lg_oyoffs.GetFloat(); // Move the lightgem out a fraction along the leaning y vector
 		// Prevent lightgem from clipping into the floor while crouching
 		if( static_cast<idPhysics_Player *>( player->GetPlayerPhysics() )->IsCrouching() ) {
-			LGPos.z += 50.0f + cv_lg_ozoffs.GetFloat() ;
+			LGPos.z += 50.0f + cv_lg_ozoffs.GetFloat();
 		} else {
 			LGPos.z = Cam.z + cv_lg_ozoffs.GetFloat(); // Set the lightgem's Z-axis position to that of the player's eyes
 		}
@@ -333,15 +333,15 @@ void LightGem::AnalyzeRenderImage() {
 	/* 	Split up the image into the 4 triangles
 
 		 \11/	0 - east of lightgem render
-		3 \/ 0	1 - north of lg
-		3 /\ 0	2 - south of lg
+		 3 \/ 0	1 - north of lg
+		 3 /\ 0	2 - south of lg
 		 /22\	3 - west of lg
 
-		Note : Serp - This is a simplification of the early version which used two nested loops
-	*/
+		 Note : Serp - This is a simplification of the early version which used two nested loops
+		 */
 	int in = 0;
 	for( int x = 0; x < DARKMOD_LG_RENDER_WIDTH; x++ ) {
-		for( int y = 0; y < DARKMOD_LG_RENDER_WIDTH; y++, buffer += DARKMOD_LG_BPP ) {  // increment the buffer pos
+		for( int y = 0; y < DARKMOD_LG_RENDER_WIDTH; y++, buffer += DARKMOD_LG_BPP ) { // increment the buffer pos
 			if( y <= x && x + y >= ( DARKMOD_LG_RENDER_WIDTH - 1 ) ) {
 				in = 0;
 			} else if( y < x ) {

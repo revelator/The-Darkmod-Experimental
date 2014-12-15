@@ -79,23 +79,23 @@
 *******************************************************************************/
 
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef RANDOMC_H
 #define RANDOMC_H
@@ -142,48 +142,48 @@ class TRandomMersenne {                // encapsulate random number generator
 #define MERS_C   0xEFC60000
 #endif
 public:
-	TRandomMersenne( uint32 seed ) {     // constructor
+	TRandomMersenne( uint32 seed ) {   // constructor
 		RandomInit( seed );
 	}
-	void RandomInit( uint32 seed );      // re-seed
+	void RandomInit( uint32 seed );    // re-seed
 	void RandomInitByArray( uint32 seeds[], int length ); // seed by more than 32 bits
-	int IRandom( int min, int max );     // output random integer
+	int IRandom( int min, int max );   // output random integer
 	double Random();                     // output random float
 	uint32 BRandom();                    // output random bits
 private:
 	uint32 mt[MERS_N];                   // state vector
 	int mti;                             // index into mt
-	enum TArch {LITTLE_ENDIAN1, BIG_ENDIAN1, NONIEEE};
+	enum TArch { LITTLE_ENDIAN1, BIG_ENDIAN1, NONIEEE };
 	TArch Architecture;                  // conversion to float depends on computer architecture
 };
 
 class TRanrotBGenerator {              // encapsulate random number generator
 	enum constants {                     // define parameters
-		KK = 17, JJ = 10, R1 = 13, R2 =  9
+		KK = 17, JJ = 10, R1 = 13, R2 = 9
 	};
 public:
-	void RandomInit( uint32 seed );      // initialization
-	int IRandom( int min, int max );     // get integer random number in desired interval
+	void RandomInit( uint32 seed );    // initialization
+	int IRandom( int min, int max );   // get integer random number in desired interval
 	double Random();                     // get floating point random number
-	TRanrotBGenerator( uint32 seed );    // constructor
+	TRanrotBGenerator( uint32 seed );  // constructor
 protected:
 	int p1, p2;                          // indexes into buffer
 	uint32 randbuffer[KK];               // history buffer
 	uint32 randbufcopy[KK * 2];          // used for self-test
-	enum TArch {LITTLE_ENDIAN1, BIG_ENDIAN1, NONIEEE};
+	enum TArch { LITTLE_ENDIAN1, BIG_ENDIAN1, NONIEEE };
 	TArch Architecture;                  // conversion to float depends on computer architecture
 };
 
 class TRanrotWGenerator {              // encapsulate random number generator
 	enum constants {                     // define parameters
-		KK = 17, JJ = 10, R1 = 19, R2 =  27
+		KK = 17, JJ = 10, R1 = 19, R2 = 27
 	};
 public:
-	void RandomInit( uint32 seed );      // initialization
-	int IRandom( int min, int max );     // get integer random number in desired interval
+	void RandomInit( uint32 seed );    // initialization
+	int IRandom( int min, int max );   // get integer random number in desired interval
 	long double Random();                // get floating point random number
 	uint32 BRandom();                    // output random bits
-	TRanrotWGenerator( uint32 seed );    // constructor
+	TRanrotWGenerator( uint32 seed );  // constructor
 protected:
 	int p1, p2;                          // indexes into buffer
 	union {                              // used for conversion to float
@@ -192,16 +192,16 @@ protected:
 	};
 	uint32 randbuffer[KK][2];            // history buffer
 	uint32 randbufcopy[KK * 2][2];       // used for self-test
-	enum TArch {LITTLE_ENDIAN1, BIG_ENDIAN1, NONIEEE, EXTENDEDPRECISIONLITTLEENDIAN};
+	enum TArch { LITTLE_ENDIAN1, BIG_ENDIAN1, NONIEEE, EXTENDEDPRECISIONLITTLEENDIAN };
 	TArch Architecture;                  // conversion to float depends on computer architecture
 };
 
 class TRandomMotherOfAll {             // encapsulate random number generator
 public:
-	void RandomInit( uint32 seed );      // initialization
-	int IRandom( int min, int max );     // get integer random number in desired interval
+	void RandomInit( uint32 seed );    // initialization
+	int IRandom( int min, int max );   // get integer random number in desired interval
 	double Random();                     // get floating point random number
-	TRandomMotherOfAll( uint32 seed );   // constructor
+	TRandomMotherOfAll( uint32 seed ); // constructor
 protected:
 	double x[5];                         // history buffer
 };

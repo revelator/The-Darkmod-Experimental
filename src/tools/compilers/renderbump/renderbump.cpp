@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -46,7 +46,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
   a trace will go.  It is expressed as a fraction of the largest axis of
   the bounding box, so it doesn't matter what units are used for modeling.
 
-*/
+  */
 
 #define MAX_QPATH		256
 
@@ -177,15 +177,15 @@ static void OutlineNormalMap( byte *data, int width, int height, int emptyR, int
 	byte	*out;
 	orig = ( byte * )Mem_Alloc( width * height * 4 );
 	memcpy( orig, data, width * height * 4 );
-	for( i = 0 ; i < width ; i++ ) {
-		for( j = 0 ; j < height ; j++ ) {
+	for( i = 0; i < width; i++ ) {
+		for( j = 0; j < height; j++ ) {
 			out = data + ( j * width + i ) * 4;
 			if( out[0] != emptyR || out[1] != emptyG || out[2] != emptyB ) {
 				continue;
 			}
 			normal = vec3_origin;
-			for( k = -1 ; k < 2 ; k++ ) {
-				for( l = -1 ; l < 2 ; l++ ) {
+			for( k = -1; k < 2; k++ ) {
+				for( l = -1; l < 2; l++ ) {
 					byte	*in;
 					in = orig + ( ( ( j + l ) & ( height - 1 ) ) * width + ( ( i + k ) & ( width - 1 ) ) ) * 4;
 					if( in[0] == emptyR && in[1] == emptyG && in[2] == emptyB ) {
@@ -223,16 +223,16 @@ static void OutlineColorMap( byte *data, int width, int height, int emptyR, int 
 	byte	*out;
 	orig = ( byte * )Mem_Alloc( width * height * 4 );
 	memcpy( orig, data, width * height * 4 );
-	for( i = 0 ; i < width ; i++ ) {
-		for( j = 0 ; j < height ; j++ ) {
+	for( i = 0; i < width; i++ ) {
+		for( j = 0; j < height; j++ ) {
 			out = data + ( j * width + i ) * 4;
 			if( out[0] != emptyR || out[1] != emptyG || out[2] != emptyB ) {
 				continue;
 			}
 			normal = vec3_origin;
 			int	count = 0;
-			for( k = -1 ; k < 2 ; k++ ) {
-				for( l = -1 ; l < 2 ; l++ ) {
+			for( k = -1; k < 2; k++ ) {
+				for( l = -1; l < 2; l++ ) {
 					byte	*in;
 					in = orig + ( ( ( j + l ) & ( height - 1 ) ) * width + ( ( i + k ) & ( width - 1 ) ) ) * 4;
 					if( in[0] == emptyR && in[1] == emptyG && in[2] == emptyB ) {
@@ -262,7 +262,7 @@ FreeTriHash
 ================
 */
 static void FreeTriHash( triHash_t *hash ) {
-	for( int i = 0 ; i < hash->numLinkBlocks ; i++ ) {
+	for( int i = 0; i < hash->numLinkBlocks; i++ ) {
 		Mem_Free( hash->linkBlocks[i] );
 	}
 	Mem_Free( hash );
@@ -283,12 +283,12 @@ static triHash_t *CreateTriHash( const srfTriangles_t *highMesh ) {
 	memset( hash, 0, sizeof( *hash ) );
 	// find the bounding volume for the mesh
 	bounds.Clear();
-	for( i = 0 ; i < highMesh->numVerts ; i++ ) {
+	for( i = 0; i < highMesh->numVerts; i++ ) {
 		bounds.AddPoint( highMesh->verts[i].xyz );
 	}
 	hash->bounds = bounds;
 	// divide each axis as needed
-	for( i = 0 ; i < 3 ; i++ ) {
+	for( i = 0; i < 3; i++ ) {
 		hash->binSize[i] = ( bounds[1][i] - bounds[0][i] ) / HASH_AXIS_BINS;
 		if( hash->binSize[i] <= 0 ) {
 			common->FatalError( "CreateTriHash: bad bounds: (%f %f %f) to (%f %f %f)",
@@ -303,13 +303,13 @@ static triHash_t *CreateTriHash( const srfTriangles_t *highMesh ) {
 	hash->numLinkBlocks++;
 	maxLinks = hash->numLinkBlocks * MAX_LINKS_PER_BLOCK;
 	// for each triangle, place a triLink in each bin that might reference it
-	for( i = 0 ; i < highMesh->numIndexes ; i += 3 ) {
+	for( i = 0; i < highMesh->numIndexes; i += 3 ) {
 		// determine which hash bins the triangle will need to be in
 		triBounds.Clear();
-		for( j = 0 ; j < 3 ; j++ ) {
-			triBounds.AddPoint( highMesh->verts[ highMesh->indexes[i + j] ].xyz );
+		for( j = 0; j < 3; j++ ) {
+			triBounds.AddPoint( highMesh->verts[highMesh->indexes[i + j]].xyz );
 		}
-		for( j = 0 ; j < 3 ; j++ ) {
+		for( j = 0; j < 3; j++ ) {
 			iBounds[0][j] = ( triBounds[0][j] - hash->bounds[0][j] ) / hash->binSize[j];
 			iBounds[0][j] -= 0.001;	// epsilon
 			if( iBounds[0][j] < 0 ) {
@@ -326,15 +326,15 @@ static triHash_t *CreateTriHash( const srfTriangles_t *highMesh ) {
 			}
 		}
 		// add the links
-		for( j = iBounds[0][0] ; j <= iBounds[1][0] ; j++ ) {
-			for( k = iBounds[0][1] ; k <= iBounds[1][1] ; k++ ) {
-				for( l = iBounds[0][2] ; l <= iBounds[1][2] ; l++ ) {
+		for( j = iBounds[0][0]; j <= iBounds[1][0]; j++ ) {
+			for( k = iBounds[0][1]; k <= iBounds[1][1]; k++ ) {
+				for( l = iBounds[0][2]; l <= iBounds[1][2]; l++ ) {
 					if( numLinks == maxLinks ) {
 						hash->linkBlocks[hash->numLinkBlocks] = ( triLink_t * )Mem_Alloc( MAX_LINKS_PER_BLOCK * sizeof( triLink_t ) );
 						hash->numLinkBlocks++;
 						maxLinks = hash->numLinkBlocks * MAX_LINKS_PER_BLOCK;
 					}
-					triLink_t	*link = &hash->linkBlocks[ numLinks / MAX_LINKS_PER_BLOCK ][ numLinks % MAX_LINKS_PER_BLOCK ];
+					triLink_t	*link = &hash->linkBlocks[numLinks / MAX_LINKS_PER_BLOCK][numLinks % MAX_LINKS_PER_BLOCK];
 					link->faceNum = i / 3;
 					link->nextLink = hash->binLinks[j][k][l].triLink;
 					hash->binLinks[j][k][l].triLink = numLinks;
@@ -369,9 +369,9 @@ static float TraceToMeshFace( const srfTriangles_t *highMesh, int faceNum,
 	float	baseArea;
 	float	bary[3];
 	idVec3	testVert;
-	v[0] = &highMesh->verts[ highMesh->indexes[ faceNum * 3 + 0 ] ].xyz;
-	v[1] = &highMesh->verts[ highMesh->indexes[ faceNum * 3 + 1 ] ].xyz;
-	v[2] = &highMesh->verts[ highMesh->indexes[ faceNum * 3 + 2 ] ].xyz;
+	v[0] = &highMesh->verts[highMesh->indexes[faceNum * 3 + 0]].xyz;
+	v[1] = &highMesh->verts[highMesh->indexes[faceNum * 3 + 1]].xyz;
+	v[2] = &highMesh->verts[highMesh->indexes[faceNum * 3 + 2]].xyz;
 	plane = highMesh->facePlanes + faceNum;
 	// only test against planes facing the same direction as our normal
 	d = plane->Normal() * normal;
@@ -424,15 +424,15 @@ static float TraceToMeshFace( const srfTriangles_t *highMesh, int faceNum,
 	}
 	// triangularly interpolate the normals to the sample point
 	sampledNormal = vec3_origin;
-	for( j = 0 ; j < 3 ; j++ ) {
-		sampledNormal += bary[j] * highMesh->verts[ highMesh->indexes[ faceNum * 3 + j ] ].normal;
+	for( j = 0; j < 3; j++ ) {
+		sampledNormal += bary[j] * highMesh->verts[highMesh->indexes[faceNum * 3 + j]].normal;
 	}
 	sampledNormal.Normalize();
 	sampledColor[0] = sampledColor[1] = sampledColor[2] = sampledColor[3] = 0;
-	for( int i = 0 ; i < 4 ; i++ ) {
+	for( int i = 0; i < 4; i++ ) {
 		float	color = 0.0f;
-		for( j = 0 ; j < 3 ; j++ ) {
-			color += bary[j] * highMesh->verts[ highMesh->indexes[ faceNum * 3 + j ] ].color[i];
+		for( j = 0; j < 3; j++ ) {
+			color += bary[j] * highMesh->verts[highMesh->indexes[faceNum * 3 + j]].color[i];
 		}
 		sampledColor[i] = color;
 	}
@@ -475,7 +475,7 @@ static bool SampleHighMesh( const renderBump_t *rb,
 	// this is a pretty damn lazy way to walk through a 3D grid, and has a (very slight)
 	// chance of missing a triangle in a corner crossing case
 #define	RAY_STEPS	100
-	for( i = 0 ; i < RAY_STEPS ; i++ ) {
+	for( i = 0; i < RAY_STEPS; i++ ) {
 		p = point - rb->hash->bounds[0] + normal * ( -1.0 + 2.0 * i / RAY_STEPS ) * rb->traceDist;
 		block[0] = floor( p[0] / rb->hash->binSize[0] );
 		block[1] = floor( p[1] / rb->hash->binSize[1] );
@@ -497,8 +497,8 @@ static bool SampleHighMesh( const renderBump_t *rb,
 		bl->rayNumber = rayNumber;
 		linkNum = bl->triLink;
 		triLink_t	*link;
-		for( ; linkNum != -1 ; linkNum = link->nextLink ) {
-			link = &rb->hash->linkBlocks[ linkNum / MAX_LINKS_PER_BLOCK ][ linkNum % MAX_LINKS_PER_BLOCK ];
+		for( ; linkNum != -1; linkNum = link->nextLink ) {
+			link = &rb->hash->linkBlocks[linkNum / MAX_LINKS_PER_BLOCK][linkNum % MAX_LINKS_PER_BLOCK];
 			faceNum = link->faceNum;
 			dist = TraceToMeshFace( rb->mesh, faceNum,
 									bestDist, maxDist, point, normal, sampledNormal, sampledColor );
@@ -566,19 +566,19 @@ static void RasterizeTriangle( const srfTriangles_t *lowMesh, const idVec3 *lowM
 	// this is a brain-dead rasterizer, but compared to the ray trace,
 	// nothing we do here is going to matter performance-wise
 	// adjust for resolution and texel centers
-	verts[0][0] = lowMesh->verts[ lowMesh->indexes[lowFaceNum * 3 + 0] ].st[0] * rb->width - 0.5;
-	verts[1][0] = lowMesh->verts[ lowMesh->indexes[lowFaceNum * 3 + 1] ].st[0] * rb->width - 0.5;
-	verts[2][0] = lowMesh->verts[ lowMesh->indexes[lowFaceNum * 3 + 2] ].st[0] * rb->width - 0.5;
-	verts[0][1] = lowMesh->verts[ lowMesh->indexes[lowFaceNum * 3 + 0] ].st[1] * rb->height - 0.5;
-	verts[1][1] = lowMesh->verts[ lowMesh->indexes[lowFaceNum * 3 + 1] ].st[1] * rb->height - 0.5;
-	verts[2][1] = lowMesh->verts[ lowMesh->indexes[lowFaceNum * 3 + 2] ].st[1] * rb->height - 0.5;
+	verts[0][0] = lowMesh->verts[lowMesh->indexes[lowFaceNum * 3 + 0]].st[0] * rb->width - 0.5;
+	verts[1][0] = lowMesh->verts[lowMesh->indexes[lowFaceNum * 3 + 1]].st[0] * rb->width - 0.5;
+	verts[2][0] = lowMesh->verts[lowMesh->indexes[lowFaceNum * 3 + 2]].st[0] * rb->width - 0.5;
+	verts[0][1] = lowMesh->verts[lowMesh->indexes[lowFaceNum * 3 + 0]].st[1] * rb->height - 0.5;
+	verts[1][1] = lowMesh->verts[lowMesh->indexes[lowFaceNum * 3 + 1]].st[1] * rb->height - 0.5;
+	verts[2][1] = lowMesh->verts[lowMesh->indexes[lowFaceNum * 3 + 2]].st[1] * rb->height - 0.5;
 	// find the texcoord bounding box
 	bounds[0][0] = 99999;
 	bounds[0][1] = 99999;
 	bounds[1][0] = -99999;
 	bounds[1][1] = -99999;
-	for( i = 0 ; i < 2 ; i++ ) {
-		for( j = 0 ; j < 3 ; j++ ) {
+	for( i = 0; i < 2; i++ ) {
+		for( j = 0; j < 3; j++ ) {
 			if( verts[j][i] < bounds[0][i] ) {
 				bounds[0][i] = verts[j][i];
 			}
@@ -596,7 +596,7 @@ static void RasterizeTriangle( const srfTriangles_t *lowMesh, const idVec3 *lowM
 	ibounds[0][1] = floor( bounds[0][1] - edgeOverlap );
 	ibounds[1][1] = ceil( bounds[1][1] + edgeOverlap );
 	// calculate edge vectors
-	for( i = 0 ; i < 3 ; i++ ) {
+	for( i = 0; i < 3; i++ ) {
 		float	*v1, *v2;
 		v1 = verts[i];
 		v2 = verts[( i + 1 ) % 3];
@@ -608,8 +608,8 @@ static void RasterizeTriangle( const srfTriangles_t *lowMesh, const idVec3 *lowM
 		edge[i][2] = -( v1[0] * edge[i][0] + v1[1] * edge[i][1] );
 	}
 	// itterate over the bounding box, testing against edge vectors
-	for( i = ibounds[0][1] ; i < ibounds[1][1] ; i++ ) {
-		for( j = ibounds[0][0] ; j < ibounds[1][0] ; j++ ) {
+	for( i = ibounds[0][1]; i < ibounds[1][1]; i++ ) {
+		for( j = ibounds[0][0]; j < ibounds[1][0]; j++ ) {
 			float	dists[3];
 			k = ( ( i & ( rb->height - 1 ) ) * rb->width + ( j & ( rb->width - 1 ) ) ) * 4;
 			colorDest = &rb->colorPic[k];
@@ -624,7 +624,7 @@ static void RasterizeTriangle( const srfTriangles_t *lowMesh, const idVec3 *lowM
 			}
 #endif
 			// check against the three edges to see if the pixel is inside the triangle
-			for( k = 0 ; k < 3 ; k++ ) {
+			for( k = 0; k < 3; k++ ) {
 				float	v;
 				v = i * edge[k][1] + j * edge[k][0] + edge[k][2];
 				dists[k] = v;
@@ -664,15 +664,15 @@ static void RasterizeTriangle( const srfTriangles_t *lowMesh, const idVec3 *lowM
 			normal = vec3_origin;
 			tangents[0] = vec3_origin;
 			tangents[1] = vec3_origin;
-			for( k = 0 ; k < 3 ; k++ ) {
+			for( k = 0; k < 3; k++ ) {
 				int		index;
 				index = lowMesh->indexes[lowFaceNum * 3 + k];
-				point += bary[k] * lowMesh->verts[ index ].xyz;
+				point += bary[k] * lowMesh->verts[index].xyz;
 				// traceNormal will differ from normal if the surface uses unsmoothedTangents
-				traceNormal += bary[k] * lowMeshNormals[ index ];
-				normal += bary[k] * lowMesh->verts[ index ].normal;
-				tangents[0] += bary[k] * lowMesh->verts[ index ].tangents[0];
-				tangents[1] += bary[k] * lowMesh->verts[ index ].tangents[1];
+				traceNormal += bary[k] * lowMeshNormals[index];
+				normal += bary[k] * lowMesh->verts[index].normal;
+				tangents[0] += bary[k] * lowMesh->verts[index].tangents[0];
+				tangents[1] += bary[k] * lowMesh->verts[index].tangents[1];
 			}
 #if 0
 			// this doesn't seem to make much difference
@@ -749,7 +749,7 @@ static idRenderModel *CombineModelSurfaces( idRenderModel *model ) {
 	int		i, j;
 	totalVerts = 0;
 	totalIndexes = 0;
-	for( i = 0 ; i < model->NumSurfaces() ; i++ ) {
+	for( i = 0; i < model->NumSurfaces(); i++ ) {
 		const modelSurface_t	*surf = model->Surface( i );
 		totalVerts += surf->geometry->numVerts;
 		totalIndexes += surf->geometry->numIndexes;
@@ -764,11 +764,11 @@ static idRenderModel *CombineModelSurfaces( idRenderModel *model ) {
 	glIndex_t *indexes = newTri->indexes;
 	numIndexes = 0;
 	numVerts = 0;
-	for( i = 0 ; i < model->NumSurfaces() ; i++ ) {
+	for( i = 0; i < model->NumSurfaces(); i++ ) {
 		const modelSurface_t *surf = model->Surface( i );
 		const srfTriangles_t *tri = surf->geometry;
 		memcpy( verts + numVerts, tri->verts, tri->numVerts * sizeof( tri->verts[0] ) );
-		for( j = 0 ; j < tri->numIndexes ; j++ ) {
+		for( j = 0; j < tri->numIndexes; j++ ) {
 			indexes[numIndexes + j] = numVerts + tri->indexes[j];
 		}
 		newTri->bounds.AddBounds( tri->bounds );
@@ -816,20 +816,20 @@ static void RenderBumpTriangles( srfTriangles_t *lowMesh, renderBump_t *rb ) {
 	R_DeriveFacePlanes( lowMesh );
 	R_CreateSilIndexes( lowMesh );	// recreate, merging the mirrored verts back together
 	const idPlane *planes = lowMesh->facePlanes;
-	for( i = 0 ; i < lowMesh->numIndexes ; i += 3, planes++ ) {
-		for( j = 0 ; j < 3 ; j++ ) {
+	for( i = 0; i < lowMesh->numIndexes; i += 3, planes++ ) {
+		for( j = 0; j < 3; j++ ) {
 			int		index;
 			index = lowMesh->silIndexes[i + j];
 			lowMeshNormals[index] += ( *planes ).Normal();
 		}
 	}
 	// normalize and replicate from silIndexes to all indexes
-	for( i = 0 ; i < lowMesh->numIndexes ; i++ ) {
+	for( i = 0; i < lowMesh->numIndexes; i++ ) {
 		lowMeshNormals[lowMesh->indexes[i]] = lowMeshNormals[lowMesh->silIndexes[i]];
 		lowMeshNormals[lowMesh->indexes[i]].Normalize();
 	}
 	// rasterize each low poly face
-	for( j = 0 ; j < lowMesh->numIndexes ; j += 3 ) {
+	for( j = 0; j < lowMesh->numIndexes; j += 3 ) {
 		// pump the event loop so the window can be dragged around
 		Sys_GenerateEvents();
 		RasterizeTriangle( lowMesh, lowMeshNormals, j / 3, rb );
@@ -869,13 +869,13 @@ static void WriteRenderBump( renderBump_t *rb, int outLinePixels ) {
 #endif
 	// outline the image several times to help bilinear filtering across disconnected
 	// edges, and mip-mapping
-	for( i = 0 ; i < outLinePixels ; i++ ) {
+	for( i = 0; i < outLinePixels; i++ ) {
 		OutlineNormalMap( rb->localPic, width, height, 128, 128, 128 );
 		OutlineNormalMap( rb->globalPic, width, height, 128, 128, 128 );
 		OutlineColorMap( rb->colorPic, width, height, 128, 128, 128 );
 	}
 	// filter down if we are anti-aliasing
-	for( i = 0 ; i < rb->antiAlias ; i++ ) {
+	for( i = 0; i < rb->antiAlias; i++ ) {
 		byte	*old;
 		old = rb->localPic;
 		rb->localPic = R_MipMap( rb->localPic, width, height, false );
@@ -945,7 +945,7 @@ static void InitRenderBump( renderBump_t *rb ) {
 	bounds = mesh->bounds;
 	// the traceDist will be the traceFrac times the larges bounds axis
 	rb->traceDist = 0;
-	for( i = 0 ; i < 3 ; i++ ) {
+	for( i = 0; i < 3; i++ ) {
 		float	d;
 		d = rb->traceFrac * ( bounds[1][i] - bounds[0][i] );
 		if( d > rb->traceDist ) {
@@ -962,7 +962,7 @@ static void InitRenderBump( renderBump_t *rb ) {
 	rb->colorPic = ( byte * )Mem_Alloc( c );
 	// edgeDistance for marking outside-the-triangle traces
 	rb->edgeDistances = ( float * )Mem_Alloc( c );
-	for( i = 0 ; i < c ; i += 4 ) {
+	for( i = 0; i < c; i += 4 ) {
 		rb->localPic[i + 0] = 128;
 		rb->localPic[i + 1] = 128;
 		rb->localPic[i + 2] = 128;
@@ -1010,7 +1010,7 @@ void RenderBump_f( const idCmdArgs &args ) {
 	}
 	renderBumps = ( renderBump_t * )R_StaticAlloc( lowPoly->NumSurfaces() * sizeof( *renderBumps ) );
 	numRenderBumps = 0;
-	for( i = 0 ; i < lowPoly->NumSurfaces() ; i++ ) {
+	for( i = 0; i < lowPoly->NumSurfaces(); i++ ) {
 		const modelSurface_t	*ms = lowPoly->Surface( i );
 		// default options
 		memset( &opt, 0, sizeof( opt ) );
@@ -1034,7 +1034,7 @@ void RenderBump_f( const idCmdArgs &args ) {
 			continue;
 		}
 		common->Printf( "(rendering)\n" );
-		for( j = 0 ; j < localArgs.Argc() - 2; j++ ) {
+		for( j = 0; j < localArgs.Argc() - 2; j++ ) {
 			const char *s;
 			s = localArgs.Argv( j );
 			if( s[0] == '-' ) {
@@ -1079,7 +1079,7 @@ void RenderBump_f( const idCmdArgs &args ) {
 		opt.width <<= opt.antiAlias;
 		opt.height <<= opt.antiAlias;
 		// see if we already have a renderbump going for another surface that this should use
-		for( j = 0 ; j < numRenderBumps ; j++ ) {
+		for( j = 0; j < numRenderBumps; j++ ) {
 			rb = &renderBumps[j];
 			if( idStr::Icmp( rb->outputName, opt.outputName ) ) {
 				continue;
@@ -1108,7 +1108,7 @@ void RenderBump_f( const idCmdArgs &args ) {
 	//
 	// anti-alias and write out all renderbumps that we have completed
 	//
-	for( i = 0 ; i < numRenderBumps ; i++ ) {
+	for( i = 0; i < numRenderBumps; i++ ) {
 		WriteRenderBump( &renderBumps[i], opt.outline << opt.antiAlias );
 	}
 	R_StaticFree( renderBumps );
@@ -1147,7 +1147,7 @@ void RenderBumpFlat_f( const idCmdArgs &args ) {
 	width = height = 256;
 	boundsScale = 0;
 	// check options
-	for( i = 1 ; i < args.Argc() - 1; i++ ) {
+	for( i = 1; i < args.Argc() - 1; i++ ) {
 		const char *s;
 		s = args.Argv( i );
 		if( s[0] == '-' ) {
@@ -1224,21 +1224,21 @@ void RenderBumpFlat_f( const idCmdArgs &args ) {
 	memset( sumBuffer, 0, width * height * 4 * 4 );
 	flat = false;
 	//flat = true;
-	for( sample = 0 ; sample < 16 ; sample++ ) {
+	for( sample = 0; sample < 16; sample++ ) {
 		float	xOff, yOff;
 		xOff = ( ( sample & 3 ) / 4.0 ) * ( bounds[1][0] - bounds[0][0] ) / width;
 		yOff = ( ( sample / 4 ) / 4.0 ) * ( bounds[1][2] - bounds[0][2] ) / height;
-		for( int colorPass = 0 ; colorPass < 2 ; colorPass++ ) {
+		for( int colorPass = 0; colorPass < 2; colorPass++ ) {
 			glClearColor( 0.5, 0.5, 0.5, 0 );
 			glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 			glBegin( GL_TRIANGLES );
-			for( i = 0 ; i < highPolyModel->NumSurfaces() ; i++ ) {
+			for( i = 0; i < highPolyModel->NumSurfaces(); i++ ) {
 				const modelSurface_t *surf = highPolyModel->Surface( i );
 				mesh = surf->geometry;
 				if( colorPass ) {
 					// just render the surface color for artist visualization
-					for( j = 0 ; j < mesh->numIndexes ; j += 3 ) {
-						for( k = 0 ; k < 3 ; k++ ) {
+					for( j = 0; j < mesh->numIndexes; j += 3 ) {
+						for( k = 0; k < 3; k++ ) {
 							int		v;
 							float	*a;
 							v = mesh->indexes[j + k];
@@ -1251,7 +1251,7 @@ void RenderBumpFlat_f( const idCmdArgs &args ) {
 					// render as normal map
 					// we can either flat shade from the plane,
 					// or smooth shade from the vertex normals
-					for( j = 0 ; j < mesh->numIndexes ; j += 3 ) {
+					for( j = 0; j < mesh->numIndexes; j += 3 ) {
 						if( flat ) {
 							idPlane		plane;
 							idVec3		*a, *b, *c;
@@ -1259,9 +1259,9 @@ void RenderBumpFlat_f( const idCmdArgs &args ) {
 							v1 = mesh->indexes[j + 0];
 							v2 = mesh->indexes[j + 1];
 							v3 = mesh->indexes[j + 2];
-							a = &mesh->verts[ v1 ].xyz;
-							b = &mesh->verts[ v2 ].xyz;
-							c = &mesh->verts[ v3 ].xyz;
+							a = &mesh->verts[v1].xyz;
+							b = &mesh->verts[v2].xyz;
+							c = &mesh->verts[v3].xyz;
 							plane.FromPoints( *a, *b, *c );
 							// NULLNORMAL is used by the artists to force an area to reflect no
 							// light at all
@@ -1274,7 +1274,7 @@ void RenderBumpFlat_f( const idCmdArgs &args ) {
 							glVertex3f( ( *b )[0] + xOff, ( *b )[2] + yOff, ( *b )[1] );
 							glVertex3f( ( *c )[0] + xOff, ( *c )[2] + yOff, ( *c )[1] );
 						} else {
-							for( k = 0 ; k < 3 ; k++ ) {
+							for( k = 0; k < 3; k++ ) {
 								int		v;
 								float	*n;
 								float	*a;
@@ -1301,7 +1301,7 @@ void RenderBumpFlat_f( const idCmdArgs &args ) {
 			glReadPixels( 0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, buffer );
 			if( colorPass ) {
 				// add to the sum buffer
-				for( i = 0 ; i < c ; i++ ) {
+				for( i = 0; i < c; i++ ) {
 					colorSumBuffer[i * 4 + 0] += buffer[i * 4 + 0];
 					colorSumBuffer[i * 4 + 1] += buffer[i * 4 + 1];
 					colorSumBuffer[i * 4 + 2] += buffer[i * 4 + 2];
@@ -1310,7 +1310,7 @@ void RenderBumpFlat_f( const idCmdArgs &args ) {
 			} else {
 				// normalize
 				c = width * height;
-				for( i = 0 ; i < c ; i++ ) {
+				for( i = 0; i < c; i++ ) {
 					idVec3	v;
 					v[0] = ( buffer[i * 4 + 0] - 128 ) / 127.0;
 					v[1] = ( buffer[i * 4 + 1] - 128 ) / 127.0;
@@ -1321,11 +1321,11 @@ void RenderBumpFlat_f( const idCmdArgs &args ) {
 					buffer[i * 4 + 2] = 128 + 127 * v[2];
 				}
 				// outline into non-drawn areas
-				for( i = 0 ; i < 8 ; i++ ) {
+				for( i = 0; i < 8; i++ ) {
 					OutlineNormalMap( buffer, width, height, 128, 128, 128 );
 				}
 				// add to the sum buffer
-				for( i = 0 ; i < c ; i++ ) {
+				for( i = 0; i < c; i++ ) {
 					sumBuffer[i * 4 + 0] += buffer[i * 4 + 0];
 					sumBuffer[i * 4 + 1] += buffer[i * 4 + 1];
 					sumBuffer[i * 4 + 2] += buffer[i * 4 + 2];
@@ -1336,7 +1336,7 @@ void RenderBumpFlat_f( const idCmdArgs &args ) {
 	}
 	c = width * height;
 	// save out the color map
-	for( i = 0 ; i < c ; i++ ) {
+	for( i = 0; i < c; i++ ) {
 		buffer[i * 4 + 0] = colorSumBuffer[i * 4 + 0] / 16;
 		buffer[i * 4 + 1] = colorSumBuffer[i * 4 + 1] / 16;
 		buffer[i * 4 + 2] = colorSumBuffer[i * 4 + 2] / 16;
@@ -1350,7 +1350,7 @@ void RenderBumpFlat_f( const idCmdArgs &args ) {
 	// save out the local map
 	// scale the sum buffer back down to the sample buffer
 	// we allow this to denormalize
-	for( i = 0 ; i < c ; i++ ) {
+	for( i = 0; i < c; i++ ) {
 		buffer[i * 4 + 0] = sumBuffer[i * 4 + 0] / 16;
 		buffer[i * 4 + 1] = sumBuffer[i * 4 + 1] / 16;
 		buffer[i * 4 + 2] = sumBuffer[i * 4 + 2] / 16;

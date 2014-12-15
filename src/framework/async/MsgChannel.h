@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __MSGCHANNEL_H__
 #define __MSGCHANNEL_H__
@@ -23,14 +23,14 @@
 /*
 ===============================================================================
 
-  Network channel.
+Network channel.
 
-  Handles message fragmentation and out of order / duplicate suppression.
-  Unreliable messages are not garrenteed to arrive but when they do, they
-  arrive in order and without duplicates. Reliable messages always arrive,
-  and they also arrive in order without duplicates. Reliable messages piggy
-  back on unreliable messages. As such an unreliable message stream is
-  required for the reliable messages to be delivered.
+Handles message fragmentation and out of order / duplicate suppression.
+Unreliable messages are not garrenteed to arrive but when they do, they
+arrive in order and without duplicates. Reliable messages always arrive,
+and they also arrive in order without duplicates. Reliable messages piggy
+back on unreliable messages. As such an unreliable message stream is
+required for the reliable messages to be delivered.
 
 ===============================================================================
 */

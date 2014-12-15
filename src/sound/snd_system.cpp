@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -82,13 +82,13 @@ bool idSoundSystemLocal::useEAXReverb = false;
 int idSoundSystemLocal::EAXAvailable = -1;
 
 idSoundSystemLocal	soundSystemLocal;
-idSoundSystem	*soundSystem  = &soundSystemLocal;
+idSoundSystem	*soundSystem = &soundSystemLocal;
 
 /*
 ===============
 SoundReloadSounds_f
 
-  this is called from the main thread
+this is called from the main thread
 ===============
 */
 void SoundReloadSounds_f( const idCmdArgs &args ) {
@@ -225,7 +225,7 @@ void ListSoundDecoders_f( const idCmdArgs &args ) {
 ===============
 TestSound_f
 
-  this is called from the main thread
+this is called from the main thread
 ===============
 */
 void TestSound_f( const idCmdArgs &args ) {
@@ -244,7 +244,7 @@ SoundSystemRestart_f
 
 restart the sound thread
 
-  this is called from the main thread
+this is called from the main thread
 ===============
 */
 void SoundSystemRestart_f( const idCmdArgs &args ) {
@@ -739,7 +739,7 @@ cinData_t idSoundSystemLocal::ImageForTime( const int milliseconds, const bool w
 			dword color = 0xff00ff00;
 			for( y = 0; y < 128; y++ ) {
 				for( x = 0; x < xsize; x++ ) {
-					graph[( 127 - y ) * 256 + offset + x ] = color;
+					graph[( 127 - y ) * 256 + offset + x] = color;
 				}
 #if 0
 				if( y == 80 ) {
@@ -784,7 +784,7 @@ cinData_t idSoundSystemLocal::ImageForTime( const int milliseconds, const bool w
 			}
 			for( y = meter; y < 128 && y < meter + 4; y++ ) {
 				for( x = 0; x < xsize; x++ ) {
-					graph[( 127 - y ) * 256 + offset + x ] = color;
+					graph[( 127 - y ) * 256 + offset + x] = color;
 				}
 			}
 		}
@@ -808,7 +808,7 @@ cinData_t idSoundSystemLocal::ImageForTime( const int milliseconds, const bool w
 					fmeter = 1.0f;
 				}
 				int meter = ( fmeter * 63.0f );
-				graph[( meter + 64 ) * 256 + xx ] = colors[j];
+				graph[( meter + 64 ) * 256 + xx] = colors[j];
 				if( meter < 0 ) {
 					meter = -meter;
 				}
@@ -827,7 +827,7 @@ cinData_t idSoundSystemLocal::ImageForTime( const int milliseconds, const bool w
 		for( i = 0; i < 256; i++ ) {
 			int meter = meterTops[i];
 			for( int y = -meter; y < meter; y++ ) {
-				graph[( y + 64 ) * 256 + i ] = colors[j];
+				graph[( y + 64 ) * 256 + i] = colors[j];
 			}
 		}
 	}
@@ -1009,7 +1009,7 @@ ALuint idSoundSystemLocal::AllocOpenALSource( idSoundChannel *chan, bool looping
 		if( !openalSources[i].inUse ) {
 			iUnused = i;
 			break;
-		}  else if( !openalSources[i].looping && openalSources[i].chan->lastVolume < SND_EPSILON ) {
+		} else if( !openalSources[i].looping && openalSources[i].chan->lastVolume < SND_EPSILON ) {
 			if( openalSources[i].startTime < timeOldestZeroVolSingleShot ) {
 				timeOldestZeroVolSingleShot = openalSources[i].startTime;
 				iOldestZeroVolSingleShot = i;
@@ -1028,7 +1028,7 @@ ALuint idSoundSystemLocal::AllocOpenALSource( idSoundChannel *chan, bool looping
 	}
 	if( iUnused != -1 ) {
 		index = iUnused;
-	} else if( iOldestZeroVolSingleShot != - 1 ) {
+	} else if( iOldestZeroVolSingleShot != -1 ) {
 		index = iOldestZeroVolSingleShot;
 	} else if( iOldestZeroVolLooping != -1 ) {
 		index = iOldestZeroVolLooping;

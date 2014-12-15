@@ -167,12 +167,12 @@ protected:
 
 protected:
 	enum TreeItemStates {
-		TreeItemSelected =		0x00000001,
-		TreeItemExpanded =		0x00000002,
-		TreeItemCheckbox =		0x00000004,
-		TreeItemChecked =		0x00000008,
-		TreeItemActivated =		0x00000010,
-		TreeItemReadOnly =		0x00000020,
+		TreeItemSelected = 0x00000001,
+		TreeItemExpanded = 0x00000002,
+		TreeItemCheckbox = 0x00000004,
+		TreeItemChecked = 0x00000008,
+		TreeItemActivated = 0x00000010,
+		TreeItemReadOnly = 0x00000020,
 	};
 
 	// TreeItem state

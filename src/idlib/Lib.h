@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __LIB_H__
 #define __LIB_H__
@@ -23,16 +23,16 @@
 /*
 ===============================================================================
 
-	idLib contains stateless support classes and concrete types. Some classes
-	do have static variables, but such variables are initialized once and
-	read-only after initialization (they do not maintain a modifiable state).
+idLib contains stateless support classes and concrete types. Some classes
+do have static variables, but such variables are initialized once and
+read-only after initialization (they do not maintain a modifiable state).
 
-	The interface pointers idSys, idCommon, idCVarSystem and idFileSystem
-	should be set before using idLib. The pointers stored here should not
-	be used by any part of the engine except for idLib.
+The interface pointers idSys, idCommon, idCVarSystem and idFileSystem
+should be set before using idLib. The pointers stored here should not
+be used by any part of the engine except for idLib.
 
-	The frameNumber should be continuously set to the number of the current
-	frame if frame base memory logging is required.
+The frameNumber should be continuously set to the number of the current
+frame if frame base memory logging is required.
 
 ===============================================================================
 */
@@ -45,18 +45,18 @@ public:
 	static class idFileSystem *	fileSystem;
 	static int					frameNumber;
 
-	static void					Init( void );
-	static void					ShutDown( void );
+	static void					Init(void);
+	static void					ShutDown(void);
 
 	// wrapper to idCommon functions
-	static void					Error( const char *fmt, ... );
-	static void					Warning( const char *fmt, ... );
+	static void					Error(const char *fmt, ...);
+	static void					Warning(const char *fmt, ...);
 };
 
 /*
 ===============================================================================
 
-	Types and defines used throughout the engine.
+Types and defines used throughout the engine.
 
 ===============================================================================
 */
@@ -106,31 +106,31 @@ extern	idVec4 colorMdGrey;
 extern	idVec4 colorDkGrey;
 
 // packs color floats in the range [0,1] into an integer
-dword	PackColor( const idVec3 &color );
-void	UnpackColor( const dword color, idVec3 &unpackedColor );
-dword	PackColor( const idVec4 &color );
-void	UnpackColor( const dword color, idVec4 &unpackedColor );
+dword	PackColor(const idVec3 &color);
+void	UnpackColor(const dword color, idVec3 &unpackedColor);
+dword	PackColor(const idVec4 &color);
+void	UnpackColor(const dword color, idVec4 &unpackedColor);
 
 // little/big endian conversion
-short	BigShort( short l );
-short	LittleShort( short l );
-int		BigLong( int l );
-int		LittleLong( int l );
-float	BigFloat( float l );
-float	LittleFloat( float l );
-void	BigRevBytes( void *bp, int elsize, int elcount );
-void	LittleRevBytes( void *bp, int elsize, int elcount );
-void	LittleBitField( void *bp, int elsize );
-void	Swap_Init( void );
+short	BigShort(short l);
+short	LittleShort(short l);
+int		BigLong(int l);
+int		LittleLong(int l);
+float	BigFloat(float l);
+float	LittleFloat(float l);
+void	BigRevBytes(void *bp, int elsize, int elcount);
+void	LittleRevBytes(void *bp, int elsize, int elcount);
+void	LittleBitField(void *bp, int elsize);
+void	Swap_Init(void);
 
-bool	Swap_IsBigEndian( void );
+bool	Swap_IsBigEndian(void);
 
 // for base64
-void	SixtetsForInt( byte *out, int src);
-int		IntForSixtets( byte *in );
+void	SixtetsForInt(byte *out, int src);
+int		IntForSixtets(byte *in);
 
 #ifdef _DEBUG
-void AssertFailed( const char *file, int line, const char *expression );
+void AssertFailed(const char *file, int line, const char *expression);
 #undef assert
 #define assert( X )		if ( X ) { } else AssertFailed( __FILE__, __LINE__, #X )
 #endif
@@ -139,13 +139,13 @@ class idException {
 public:
 	char error[MAX_STRING_CHARS];
 
-	idException( const char *text = "" ) { strcpy( error, text ); }
+	idException(const char *text = "") { strcpy(error, text); }
 };
 
 /*
 ===============================================================================
 
-	idLib headers.
+idLib headers.
 
 ===============================================================================
 */

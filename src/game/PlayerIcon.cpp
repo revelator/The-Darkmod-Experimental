@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -25,7 +25,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "Game_local.h"
 #include "PlayerIcon.h"
 
-static const char *iconKeys[ ICON_NONE ] = {
+static const char *iconKeys[ICON_NONE] = {
 	"mtr_icon_lag",
 	"mtr_icon_chat"
 };
@@ -36,8 +36,8 @@ idPlayerIcon::idPlayerIcon
 ===============
 */
 idPlayerIcon::idPlayerIcon() {
-	iconHandle	= -1;
-	iconType	= ICON_NONE;
+	iconHandle = -1;
+	iconType = ICON_NONE;
 }
 
 /*
@@ -98,7 +98,7 @@ idPlayerIcon::FreeIcon
 ===============
 */
 void idPlayerIcon::FreeIcon( void ) {
-	if( iconHandle != - 1 ) {
+	if( iconHandle != -1 ) {
 		gameRenderWorld->FreeEntityDef( iconHandle );
 		iconHandle = -1;
 	}
@@ -112,7 +112,7 @@ idPlayerIcon::CreateIcon
 */
 bool idPlayerIcon::CreateIcon( idPlayer *player, playerIconType_t type, const idVec3 &origin, const idMat3 &axis ) {
 	assert( type != ICON_NONE );
-	const char *mtr = player->spawnArgs.GetString( iconKeys[ type ], "_default" );
+	const char *mtr = player->spawnArgs.GetString( iconKeys[type], "_default" );
 	return CreateIcon( player, type, mtr, origin, axis );
 }
 
@@ -128,14 +128,14 @@ bool idPlayerIcon::CreateIcon( idPlayer *player, playerIconType_t type, const ch
 	}
 	FreeIcon();
 	memset( &renderEnt, 0, sizeof( renderEnt ) );
-	renderEnt.origin	= origin;
-	renderEnt.axis		= axis;
-	renderEnt.shaderParms[ SHADERPARM_RED ]				= 1.0f;
-	renderEnt.shaderParms[ SHADERPARM_GREEN ]			= 1.0f;
-	renderEnt.shaderParms[ SHADERPARM_BLUE ]			= 1.0f;
-	renderEnt.shaderParms[ SHADERPARM_ALPHA ]			= 1.0f;
-	renderEnt.shaderParms[ SHADERPARM_SPRITE_WIDTH ]	= 16.0f;
-	renderEnt.shaderParms[ SHADERPARM_SPRITE_HEIGHT ]	= 16.0f;
+	renderEnt.origin = origin;
+	renderEnt.axis = axis;
+	renderEnt.shaderParms[SHADERPARM_RED] = 1.0f;
+	renderEnt.shaderParms[SHADERPARM_GREEN] = 1.0f;
+	renderEnt.shaderParms[SHADERPARM_BLUE] = 1.0f;
+	renderEnt.shaderParms[SHADERPARM_ALPHA] = 1.0f;
+	renderEnt.shaderParms[SHADERPARM_SPRITE_WIDTH] = 16.0f;
+	renderEnt.shaderParms[SHADERPARM_SPRITE_HEIGHT] = 16.0f;
 	renderEnt.hModel = renderModelManager->FindModel( "_sprite" );
 	renderEnt.callback = NULL;
 	renderEnt.numJoints = 0;
@@ -159,6 +159,6 @@ idPlayerIcon::UpdateIcon
 void idPlayerIcon::UpdateIcon( idPlayer *player, const idVec3 &origin, const idMat3 &axis ) {
 	assert( iconHandle >= 0 );
 	renderEnt.origin = origin;
-	renderEnt.axis	= axis;
+	renderEnt.axis = axis;
 	gameRenderWorld->UpdateEntityDef( iconHandle, &renderEnt );
 }

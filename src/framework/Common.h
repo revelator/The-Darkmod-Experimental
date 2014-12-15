@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __COMMON_H__
 #define __COMMON_H__
@@ -23,7 +23,7 @@
 /*
 ==============================================================
 
-  Common
+Common
 
 ==============================================================
 */
@@ -31,19 +31,19 @@
 #define	MAX_PRINT_MSG_SIZE	16 * 1024
 
 typedef enum {
-	EDITOR_NONE					= 0,
-	EDITOR_RADIANT				= BIT( 1 ),
-	EDITOR_GUI					= BIT( 2 ),
+	EDITOR_NONE = 0,
+	EDITOR_RADIANT = BIT( 1 ),
+	EDITOR_GUI = BIT( 2 ),
 	//EDITOR_DEBUGGER				= BIT(3),
-	EDITOR_SCRIPT				= BIT( 4 ),
-	EDITOR_LIGHT				= BIT( 5 ),
-	EDITOR_SOUND				= BIT( 6 ),
-	EDITOR_DECL					= BIT( 7 ),
-	EDITOR_AF					= BIT( 8 ),
-	EDITOR_PARTICLE				= BIT( 9 ),
+	EDITOR_SCRIPT = BIT( 4 ),
+	EDITOR_LIGHT = BIT( 5 ),
+	EDITOR_SOUND = BIT( 6 ),
+	EDITOR_DECL = BIT( 7 ),
+	EDITOR_AF = BIT( 8 ),
+	EDITOR_PARTICLE = BIT( 9 ),
 	//EDITOR_PDA					= BIT(10),
-	EDITOR_AAS					= BIT( 11 ),
-	EDITOR_MATERIAL				= BIT( 12 )
+	EDITOR_AAS = BIT( 11 ),
+	EDITOR_MATERIAL = BIT( 12 )
 } toolFlag_t;
 
 #define STRTABLE_ID				"#str_"
@@ -169,7 +169,7 @@ public:
 	virtual void				WriteFlaggedCVarsToFile( const char *filename, int flags, const char *setCmd ) = 0;
 
 	// Begins redirection of console output to the given buffer.
-	virtual void				BeginRedirect( char *buffer, int buffersize, void ( *flush )( const char * ) ) = 0;
+	virtual void				BeginRedirect( char *buffer, int buffersize, void( *flush )( const char * ) ) = 0;
 
 	// Stops redirection of console output.
 	virtual void				EndRedirect( void ) = 0;

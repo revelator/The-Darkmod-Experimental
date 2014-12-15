@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -46,13 +46,13 @@ R_GetGlyphInfo
 ============
 */
 void R_GetGlyphInfo( FT_GlyphSlot glyph, int *left, int *right, int *width, int *top, int *bottom, int *height, int *pitch ) {
-	*left  = _FLOOR( glyph->metrics.horiBearingX );
+	*left = _FLOOR( glyph->metrics.horiBearingX );
 	*right = _CEIL( glyph->metrics.horiBearingX + glyph->metrics.width );
 	*width = _TRUNC( *right - *left );
-	*top    = _CEIL( glyph->metrics.horiBearingY );
+	*top = _CEIL( glyph->metrics.horiBearingY );
 	*bottom = _FLOOR( glyph->metrics.horiBearingY - glyph->metrics.height );
 	*height = _TRUNC( *top - *bottom );
-	*pitch  = ( qtrue ? ( *width + 3 ) & -4 : ( *width + 7 ) >> 3 );
+	*pitch = ( qtrue ? ( *width + 3 ) & -4 : ( *width + 7 ) >> 3 );
 }
 
 /*
@@ -65,14 +65,14 @@ FT_Bitmap *R_RenderGlyph( FT_GlyphSlot glyph, glyphInfo_t *glyphOut ) {
 	int left, right, width, top, bottom, height, pitch, size;
 	R_GetGlyphInfo( glyph, &left, &right, &width, &top, &bottom, &height, &pitch );
 	if( glyph->format == ft_glyph_format_outline ) {
-		size   = pitch * height;
+		size = pitch * height;
 		bit2 = Mem_Alloc( sizeof( FT_Bitmap ) );
-		bit2->width      = width;
-		bit2->rows       = height;
-		bit2->pitch      = pitch;
+		bit2->width = width;
+		bit2->rows = height;
+		bit2->pitch = pitch;
 		bit2->pixel_mode = ft_pixel_mode_grays;
 		//bit2->pixel_mode = ft_pixel_mode_mono;
-		bit2->buffer     = Mem_Alloc( pitch * height );
+		bit2->buffer = Mem_Alloc( pitch * height );
 		bit2->num_grays = 256;
 		memset( bit2->buffer, 0, size );
 		FT_Outline_Translate( &glyph->outline, -left, -bottom );
@@ -121,10 +121,10 @@ glyphInfo_t *RE_ConstructGlyphInfo( unsigned char *imageOut, int *xOut, int *yOu
 				// need to convert to power of 2 sizes so we do not get
 				// any scaling from the gl upload
 				for (scaled_width = 1 ; scaled_width < glyph.pitch ; scaled_width<<=1)
-					;
+				;
 				for (scaled_height = 1 ; scaled_height < glyph.height ; scaled_height<<=1)
-					;
-		*/
+				;
+				*/
 		scaled_width = glyph.pitch;
 		scaled_height = glyph.height;
 		// we need to make sure we fit
@@ -290,7 +290,7 @@ bool idRenderSystemLocal::RegisterFont( const char *fontName, fontInfoEx_t &font
 			pointSize = 0;
 			for( int i = 0; i < replacementCount; i++ ) {
 				// if size 24 is missing, try 48 first
-				int replacement = replacements[ fontCount * replacementCount + i ];
+				int replacement = replacements[fontCount * replacementCount + i];
 				idStr::snPrintf( name, sizeof( name ), "%s/fontImage_%i.dat", fontName, replacement );
 				// common->Printf( "Not found, trying to load font %s size %i (i=%i)\n", name, replacement, i );
 				len = fileSystem->ReadFile( name, NULL, &ftime );
@@ -315,18 +315,18 @@ bool idRenderSystemLocal::RegisterFont( const char *fontName, fontInfoEx_t &font
 		fdOffset = 0;
 		fdFile = reinterpret_cast<unsigned char *>( faceData );
 		for( int i = 0; i < GLYPHS_PER_FONT; i++ ) {
-			outFont->glyphs[i].height		= readInt();
-			outFont->glyphs[i].top			= readInt();
-			outFont->glyphs[i].bottom		= readInt();
-			outFont->glyphs[i].pitch		= readInt();
-			outFont->glyphs[i].xSkip		= readInt();
-			outFont->glyphs[i].imageWidth	= readInt();
-			outFont->glyphs[i].imageHeight	= readInt();
-			outFont->glyphs[i].s			= readFloat();
-			outFont->glyphs[i].t			= readFloat();
-			outFont->glyphs[i].s2			= readFloat();
-			outFont->glyphs[i].t2			= readFloat();
-			int junk /* font.glyphs[i].glyph */		= readInt();
+			outFont->glyphs[i].height = readInt();
+			outFont->glyphs[i].top = readInt();
+			outFont->glyphs[i].bottom = readInt();
+			outFont->glyphs[i].pitch = readInt();
+			outFont->glyphs[i].xSkip = readInt();
+			outFont->glyphs[i].imageWidth = readInt();
+			outFont->glyphs[i].imageHeight = readInt();
+			outFont->glyphs[i].s = readFloat();
+			outFont->glyphs[i].t = readFloat();
+			outFont->glyphs[i].s2 = readFloat();
+			outFont->glyphs[i].t2 = readFloat();
+			int junk /* font.glyphs[i].glyph */ = readInt();
 			//FIXME: the +6, -6 skips the embedded fonts/
 			memcpy( outFont->glyphs[i].shaderName, &fdFile[fdOffset + 6], 32 - 6 );
 			fdOffset += 32;
@@ -358,7 +358,7 @@ bool idRenderSystemLocal::RegisterFont( const char *fontName, fontInfoEx_t &font
 		fileSystem->FreeFile( faceData );
 	}
 	//memcpy( &registeredFont[registeredFontCount++], &font, sizeof( fontInfoEx_t ) );
-	return true ;
+	return true;
 #ifndef BUILD_FREETYPE
 	common->Warning( "RegisterFont: couldn't load FreeType code %s", name );
 #else
@@ -410,7 +410,7 @@ bool idRenderSystemLocal::RegisterFont( const char *fontName, fontInfoEx_t &font
 			left = 0;
 			max = 0;
 			satLevels = 255;
-			for( k = 0; k < ( scaledSize ) ; k++ ) {
+			for( k = 0; k < ( scaledSize ); k++ ) {
 				if( max < out[k] ) {
 					max = out[k];
 				}
@@ -418,7 +418,7 @@ bool idRenderSystemLocal::RegisterFont( const char *fontName, fontInfoEx_t &font
 			if( max > 0 ) {
 				max = 255 / max;
 			}
-			for( k = 0; k < ( scaledSize ) ; k++ ) {
+			for( k = 0; k < ( scaledSize ); k++ ) {
 				imageBuff[left++] = 255;
 				imageBuff[left++] = 255;
 				imageBuff[left++] = 255;

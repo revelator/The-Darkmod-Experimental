@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -32,8 +32,8 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 CInspectorDialog *g_Inspectors = NULL;
 // CInspectorDialog dialog
 
-void InspectorsDockingCallback( bool docked , int ID , CWnd *wnd ) {
-	g_Inspectors->SetDockedTabs( docked , ID );
+void InspectorsDockingCallback( bool docked, int ID, CWnd *wnd ) {
+	g_Inspectors->SetDockedTabs( docked, ID );
 }
 
 // CInspectorDialog dialog
@@ -59,16 +59,16 @@ END_MESSAGE_MAP()
 BOOL CInspectorDialog::OnInitDialog() {
 	CTabsDlg::OnInitDialog();
 	ASSERT( m_Tabs.GetSafeHwnd() );
-	LoadWindowPlacement( GetSafeHwnd() , "radiant_InspectorsWindow" );
+	LoadWindowPlacement( GetSafeHwnd(), "radiant_InspectorsWindow" );
 	consoleWnd.Create( IDD_DIALOG_CONSOLE, this );
 	texWnd.Create( TEXTURE_WINDOW_CLASS, "", QE3_SPLITTER_STYLE, CRect( 5, 5, 10, 10 ), this, 1299 );
 	mediaDlg.Create( IDD_DIALOG_TEXTURELIST, this );
 	entityDlg.Create( IDD_DIALOG_ENTITY, this );
-	dockedTabs = GetCvarInt( "radiant_InspectorDockedDialogs" , W_CONSOLE | W_TEXTURE | W_MEDIA );
-	AddDockedWindow( &consoleWnd , W_CONSOLE , 1 , "Console"	 , ( dockedTabs & W_CONSOLE ) != 0 , InspectorsDockingCallback );
-	AddDockedWindow( &texWnd	  , W_TEXTURE , 2 , "Textures"   , ( dockedTabs & W_TEXTURE ) != 0 , InspectorsDockingCallback );
-	AddDockedWindow( &mediaDlg	  , W_MEDIA	  , 3 , "Media"	     , ( dockedTabs & W_MEDIA ) != 0 , InspectorsDockingCallback );
-	AddDockedWindow( &entityDlg  , W_ENTITY  , 4 , "Entity"	 , ( dockedTabs & W_ENTITY ) != 0 , InspectorsDockingCallback );
+	dockedTabs = GetCvarInt( "radiant_InspectorDockedDialogs", W_CONSOLE | W_TEXTURE | W_MEDIA );
+	AddDockedWindow( &consoleWnd, W_CONSOLE, 1, "Console", ( dockedTabs & W_CONSOLE ) != 0, InspectorsDockingCallback );
+	AddDockedWindow( &texWnd, W_TEXTURE, 2, "Textures", ( dockedTabs & W_TEXTURE ) != 0, InspectorsDockingCallback );
+	AddDockedWindow( &mediaDlg, W_MEDIA, 3, "Media", ( dockedTabs & W_MEDIA ) != 0, InspectorsDockingCallback );
+	AddDockedWindow( &entityDlg, W_ENTITY, 4, "Entity", ( dockedTabs & W_ENTITY ) != 0, InspectorsDockingCallback );
 	SetMode( W_CONSOLE );
 	initialized = true;
 	return TRUE;  // return TRUE unless you set the focus to a control
@@ -120,7 +120,7 @@ void CInspectorDialog::OnSize( UINT nType, int cx, int cy ) {
 	// adjust rect for children size
 	rect.bottom -= 5 + tabRect.Height();
 	m_Tabs.SetWindowPos( NULL, tabRect.left, tabRect.top, tabRect.Width(), tabRect.Height(), 0 );
-	for( pos = m_Windows.GetStartPosition(); pos != NULL ; ) {
+	for( pos = m_Windows.GetStartPosition(); pos != NULL; ) {
 		m_Windows.GetNextAssoc( pos, wID, ( void *& )info );
 		if( ( info->m_State == DockedWindowInfo::DOCKED ) ) {
 			info->m_Window->SetWindowPos( NULL, rect.left, rect.top, rect.Width(), rect.Height(), 0 );
@@ -129,8 +129,8 @@ void CInspectorDialog::OnSize( UINT nType, int cx, int cy ) {
 }
 
 void CInspectorDialog::OnDestroy() {
-	::SaveWindowPlacement( GetSafeHwnd() , "radiant_InspectorsWindow" );
-	SetCvarInt( "radiant_InspectorDockedDialogs" , dockedTabs );
+	::SaveWindowPlacement( GetSafeHwnd(), "radiant_InspectorsWindow" );
+	SetCvarInt( "radiant_InspectorDockedDialogs", dockedTabs );
 	CTabsDlg::OnDestroy();
 }
 
@@ -146,7 +146,7 @@ BOOL CInspectorDialog::PreTranslateMessage( MSG *pMsg ) {
 	return CTabsDlg::PreTranslateMessage( pMsg );
 }
 
-void CInspectorDialog::SetDockedTabs( bool docked , int ID ) {
+void CInspectorDialog::SetDockedTabs( bool docked, int ID ) {
 	if( docked ) {
 		dockedTabs |= ID;
 	} else {

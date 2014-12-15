@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #ifndef __GAME_PLAYER_H__
 #define __GAME_PLAYER_H__
 
@@ -29,7 +29,7 @@ typedef boost::shared_ptr<CInventoryWeaponItem> CInventoryWeaponItemPtr;
 /*
 ===============================================================================
 
-	Player entity.
+Player entity.
 
 ===============================================================================
 */
@@ -68,7 +68,7 @@ extern const idEventDef EV_Player_GetGrabbed;
 extern const idEventDef EV_SAVEGAME;
 extern const idEventDef EV_setSavePermissions;
 
-const float THIRD_PERSON_FOCUS_DISTANCE	= 512.0f;
+const float THIRD_PERSON_FOCUS_DISTANCE = 512.0f;
 const int	LAND_DEFLECT_TIME = 150;
 const int	LAND_RETURN_TIME = 300;
 const int	FOCUS_TIME = 300;
@@ -178,7 +178,7 @@ typedef struct SMouseGesture_s {
 
 	void	Save( idSaveGame *savefile ) const {
 		savefile->WriteBool( bActive );
-		savefile->WriteInt( ( int ) test );
+		savefile->WriteInt( ( int )test );
 		savefile->WriteBool( bInverted );
 		savefile->WriteInt( key );
 		savefile->WriteInt( thresh );
@@ -186,13 +186,13 @@ typedef struct SMouseGesture_s {
 		savefile->WriteInt( started );
 		savefile->WriteVec2( StartPos );
 		savefile->WriteVec2( motion );
-		savefile->WriteInt( ( int ) result );
+		savefile->WriteInt( ( int )result );
 	};
 	void	Restore( idRestoreGame *savefile ) {
 		int tempInt;
 		savefile->ReadBool( bActive );
 		savefile->ReadInt( tempInt );
-		test = ( EMouseTest ) tempInt;
+		test = ( EMouseTest )tempInt;
 		savefile->ReadBool( bInverted );
 		savefile->ReadInt( key );
 		savefile->ReadInt( thresh );
@@ -201,30 +201,30 @@ typedef struct SMouseGesture_s {
 		savefile->ReadVec2( StartPos );
 		savefile->ReadVec2( motion );
 		savefile->ReadInt( tempInt );
-		result = ( EMouseDir ) tempInt;
+		result = ( EMouseDir )tempInt;
 	};
 } SMouseGesture;
 
 // Player control immobilization categories.
 enum {
-	EIM_ALL					= -1,
-	EIM_UPDATE				= BIT( 0 ),	// For internal use only. True if immobilization needs to be recalculated.
-	EIM_VIEW_ANGLE			= BIT( 1 ),	// Looking around
-	EIM_MOVEMENT			= BIT( 2 ),	// Forwards/backwards, strafing and swimming.
-	EIM_CROUCH				= BIT( 3 ),	// Crouching.
-	EIM_CROUCH_HOLD			= BIT( 4 ),	// Prevent changes to crouching state. (NYI)
-	EIM_JUMP				= BIT( 5 ),	// Jumping.
-	EIM_MANTLE				= BIT( 6 ),	// Mantling (excluding jumping)
-	EIM_CLIMB				= BIT( 7 ),	// Climbing ladders, ropes and mantling.
-	EIM_FROB				= BIT( 8 ),	// Frobbing.
-	EIM_FROB_HILIGHT		= BIT( 9 ),	// Frobbing AND frob hilighting (not sure if needed or if EIM_FROB can disable hilight also)
-	EIM_FROB_COMPLEX		= BIT( 10 ),	// Frobbing of "complex" items (not a door, lever, button, etc)
-	EIM_ATTACK				= BIT( 11 ),	// Using weapons
-	EIM_ATTACK_RANGED		= BIT( 12 ),	// Using ranged weapons (bows)
-	EIM_WEAPON_SELECT		= BIT( 13 ),	// Selecting weapons.
-	EIM_ITEM_USE			= BIT( 14 ),	// Using items
-	EIM_ITEM_SELECT			= BIT( 15 ),	// Selecting items.
-	EIM_ITEM_DROP			= BIT( 16 ),	// Dropping inventory items.
+	EIM_ALL = -1,
+	EIM_UPDATE = BIT( 0 ),	// For internal use only. True if immobilization needs to be recalculated.
+	EIM_VIEW_ANGLE = BIT( 1 ),	// Looking around
+	EIM_MOVEMENT = BIT( 2 ),	// Forwards/backwards, strafing and swimming.
+	EIM_CROUCH = BIT( 3 ),	// Crouching.
+	EIM_CROUCH_HOLD = BIT( 4 ),	// Prevent changes to crouching state. (NYI)
+	EIM_JUMP = BIT( 5 ),	// Jumping.
+	EIM_MANTLE = BIT( 6 ),	// Mantling (excluding jumping)
+	EIM_CLIMB = BIT( 7 ),	// Climbing ladders, ropes and mantling.
+	EIM_FROB = BIT( 8 ),	// Frobbing.
+	EIM_FROB_HILIGHT = BIT( 9 ),	// Frobbing AND frob hilighting (not sure if needed or if EIM_FROB can disable hilight also)
+	EIM_FROB_COMPLEX = BIT( 10 ),	// Frobbing of "complex" items (not a door, lever, button, etc)
+	EIM_ATTACK = BIT( 11 ),	// Using weapons
+	EIM_ATTACK_RANGED = BIT( 12 ),	// Using ranged weapons (bows)
+	EIM_WEAPON_SELECT = BIT( 13 ),	// Selecting weapons.
+	EIM_ITEM_USE = BIT( 14 ),	// Using items
+	EIM_ITEM_SELECT = BIT( 15 ),	// Selecting items.
+	EIM_ITEM_DROP = BIT( 16 ),	// Dropping inventory items.
 };
 
 typedef struct {
@@ -418,7 +418,7 @@ public:
 	bool					hiddenWeapon;		// if the weapon is hidden ( in noWeapons maps )
 
 	// mp stuff
-	static idVec3			colorBarTable[ 5 ];
+	static idVec3			colorBarTable[5];
 	int						spectator;
 	idVec3					colorBar;			// used for scoreboard and hud display
 	int						colorBarIndex;
@@ -644,7 +644,7 @@ public:
 	 */
 	CInventoryWeaponItemPtr GetWeaponItem( const idStr &weaponName );
 
-	void					DropWeapon( bool died ) ;
+	void					DropWeapon( bool died );
 	void					StealWeapon( idPlayer *player );
 	void					AddProjectilesFired( int count );
 	void					AddProjectileHits( int count );

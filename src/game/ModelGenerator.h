@@ -1,22 +1,22 @@
 // vim:ts=4:sw=4:cindent
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 // Copyright (C) 2010 Tels (Donated to The Dark Mod)
 
@@ -26,11 +26,11 @@
 /*
 ===============================================================================
 
-  Model Generator - Generate/combine/scale models at run-time
+Model Generator - Generate/combine/scale models at run-time
 
-  This class is a singleton and initiated/destroyed from gameLocal.
+This class is a singleton and initiated/destroyed from gameLocal.
 
-  At the moment it does not use any memory, but this might change later.
+At the moment it does not use any memory, but this might change later.
 
 ===============================================================================
 */
@@ -46,8 +46,8 @@
 #define MAX_MODEL_INDEXES	(2 << 18)		// never combine more than this into one model
 
 enum seed_model_flags {
-	SEED_MODEL_NOSHADOW		= 0x0001,		// remove common/shadow surfaces
-	SEED_MODEL_NOCLIP		= 0x0002,		// remove common/collision or tdm_collision_X surfaces
+	SEED_MODEL_NOSHADOW = 0x0001,		// remove common/shadow surfaces
+	SEED_MODEL_NOCLIP = 0x0002,		// remove common/collision or tdm_collision_X surfaces
 };
 
 // Defines offset, rotation, vertex color etc. for a model combine operation
@@ -95,20 +95,20 @@ struct lod_data_t {
 	* if it is distance dependent
 	* The last number is the distance squared beyond which the entity hides.
 	**/
-	float				DistLODSq[ LOD_LEVELS ];
+	float				DistLODSq[LOD_LEVELS];
 
 	/**
 	* Models and skins to be used for the different LOD distances
 	* for level 0 we use "model" and "skin"
 	**/
-	idStr				ModelLOD[ LOD_LEVELS ];
-	idStr				SkinLOD[ LOD_LEVELS ];
+	idStr				ModelLOD[LOD_LEVELS];
+	idStr				SkinLOD[LOD_LEVELS];
 
 	/**
 	* Different LOD models might need different offsets to match
 	* the position of the LOD 0 level.
 	*/
-	idVec3				OffsetLOD[ LOD_LEVELS ];
+	idVec3				OffsetLOD[LOD_LEVELS];
 
 	/** one bit for each LOD level, telling noshadows (1) or not (0) */
 	int					noshadowsLOD;

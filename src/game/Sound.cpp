@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -27,7 +27,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 ===============================================================================
 
-  SOUND
+SOUND
 
 ===============================================================================
 */
@@ -37,10 +37,10 @@ const idEventDef EV_Speaker_Off( "Off", EventArgs(), EV_RETURNS_VOID, "Turns the
 const idEventDef EV_Speaker_Timer( "<timer>", EventArgs(), EV_RETURNS_VOID, "internal" );
 
 CLASS_DECLARATION( idEntity, idSound )
-EVENT( EV_Activate,				idSound::Event_Trigger )
-EVENT( EV_Speaker_On,			idSound::Event_On )
-EVENT( EV_Speaker_Off,			idSound::Event_Off )
-EVENT( EV_Speaker_Timer,		idSound::Event_Timer )
+EVENT( EV_Activate, idSound::Event_Trigger )
+EVENT( EV_Speaker_On, idSound::Event_On )
+EVENT( EV_Speaker_Off, idSound::Event_Off )
+EVENT( EV_Speaker_Timer, idSound::Event_Timer )
 END_CLASS
 
 /*
@@ -105,8 +105,8 @@ void idSound::Spawn( void ) {
 		random = wait - 0.001;
 		gameLocal.Warning( "speaker '%s' at (%s) has random >= wait", name.c_str(), GetPhysics()->GetOrigin().ToString( 0 ) );
 	}
-	soundVol		= 0.0f;
-	lastSoundVol	= 0.0f;
+	soundVol = 0.0f;
+	lastSoundVol = 0.0f;
 	if( ( shakeRotate != ang_zero ) || ( shakeTranslate != vec3_zero ) ) {
 		BecomeActive( TH_THINK );
 	}

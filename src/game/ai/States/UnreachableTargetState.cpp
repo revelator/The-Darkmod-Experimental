@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -59,20 +59,20 @@ void UnreachableTargetState::Init( idAI *owner ) {
 	/*	_takingCoverPossible = false;
 		if (owner->spawnArgs.GetBool("taking_cover_enabled","0"))
 		{
-			aasGoal_t hideGoal;
-			 // grayman #3280 - enemies look with their eyes, not their feet
-			_takingCoverPossible = owner->LookForCover(hideGoal, enemy, enemy->GetEyePosition());
-			if (_takingCoverPossible)
-			{
-				// We should not go into TakeCoverState if we are already at a suitable position
+		aasGoal_t hideGoal;
+		// grayman #3280 - enemies look with their eyes, not their feet
+		_takingCoverPossible = owner->LookForCover(hideGoal, enemy, enemy->GetEyePosition());
+		if (_takingCoverPossible)
+		{
+		// We should not go into TakeCoverState if we are already at a suitable position
 
-				if (hideGoal.origin == owner->GetPhysics()->GetOrigin() )
-				{
-					_takingCoverPossible = false;
-				}
-			}
+		if (hideGoal.origin == owner->GetPhysics()->GetOrigin() )
+		{
+		_takingCoverPossible = false;
 		}
-	*/
+		}
+		}
+		*/
 	_takeCoverTime = -1;
 	// Fill the subsystems with their tasks
 	// Create the message
@@ -130,7 +130,7 @@ void UnreachableTargetState::Init( idAI *owner ) {
 
 						owner->movementSubsystem->PushTask(TaskPtr(new MoveToPositionTask(throwPos)));
 						owner->AI_MOVE_DONE = false;
-			 */			// end old way
+						*/			// end old way
 		} else {
 			// greebo: Sheathe weapon before starting to throw // FIXME: put weapon to left hand?
 			// grayman: No, don't switch weapon to left hand, because we have no animations to do
@@ -142,7 +142,7 @@ void UnreachableTargetState::Init( idAI *owner ) {
 			// grayman #3507 - randomize wait time
 			_takeCoverTime = gameLocal.time + 2000 + gameLocal.random.RandomFloat() * 2000; // wait 2-4 seconds
 		}
-		DM_LOG( LC_AI, LT_INFO )LOGSTRING( "move required: %d \r" , _moveRequired );
+		DM_LOG( LC_AI, LT_INFO )LOGSTRING( "move required: %d \r", _moveRequired );
 	} else {
 		owner->movementSubsystem->PushTask(
 			TaskPtr( new MoveToPositionTask( owner->lastVisibleReachableEnemyPos ) )
@@ -235,11 +235,11 @@ void UnreachableTargetState::Think( idAI *owner ) {
 	// This checks if the enemy is reachable again so we can go into combat state
 	if (owner->enemyReachable || owner->TestMelee() || memory.canHitEnemy)
 	{
-		if (owner->GetMind()->PerformCombatCheck())
-		{
-			owner->GetMind()->EndState();
-			return;
-		}
+	if (owner->GetMind()->PerformCombatCheck())
+	{
+	owner->GetMind()->EndState();
+	return;
+	}
 	}
 
 	// This checks for a reachable position within combat range
@@ -251,8 +251,8 @@ void UnreachableTargetState::Think( idAI *owner ) {
 	idVec3 targetPoint;
 	if (owner->FindAttackPosition(_reachEnemyCheck, enemy, targetPoint, COMBAT_NONE))
 	{
-		owner->GetMind()->EndState();
-		return;
+	owner->GetMind()->EndState();
+	return;
 	}
 	*/
 	_reachEnemyCheck++;

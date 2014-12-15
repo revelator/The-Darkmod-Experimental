@@ -10,8 +10,8 @@
  *                                                                  *
  ********************************************************************
 
-  function: LSP (also called LSF) conversion routines
-  last mod: $Id$
+ function: LSP (also called LSF) conversion routines
+ last mod: $Id$
 
  ********************************************************************/
 

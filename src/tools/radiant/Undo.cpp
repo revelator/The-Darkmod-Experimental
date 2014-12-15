@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -29,16 +29,16 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
   QERadiant Undo/Redo
 
-basic setup:
+  basic setup:
 
-<-g_undolist---------g_lastundo> <---map data---> <-g_lastredo---------g_redolist->
+  <-g_undolist---------g_lastundo> <---map data---> <-g_lastredo---------g_redolist->
 
   undo/redo on the world_entity is special, only the epair changes are remembered
   and the world entity never gets deleted.
 
   FIXME: maybe reset the Undo system at map load
-		 maybe also reset the entityId at map load
-*/
+  maybe also reset the entityId at map load
+  */
 
 typedef struct undo_s {
 	double time;				//time operation was performed
@@ -76,15 +76,15 @@ int Undo_MemorySize( void ) {
 	size = 0;
 	for (undo = g_undolist; undo; undo = undo->next)
 	{
-		for (pBrush = undo->brushlist.next ; pBrush != NULL && pBrush != &undo->brushlist ; pBrush = pBrush->next)
-		{
-			size += Brush_MemorySize(pBrush);
-		}
-		for (pEntity = undo->entitylist.next; pEntity != NULL && pEntity != &undo->entitylist; pEntity = pEntity->next)
-		{
-			size += Entity_MemorySize(pEntity);
-		}
-		size += sizeof(undo_t);
+	for (pBrush = undo->brushlist.next ; pBrush != NULL && pBrush != &undo->brushlist ; pBrush = pBrush->next)
+	{
+	size += Brush_MemorySize(pBrush);
+	}
+	for (pEntity = undo->entitylist.next; pEntity != NULL && pEntity != &undo->entitylist; pEntity = pEntity->next)
+	{
+	size += Entity_MemorySize(pEntity);
+	}
+	size += sizeof(undo_t);
 	}
 	return size;
 	*/
@@ -102,7 +102,7 @@ void Undo_ClearRedo( void ) {
 	entity_t *pEntity, *pNextEntity;
 	for( redo = g_redolist; redo; redo = nextredo ) {
 		nextredo = redo->next;
-		for( pBrush = redo->brushlist.next ; pBrush != NULL && pBrush != &redo->brushlist ; pBrush = pNextBrush ) {
+		for( pBrush = redo->brushlist.next; pBrush != NULL && pBrush != &redo->brushlist; pBrush = pNextBrush ) {
 			pNextBrush = pBrush->next;
 			Brush_Free( pBrush );
 		}
@@ -121,7 +121,7 @@ void Undo_ClearRedo( void ) {
 =============
 Undo_Clear
 
-  Clears the undo buffer.
+Clears the undo buffer.
 =============
 */
 void Undo_Clear( void ) {
@@ -131,7 +131,7 @@ void Undo_Clear( void ) {
 	Undo_ClearRedo();
 	for( undo = g_undolist; undo; undo = nextundo ) {
 		nextundo = undo->next;
-		for( pBrush = undo->brushlist.next ; pBrush != NULL && pBrush != &undo->brushlist ; pBrush = pNextBrush ) {
+		for( pBrush = undo->brushlist.next; pBrush != NULL && pBrush != &undo->brushlist; pBrush = pNextBrush ) {
 			pNextBrush = pBrush->next;
 			g_undoMemorySize -= Brush_MemorySize( pBrush );
 			Brush_Free( pBrush );
@@ -211,7 +211,7 @@ void Undo_FreeFirstUndo( void ) {
 	g_undolist = g_undolist->next;
 	g_undolist->prev = NULL;
 	//
-	for( pBrush = undo->brushlist.next ; pBrush != NULL && pBrush != &undo->brushlist ; pBrush = pNextBrush ) {
+	for( pBrush = undo->brushlist.next; pBrush != NULL && pBrush != &undo->brushlist; pBrush = pNextBrush ) {
 		pNextBrush = pBrush->next;
 		g_undoMemorySize -= Brush_MemorySize( pBrush );
 		Brush_Free( pBrush );
@@ -240,7 +240,7 @@ void Undo_GeneralStart( char *operation ) {
 			common->Printf( "Undo_Start: WARNING last undo not finished.\n" );
 		}
 	}
-	undo = ( undo_t * ) Mem_ClearedAlloc( sizeof( undo_t ) );
+	undo = ( undo_t * )Mem_ClearedAlloc( sizeof( undo_t ) );
 	if( !undo ) {
 		return;
 	}
@@ -379,7 +379,7 @@ void Undo_AddBrushList( brush_t *brushlist ) {
 		Sys_Status( "Undo_AddBrushList: WARNING adding brushes after entity.\n" );
 	}
 	//copy the brushes to the undo
-	for( pBrush = brushlist->next ; pBrush != NULL && pBrush != brushlist; pBrush = pBrush->next ) {
+	for( pBrush = brushlist->next; pBrush != NULL && pBrush != brushlist; pBrush = pBrush->next ) {
 		//if the brush is already in the undo
 		if( Undo_BrushInUndo( g_lastundo, pBrush ) ) {
 			continue;
@@ -540,7 +540,7 @@ void Undo_Undo( void ) {
 	}
 	g_lastundo = g_lastundo->prev;
 	//allocate a new redo
-	redo = ( undo_t * ) Mem_ClearedAlloc( sizeof( undo_t ) );
+	redo = ( undo_t * )Mem_ClearedAlloc( sizeof( undo_t ) );
 	if( !redo ) {
 		return;
 	}
@@ -665,11 +665,11 @@ void Undo_Undo( void ) {
 	//
 	Sys_BeginWait();
 	brush_t *b, *next;
-	for( b = active_brushes.next ; b != NULL && b != &active_brushes ; b = next ) {
+	for( b = active_brushes.next; b != NULL && b != &active_brushes; b = next ) {
 		next = b->next;
 		Brush_Build( b, true, false, false );
 	}
-	for( b = selected_brushes.next ; b != NULL && b != &selected_brushes ; b = next ) {
+	for( b = selected_brushes.next; b != NULL && b != &selected_brushes; b = next ) {
 		next = b->next;
 		Brush_Build( b, true, false, false );
 	}

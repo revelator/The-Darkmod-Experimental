@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -56,21 +56,21 @@ file be unloadable in some way (for example, due to script changes).
 
 Note: the caching works only if the compresion is enabled.
 The caching mechanism works in the following way. On game saving, there are two types of data:
-	1. Ordinary data (almost all the data)
-		This type of data is pushed into the "cache" buffer.
-	2. Special data which is now:
-		//	ui->WriteToSaveGame( file ) - closed source
-		//	gameSoundWorld->WriteToSaveGame( file ) - closed source
-		//	WriteBuildNumber() and WriteCodeRevision() - vital, should not be compressed
-		This data is written directly to the file.
+1. Ordinary data (almost all the data)
+This type of data is pushed into the "cache" buffer.
+2. Special data which is now:
+//	ui->WriteToSaveGame( file ) - closed source
+//	gameSoundWorld->WriteToSaveGame( file ) - closed source
+//	WriteBuildNumber() and WriteCodeRevision() - vital, should not be compressed
+This data is written directly to the file.
 After all the data has been passed to idSaveGame, FinalizeCache must be called.
 Depending on the settings it may compress the cache. Then it is finally dumped to idFile.
 After that the last 4 bytes are written to the file - offset to cache start from the end of file.
 The final file layout is then:
-	1. Doom3 header (level info, we cannot change it)
-	2. Special data (including version numbers)
-	3. Cache image, maybe compressed (consists of ordinary data)
-	4. Offset from EOF to cache image (is negative)
+1. Doom3 header (level info, we cannot change it)
+2. Special data (including version numbers)
+3. Cache image, maybe compressed (consists of ordinary data)
+4. Offset from EOF to cache image (is negative)
 Restoring works almost the same way, but the cache must be retrieved at the very beginning.
 The InitializeCache must be called before any ordinary data is read from the file.
 It uses fseek to get offset to cache image, then reads it, probably decompresses it.
@@ -97,7 +97,7 @@ void idSaveGame::Close( void ) {
 	// read trace models
 	idClipModel::SaveTraceModels( this );
 	for( i = 1; i < objects.Num(); i++ ) {
-		CallSave_r( objects[ i ]->GetType(), objects[ i ] );
+		CallSave_r( objects[i]->GetType(), objects[i] );
 	}
 	objects.Clear();
 #ifdef ID_DEBUG_MEMORY
@@ -140,7 +140,7 @@ void idSaveGame::WriteObjectList( void ) {
 	int i;
 	WriteInt( objects.Num() - 1 );
 	for( i = 1; i < objects.Num(); i++ ) {
-		WriteString( objects[ i ]->GetClassname() );
+		WriteString( objects[i]->GetClassname() );
 	}
 }
 
@@ -325,10 +325,10 @@ void idSaveGame::WriteRenderEntity( const renderEntity_t &renderEntity ) {
 		WriteInt( 0 );
 	}
 	for( i = 0; i < MAX_ENTITY_SHADER_PARMS; i++ ) {
-		WriteFloat( renderEntity.shaderParms[ i ] );
+		WriteFloat( renderEntity.shaderParms[i] );
 	}
 	for( i = 0; i < MAX_RENDERENTITY_GUI; i++ ) {
-		WriteUserInterface( renderEntity.gui[ i ], renderEntity.gui[ i ] ? renderEntity.gui[ i ]->IsUniqued() : false );
+		WriteUserInterface( renderEntity.gui[i], renderEntity.gui[i] ? renderEntity.gui[i]->IsUniqued() : false );
 	}
 	WriteFloat( renderEntity.modelDepthHack );
 	WriteBool( renderEntity.noSelfShadow );
@@ -360,7 +360,7 @@ void idSaveGame::WriteRenderLight( const renderLight_t &renderLight ) {
 	WriteInt( renderLight.lightId );
 	WriteMaterial( renderLight.shader );
 	for( i = 0; i < MAX_ENTITY_SHADER_PARMS; i++ ) {
-		WriteFloat( renderLight.shaderParms[ i ] );
+		WriteFloat( renderLight.shaderParms[i] );
 	}
 	if( renderLight.referenceSound != NULL ) {
 		WriteInt( renderLight.referenceSound->Index() );
@@ -402,7 +402,7 @@ void idSaveGame::WriteRenderView( const renderView_t &view ) {
 	WriteBool( view.cramZNear );
 	WriteInt( view.time );
 	for( i = 0; i < MAX_GLOBAL_SHADER_PARMS; i++ ) {
-		WriteFloat( view.shaderParms[ i ] );
+		WriteFloat( view.shaderParms[i] );
 	}
 }
 
@@ -513,7 +513,7 @@ void idSaveGame::WriteHeader() {
 
 	idRestoreGame
 
-***********************************************************************/
+	***********************************************************************/
 
 idRestoreGame::idRestoreGame( idFile *savefile ) {
 	file = savefile;
@@ -579,14 +579,14 @@ void idRestoreGame::CreateObjects( void ) {
 	ReadInt( num );
 	// create all the objects
 	objects.SetNum( num + 1 );
-	memset( objects.Ptr(), 0, sizeof( objects[ 0 ] ) * objects.Num() );
+	memset( objects.Ptr(), 0, sizeof( objects[0] ) * objects.Num() );
 	for( i = 1; i < objects.Num(); i++ ) {
 		ReadString( classname );
 		type = idClass::GetClass( classname );
 		if( !type ) {
 			Error( "idRestoreGame::CreateObjects: Unknown class '%s'", classname.c_str() );
 		}
-		objects[ i ] = type->CreateInstance();
+		objects[i] = type->CreateInstance();
 #ifdef ID_DEBUG_MEMORY
 		InitTypeVariables( objects[i], type->classname, 0xce );
 #endif
@@ -600,12 +600,12 @@ void idRestoreGame::RestoreObjects( void ) {
 	idClipModel::RestoreTraceModels( this );
 	// restore all the objects
 	for( i = 1; i < objects.Num(); i++ ) {
-		CallRestore_r( objects[ i ]->GetType(), objects[ i ] );
+		CallRestore_r( objects[i]->GetType(), objects[i] );
 	}
 	// regenerate render entities and render lights because are not saved
 	for( i = 1; i < objects.Num(); i++ ) {
-		if( objects[ i ]->IsType( idEntity::Type ) ) {
-			idEntity *ent = static_cast<idEntity *>( objects[ i ] );
+		if( objects[i]->IsType( idEntity::Type ) ) {
+			idEntity *ent = static_cast<idEntity *>( objects[i] );
 			ent->UpdateVisuals();
 			ent->Present();
 		}
@@ -627,7 +627,7 @@ void idRestoreGame::DeleteObjects( void ) {
 
 void idRestoreGame::Error( const char *fmt, ... ) {
 	va_list	argptr;
-	char	text[ 1024 ];
+	char	text[1024];
 	va_start( argptr, fmt );
 	vsprintf( text, fmt, argptr );
 	va_end( argptr );
@@ -678,7 +678,7 @@ void idRestoreGame::ReadString( idStr &string ) {
 		Error( "idRestoreGame::ReadString: invalid length (%d)", len );
 	}
 	string.Fill( ' ', len );
-	Read( &string[ 0 ], len );
+	Read( &string[0], len );
 }
 
 void idRestoreGame::ReadBounds( idBounds &bounds ) {
@@ -713,7 +713,7 @@ void idRestoreGame::ReadObject( idClass *&obj ) {
 	if( ( index < 0 ) || ( index >= objects.Num() ) ) {
 		Error( "idRestoreGame::ReadObject: invalid object index" );
 	}
-	obj = objects[ index ];
+	obj = objects[index];
 }
 
 void idRestoreGame::ReadStaticObject( idClass &obj ) {
@@ -849,10 +849,10 @@ void idRestoreGame::ReadRenderEntity( renderEntity_t &renderEntity ) {
 	ReadInt( index );
 	renderEntity.referenceSound = gameSoundWorld->EmitterForIndex( index );
 	for( i = 0; i < MAX_ENTITY_SHADER_PARMS; i++ ) {
-		ReadFloat( renderEntity.shaderParms[ i ] );
+		ReadFloat( renderEntity.shaderParms[i] );
 	}
 	for( i = 0; i < MAX_RENDERENTITY_GUI; i++ ) {
-		ReadUserInterface( renderEntity.gui[ i ] );
+		ReadUserInterface( renderEntity.gui[i] );
 	}
 	// idEntity will restore "cameraTarget", which will be used in idEntity::Present to restore the remoteRenderView
 	renderEntity.remoteRenderView = NULL;
@@ -890,7 +890,7 @@ void idRestoreGame::ReadRenderLight( renderLight_t &renderLight ) {
 	ReadInt( renderLight.lightId );
 	ReadMaterial( renderLight.shader );
 	for( i = 0; i < MAX_ENTITY_SHADER_PARMS; i++ ) {
-		ReadFloat( renderLight.shaderParms[ i ] );
+		ReadFloat( renderLight.shaderParms[i] );
 	}
 	ReadInt( index );
 	renderLight.referenceSound = gameSoundWorld->EmitterForIndex( index );
@@ -927,7 +927,7 @@ void idRestoreGame::ReadRenderView( renderView_t &view ) {
 	ReadBool( view.cramZNear );
 	ReadInt( view.time );
 	for( i = 0; i < MAX_GLOBAL_SHADER_PARMS; i++ ) {
-		ReadFloat( view.shaderParms[ i ] );
+		ReadFloat( view.shaderParms[i] );
 	}
 }
 
@@ -1029,7 +1029,7 @@ void idRestoreGame::ReadHeader( void ) {
 
 	Read/write for common types
 
-***********************************************************************/
+	***********************************************************************/
 
 #define LittleChar(x) x
 
@@ -1040,8 +1040,8 @@ void idRestoreGame::Read##name_type (cpp_type &value)						\
 		const cpp_type *value_ptr = (const cpp_type*)&cache[cachePointer];	\
 		value = Little##conv_type (*value_ptr);								\
 		cachePointer += sizeof(cpp_type);									\
-	}																		\
-	else																	\
+		}																		\
+		else																	\
 		file->Read##name_type(value);										\
 }                                                           				\
 void idSaveGame::Write##name_type (const cpp_type value)					\
@@ -1051,8 +1051,8 @@ void idSaveGame::Write##name_type (const cpp_type value)					\
 		cache.resize(sz + sizeof(cpp_type));								\
 		cpp_type *value_ptr = (cpp_type*)&cache[sz];						\
 		*value_ptr = Little##conv_type (value);								\
-	}																		\
-	else																	\
+		}																		\
+		else																	\
 		file->Write##name_type(value);										\
 }
 

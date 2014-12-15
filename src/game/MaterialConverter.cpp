@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -60,7 +60,7 @@ bool MaterialParsingHelper::GetValidStageExpression( idLexer &a_lexSource, idStr
 	arrStrInvalidTokens.push_back( "map" );
 	// 	gameLocal.Printf("Entering loop. \n" );
 	idToken tknParsedLine;
-	for( int nBrackets = 0 ; !a_lexSource.EndOfFile() ; ) {
+	for( int nBrackets = 0; !a_lexSource.EndOfFile(); ) {
 		while( a_lexSource.ReadToken( &tknParsedLine ) ) {
 			if( tknParsedLine.linesCrossed ) {
 				// 				gameLocal.Printf("End of the line reached. \n" );
@@ -70,7 +70,7 @@ bool MaterialParsingHelper::GetValidStageExpression( idLexer &a_lexSource, idStr
 				a_strStageTextureName += " ";
 			}
 			bool bIsValidToken = true;
-			for( std::vector<idStr>::iterator iter = arrStrInvalidTokens.begin() ; arrStrInvalidTokens.end() != iter; iter ++ ) {
+			for( std::vector<idStr>::iterator iter = arrStrInvalidTokens.begin(); arrStrInvalidTokens.end() != iter; iter++ ) {
 				if( 0 != tknParsedLine.Icmp( *iter ) ) {
 					continue;
 				}
@@ -91,8 +91,8 @@ bool MaterialParsingHelper::GetValidStageExpression( idLexer &a_lexSource, idStr
 		a_strStageTextureName.Strip( '\r' );
 		a_strStageTextureName.Strip( ' ' );
 		// Make sure that we have equal number of opening bracket and closing brackets.
-		for( iOffset = 0, nBrackets = 0; 0 <= ( iOffset = a_strStageTextureName.Find( '(', iOffset ) ); nBrackets ++, iOffset ++ );
-		for( iOffset = 0; 0 <= ( iOffset = a_strStageTextureName.Find( ')', iOffset ) ); nBrackets --, iOffset ++ );
+		for( iOffset = 0, nBrackets = 0; 0 <= ( iOffset = a_strStageTextureName.Find( '(', iOffset ) ); nBrackets++, iOffset++ );
+		for( iOffset = 0; 0 <= ( iOffset = a_strStageTextureName.Find( ')', iOffset ) ); nBrackets--, iOffset++ );
 		if( 0 == nBrackets ) {
 			// We have gone one token ahead than needed in the lexer so offset it back again.
 			// 			gameLocal.Printf("Unreading token %s. \n", tknParsedLine.c_str() );
@@ -121,7 +121,7 @@ void MaterialParsingHelper::GetMaterialStageInfo( const char *a_strMatStageName,
 	a_lexSource.Reset();
 	// 	gameLocal.Printf( "Looking for valid %s stage information (w/o blend). \n", a_strMatStageName );
 	while( 1 == a_lexSource.SkipUntilString( a_strMatStageName ) ) {
-		ImageInfo_s currentImageInfo ;
+		ImageInfo_s currentImageInfo;
 		if( true == GetValidStageExpression( a_lexSource, currentImageInfo.m_strImageName ) ) {
 			// 			gameLocal.Printf( "Found valid %s stage information (w/o blend). \n", a_strMatStageName );
 			a_arrMatStageInfo.insert( ImageInfoMap::value_type( eVertexBlendType_None, currentImageInfo ) );
@@ -188,7 +188,7 @@ bool MaterialParsingHelper::FindBlockContainingWords( const char *a_text, std::v
 	unsigned int uiSearchOffset = 0;
 	unsigned int iTextLength = idStr::Length( a_text );
 	bool bAreAllWordsFound = false;
-	for( std::vector<idStr>::iterator iter = a_arrSearchWords.begin(); ; ) {
+	for( std::vector<idStr>::iterator iter = a_arrSearchWords.begin();; ) {
 		uiSearchIndex = idStr::FindText( a_text, ( *iter ).c_str(), false, uiSearchOffset );
 		//  		gameLocal.Printf( " Searched %s from offset %d and found index %d \n", (*iter).c_str(),uiSearchOffset, uiSearchIndex );
 		if( uiSearchIndex < 0 ) {
@@ -207,13 +207,13 @@ bool MaterialParsingHelper::FindBlockContainingWords( const char *a_text, std::v
 			}
 		}
 		// Increment the iterator.
-		iter ++;
+		iter++;
 		if( a_arrSearchWords.end() == iter ) {
 			break;
 		}
 		//Read white spaces and adjust the search offset accordingly for the next search.
 		for( uiSearchOffset = uiSearchIndex + ( *( iter - 1 ) ).Length(); uiSearchOffset < iTextLength; uiSearchOffset++ ) {
-			if( ' ' == a_text[ uiSearchOffset ] || '\t' == a_text[ uiSearchOffset ] || '\r' == a_text[ uiSearchOffset ] ) {
+			if( ' ' == a_text[uiSearchOffset] || '\t' == a_text[uiSearchOffset] || '\r' == a_text[uiSearchOffset] ) {
 				continue;
 			}
 			break;
@@ -225,22 +225,22 @@ bool MaterialParsingHelper::FindBlockContainingWords( const char *a_text, std::v
 			uiSearchOffset = uiSearchIndex;
 		}
 		// Start tracking offsets to the opening and closing of the block from the last search-Index.
-		bool bIsStartOffsetFound	= false;
-		bool bIsEndOffsetFound		= false;
-		for( a_uiStartOffset = a_uiEndOffset = uiSearchOffset ; a_uiStartOffset > 0 &&  a_uiEndOffset < iTextLength ; ) {
-			if( a_cBlockStart == a_text[ a_uiStartOffset ] ) {
+		bool bIsStartOffsetFound = false;
+		bool bIsEndOffsetFound = false;
+		for( a_uiStartOffset = a_uiEndOffset = uiSearchOffset; a_uiStartOffset > 0 && a_uiEndOffset < iTextLength; ) {
+			if( a_cBlockStart == a_text[a_uiStartOffset] ) {
 				bIsStartOffsetFound = true;
 			} else {
-				a_uiStartOffset --;
+				a_uiStartOffset--;
 			}
-			if( a_cBlockEnd == a_text[ a_uiEndOffset ] ) {
+			if( a_cBlockEnd == a_text[a_uiEndOffset] ) {
 				bIsEndOffsetFound = true;
 			} else {
-				a_uiEndOffset ++;
+				a_uiEndOffset++;
 			}
 			if( bIsStartOffsetFound && bIsEndOffsetFound ) {
 				// Adjust end offset by one extra character to make sure that we account the closing block.
-				a_uiEndOffset ++;
+				a_uiEndOffset++;
 				//  				idStr myBlock( a_text, a_uiStartOffset, a_uiEndOffset );
 				//  				gameLocal.Printf( "Found block from %d to %d, search offset is %d\n", a_uiStartOffset, a_uiEndOffset, uiSearchOffset );
 				//  				gameLocal.Printf( "%s \n", myBlock.c_str() );
@@ -324,19 +324,19 @@ void MaterialConverter::CreateNewAmbientBlock( const ImageInfoMap &a_arrDiffusem
 		"		fragmentMap		6		%s			// Specular2		\n"
 		"	}"
 	};
-	ImageInfoMap::const_iterator itrDiffusemapInfoVertexColored		= a_arrDiffusemapInfo.find( eVertexBlendType_VertexColored );
-	ImageInfoMap::const_iterator itrBumpmapInfoVertexColored		= a_arrBumpmapInfo.find( eVertexBlendType_VertexColored );
-	ImageInfoMap::const_iterator itrSpecularmapInfoVertexColored	= a_arrSpecularmapInfo.find( eVertexBlendType_VertexColored );
-	ImageInfoMap::const_iterator itrDiffusemapInfoInvVertexColored	= a_arrDiffusemapInfo.find( eVertexBlendType_InvVertexColored );
-	ImageInfoMap::const_iterator itrBumpmapInfoInvVertexColored		= a_arrBumpmapInfo.find( eVertexBlendType_InvVertexColored );
-	ImageInfoMap::const_iterator itrSpecularmapInfoInvVertexColored	= a_arrSpecularmapInfo.find( eVertexBlendType_InvVertexColored );
+	ImageInfoMap::const_iterator itrDiffusemapInfoVertexColored = a_arrDiffusemapInfo.find( eVertexBlendType_VertexColored );
+	ImageInfoMap::const_iterator itrBumpmapInfoVertexColored = a_arrBumpmapInfo.find( eVertexBlendType_VertexColored );
+	ImageInfoMap::const_iterator itrSpecularmapInfoVertexColored = a_arrSpecularmapInfo.find( eVertexBlendType_VertexColored );
+	ImageInfoMap::const_iterator itrDiffusemapInfoInvVertexColored = a_arrDiffusemapInfo.find( eVertexBlendType_InvVertexColored );
+	ImageInfoMap::const_iterator itrBumpmapInfoInvVertexColored = a_arrBumpmapInfo.find( eVertexBlendType_InvVertexColored );
+	ImageInfoMap::const_iterator itrSpecularmapInfoInvVertexColored = a_arrSpecularmapInfo.find( eVertexBlendType_InvVertexColored );
 	bool bIsVertexColorBlended = ( ( a_arrDiffusemapInfo.end() != itrDiffusemapInfoVertexColored || a_arrBumpmapInfo.end() != itrBumpmapInfoVertexColored ||
-									 a_arrSpecularmapInfo.end() != itrSpecularmapInfoVertexColored )	&&
+									 a_arrSpecularmapInfo.end() != itrSpecularmapInfoVertexColored ) &&
 								   ( a_arrDiffusemapInfo.end() != itrDiffusemapInfoInvVertexColored || a_arrBumpmapInfo.end() != itrBumpmapInfoInvVertexColored ||
 									 a_arrSpecularmapInfo.end() != itrSpecularmapInfoInvVertexColored ) );
-	ImageInfoMap::const_iterator itrDiffusemapInfo	= a_arrDiffusemapInfo.find( eVertexBlendType_None );
-	ImageInfoMap::const_iterator itrBumpmapInfo		= a_arrBumpmapInfo.find( eVertexBlendType_None );
-	ImageInfoMap::const_iterator itrSpecularmapInfo	= a_arrSpecularmapInfo.find( eVertexBlendType_None );
+	ImageInfoMap::const_iterator itrDiffusemapInfo = a_arrDiffusemapInfo.find( eVertexBlendType_None );
+	ImageInfoMap::const_iterator itrBumpmapInfo = a_arrBumpmapInfo.find( eVertexBlendType_None );
+	ImageInfoMap::const_iterator itrSpecularmapInfo = a_arrSpecularmapInfo.find( eVertexBlendType_None );
 	if( bIsVertexColorBlended ) {
 		gameLocal.Printf( "This material is vertex-color blended. \n" );
 		// Find out normal maps for vertex blending.
@@ -349,71 +349,71 @@ void MaterialConverter::CreateNewAmbientBlock( const ImageInfoMap &a_arrDiffusem
 			if( a_arrBumpmapInfo.end() != itrBumpmapInfo2 ) {
 				// Try and see if there's a second bumpmap with no vertex-color blend.
 				++itrBumpmapInfo2;
-				itrBumpmapInfoInvVertexColored =  a_arrBumpmapInfo.end() != itrBumpmapInfo2 ? ( eVertexBlendType_None == ( *itrBumpmapInfo2 ).first ? itrBumpmapInfo2 : itrBumpmapInfo ) : itrBumpmapInfo;
+				itrBumpmapInfoInvVertexColored = a_arrBumpmapInfo.end() != itrBumpmapInfo2 ? ( eVertexBlendType_None == ( *itrBumpmapInfo2 ).first ? itrBumpmapInfo2 : itrBumpmapInfo ) : itrBumpmapInfo;
 			}
 		}
-		unsigned int uiBlockSize =	idStr::Length( newAmbientBlockVertColorBlended ) + 1 +
-									//------------------ For vertexColor ----------------
-									( a_arrDiffusemapInfo.end() != itrDiffusemapInfoVertexColored	? ( *itrDiffusemapInfoVertexColored ).second.m_strImageName.Length()	: idStr::Length( "_black" )	) * 2	+
-									( a_arrDiffusemapInfo.end() != itrDiffusemapInfoVertexColored	? ( *itrDiffusemapInfoVertexColored ).second.m_strUVScale.Length()	: idStr::Length( "1, 1" )	) * 2	+
-									(	a_arrBumpmapInfo.end() != itrBumpmapInfoVertexColored		? ( *itrBumpmapInfoVertexColored ).second.m_strImageName.Length()		: idStr::Length( "_flat" )	) 		+
-									(	a_arrBumpmapInfo.end() != itrBumpmapInfoVertexColored		? ( *itrBumpmapInfoVertexColored ).second.m_strUVScale.Length()		: idStr::Length( "1, 1" )	)		+
-									( a_arrSpecularmapInfo.end() != itrSpecularmapInfoVertexColored	? ( *itrSpecularmapInfoVertexColored ).second.m_strImageName.Length()	: idStr::Length( "_black" )	)		+
-									( a_arrSpecularmapInfo.end() != itrSpecularmapInfoVertexColored	? ( *itrSpecularmapInfoVertexColored ).second.m_strUVScale.Length()	: idStr::Length( "1, 1" )	)		+
-									//------------------ For inverseVertexColor ---------
-									( a_arrDiffusemapInfo.end() != itrDiffusemapInfoInvVertexColored		? ( *itrDiffusemapInfoInvVertexColored ).second.m_strImageName.Length()	: idStr::Length( "_black" )	) * 2	+
-									( a_arrDiffusemapInfo.end() != itrDiffusemapInfoInvVertexColored		? ( *itrDiffusemapInfoInvVertexColored ).second.m_strUVScale.Length()		: idStr::Length( "1, 1" )	) * 2	+
-									(	a_arrBumpmapInfo.end() != itrBumpmapInfoInvVertexColored		? ( *itrBumpmapInfoInvVertexColored ).second.m_strImageName.Length()		: idStr::Length( "_flat" )	) 		+
-									(	a_arrBumpmapInfo.end() != itrBumpmapInfoInvVertexColored		? ( *itrBumpmapInfoInvVertexColored ).second.m_strUVScale.Length()		: idStr::Length( "1, 1" )	)		+
-									( a_arrSpecularmapInfo.end() != itrSpecularmapInfoInvVertexColored	? ( *itrSpecularmapInfoInvVertexColored ).second.m_strImageName.Length()	: idStr::Length( "_black" )	)		+
-									( a_arrSpecularmapInfo.end() != itrSpecularmapInfoInvVertexColored	? ( *itrSpecularmapInfoInvVertexColored ).second.m_strUVScale.Length()	: idStr::Length( "1, 1" )	);
+		unsigned int uiBlockSize = idStr::Length( newAmbientBlockVertColorBlended ) + 1 +
+								   //------------------ For vertexColor ----------------
+								   ( a_arrDiffusemapInfo.end() != itrDiffusemapInfoVertexColored ? ( *itrDiffusemapInfoVertexColored ).second.m_strImageName.Length() : idStr::Length( "_black" ) ) * 2 +
+								   ( a_arrDiffusemapInfo.end() != itrDiffusemapInfoVertexColored ? ( *itrDiffusemapInfoVertexColored ).second.m_strUVScale.Length() : idStr::Length( "1, 1" ) ) * 2 +
+								   ( a_arrBumpmapInfo.end() != itrBumpmapInfoVertexColored ? ( *itrBumpmapInfoVertexColored ).second.m_strImageName.Length() : idStr::Length( "_flat" ) ) +
+								   ( a_arrBumpmapInfo.end() != itrBumpmapInfoVertexColored ? ( *itrBumpmapInfoVertexColored ).second.m_strUVScale.Length() : idStr::Length( "1, 1" ) ) +
+								   ( a_arrSpecularmapInfo.end() != itrSpecularmapInfoVertexColored ? ( *itrSpecularmapInfoVertexColored ).second.m_strImageName.Length() : idStr::Length( "_black" ) ) +
+								   ( a_arrSpecularmapInfo.end() != itrSpecularmapInfoVertexColored ? ( *itrSpecularmapInfoVertexColored ).second.m_strUVScale.Length() : idStr::Length( "1, 1" ) ) +
+								   //------------------ For inverseVertexColor ---------
+								   ( a_arrDiffusemapInfo.end() != itrDiffusemapInfoInvVertexColored ? ( *itrDiffusemapInfoInvVertexColored ).second.m_strImageName.Length() : idStr::Length( "_black" ) ) * 2 +
+								   ( a_arrDiffusemapInfo.end() != itrDiffusemapInfoInvVertexColored ? ( *itrDiffusemapInfoInvVertexColored ).second.m_strUVScale.Length() : idStr::Length( "1, 1" ) ) * 2 +
+								   ( a_arrBumpmapInfo.end() != itrBumpmapInfoInvVertexColored ? ( *itrBumpmapInfoInvVertexColored ).second.m_strImageName.Length() : idStr::Length( "_flat" ) ) +
+								   ( a_arrBumpmapInfo.end() != itrBumpmapInfoInvVertexColored ? ( *itrBumpmapInfoInvVertexColored ).second.m_strUVScale.Length() : idStr::Length( "1, 1" ) ) +
+								   ( a_arrSpecularmapInfo.end() != itrSpecularmapInfoInvVertexColored ? ( *itrSpecularmapInfoInvVertexColored ).second.m_strImageName.Length() : idStr::Length( "_black" ) ) +
+								   ( a_arrSpecularmapInfo.end() != itrSpecularmapInfoInvVertexColored ? ( *itrSpecularmapInfoInvVertexColored ).second.m_strUVScale.Length() : idStr::Length( "1, 1" ) );
 		a_arrCharNewAmbientBlock.resize( uiBlockSize, 0 );
 		idStr::snPrintf( &a_arrCharNewAmbientBlock[0], uiBlockSize, newAmbientBlockVertColorBlended,
 						 //------------------ For vertexColor ----------------
-						 a_arrDiffusemapInfo.end() != itrDiffusemapInfoVertexColored ?	( *itrDiffusemapInfoVertexColored ).second.m_strImageName.c_str()				: "_black",
-						 a_arrDiffusemapInfo.end() != itrDiffusemapInfoVertexColored ?	( *itrDiffusemapInfoVertexColored ).second.m_strUVScale.c_str()				: "1, 1",
+						 a_arrDiffusemapInfo.end() != itrDiffusemapInfoVertexColored ? ( *itrDiffusemapInfoVertexColored ).second.m_strImageName.c_str() : "_black",
+						 a_arrDiffusemapInfo.end() != itrDiffusemapInfoVertexColored ? ( *itrDiffusemapInfoVertexColored ).second.m_strUVScale.c_str() : "1, 1",
 						 //------------------ For inverseVertexColor ---------
-						 a_arrDiffusemapInfo.end() != itrDiffusemapInfoInvVertexColored ?	( *itrDiffusemapInfoInvVertexColored ).second.m_strImageName.c_str()		: "_black",
-						 a_arrDiffusemapInfo.end() != itrDiffusemapInfoInvVertexColored ?	( *itrDiffusemapInfoInvVertexColored ).second.m_strUVScale.c_str()		: "1, 1",
+						 a_arrDiffusemapInfo.end() != itrDiffusemapInfoInvVertexColored ? ( *itrDiffusemapInfoInvVertexColored ).second.m_strImageName.c_str() : "_black",
+						 a_arrDiffusemapInfo.end() != itrDiffusemapInfoInvVertexColored ? ( *itrDiffusemapInfoInvVertexColored ).second.m_strUVScale.c_str() : "1, 1",
 						 //---------------------------------------------------
 						 //------------------ For vertexColor ----------------
-						 a_arrDiffusemapInfo.end() != itrDiffusemapInfoVertexColored ?	( *itrDiffusemapInfoVertexColored ).second.m_strUVScale.c_str()			: "1, 1",
-						 a_arrBumpmapInfo.end() != itrBumpmapInfoVertexColored ?	( *itrBumpmapInfoVertexColored ).second.m_strUVScale.c_str()				: "1, 1",
-						 a_arrSpecularmapInfo.end() != itrSpecularmapInfoVertexColored ?	( *itrSpecularmapInfoVertexColored ).second.m_strUVScale.c_str()			: "1, 1",
+						 a_arrDiffusemapInfo.end() != itrDiffusemapInfoVertexColored ? ( *itrDiffusemapInfoVertexColored ).second.m_strUVScale.c_str() : "1, 1",
+						 a_arrBumpmapInfo.end() != itrBumpmapInfoVertexColored ? ( *itrBumpmapInfoVertexColored ).second.m_strUVScale.c_str() : "1, 1",
+						 a_arrSpecularmapInfo.end() != itrSpecularmapInfoVertexColored ? ( *itrSpecularmapInfoVertexColored ).second.m_strUVScale.c_str() : "1, 1",
 						 //------------------ For inverseVertexColor ---------
-						 a_arrDiffusemapInfo.end() != itrDiffusemapInfoInvVertexColored ?	( *itrDiffusemapInfoInvVertexColored ).second.m_strUVScale.c_str()	: "1, 1",
-						 a_arrBumpmapInfo.end() != itrBumpmapInfoInvVertexColored ?	( *itrBumpmapInfoInvVertexColored ).second.m_strUVScale.c_str()		: "1, 1",
-						 a_arrSpecularmapInfo.end() != itrSpecularmapInfoInvVertexColored ?	( *itrSpecularmapInfoInvVertexColored ).second.m_strUVScale.c_str()	: "1, 1",
+						 a_arrDiffusemapInfo.end() != itrDiffusemapInfoInvVertexColored ? ( *itrDiffusemapInfoInvVertexColored ).second.m_strUVScale.c_str() : "1, 1",
+						 a_arrBumpmapInfo.end() != itrBumpmapInfoInvVertexColored ? ( *itrBumpmapInfoInvVertexColored ).second.m_strUVScale.c_str() : "1, 1",
+						 a_arrSpecularmapInfo.end() != itrSpecularmapInfoInvVertexColored ? ( *itrSpecularmapInfoInvVertexColored ).second.m_strUVScale.c_str() : "1, 1",
 						 //---------------------------------------------------
 						 //------------------ For vertexColor ----------------
-						 a_arrBumpmapInfo.end() != itrBumpmapInfoVertexColored ?	( *itrBumpmapInfoVertexColored ).second.m_strImageName.c_str()			: "_flat",
-						 a_arrDiffusemapInfo.end() != itrDiffusemapInfoVertexColored ?	( *itrDiffusemapInfoVertexColored ).second.m_strImageName.c_str()			: "_black",
-						 a_arrSpecularmapInfo.end() != itrSpecularmapInfoVertexColored ?	( *itrSpecularmapInfoVertexColored ).second.m_strImageName.c_str()		: "_black",
+						 a_arrBumpmapInfo.end() != itrBumpmapInfoVertexColored ? ( *itrBumpmapInfoVertexColored ).second.m_strImageName.c_str() : "_flat",
+						 a_arrDiffusemapInfo.end() != itrDiffusemapInfoVertexColored ? ( *itrDiffusemapInfoVertexColored ).second.m_strImageName.c_str() : "_black",
+						 a_arrSpecularmapInfo.end() != itrSpecularmapInfoVertexColored ? ( *itrSpecularmapInfoVertexColored ).second.m_strImageName.c_str() : "_black",
 						 //------------------ For inverseVertexColor ---------
-						 a_arrBumpmapInfo.end() != itrBumpmapInfoInvVertexColored ?	( *itrBumpmapInfoInvVertexColored ).second.m_strImageName.c_str()			: "_flat",
-						 a_arrDiffusemapInfo.end() != itrDiffusemapInfoInvVertexColored ?	( *itrDiffusemapInfoInvVertexColored ).second.m_strImageName.c_str()		: "_black",
-						 a_arrSpecularmapInfo.end() != itrSpecularmapInfoInvVertexColored ?	( *itrSpecularmapInfoInvVertexColored ).second.m_strImageName.c_str()		: "_black"
+						 a_arrBumpmapInfo.end() != itrBumpmapInfoInvVertexColored ? ( *itrBumpmapInfoInvVertexColored ).second.m_strImageName.c_str() : "_flat",
+						 a_arrDiffusemapInfo.end() != itrDiffusemapInfoInvVertexColored ? ( *itrDiffusemapInfoInvVertexColored ).second.m_strImageName.c_str() : "_black",
+						 a_arrSpecularmapInfo.end() != itrSpecularmapInfoInvVertexColored ? ( *itrSpecularmapInfoInvVertexColored ).second.m_strImageName.c_str() : "_black"
 						 //---------------------------------------------------
 					   );
 	} else {
 		gameLocal.Printf( "This material is vertex-color blended. \n" );
-		unsigned int uiBlockSize =	idStr::Length( newAmbientBlock ) + 1 +
-									( a_arrDiffusemapInfo.end() != itrDiffusemapInfo		? ( *itrDiffusemapInfo ).second.m_strImageName.Length()	: idStr::Length( "_black" )	) * 2	+
-									( a_arrDiffusemapInfo.end() != itrDiffusemapInfo		? ( *itrDiffusemapInfo ).second.m_strUVScale.Length()		: idStr::Length( "1, 1" )	) * 2	+
-									(	a_arrBumpmapInfo.end() != itrBumpmapInfo		? ( *itrBumpmapInfo ).second.m_strImageName.Length()		: idStr::Length( "_flat" )	)		+
-									(	a_arrBumpmapInfo.end() != itrBumpmapInfo		? ( *itrBumpmapInfo ).second.m_strUVScale.Length()		: idStr::Length( "1, 1" )	)		+
-									( a_arrSpecularmapInfo.end() != itrSpecularmapInfo	? ( *itrSpecularmapInfo ).second.m_strImageName.Length()	: idStr::Length( "_black" )	)		+
-									( a_arrSpecularmapInfo.end() != itrSpecularmapInfo	? ( *itrSpecularmapInfo ).second.m_strUVScale.Length()	: idStr::Length( "1, 1" )	);
+		unsigned int uiBlockSize = idStr::Length( newAmbientBlock ) + 1 +
+								   ( a_arrDiffusemapInfo.end() != itrDiffusemapInfo ? ( *itrDiffusemapInfo ).second.m_strImageName.Length() : idStr::Length( "_black" ) ) * 2 +
+								   ( a_arrDiffusemapInfo.end() != itrDiffusemapInfo ? ( *itrDiffusemapInfo ).second.m_strUVScale.Length() : idStr::Length( "1, 1" ) ) * 2 +
+								   ( a_arrBumpmapInfo.end() != itrBumpmapInfo ? ( *itrBumpmapInfo ).second.m_strImageName.Length() : idStr::Length( "_flat" ) ) +
+								   ( a_arrBumpmapInfo.end() != itrBumpmapInfo ? ( *itrBumpmapInfo ).second.m_strUVScale.Length() : idStr::Length( "1, 1" ) ) +
+								   ( a_arrSpecularmapInfo.end() != itrSpecularmapInfo ? ( *itrSpecularmapInfo ).second.m_strImageName.Length() : idStr::Length( "_black" ) ) +
+								   ( a_arrSpecularmapInfo.end() != itrSpecularmapInfo ? ( *itrSpecularmapInfo ).second.m_strUVScale.Length() : idStr::Length( "1, 1" ) );
 		a_arrCharNewAmbientBlock.resize( uiBlockSize, 0 );
 		idStr::snPrintf( &a_arrCharNewAmbientBlock[0], uiBlockSize, newAmbientBlock,
-						 a_arrDiffusemapInfo.end() != itrDiffusemapInfo ?	( *itrDiffusemapInfo ).second.m_strImageName.c_str()		: "_black",
-						 a_arrDiffusemapInfo.end() != itrDiffusemapInfo ?	( *itrDiffusemapInfo ).second.m_strUVScale.c_str()		: "1, 1",
-						 a_arrDiffusemapInfo.end() != itrDiffusemapInfo ?	( *itrDiffusemapInfo ).second.m_strUVScale.c_str()		: "1, 1",
-						 a_arrBumpmapInfo.end() != itrBumpmapInfo ?	( *itrBumpmapInfo ).second.m_strUVScale.c_str()			: "1, 1",
-						 a_arrSpecularmapInfo.end() != itrSpecularmapInfo ?	( *itrSpecularmapInfo ).second.m_strUVScale.c_str()		: "1, 1",
-						 a_arrBumpmapInfo.end() != itrBumpmapInfo ?	( *itrBumpmapInfo ).second.m_strImageName.c_str()			: "_flat",
-						 a_arrDiffusemapInfo.end() != itrDiffusemapInfo ?	( *itrDiffusemapInfo ).second.m_strImageName.c_str()		: "_black",
-						 a_arrSpecularmapInfo.end() != itrSpecularmapInfo ?	( *itrSpecularmapInfo ).second.m_strImageName.c_str()		: "_black"
+						 a_arrDiffusemapInfo.end() != itrDiffusemapInfo ? ( *itrDiffusemapInfo ).second.m_strImageName.c_str() : "_black",
+						 a_arrDiffusemapInfo.end() != itrDiffusemapInfo ? ( *itrDiffusemapInfo ).second.m_strUVScale.c_str() : "1, 1",
+						 a_arrDiffusemapInfo.end() != itrDiffusemapInfo ? ( *itrDiffusemapInfo ).second.m_strUVScale.c_str() : "1, 1",
+						 a_arrBumpmapInfo.end() != itrBumpmapInfo ? ( *itrBumpmapInfo ).second.m_strUVScale.c_str() : "1, 1",
+						 a_arrSpecularmapInfo.end() != itrSpecularmapInfo ? ( *itrSpecularmapInfo ).second.m_strUVScale.c_str() : "1, 1",
+						 a_arrBumpmapInfo.end() != itrBumpmapInfo ? ( *itrBumpmapInfo ).second.m_strImageName.c_str() : "_flat",
+						 a_arrDiffusemapInfo.end() != itrDiffusemapInfo ? ( *itrDiffusemapInfo ).second.m_strImageName.c_str() : "_black",
+						 a_arrSpecularmapInfo.end() != itrSpecularmapInfo ? ( *itrSpecularmapInfo ).second.m_strImageName.c_str() : "_black"
 					   );
 	}
 }
@@ -438,9 +438,9 @@ eMaterialConversionStatus MaterialConverter::ConvertMaterial( idMaterial *a_pMat
 	a_pMaterial->GetText( &charBuffer[0] );
 	idLexer lexSource( &charBuffer[0], charBuffer.size(), a_pMaterial->GetName(), LEXFL_NOFATALERRORS | LEXFL_ALLOWPATHNAMES );
 	gameLocal.Printf( "Finding out shader stages... \n" );
-	bool bAreBumpmapsExtracted		= false;
-	bool bAreDiffusemapsExtracted	= false;
-	bool bAreSpecularmapsExtracted	= false;
+	bool bAreBumpmapsExtracted = false;
+	bool bAreDiffusemapsExtracted = false;
+	bool bAreSpecularmapsExtracted = false;
 	for( int j = 0; j < a_pMaterial->GetNumStages(); j++ ) {
 		const shaderStage_t *pShaderStage = a_pMaterial->GetStage( j );
 		if( NULL == pShaderStage ) {
@@ -449,7 +449,7 @@ eMaterialConversionStatus MaterialConverter::ConvertMaterial( idMaterial *a_pMat
 			continue;
 		}
 		//GetMaterialStageInfo extracts all the stages in material of given type so don't loop again for multiple similar stages.
-		if( bAreBumpmapsExtracted && bAreDiffusemapsExtracted && bAreSpecularmapsExtracted	) {
+		if( bAreBumpmapsExtracted && bAreDiffusemapsExtracted && bAreSpecularmapsExtracted ) {
 			break;
 		}
 		switch( pShaderStage->lighting ) {
@@ -495,19 +495,19 @@ eMaterialConversionStatus MaterialConverter::ConvertMaterial( idMaterial *a_pMat
 	// So avoid changing new ambient lighting blocks by hand, at least "if (global5 == 1)" part.
 	arrSearchWords.clear();
 	arrSearchWords.push_back( "if (global5 == 1)" );
-	bIsAmbientBlockFound =  MaterialParsingHelper::FindBlockContainingWords( &charBuffer[0], arrSearchWords, uiBlockStartOffset, uiBlockEndOffset );
+	bIsAmbientBlockFound = MaterialParsingHelper::FindBlockContainingWords( &charBuffer[0], arrSearchWords, uiBlockStartOffset, uiBlockEndOffset );
 	gameLocal.Printf( "ForceUpdate is: %s\n", a_bForceUpdate ? "true" : "false" );
 	if( bIsAmbientBlockFound ) {
 		gameLocal.Printf( "Found new ambient block\n" );
 		charBuffer.erase( charBuffer.begin() + uiBlockStartOffset, charBuffer.begin() + uiBlockEndOffset );
 		// Try the search again with global5 == 1 in case the material is vertex color blended.
-		bool bIsSecondAmbientBlockFound =  MaterialParsingHelper::FindBlockContainingWords( &charBuffer[0], arrSearchWords, uiBlockStartOffset, uiBlockEndOffset );
+		bool bIsSecondAmbientBlockFound = MaterialParsingHelper::FindBlockContainingWords( &charBuffer[0], arrSearchWords, uiBlockStartOffset, uiBlockEndOffset );
 		if( bIsSecondAmbientBlockFound ) {
 			charBuffer.erase( charBuffer.begin() + uiBlockStartOffset, charBuffer.begin() + uiBlockEndOffset );
 		}
 		arrSearchWords.clear();
 		arrSearchWords.push_back( "if (global5 == 2)" );
-		bIsAmbientBlockFound =  MaterialParsingHelper::FindBlockContainingWords( &charBuffer[0], arrSearchWords, uiBlockStartOffset, uiBlockEndOffset );
+		bIsAmbientBlockFound = MaterialParsingHelper::FindBlockContainingWords( &charBuffer[0], arrSearchWords, uiBlockStartOffset, uiBlockEndOffset );
 		if( bIsAmbientBlockFound ) {
 			charBuffer.erase( charBuffer.begin() + uiBlockStartOffset, charBuffer.begin() + uiBlockEndOffset );
 		}
@@ -518,7 +518,7 @@ eMaterialConversionStatus MaterialConverter::ConvertMaterial( idMaterial *a_pMat
 		arrSearchWords.clear();
 		arrSearchWords.push_back( "red" );
 		arrSearchWords.push_back( "global2" );
-		bIsOldAmbientBlockFound =  MaterialParsingHelper::FindBlockContainingWords( &charBuffer[0], arrSearchWords, uiBlockStartOffset, uiBlockEndOffset );
+		bIsOldAmbientBlockFound = MaterialParsingHelper::FindBlockContainingWords( &charBuffer[0], arrSearchWords, uiBlockStartOffset, uiBlockEndOffset );
 		if( bIsOldAmbientBlockFound ) {
 			gameLocal.Printf( "Found old ambient block\n" );
 			gameLocal.Printf( "Removing old ambient block\n" );
@@ -526,7 +526,7 @@ eMaterialConversionStatus MaterialConverter::ConvertMaterial( idMaterial *a_pMat
 			bIsAmbientBlockFound = true;
 		}
 		// Try the search again, in case the material is vertex color blended and there is second inverse-vertex-colored ambient block.
-		bIsOldAmbientBlockFound =  MaterialParsingHelper::FindBlockContainingWords( &charBuffer[0], arrSearchWords, uiBlockStartOffset, uiBlockEndOffset );
+		bIsOldAmbientBlockFound = MaterialParsingHelper::FindBlockContainingWords( &charBuffer[0], arrSearchWords, uiBlockStartOffset, uiBlockEndOffset );
 		if( bIsOldAmbientBlockFound ) {
 			charBuffer.erase( charBuffer.begin() + uiBlockStartOffset, charBuffer.begin() + uiBlockEndOffset );
 		}
@@ -565,7 +565,7 @@ eMaterialConversionStatus MaterialConverter::ConvertMaterial( idMaterial *a_pMat
 			}
 			// Remove white spaces and new line characters that are found before end of the block.
 			if( unsigned( i + 1 ) <= uiEndoftheBlock - 1 ) {
-				charBuffer.erase( charBuffer.begin() + i + 1 , charBuffer.begin() + uiEndoftheBlock - 1 );
+				charBuffer.erase( charBuffer.begin() + i + 1, charBuffer.begin() + uiEndoftheBlock - 1 );
 				gameLocal.Printf( "%d trailing white spaces found at end of the block and are removed. %d, %d, %c \n", uiEndoftheBlock - i - 1, uiEndoftheBlock, i + 1, charBuffer[i + 2] );
 				// Update end of the block's position.
 				uiEndoftheBlock = i + 2;
@@ -615,8 +615,8 @@ void MaterialConverter::Cmd_BatchConvertMaterials_f( const idCmdArgs &args ) {
 	if( args.Argc() > 3 ) {
 		bForceUpdateAllMaterials = ( 0 == idStr::Icmp( args.Argv( 3 ), "forceupdateall" ) );
 	}
-	const unsigned int uiStartIndex			= atoi( args.Argv( 1 ) );
-	const unsigned int uiMaterialsToProcess	= atoi( args.Argv( 2 ) );
+	const unsigned int uiStartIndex = atoi( args.Argv( 1 ) );
+	const unsigned int uiMaterialsToProcess = atoi( args.Argv( 2 ) );
 	const unsigned long uiTotalMats = declManager->GetNumDecls( DECL_MATERIAL );
 	gameLocal.Printf( "Parsing %lu materials, this may take few minutes...\n", uiTotalMats );
 	unsigned long i = uiStartIndex > ( uiTotalMats - 1 ) ? uiTotalMats : uiStartIndex;

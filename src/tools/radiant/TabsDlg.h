@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #pragma once
 #include "afxcmn.h"
@@ -27,12 +27,12 @@ class CTabsDlg : public CDialog {
 	// Construction
 public:
 
-	CTabsDlg( UINT ID , CWnd *pParent = NULL );	// standard constructor
+	CTabsDlg( UINT ID, CWnd *pParent = NULL );	// standard constructor
 
-	typedef void ( *pfnOnDockEvent )( bool , int , CWnd * );
+	typedef void( *pfnOnDockEvent )( bool, int, CWnd * );
 
-	void AddDockedWindow( CWnd *wnd , int ID , int imageID , const CString &title , bool dock , pfnOnDockEvent dockCallback = NULL );
-	void DockWindow( int ID , bool dock );
+	void AddDockedWindow( CWnd *wnd, int ID, int imageID, const CString &title, bool dock, pfnOnDockEvent dockCallback = NULL );
+	void DockWindow( int ID, bool dock );
 	bool RectWithinDockManager( CRect &rect );
 	void FocusWindow( int ID );
 	void SetImageList( CImageList *list ) {
@@ -56,7 +56,7 @@ protected:
 
 	//private struct that holds the info we need about each window
 	struct DockedWindowInfo {
-		DockedWindowInfo( CWnd *wnd , int ID , int imageID , const CString &title = "" , pfnOnDockEvent dockCallback = NULL ) {
+		DockedWindowInfo( CWnd *wnd, int ID, int imageID, const CString &title = "", pfnOnDockEvent dockCallback = NULL ) {
 			ASSERT( wnd );
 			m_Window = wnd;
 			m_ID = ID;
@@ -71,7 +71,7 @@ protected:
 			m_DockCallback = dockCallback;
 		}
 
-		enum eState {DOCKED, FLOATING} ;
+		enum eState { DOCKED, FLOATING };
 		CTearoffContainerWindow m_Container;		//the floating window that will hold m_Window when it's undocked
 		CWnd *m_Window;
 		CString m_Title;

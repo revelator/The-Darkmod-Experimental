@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -270,14 +270,14 @@ int idPush::GetPushableEntitiesForTranslation( idEntity *pusher, idEntity *initi
 ============
 idPush::ClipTranslationalPush
 
-  Try to push other entities by translating the given entity.
+Try to push other entities by translating the given entity.
 ============
 */
 float idPush::ClipTranslationalPush( trace_t &results, idEntity *pusher, const int flags,
 									 const idVec3 &newOrigin, const idVec3 &translation,
 									 float ImpulseMod ) {
 	int i, j, numListedEntities;
-	idEntity *curPusher, *ent, *entityList[ MAX_GENTITIES ];
+	idEntity *curPusher, *ent, *entityList[MAX_GENTITIES];
 	float fraction;
 	bool groundContact, blocked = false;
 	float totalMass;
@@ -330,7 +330,7 @@ float idPush::ClipTranslationalPush( trace_t &results, idEntity *pusher, const i
 		i = 0;
 		numListedEntities = GetPushableEntitiesForTranslation( curPusher, pusher, flags, realTranslation, entityList, MAX_GENTITIES );
 		for( j = 0; j < numListedEntities; j++ ) {
-			ent = entityList[ j ];
+			ent = entityList[j];
 			if( IsFullyPushed( ent ) ) {
 				continue;
 			}
@@ -438,13 +438,13 @@ int idPush::GetPushableEntitiesForRotation( idEntity *pusher, idEntity *initialP
 ============
 idPush::ClipRotationalPush
 
-  Try to push other entities by rotating the given entity.
+Try to push other entities by rotating the given entity.
 ============
 */
 float idPush::ClipRotationalPush( trace_t &results, idEntity *pusher, const int flags,
 								  const idMat3 &newAxis, const idRotation &rotation ) {
 	int i, j, numListedEntities;
-	idEntity *curPusher, *ent, *entityList[ MAX_GENTITIES ];
+	idEntity *curPusher, *ent, *entityList[MAX_GENTITIES];
 	float fraction;
 	bool groundContact, blocked = false;
 	float totalMass;
@@ -498,7 +498,7 @@ float idPush::ClipRotationalPush( trace_t &results, idEntity *pusher, const int 
 		i = 0;
 		numListedEntities = GetPushableEntitiesForRotation( curPusher, pusher, flags, realRotation, entityList, MAX_GENTITIES );
 		for( j = 0; j < numListedEntities; j++ ) {
-			ent = entityList[ j ];
+			ent = entityList[j];
 			if( IsFullyPushed( ent ) ) {
 				continue;
 			}
@@ -848,7 +848,7 @@ int idPush::TryTranslatePushEntity( trace_t &results, idEntity *check, idClipMod
 
 						// project the movement along the collision plane
 						if ( !checkMove.ProjectAlongPlane( trace.c.normal, 0.1f, 1.001f ) ) {
-							return PUSH_BLOCKED;
+						return PUSH_BLOCKED;
 						}
 						checkMove *= 1.001f;
 
@@ -857,8 +857,8 @@ int idPush::TryTranslatePushEntity( trace_t &results, idEntity *check, idClipMod
 						ClipEntityTranslation( trace, check, NULL, NULL, checkMove );
 
 						if ( trace.fraction < 1.0f ) {
-							physics->SetOrigin( oldOrigin );
-							return PUSH_BLOCKED;
+						physics->SetOrigin( oldOrigin );
+						return PUSH_BLOCKED;
 						}
 
 						checkMove = trace.endpos - oldOrigin;
@@ -868,7 +868,7 @@ int idPush::TryTranslatePushEntity( trace_t &results, idEntity *check, idClipMod
 						ClipEntityTranslation( trace, check, clipModel, NULL, -move );
 
 						physics->SetOrigin( oldOrigin );
-			*/
+						*/
 			if( trace.fraction < 1.0f ) {
 				return PUSH_BLOCKED;
 			}
@@ -899,7 +899,7 @@ int idPush::DiscardEntities( idEntity *entityList[], int numEntities, int flags,
 	idEntity *check;
 	// remove all entities we cannot or should not push from the list
 	for( num = i = 0; i < numEntities; i++ ) {
-		check = entityList[ i ];
+		check = entityList[i];
 		// if the physics object is not pushable
 		if( !check->GetPhysics()->IsPushable() ) {
 			continue;
@@ -927,7 +927,7 @@ int idPush::DiscardEntities( idEntity *entityList[], int numEntities, int flags,
 			continue;
 		}
 		// keep entity in list
-		entityList[ num++ ] = entityList[i];
+		entityList[num++] = entityList[i];
 	}
 	return num;
 }
@@ -936,14 +936,14 @@ int idPush::DiscardEntities( idEntity *entityList[], int numEntities, int flags,
 ============
 idPush::ClipTranslationalPush
 
-  Try to push other entities by moving the given entity.
+Try to push other entities by moving the given entity.
 ============
 */
 float idPush::ClipTranslationalPush( trace_t &results, idEntity *pusher, const int flags,
 									 const idVec3 &newOrigin, const idVec3 &translation,
 									 float ImpulseMod ) {
 	int			i, listedEntities, res;
-	idEntity	*check, *entityList[ MAX_GENTITIES ];
+	idEntity	*check, *entityList[MAX_GENTITIES];
 	idBounds	bounds, pushBounds;
 	idVec3		clipMove, clipOrigin, oldOrigin, dir, impulse;
 	trace_t		pushResults;
@@ -1005,7 +1005,7 @@ float idPush::ClipTranslationalPush( trace_t &results, idEntity *pusher, const i
 	oldOrigin = clipModel->GetOrigin();
 	// try to push the entities
 	for( i = 0; i < listedEntities; i++ ) {
-		check = entityList[ i ];
+		check = entityList[i];
 		idPhysics *physics = check->GetPhysics();
 		// disable the entity for collision detection
 		physics->DisableClip();
@@ -1076,14 +1076,14 @@ float idPush::ClipTranslationalPush( trace_t &results, idEntity *pusher, const i
 ============
 idPush::ClipRotationalPush
 
-  Try to push other entities by moving the given entity.
+Try to push other entities by moving the given entity.
 ============
 */
 float idPush::ClipRotationalPush( trace_t &results, idEntity *pusher, const int flags,
 								  const idMat3 &newAxis, const idRotation &rotation ) {
 	int			i, listedEntities, res;
 	idEntity	*check;
-	static idEntity *entityList[ MAX_GENTITIES ];
+	static idEntity *entityList[MAX_GENTITIES];
 	idBounds	bounds, pushBounds;
 	idRotation	clipRotation;
 	idMat3		clipAxis, oldAxis;
@@ -1142,7 +1142,7 @@ float idPush::ClipRotationalPush( trace_t &results, idEntity *pusher, const int 
 	oldAxis = clipModel->GetAxis();
 	// try to push all the entities
 	for( i = 0; i < listedEntities; i++ ) {
-		check = entityList[ i ];
+		check = entityList[i];
 		idPhysics *physics = check->GetPhysics();
 		// disable the entity for collision detection
 		physics->DisableClip();
@@ -1206,7 +1206,7 @@ float idPush::ClipRotationalPush( trace_t &results, idEntity *pusher, const int 
 ============
 idPush::ClipPush
 
-  Try to push other entities by moving the given entity.
+Try to push other entities by moving the given entity.
 ============
 */
 float idPush::ClipPush( trace_t &results, idEntity *pusher, const int flags,

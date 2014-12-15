@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #include "precompiled_engine.h"
 #pragma hdrstop
 
@@ -29,7 +29,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 	idMD3Mesh
 
-***********************************************************************/
+	***********************************************************************/
 
 #define	LL(x) x=LittleLong(x)
 
@@ -84,9 +84,9 @@ void idRenderModelMD3::InitFromFile( const char *fileName ) {
 	}
 	// swap all the frames
 	frame = ( md3Frame_t * )( ( byte * )md3 + md3->ofsFrames );
-	for( i = 0 ; i < md3->numFrames ; i++, frame++ ) {
+	for( i = 0; i < md3->numFrames; i++, frame++ ) {
 		frame->radius = LittleFloat( frame->radius );
-		for( j = 0 ; j < 3 ; j++ ) {
+		for( j = 0; j < 3; j++ ) {
 			frame->bounds[0][j] = LittleFloat( frame->bounds[0][j] );
 			frame->bounds[1][j] = LittleFloat( frame->bounds[1][j] );
 			frame->localOrigin[j] = LittleFloat( frame->localOrigin[j] );
@@ -94,8 +94,8 @@ void idRenderModelMD3::InitFromFile( const char *fileName ) {
 	}
 	// swap all the tags
 	tag = ( md3Tag_t * )( ( byte * )md3 + md3->ofsTags );
-	for( i = 0 ; i < md3->numTags * md3->numFrames ; i++, tag++ ) {
-		for( j = 0 ; j < 3 ; j++ ) {
+	for( i = 0; i < md3->numTags * md3->numFrames; i++, tag++ ) {
+		for( j = 0; j < 3; j++ ) {
 			tag->origin[j] = LittleFloat( tag->origin[j] );
 			tag->axis[0][j] = LittleFloat( tag->axis[0][j] );
 			tag->axis[1][j] = LittleFloat( tag->axis[1][j] );
@@ -104,7 +104,7 @@ void idRenderModelMD3::InitFromFile( const char *fileName ) {
 	}
 	// swap all the surfaces
 	surf = ( md3Surface_t * )( ( byte * )md3 + md3->ofsSurfaces );
-	for( i = 0 ; i < md3->numSurfaces ; i++ ) {
+	for( i = 0; i < md3->numSurfaces; i++ ) {
 		LL( surf->ident );
 		LL( surf->flags );
 		LL( surf->numFrames );
@@ -139,27 +139,27 @@ void idRenderModelMD3::InitFromFile( const char *fileName ) {
 		}
 		// register the shaders
 		shader = ( md3Shader_t * )( ( byte * )surf + surf->ofsShaders );
-		for( j = 0 ; j < surf->numShaders ; j++, shader++ ) {
+		for( j = 0; j < surf->numShaders; j++, shader++ ) {
 			const idMaterial *sh;
 			sh = declManager->FindMaterial( shader->name );
 			shader->shader = sh;
 		}
 		// swap all the triangles
 		tri = ( md3Triangle_t * )( ( byte * )surf + surf->ofsTriangles );
-		for( j = 0 ; j < surf->numTriangles ; j++, tri++ ) {
+		for( j = 0; j < surf->numTriangles; j++, tri++ ) {
 			LL( tri->indexes[0] );
 			LL( tri->indexes[1] );
 			LL( tri->indexes[2] );
 		}
 		// swap all the ST
 		st = ( md3St_t * )( ( byte * )surf + surf->ofsSt );
-		for( j = 0 ; j < surf->numVerts ; j++, st++ ) {
+		for( j = 0; j < surf->numVerts; j++, st++ ) {
 			st->st[0] = LittleFloat( st->st[0] );
 			st->st[1] = LittleFloat( st->st[1] );
 		}
 		// swap all the XyzNormals
 		xyz = ( md3XyzNormal_t * )( ( byte * )surf + surf->ofsXyzNormals );
-		for( j = 0 ; j < surf->numVerts * surf->numFrames ; j++, xyz++ ) {
+		for( j = 0; j < surf->numVerts * surf->numFrames; j++, xyz++ ) {
 			xyz->xyz[0] = LittleShort( xyz->xyz[0] );
 			xyz->xyz[1] = LittleShort( xyz->xyz[1] );
 			xyz->xyz[2] = LittleShort( xyz->xyz[2] );
@@ -197,7 +197,7 @@ void idRenderModelMD3::LerpMeshVertexes( srfTriangles_t *tri, const struct md3Su
 		//
 		// just copy the vertexes
 		//
-		for( vertNum = 0 ; vertNum < numVerts ; vertNum++, newXyz += 4 ) {
+		for( vertNum = 0; vertNum < numVerts; vertNum++, newXyz += 4 ) {
 			idDrawVert *outvert = &tri->verts[tri->numVerts];
 			outvert->xyz.x = newXyz[0] * newXyzScale;
 			outvert->xyz.y = newXyz[1] * newXyzScale;
@@ -210,7 +210,7 @@ void idRenderModelMD3::LerpMeshVertexes( srfTriangles_t *tri, const struct md3Su
 		//
 		oldXyz = ( short * )( ( byte * )surf + surf->ofsXyzNormals ) + ( oldframe * surf->numVerts * 4 );
 		oldXyzScale = MD3_XYZ_SCALE * backlerp;
-		for( vertNum = 0 ; vertNum < numVerts ; vertNum++, oldXyz += 4, newXyz += 4 ) {
+		for( vertNum = 0; vertNum < numVerts; vertNum++, oldXyz += 4, newXyz += 4 ) {
 			idDrawVert *outvert = &tri->verts[tri->numVerts];
 			// interpolate the xyz
 			outvert->xyz.x = oldXyz[0] * oldXyzScale + newXyz[0] * newXyzScale;
@@ -259,7 +259,7 @@ idRenderModel *idRenderModelMD3::InstantiateDynamicModel( const struct renderEnt
 		LerpMeshVertexes( tri, surface, backlerp, frame, oldframe );
 		triangles = ( int * )( ( byte * )surface + surface->ofsTriangles );
 		indexes = surface->numTriangles * 3;
-		for( j = 0 ; j < indexes ; j++ ) {
+		for( j = 0; j < indexes; j++ ) {
 			tri->indexes[j] = triangles[j];
 		}
 		tri->numIndexes += indexes;

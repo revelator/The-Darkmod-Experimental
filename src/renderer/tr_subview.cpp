@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -41,7 +41,7 @@ static void R_MirrorPoint( const idVec3 in, orientation_t *surface, orientation_
 	float	d;
 	local = in - surface->origin;
 	transformed = vec3_origin;
-	for( i = 0 ; i < 3 ; i++ ) {
+	for( i = 0; i < 3; i++ ) {
 		d = local * surface->axis[i];
 		transformed += d * camera->axis[i];
 	}
@@ -57,7 +57,7 @@ static void R_MirrorVector( const idVec3 in, orientation_t *surface, orientation
 	int		i;
 	float	d;
 	out = vec3_origin;
-	for( i = 0 ; i < 3 ; i++ ) {
+	for( i = 0; i < 3; i++ ) {
 		d = in * surface->axis[i];
 		out += d * camera->axis[i];
 	}
@@ -376,7 +376,7 @@ bool	R_GenerateSurfaceSubview( drawSurf_t *drawSurf ) {
 	shader = drawSurf->material;
 	// never recurse through a subview surface that we are
 	// already seeing through
-	for( parms = tr.viewDef ; parms ; parms = parms->superView ) {
+	for( parms = tr.viewDef; parms; parms = parms->superView ) {
 		if( parms->subviewSurface
 				&& parms->subviewSurface->geo == drawSurf->geo
 				&& parms->subviewSurface->space->entityDef == drawSurf->space->entityDef ) {
@@ -402,7 +402,7 @@ bool	R_GenerateSurfaceSubview( drawSurf_t *drawSurf ) {
 	}
 	// see what kind of subview we are making
 	if( shader->GetSort() != SS_SUBVIEW ) {
-		for( int i = 0 ; i < shader->GetNumStages() ; i++ ) {
+		for( int i = 0; i < shader->GetNumStages(); i++ ) {
 			const shaderStage_t	*stage = shader->GetStage( i );
 			switch( stage->texture.dynamic ) {
 			case DI_REMOTE_RENDER:
@@ -457,7 +457,7 @@ bool R_GenerateSubViews( void ) {
 	subviews = false;
 	// scan the surfaces until we either find a subview, or determine
 	// there are no more subview surfaces.
-	for( i = 0 ; i < tr.viewDef->numDrawSurfs ; i++ ) {
+	for( i = 0; i < tr.viewDef->numDrawSurfs; i++ ) {
 		drawSurf = tr.viewDef->drawSurfs[i];
 		shader = drawSurf->material;
 		if( !shader || !shader->HasSubview() ) {

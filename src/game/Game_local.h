@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __GAME_LOCAL_H__
 #define	__GAME_LOCAL_H__
@@ -32,7 +32,7 @@
 /*
 ===============================================================================
 
-	Local implementation of the public game interface.
+Local implementation of the public game interface.
 
 ===============================================================================
 */
@@ -183,12 +183,12 @@ typedef boost::shared_ptr<CDownloadManager> CDownloadManagerPtr;
 class CShop;
 typedef boost::shared_ptr<CShop> CShopPtr;
 
-const int MAX_GAME_MESSAGE_SIZE		= 8192;
-const int MAX_ENTITY_STATE_SIZE		= 512;
-const int ENTITY_PVS_SIZE			= ( ( MAX_GENTITIES + 31 ) >> 5 );
-const int NUM_RENDER_PORTAL_BITS	= idMath::BitsForInteger( PS_BLOCK_ALL );
+const int MAX_GAME_MESSAGE_SIZE = 8192;
+const int MAX_ENTITY_STATE_SIZE = 512;
+const int ENTITY_PVS_SIZE = ( ( MAX_GENTITIES + 31 ) >> 5 );
+const int NUM_RENDER_PORTAL_BITS = idMath::BitsForInteger( PS_BLOCK_ALL );
 
-const float SMALL_AI_MASS		= 5.0f; // grayman #3756
+const float SMALL_AI_MASS = 5.0f; // grayman #3756
 
 typedef struct entityState_s {
 	int						entityNumber;
@@ -204,7 +204,7 @@ typedef struct snapshot_s {
 	struct snapshot_s 		*next;
 } snapshot_t;
 
-const int MAX_EVENT_PARAM_SIZE		= 128;
+const int MAX_EVENT_PARAM_SIZE = 128;
 
 typedef struct entityNetEvent_s {
 	int						spawnId;
@@ -487,7 +487,7 @@ public:
 	bool					mainMenuExited;			// Solarsplace 19th Nov 2010 - Bug tracker id 0002424
 
 	// can be used to automatically effect every material in the world that references globalParms
-	float					globalShaderParms[ MAX_GLOBAL_SHADER_PARMS ];
+	float					globalShaderParms[MAX_GLOBAL_SHADER_PARMS];
 
 	idRandom				random;					// random number generator used throughout the game
 
@@ -645,11 +645,11 @@ public:
 	float					clientSmoothing;		// smoothing of other clients in the view
 	int						entityDefBits;			// bits required to store an entity def number
 
-	static const char 		*surfaceTypeNames[ MAX_SURFACE_TYPES ];	// text names for surface types
+	static const char 		*surfaceTypeNames[MAX_SURFACE_TYPES];	// text names for surface types
 	/**
 	* DarkMod: text names for new surface types
 	**/
-	static const char 		*m_NewSurfaceTypes[ MAX_SURFACE_TYPES * 2 + 1];
+	static const char 		*m_NewSurfaceTypes[MAX_SURFACE_TYPES * 2 + 1];
 
 	idEntityPtr<idEntity>	lastGUIEnt;				// last entity with a GUI, used by Cmd_NextGUI_f
 	int						lastGUI;				// last GUI on the lastGUIEnt
@@ -756,7 +756,7 @@ public:
 	virtual void			GetClientStats( int clientNum, char *data, const int len );
 	virtual void			SwitchTeam( int clientNum, int team );
 
-	virtual bool			DownloadRequest( const char *IP, const char *guid, const char *paks, char urls[ MAX_STRING_CHARS ] );
+	virtual bool			DownloadRequest( const char *IP, const char *guid, const char *paks, char urls[MAX_STRING_CHARS] );
 
 	// ---------------------- Public idGameLocal Interface -------------------
 
@@ -1066,7 +1066,7 @@ private:
 
 	idStrList				shakeSounds;
 
-	byte					lagometer[ LAGO_IMG_HEIGHT ][ LAGO_IMG_WIDTH ][ 4 ];
+	byte					lagometer[LAGO_IMG_HEIGHT][LAGO_IMG_WIDTH][4];
 
 	bool					m_DoLightgem;		// Signal when the lightgem may be processed.
 	LightGem				m_lightGem;
@@ -1143,13 +1143,13 @@ private:
 	void					GetShakeSounds( const idDict *dict );
 	void					SelectTimeGroup( int timeGroup );
 	int						GetTimeGroupTime( int timeGroup );
-	void					GetBestGameType( const char *map, const char *gametype, char buf[ MAX_STRING_CHARS ] );
+	void					GetBestGameType( const char *map, const char *gametype, char buf[MAX_STRING_CHARS] );
 
 	void					Tokenize( idStrList &out, const char *in );
 
 	void					UpdateLagometer( int aheadOfServer, int dupeUsercmds );
 
-	void					GetMapLoadingGUI( char gui[ MAX_STRING_CHARS ] );
+	void					GetMapLoadingGUI( char gui[MAX_STRING_CHARS] );
 
 	// Sets the video CVARs according to the settings in the given GUI
 	void					UpdateScreenResolutionFromGUI( idUserInterface *gui );
@@ -1206,7 +1206,7 @@ ID_INLINE bool idEntityPtr<type>::SetSpawnId( int id ) {
 	if( id == spawnId ) {
 		return false;
 	}
-	if( ( id >> GENTITYNUM_BITS ) == gameLocal.spawnIds[ id & ( ( 1 << GENTITYNUM_BITS ) - 1 ) ] ) {
+	if( ( id >> GENTITYNUM_BITS ) == gameLocal.spawnIds[id & ( ( 1 << GENTITYNUM_BITS ) - 1 )] ) {
 		spawnId = id;
 		return true;
 	}
@@ -1215,14 +1215,14 @@ ID_INLINE bool idEntityPtr<type>::SetSpawnId( int id ) {
 
 template< class type >
 ID_INLINE bool idEntityPtr<type>::IsValid( void ) const {
-	return ( gameLocal.spawnIds[ spawnId & ( ( 1 << GENTITYNUM_BITS ) - 1 ) ] == ( spawnId >> GENTITYNUM_BITS ) );
+	return ( gameLocal.spawnIds[spawnId & ( ( 1 << GENTITYNUM_BITS ) - 1 )] == ( spawnId >> GENTITYNUM_BITS ) );
 }
 
 template< class type >
 ID_INLINE type *idEntityPtr<type>::GetEntity( void ) const {
 	int entityNum = spawnId & ( ( 1 << GENTITYNUM_BITS ) - 1 );
-	if( ( gameLocal.spawnIds[ entityNum ] == ( spawnId >> GENTITYNUM_BITS ) ) ) {
-		return static_cast<type *>( gameLocal.entities[ entityNum ] );
+	if( ( gameLocal.spawnIds[entityNum] == ( spawnId >> GENTITYNUM_BITS ) ) ) {
+		return static_cast<type *>( gameLocal.entities[entityNum] );
 	}
 	return NULL;
 }
@@ -1276,11 +1276,11 @@ typedef enum {
 #define	MASK_SHOT_RENDERMODEL		(CONTENTS_SOLID|CONTENTS_RENDERMODEL)
 #define	MASK_SHOT_BOUNDINGBOX		(CONTENTS_SOLID|CONTENTS_BODY)
 
-const float DEFAULT_GRAVITY			= 1066.0f;
+const float DEFAULT_GRAVITY = 1066.0f;
 #define DEFAULT_GRAVITY_STRING		"1066"
 const idVec3 DEFAULT_GRAVITY_VEC3( 0, 0, -DEFAULT_GRAVITY );
 
-const int	CINEMATIC_SKIP_DELAY	= SEC2MS( 2.0f );
+const int	CINEMATIC_SKIP_DELAY = SEC2MS( 2.0f );
 
 //============================================================================
 
@@ -1336,17 +1336,17 @@ const int	CINEMATIC_SKIP_DELAY	= SEC2MS( 2.0f );
 #include "script/Script_Interpreter.h"
 #include "script/Script_Thread.h"
 
-const float	RB_VELOCITY_MAX				= 16000;
-const int	RB_VELOCITY_TOTAL_BITS		= 16;
-const int	RB_VELOCITY_EXPONENT_BITS	= idMath::BitsForInteger( idMath::BitsForFloat( RB_VELOCITY_MAX ) ) + 1;
-const int	RB_VELOCITY_MANTISSA_BITS	= RB_VELOCITY_TOTAL_BITS - 1 - RB_VELOCITY_EXPONENT_BITS;
-const float	RB_MOMENTUM_MAX				= 1e20f;
-const int	RB_MOMENTUM_TOTAL_BITS		= 16;
-const int	RB_MOMENTUM_EXPONENT_BITS	= idMath::BitsForInteger( idMath::BitsForFloat( RB_MOMENTUM_MAX ) ) + 1;
-const int	RB_MOMENTUM_MANTISSA_BITS	= RB_MOMENTUM_TOTAL_BITS - 1 - RB_MOMENTUM_EXPONENT_BITS;
-const float	RB_FORCE_MAX				= 1e20f;
-const int	RB_FORCE_TOTAL_BITS			= 16;
-const int	RB_FORCE_EXPONENT_BITS		= idMath::BitsForInteger( idMath::BitsForFloat( RB_FORCE_MAX ) ) + 1;
-const int	RB_FORCE_MANTISSA_BITS		= RB_FORCE_TOTAL_BITS - 1 - RB_FORCE_EXPONENT_BITS;
+const float	RB_VELOCITY_MAX = 16000;
+const int	RB_VELOCITY_TOTAL_BITS = 16;
+const int	RB_VELOCITY_EXPONENT_BITS = idMath::BitsForInteger( idMath::BitsForFloat( RB_VELOCITY_MAX ) ) + 1;
+const int	RB_VELOCITY_MANTISSA_BITS = RB_VELOCITY_TOTAL_BITS - 1 - RB_VELOCITY_EXPONENT_BITS;
+const float	RB_MOMENTUM_MAX = 1e20f;
+const int	RB_MOMENTUM_TOTAL_BITS = 16;
+const int	RB_MOMENTUM_EXPONENT_BITS = idMath::BitsForInteger( idMath::BitsForFloat( RB_MOMENTUM_MAX ) ) + 1;
+const int	RB_MOMENTUM_MANTISSA_BITS = RB_MOMENTUM_TOTAL_BITS - 1 - RB_MOMENTUM_EXPONENT_BITS;
+const float	RB_FORCE_MAX = 1e20f;
+const int	RB_FORCE_TOTAL_BITS = 16;
+const int	RB_FORCE_EXPONENT_BITS = idMath::BitsForInteger( idMath::BitsForFloat( RB_FORCE_MAX ) ) + 1;
+const int	RB_FORCE_MANTISSA_BITS = RB_FORCE_TOTAL_BITS - 1 - RB_FORCE_EXPONENT_BITS;
 
 #endif	/* !__GAME_LOCAL_H__ */

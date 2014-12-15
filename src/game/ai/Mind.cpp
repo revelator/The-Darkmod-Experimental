@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -85,7 +85,7 @@ void Mind::Think() {
 	}
 	// Try to perform the subsystem tasks, skipping inactive subsystems
 	// Maximum number of tries is SubsystemCount.
-	for( int i = 0 ; i < static_cast<int>( SubsystemCount ) ; i++ ) {
+	for( int i = 0; i < static_cast<int>( SubsystemCount ); i++ ) {
 		// Increase the iterator and wrap around, if necessary
 		_subsystemIterator = static_cast<SubsystemId>(
 								 ( static_cast<int>( _subsystemIterator ) + 1 ) % static_cast<int>( SubsystemCount )
@@ -182,7 +182,7 @@ void Mind::ClearStates() {
 	assert( owner );
 	// grayman #3559 - when clearing states, we need to clean up any variable settings
 	// that are dealt with when a State ends normally
-	for( StateQueue::const_iterator i = _stateQueue.begin(); i != _stateQueue.end() ; ++i ) {
+	for( StateQueue::const_iterator i = _stateQueue.begin(); i != _stateQueue.end(); ++i ) {
 		( *i )->Cleanup( owner );
 	}
 	/* grayman #3559 - the following code is now handled by the new code added above
@@ -191,13 +191,13 @@ void Mind::ClearStates() {
 
 	if (owner->m_RelightingLight)
 	{
-		Memory& memory = owner->GetMemory();
-		idLight* light = memory.relightLight.GetEntity();
-		if (light)
-		{
-			light->SetBeingRelit(false); // this light is no longer being relit
-		}
-		owner->m_RelightingLight = false;
+	Memory& memory = owner->GetMemory();
+	idLight* light = memory.relightLight.GetEntity();
+	if (light)
+	{
+	light->SetBeingRelit(false); // this light is no longer being relit
+	}
+	owner->m_RelightingLight = false;
 	}*/
 	_switchState = true;
 	_stateQueue.clear();

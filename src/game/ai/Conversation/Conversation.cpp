@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -107,15 +107,15 @@ bool Conversation::CheckConditions() {
 		/* previous code
 				// FIXME: This might not be enough, if the AI has pushed other states on top of the conversation state
 				ConversationStatePtr convState =
-						boost::dynamic_pointer_cast<ConversationState>(ai->GetMind()->GetState());
+				boost::dynamic_pointer_cast<ConversationState>(ai->GetMind()->GetState());
 
 				if (convState != NULL)
 				{
-					// AI is already involved in another conversation
-					DM_LOG(LC_CONVERSATION, LT_DEBUG)LOGSTRING("Actor %s is already in another conversation!\r", ai->name.c_str());
-					return false;
+				// AI is already involved in another conversation
+				DM_LOG(LC_CONVERSATION, LT_DEBUG)LOGSTRING("Actor %s is already in another conversation!\r", ai->name.c_str());
+				return false;
 				}
-		 */
+				*/
 	}
 	// All actors alive and kicking
 	// TODO: Other checks to perform?
@@ -124,7 +124,7 @@ bool Conversation::CheckConditions() {
 
 void Conversation::Start() {
 	// Switch all participating AI to conversation state
-	for( int i = 0 ; i < _actors.Num() ; i++ ) {
+	for( int i = 0; i < _actors.Num(); i++ ) {
 		idAI *ai = GetActor( i );
 		if( ai == NULL ) {
 			continue;
@@ -136,14 +136,14 @@ void Conversation::Start() {
 	// Set the index to the first command
 	_currentCommand = 0;
 	// Reset the command execution status to ready
-	for( int i = 0 ; i < _commands.Num() ; i++ ) {
+	for( int i = 0; i < _commands.Num(); i++ ) {
 		_commands[i]->SetState( ConversationCommand::EReadyForExecution );
 	}
 }
 
 void Conversation::End() {
 	// Switch all participating AI out of conversation state
-	for( int i = 0 ; i < _actors.Num() ; i++ ) {
+	for( int i = 0; i < _actors.Num(); i++ ) {
 		idAI *ai = GetActor( i );
 		if( ai == NULL ) {
 			continue;

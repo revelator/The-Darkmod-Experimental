@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 /******************************************************************************/
 /*                                                                            */
 /*         Dark Mod Sound Propagation (C) by Chris Sarantos in USA 2005		  */
@@ -158,7 +158,7 @@ void CsndPropBase::Restore( idRestoreGame *savefile ) {
 			soundportal.winding = p.w;
 		}
 		// Allocate and resize the triangle matrix
-		m_sndAreas[area].portalDists = new CMatRUT<float>;
+		m_sndAreas[area].portalDists = new CMatRUT < float > ;
 		m_sndAreas[area].portalDists->Restore( savefile );
 	}
 	int num;
@@ -508,7 +508,7 @@ void CsndPropLoader::CreateAreasData( void ) {
 		goto Quit;
 	}
 	// Initialize portal data array
-	for( int k2 = 0 ; k2 < m_numPortals ; k2++ ) {
+	for( int k2 = 0; k2 < m_numPortals; k2++ ) {
 		m_PortData[k2].lossAI = 0; // grayman #3042
 		m_PortData[k2].lossPlayer = 0; // grayman #3042
 		m_PortData[k2].LocalIndex[0] = -1;
@@ -516,7 +516,7 @@ void CsndPropLoader::CreateAreasData( void ) {
 		m_PortData[k2].Areas[0] = -1;
 		m_PortData[k2].Areas[1] = -1;
 	}
-	for( i = 0 ; i < m_numAreas ; i++ ) {
+	for( i = 0; i < m_numAreas; i++ ) {
 		pCenters.Zero(); // grayman #3660 - must be initialized for each area
 		area = &m_sndAreas[i];
 		area->LossMult = 1.0;
@@ -527,7 +527,7 @@ void CsndPropLoader::CreateAreasData( void ) {
 			DM_LOG( LC_SOUND, LT_ERROR )LOGSTRING( "Create Areas: Out of memory when building portals array for Area %d\r", i );
 			goto Quit;
 		}
-		for( j = 0 ; j < np ; j++ ) {
+		for( j = 0; j < np; j++ ) {
 			portalTmp = gameRenderWorld->GetPortal( i, j );
 			area->portals[j].portalNum = j;
 			area->portals[j].handle = portalTmp.portalHandle;
@@ -538,15 +538,15 @@ void CsndPropLoader::CreateAreasData( void ) {
 			pCenters += area->portals[j].center;
 			// enter the data into the portal data array
 			DM_LOG( LC_SOUND, LT_DEBUG )LOGSTRING( "Setting up portal handle %d from area %d\r", portalTmp.portalHandle, i );
-			SPortData *pPortData = &m_PortData[ portalTmp.portalHandle - 1 ];
+			SPortData *pPortData = &m_PortData[portalTmp.portalHandle - 1];
 			// make sure we don't overwrite the data from the area on the other side
 			if( pPortData->Areas[0] == -1 ) {
 				PortIndex = 0;
 			} else {
 				PortIndex = 1;
 			}
-			pPortData->Areas[ PortIndex ] = i;
-			pPortData->LocalIndex[ PortIndex ] = j;
+			pPortData->Areas[PortIndex] = i;
+			pPortData->LocalIndex[PortIndex] = j;
 		}
 		// average the portal center coordinates to obtain the area center
 		// grayman #3660 - The term "area center" is misleading. It means
@@ -558,7 +558,7 @@ void CsndPropLoader::CreateAreasData( void ) {
 		}
 	}
 	// Apply special area Properties
-	for( k = 0 ; k < m_AreaProps.Num() ; k++ ) {
+	for( k = 0; k < m_AreaProps.Num(); k++ ) {
 		anum = m_AreaProps[k].area;
 		m_sndAreas[anum].LossMult = m_AreaProps[k].LossMult;
 		m_sndAreas[anum].VolMod = m_AreaProps[k].VolMod;
@@ -603,7 +603,7 @@ Quit:
 	return;
 }
 
-float CsndPropLoader::CalcPortDist(	int area, int port1, int port2 ) {
+float CsndPropLoader::CalcPortDist( int area, int port1, int port2 ) {
 	float dist;
 	idVec3 center1, center2, delta;
 	// TODO: PHASE 3 SOUNDPROP: Implement design for geometrically calculating loss between portals
@@ -612,7 +612,7 @@ float CsndPropLoader::CalcPortDist(	int area, int port1, int port2 ) {
 	center2 = m_sndAreas[area].portals[port2].center;
 	delta = center1 - center2;
 	//TODO: If optimization is needed, use delta.LengthFast()
-	dist  = delta.Length();
+	dist = delta.Length();
 	dist *= s_DOOM_TO_METERS;
 	return dist;
 }
@@ -648,7 +648,7 @@ void CsndPropBase::SetPortalAILoss( int handle, float value ) {
 		return;
 	}
 	// grayman #3042 - separate loss values for AI and player
-	m_PortData[ handle - 1 ].lossAI = value;
+	m_PortData[handle - 1].lossAI = value;
 	// grayman #3042 - no need to tell the engine about this value, since the engine doesn't use it.
 }
 
@@ -660,7 +660,7 @@ void CsndPropBase::SetPortalPlayerLoss( int handle, float value ) {
 		return;
 	}
 	// grayman #3042 - separate loss values for AI and player, and tell the engine
-	m_PortData[ handle - 1 ].lossPlayer = value;
+	m_PortData[handle - 1].lossPlayer = value;
 	gameRenderWorld->SetPortalPlayerLoss( handle, value );
 }
 
@@ -671,7 +671,7 @@ float CsndPropBase::GetPortalAILoss( int handle ) {
 		DM_LOG( LC_SOUND, LT_WARNING )LOGSTRING( "GetPortalAILoss called with invalid portal handle %d, returning zero loss.\r", handle );
 		gameLocal.Warning( "GetPortalAILoss called with invalid portal handle %d, returning zero loss.", handle );
 	} else {
-		returnval = m_PortData[ handle - 1 ].lossAI; // grayman #3042
+		returnval = m_PortData[handle - 1].lossAI; // grayman #3042
 	}
 	return returnval;
 }
@@ -683,7 +683,7 @@ float CsndPropBase::GetPortalPlayerLoss( int handle ) {
 		DM_LOG( LC_SOUND, LT_WARNING )LOGSTRING( "GetPortalPlayerLoss called with invalid portal handle %d, returning zero loss.\r", handle );
 		gameLocal.Warning( "GetPortalPlayerLoss called with invalid portal handle %d, returning zero loss.", handle );
 	} else {
-		returnval = m_PortData[ handle - 1 ].lossPlayer; // grayman #3042
+		returnval = m_PortData[handle - 1].lossPlayer; // grayman #3042
 	}
 	return returnval;
 }

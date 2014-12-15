@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -36,7 +36,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
   optimization requires an accurate t junction fixer.
 
-*/
+  */
 
 idBounds	optBounds;
 
@@ -62,9 +62,9 @@ static void ValidateEdgeCounts( optIsland_t *island ) {
 	optVertex_t	*vert;
 	optEdge_t	*e;
 	int			c;
-	for( vert = island->verts ; vert ; vert = vert->islandLink ) {
+	for( vert = island->verts; vert; vert = vert->islandLink ) {
 		c = 0;
-		for( e = vert->edges ; e ; ) {
+		for( e = vert->edges; e; ) {
 			c++;
 			if( e->v1 == vert ) {
 				e = e->v1link;
@@ -91,7 +91,7 @@ static optEdge_t	*AllocEdge( void ) {
 	if( numOptEdges == MAX_OPT_EDGES ) {
 		common->Error( "MAX_OPT_EDGES" );
 	}
-	e = &optEdges[ numOptEdges ];
+	e = &optEdges[numOptEdges];
 	numOptEdges++;
 	memset( e, 0, sizeof( *e ) );
 	return e;
@@ -140,7 +140,7 @@ static	void UnlinkEdge( optEdge_t *e, optIsland_t *island ) {
 	optEdge_t	**prev;
 	RemoveEdgeFromVert( e, e->v1 );
 	RemoveEdgeFromVert( e, e->v2 );
-	for( prev = &island->edges ; *prev ; prev = &( *prev )->islandLink ) {
+	for( prev = &island->edges; *prev; prev = &( *prev )->islandLink ) {
 		if( *prev == e ) {
 			*prev = e->islandLink;
 			return;
@@ -180,7 +180,7 @@ static optVertex_t *FindOptVertex( idDrawVert *v, optimizeGroup_t *opt ) {
 	x = v->xyz * opt->axis[0];
 	y = v->xyz * opt->axis[1];
 	// should we match based on the t-junction fixing hash verts?
-	for( i = 0 ; i < numOptVerts ; i++ ) {
+	for( i = 0; i < numOptVerts; i++ ) {
 		if( optVerts[i].pv[0] == x && optVerts[i].pv[1] == y ) {
 			return &optVerts[i];
 		}
@@ -214,7 +214,7 @@ static	void DrawAllEdges( void ) {
 	}
 	Draw_ClearWindow();
 	glBegin( GL_LINES );
-	for( i = 0 ; i < numOptEdges ; i++ ) {
+	for( i = 0; i < numOptEdges; i++ ) {
 		if( optEdges[i].v1 == NULL ) {
 			continue;
 		}
@@ -243,7 +243,7 @@ static void DrawVerts( optIsland_t *island ) {
 	GL_Color( 0.3f, 0.3f, 0.3f );
 	glPointSize( 3 );
 	glBegin( GL_POINTS );
-	for( vert = island->verts ; vert ; vert = vert->islandLink ) {
+	for( vert = island->verts; vert; vert = vert->islandLink ) {
 		glVertex3fv( vert->pv.ToFloatPtr() );
 	}
 	glEnd();
@@ -263,7 +263,7 @@ static	void DrawEdges( optIsland_t *island ) {
 	}
 	Draw_ClearWindow();
 	glBegin( GL_LINES );
-	for( edge = island->edges ; edge ; edge = edge->islandLink ) {
+	for( edge = island->edges; edge; edge = edge->islandLink ) {
 		if( edge->v1 == NULL ) {
 			continue;
 		}
@@ -419,7 +419,7 @@ TryAddNewEdge
 static	bool TryAddNewEdge( optVertex_t *v1, optVertex_t *v2, optIsland_t *island ) {
 	optEdge_t	*e;
 	// if the new edge crosses any other edges, don't add it
-	for( e = island->edges ; e ; e = e->islandLink ) {
+	for( e = island->edges; e; e = e->islandLink ) {
 		if( EdgesCross( e->v1, e->v2, v1, v2 ) ) {
 			return false;
 		}
@@ -479,7 +479,7 @@ static	void AddInteriorEdges( optIsland_t *island ) {
 	DrawVerts( island );
 	// count the verts
 	c_verts = 0;
-	for( vert = island->verts ; vert ; vert = vert->islandLink ) {
+	for( vert = island->verts; vert; vert = vert->islandLink ) {
 		if( !vert->edges ) {
 			continue;
 		}
@@ -488,18 +488,18 @@ static	void AddInteriorEdges( optIsland_t *island ) {
 	// allocate space for all the lengths
 	lengths = ( edgeLength_t * )Mem_Alloc( sizeof( *lengths ) * c_verts * c_verts / 2 );
 	numLengths = 0;
-	for( vert = island->verts ; vert ; vert = vert->islandLink ) {
+	for( vert = island->verts; vert; vert = vert->islandLink ) {
 		if( !vert->edges ) {
 			continue;
 		}
-		for( vert2 = vert->islandLink ; vert2 ; vert2 = vert2->islandLink ) {
+		for( vert2 = vert->islandLink; vert2; vert2 = vert2->islandLink ) {
 			idVec3		dir;
 			if( !vert2->edges ) {
 				continue;
 			}
 			lengths[numLengths].v1 = vert;
 			lengths[numLengths].v2 = vert2;
-			dir = ( vert->pv - vert2->pv ) ;
+			dir = ( vert->pv - vert2->pv );
 			lengths[numLengths].length = dir.Length();
 			numLengths++;
 		}
@@ -508,7 +508,7 @@ static	void AddInteriorEdges( optIsland_t *island ) {
 	qsort( lengths, numLengths, sizeof( lengths[0] ), LengthSort );
 	// try to create them in that order
 	c_addedEdges = 0;
-	for( i = 0 ; i < numLengths ; i++ ) {
+	for( i = 0; i < numLengths; i++ ) {
 		if( TryAddNewEdge( lengths[i].v1, lengths[i].v2, island ) ) {
 			c_addedEdges++;
 		}
@@ -541,7 +541,7 @@ static	void RemoveIfColinear( optVertex_t *ov, optIsland_t *island ) {
 	// we must find exactly two edges before testing for colinear
 	e1 = NULL;
 	e2 = NULL;
-	for( e = ov->edges ; e ; ) {
+	for( e = ov->edges; e; ) {
 		if( !e1 ) {
 			e1 = e;
 		} else if( !e2 ) {
@@ -625,7 +625,7 @@ static	void RemoveIfColinear( optVertex_t *ov, optIsland_t *island ) {
 	// has these exact verts, we have just collapsed a
 	// sliver triangle out of existance, and all the edges
 	// can be removed
-	for( e = island->edges ; e ; e = e->islandLink ) {
+	for( e = island->edges; e; e = e->islandLink ) {
 		if( ( e->v1 == v1 && e->v2 == v3 )
 				|| ( e->v1 == v3 && e->v2 == v1 ) ) {
 			UnlinkEdge( e, island );
@@ -661,17 +661,17 @@ static	void CombineColinearEdges( optIsland_t *island ) {
 	optVertex_t	*ov;
 	optEdge_t	*e;
 	c_edges = 0;
-	for( e = island->edges ; e ; e = e->islandLink ) {
+	for( e = island->edges; e; e = e->islandLink ) {
 		c_edges++;
 	}
 	if( dmapGlobals.verbose ) {
 		common->Printf( "%6i original exterior edges\n", c_edges );
 	}
-	for( ov = island->verts ; ov ; ov = ov->islandLink ) {
+	for( ov = island->verts; ov; ov = ov->islandLink ) {
 		RemoveIfColinear( ov, island );
 	}
 	c_edges = 0;
-	for( e = island->edges ; e ; e = e->islandLink ) {
+	for( e = island->edges; e; e = e->islandLink ) {
 		c_edges++;
 	}
 	if( dmapGlobals.verbose ) {
@@ -689,7 +689,7 @@ FreeOptTriangles
 */
 static void FreeOptTriangles( optIsland_t *island ) {
 	optTri_t	*opt, *next;
-	for( opt = island->tris ; opt ; opt = next ) {
+	for( opt = island->tris; opt; opt = next ) {
 		next = opt->next;
 		Mem_Free( opt );
 	}
@@ -856,7 +856,7 @@ static void CreateOptTri( optVertex_t *first, optEdge_t *e1, optEdge_t *e2, optI
 		glEnd();
 		glFlush();
 	}
-	for( opposite = second->edges ; opposite ; ) {
+	for( opposite = second->edges; opposite; ) {
 		if( opposite != e1 && ( opposite->v1 == third || opposite->v2 == third ) ) {
 			break;
 		}
@@ -898,7 +898,7 @@ static void CreateOptTri( optVertex_t *first, optEdge_t *e1, optEdge_t *e2, optI
 	}
 	// find the midpoint, and scan through all the original triangles to
 	// see if it is inside any of them
-	for( tri = island->group->triList ; tri ; tri = tri->next ) {
+	for( tri = island->group->triList; tri; tri = tri->next ) {
 		if( PointInTri( optTri->midpoint, tri, island ) ) {
 			break;
 		}
@@ -938,8 +938,8 @@ static void ReportNearbyVertexes( const optVertex_t *v, const optIsland_t *islan
 	const optVertex_t	*ov;
 	float		d;
 	idVec3		vec;
-	common->Printf( "verts near 0x%p (%f, %f)\n", v,  v->pv[0], v->pv[1] );
-	for( ov = island->verts ; ov ; ov = ov->islandLink ) {
+	common->Printf( "verts near 0x%p (%f, %f)\n", v, v->pv[0], v->pv[1] );
+	for( ov = island->verts; ov; ov = ov->islandLink ) {
 		if( ov == v ) {
 			continue;
 		}
@@ -964,22 +964,22 @@ static void BuildOptTriangles( optIsland_t *island ) {
 	// free them
 	FreeOptTriangles( island );
 	// clear the vertex emitted flags
-	for( ov = island->verts ; ov ; ov = ov->islandLink ) {
+	for( ov = island->verts; ov; ov = ov->islandLink ) {
 		ov->emited = false;
 	}
 	// clear the edge triangle links
-	for( check = island->edges ; check ; check = check->islandLink ) {
+	for( check = island->edges; check; check = check->islandLink ) {
 		check->frontTri = check->backTri = NULL;
 	}
 	// check all possible triangle made up out of the
 	// edges coming off the vertex
-	for( ov = island->verts ; ov ; ov = ov->islandLink ) {
+	for( ov = island->verts; ov; ov = ov->islandLink ) {
 		if( !ov->edges ) {
 			continue;
 		}
 #if 0
 		if( dmapGlobals.drawflag && ov == ( optVertex_t * )0x1845a60 ) {
-			for( e1 = ov->edges ; e1 ; e1 = e1Next ) {
+			for( e1 = ov->edges; e1; e1 = e1Next ) {
 				glBegin( GL_LINES );
 				GL_Color( 0.0f, 1.0f, 0.0f );
 				glVertex3fv( e1->v1->pv.ToFloatPtr() );
@@ -994,7 +994,7 @@ static void BuildOptTriangles( optIsland_t *island ) {
 			}
 		}
 #endif
-		for( e1 = ov->edges ; e1 ; e1 = e1Next ) {
+		for( e1 = ov->edges; e1; e1 = e1Next ) {
 			if( e1->v1 == ov ) {
 				second = e1->v2;
 				e1Next = e1->v1link;
@@ -1008,7 +1008,7 @@ static void BuildOptTriangles( optIsland_t *island ) {
 			if( second->emited ) {
 				continue;
 			}
-			for( e2 = ov->edges ; e2 ; e2 = e2Next ) {
+			for( e2 = ov->edges; e2; e2 = e2Next ) {
 				if( e2->v1 == ov ) {
 					third = e2->v2;
 					e2Next = e2->v1link;
@@ -1031,7 +1031,7 @@ static void BuildOptTriangles( optIsland_t *island ) {
 				}
 				// see if any other edge bisects these two, which means
 				// this triangle shouldn't be used
-				for( check = ov->edges ; check ; check = checkNext ) {
+				for( check = ov->edges; check; check = checkNext ) {
 					if( check->v1 == ov ) {
 						middle = check->v2;
 						checkNext = check->v1link;
@@ -1074,7 +1074,7 @@ static	void	RegenerateTriangles( optIsland_t *island ) {
 	mapTri_t		*tri;
 	int				c_out;
 	c_out = 0;
-	for( optTri = island->tris ; optTri ; optTri = optTri->next ) {
+	for( optTri = island->tris; optTri; optTri = optTri->next ) {
 		if( !optTri->filled ) {
 			continue;
 		}
@@ -1087,7 +1087,7 @@ static	void	RegenerateTriangles( optIsland_t *island ) {
 		tri->v[2] = optTri->v[2]->v;
 		idPlane plane;
 		PlaneForTri( tri, plane );
-		if( plane.Normal() * dmapGlobals.mapPlanes[ island->group->planeNum ].Normal() <= 0 ) {
+		if( plane.Normal() * dmapGlobals.mapPlanes[island->group->planeNum].Normal() <= 0 ) {
 			// this can happen reasonably when a triangle is nearly degenerate in
 			// optimization planar space, and winds up being degenerate in 3D space
 			common->Printf( "WARNING: backwards triangle generated!\n" );
@@ -1122,7 +1122,7 @@ static	void RemoveInteriorEdges( optIsland_t *island ) {
 	bool	front, back;
 	c_exteriorEdges = 0;
 	c_interiorEdges = 0;
-	for( e = island->edges ; e ; e = next ) {
+	for( e = island->edges; e; e = next ) {
 		// we might remove the edge, so get the next link now
 		next = e->islandLink;
 		if( !e->frontTri ) {
@@ -1163,7 +1163,7 @@ AddEdgeIfNotAlready
 void AddEdgeIfNotAlready( optVertex_t *v1, optVertex_t *v2 ) {
 	optEdge_t	*e;
 	// make sure that there isn't an identical edge already added
-	for( e = v1->edges ; e ; ) {
+	for( e = v1->edges; e; ) {
 		if( ( e->v1 == v1 && e->v2 == v2 ) || ( e->v1 == v2 && e->v2 == v1 ) ) {
 			return;		// already added
 		}
@@ -1196,7 +1196,7 @@ static void DrawOriginalEdges( int numOriginalEdges, originalEdges_t *originalEd
 	}
 	Draw_ClearWindow();
 	glBegin( GL_LINES );
-	for( i = 0 ; i < numOriginalEdges ; i++ ) {
+	for( i = 0; i < numOriginalEdges; i++ ) {
 		GL_Color( 1.0f, 0.0f, 0.0f );
 		glVertex3fv( originalEdges[i].v1->pv.ToFloatPtr() );
 		GL_Color( 0.0f, 0.0f, 0.0f );
@@ -1227,7 +1227,7 @@ static void AddOriginalTriangle( optVertex_t *v[3] ) {
 		common->Printf( "WARNING: backwards triangle in input!\n" );
 		return;
 	}
-	for( int i = 0 ; i < 3 ; i++ ) {
+	for( int i = 0; i < 3; i++ ) {
 		v1 = v[i];
 		v2 = v[( i + 1 ) % 3];
 		if( v1 == v2 ) {
@@ -1237,7 +1237,7 @@ static void AddOriginalTriangle( optVertex_t *v[3] ) {
 		}
 		int j;
 		// see if there is an existing one
-		for( j = 0 ; j < numOriginalEdges ; j++ ) {
+		for( j = 0; j < numOriginalEdges; j++ ) {
 			if( originalEdges[j].v1 == v1 && originalEdges[j].v2 == v2 ) {
 				break;
 			}
@@ -1275,7 +1275,7 @@ static	void AddOriginalEdges( optimizeGroup_t *opt ) {
 	// add all unique triangle edges
 	numOptVerts = 0;
 	numOptEdges = 0;
-	for( tri = opt->triList ; tri ; tri = tri->next ) {
+	for( tri = opt->triList; tri; tri = tri->next ) {
 		v[0] = tri->optVert[0] = FindOptVertex( &tri->v[0], opt );
 		v[1] = tri->optVert[1] = FindOptVertex( &tri->v[1], opt );
 		v[2] = tri->optVert[2] = FindOptVertex( &tri->v[2], opt );
@@ -1303,7 +1303,7 @@ void SplitOriginalEdgesAtCrossings( optimizeGroup_t *opt ) {
 	dmapGlobals.drawBounds[1][1] += 2;
 	// generate crossing points between all the original edges
 	crossings = ( edgeCrossing_t ** )Mem_ClearedAlloc( numOriginalEdges * sizeof( *crossings ) );
-	for( i = 0 ; i < numOriginalEdges ; i++ ) {
+	for( i = 0; i < numOriginalEdges; i++ ) {
 		if( dmapGlobals.drawflag ) {
 			DrawOriginalEdges( numOriginalEdges, originalEdges );
 			glBegin( GL_LINES );
@@ -1314,7 +1314,7 @@ void SplitOriginalEdgesAtCrossings( optimizeGroup_t *opt ) {
 			glEnd();
 			glFlush();
 		}
-		for( j = i + 1 ; j < numOriginalEdges ; j++ ) {
+		for( j = i + 1; j < numOriginalEdges; j++ ) {
 			optVertex_t	*v1, *v2, *v3, *v4;
 			optVertex_t	*newVert;
 			edgeCrossing_t	*cross;
@@ -1385,12 +1385,12 @@ void SplitOriginalEdgesAtCrossings( optimizeGroup_t *opt ) {
 	}
 	// now split each edge by its crossing points
 	// colinear edges will have duplicated edges added, but it won't hurt anything
-	for( i = 0 ; i < numOriginalEdges ; i++ ) {
+	for( i = 0; i < numOriginalEdges; i++ ) {
 		edgeCrossing_t	*cross, *nextCross;
 		int				numCross;
 		optVertex_t		**sorted;
 		numCross = 0;
-		for( cross = crossings[i] ; cross ; cross = cross->next ) {
+		for( cross = crossings[i]; cross; cross = cross->next ) {
 			numCross++;
 		}
 		numCross += 2;	// account for originals
@@ -1398,7 +1398,7 @@ void SplitOriginalEdgesAtCrossings( optimizeGroup_t *opt ) {
 		sorted[0] = originalEdges[i].v1;
 		sorted[1] = originalEdges[i].v2;
 		j = 2;
-		for( cross = crossings[i] ; cross ; cross = nextCross ) {
+		for( cross = crossings[i]; cross; cross = nextCross ) {
 			nextCross = cross->next;
 			sorted[j] = cross->ov;
 			Mem_Free( cross );
@@ -1406,9 +1406,9 @@ void SplitOriginalEdgesAtCrossings( optimizeGroup_t *opt ) {
 		}
 		// add all possible fragment combinations that aren't divided
 		// by another point
-		for( j = 0 ; j < numCross ; j++ ) {
-			for( k = j + 1 ; k < numCross ; k++ ) {
-				for( l = 0 ; l < numCross ; l++ ) {
+		for( j = 0; j < numCross; j++ ) {
+			for( k = j + 1; k < numCross; k++ ) {
+				for( l = 0; l < numCross; l++ ) {
 					if( sorted[l] == sorted[j] || sorted[l] == sorted[k] ) {
 						continue;
 					}
@@ -1430,8 +1430,8 @@ void SplitOriginalEdgesAtCrossings( optimizeGroup_t *opt ) {
 	Mem_Free( crossings );
 	Mem_Free( originalEdges );
 	// check for duplicated edges
-	for( i = 0 ; i < numOptEdges ; i++ ) {
-		for( j = i + 1 ; j < numOptEdges ; j++ ) {
+	for( i = 0; i < numOptEdges; i++ ) {
+		for( j = i + 1; j < numOptEdges; j++ ) {
 			if( ( optEdges[i].v1 == optEdges[j].v1 && optEdges[i].v2 == optEdges[j].v2 )
 					|| ( optEdges[i].v1 == optEdges[j].v2 && optEdges[i].v2 == optEdges[j].v1 ) ) {
 				common->Printf( "duplicated optEdge\n" );
@@ -1462,7 +1462,7 @@ static void CullUnusedVerts( optIsland_t *island ) {
 	optEdge_t	*edge;
 	c_keep = 0;
 	c_free = 0;
-	for( prev = &island->verts ; *prev ; ) {
+	for( prev = &island->verts; *prev; ) {
 		vert = *prev;
 		if( !vert->edges ) {
 			// free it
@@ -1545,7 +1545,7 @@ static void AddVertexToIsland_r( optVertex_t *vert, optIsland_t *island ) {
 	vert->addedToIsland = true;
 	vert->islandLink = island->verts;
 	island->verts = vert;
-	for( e = vert->edges ; e ; ) {
+	for( e = vert->edges; e; ) {
 		if( !e->addedToIsland ) {
 			e->addedToIsland = true;
 			e->islandLink = island->edges;
@@ -1585,7 +1585,7 @@ static void SeparateIslands( optimizeGroup_t *opt ) {
 	int		numIslands;
 	DrawAllEdges();
 	numIslands = 0;
-	for( i = 0 ; i < numOptVerts ; i++ ) {
+	for( i = 0; i < numOptVerts; i++ ) {
 		if( optVerts[i].addedToIsland ) {
 			continue;
 		}
@@ -1607,11 +1607,11 @@ static void DontSeparateIslands( optimizeGroup_t *opt ) {
 	memset( &island, 0, sizeof( island ) );
 	island.group = opt;
 	// link everything together
-	for( i = 0 ; i < numOptVerts ; i++ ) {
+	for( i = 0; i < numOptVerts; i++ ) {
 		optVerts[i].islandLink = island.verts;
 		island.verts = &optVerts[i];
 	}
-	for( i = 0 ; i < numOptEdges ; i++ ) {
+	for( i = 0; i < numOptEdges; i++ ) {
 		optEdges[i].islandLink = island.edges;
 		island.edges = &optEdges[i];
 	}
@@ -1635,7 +1635,7 @@ static bool PointInSourceTris( float x, float y, float z, optimizeGroup_t *opt )
 	p[0] = x;
 	p[1] = y;
 	p[2] = z;
-	for( tri = opt->triList ; tri ; tri = tri->next ) {
+	for( tri = opt->triList; tri; tri = tri->next ) {
 		b.Clear();
 		b.AddPoint( tri->v[0].xyz );
 		b.AddPoint( tri->v[1].xyz );
@@ -1690,8 +1690,8 @@ Copies the group planeNum to every triangle in each group
 void SetGroupTriPlaneNums( optimizeGroup_t *groups ) {
 	mapTri_t	*tri;
 	optimizeGroup_t	*group;
-	for( group = groups ; group ; group = group->nextGroup ) {
-		for( tri = group->triList ; tri ; tri = tri->next ) {
+	for( group = groups; group; group = group->nextGroup ) {
+		for( tri = group->triList; tri; tri = tri->next ) {
 			tri->planeNum = group->planeNum;
 		}
 	}
@@ -1714,7 +1714,7 @@ void	OptimizeGroupList( optimizeGroup_t *groupList ) {
 	c_in = CountGroupListTris( groupList );
 	// optimize and remove colinear edges, which will
 	// re-introduce some t junctions
-	for( group = groupList ; group ; group = group->nextGroup ) {
+	for( group = groupList; group; group = group->nextGroup ) {
 		OptimizeOptList( group );
 	}
 	c_edge = CountGroupListTris( groupList );
@@ -1737,7 +1737,7 @@ OptimizeEntity
 void	OptimizeEntity( uEntity_t *e ) {
 	int		i;
 	common->Printf( "----- OptimizeEntity -----\n" );
-	for( i = 0 ; i < e->numAreas ; i++ ) {
+	for( i = 0; i < e->numAreas; i++ ) {
 		OptimizeGroupList( e->areas[i].groups );
 	}
 }

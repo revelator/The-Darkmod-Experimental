@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -307,7 +307,7 @@ bool idAASReach::Reachability_Step_Barrier_WaterJump_WalkOffLedge( int area1num,
 			// if we can swim in the first area
 			if( CanSwimInArea( area1num ) ) {
 				// face plane must be more or less horizontal
-				plane = &file->planeList[ floorFace1->planeNum ^ ( !faceSide1 ) ];
+				plane = &file->planeList[floorFace1->planeNum ^ ( !faceSide1 )];
 				if( plane->Normal() * file->settings.invGravityDir < file->settings.minFloorCos ) {
 					continue;
 				}
@@ -737,7 +737,7 @@ void idAASReach::Reachability_WalkOffLedge( int areaNum ) {
 			side = edgeNum < 0;
 			v1 = file->vertices[edge->vertexNum[side]];
 			v2 = file->vertices[edge->vertexNum[!side]];
-			plane = &file->planeList[face->planeNum ^ INTSIGNBITSET( faceNum ) ];
+			plane = &file->planeList[face->planeNum ^ INTSIGNBITSET( faceNum )];
 			// get the direction into the other area
 			dir = plane->Normal().Cross( v2 - v1 );
 			dir.Normalize();

@@ -1,26 +1,26 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 /*
 ===============================================================================
 
-	Trace model vs. polygonal model collision detection.
+Trace model vs. polygonal model collision detection.
 
 ===============================================================================
 */
@@ -78,13 +78,13 @@ int cm_contentsFlagByIndex[] = {
 	0
 };
 
-idCVar cm_drawMask(	"cm_drawMask",			"none",		CVAR_GAME,				"collision mask", cm_contentsNameByIndex, idCmdSystem::ArgCompletion_String<cm_contentsNameByIndex> );
-idCVar cm_drawColor(	"cm_drawColor",			"1 0 0 .5",	CVAR_GAME,				"color used to draw the collision models" );
-idCVar cm_drawFilled(	"cm_drawFilled",		"0",		CVAR_GAME | CVAR_BOOL,	"draw filled polygons" );
-idCVar cm_drawInternal(	"cm_drawInternal",		"1",		CVAR_GAME | CVAR_BOOL,	"draw internal edges green" );
-idCVar cm_drawNormals(	"cm_drawNormals",		"0",		CVAR_GAME | CVAR_BOOL,	"draw polygon and edge normals" );
-idCVar cm_backFaceCull(	"cm_backFaceCull",		"0",		CVAR_GAME | CVAR_BOOL,	"cull back facing polygons" );
-idCVar cm_debugCollision(	"cm_debugCollision",	"0",		CVAR_GAME | CVAR_BOOL,	"debug the collision detection" );
+idCVar cm_drawMask( "cm_drawMask", "none", CVAR_GAME, "collision mask", cm_contentsNameByIndex, idCmdSystem::ArgCompletion_String<cm_contentsNameByIndex> );
+idCVar cm_drawColor( "cm_drawColor", "1 0 0 .5", CVAR_GAME, "color used to draw the collision models" );
+idCVar cm_drawFilled( "cm_drawFilled", "0", CVAR_GAME | CVAR_BOOL, "draw filled polygons" );
+idCVar cm_drawInternal( "cm_drawInternal", "1", CVAR_GAME | CVAR_BOOL, "draw internal edges green" );
+idCVar cm_drawNormals( "cm_drawNormals", "0", CVAR_GAME | CVAR_BOOL, "draw polygon and edge normals" );
+idCVar cm_backFaceCull( "cm_backFaceCull", "0", CVAR_GAME | CVAR_BOOL, "cull back facing polygons" );
+idCVar cm_debugCollision( "cm_debugCollision", "0", CVAR_GAME | CVAR_BOOL, "debug the collision detection" );
 
 static idVec4 cm_color;
 
@@ -296,7 +296,7 @@ void idCollisionModelManagerLocal::DrawModel( cmHandle_t handle, const idVec3 &m
 		sscanf( cm_drawColor.GetString(), "%f %f %f %f", &cm_color.x, &cm_color.y, &cm_color.z, &cm_color.w );
 		cm_drawColor.ClearModified();
 	}
-	model = models[ handle ];
+	model = models[handle];
 	viewPos = ( viewOrigin - modelOrigin ) * modelAxis.Transpose();
 	checkCount++;
 	DrawNodePolygons( model, model->node, modelOrigin, modelAxis, viewPos, radius );
@@ -310,19 +310,19 @@ Speed test code
 ===============================================================================
 */
 
-static idCVar cm_testCollision(	"cm_testCollision",		"0",					CVAR_GAME | CVAR_BOOL,		"" );
-static idCVar cm_testRotation(	"cm_testRotation",		"1",					CVAR_GAME | CVAR_BOOL,		"" );
-static idCVar cm_testModel(	"cm_testModel",			"0",					CVAR_GAME | CVAR_INTEGER,	"" );
-static idCVar cm_testTimes(	"cm_testTimes",			"1000",					CVAR_GAME | CVAR_INTEGER,	"" );
-static idCVar cm_testRandomMany(	"cm_testRandomMany",	"0",					CVAR_GAME | CVAR_BOOL,		"" );
-static idCVar cm_testOrigin(	"cm_testOrigin",		"0 0 0",				CVAR_GAME,					"" );
-static idCVar cm_testReset(	"cm_testReset",			"0",					CVAR_GAME | CVAR_BOOL,		"" );
-static idCVar cm_testBox(	"cm_testBox",			"-16 -16 0 16 16 64",	CVAR_GAME,					"" );
-static idCVar cm_testBoxRotation(	"cm_testBoxRotation",	"0 0 0",				CVAR_GAME,					"" );
-static idCVar cm_testWalk(	"cm_testWalk",			"1",					CVAR_GAME | CVAR_BOOL,		"" );
-static idCVar cm_testLength(	"cm_testLength",		"1024",					CVAR_GAME | CVAR_FLOAT,		"" );
-static idCVar cm_testRadius(	"cm_testRadius",		"64",					CVAR_GAME | CVAR_FLOAT,		"" );
-static idCVar cm_testAngle(	"cm_testAngle",			"60",					CVAR_GAME | CVAR_FLOAT,		"" );
+static idCVar cm_testCollision( "cm_testCollision", "0", CVAR_GAME | CVAR_BOOL, "" );
+static idCVar cm_testRotation( "cm_testRotation", "1", CVAR_GAME | CVAR_BOOL, "" );
+static idCVar cm_testModel( "cm_testModel", "0", CVAR_GAME | CVAR_INTEGER, "" );
+static idCVar cm_testTimes( "cm_testTimes", "1000", CVAR_GAME | CVAR_INTEGER, "" );
+static idCVar cm_testRandomMany( "cm_testRandomMany", "0", CVAR_GAME | CVAR_BOOL, "" );
+static idCVar cm_testOrigin( "cm_testOrigin", "0 0 0", CVAR_GAME, "" );
+static idCVar cm_testReset( "cm_testReset", "0", CVAR_GAME | CVAR_BOOL, "" );
+static idCVar cm_testBox( "cm_testBox", "-16 -16 0 16 16 64", CVAR_GAME, "" );
+static idCVar cm_testBoxRotation( "cm_testBoxRotation", "0 0 0", CVAR_GAME, "" );
+static idCVar cm_testWalk( "cm_testWalk", "1", CVAR_GAME | CVAR_BOOL, "" );
+static idCVar cm_testLength( "cm_testLength", "1024", CVAR_GAME | CVAR_FLOAT, "" );
+static idCVar cm_testRadius( "cm_testRadius", "64", CVAR_GAME | CVAR_FLOAT, "" );
+static idCVar cm_testAngle( "cm_testAngle", "60", CVAR_GAME | CVAR_FLOAT, "" );
 
 static int total_translation;
 static int min_translation = 999999;
@@ -348,7 +348,7 @@ void idCollisionModelManagerLocal::DebugOutput( const idVec3 &origin ) {
 	if( !cm_testCollision.GetBool() ) {
 		return;
 	}
-	testend = ( idVec3 * ) Mem_Alloc( cm_testTimes.GetInteger() * sizeof( idVec3 ) );
+	testend = ( idVec3 * )Mem_Alloc( cm_testTimes.GetInteger() * sizeof( idVec3 ) );
 	if( cm_testReset.GetBool() || ( cm_testWalk.GetBool() && !start.Compare( start ) ) ) {
 		total_translation = total_rotation = 0;
 		min_translation = min_rotation = 999999;
@@ -407,7 +407,7 @@ void idCollisionModelManagerLocal::DebugOutput( const idVec3 &origin ) {
 	} else {
 		sprintf( buf, "%4d", cm_testTimes.GetInteger() );
 	}
-	common->Printf( "%s translations: %4d milliseconds, (min = %d, max = %d, av = %1.1f)\n", buf, t, min_translation, max_translation, ( float ) total_translation / num_translation );
+	common->Printf( "%s translations: %4d milliseconds, (min = %d, max = %d, av = %1.1f)\n", buf, t, min_translation, max_translation, ( float )total_translation / num_translation );
 	if( cm_testRandomMany.GetBool() ) {
 		// if many traces in one random direction
 		for( i = 0; i < 3; i++ ) {
@@ -450,7 +450,7 @@ void idCollisionModelManagerLocal::DebugOutput( const idVec3 &origin ) {
 		} else {
 			sprintf( buf, "%4d", cm_testTimes.GetInteger() );
 		}
-		common->Printf( "%s rotation: %4d milliseconds, (min = %d, max = %d, av = %1.1f)\n", buf, t, min_rotation, max_rotation, ( float ) total_rotation / num_rotation );
+		common->Printf( "%s rotation: %4d milliseconds, (min = %d, max = %d, av = %1.1f)\n", buf, t, min_rotation, max_rotation, ( float )total_rotation / num_rotation );
 	}
 	Mem_Free( testend );
 	testend = NULL;

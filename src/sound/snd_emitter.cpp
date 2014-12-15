@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -97,7 +97,7 @@ int	Factorial( int val ) {
 }
 
 void GeneratePermutedList( int *list, int listLength, int permute ) {
-	for( int i = 0 ; i < listLength ; i++ ) {
+	for( int i = 0; i < listLength; i++ ) {
 		list[i] = i;
 	}
 	// we can't calculate > 12 factorial, so we can't easily build a permuted list
@@ -112,13 +112,13 @@ void GeneratePermutedList( int *list, int listLength, int permute ) {
 
 void TestPermutations( void ) {
 	int	list[SOUND_MAX_LIST_WAVS];
-	for( int len = 1 ; len < 5 ; len++ ) {
+	for( int len = 1; len < 5; len++ ) {
 		common->Printf( "list length: %i\n", len );
 		int	max = Factorial( len );
-		for( int j = 0 ; j < max * 2 ; j++ ) {
+		for( int j = 0; j < max * 2; j++ ) {
 			GeneratePermutedList( list, len, j );
 			common->Printf( "%4i : ", j );
-			for( int k = 0 ; k < len ; k++ ) {
+			for( int k = 0; k < len; k++ ) {
 				common->Printf( "%i", list[k] );
 			}
 			common->Printf( "\n" );
@@ -465,7 +465,7 @@ void idSoundEmitterLocal::Spatialize( idVec3 listenerPos, int listenerArea, idRe
 	//
 	maxDistance = 0;
 	minDistance = idMath::INFINITY;
-	for( int i = 0 ; i < SOUND_MAX_CHANNELS ; i++ ) {
+	for( int i = 0; i < SOUND_MAX_CHANNELS; i++ ) {
 		idSoundChannel *chan = &channels[i];
 		if( !chan->triggerState ) {
 			continue;
@@ -580,7 +580,7 @@ void idSoundEmitterLocal::Free( bool immediate ) {
 		return;
 	}
 	if( idSoundSystemLocal::s_showStartSound.GetInteger() ) {
-		common->Printf( "FreeSound (%i,%i)\n",  index, ( int )immediate );
+		common->Printf( "FreeSound (%i,%i)\n", index, ( int )immediate );
 	}
 	if( soundWorld && soundWorld->writeDemo ) {
 		soundWorld->writeDemo->WriteInt( DS_SOUND );
@@ -653,10 +653,10 @@ int idSoundEmitterLocal::StartSound( const idSoundShader *shader, const s_channe
 	// bump the choice if the exact sound was just played and we are NO_DUPS
 	if( chanParms.soundShaderFlags & SSF_NO_DUPS ) {
 		idSoundSample	*sample;
-		if( shader->leadins[ choice ] ) {
-			sample = shader->leadins[ choice ];
+		if( shader->leadins[choice] ) {
+			sample = shader->leadins[choice];
 		} else {
-			sample = shader->entries[ choice ];
+			sample = shader->entries[choice];
 		}
 		for( i = 0; i < SOUND_MAX_CHANNELS; i++ ) {
 			idSoundChannel	*chan = &channels[i];
@@ -725,10 +725,10 @@ int idSoundEmitterLocal::StartSound( const idSoundShader *shader, const s_channe
 		return 0;
 	}
 	chan = &channels[i];
-	if( shader->leadins[ choice ] ) {
-		chan->leadinSample = shader->leadins[ choice ];
+	if( shader->leadins[choice] ) {
+		chan->leadinSample = shader->leadins[choice];
 	} else {
-		chan->leadinSample = shader->entries[ choice ];
+		chan->leadinSample = shader->entries[choice];
 	}
 	// if the sample is onDemand (voice mails, etc), load it now
 	if( chan->leadinSample->purged ) {
@@ -893,7 +893,7 @@ void idSoundEmitterLocal::FadeSound( const s_channelType channel, float to, floa
 		start44kHz = soundSystemLocal.GetCurrent44kHzTime() + MIXBUFFER_SAMPLES;
 	}
 	int	length44kHz = soundSystemLocal.MillisecondsToSamples( over * 1000 );
-	for( int i = 0; i < SOUND_MAX_CHANNELS ; i++ ) {
+	for( int i = 0; i < SOUND_MAX_CHANNELS; i++ ) {
 		idSoundChannel	*chan = &channels[i];
 		if( !chan->triggerState ) {
 			continue;

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __RENDERER_H__
 #define __RENDERER_H__
@@ -23,8 +23,8 @@
 /*
 ===============================================================================
 
-	idRenderSystem is responsible for managing the screen, which can have
-	multiple idRenderWorld and 2D drawing done on it.
+idRenderSystem is responsible for managing the screen, which can have
+multiple idRenderWorld and 2D drawing done on it.
 
 ===============================================================================
 */
@@ -73,13 +73,6 @@ typedef struct glconfig_s {
 	int					vidWidth, vidHeight;			// passed to R_BeginFrame
 	int					displayFrequency;
 	bool				isFullscreen;
-
-	bool				allowNV30Path;
-	bool				allowNV20Path;
-	bool				allowNV10Path;
-	bool				allowR200Path;
-	bool				allowARB2Path;
-
 	bool				isInitialized;
 } glconfig_t;
 
@@ -117,7 +110,7 @@ typedef struct {
 } glyphInfo_t;
 
 typedef struct {
-	glyphInfo_t			glyphs [GLYPHS_PER_FONT];
+	glyphInfo_t			glyphs[GLYPHS_PER_FONT];
 	float				glyphScale;
 	char				name[64];
 } fontInfo_t;
@@ -247,7 +240,6 @@ public:
 	virtual void			CaptureRenderToBuffer( unsigned char *buffer ) = 0;
 
 	virtual void			UnCrop() = 0;
-	virtual void			GetCardCaps( bool &oldCard ) = 0;
 
 	// the image has to be already loaded ( most straightforward way would be through a FindMaterial )
 	// texture filter / mipmapping / repeat won't be modified by the upload

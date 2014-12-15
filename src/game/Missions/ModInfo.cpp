@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -250,10 +250,10 @@ void CModInfo::GetMissionTitles( idStr missionTitles ) {
 	}
 	int startIndex = 0;
 	idStr start = "Mission 1 Title: ";
-	idStr end   = "Mission 2 Title: ";
+	idStr end = "Mission 2 Title: ";
 	int endIndex = missionTitles.Find( end.c_str(), true ); // grayman #3733
 	bool finished = false;
-	for( int i = 1 ; ; i++ ) {
+	for( int i = 1;; i++ ) {
 		idStr title = idStr( missionTitles, startIndex, endIndex ); // grayman #3733
 		Strip( start.c_str(), title );
 		_missionTitles.Append( title );

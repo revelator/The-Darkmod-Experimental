@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -51,7 +51,7 @@ const ParticleParmDesc ParticleCustomDesc[] = {
 	{ "standard", 0, "Standard" },
 	{ "helix", 5, "sizeX Y Z radialSpeed axialSpeed" },
 	{ "flies", 3, "radialSpeed axialSpeed size" },
-	{ "orbit", 2, "radius speed"},
+	{ "orbit", 2, "radius speed" },
 	{ "drip", 2, "something something" }
 };
 
@@ -89,10 +89,10 @@ void idDeclParticle::GetStageBounds( idParticleStage *stage ) {
 	idRandom	steppingRandom;
 	steppingRandom.SetSeed( 0 );
 	// just step through a lot of possible particles as a representative sampling
-	for( int i = 0 ; i < 1000 ; i++ ) {
+	for( int i = 0; i < 1000; i++ ) {
 		g.random = g.originalRandom = steppingRandom;
 		int	maxMsec = stage->particleLife * 1000;
-		for( int inCycleTime = 0 ; inCycleTime < maxMsec ; inCycleTime += 16 ) {
+		for( int inCycleTime = 0; inCycleTime < maxMsec; inCycleTime += 16 ) {
 			// make sure we get the very last tic, which may make up an extreme edge
 			if( inCycleTime + 16 > maxMsec ) {
 				inCycleTime = maxMsec - 1;
@@ -950,7 +950,7 @@ int	idParticleStage::ParticleVerts( particleGen_t *g, idVec3 origin, idDrawVert 
 		}
 		float height = 1.0f / ( 1 + numTrails );
 		float t = 0;
-		for( int i = 0 ; i <= numTrails ; i++ ) {
+		for( int i = 0; i <= numTrails; i++ ) {
 			g->random = g->originalRandom;
 			g->age = currentAge - ( i + 1 ) * trailTime / ( numTrails + 1 );	// time to back up
 			g->frac = g->age / particleLife;
@@ -1010,7 +1010,7 @@ int	idParticleStage::ParticleVerts( particleGen_t *g, idVec3 origin, idDrawVert 
 	angle = angle / 180 * idMath::PI;
 	float c = idMath::Cos16( angle );
 	float s = idMath::Sin16( angle );
-	if( orientation  == POR_Z ) {
+	if( orientation == POR_Z ) {
 		// oriented in entity space
 		left[0] = s;
 		left[1] = c;
@@ -1110,7 +1110,7 @@ void idParticleStage::ParticleColors( particleGen_t *g, idDrawVert *verts ) cons
 			fadeFraction *= indexFrac / fadeIndexFraction;
 		}
 	}
-	for( int i = 0 ; i < 4 ; i++ ) {
+	for( int i = 0; i < 4; i++ ) {
 		float	fcolor = ( ( entityColor ) ? g->renderEnt->shaderParms[i] : color[i] ) * fadeFraction + fadeColor[i] * ( 1.0f - fadeFraction );
 		int		icolor = idMath::FtoiFast( fcolor * 255.0f );
 		if( icolor < 0 ) {
@@ -1160,7 +1160,7 @@ int idParticleStage::CreateParticle( particleGen_t *g, idDrawVert *verts ) const
 	float	width = 1.0f / animationFrames;
 	float	frac = g->animationFrameFrac;
 	float	iFrac = 1.0f - frac;
-	for( int i = 0 ; i < numVerts ; i++ ) {
+	for( int i = 0; i < numVerts; i++ ) {
 		verts[numVerts + i] = verts[i];
 		verts[numVerts + i].st[0] += width;
 		verts[numVerts + i].color[0] *= frac;
@@ -1212,7 +1212,7 @@ idParticleStage::SetCustomPathType
 */
 void idParticleStage::SetCustomPathType( const char *p ) {
 	customPathType = PPATH_STANDARD;
-	for( int i = 0; i < CustomParticleCount; i ++ ) {
+	for( int i = 0; i < CustomParticleCount; i++ ) {
 		if( idStr::Icmp( p, ParticleCustomDesc[i].name ) == 0 ) {
 			customPathType = static_cast<prtCustomPth_t>( i );
 			break;

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -138,8 +138,8 @@ bool idAASLocal::TestIfBarrierIsolatesReachability
 			/*
 				// Its not blocked
 				b_foundClearPath = true;
-			}
-			*/
+				}
+				*/
 		} // Not same reachability
 		// Is it blocked?
 		if( b_foundClearPath ) {
@@ -155,13 +155,13 @@ bool idAASLocal::TestIfBarrierIsolatesReachability
 	// Return result of test
 	if ( (b_hadPath) && (!b_foundClearPath) )
 	{
-		// Its isolated by the bounds given
-		return true;
+	// Its isolated by the bounds given
+	return true;
 	}
 	else
 	{
-		// Its not isolated by the bounds given
-		return false;
+	// Its not isolated by the bounds given
+	return false;
 	}
 	*/
 }
@@ -439,7 +439,7 @@ bool idAASLocal::BuildReachabilityImpactList
 	inout_reachabilityList.Clear();
 	// For each area
 	int numAreas = GetNumAreas();
-	for( int areaIndex = 0; areaIndex < numAreas; areaIndex ++ ) {
+	for( int areaIndex = 0; areaIndex < numAreas; areaIndex++ ) {
 		// Test this area's reachabilties
 		idReachability *p_reach = GetAreaFirstReachability( areaIndex );
 		while( p_reach != NULL ) {

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -29,7 +29,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 ===============================================================================
 
-  idMoveable
+idMoveable
 
 ===============================================================================
 */
@@ -40,16 +40,16 @@ const idEventDef EV_IsAtRest( "isAtRest", EventArgs(), 'd', "Returns true if obj
 const idEventDef EV_EnableDamage( "enableDamage", EventArgs( 'f', "enable", "" ), EV_RETURNS_VOID, "enable/disable damage" );
 
 CLASS_DECLARATION( idEntity, idMoveable )
-EVENT( EV_Activate,					idMoveable::Event_Activate )
-EVENT( EV_BecomeNonSolid,			idMoveable::Event_BecomeNonSolid )
-EVENT( EV_SetOwnerFromSpawnArgs,	idMoveable::Event_SetOwnerFromSpawnArgs )
-EVENT( EV_IsAtRest,					idMoveable::Event_IsAtRest )
-EVENT( EV_EnableDamage,				idMoveable::Event_EnableDamage )
+EVENT( EV_Activate, idMoveable::Event_Activate )
+EVENT( EV_BecomeNonSolid, idMoveable::Event_BecomeNonSolid )
+EVENT( EV_SetOwnerFromSpawnArgs, idMoveable::Event_SetOwnerFromSpawnArgs )
+EVENT( EV_IsAtRest, idMoveable::Event_IsAtRest )
+EVENT( EV_EnableDamage, idMoveable::Event_EnableDamage )
 END_CLASS
 
-static const float BOUNCE_SOUND_MIN_VELOCITY	= 80.0f;
-static const float BOUNCE_SOUND_MAX_VELOCITY	= 200.0f;
-static const float SLIDING_VELOCITY_THRESHOLD	= 5.0f;
+static const float BOUNCE_SOUND_MIN_VELOCITY = 80.0f;
+static const float BOUNCE_SOUND_MAX_VELOCITY = 200.0f;
+static const float SLIDING_VELOCITY_THRESHOLD = 5.0f;
 
 const float MIN_DAMAGE_VELOCITY = 200; // grayman #2816 - was 100
 const float MAX_DAMAGE_VELOCITY = 600; // grayman #2816 - was 200
@@ -60,21 +60,21 @@ idMoveable::idMoveable
 ================
 */
 idMoveable::idMoveable( void ) {
-	minDamageVelocity		= MIN_DAMAGE_VELOCITY; // grayman #2816
-	maxDamageVelocity		= MAX_DAMAGE_VELOCITY; // grayman #2816
-	nextCollideFxTime		= 0;
-	nextDamageTime			= 0;
-	nextSoundTime			= 0;
-	m_nextCollideScriptTime	= 0;
+	minDamageVelocity = MIN_DAMAGE_VELOCITY; // grayman #2816
+	maxDamageVelocity = MAX_DAMAGE_VELOCITY; // grayman #2816
+	nextCollideFxTime = 0;
+	nextDamageTime = 0;
+	nextSoundTime = 0;
+	m_nextCollideScriptTime = 0;
 	// 0 => never, -1 => always, positive number X => X times
-	m_collideScriptCounter	= 0;
-	m_minScriptVelocity		= 0.0f;
-	initialSpline			= NULL;
-	initialSplineDir		= vec3_zero;
-	explode					= false;
-	unbindOnDeath			= false;
-	allowStep				= false;
-	canDamage				= false;
+	m_collideScriptCounter = 0;
+	m_minScriptVelocity = 0.0f;
+	initialSpline = NULL;
+	initialSplineDir = vec3_zero;
+	explode = false;
+	unbindOnDeath = false;
+	allowStep = false;
+	canDamage = false;
 	// greebo: A fraction of -1 is considered to be an invalid trace here
 	memset( &lastCollision, 0, sizeof( lastCollision ) );
 	lastCollision.fraction = -1;
@@ -388,7 +388,7 @@ bool idMoveable::Collide( const trace_t &collision, const idVec3 &velocity ) {
 		if( ( m_collideScriptCounter != 0 ) && ( v > m_minScriptVelocity ) && ( gameLocal.time > m_nextCollideScriptTime ) ) {
 			if( m_collideScriptCounter > 0 ) {
 				// if positive, decrement it, so -1 stays as it is (for 0, we never come here)
-				m_collideScriptCounter --;
+				m_collideScriptCounter--;
 			}
 			// call the script
 			const function_t *pScriptFun = scriptObject.GetFunction( m_scriptCollide.c_str() );
@@ -411,7 +411,7 @@ bool idMoveable::Collide( const trace_t &collision, const idVec3 &velocity ) {
 			m_nextCollideScriptTime = gameLocal.time + 300;
 		}
 	}
-	idEntity *ent = gameLocal.entities[ collision.c.entityNum ];
+	idEntity *ent = gameLocal.entities[collision.c.entityNum];
 	trace_t newCollision = collision; // grayman #2816 - in case we need to modify collision
 	// grayman #2816 - if we hit the world, skip all the damage work
 	if( ent && ( ent != gameLocal.world ) ) {
@@ -514,8 +514,8 @@ void idMoveable::Killed( idEntity *inflictor, idEntity *attacker, int damage, co
 			PostEventMS( &EV_Remove, 1000 );
 		}
 	}
-	if( renderEntity.gui[ 0 ] ) {
-		renderEntity.gui[ 0 ] = NULL;
+	if( renderEntity.gui[0] ) {
+		renderEntity.gui[0] = NULL;
 	}
 	ActivateTargets( this );
 	fl.takedamage = false;
@@ -789,7 +789,7 @@ void idMoveable::Event_EnableDamage( float enable ) {
 /*
 ===============================================================================
 
-  idBarrel
+idBarrel
 
 ===============================================================================
 */
@@ -957,14 +957,14 @@ idExplodingBarrel
 
 ===============================================================================
 */
-const idEventDef EV_Respawn( "<respawn>" , EventArgs(), EV_RETURNS_VOID, "internal" );
+const idEventDef EV_Respawn( "<respawn>", EventArgs(), EV_RETURNS_VOID, "internal" );
 const idEventDef EV_TriggerTargets( "<triggertargets>", EventArgs(), EV_RETURNS_VOID, "internal" );
 
 CLASS_DECLARATION( idBarrel, idExplodingBarrel )
-EVENT( EV_Activate,					idExplodingBarrel::Event_Activate )
-EVENT( EV_Respawn,					idExplodingBarrel::Event_Respawn )
-EVENT( EV_Explode,					idExplodingBarrel::Event_Explode )
-EVENT( EV_TriggerTargets,			idExplodingBarrel::Event_TriggerTargets )
+EVENT( EV_Activate, idExplodingBarrel::Event_Activate )
+EVENT( EV_Respawn, idExplodingBarrel::Event_Respawn )
+EVENT( EV_Explode, idExplodingBarrel::Event_Explode )
+EVENT( EV_TriggerTargets, idExplodingBarrel::Event_TriggerTargets )
 END_CLASS
 
 /*
@@ -1071,10 +1071,10 @@ void idExplodingBarrel::Think( void ) {
 			}
 			light.origin = physicsObj.GetAbsBounds().GetCenter();
 			light.axis = mat3_identity;
-			light.shaderParms[ SHADERPARM_RED ] = pct;
-			light.shaderParms[ SHADERPARM_GREEN ] = pct;
-			light.shaderParms[ SHADERPARM_BLUE ] = pct;
-			light.shaderParms[ SHADERPARM_ALPHA ] = pct;
+			light.shaderParms[SHADERPARM_RED] = pct;
+			light.shaderParms[SHADERPARM_GREEN] = pct;
+			light.shaderParms[SHADERPARM_BLUE] = pct;
+			light.shaderParms[SHADERPARM_ALPHA] = pct;
 			gameRenderWorld->UpdateLightDef( lightDefHandle, &light );
 		} else {
 			if( gameLocal.time - lightTime > 250 ) {
@@ -1112,12 +1112,12 @@ void idExplodingBarrel::AddParticles( const char *name, bool burn ) {
 			particleRenderEntity.axis = mat3_identity;
 			particleRenderEntity.hModel = modelDef->ModelHandle();
 			float rgb = ( burn ) ? 0.0f : 1.0f;
-			particleRenderEntity.shaderParms[ SHADERPARM_RED ] = rgb;
-			particleRenderEntity.shaderParms[ SHADERPARM_GREEN ] = rgb;
-			particleRenderEntity.shaderParms[ SHADERPARM_BLUE ] = rgb;
-			particleRenderEntity.shaderParms[ SHADERPARM_ALPHA ] = rgb;
-			particleRenderEntity.shaderParms[ SHADERPARM_TIMEOFFSET ] = -MS2SEC( gameLocal.realClientTime );
-			particleRenderEntity.shaderParms[ SHADERPARM_DIVERSITY ] = ( burn ) ? 1.0f : gameLocal.random.RandomInt( 90 );
+			particleRenderEntity.shaderParms[SHADERPARM_RED] = rgb;
+			particleRenderEntity.shaderParms[SHADERPARM_GREEN] = rgb;
+			particleRenderEntity.shaderParms[SHADERPARM_BLUE] = rgb;
+			particleRenderEntity.shaderParms[SHADERPARM_ALPHA] = rgb;
+			particleRenderEntity.shaderParms[SHADERPARM_TIMEOFFSET] = -MS2SEC( gameLocal.realClientTime );
+			particleRenderEntity.shaderParms[SHADERPARM_DIVERSITY] = ( burn ) ? 1.0f : gameLocal.random.RandomInt( 90 );
 			particleRenderEntity.suppressSurfaceInViewID = -8;	// sikk - Depth Render
 			if( !particleRenderEntity.hModel ) {
 				particleRenderEntity.hModel = renderModelManager->FindModel( name );
@@ -1148,10 +1148,10 @@ void idExplodingBarrel::AddLight( const char *name, bool burn ) {
 	light.origin.z += 128;
 	light.pointLight = true;
 	light.shader = declManager->FindMaterial( name );
-	light.shaderParms[ SHADERPARM_RED ] = 2.0f;
-	light.shaderParms[ SHADERPARM_GREEN ] = 2.0f;
-	light.shaderParms[ SHADERPARM_BLUE ] = 2.0f;
-	light.shaderParms[ SHADERPARM_ALPHA ] = 2.0f;
+	light.shaderParms[SHADERPARM_RED] = 2.0f;
+	light.shaderParms[SHADERPARM_GREEN] = 2.0f;
+	light.shaderParms[SHADERPARM_BLUE] = 2.0f;
+	light.shaderParms[SHADERPARM_ALPHA] = 2.0f;
 	lightDefHandle = gameRenderWorld->AddLightDef( &light );
 	lightTime = gameLocal.realClientTime;
 	BecomeActive( TH_THINK );
@@ -1217,7 +1217,7 @@ void idExplodingBarrel::Killed( idEntity *inflictor, idEntity *attacker, int dam
 	if( splash && *splash ) {
 		gameLocal.RadiusDamage( GetPhysics()->GetOrigin(), this, attacker, this, this, splash );
 	}
-	ExplodingEffects( );
+	ExplodingEffects();
 	//FIXME: need to precache all the debris stuff here and in the projectiles
 	const idKeyValue *kv = spawnArgs.MatchPrefix( "def_debris" );
 	// bool first = true;
@@ -1243,7 +1243,7 @@ void idExplodingBarrel::Killed( idEntity *inflictor, idEntity *attacker, int dam
 			debris = static_cast<idDebris *>( ent );
 			debris->Create( this, physicsObj.GetOrigin(), dir.ToMat3() );
 			debris->Launch();
-			debris->GetRenderEntity()->shaderParms[ SHADERPARM_TIME_OF_DEATH ] = ( gameLocal.time + 1500 ) * 0.001f;
+			debris->GetRenderEntity()->shaderParms[SHADERPARM_TIME_OF_DEATH] = ( gameLocal.time + 1500 ) * 0.001f;
 			debris->UpdateVisuals();
 		}
 		kv = spawnArgs.MatchPrefix( "def_debris", kv );
@@ -1315,10 +1315,10 @@ void idExplodingBarrel::Event_Respawn() {
 	if( minRespawnDist ) {
 		float minDist = -1;
 		for( i = 0; i < gameLocal.numClients; i++ ) {
-			if( !gameLocal.entities[ i ] || !gameLocal.entities[ i ]->IsType( idPlayer::Type ) ) {
+			if( !gameLocal.entities[i] || !gameLocal.entities[i]->IsType( idPlayer::Type ) ) {
 				continue;
 			}
-			idVec3 v = gameLocal.entities[ i ]->GetPhysics()->GetOrigin() - GetPhysics()->GetOrigin();
+			idVec3 v = gameLocal.entities[i]->GetPhysics()->GetOrigin() - GetPhysics()->GetOrigin();
 			float dist = v.Length();
 			if( minDist < 0 || dist < minDist ) {
 				minDist = dist;
@@ -1394,7 +1394,7 @@ bool idExplodingBarrel::ClientReceiveEvent( int event, int time, const idBitMsg 
 	switch( event ) {
 	case EVENT_EXPLODE: {
 		if( gameLocal.realClientTime - msg.ReadLong() < spawnArgs.GetInt( "explode_lapse", "1000" ) ) {
-			ExplodingEffects( );
+			ExplodingEffects();
 		}
 		return true;
 	}

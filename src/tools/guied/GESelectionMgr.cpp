@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -31,7 +31,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #define GUIED_GRABSIZE		7
 #define GUIED_CENTERSIZE	5
 
-rvGESelectionMgr::rvGESelectionMgr( ) {
+rvGESelectionMgr::rvGESelectionMgr() {
 	mWorkspace = NULL;
 }
 
@@ -44,7 +44,7 @@ Sets the only selection for the workspace to the given window
 */
 void rvGESelectionMgr::Set( idWindow *window ) {
 	// Get rid of any current selections
-	Clear( );
+	Clear();
 	// Add this selection now
 	return Add( window );
 }
@@ -61,19 +61,19 @@ void rvGESelectionMgr::Add( idWindow *window, bool expand ) {
 	wrapper = rvGEWindowWrapper::GetWrapper( window );
 	assert( wrapper );
 	// If the window is already selected then dont add the selection
-	if( wrapper->IsSelected( ) ) {
+	if( wrapper->IsSelected() ) {
 		return;
 	}
 	wrapper->SetSelected( true );
 	mSelections.Append( window );
-	if( expand && wrapper->Expand( ) ) {
-		gApp.GetNavigator( ).Update( );
+	if( expand && wrapper->Expand() ) {
+		gApp.GetNavigator().Update();
 	}
-	gApp.GetNavigator( ).UpdateSelections( );
-	gApp.GetNavigator( ).Refresh( );
-	gApp.GetTransformer( ).Update( );
-	gApp.GetProperties().Update( );
-	UpdateExpression( );
+	gApp.GetNavigator().UpdateSelections();
+	gApp.GetNavigator().Refresh();
+	gApp.GetTransformer().Update();
+	gApp.GetProperties().Update();
+	UpdateExpression();
 }
 
 /*
@@ -88,16 +88,16 @@ void rvGESelectionMgr::Remove( idWindow *window ) {
 	wrapper = rvGEWindowWrapper::GetWrapper( window );
 	assert( wrapper );
 	// Dont bother if the window isnt selectd already
-	if( !wrapper->IsSelected( ) ) {
+	if( !wrapper->IsSelected() ) {
 		return;
 	}
 	wrapper->SetSelected( false );
 	mSelections.Remove( window );
-	gApp.GetNavigator( ).UpdateSelections( );
-	gApp.GetNavigator( ).Refresh( );
-	gApp.GetTransformer( ).Update( );
-	gApp.GetProperties().Update( );
-	UpdateExpression( );
+	gApp.GetNavigator().UpdateSelections();
+	gApp.GetNavigator().Refresh();
+	gApp.GetTransformer().Update();
+	gApp.GetProperties().Update();
+	UpdateExpression();
 }
 
 /*
@@ -109,14 +109,14 @@ Remove all of the current selections
 */
 void rvGESelectionMgr::Clear( void ) {
 	int i;
-	for( i = 0; i < mSelections.Num( ); i ++ ) {
+	for( i = 0; i < mSelections.Num(); i++ ) {
 		rvGEWindowWrapper::GetWrapper( mSelections[i] )->SetSelected( false );
 	}
-	mSelections.Clear( );
-	gApp.GetNavigator( ).UpdateSelections( );
-	gApp.GetNavigator( ).Refresh( );
-	gApp.GetTransformer( ).Update( );
-	gApp.GetProperties().Update( );
+	mSelections.Clear();
+	gApp.GetNavigator().UpdateSelections();
+	gApp.GetNavigator().Refresh();
+	gApp.GetTransformer().Update();
+	gApp.GetProperties().Update();
 	mExpression = false;
 }
 
@@ -128,29 +128,29 @@ Render the selections including the move/size bars
 ================
 */
 void rvGESelectionMgr::Render( void ) {
-	if( !mSelections.Num( ) ) {
+	if( !mSelections.Num() ) {
 		return;
 	}
 	glEnable( GL_BLEND );
 	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-	UpdateRectangle( );
+	UpdateRectangle();
 	glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
-	idVec4	&color = gApp.GetOptions().GetSelectionColor( );
+	idVec4	&color = gApp.GetOptions().GetSelectionColor();
 	glColor4f( color[0], color[1], color[2], 1.0f );
 	glBegin( GL_LINE_LOOP );
 	glVertex2f( mRect.x, mRect.y );
 	glVertex2f( mRect.x + mRect.w, mRect.y );
 	glVertex2f( mRect.x + mRect.w, mRect.y + mRect.h );
 	glVertex2f( mRect.x, mRect.y + mRect.h );
-	glEnd( );
+	glEnd();
 	glColor4f( color[0], color[1], color[2], 0.75f );
 	int i;
-	for( i = 0; i < mSelections.Num(); i ++ ) {
+	for( i = 0; i < mSelections.Num(); i++ ) {
 		rvGEWindowWrapper	*wrapper;
 		idRectangle			rect;
 		wrapper = rvGEWindowWrapper::GetWrapper( mSelections[i] );
 		assert( wrapper );
-		rect = wrapper->GetScreenRect( );
+		rect = wrapper->GetScreenRect();
 		mWorkspace->WorkspaceToWindow( rect );
 		if( i == 0 ) {
 			glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
@@ -158,7 +158,7 @@ void rvGESelectionMgr::Render( void ) {
 			glVertex2f( rect.x, rect.y );
 			glVertex2f( rect.x + GUIED_GRABSIZE, rect.y );
 			glVertex2f( rect.x, rect.y + GUIED_GRABSIZE );
-			glEnd( );
+			glEnd();
 		}
 		glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 		glBegin( GL_LINE_LOOP );
@@ -166,14 +166,14 @@ void rvGESelectionMgr::Render( void ) {
 		glVertex2f( rect.x + rect.w, rect.y );
 		glVertex2f( rect.x + rect.w, rect.y + rect.h );
 		glVertex2f( rect.x, rect.y + rect.h );
-		glEnd( );
+		glEnd();
 		glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
 		glBegin( GL_QUADS );
 		glVertex2f( rect.x + ( rect.w - GUIED_CENTERSIZE ) / 2, rect.y + ( rect.h - GUIED_CENTERSIZE ) / 2 );
 		glVertex2f( rect.x + ( rect.w + GUIED_CENTERSIZE ) / 2, rect.y + ( rect.h - GUIED_CENTERSIZE ) / 2 );
 		glVertex2f( rect.x + ( rect.w + GUIED_CENTERSIZE ) / 2, rect.y + ( rect.h + GUIED_CENTERSIZE ) / 2 );
 		glVertex2f( rect.x + ( rect.w - GUIED_CENTERSIZE ) / 2, rect.y + ( rect.h + GUIED_CENTERSIZE ) / 2 );
-		glEnd( );
+		glEnd();
 	}
 	if( mExpression ) {
 		return;
@@ -221,7 +221,7 @@ void rvGESelectionMgr::Render( void ) {
 	glVertex2f( mRect.x + GUIED_GRABSIZE / 2 + mRect.w / 2, mRect.y - GUIED_GRABSIZE );
 	glVertex2f( mRect.x + GUIED_GRABSIZE / 2 + mRect.w / 2, mRect.y - 1 );
 	glVertex2f( mRect.x - GUIED_GRABSIZE / 2 + mRect.w / 2, mRect.y - 1 );
-	glEnd( );
+	glEnd();
 	glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
 }
 
@@ -236,19 +236,19 @@ void rvGESelectionMgr::UpdateRectangle( void ) {
 	int		i;
 	idVec2	point;
 	assert( mWorkspace );
-	if( mSelections.Num( ) <= 0 ) {
+	if( mSelections.Num() <= 0 ) {
 		return;
 	}
 	// Start with the first selections retangle
-	mRect = rvGEWindowWrapper::GetWrapper( mSelections[0] )->GetScreenRect( );
+	mRect = rvGEWindowWrapper::GetWrapper( mSelections[0] )->GetScreenRect();
 	// Its easier to do the calculates with it being top left and bottom right
 	// so temporarly convert width and height to right and bottom
 	mRect.w += mRect.x;
 	mRect.h += mRect.y;
 	// Merge all the rest of the rectangles to make the actual selection rectangle
-	for( i = 1; i < mSelections.Num(); i ++ ) {
+	for( i = 1; i < mSelections.Num(); i++ ) {
 		idRectangle selRect;
-		selRect = rvGEWindowWrapper::GetWrapper( mSelections[i] )->GetScreenRect( );
+		selRect = rvGEWindowWrapper::GetWrapper( mSelections[i] )->GetScreenRect();
 		mRect.w = max( selRect.x + selRect.w, mRect.w );
 		mRect.h = max( selRect.y + selRect.h, mRect.h );
 		mRect.x = min( selRect.x, mRect.x );
@@ -269,10 +269,10 @@ Update whether or not the selection has an expression in it
 void rvGESelectionMgr::UpdateExpression( void ) {
 	int i;
 	mExpression = false;
-	for( i = 0; i < mSelections.Num(); i ++ ) {
+	for( i = 0; i < mSelections.Num(); i++ ) {
 		rvGEWindowWrapper *wrapper;
 		wrapper = rvGEWindowWrapper::GetWrapper( mSelections[i] );
-		if( wrapper && !wrapper->CanMoveAndSize( ) ) {
+		if( wrapper && !wrapper->CanMoveAndSize() ) {
 			mExpression = true;
 			break;
 		}
@@ -288,10 +288,10 @@ see what its over.
 ================
 */
 rvGESelectionMgr::EHitTest rvGESelectionMgr::HitTest( float x, float y ) {
-	if( !mSelections.Num( ) ) {
+	if( !mSelections.Num() ) {
 		return HT_NONE;
 	}
-	UpdateRectangle( );
+	UpdateRectangle();
 	// Inside the rectangle is moving
 	if( mRect.Contains( x, y ) ) {
 		return mExpression ? HT_SELECT : HT_MOVE;
@@ -345,17 +345,17 @@ idWindow *rvGESelectionMgr::GetBottomMost( void ) {
 	idWindow	*bottom;
 	int			depth;
 	int			i;
-	depth  = 9999;
+	depth = 9999;
 	bottom = NULL;
 	// Loop through all the selections and find the bottom most window
-	for( i = 0; i < mSelections.Num(); i ++ ) {
+	for( i = 0; i < mSelections.Num(); i++ ) {
 		idWindow *parent;
 		int		  tempDepth;
 		// Calculate the depth of the window by iterating back through the windows parents
-		for( tempDepth = 0, parent = mSelections[i]; parent; parent = parent->GetParent( ), tempDepth++ );
+		for( tempDepth = 0, parent = mSelections[i]; parent; parent = parent->GetParent(), tempDepth++ );
 		// If the new depth is less than the current depth then this window is below
 		if( tempDepth < depth ) {
-			depth  = tempDepth;
+			depth = tempDepth;
 			bottom = mSelections[i];
 		}
 	}

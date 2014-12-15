@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -37,8 +37,8 @@ constructor
 ================
 */
 rvGEProperties::rvGEProperties( void ) {
-	mWrapper   = NULL;
-	mWnd	   = NULL;
+	mWrapper = NULL;
+	mWnd = NULL;
 	mWorkspace = NULL;
 }
 
@@ -54,11 +54,11 @@ bool rvGEProperties::Create( HWND parent, bool visible ) {
 	memset( &wndClass, 0, sizeof( wndClass ) );
 	wndClass.cbSize = sizeof( WNDCLASSEX );
 	wndClass.lpszClassName = "GUIEDITOR_PROPERTIES_CLASS";
-	wndClass.lpfnWndProc   = WndProc;
+	wndClass.lpfnWndProc = WndProc;
 	wndClass.hbrBackground = ( HBRUSH )GetSysColorBrush( COLOR_3DFACE );
-	wndClass.hCursor       = LoadCursor( ( HINSTANCE ) NULL, IDC_ARROW );
-	wndClass.lpszMenuName  = NULL;
-	wndClass.hInstance     = win32.hInstance;
+	wndClass.hCursor = LoadCursor( ( HINSTANCE )NULL, IDC_ARROW );
+	wndClass.lpszMenuName = NULL;
+	wndClass.hInstance = win32.hInstance;
 	RegisterClassEx( &wndClass );
 	mWnd = CreateWindowEx( WS_EX_TOOLWINDOW,
 						   "GUIEDITOR_PROPERTIES_CLASS",
@@ -108,19 +108,19 @@ Update the properties in the window
 */
 void rvGEProperties::Update( void ) {
 	int i;
-	if( mWorkspace && mWorkspace->GetSelectionMgr( ).Num( ) == 1 ) {
+	if( mWorkspace && mWorkspace->GetSelectionMgr().Num() == 1 ) {
 		mWrapper = rvGEWindowWrapper::GetWrapper( mWorkspace->GetSelectionMgr()[0] );
 	} else {
 		mWrapper = NULL;
 	}
-	ShowWindow( mGrid.GetWindow( ), mWrapper ? SW_SHOW : SW_HIDE );
-	mGrid.RemoveAllItems( );
+	ShowWindow( mGrid.GetWindow(), mWrapper ? SW_SHOW : SW_HIDE );
+	mGrid.RemoveAllItems();
 	if( mWrapper ) {
-		for( i = 0; i < ( int )mWrapper->GetStateDict().GetNumKeyVals( ); i ++ ) {
+		for( i = 0; i < ( int )mWrapper->GetStateDict().GetNumKeyVals(); i++ ) {
 			const idKeyValue *kv = mWrapper->GetStateDict().GetKeyVal( i );
 			idStr temp;
 			temp = kv->GetValue();
-			temp.StripQuotes( );
+			temp.StripQuotes();
 			mGrid.AddItem( kv->GetKey(), temp );
 		}
 	}
@@ -146,11 +146,11 @@ bool rvGEProperties::AddModifier( const char *name, const char *value ) {
 			return false;
 		}
 	}
-	tempstate = mWrapper->GetStateDict( );
+	tempstate = mWrapper->GetStateDict();
 	tempstate.Set( name, tempvalue );
 	mWorkspace->GetModifierStack().Append( new rvGEStateModifier( "Property Change", mWrapper->GetWindow(), tempstate ) );
 	mWorkspace->SetModified( true );
-	gApp.GetNavigator().Update( );
+	gApp.GetNavigator().Update();
 	return true;
 }
 
@@ -162,7 +162,7 @@ Window Procedure for the properties window
 ================
 */
 LRESULT CALLBACK rvGEProperties::WndProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam ) {
-	rvGEProperties *kv = ( rvGEProperties * ) GetWindowLong( hWnd, GWL_USERDATA );
+	rvGEProperties *kv = ( rvGEProperties * )GetWindowLong( hWnd, GWL_USERDATA );
 	if( kv && kv->mGrid.ReflectMessage( hWnd, msg, wParam, lParam ) ) {
 		return 0;
 	}
@@ -181,39 +181,39 @@ LRESULT CALLBACK rvGEProperties::WndProc( HWND hWnd, UINT msg, WPARAM wParam, LP
 				/*
 									case NM_KEYDOWN:
 									{
-										NMKEY* nmkey = (NMKEY*)hdr;
-										if ( nmkey->nVKey == VK_DELETE )
-										{
-											int sel = kv->mGrid.GetCurSel ( );
-											if ( sel != -1 )
-											{
-												const char* prop;
+									NMKEY* nmkey = (NMKEY*)hdr;
+									if ( nmkey->nVKey == VK_DELETE )
+									{
+									int sel = kv->mGrid.GetCurSel ( );
+									if ( sel != -1 )
+									{
+									const char* prop;
 
-												prop = kv->mGrid.GetItemName(sel);
-												if ( !idStr::Icmp ( prop, "rect" )		||
-													 !idStr::Icmp ( prop, "visible" )	||
-													 !idStr::Icmp ( prop, "name" ) )
-												{
-													MessageBeep ( MB_ICONASTERISK );
-												}
-												else
-												{
-													idDict tempstate;
-													tempstate = kv->mWrapper->GetStateDict ( );
-													tempstate.Delete ( prop );
-													kv->mWorkspace->GetModifierStack().Append ( new rvGEStateModifier ( "Property Change", kv->mWrapper->GetWindow(), tempstate ) );
-													kv->mWorkspace->SetModified ( true );
-													kv->mGrid.RemoveItem ( sel );
-												}
-											}
-										}
-										else
-										{
-											SendMessage ( gApp.GetMDIFrame(), WM_KEYDOWN, nmkey->nVKey, nmkey->uFlags );
-										}
-										break;
+									prop = kv->mGrid.GetItemName(sel);
+									if ( !idStr::Icmp ( prop, "rect" )		||
+									!idStr::Icmp ( prop, "visible" )	||
+									!idStr::Icmp ( prop, "name" ) )
+									{
+									MessageBeep ( MB_ICONASTERISK );
 									}
-				*/
+									else
+									{
+									idDict tempstate;
+									tempstate = kv->mWrapper->GetStateDict ( );
+									tempstate.Delete ( prop );
+									kv->mWorkspace->GetModifierStack().Append ( new rvGEStateModifier ( "Property Change", kv->mWrapper->GetWindow(), tempstate ) );
+									kv->mWorkspace->SetModified ( true );
+									kv->mGrid.RemoveItem ( sel );
+									}
+									}
+									}
+									else
+									{
+									SendMessage ( gApp.GetMDIFrame(), WM_KEYDOWN, nmkey->nVKey, nmkey->uFlags );
+									}
+									break;
+									}
+									*/
 			}
 		}
 		break;
@@ -221,12 +221,12 @@ LRESULT CALLBACK rvGEProperties::WndProc( HWND hWnd, UINT msg, WPARAM wParam, LP
 	case WM_CREATE: {
 		LPCREATESTRUCT	cs;
 		// Attach the class to the window first
-		cs = ( LPCREATESTRUCT ) lParam;
-		kv = ( rvGEProperties * ) cs->lpCreateParams;
+		cs = ( LPCREATESTRUCT )lParam;
+		kv = ( rvGEProperties * )cs->lpCreateParams;
 		SetWindowLong( hWnd, GWL_USERDATA, ( LONG )kv );
 		kv->mGrid.Create( hWnd, 999, PGS_ALLOWINSERT );
 		kv->SetWorkspace( NULL );
-		kv->Update( );
+		kv->Update();
 		break;
 	}
 	case WM_ERASEBKGND:

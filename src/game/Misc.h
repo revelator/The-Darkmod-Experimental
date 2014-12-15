@@ -1,22 +1,22 @@
 // vim:ts=4:sw=4:cindent
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __GAME_MISC_H__
 #define __GAME_MISC_H__
@@ -45,11 +45,11 @@ private:
 /*
 ===============================================================================
 
-  Potential spawning position for players.
-  The first time a player enters the game, they will be at an 'initial' spot.
-  Targets will be fired when someone spawns in on them.
+Potential spawning position for players.
+The first time a player enters the game, they will be at an 'initial' spot.
+Targets will be fired when someone spawns in on them.
 
-  When triggered, will cause player to be teleported to spawn spot.
+When triggered, will cause player to be teleported to spawn spot.
 
 ===============================================================================
 */
@@ -83,10 +83,10 @@ private:
 /*
 ===============================================================================
 
-  Non-displayed entity used to activate triggers when it touches them.
-  Bind to a mover to have the mover activate a trigger as it moves.
-  When target by triggers, activating the trigger will toggle the
-  activator on and off. Check "start_off" to have it spawn disabled.
+Non-displayed entity used to activate triggers when it touches them.
+Bind to a mover to have the mover activate a trigger as it moves.
+When target by triggers, activating the trigger will toggle the
+activator on and off. Check "start_off" to have it spawn disabled.
 
 ===============================================================================
 */
@@ -111,7 +111,7 @@ private:
 /*
 ===============================================================================
 
-  Path entities for monsters to follow.
+Path entities for monsters to follow.
 
 ===============================================================================
 */
@@ -132,7 +132,7 @@ private:
 /*
 ===============================================================================
 
-  Path entities for AI to flee to.
+Path entities for AI to flee to.
 
 ===============================================================================
 */
@@ -150,7 +150,7 @@ public:
 /*
 ===============================================================================
 
-  Object that fires targets and changes shader parms when damaged.
+Object that fires targets and changes shader parms when damaged.
 
 ===============================================================================
 */
@@ -179,7 +179,7 @@ private:
 /*
 ===============================================================================
 
-  Hidden object that explodes when activated
+Hidden object that explodes when activated
 
 ===============================================================================
 */
@@ -197,7 +197,7 @@ private:
 /*
 ===============================================================================
 
-  idSpring
+idSpring
 
 ===============================================================================
 */
@@ -225,7 +225,7 @@ private:
 /*
 ===============================================================================
 
-  idForceField
+idForceField
 
 ===============================================================================
 */
@@ -254,7 +254,7 @@ private:
 /*
 ===============================================================================
 
-  idAnimated
+idAnimated
 
 ===============================================================================
 */
@@ -300,7 +300,7 @@ private:
 /*
 ===============================================================================
 
-  idStaticEntity
+idStaticEntity
 
 ===============================================================================
 */
@@ -542,7 +542,7 @@ private:
 /*
 ===============================================================================
 
-  idBeam
+idBeam
 
 ===============================================================================
 */
@@ -579,7 +579,7 @@ private:
 /*
 ===============================================================================
 
-  idLiquid
+idLiquid
 
 ===============================================================================
 */
@@ -606,7 +606,7 @@ private:
 /*
 ===============================================================================
 
-  idShaking
+idShaking
 
 ===============================================================================
 */
@@ -633,7 +633,7 @@ private:
 /*
 ===============================================================================
 
-  idEarthQuake
+idEarthQuake
 
 ===============================================================================
 */
@@ -667,7 +667,7 @@ private:
 /*
 ===============================================================================
 
-  idFuncPortal
+idFuncPortal
 
 ===============================================================================
 */
@@ -712,7 +712,7 @@ private:
 /*
 ===============================================================================
 
-  idFuncAASPortal
+idFuncAASPortal
 
 ===============================================================================
 */
@@ -737,7 +737,7 @@ private:
 /*
 ===============================================================================
 
-  idFuncAASObstacle
+idFuncAASObstacle
 
 ===============================================================================
 */
@@ -766,7 +766,7 @@ private:
 /*
 ===============================================================================
 
-  idPhantomObjects
+idPhantomObjects
 
 ===============================================================================
 */
@@ -826,12 +826,12 @@ public:
 /*
 ===============================================================================
 
-  CVine
+CVine
 
 ===============================================================================
 */
 
-class tdmVine: public idStaticEntity {
+class tdmVine : public idStaticEntity {
 public:
 	CLASS_PROTOTYPE( tdmVine );
 	// Constructor

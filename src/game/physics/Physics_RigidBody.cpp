@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -36,9 +36,9 @@ const float OLD_STOP_SPEED = 10.0f; // grayman #3452 - still needed at this valu
 // and we need  this->noMoveTime + NO_MOVE_TIME < gameLocal.getTime()
 const idVec3 WATER_STOP_LINEAR( 10.0f, 10.0f, 10.0f );
 const idVec3 WATER_STOP_ANGULAR( 500000.0f, 500000.0f, 500000.0f );
-const int NO_MOVE_TIME          = 200;
-static const float MAX_GRABBER_EXT_VELOCITY		= 120.0f;
-static const float MAX_GRABBER_EXT_ANGVEL		= 5.0f;
+const int NO_MOVE_TIME = 200;
+static const float MAX_GRABBER_EXT_VELOCITY = 120.0f;
+static const float MAX_GRABBER_EXT_ANGVEL = 5.0f;
 #endif
 
 #undef RB_TIMINGS
@@ -55,8 +55,8 @@ RigidBodyDerivatives
 ================
 */
 void RigidBodyDerivatives( const float t, const void *clientData, const float *state, float *derivatives ) {
-	const idPhysics_RigidBody *p = ( idPhysics_RigidBody * ) clientData;
-	rigidBodyIState_t *s = ( rigidBodyIState_t * ) state;
+	const idPhysics_RigidBody *p = ( idPhysics_RigidBody * )clientData;
+	rigidBodyIState_t *s = ( rigidBodyIState_t * )state;
 	// NOTE: this struct should conform to rigidBodyIState_t
 	struct rigidBodyDerivatives_s {
 		idVec3				linearVelocity;
@@ -74,8 +74,8 @@ void RigidBodyDerivatives( const float t, const void *clientData, const float *s
 #ifdef MOD_WATERPHYSICS
 	// underwater we have a higher friction
 	if( p->GetWaterLevelf() == 0.0f ) {
-		d->force = - p->linearFriction * s->linearMomentum + p->current.externalForce;
-		d->torque = - p->angularFriction * s->angularMomentum + p->current.externalTorque;
+		d->force = -p->linearFriction * s->linearMomentum + p->current.externalForce;
+		d->torque = -p->angularFriction * s->angularMomentum + p->current.externalTorque;
 	} else {
 		// don't let water friction go less than 25% of the water viscosity
 		float percent = Max( 0.25f, p->GetSubmergedPercent( s->position, s->orientation.Transpose() ) );
@@ -83,8 +83,8 @@ void RigidBodyDerivatives( const float t, const void *clientData, const float *s
 		d->torque = ( -p->angularFriction * p->water->GetViscosity() ) * s->angularMomentum + p->current.externalTorque;
 	}
 #else
-	d->force = - p->linearFriction * s->linearMomentum + p->current.externalForce;
-	d->torque = - p->angularFriction * s->angularMomentum + p->current.externalTorque;
+	d->force = -p->linearFriction * s->linearMomentum + p->current.externalForce;
+	d->torque = -p->angularFriction * s->angularMomentum + p->current.externalTorque;
 #endif
 }
 
@@ -93,7 +93,7 @@ void RigidBodyDerivatives( const float t, const void *clientData, const float *s
 ================
 idPhysics_RigidBody::GetSubmergedPercent
 
-  Approximates the percentage of the body that is submerged
+Approximates the percentage of the body that is submerged
 ================
 */
 float idPhysics_RigidBody::GetSubmergedPercent( const idVec3 &pos, const idMat3 &rotation ) const {
@@ -127,7 +127,7 @@ float idPhysics_RigidBody::GetSubmergedPercent( const idVec3 &pos, const idMat3 
 ================
 idPhysics_RigidBody::GetBuoyancy
 
-  Gets buoyancy information for this RB
+Gets buoyancy information for this RB
 ================
 */
 bool idPhysics_RigidBody::GetBuoyancy( const idVec3 &pos, const idMat3 &rotation, idVec3 &bCenter, float &percent ) const {
@@ -165,8 +165,8 @@ bool idPhysics_RigidBody::GetBuoyancy( const idVec3 &pos, const idMat3 &rotation
 		tm.Translate( pos );
 		// calculate which vertices are under water
 		for( i = 0, count = 1; i < tm.numVerts; i++ ) {
-			if( gameLocal.clip.Contents( tm.verts[ i ], NULL, this->GetAxis(), MASK_WATER, NULL ) ) {
-				tbCenter += tm.verts[ i ];
+			if( gameLocal.clip.Contents( tm.verts[i], NULL, this->GetAxis(), MASK_WATER, NULL ) ) {
+				tbCenter += tm.verts[i];
 				count += 1;
 			}
 		}
@@ -184,7 +184,7 @@ bool idPhysics_RigidBody::GetBuoyancy( const idVec3 &pos, const idMat3 &rotation
 ================
 idPhysics_RigidBody::Integrate
 
-  Calculate next state from the current state using an integrator.
+Calculate next state from the current state using an integrator.
 ================
 */
 void idPhysics_RigidBody::Integrate( float deltaTime, rigidBodyPState_t &next ) {
@@ -192,7 +192,7 @@ void idPhysics_RigidBody::Integrate( float deltaTime, rigidBodyPState_t &next ) 
 	position = current.i.position;
 	current.i.position += centerOfMass * current.i.orientation;
 	current.i.orientation.TransposeSelf();
-	integrator->Evaluate( ( float * ) &current.i, ( float * ) &next.i, 0, deltaTime );
+	integrator->Evaluate( ( float * )&current.i, ( float * )&next.i, 0, deltaTime );
 	next.i.orientation.OrthoNormalizeSelf();
 #ifdef MOD_WATERPHYSICS
 	// apply a water gravity if the body is in water
@@ -327,7 +327,7 @@ bool idPhysics_RigidBody::PropagateImpulse( const int id, const idVec3 &point, c
 		idVec3 impulseFraction;
 		idVec3 momentum = current.i.linearMomentum; // capture the original impulse amount
 		// Now apply a fractional impulse to the touching entities
-		for( int i = 0 ; i < numTouching ; i++ ) {
+		for( int i = 0; i < numTouching; i++ ) {
 			idEntity *pushed = gameLocal.entities[touching[i].entityNum];
 			if( pushed == NULL ) {
 				continue;
@@ -361,8 +361,8 @@ bool idPhysics_RigidBody::PropagateImpulse( const int id, const idVec3 &point, c
 ================
 idPhysics_RigidBody::CollisionImpulse
 
-  Calculates the collision impulse using the velocity relative to the collision object.
-  The current state should be set to the moment of impact.
+Calculates the collision impulse using the velocity relative to the collision object.
+The current state should be set to the moment of impact.
 ================
 */
 bool idPhysics_RigidBody::CollisionImpulse( const trace_t &collision, idVec3 &impulse ) {
@@ -393,8 +393,8 @@ bool idPhysics_RigidBody::CollisionImpulse( const trace_t &collision, idVec3 &im
 	if( ent->IsType( idActor::Type )
 			&& self->m_SetInMotionByActor.GetEntity() == NULL
 			&& !( static_cast<idActor *>( ent )->IsKnockedOut() || ent->health < 0 ) ) {
-		self->m_SetInMotionByActor = ( idActor * ) ent;
-		self->m_MovedByActor = ( idActor * ) ent;
+		self->m_SetInMotionByActor = ( idActor * )ent;
+		self->m_MovedByActor = ( idActor * )ent;
 	}
 	// collision point relative to the body center of mass
 	r = collision.c.point - ( current.i.position + centerOfMass * current.i.orientation );
@@ -452,8 +452,8 @@ bool idPhysics_RigidBody::CollisionImpulse( const trace_t &collision, idVec3 &im
 ================
 idPhysics_RigidBody::CheckForCollisions
 
-  Check for collisions between the current and next state.
-  If there is a collision the next state is set to the state at the moment of impact.
+Check for collisions between the current and next state.
+If there is a collision the next state is set to the state at the moment of impact.
 ================
 */
 bool idPhysics_RigidBody::CheckForCollisions( const float deltaTime, rigidBodyPState_t &next, trace_t &collision ) {
@@ -555,8 +555,8 @@ bool idPhysics_RigidBody::CheckForCollisions( const float deltaTime, rigidBodyPS
 ================
 idPhysics_RigidBody::ContactFriction
 
-  Does not solve friction for multiple simultaneous contacts but applies contact friction in isolation.
-  Uses absolute velocity at the contact points instead of the velocity relative to the contact object.
+Does not solve friction for multiple simultaneous contacts but applies contact friction in isolation.
+Uses absolute velocity at the contact points instead of the velocity relative to the contact object.
 ================
 */
 
@@ -585,7 +585,7 @@ void idPhysics_RigidBody::ContactFriction( float deltaTime ) {
 	am.Clear();
 	idList<int> normalCount; // list of the number of contributing points for each normal set
 	normalCount.Clear();
-	for( int i = 0 ; i < contacts.Num() ; i++ ) {
+	for( int i = 0; i < contacts.Num(); i++ ) {
 		idVec3 contactNormal = contacts[i].normal;
 		r = contacts[i].point - massCenter;
 		// fudge factor - Needed to reduce the momentum drag on
@@ -610,7 +610,7 @@ void idPhysics_RigidBody::ContactFriction( float deltaTime ) {
 		impulse /= ff; // fudge factor
 		// Search for the index of a normal set that's close to this point's normal
 		int matchingIndex = -1;
-		for( int j = 0 ; j < normals.Num() ; j++ ) {
+		for( int j = 0; j < normals.Num(); j++ ) {
 			if( contactNormal.Compare( normals[j], 0.01f ) ) { // Allow [-0 -0 1] to match [0 0 1]
 				matchingIndex = j;
 				break;
@@ -652,7 +652,7 @@ void idPhysics_RigidBody::ContactFriction( float deltaTime ) {
 	// normal, then add them together.
 	idVec3 linearMomentumFromFriction( 0, 0, 0 );
 	idVec3 angularMomentumFromFriction( 0, 0, 0 );
-	for( int i = 0 ; i < normals.Num() ; i++ ) {
+	for( int i = 0; i < normals.Num(); i++ ) {
 		linearMomentumFromFriction += lm[i] / ( float )normalCount[i];
 		angularMomentumFromFriction += am[i] / ( float )normalCount[i];
 	}
@@ -664,9 +664,9 @@ void idPhysics_RigidBody::ContactFriction( float deltaTime ) {
 ================
 idPhysics_RigidBody::SmallMassContactFriction
 
-  grayman #3452 - Objects with small mass have a problem with the new ContactFriction()
-  method above. As a temporary workaround, provide the previous version
-  for objects with small mass
+grayman #3452 - Objects with small mass have a problem with the new ContactFriction()
+method above. As a temporary workaround, provide the previous version
+for objects with small mass
 ================
 */
 void idPhysics_RigidBody::SmallMassContactFriction( float deltaTime ) {
@@ -712,8 +712,8 @@ void idPhysics_RigidBody::SmallMassContactFriction( float deltaTime ) {
 ================
 idPhysics_RigidBody::TestIfAtRest
 
-  Returns true if the body is considered at rest.
-  Does not catch all cases where the body is at rest but is generally good enough.
+Returns true if the body is considered at rest.
+Does not catch all cases where the body is at rest but is generally good enough.
 ================
 */
 #ifdef MOD_WATERPHYSICS
@@ -757,10 +757,10 @@ bool idPhysics_RigidBody::TestIfAtRest( void ) const {
 	// that are close to the gravity vector, and ignore everything else.
 	// There are no reported issues with it, however, so I'm leaving it as is.
 	normal.Zero();
-	for( i = 0 ; i < contacts.Num() ; i++ ) {
+	for( i = 0; i < contacts.Num(); i++ ) {
 		normal += contacts[i].normal;
 	}
-	normal /= ( float ) contacts.Num();
+	normal /= ( float )contacts.Num();
 	normal.Normalize();
 	// if on a too steep surface
 	if( ( normal * gravityNormal ) > -0.7f ) {
@@ -768,7 +768,7 @@ bool idPhysics_RigidBody::TestIfAtRest( void ) const {
 	}
 	// create bounds for contact points
 	contactWinding.Clear();
-	for( i = 0 ; i < contacts.Num() ; i++ ) {
+	for( i = 0; i < contacts.Num(); i++ ) {
 		// project point onto plane through origin orthogonal to the gravity
 		point = contacts[i].point - ( contacts[i].point * gravityNormal ) * gravityNormal;
 		contactWinding.AddToConvexHull( point, gravityNormal );
@@ -812,7 +812,7 @@ bool idPhysics_RigidBody::TestIfAtRest( void ) const {
 ================
 idPhysics_RigidBody::DropToFloorAndRest
 
-  Drops the object straight down to the floor and verifies if the object is at rest on the floor.
+Drops the object straight down to the floor and verifies if the object is at rest on the floor.
 ================
 */
 void idPhysics_RigidBody::DropToFloorAndRest( void ) {
@@ -1177,7 +1177,7 @@ idPhysics_RigidBody::SetFriction
 ================
 */
 void idPhysics_RigidBody::SetFriction( const float linear, const float angular, const float contact ) {
-	if(	linear < 0.0f ||
+	if( linear < 0.0f ||
 			angular < 0.0f || angular > 1.0f ||
 			contact < 0.0f || contact > 1.0f ) {
 		return;
@@ -1256,7 +1256,7 @@ void idPhysics_RigidBody::Activate( void ) {
 ================
 idPhysics_RigidBody::PutToRest
 
-  put to rest until something collides with this physics object
+put to rest until something collides with this physics object
 ================
 */
 void idPhysics_RigidBody::PutToRest( void ) {
@@ -1333,9 +1333,9 @@ idEntity *idPhysics_RigidBody::GetBlockingEntity() const {
 ================
 idPhysics_RigidBody::Evaluate
 
-  Evaluate the impulse based rigid body physics.
-  When a collision occurs an impulse is applied at the moment of impact but
-  the remaining time after the collision is ignored.
+Evaluate the impulse based rigid body physics.
+When a collision occurs an impulse is applied at the moment of impact but
+the remaining time after the collision is ignored.
 ================
 */
 bool idPhysics_RigidBody::Evaluate( int timeStepMSec, int endTimeMSec ) {

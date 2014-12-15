@@ -1,22 +1,22 @@
 // vim:ts=4:sw=4:cindent
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __PHYSICS_AF_H__
 #define __PHYSICS_AF_H__
@@ -24,10 +24,10 @@
 /*
 ===================================================================================
 
-	Articulated Figure physics
+Articulated Figure physics
 
-	Employs a constraint force based dynamic simulation using a lagrangian
-	multiplier method to solve for the constraint forces.
+Employs a constraint force based dynamic simulation using a lagrangian
+multiplier method to solve for the constraint forces.
 
 ===================================================================================
 */
@@ -136,11 +136,11 @@ protected:
 	int						firstIndex;					// index of the first constraint row in the lcp matrix
 
 	struct constraintFlags_s {
-		bool				allowPrimary		: 1;	// true if the constraint can be used as a primary constraint
-		bool				frameConstraint		: 1;	// true if this constraint is added to the frame constraints
-		bool				noCollision			: 1;	// true if body1 and body2 never collide with each other
-		bool				isPrimary			: 1;	// true if this is a primary constraint
-		bool				isZero				: 1;	// true if 's' is zero during calculations
+		bool				allowPrimary : 1;	// true if the constraint can be used as a primary constraint
+		bool				frameConstraint : 1;	// true if this constraint is added to the frame constraints
+		bool				noCollision : 1;	// true if body1 and body2 never collide with each other
+		bool				isPrimary : 1;	// true if this is a primary constraint
+		bool				isZero : 1;	// true if 's' is zero during calculations
 	} fl;
 
 protected:
@@ -773,7 +773,7 @@ public:
 	void					AddForce( const idVec3 &point, const idVec3 &force );
 	void					InverseWorldSpatialInertiaMultiply( idVecX &dst, const float *v ) const;
 	idVec6 				&GetResponseForce( int index ) {
-		return reinterpret_cast<idVec6 &>( response[ index * 8 ] );
+		return reinterpret_cast<idVec6 &>( response[index * 8] );
 	}
 
 	/**
@@ -848,12 +848,12 @@ private:
 	int						maxSubTreeAuxiliaryIndex;	// largest index of an auxiliary constraint constraining this body or one of it's children
 
 	struct bodyFlags_s {
-		bool				clipMaskSet			: 1;	// true if this body has a clip mask set
-		bool				selfCollision		: 1;	// true if this body can collide with other bodies of this AF
-		bool				spatialInertiaSparse: 1;	// true if the spatial inertia matrix is sparse
-		bool				useFrictionDir		: 1;	// true if a single friction direction should be used
-		bool				useContactMotorDir	: 1;	// true if a contact motor should be used
-		bool				isZero				: 1;	// true if 's' is zero during calculations
+		bool				clipMaskSet : 1;	// true if this body has a clip mask set
+		bool				selfCollision : 1;	// true if this body can collide with other bodies of this AF
+		bool				spatialInertiaSparse : 1;	// true if the spatial inertia matrix is sparse
+		bool				useFrictionDir : 1;	// true if a single friction direction should be used
+		bool				useContactMotorDir : 1;	// true if a contact motor should be used
+		bool				isZero : 1;	// true if 's' is zero during calculations
 	} fl;
 };
 

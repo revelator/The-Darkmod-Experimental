@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 /**
 * TDM: There is absolutely no reason to use this class any more!!!
@@ -37,7 +37,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 ===============================================================================
 
-  idItem
+idItem
 
 ===============================================================================
 */
@@ -50,11 +50,11 @@ const idEventDef EV_HideObjective( "<hideobjective>", EventArgs( 'e', "", "" ), 
 const idEventDef EV_CamShot( "<camshot>", EventArgs(), EV_RETURNS_VOID, "internal" );
 
 CLASS_DECLARATION( idEntity, idItem )
-EVENT( EV_DropToFloor,		idItem::Event_DropToFloor )
-EVENT( EV_Touch,			idItem::Event_Touch )
-EVENT( EV_Activate,			idItem::Event_Trigger )
-EVENT( EV_RespawnItem,		idItem::Event_Respawn )
-EVENT( EV_RespawnFx,		idItem::Event_RespawnFx )
+EVENT( EV_DropToFloor, idItem::Event_DropToFloor )
+EVENT( EV_Touch, idItem::Event_Touch )
+EVENT( EV_Activate, idItem::Event_Trigger )
+EVENT( EV_RespawnItem, idItem::Event_Respawn )
+EVENT( EV_RespawnFx, idItem::Event_RespawnFx )
 END_CLASS
 
 /*
@@ -195,7 +195,7 @@ bool idItem::ModelCallback( renderEntity_t *renderEntity, const renderView_t *re
 	if( !renderView ) {
 		return false;
 	}
-	ent = static_cast<idItem *>( gameLocal.entities[ renderEntity->entityNum ] );
+	ent = static_cast<idItem *>( gameLocal.entities[renderEntity->entityNum] );
 	if( !ent ) {
 		gameLocal.Error( "idItem::ModelCallback: callback with NULL game entity" );
 	}
@@ -331,7 +331,7 @@ bool idItem::GiveToPlayer( idPlayer *player ) {
 	// by calling AddToInventory().
 	/*if ( spawnArgs.GetBool( "inv_carry" ) )
 	{
-		return player->GiveInventoryItem( &spawnArgs );
+	return player->GiveInventoryItem( &spawnArgs );
 	}*/
 	return false;//player->GiveItem( this );
 }
@@ -343,45 +343,45 @@ TDM: Darkmod spawns an absence marker entity
 
 bool idItem::spawnAbsenceMarkerEntity()
 {
-	const char* pstr_markerDefName = "atdm:absence_marker";
-	const idDict *p_markerDef = gameLocal.FindEntityDefDict( pstr_markerDefName, false );
-	if( p_markerDef )
-	{
-		idEntity *ent2;
-		gameLocal.SpawnEntityDef( *p_markerDef, &ent2, false );
+const char* pstr_markerDefName = "atdm:absence_marker";
+const idDict *p_markerDef = gameLocal.FindEntityDefDict( pstr_markerDefName, false );
+if( p_markerDef )
+{
+idEntity *ent2;
+gameLocal.SpawnEntityDef( *p_markerDef, &ent2, false );
 
-		if ( !ent2 || !ent2->IsType( AbsenceMarker::Type ) )
-		{
-			gameLocal.Error( "Failed to spawn absence marker entity" );
-			return false;
-		}
+if ( !ent2 || !ent2->IsType( AbsenceMarker::Type ) )
+{
+gameLocal.Error( "Failed to spawn absence marker entity" );
+return false;
+}
 
-		AbsenceMarker* p_absenceMarker = static_cast<AbsenceMarker*>( ent2 );
+AbsenceMarker* p_absenceMarker = static_cast<AbsenceMarker*>( ent2 );
 
-		// The absence marker has been created
-		absenceEntityPtr = p_absenceMarker;
+// The absence marker has been created
+absenceEntityPtr = p_absenceMarker;
 
-		// Initialize it
-		idEntityPtr<idEntity> thisPtr;
-		thisPtr = ((idEntity*) this);
-		idMat3 orgOrientation;
-		orgOrientation.Identity();
+// Initialize it
+idEntityPtr<idEntity> thisPtr;
+thisPtr = ((idEntity*) this);
+idMat3 orgOrientation;
+orgOrientation.Identity();
 
-		p_absenceMarker->Init();
-		if (!p_absenceMarker->initAbsenceReference (thisPtr, orgOrigin, orgOrientation))
-		{
-			gameLocal.Error( "Failed to initialize absence reference in absence marker entity" );
-			return false;
-		}
-	}
-	else
-	{
-			gameLocal.Error( "Failed to find definition of absence marker entity " );
-			return false;
-	}
+p_absenceMarker->Init();
+if (!p_absenceMarker->initAbsenceReference (thisPtr, orgOrigin, orgOrientation))
+{
+gameLocal.Error( "Failed to initialize absence reference in absence marker entity" );
+return false;
+}
+}
+else
+{
+gameLocal.Error( "Failed to find definition of absence marker entity " );
+return false;
+}
 
-	// Success
-	return true;
+// Success
+return true;
 }
 */
 /*
@@ -391,12 +391,12 @@ TDM: Darkmod destroys an absence marker entity
 
 void idItem::destroyAbsenceMarkerEntity()
 {
-	if (absenceEntityPtr.IsValid())
-	{
-		AbsenceMarker* p_absenceMarker = static_cast<AbsenceMarker*>( absenceEntityPtr.GetEntity() );
-		delete p_absenceMarker;
-		absenceEntityPtr = NULL;
-	}
+if (absenceEntityPtr.IsValid())
+{
+AbsenceMarker* p_absenceMarker = static_cast<AbsenceMarker*>( absenceEntityPtr.GetEntity() );
+delete p_absenceMarker;
+absenceEntityPtr = NULL;
+}
 }
 */
 /*
@@ -642,14 +642,14 @@ void idItem::Event_RespawnFx( void ) {
 /*
 ===============================================================================
 
-  idMoveableItem
+idMoveableItem
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idItem, idMoveableItem )
-EVENT( EV_DropToFloor,	idMoveableItem::Event_DropToFloor )
-EVENT( EV_Gib,			idMoveableItem::Event_Gib )
+EVENT( EV_DropToFloor, idMoveableItem::Event_DropToFloor )
+EVENT( EV_Gib, idMoveableItem::Event_Gib )
 END_CLASS
 
 /*
@@ -862,18 +862,18 @@ idEntity *idMoveableItem::DropItem( const char *classname, const idVec3 &origin,
 ================
 idMoveableItem::DropItems
 
-  The entity should have the following key/value pairs set:
-	"def_drop<type>Item"			"item def"
-	"drop<type>ItemJoint"			"joint name"
-	"drop<type>ItemRotation"		"pitch yaw roll"
-	"drop<type>ItemOffset"			"x y z"
-	"skin_drop<type>"				"skin name"
-  To drop multiple items the following key/value pairs can be used:
-	"def_drop<type>Item<X>"			"item def"
-	"drop<type>Item<X>Joint"		"joint name"
-	"drop<type>Item<X>Rotation"		"pitch yaw roll"
-	"drop<type>Item<X>Offset"		"x y z"
-  where <X> is an aribtrary string.
+The entity should have the following key/value pairs set:
+"def_drop<type>Item"			"item def"
+"drop<type>ItemJoint"			"joint name"
+"drop<type>ItemRotation"		"pitch yaw roll"
+"drop<type>ItemOffset"			"x y z"
+"skin_drop<type>"				"skin name"
+To drop multiple items the following key/value pairs can be used:
+"def_drop<type>Item<X>"			"item def"
+"drop<type>Item<X>Joint"		"joint name"
+"drop<type>Item<X>Rotation"		"pitch yaw roll"
+"drop<type>Item<X>Offset"		"x y z"
+where <X> is an aribtrary string.
 ================
 */
 void idMoveableItem::DropItems( idAnimatedEntity  *ent, const char *type, idList<idEntity *> *list ) {

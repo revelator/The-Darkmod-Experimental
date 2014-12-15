@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -49,7 +49,7 @@ void idPhysics_Monster::CheckGround( monsterPState_t &state ) {
 		groundEntityPtr = NULL;
 		return;
 	}
-	groundEntityPtr = gameLocal.entities[ groundTrace.c.entityNum ];
+	groundEntityPtr = gameLocal.entities[groundTrace.c.entityNum];
 	if( ( groundTrace.c.normal * -gravityNormal ) < minFloorCosine ) {
 		// grayman #2356 - assumed to be sliding down an incline > 45 degrees, but could also
 		// be sitting on an angled piece of a func_static, so check current origin.z against
@@ -115,7 +115,7 @@ monsterMoveResult_t idPhysics_Monster::SlideMove( idVec3 &start, idVec3 &velocit
 			return MM_OK;
 		}
 		if( tr.c.entityNum != ENTITYNUM_NONE ) {
-			blockingEntity = gameLocal.entities[ tr.c.entityNum ];
+			blockingEntity = gameLocal.entities[tr.c.entityNum];
 		}
 		// clip the movement delta and velocity
 		move.ProjectOntoPlane( tr.c.normal, OVERCLIP );
@@ -128,8 +128,8 @@ monsterMoveResult_t idPhysics_Monster::SlideMove( idVec3 &start, idVec3 &velocit
 =====================
 idPhysics_Monster::StepMove
 
-  move start into the delta direction
-  the velocity is clipped conform any collisions
+move start into the delta direction
+the velocity is clipped conform any collisions
 =====================
 */
 monsterMoveResult_t idPhysics_Monster::StepMove( idVec3 &start, idVec3 &velocity, const idVec3 &delta ) {
@@ -722,7 +722,7 @@ const idVec3 &idPhysics_Monster::GetPushedLinearVelocity( const int id ) const {
 ================
 idPhysics_Monster::SetMaster
 
-  the binding is never orientated
+the binding is never orientated
 ================
 */
 void idPhysics_Monster::SetMaster( idEntity *master, const bool orientated ) {
@@ -745,10 +745,10 @@ void idPhysics_Monster::SetMaster( idEntity *master, const bool orientated ) {
 	}
 }
 
-const float	MONSTER_VELOCITY_MAX			= 4000;
-const int	MONSTER_VELOCITY_TOTAL_BITS		= 16;
-const int	MONSTER_VELOCITY_EXPONENT_BITS	= idMath::BitsForInteger( idMath::BitsForFloat( MONSTER_VELOCITY_MAX ) ) + 1;
-const int	MONSTER_VELOCITY_MANTISSA_BITS	= MONSTER_VELOCITY_TOTAL_BITS - 1 - MONSTER_VELOCITY_EXPONENT_BITS;
+const float	MONSTER_VELOCITY_MAX = 4000;
+const int	MONSTER_VELOCITY_TOTAL_BITS = 16;
+const int	MONSTER_VELOCITY_EXPONENT_BITS = idMath::BitsForInteger( idMath::BitsForFloat( MONSTER_VELOCITY_MAX ) ) + 1;
+const int	MONSTER_VELOCITY_MANTISSA_BITS = MONSTER_VELOCITY_TOTAL_BITS - 1 - MONSTER_VELOCITY_EXPONENT_BITS;
 
 /*
 ================

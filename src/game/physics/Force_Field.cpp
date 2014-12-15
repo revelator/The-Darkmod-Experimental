@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -33,16 +33,16 @@ idForce_Field::idForce_Field
 ================
 */
 idForce_Field::idForce_Field( void ) {
-	type			= FORCEFIELD_UNIFORM;
-	applyType		= FORCEFIELD_APPLY_FORCE;
-	magnitude		= 0.0f;
+	type = FORCEFIELD_UNIFORM;
+	applyType = FORCEFIELD_APPLY_FORCE;
+	magnitude = 0.0f;
 	dir.Set( 0, 0, 1 );
-	randomTorque	= 0.0f;
-	playerOnly		= false;
-	monsterOnly		= false;
-	clipModel		= NULL;
-	playerMass		= 70; // grayman #2975
-	scaleImpulse	= 0;  // grayman #2975
+	randomTorque = 0.0f;
+	playerOnly = false;
+	monsterOnly = false;
+	clipModel = NULL;
+	playerMass = 70; // grayman #2975
+	scaleImpulse = 0;  // grayman #2975
 }
 
 /*
@@ -70,7 +70,7 @@ void idForce_Field::Save( idSaveGame *savefile ) const {
 	savefile->WriteBool( playerOnly );
 	savefile->WriteBool( monsterOnly );
 	savefile->WriteClipModel( clipModel );
-	savefile->WriteFloat( playerMass );  // grayman #2975
+	savefile->WriteFloat( playerMass ); // grayman #2975
 	savefile->WriteBool( scaleImpulse ); // grayman #2975
 }
 
@@ -153,12 +153,12 @@ void idForce_Field::Evaluate( int time ) {
 	int numClipModels, i;
 	idBounds bounds;
 	idVec3 force, torque, angularVelocity;
-	idClipModel *cm, *clipModelList[ MAX_GENTITIES ];
+	idClipModel *cm, *clipModelList[MAX_GENTITIES];
 	assert( clipModel );
 	bounds.FromTransformedBounds( clipModel->GetBounds(), clipModel->GetOrigin(), clipModel->GetAxis() );
 	numClipModels = gameLocal.clip.ClipModelsTouchingBounds( bounds, -1, clipModelList, MAX_GENTITIES );
 	for( i = 0; i < numClipModels; i++ ) {
-		cm = clipModelList[ i ];
+		cm = clipModelList[i];
 		if( !cm->IsTraceModel() ) {
 			continue;
 		}

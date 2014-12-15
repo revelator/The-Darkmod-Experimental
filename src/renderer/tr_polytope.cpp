@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -72,14 +72,14 @@ srfTriangles_t *R_PolytopeSurface( int numPlanes, const idPlane *planes, idWindi
 		if( !w.GetNumPoints() ) {
 			continue;
 		}
-		for( j = 0 ; j < w.GetNumPoints() ; j++ ) {
-			tri->verts[tri->numVerts + j ].Clear();
-			tri->verts[tri->numVerts + j ].xyz = w[j].ToVec3();
+		for( j = 0; j < w.GetNumPoints(); j++ ) {
+			tri->verts[tri->numVerts + j].Clear();
+			tri->verts[tri->numVerts + j].xyz = w[j].ToVec3();
 		}
-		for( j = 1 ; j < w.GetNumPoints() - 1 ; j++ ) {
-			tri->indexes[ tri->numIndexes + 0 ] = tri->numVerts;
-			tri->indexes[ tri->numIndexes + 1 ] = tri->numVerts + j;
-			tri->indexes[ tri->numIndexes + 2 ] = tri->numVerts + j + 1;
+		for( j = 1; j < w.GetNumPoints() - 1; j++ ) {
+			tri->indexes[tri->numIndexes + 0] = tri->numVerts;
+			tri->indexes[tri->numIndexes + 1] = tri->numVerts + j;
+			tri->indexes[tri->numIndexes + 2] = tri->numVerts + j + 1;
 			tri->numIndexes += 3;
 		}
 		tri->numVerts += w.GetNumPoints();

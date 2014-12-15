@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -34,11 +34,11 @@ void idRenderWorldLocal::FreeWorld() {
 	// this will free all the lightDefs and entityDefs
 	FreeDefs();
 	// free all the portals and check light/model references
-	for( i = 0 ; i < numPortalAreas ; i++ ) {
+	for( i = 0; i < numPortalAreas; i++ ) {
 		portalArea_t	*area;
 		portal_t		*portal, *nextPortal;
 		area = &portalAreas[i];
-		for( portal = area->portals ; portal ; portal = nextPortal ) {
+		for( portal = area->portals; portal; portal = nextPortal ) {
 			nextPortal = portal->next;
 			delete portal->w;
 			R_StaticFree( portal );
@@ -68,7 +68,7 @@ void idRenderWorldLocal::FreeWorld() {
 		areaNodes = NULL;
 	}
 	// free all the inline idRenderModels
-	for( i = 0 ; i < localModels.Num() ; i++ ) {
+	for( i = 0; i < localModels.Num(); i++ ) {
 		renderModelManager->RemoveModel( localModels[i] );
 		delete localModels[i];
 	}
@@ -86,7 +86,7 @@ idRenderWorldLocal::TouchWorldModels
 */
 void idRenderWorldLocal::TouchWorldModels( void ) {
 	int i;
-	for( i = 0 ; i < localModels.Num() ; i++ ) {
+	for( i = 0; i < localModels.Num(); i++ ) {
 		renderModelManager->CheckModel( localModels[i]->Name() );
 	}
 }
@@ -111,7 +111,7 @@ idRenderModel *idRenderWorldLocal::ParseModel( idLexer *src ) {
 	if( numSurfaces < 0 ) {
 		src->Error( "R_ParseModel: bad numSurfaces" );
 	}
-	for( i = 0 ; i < numSurfaces ; i++ ) {
+	for( i = 0; i < numSurfaces; i++ ) {
 		src->ExpectTokenString( "{" );
 		src->ExpectAnyToken( &token );
 		surf.shader = declManager->FindMaterial( token );
@@ -121,7 +121,7 @@ idRenderModel *idRenderWorldLocal::ParseModel( idLexer *src ) {
 		tri->numVerts = src->ParseInt();
 		tri->numIndexes = src->ParseInt();
 		R_AllocStaticTriSurfVerts( tri, tri->numVerts );
-		for( j = 0 ; j < tri->numVerts ; j++ ) {
+		for( j = 0; j < tri->numVerts; j++ ) {
 			float	vec[8];
 			src->Parse1DMatrix( 8, vec );
 			tri->verts[j].xyz[0] = vec[0];
@@ -134,7 +134,7 @@ idRenderModel *idRenderWorldLocal::ParseModel( idLexer *src ) {
 			tri->verts[j].normal[2] = vec[7];
 		}
 		R_AllocStaticTriSurfIndexes( tri, tri->numIndexes );
-		for( j = 0 ; j < tri->numIndexes ; j++ ) {
+		for( j = 0; j < tri->numIndexes; j++ ) {
 			tri->indexes[j] = src->ParseInt();
 		}
 		src->ExpectTokenString( "}" );
@@ -172,7 +172,7 @@ idRenderModel *idRenderWorldLocal::ParseShadowModel( idLexer *src ) {
 	tri->shadowCapPlaneBits = src->ParseInt();
 	R_AllocStaticTriSurfShadowVerts( tri, tri->numVerts );
 	tri->bounds.Clear();
-	for( j = 0 ; j < tri->numVerts ; j++ ) {
+	for( j = 0; j < tri->numVerts; j++ ) {
 		float	vec[8];
 		src->Parse1DMatrix( 3, vec );
 		tri->shadowVertexes[j].xyz[0] = vec[0];
@@ -182,7 +182,7 @@ idRenderModel *idRenderWorldLocal::ParseShadowModel( idLexer *src ) {
 		tri->bounds.AddPoint( tri->shadowVertexes[j].xyz.ToVec3() );
 	}
 	R_AllocStaticTriSurfIndexes( tri, tri->numIndexes );
-	for( j = 0 ; j < tri->numIndexes ; j++ ) {
+	for( j = 0; j < tri->numIndexes; j++ ) {
 		tri->indexes[j] = src->ParseInt();
 	}
 	// add the completed surface to the model
@@ -201,7 +201,7 @@ idRenderWorldLocal::SetupAreaRefs
 void idRenderWorldLocal::SetupAreaRefs() {
 	int		i;
 	connectedAreaNum = 0;
-	for( i = 0 ; i < numPortalAreas ; i++ ) {
+	for( i = 0; i < numPortalAreas; i++ ) {
 		portalAreas[i].areaNum = i;
 		portalAreas[i].lightRefs.areaNext =
 			portalAreas[i].lightRefs.areaPrev =
@@ -226,7 +226,7 @@ void idRenderWorldLocal::ParseInterAreaPortals( idLexer *src ) {
 		return;
 	}
 	portalAreas = ( portalArea_t * )R_ClearedStaticAlloc( numPortalAreas * sizeof( portalAreas[0] ) );
-	areaScreenRect = ( idScreenRect * ) R_ClearedStaticAlloc( numPortalAreas * sizeof( idScreenRect ) );
+	areaScreenRect = ( idScreenRect * )R_ClearedStaticAlloc( numPortalAreas * sizeof( idScreenRect ) );
 	// set the doubly linked lists
 	SetupAreaRefs();
 	numInterAreaPortals = src->ParseInt();
@@ -235,8 +235,8 @@ void idRenderWorldLocal::ParseInterAreaPortals( idLexer *src ) {
 		return;
 	}
 	doublePortals = ( doublePortal_t * )R_ClearedStaticAlloc( numInterAreaPortals *
-					sizeof( doublePortals [0] ) );
-	for( i = 0 ; i < numInterAreaPortals ; i++ ) {
+					sizeof( doublePortals[0] ) );
+	for( i = 0; i < numInterAreaPortals; i++ ) {
 		int		numPoints, a1, a2;
 		idWinding	*w;
 		portal_t	*p;
@@ -245,7 +245,7 @@ void idRenderWorldLocal::ParseInterAreaPortals( idLexer *src ) {
 		a2 = src->ParseInt();
 		w = new idWinding( numPoints );
 		w->SetNumPoints( numPoints );
-		for( j = 0 ; j < numPoints ; j++ ) {
+		for( j = 0; j < numPoints; j++ ) {
 			src->Parse1DMatrix( 3, ( *w )[j].ToFloatPtr() );
 			// no texture coordinates
 			( *w )[j][3] = 0;
@@ -286,7 +286,7 @@ void idRenderWorldLocal::ParseNodes( idLexer *src ) {
 		src->Error( "R_ParseNodes: bad numAreaNodes" );
 	}
 	areaNodes = ( areaNode_t * )R_ClearedStaticAlloc( numAreaNodes * sizeof( areaNodes[0] ) );
-	for( i = 0 ; i < numAreaNodes ; i++ ) {
+	for( i = 0; i < numAreaNodes; i++ ) {
 		areaNode_t	*node;
 		node = &areaNodes[i];
 		src->Parse1DMatrix( 4, node->plane.ToFloatPtr() );
@@ -303,11 +303,11 @@ idRenderWorldLocal::CommonChildrenArea_r
 */
 int idRenderWorldLocal::CommonChildrenArea_r( areaNode_t *node ) {
 	int	nums[2];
-	for( int i = 0 ; i < 2 ; i++ ) {
+	for( int i = 0; i < 2; i++ ) {
 		if( node->children[i] <= 0 ) {
 			nums[i] = -1 - node->children[i];
 		} else {
-			nums[i] = CommonChildrenArea_r( &areaNodes[ node->children[i] ] );
+			nums[i] = CommonChildrenArea_r( &areaNodes[node->children[i]] );
 		}
 	}
 	// solid nodes will match any area
@@ -337,7 +337,7 @@ Sets up for a single area world
 void idRenderWorldLocal::ClearWorld() {
 	numPortalAreas = 1;
 	portalAreas = ( portalArea_t * )R_ClearedStaticAlloc( sizeof( portalAreas[0] ) );
-	areaScreenRect = ( idScreenRect * ) R_ClearedStaticAlloc( sizeof( idScreenRect ) );
+	areaScreenRect = ( idScreenRect * )R_ClearedStaticAlloc( sizeof( idScreenRect ) );
 	SetupAreaRefs();
 	// even though we only have a single area, create a node
 	// that has both children pointing at it so we don't need to
@@ -363,7 +363,7 @@ void idRenderWorldLocal::FreeDefs() {
 		interactionTable = NULL;
 	}
 	// free all lightDefs
-	for( i = 0 ; i < lightDefs.Num() ; i++ ) {
+	for( i = 0; i < lightDefs.Num(); i++ ) {
 		idRenderLightLocal	*light;
 		light = lightDefs[i];
 		if( light && light->world == this ) {
@@ -372,7 +372,7 @@ void idRenderWorldLocal::FreeDefs() {
 		}
 	}
 	// free all entityDefs
-	for( i = 0 ; i < entityDefs.Num() ; i++ ) {
+	for( i = 0; i < entityDefs.Num(); i++ ) {
 		idRenderEntityLocal	*mod;
 		mod = entityDefs[i];
 		if( mod && mod->world == this ) {
@@ -490,12 +490,12 @@ idRenderWorldLocal::ClearPortalStates
 void idRenderWorldLocal::ClearPortalStates() {
 	int		i, j;
 	// all portals start off open
-	for( i = 0 ; i < numInterAreaPortals ; i++ ) {
+	for( i = 0; i < numInterAreaPortals; i++ ) {
 		doublePortals[i].blockingBits = PS_BLOCK_NONE;
 	}
 	// flood fill all area connections
-	for( i = 0 ; i < numPortalAreas ; i++ ) {
-		for( j = 0 ; j < NUM_PORTAL_ATTRIBUTES ; j++ ) {
+	for( i = 0; i < numPortalAreas; i++ ) {
+		for( j = 0; j < NUM_PORTAL_ATTRIBUTES; j++ ) {
 			connectedAreaNum++;
 			FloodConnectedAreas( &portalAreas[i], j );
 		}
@@ -512,7 +512,7 @@ void idRenderWorldLocal::AddWorldModelEntities() {
 	// add the world model for each portal area
 	// we can't just call AddEntityDef, because that would place the references
 	// based on the bounding box, rather than explicitly into the correct area
-	for( i = 0 ; i < numPortalAreas ; i++ ) {
+	for( i = 0; i < numPortalAreas; i++ ) {
 		idRenderEntityLocal	*def;
 		int			index;
 		def = new idRenderEntityLocal;

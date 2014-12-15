@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __AASFILE_H__
 #define __AASFILE_H__
@@ -23,7 +23,7 @@
 /*
 ===============================================================================
 
-	AAS File
+AAS File
 
 ===============================================================================
 */
@@ -256,16 +256,16 @@ private:
 
 -	when a node child is a solid leaf the node child number is zero
 -	two adjacent areas (sharing a plane at opposite sides) share a face
-	this face is a portal between the areas
+this face is a portal between the areas
 -	when an area uses a face from the faceindex with a positive index
-	then the face plane normal points into the area
+then the face plane normal points into the area
 -	the face edges are stored counter clockwise using the edgeindex
 -	two adjacent convex areas (sharing a face) only share One face
-	this is a simple result of the areas being convex
+this is a simple result of the areas being convex
 -	the areas can't have a mixture of ground and gap faces
-	other mixtures of faces in one area are allowed
+other mixtures of faces in one area are allowed
 -	areas with the AREACONTENTS_CLUSTERPORTAL in the settings have
-	the cluster number set to the negative portal number
+the cluster number set to the negative portal number
 -	edge zero is a dummy
 -	face zero is a dummy
 -	area zero is a dummy

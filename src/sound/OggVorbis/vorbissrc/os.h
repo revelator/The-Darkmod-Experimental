@@ -88,7 +88,7 @@ static inline void vorbis_fpu_setround( vorbis_fpu_control *fpu ) {
 						  "movw %0,%%dx\n\t"
 						  "orw $62463,%%dx\n\t"
 						  "movw %%dx,%1\n\t"
-						  "fldcw %1\n\t":"=m"( ret ):"m"( temp ): "dx" );
+						  "fldcw %1\n\t":"=m"( ret ) : "m"( temp ) : "dx" );
 	*fpu = ret;
 }
 
@@ -99,8 +99,8 @@ static inline void vorbis_fpu_restore( vorbis_fpu_control fpu ) {
 /* assumes the FPU is in round mode! */
 static inline int vorbis_ftoi( double f ) {
 	/* yes, double!  Otherwise,
-	                                             we get extra fst/fld to
-	                                             truncate precision */
+												 we get extra fst/fld to
+												 truncate precision */
 	int i;
 	__asm__( "fistl %0": "=m"( i ) : "t"( f ) );
 	return( i );

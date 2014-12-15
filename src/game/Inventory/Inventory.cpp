@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -80,9 +80,9 @@ void CInventory::CopyPersistentItemsFrom( const CInventory &sourceInventory, idE
 	// Obtain the weapon category for this inventory
 	CInventoryCategoryPtr weaponCategory = GetCategory( TDM_PLAYER_WEAPON_CATEGORY );
 	// Cycle through all categories to add them
-	for( int c = 0 ; c < sourceInventory.GetNumCategories() ; ++c ) {
+	for( int c = 0; c < sourceInventory.GetNumCategories(); ++c ) {
 		const CInventoryCategoryPtr &category = sourceInventory.GetCategory( c );
-		for( int itemIdx = 0 ; itemIdx < category->GetNumItems() ; ++itemIdx ) {
+		for( int itemIdx = 0; itemIdx < category->GetNumItems(); ++itemIdx ) {
 			const CInventoryItemPtr &item = category->GetItem( itemIdx );
 			if( item->GetPersistentCount() <= 0 ) {
 				DM_LOG( LC_INVENTORY, LT_DEBUG )LOGSTRING(
@@ -112,7 +112,7 @@ void CInventory::CopyPersistentItemsFrom( const CInventory &sourceInventory, idE
 			CInventoryWeaponItemPtr weaponItem = boost::dynamic_pointer_cast<CInventoryWeaponItem>( item );
 			if( weaponItem && weaponCategory ) {
 				// Weapon items need special consideration. For arrow-based weapons try to merge the ammo.
-				for( int w = 0 ; w < weaponCategory->GetNumItems() ; ++w ) {
+				for( int w = 0; w < weaponCategory->GetNumItems(); ++w ) {
 					CInventoryWeaponItemPtr thisWeapon = boost::dynamic_pointer_cast<CInventoryWeaponItem>( weaponCategory->GetItem( w ) );
 					if( !thisWeapon ) {
 						continue;
@@ -496,12 +496,12 @@ CInventoryItemPtr CInventory::PutItem( idEntity *ent, idEntity *owner ) {
 			// grayman #3313 - Solution is from Zbyl. InventoryCallback() is called from PutItem(), so it's already been done.
 			/*			// We added a new inventory item
 						gameLocal.m_MissionData->InventoryCallback(
-							item->GetItemEntity(), item->GetName(),
-							1,
-							1,
-							true
+						item->GetItemEntity(), item->GetName(),
+						1,
+						1,
+						true
 						);
-			 */
+						*/
 			// grayman #3316 - correct pickup message, courtesy Zbyl
 			if( !ent->spawnArgs.GetBool( "inv_map_start", "0" ) && !ent->spawnArgs.GetBool( "inv_no_pickup_message", "0" ) ) {
 				idStr msg = common->Translate( name );

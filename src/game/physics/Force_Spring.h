@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __FORCE_SPRING_H__
 #define __FORCE_SPRING_H__
@@ -23,7 +23,7 @@
 /*
 ===============================================================================
 
-	Spring force
+Spring force
 
 ===============================================================================
 */
@@ -37,8 +37,8 @@ public:
 	// initialize the spring
 	void				InitSpring( float Kstretch, float Kcompress, float damping, float restLength );
 	// set the entities and positions on these entities the spring is attached to
-	void				SetPosition(	idPhysics *physics1, int id1, const idVec3 &p1,
-										idPhysics *physics2, int id2, const idVec3 &p2 );
+	void				SetPosition( idPhysics *physics1, int id1, const idVec3 &p1,
+									 idPhysics *physics2, int id2, const idVec3 &p2 );
 
 public: // common force interface
 	virtual void		Evaluate( int time );

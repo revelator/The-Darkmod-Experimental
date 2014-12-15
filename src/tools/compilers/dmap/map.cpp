@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -35,9 +35,9 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
   references are
   Brushes will have
 
-	brushes, each of which has a side definition.
+  brushes, each of which has a side definition.
 
-*/
+  */
 
 //
 // private declarations
@@ -91,7 +91,7 @@ static void SetBrushContents( uBrush_t *b ) {
 	mixed = false;
 	// a brush is only opaque if all sides are opaque
 	b->opaque = true;
-	for( i = 1 ; i < b->numsides ; i++, s++ ) {
+	for( i = 1; i < b->numsides; i++, s++ ) {
 		s = &b->sides[i];
 		if( !s->material ) {
 			continue;
@@ -120,7 +120,7 @@ FreeBuildBrush
 */
 static void FreeBuildBrush( void ) {
 	int		i;
-	for( i = 0 ; i < buildBrush->numsides ; i++ ) {
+	for( i = 0; i < buildBrush->numsides; i++ ) {
 		if( buildBrush->sides[i].winding ) {
 			delete buildBrush->sides[i].winding;
 		}
@@ -148,7 +148,7 @@ static uBrush_t *FinishBrush( void ) {
 	if( buildBrush->contents & CONTENTS_AREAPORTAL ) {
 		if( dmapGlobals.num_entities != 1 ) {
 			common->Printf( "Entity %i, Brush %i: areaportals only allowed in world\n"
-							,  dmapGlobals.num_entities - 1, entityPrimitive );
+							, dmapGlobals.num_entities - 1, entityPrimitive );
 			FreeBuildBrush();
 			return NULL;
 		}
@@ -177,7 +177,7 @@ static void AdjustEntityForOrigin( uEntity_t *ent ) {
 	uBrush_t	*b;
 	int			i;
 	side_t		*s;
-	for( prim = ent->primitives ; prim ; prim = prim->next ) {
+	for( prim = ent->primitives; prim; prim = prim->next ) {
 		b = prim->brush;
 		if( !b ) {
 			continue;
@@ -211,13 +211,13 @@ static bool RemoveDuplicateBrushPlanes( uBrush_t *b ) {
 	int			i, j, k;
 	side_t		*sides;
 	sides = b->sides;
-	for( i = 1 ; i < b->numsides ; i++ ) {
+	for( i = 1; i < b->numsides; i++ ) {
 		// check for a degenerate plane
 		if( sides[i].planenum == -1 ) {
 			common->Printf( "Entity %i, Brush %i: degenerate plane\n"
 							, b->entitynum, b->brushnum );
 			// remove it
-			for( k = i + 1 ; k < b->numsides ; k++ ) {
+			for( k = i + 1; k < b->numsides; k++ ) {
 				sides[k - 1] = sides[k];
 			}
 			b->numsides--;
@@ -225,12 +225,12 @@ static bool RemoveDuplicateBrushPlanes( uBrush_t *b ) {
 			continue;
 		}
 		// check for duplication and mirroring
-		for( j = 0 ; j < i ; j++ ) {
+		for( j = 0; j < i; j++ ) {
 			if( sides[i].planenum == sides[j].planenum ) {
 				common->Printf( "Entity %i, Brush %i: duplicate plane\n"
 								, b->entitynum, b->brushnum );
 				// remove the second duplicate
-				for( k = i + 1 ; k < b->numsides ; k++ ) {
+				for( k = i + 1; k < b->numsides; k++ ) {
 					sides[k - 1] = sides[k];
 				}
 				b->numsides--;
@@ -262,7 +262,7 @@ static void ParseBrush( const idMapBrush *mapBrush, int primitiveNum ) {
 	buildBrush->entitynum = dmapGlobals.num_entities - 1;
 	buildBrush->brushnum = entityPrimitive;
 	buildBrush->numsides = mapBrush->GetNumSides();
-	for( i = 0 ; i < mapBrush->GetNumSides() ; i++ ) {
+	for( i = 0; i < mapBrush->GetNumSides(); i++ ) {
 		s = &buildBrush->sides[i];
 		ms = mapBrush->GetSide( i );
 		memset( s, 0, sizeof( *s ) );
@@ -313,7 +313,7 @@ static void ParseSurface( const idMapPatch *patch, const idSurface *surface, con
 	// set merge groups if needed, to prevent multiple sides from being
 	// merged into a single surface in the case of gui shaders, mirrors, and autosprites
 	if( material->IsDiscrete() ) {
-		for( tri = prim->tris ; tri ; tri = tri->next ) {
+		for( tri = prim->tris; tri; tri = tri->next ) {
 			tri->mergeGroup = ( void * )patch;
 		}
 	}
@@ -421,7 +421,7 @@ static void CreateMapLights( const idMapFile *dmapFile ) {
 	int		i;
 	const idMapEntity *mapEnt;
 	const char	*value;
-	for( i = 0 ; i < dmapFile->GetNumEntities() ; i++ ) {
+	for( i = 0; i < dmapFile->GetNumEntities(); i++ ) {
 		mapEnt = dmapFile->GetEntity( i );
 		mapEnt->epairs.GetString( "classname", "", &value );
 		if( !idStr::Icmp( value, "light" ) ) {
@@ -463,14 +463,14 @@ bool LoadDMapFile( const char *filename ) {
 	// allocate a very large temporary brush for building
 	// the brushes as they are loaded
 	buildBrush = AllocBrush( MAX_BUILD_SIDES );
-	for( i = 0 ; i < dmapGlobals.dmapFile->GetNumEntities() ; i++ ) {
+	for( i = 0; i < dmapGlobals.dmapFile->GetNumEntities(); i++ ) {
 		ProcessMapEntity( dmapGlobals.dmapFile->GetEntity( i ) );
 	}
 	CreateMapLights( dmapGlobals.dmapFile );
 	brushes = 0;
 	triSurfs = 0;
 	mapBounds.Clear();
-	for( prim = dmapGlobals.uEntities[0].primitives ; prim ; prim = prim->next ) {
+	for( prim = dmapGlobals.uEntities[0].primitives; prim; prim = prim->next ) {
 		if( prim->brush ) {
 			brushes++;
 			mapBounds.AddBounds( prim->brush->bounds );
@@ -496,7 +496,7 @@ FreeOptimizeGroupList
 */
 void FreeOptimizeGroupList( optimizeGroup_t *groups ) {
 	optimizeGroup_t	*next;
-	for( ; groups ; groups = next ) {
+	for( ; groups; groups = next ) {
 		next = groups->nextGroup;
 		FreeTriList( groups->triList );
 		Mem_Free( groups );
@@ -513,13 +513,13 @@ void FreeDMapFile( void ) {
 	FreeBrush( buildBrush );
 	buildBrush = NULL;
 	// free the entities and brushes
-	for( i = 0 ; i < dmapGlobals.num_entities ; i++ ) {
+	for( i = 0; i < dmapGlobals.num_entities; i++ ) {
 		uEntity_t	*ent;
 		primitive_t	*prim, *nextPrim;
 		ent = &dmapGlobals.uEntities[i];
 		FreeTree( ent->tree );
 		// free primitives
-		for( prim = ent->primitives ; prim ; prim = nextPrim ) {
+		for( prim = ent->primitives; prim; prim = nextPrim ) {
 			nextPrim = prim->next;
 			if( prim->brush ) {
 				FreeBrush( prim->brush );
@@ -531,7 +531,7 @@ void FreeDMapFile( void ) {
 		}
 		// free area surfaces
 		if( ent->areas ) {
-			for( j = 0 ; j < ent->numAreas ; j++ ) {
+			for( j = 0; j < ent->numAreas; j++ ) {
 				uArea_t	*area;
 				area = &ent->areas[j];
 				FreeOptimizeGroupList( area->groups );

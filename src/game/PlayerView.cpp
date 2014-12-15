@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -28,7 +28,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 static int MakePowerOfTwo( int num ) {
 	int		pot;
-	for( pot = 1 ; pot < num ; pot <<= 1 ) {}
+	for( pot = 1; pot < num; pot <<= 1 ) {}
 	return pot;
 }
 
@@ -59,44 +59,44 @@ idPlayerView::idPlayerView() :
 	fadeColor.Zero();
 	shakeAng.Zero();
 	// sikk---> PostProcess Effects
-	blackMaterial			= declManager->FindMaterial( "_black" );
-	whiteMaterial			= declManager->FindMaterial( "_white" );
-	currentRenderMaterial	= declManager->FindMaterial( "_currentRender" );
-	currentNSRenderMaterial   = declManager->FindMaterial( "_nsRender" );
-	scratchMaterial			= declManager->FindMaterial( "_scratch" );
-	depthMaterial			= declManager->FindMaterial( "render/depth" );
-	normalsMaterial			= declManager->FindMaterial( "render/normals" );
-	softShadowsMaterial		= declManager->FindMaterial( "postProcess/softShadows" );
-	edgeAAMaterial			= declManager->FindMaterial( "postProcess/edgeAA" );
-	hdrLumBaseMaterial		= declManager->FindMaterial( "postProcess/hdrLumBase" );
-	hdrLumAverageMaterial	= declManager->FindMaterial( "postProcess/hdrLumAverage" );
-	hdrLumAdaptedMaterial	= declManager->FindMaterial( "postProcess/hdrLumAdapted" );
-	hdrBrightPass1Material	= declManager->FindMaterial( "postProcess/hdrBrightPass1" );
-	hdrBrightPass2Material	= declManager->FindMaterial( "postProcess/hdrBrightPass2" );
-	hdrBrightPass3Material	= declManager->FindMaterial( "postProcess/hdrBrightPass3" );
-	hdrBrightPass4Material	= declManager->FindMaterial( "postProcess/hdrBrightPass4" );
-	hdrBrightPass5Material	= declManager->FindMaterial( "postProcess/hdrBrightPass5" );
-	hdrBloomMaterial		= declManager->FindMaterial( "postProcess/hdrBloom" );
-	hdrFlareMaterial		= declManager->FindMaterial( "postProcess/hdrFlare" );
-	hdrGlareMaterial		= declManager->FindMaterial( "postProcess/hdrGlare" );
-	hdrFinalMaterial		= declManager->FindMaterial( "postProcess/hdrFinal" );
-	bloomMaterial			= declManager->FindMaterial( "postProcess/bloom" );
-	ssilMaterial			= declManager->FindMaterial( "postProcess/ssil" );
-	ssaoMaterial			= declManager->FindMaterial( "postProcess/ssao" );
-	sunShaftsMaterial		= declManager->FindMaterial( "postProcess/sunShafts" );
-	lensFlareMaterial		= declManager->FindMaterial( "postProcess/lensFlare" );
-	dofMaterial				= declManager->FindMaterial( "postProcess/dof" );
-	motionBlurMaterial		= declManager->FindMaterial( "postProcess/motionBlur" );
-	colorGradingMaterial	= declManager->FindMaterial( "postProcess/colorGrading" );
-	explosionFXMaterial		= declManager->FindMaterial( "postProcess/explosionFX" );
-	screenFrostMaterial		= declManager->FindMaterial( "postProcess/screenFrost" );
-	celShadingMaterial		= declManager->FindMaterial( "postProcess/celShading" );
-	filmgrainMaterial		= declManager->FindMaterial( "postProcess/filmgrain" );
-	vignettingMaterial		= declManager->FindMaterial( "postProcess/vignetting" );
-	tunnel2Material			= declManager->FindMaterial( "postProcess/tunnel" );
-	adrenalineMaterial		= declManager->FindMaterial( "postProcess/adrenaline" );
-	bSoftShadows			= false;
-	bDepthRendered			= false;
+	blackMaterial = declManager->FindMaterial( "_black" );
+	whiteMaterial = declManager->FindMaterial( "_white" );
+	currentRenderMaterial = declManager->FindMaterial( "_currentRender" );
+	currentNSRenderMaterial = declManager->FindMaterial( "_nsRender" );
+	scratchMaterial = declManager->FindMaterial( "_scratch" );
+	depthMaterial = declManager->FindMaterial( "render/depth" );
+	normalsMaterial = declManager->FindMaterial( "render/normals" );
+	softShadowsMaterial = declManager->FindMaterial( "postProcess/softShadows" );
+	edgeAAMaterial = declManager->FindMaterial( "postProcess/edgeAA" );
+	hdrLumBaseMaterial = declManager->FindMaterial( "postProcess/hdrLumBase" );
+	hdrLumAverageMaterial = declManager->FindMaterial( "postProcess/hdrLumAverage" );
+	hdrLumAdaptedMaterial = declManager->FindMaterial( "postProcess/hdrLumAdapted" );
+	hdrBrightPass1Material = declManager->FindMaterial( "postProcess/hdrBrightPass1" );
+	hdrBrightPass2Material = declManager->FindMaterial( "postProcess/hdrBrightPass2" );
+	hdrBrightPass3Material = declManager->FindMaterial( "postProcess/hdrBrightPass3" );
+	hdrBrightPass4Material = declManager->FindMaterial( "postProcess/hdrBrightPass4" );
+	hdrBrightPass5Material = declManager->FindMaterial( "postProcess/hdrBrightPass5" );
+	hdrBloomMaterial = declManager->FindMaterial( "postProcess/hdrBloom" );
+	hdrFlareMaterial = declManager->FindMaterial( "postProcess/hdrFlare" );
+	hdrGlareMaterial = declManager->FindMaterial( "postProcess/hdrGlare" );
+	hdrFinalMaterial = declManager->FindMaterial( "postProcess/hdrFinal" );
+	bloomMaterial = declManager->FindMaterial( "postProcess/bloom" );
+	ssilMaterial = declManager->FindMaterial( "postProcess/ssil" );
+	ssaoMaterial = declManager->FindMaterial( "postProcess/ssao" );
+	sunShaftsMaterial = declManager->FindMaterial( "postProcess/sunShafts" );
+	lensFlareMaterial = declManager->FindMaterial( "postProcess/lensFlare" );
+	dofMaterial = declManager->FindMaterial( "postProcess/dof" );
+	motionBlurMaterial = declManager->FindMaterial( "postProcess/motionBlur" );
+	colorGradingMaterial = declManager->FindMaterial( "postProcess/colorGrading" );
+	explosionFXMaterial = declManager->FindMaterial( "postProcess/explosionFX" );
+	screenFrostMaterial = declManager->FindMaterial( "postProcess/screenFrost" );
+	celShadingMaterial = declManager->FindMaterial( "postProcess/celShading" );
+	filmgrainMaterial = declManager->FindMaterial( "postProcess/filmgrain" );
+	vignettingMaterial = declManager->FindMaterial( "postProcess/vignetting" );
+	tunnel2Material = declManager->FindMaterial( "postProcess/tunnel" );
+	adrenalineMaterial = declManager->FindMaterial( "postProcess/adrenaline" );
+	bSoftShadows = false;
+	bDepthRendered = false;
 	prevViewAngles.Zero();
 	// <---sikk
 	/*
@@ -123,7 +123,7 @@ idPlayerView::Save
 void idPlayerView::Save( idSaveGame *savefile ) const {
 	int i;
 	const screenBlob_t *blob;
-	blob = &screenBlobs[ 0 ];
+	blob = &screenBlobs[0];
 	for( i = 0; i < MAX_SCREEN_BLOBS; i++, blob++ ) {
 		savefile->WriteMaterial( blob->material );
 		savefile->WriteFloat( blob->x );
@@ -163,7 +163,7 @@ idPlayerView::Restore
 void idPlayerView::Restore( idRestoreGame *savefile ) {
 	int i;
 	screenBlob_t *blob;
-	blob = &screenBlobs[ 0 ];
+	blob = &screenBlobs[0];
 	for( i = 0; i < MAX_SCREEN_BLOBS; i++, blob++ ) {
 		savefile->ReadMaterial( blob->material );
 		savefile->ReadFloat( blob->x );
@@ -215,7 +215,7 @@ void idPlayerView::ClearEffects() {
 	lastDamageTime = MS2SEC( gameLocal.time - 99999 );
 	dvFinishTime = ( gameLocal.time - 99999 );
 	kickFinishTime = ( gameLocal.time - 99999 );
-	for( int i = 0 ; i < MAX_SCREEN_BLOBS ; i++ ) {
+	for( int i = 0; i < MAX_SCREEN_BLOBS; i++ ) {
 		screenBlobs[i].finishTime = gameLocal.time;
 	}
 	fadeTime = 0;
@@ -228,7 +228,7 @@ idPlayerView::GetScreenBlob
 */
 screenBlob_t *idPlayerView::GetScreenBlob() {
 	screenBlob_t	*oldest = &screenBlobs[0];
-	for( int i = 1 ; i < MAX_SCREEN_BLOBS ; i++ ) {
+	for( int i = 1; i < MAX_SCREEN_BLOBS; i++ ) {
 		if( screenBlobs[i].finishTime < oldest->finishTime ) {
 			oldest = &screenBlobs[i];
 		}
@@ -418,7 +418,7 @@ idAngles idPlayerView::AngleOffset() const {
 	if( gameLocal.time < kickFinishTime ) {
 		float offset = kickFinishTime - gameLocal.time;
 		ang = kickAngles * offset * offset * g_kickAmplitude.GetFloat();
-		for( int i = 0 ; i < 3 ; i++ ) {
+		for( int i = 0; i < 3; i++ ) {
 			if( ang[i] > 70.0f ) {
 				ang[i] = 70.0f;
 			} else if( ang[i] < -70.0f ) {
@@ -529,7 +529,7 @@ void idPlayerView::SingleView( idUserInterface *hud, const renderView_t *view, b
 	}
 	// draw screen blobs
 	if( !pm_thirdPerson.GetBool() && !g_skipViewEffects.GetBool() ) {
-		for( int i = 0 ; i < MAX_SCREEN_BLOBS ; i++ ) {
+		for( int i = 0; i < MAX_SCREEN_BLOBS; i++ ) {
 			screenBlob_t	*blob = &screenBlobs[i];
 			if( blob->finishTime <= gameLocal.time ) {
 				continue;
@@ -673,7 +673,7 @@ assumes: color.w is 0 or 1
 */
 void idPlayerView::Fade( idVec4 color, int time ) {
 	if( !fadeTime ) {
-		fadeFromColor.Set( 0.0f, 0.0f, 0.0f, 1.0f - color[ 3 ] );
+		fadeFromColor.Set( 0.0f, 0.0f, 0.0f, 1.0f - color[3] );
 	} else {
 		fadeFromColor = fadeColor;
 	}
@@ -706,15 +706,15 @@ void idPlayerView::ScreenFade() {
 	msec = fadeTime - gameLocal.realClientTime;
 	if( msec <= 0 ) {
 		fadeColor = fadeToColor;
-		if( fadeColor[ 3 ] == 0.0f ) {
+		if( fadeColor[3] == 0.0f ) {
 			fadeTime = 0;
 		}
 	} else {
 		t = ( float )msec * fadeRate;
 		fadeColor = fadeFromColor * t + fadeToColor * ( 1.0f - t );
 	}
-	if( fadeColor[ 3 ] != 0.0f ) {
-		renderSystem->SetColor4( fadeColor[ 0 ], fadeColor[ 1 ], fadeColor[ 2 ], fadeColor[ 3 ] );
+	if( fadeColor[3] != 0.0f ) {
+		renderSystem->SetColor4( fadeColor[0], fadeColor[1], fadeColor[2], fadeColor[3] );
 		renderSystem->DrawStretchPic( 0, 0, 640, 480, 0, 0, 1, 1, declManager->FindMaterial( "_white" ) );
 	}
 }
@@ -743,7 +743,7 @@ void idPlayerView::InfluenceVision( idUserInterface *hud, const renderView_t *vi
 		SingleView( hud, view );
 		return;
 	} else {
-		int offset =  static_cast<int>( 25 + sin( static_cast<float>( gameLocal.time ) ) );
+		int offset = static_cast<int>( 25 + sin( static_cast<float>( gameLocal.time ) ) );
 		DoubleVision( hud, view, static_cast<int>( pct * offset ) );
 	}
 }
@@ -840,19 +840,19 @@ idPlayerView::dnPostProcessManager Class Definitions - JC Denton
 ===================
 */
 
-idPlayerView::dnPostProcessManager::dnPostProcessManager():
-	m_imageCurrentRender( "_currentRender"	),
-	m_imageBloom( "_bloomImage"	),
-	m_imageCookedMath( "_cookedMath"	),
+idPlayerView::dnPostProcessManager::dnPostProcessManager() :
+	m_imageCurrentRender( "_currentRender" ),
+	m_imageBloom( "_bloomImage" ),
+	m_imageCookedMath( "_cookedMath" ),
 
-	m_matBrightPass( declManager->FindMaterial( "postprocess/brightPassOptimized" )	),
-	m_matGaussBlurX( declManager->FindMaterial( "postprocess/blurx" )	),
-	m_matGaussBlurY( declManager->FindMaterial( "postprocess/blury" )	),
+	m_matBrightPass( declManager->FindMaterial( "postprocess/brightPassOptimized" ) ),
+	m_matGaussBlurX( declManager->FindMaterial( "postprocess/blurx" ) ),
+	m_matGaussBlurY( declManager->FindMaterial( "postprocess/blury" ) ),
 	//m_matFinalScenePass		( declManager->FindMaterial( "postprocess/finalScenePass" )	),
-	m_matFinalScenePass( declManager->FindMaterial( "postprocess/finalScenePassOptimized" )	),
+	m_matFinalScenePass( declManager->FindMaterial( "postprocess/finalScenePassOptimized" ) ),
 
-	m_matCookMath_pass1( declManager->FindMaterial( "postprocess/cookMath_pass1" )	),
-	m_matCookMath_pass2( declManager->FindMaterial( "postprocess/cookMath_pass2" )	),
+	m_matCookMath_pass1( declManager->FindMaterial( "postprocess/cookMath_pass1" ) ),
+	m_matCookMath_pass2( declManager->FindMaterial( "postprocess/cookMath_pass2" ) ),
 	m_ImageAnisotropyHandle( -1 ) {
 	m_iScreenHeight = m_iScreenWidth = 0;
 	m_iScreenHeightPowOf2 = m_iScreenWidthPowOf2 = 0;
@@ -894,14 +894,14 @@ void idPlayerView::dnPostProcessManager::Initialize() {
 
 void idPlayerView::dnPostProcessManager::UpdateCookedData( void ) {
 	if( m_nFramesToUpdateCookedData > 0 ) {
-		m_nFramesToUpdateCookedData --;
+		m_nFramesToUpdateCookedData--;
 		m_bForceUpdateOnCookedData = true;
 		return;
 	}
-	if(	m_bForceUpdateOnCookedData ||
-			r_postprocess_colorCurveBias.IsModified() || r_postprocess_brightPassOffset.IsModified()	||
-			r_postprocess_brightPassThreshold.IsModified() || r_postprocess_sceneExposure.IsModified()	||
-			r_postprocess_sceneGamma.IsModified() || r_postprocess_colorCorrection.IsModified()			||
+	if( m_bForceUpdateOnCookedData ||
+			r_postprocess_colorCurveBias.IsModified() || r_postprocess_brightPassOffset.IsModified() ||
+			r_postprocess_brightPassThreshold.IsModified() || r_postprocess_sceneExposure.IsModified() ||
+			r_postprocess_sceneGamma.IsModified() || r_postprocess_colorCorrection.IsModified() ||
 			r_postprocess_colorCorrectBias.IsModified()
 	  ) {
 		if( m_bForceUpdateOnCookedData ) {
@@ -1006,7 +1006,7 @@ void idPlayerView::dnPostProcessManager::UpdateBackBufferParameters() {
 		while( m_iScreenHeightPowOf2 < m_iScreenHeight ) {
 			m_iScreenHeightPowOf2 <<= 1;
 		}
-		m_fShiftScale_x = m_iScreenWidth  / ( float )m_iScreenWidthPowOf2;
+		m_fShiftScale_x = m_iScreenWidth / ( float )m_iScreenWidthPowOf2;
 		m_fShiftScale_y = m_iScreenHeight / ( float )m_iScreenHeightPowOf2;
 	}
 }
@@ -1019,9 +1019,9 @@ void idPlayerView::dnPostProcessManager::RenderDebugTextures() {
 			float m_fShiftScaleX, m_fShiftScaleY;
 		}
 		const arrStretchedImages[3] = {
-			{&m_imageCurrentRender,	m_fShiftScale_x, m_fShiftScale_y },
-			{&m_imageBloom,			m_fShiftScale_x, m_fShiftScale_y },
-			{&m_imageCookedMath,	1.0f, 1.0f},
+			{ &m_imageCurrentRender, m_fShiftScale_x, m_fShiftScale_y },
+			{ &m_imageBloom, m_fShiftScale_x, m_fShiftScale_y },
+			{ &m_imageCookedMath, 1.0f, 1.0f },
 		};
 		int i = iDebugTexture - 1;
 		renderSystem->SetColor4( 1.0f, 1.0f, 1.0f, 1.0f );
@@ -1088,29 +1088,29 @@ void idPlayerView::DoPostFX() {
 	/*if ( r_useHDR.GetBool() ) {
 		cvarSystem->SetCVarBool( "r_testARBProgram", true );
 		PostFX_HDR();
-	} else {
+		} else {
 		cvarSystem->SetCVarBool( "r_testARBProgram", false );
-	}
+		}
 
-	if ( r_useBloom.GetBool() )
+		if ( r_useBloom.GetBool() )
 		PostFX_Bloom();
 
-	if ( r_useLensFlare.GetBool() )
+		if ( r_useLensFlare.GetBool() )
 		PostFX_LensFlare();
 
-	if ( r_useDepthOfField.GetBool() )
+		if ( r_useDepthOfField.GetBool() )
 		PostFX_DoF();
 
-	if ( r_useMotionBlur.GetBool() )
+		if ( r_useMotionBlur.GetBool() )
 		PostFX_MotionBlur();
 
-	if ( r_useColorGrading.GetBool() )
+		if ( r_useColorGrading.GetBool() )
 		PostFX_ColorGrading();
 
-	if ( r_useVignetting.GetBool() && !r_useHDR.GetBool() )	// HDR uses it's own vignette solution
+		if ( r_useVignetting.GetBool() && !r_useHDR.GetBool() )	// HDR uses it's own vignette solution
 		PostFX_Vignetting();
 
-	if ( r_useFilmgrain.GetBool() )
+		if ( r_useFilmgrain.GetBool() )
 		PostFX_Filmgrain();
 		*/
 	// test a single material drawn over everything
@@ -1253,10 +1253,10 @@ void idPlayerView::ToggleShadows( bool noShadows ) {
 	}
 	lastNoShadows = noShadows;
 	for( int i = 0; i < gameLocal.currentLights.Num(); i++ ) {
-		if( gameLocal.entities[ gameLocal.currentLights[ i ] ] == NULL ) {
+		if( gameLocal.entities[gameLocal.currentLights[i]] == NULL ) {
 			gameLocal.currentLights.RemoveIndex( i );
 		} else {
-			ent = gameLocal.entities[ gameLocal.currentLights[ i ] ];
+			ent = gameLocal.entities[gameLocal.currentLights[i]];
 			light = static_cast<idLight *>( ent );
 			interleaved_dist_check_period--;
 			if( noshadowDistance.GetFloat() > 0 && interleaved_dist_check_period <= 0 ) {
@@ -1283,10 +1283,10 @@ void idPlayerView::ResetShadows() {
 	idEntity   *ent;
 	idLight	   *light;
 	for( int i = 0; i < gameLocal.currentLights.Num(); i++ ) {
-		if( gameLocal.entities[ gameLocal.currentLights[ i ] ] == NULL ) {
+		if( gameLocal.entities[gameLocal.currentLights[i]] == NULL ) {
 			gameLocal.currentLights.RemoveIndex( i );
 		} else {
-			ent = gameLocal.entities[ gameLocal.currentLights[ i ] ];
+			ent = gameLocal.entities[gameLocal.currentLights[i]];
 			light = static_cast<idLight *>( ent );
 			if( light->GetRenderLight()->noShadows == true ) {
 				light->GetRenderLight()->noShadows = false;
@@ -1326,11 +1326,11 @@ idPlayerView::PostFX_HDR
 ===================
 */
 void idPlayerView::PostFX_HDR() {
-	float	fElapsedTime	= MS2SEC( gameLocal.time - prevTime );
-	int		nBloomWidth		= renderSystem->GetScreenWidth() / 4;
-	int		nBloomHeight	= renderSystem->GetScreenHeight() / 4;
-	int		nGlareWidth		= renderSystem->GetScreenWidth() / 8;
-	int		nGlareHeight	= renderSystem->GetScreenHeight() / 8;
+	float	fElapsedTime = MS2SEC( gameLocal.time - prevTime );
+	int		nBloomWidth = renderSystem->GetScreenWidth() / 4;
+	int		nBloomHeight = renderSystem->GetScreenHeight() / 4;
+	int		nGlareWidth = renderSystem->GetScreenWidth() / 8;
+	int		nGlareHeight = renderSystem->GetScreenHeight() / 8;
 	// capture original scene image
 	renderSystem->CaptureRenderToImage( "_currentRender" );
 	// create lower res luminance map
@@ -1541,8 +1541,8 @@ idPlayerView::PostFX_SSIL
 ===================
 */
 void idPlayerView::PostFX_SSIL() {
-	int	nWidth	= renderSystem->GetScreenWidth() / 2.0f;
-	int	nHeight	= renderSystem->GetScreenHeight() / 2.0f;
+	int	nWidth = renderSystem->GetScreenWidth() / 2.0f;
+	int	nHeight = renderSystem->GetScreenHeight() / 2.0f;
 	renderSystem->CaptureRenderToImage( "_currentRender" );
 	RenderDepth( true );
 	RenderNormals( false );
@@ -1575,8 +1575,8 @@ idPlayerView::PostFX_SSAO
 ===================
 */
 void idPlayerView::PostFX_SSAO() {
-	int	nWidth	= renderSystem->GetScreenWidth() / 2.0f;
-	int	nHeight	= renderSystem->GetScreenHeight() / 2.0f;
+	int	nWidth = renderSystem->GetScreenWidth() / 2.0f;
+	int	nHeight = renderSystem->GetScreenHeight() / 2.0f;
 	renderSystem->CaptureRenderToImage( "_currentRender" );
 	RenderDepth( true );
 	renderSystem->CropRenderSize( nWidth, nHeight, true );
@@ -1612,10 +1612,10 @@ void idPlayerView::PostFX_SunShafts() {
 	idVec3 viewVector[3];
 	player->GetViewPos( origin, axis );
 	player->viewAngles.ToVectors( &viewVector[0], &viewVector[1], &viewVector[2] );
-	idVec3 sunOrigin	= idVec3( r_sunOriginX.GetFloat(), r_sunOriginY.GetFloat(), r_sunOriginZ.GetFloat() ) ;
-	idVec3 dist			= origin - sunOrigin;
-	float length		= dist.Length();
-	idVec3 sunVector	= dist / length;
+	idVec3 sunOrigin = idVec3( r_sunOriginX.GetFloat(), r_sunOriginY.GetFloat(), r_sunOriginZ.GetFloat() );
+	idVec3 dist = origin - sunOrigin;
+	float length = dist.Length();
+	idVec3 sunVector = dist / length;
 	float VdotS[3];
 	for( int i = 0; i < 3; i++ ) {
 		VdotS[i] = viewVector[i] * -sunVector;
@@ -1626,8 +1626,8 @@ void idPlayerView::PostFX_SunShafts() {
 	renderSystem->GlobalToNormalizedDeviceCoordinates( sunOrigin, ndc );
 	ndc.x = ndc.x * 0.5 + 0.5;
 	ndc.y = ndc.y * 0.5 + 0.5;
-	int	nWidth	= renderSystem->GetScreenWidth() / 2.0f;
-	int	nHeight	= renderSystem->GetScreenHeight() / 2.0f;
+	int	nWidth = renderSystem->GetScreenWidth() / 2.0f;
+	int	nHeight = renderSystem->GetScreenHeight() / 2.0f;
 	renderSystem->CaptureRenderToImage( "_currentRender" );
 	RenderDepth( true );
 	renderSystem->CropRenderSize( nWidth, nHeight, true, true );
@@ -1665,20 +1665,20 @@ void idPlayerView::PostFX_LensFlare() {
 	idVec3 viewVector[3];
 	player->GetViewPos( origin, axis );
 	player->viewAngles.ToVectors( &viewVector[0], &viewVector[1], &viewVector[2] );
-	idVec3 sunOrigin	= idVec3( r_sunOriginX.GetFloat(), r_sunOriginY.GetFloat(), r_sunOriginZ.GetFloat() ) ;
-	idVec3 dist			= origin - sunOrigin;
-	idVec3 sunVector	= dist / dist.Length();
-	float VdotS[ 3 ];
+	idVec3 sunOrigin = idVec3( r_sunOriginX.GetFloat(), r_sunOriginY.GetFloat(), r_sunOriginZ.GetFloat() );
+	idVec3 dist = origin - sunOrigin;
+	idVec3 sunVector = dist / dist.Length();
+	float VdotS[3];
 	for( int i = 0; i < 3; i++ ) {
-		VdotS[ i ] = viewVector[ i ] * -sunVector;
+		VdotS[i] = viewVector[i] * -sunVector;
 	}
-	VdotS[ 0 ] = idMath::ClampFloat( 0.0f, 1.0f, VdotS[ 0 ] );
-	VdotS[ 0 ] *= VdotS[ 0 ];
-	if( VdotS[ 0 ] > 0 ) {
+	VdotS[0] = idMath::ClampFloat( 0.0f, 1.0f, VdotS[0] );
+	VdotS[0] *= VdotS[0];
+	if( VdotS[0] > 0 ) {
 		trace_t trace;
 		gameLocal.clip.TracePoint( trace, origin, sunOrigin, MASK_SOLID, player );
-		if( trace.c.material->NoFragment() || trace.fraction == 1.0f ) {  // Trace succeeded, or it hit a skybox
-			float strength = VdotS[ 0 ] * r_lensFlareStrength.GetFloat();
+		if( trace.c.material->NoFragment() || trace.fraction == 1.0f ) { // Trace succeeded, or it hit a skybox
+			float strength = VdotS[0] * r_lensFlareStrength.GetFloat();
 			float length;
 			idVec3 ndc;
 			idVec2 ssDir, ssDist, uv;
@@ -1692,7 +1692,7 @@ void idPlayerView::PostFX_LensFlare() {
 			// Draw a lens flare on the screen
 			uv.x = ( ndc.x * SCREEN_WIDTH ) - 256.0f;
 			uv.y = ( ndc.y * SCREEN_HEIGHT ) - 256.0f;
-			renderSystem->SetColor4( VdotS[ 0 ], VdotS[ 0 ], VdotS[ 0 ], 0.0f );
+			renderSystem->SetColor4( VdotS[0], VdotS[0], VdotS[0], 0.0f );
 			renderSystem->DrawStretchPic( uv.x, uv.y, 512.0f, 512.0f, 0.0f, 1.0f, 1.0f, 0.0f, lensFlareMaterial );
 			uv.x = ( ( length * -1.25f * ssDir.x + 0.5f ) * SCREEN_WIDTH ) - 32.0f;
 			uv.y = ( ( length * -1.25f * ssDir.y + 0.5f ) * SCREEN_HEIGHT ) - 32.0f;
@@ -1745,19 +1745,19 @@ idPlayerView::PostFX_DoF
 */
 void idPlayerView::PostFX_DoF() {
 	if( DoFConditionCheck() ) {
-		int	nWidth	= renderSystem->GetScreenWidth() / 2.0f;
-		int	nHeight	= renderSystem->GetScreenHeight() / 2.0f;
+		int	nWidth = renderSystem->GetScreenWidth() / 2.0f;
+		int	nHeight = renderSystem->GetScreenHeight() / 2.0f;
 		renderSystem->CaptureRenderToImage( "_currentRender" );
 		RenderDepth( true );
 		renderSystem->CropRenderSize( nWidth, nHeight, true, true );
 		if( r_useDepthOfField.GetInteger() == 2 ) {
 			renderSystem->SetColor4( r_dofNear.GetInteger(), r_dofFocus.GetInteger(), r_dofFar.GetInteger(), 2.0f );
 		} else if( gameLocal.inCinematic ) {
-			renderSystem->SetColor4( r_dofNear.GetInteger(), r_dofFocus.GetInteger(), r_dofFar.GetInteger(), 2.0f );    // don't blur in front of the focal plane for cinematics
+			renderSystem->SetColor4( r_dofNear.GetInteger(), r_dofFocus.GetInteger(), r_dofFar.GetInteger(), 2.0f );  // don't blur in front of the focal plane for cinematics
 		} else if( player->weapon.GetEntity()->IsReloading() ) {
-			renderSystem->SetColor4( -1.0f, 0.5f, 64.0f, 2.0f );    // use specific settings for reloading dof
+			renderSystem->SetColor4( -1.0f, 0.5f, 64.0f, 2.0f );  // use specific settings for reloading dof
 		} else if( player->bIsZoomed ) {
-			renderSystem->SetColor4( player->focusDistance, 1.0f, 1.0f, 1.0f );    // zoom uses a mask texture
+			renderSystem->SetColor4( player->focusDistance, 1.0f, 1.0f, 1.0f );  // zoom uses a mask texture
 		} else {
 			renderSystem->SetColor4( player->focusDistance, 1.0f, 1.0f, 0.0f );
 		}
@@ -1808,9 +1808,9 @@ void idPlayerView::PostFX_MotionBlur() {
 		renderSystem->CaptureRenderToImage( "_prevRender" );
 	}
 	if( MBConditionCheck() && ( r_useMotionBlur.GetInteger() == 1 || r_useMotionBlur.GetInteger() == 3 ) ) {
-		int	nWidth		= renderSystem->GetScreenWidth() / 2.0f;
-		int	nHeight		= renderSystem->GetScreenHeight() / 2.0f;
-		int nQuality	= idMath::ClampInt( 1, 4, r_motionBlurQuality.GetInteger() );
+		int	nWidth = renderSystem->GetScreenWidth() / 2.0f;
+		int	nHeight = renderSystem->GetScreenHeight() / 2.0f;
+		int nQuality = idMath::ClampInt( 1, 4, r_motionBlurQuality.GetInteger() );
 		float parm[6];
 		parm[0] = player->viewAngles.yaw - prevViewAngles.yaw;
 		parm[1] = player->viewAngles.pitch - prevViewAngles.pitch;
@@ -1878,8 +1878,8 @@ idPlayerView::PostFX_ColorGrading
 ===================
 */
 void idPlayerView::PostFX_ColorGrading() {
-	int	nWidth	= renderSystem->GetScreenWidth() / 2.0f;
-	int	nHeight	= renderSystem->GetScreenHeight() / 2.0f;
+	int	nWidth = renderSystem->GetScreenWidth() / 2.0f;
+	int	nHeight = renderSystem->GetScreenHeight() / 2.0f;
 	renderSystem->CaptureRenderToImage( "_currentRender" );
 	// unsharp mask buffer
 	renderSystem->CropRenderSize( nWidth, nHeight, true, true );

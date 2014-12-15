@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -157,8 +157,8 @@ void idInterpreter::Reset( void ) {
 	eventEntity = NULL;
 	currentFunction = 0;
 	NextInstruction( 0 );
-	threadDying 	= false;
-	doneProcessing	= true;
+	threadDying = false;
+	doneProcessing = true;
 }
 
 /*
@@ -174,7 +174,7 @@ used primarily for the debugger and debugging
 bool idInterpreter::GetRegisterValue( const char *name, idStr &out, int scopeDepth ) {
 	varEval_t		reg;
 	idVarDef		*d;
-	char			funcObject[ 1024 ];
+	char			funcObject[1024];
 	char			*funcName;
 	const idVarDef	*scope;
 	const idTypeDef	*field;
@@ -187,7 +187,7 @@ bool idInterpreter::GetRegisterValue( const char *name, idStr &out, int scopeDep
 	if( scopeDepth == callStackDepth ) {
 		func = currentFunction;
 	} else {
-		func = callStack[ scopeDepth ].f;
+		func = callStack[scopeDepth].f;
 	}
 	if( !func ) {
 		return false;
@@ -253,16 +253,16 @@ bool idInterpreter::GetRegisterValue( const char *name, idStr &out, int scopeDep
 			return false;
 		}
 		field = scope->TypeDef()->GetParmType( reg.ptrOffset )->FieldType();
-		obj   = *reinterpret_cast<const idScriptObject **>( &localstack[ callStack[ callStackDepth ].stackbase ] );
+		obj = *reinterpret_cast<const idScriptObject **>( &localstack[callStack[callStackDepth].stackbase] );
 		if( !field || !obj ) {
 			return false;
 		}
 		switch( field->Type() ) {
 		case ev_boolean:
-			out = va( "%d", *( reinterpret_cast<int *>( &obj->data[ reg.ptrOffset ] ) ) );
+			out = va( "%d", *( reinterpret_cast<int *>( &obj->data[reg.ptrOffset] ) ) );
 			return true;
 		case ev_float:
-			out = va( "%g", *( reinterpret_cast<float *>( &obj->data[ reg.ptrOffset ] ) ) );
+			out = va( "%g", *( reinterpret_cast<float *>( &obj->data[reg.ptrOffset] ) ) );
 			return true;
 		default:
 			return false;
@@ -297,7 +297,7 @@ idInterpreter::GetCallstack
 ================
 */
 const prstack_t *idInterpreter::GetCallstack( void ) const {
-	return &callStack[ 0 ];
+	return &callStack[0];
 }
 
 /*
@@ -374,7 +374,7 @@ void idInterpreter::StackTrace( void ) const {
 		gameLocal.Printf( "%12s : %s\n", gameLocal.program.GetFilename( currentFunction->filenum ), currentFunction->Name() );
 	}
 	for( i = top; i >= 0; i-- ) {
-		f = callStack[ i ].f;
+		f = callStack[i].f;
 		if( !f ) {
 			gameLocal.Printf( "<NO FUNCTION>\n" );
 		} else {
@@ -392,7 +392,7 @@ Aborts the currently executing function
 */
 void idInterpreter::Error( const char *fmt, ... ) const {
 	va_list argptr;
-	char	text[ 1024 ];
+	char	text[1024];
 	va_start( argptr, fmt );
 	vsprintf( text, fmt, argptr );
 	va_end( argptr );
@@ -414,7 +414,7 @@ Prints file and line number information with warning.
 */
 void idInterpreter::Warning( const char *fmt, ... ) const {
 	va_list argptr;
-	char	text[ 1024 ];
+	char	text[1024];
 	va_start( argptr, fmt );
 	vsprintf( text, fmt, argptr );
 	va_end( argptr );
@@ -447,7 +447,7 @@ void idInterpreter::DisplayInfo( void ) const {
 		}
 		for( i = callStackDepth; i > 0; i-- ) {
 			gameLocal.Printf( "              " );
-			f = callStack[ i ].f;
+			f = callStack[i].f;
 			if( !f ) {
 				gameLocal.Printf( "<NO FUNCTION>\n" );
 			} else {
@@ -466,7 +466,7 @@ Copys the args from the calling thread's stack
 */
 void idInterpreter::ThreadCall( idInterpreter *source, const function_t *func, int args ) {
 	Reset();
-	memcpy( localstack, &source->localstack[ source->localstackUsed - args ], args );
+	memcpy( localstack, &source->localstack[source->localstackUsed - args], args );
 	localstackUsed = args;
 	localstackBase = 0;
 	maxLocalstackUsed = localstackUsed;
@@ -517,10 +517,10 @@ void idInterpreter::EnterFunction( const function_t *func, bool clearStack ) {
 	if( callStackDepth >= MAX_STACK_DEPTH ) {
 		Error( "call stack overflow" );
 	}
-	stack = &callStack[ callStackDepth ];
-	stack->s			= instructionPointer + 1;	// point to the next instruction to execute
-	stack->f			= currentFunction;
-	stack->stackbase	= localstackBase;
+	stack = &callStack[callStackDepth];
+	stack->s = instructionPointer + 1;	// point to the next instruction to execute
+	stack->f = currentFunction;
+	stack->stackbase = localstackBase;
 	callStackDepth++;
 	if( callStackDepth > maxStackDepth ) {
 		maxStackDepth = callStackDepth;
@@ -547,11 +547,11 @@ void idInterpreter::EnterFunction( const function_t *func, bool clearStack ) {
 		Error( "EnterFuncton: locals stack overflow\n" );
 	}
 	// initialize local stack variables to zero
-	memset( &localstack[ localstackUsed ], 0, c );
+	memset( &localstack[localstackUsed], 0, c );
 	localstackUsed += c;
 	localstackBase = localstackUsed - func->locals;
 	if( localstackUsed > maxLocalstackUsed ) {
-		maxLocalstackUsed = localstackUsed ;
+		maxLocalstackUsed = localstackUsed;
 	}
 }
 
@@ -569,14 +569,14 @@ void idInterpreter::LeaveFunction( idVarDef *returnDef ) {
 	// return value
 	if( returnDef ) {
 		switch( returnDef->Type() ) {
-		case ev_string :
+		case ev_string:
 			gameLocal.program.ReturnString( GetString( returnDef ) );
 			break;
-		case ev_vector :
+		case ev_vector:
 			ret = GetVariable( returnDef );
 			gameLocal.program.ReturnVector( *ret.vectorPtr );
 			break;
-		default :
+		default:
 			ret = GetVariable( returnDef );
 			gameLocal.program.ReturnInteger( *ret.intPtr );
 		}
@@ -588,14 +588,14 @@ void idInterpreter::LeaveFunction( idVarDef *returnDef ) {
 		statement_t &line = gameLocal.program.GetStatement( instructionPointer );
 		gameLocal.Printf( "%d: %s(%d): exit %s", gameLocal.time, gameLocal.program.GetFilename( line.file ), line.linenumber, currentFunction->Name() );
 		if( callStackDepth > 1 ) {
-			gameLocal.Printf( " return to %s(line %d)\n", callStack[ callStackDepth - 1 ].f->Name(), gameLocal.program.GetStatement( callStack[ callStackDepth - 1 ].s ).linenumber );
+			gameLocal.Printf( " return to %s(line %d)\n", callStack[callStackDepth - 1].f->Name(), gameLocal.program.GetStatement( callStack[callStackDepth - 1].s ).linenumber );
 		} else {
 			gameLocal.Printf( " done\n" );
 		}
 	}
 	// up stack
 	callStackDepth--;
-	stack = &callStack[ callStackDepth ];
+	stack = &callStack[callStackDepth];
 	currentFunction = stack->f;
 	localstackBase = stack->stackbase;
 	NextInstruction( stack->s );
@@ -618,7 +618,7 @@ void idInterpreter::CallEvent( const function_t *func, int argsize ) {
 	varEval_t			var;
 	int 				pos;
 	int 				start;
-	int					data[ D_EVENT_MAXARGS ];
+	int					data[D_EVENT_MAXARGS];
 	const idEventDef	*evdef;
 	const char			*format;
 	if( !func ) {
@@ -627,7 +627,7 @@ void idInterpreter::CallEvent( const function_t *func, int argsize ) {
 	assert( func->eventdef );
 	evdef = func->eventdef;
 	start = localstackUsed - argsize;
-	var.intPtr = ( int * )&localstack[ start ];
+	var.intPtr = ( int * )&localstack[start];
 	eventEntity = GetEntity( *var.entityNumberPtr );
 	if( !eventEntity || !eventEntity->RespondsTo( *evdef ) ) {
 		if( eventEntity && developer.GetBool() ) {
@@ -636,23 +636,23 @@ void idInterpreter::CallEvent( const function_t *func, int argsize ) {
 		}
 		// always return a safe value when an object doesn't exist
 		switch( evdef->GetReturnType() ) {
-		case D_EVENT_INTEGER :
+		case D_EVENT_INTEGER:
 			gameLocal.program.ReturnInteger( 0 );
 			break;
-		case D_EVENT_FLOAT :
+		case D_EVENT_FLOAT:
 			gameLocal.program.ReturnFloat( 0 );
 			break;
-		case D_EVENT_VECTOR :
+		case D_EVENT_VECTOR:
 			gameLocal.program.ReturnVector( vec3_zero );
 			break;
-		case D_EVENT_STRING :
+		case D_EVENT_STRING:
 			gameLocal.program.ReturnString( "" );
 			break;
-		case D_EVENT_ENTITY :
-		case D_EVENT_ENTITY_NULL :
+		case D_EVENT_ENTITY:
+		case D_EVENT_ENTITY_NULL:
 			gameLocal.program.ReturnEntity( ( idEntity * )NULL );
 			break;
-		case D_EVENT_TRACE :
+		case D_EVENT_TRACE:
 		default:
 			// unsupported data type
 			break;
@@ -662,45 +662,45 @@ void idInterpreter::CallEvent( const function_t *func, int argsize ) {
 		return;
 	}
 	format = evdef->GetArgFormat();
-	for( j = 0, i = 0, pos = type_object.Size(); ( pos < argsize ) || ( format[ i ] != 0 ); i++ ) {
-		switch( format[ i ] ) {
-		case D_EVENT_INTEGER :
-			var.intPtr = ( int * )&localstack[ start + pos ];
-			data[ i ] = int( *var.floatPtr );
+	for( j = 0, i = 0, pos = type_object.Size(); ( pos < argsize ) || ( format[i] != 0 ); i++ ) {
+		switch( format[i] ) {
+		case D_EVENT_INTEGER:
+			var.intPtr = ( int * )&localstack[start + pos];
+			data[i] = int( *var.floatPtr );
 			break;
-		case D_EVENT_FLOAT :
-			var.intPtr = ( int * )&localstack[ start + pos ];
-			( *( float * )&data[ i ] ) = *var.floatPtr;
+		case D_EVENT_FLOAT:
+			var.intPtr = ( int * )&localstack[start + pos];
+			( *( float * )&data[i] ) = *var.floatPtr;
 			break;
-		case D_EVENT_VECTOR :
-			var.intPtr = ( int * )&localstack[ start + pos ];
-			( *( idVec3 ** )&data[ i ] ) = var.vectorPtr;
+		case D_EVENT_VECTOR:
+			var.intPtr = ( int * )&localstack[start + pos];
+			( *( idVec3 ** )&data[i] ) = var.vectorPtr;
 			break;
-		case D_EVENT_STRING :
-			( *( const char ** )&data[ i ] ) = ( char * )&localstack[ start + pos ];
+		case D_EVENT_STRING:
+			( *( const char ** )&data[i] ) = ( char * )&localstack[start + pos];
 			break;
-		case D_EVENT_ENTITY :
-			var.intPtr = ( int * )&localstack[ start + pos ];
-			( *( idEntity ** )&data[ i ] ) = GetEntity( *var.entityNumberPtr );
-			if( !( *( idEntity ** )&data[ i ] ) ) {
+		case D_EVENT_ENTITY:
+			var.intPtr = ( int * )&localstack[start + pos];
+			( *( idEntity ** )&data[i] ) = GetEntity( *var.entityNumberPtr );
+			if( !( *( idEntity ** )&data[i] ) ) {
 				Warning( "Entity not found for event '%s'. Terminating thread.", evdef->GetName() );
 				threadDying = true;
 				PopParms( argsize );
 				return;
 			}
 			break;
-		case D_EVENT_ENTITY_NULL :
-			var.intPtr = ( int * )&localstack[ start + pos ];
-			( *( idEntity ** )&data[ i ] ) = GetEntity( *var.entityNumberPtr );
+		case D_EVENT_ENTITY_NULL:
+			var.intPtr = ( int * )&localstack[start + pos];
+			( *( idEntity ** )&data[i] ) = GetEntity( *var.entityNumberPtr );
 			break;
-		case D_EVENT_TRACE :
+		case D_EVENT_TRACE:
 			Error( "trace type not supported from script for '%s' event.", evdef->GetName() );
 			break;
-		default :
+		default:
 			Error( "Invalid arg format string for '%s' event.", evdef->GetName() );
 			break;
 		}
-		pos += func->parmSize[ j++ ];
+		pos += func->parmSize[j++];
 	}
 	popParms = argsize;
 	eventEntity->ProcessEventArgPtr( evdef, data );
@@ -766,7 +766,7 @@ void idInterpreter::CallSysEvent( const function_t *func, int argsize ) {
 	varEval_t			source;
 	int 				pos;
 	int 				start;
-	int					data[ D_EVENT_MAXARGS ];
+	int					data[D_EVENT_MAXARGS];
 	const idEventDef	*evdef;
 	const char			*format;
 	if( !func ) {
@@ -776,45 +776,45 @@ void idInterpreter::CallSysEvent( const function_t *func, int argsize ) {
 	evdef = func->eventdef;
 	start = localstackUsed - argsize;
 	format = evdef->GetArgFormat();
-	for( j = 0, i = 0, pos = 0; ( pos < argsize ) || ( format[ i ] != 0 ); i++ ) {
-		switch( format[ i ] ) {
-		case D_EVENT_INTEGER :
-			source.intPtr = ( int * )&localstack[ start + pos ];
-			*( int * )&data[ i ] = int( *source.floatPtr );
+	for( j = 0, i = 0, pos = 0; ( pos < argsize ) || ( format[i] != 0 ); i++ ) {
+		switch( format[i] ) {
+		case D_EVENT_INTEGER:
+			source.intPtr = ( int * )&localstack[start + pos];
+			*( int * )&data[i] = int( *source.floatPtr );
 			break;
-		case D_EVENT_FLOAT :
-			source.intPtr = ( int * )&localstack[ start + pos ];
-			*( float * )&data[ i ] = *source.floatPtr;
+		case D_EVENT_FLOAT:
+			source.intPtr = ( int * )&localstack[start + pos];
+			*( float * )&data[i] = *source.floatPtr;
 			break;
-		case D_EVENT_VECTOR :
-			source.intPtr = ( int * )&localstack[ start + pos ];
-			*( idVec3 ** )&data[ i ] = source.vectorPtr;
+		case D_EVENT_VECTOR:
+			source.intPtr = ( int * )&localstack[start + pos];
+			*( idVec3 ** )&data[i] = source.vectorPtr;
 			break;
-		case D_EVENT_STRING :
-			*( const char ** )&data[ i ] = ( char * )&localstack[ start + pos ];
+		case D_EVENT_STRING:
+			*( const char ** )&data[i] = ( char * )&localstack[start + pos];
 			break;
-		case D_EVENT_ENTITY :
-			source.intPtr = ( int * )&localstack[ start + pos ];
-			*( idEntity ** )&data[ i ] = GetEntity( *source.entityNumberPtr );
-			if( !*( idEntity ** )&data[ i ] ) {
+		case D_EVENT_ENTITY:
+			source.intPtr = ( int * )&localstack[start + pos];
+			*( idEntity ** )&data[i] = GetEntity( *source.entityNumberPtr );
+			if( !*( idEntity ** )&data[i] ) {
 				Warning( "Entity not found for event '%s'. Terminating thread.", evdef->GetName() );
 				threadDying = true;
 				PopParms( argsize );
 				return;
 			}
 			break;
-		case D_EVENT_ENTITY_NULL :
-			source.intPtr = ( int * )&localstack[ start + pos ];
-			*( idEntity ** )&data[ i ] = GetEntity( *source.entityNumberPtr );
+		case D_EVENT_ENTITY_NULL:
+			source.intPtr = ( int * )&localstack[start + pos];
+			*( idEntity ** )&data[i] = GetEntity( *source.entityNumberPtr );
 			break;
-		case D_EVENT_TRACE :
+		case D_EVENT_TRACE:
 			Error( "trace type not supported from script for '%s' event.", evdef->GetName() );
 			break;
-		default :
+		default:
 			Error( "Invalid arg format string for '%s' event.", evdef->GetName() );
 			break;
 		}
-		pos += func->parmSize[ j++ ];
+		pos += func->parmSize[j++];
 	}
 	popParms = argsize;
 	thread->ProcessEventArgPtr( evdef, data );
@@ -1336,7 +1336,7 @@ bool idInterpreter::Execute( void ) {
 			var_a = GetVariable( st->a );
 			obj = GetScriptObject( *var_a.entityNumberPtr );
 			if( obj ) {
-				var.bytePtr = &obj->data[ st->b->value.ptrOffset ];
+				var.bytePtr = &obj->data[st->b->value.ptrOffset];
 				( *var.floatPtr )++;
 			}
 			break;
@@ -1348,7 +1348,7 @@ bool idInterpreter::Execute( void ) {
 			var_a = GetVariable( st->a );
 			obj = GetScriptObject( *var_a.entityNumberPtr );
 			if( obj ) {
-				var.bytePtr = &obj->data[ st->b->value.ptrOffset ];
+				var.bytePtr = &obj->data[st->b->value.ptrOffset];
 				( *var.floatPtr )--;
 			}
 			break;
@@ -1539,7 +1539,7 @@ bool idInterpreter::Execute( void ) {
 			var_c = GetVariable( st->c );
 			obj = GetScriptObject( *var_a.entityNumberPtr );
 			if( obj ) {
-				var_c.evalPtr->bytePtr = &obj->data[ st->b->value.ptrOffset ];
+				var_c.evalPtr->bytePtr = &obj->data[st->b->value.ptrOffset];
 			} else {
 				var_c.evalPtr->bytePtr = NULL;
 			}
@@ -1549,7 +1549,7 @@ bool idInterpreter::Execute( void ) {
 			var_c = GetVariable( st->c );
 			obj = GetScriptObject( *var_a.entityNumberPtr );
 			if( obj ) {
-				var.bytePtr = &obj->data[ st->b->value.ptrOffset ];
+				var.bytePtr = &obj->data[st->b->value.ptrOffset];
 				*var_c.floatPtr = *var.floatPtr;
 			} else {
 				*var_c.floatPtr = 0.0f;
@@ -1560,7 +1560,7 @@ bool idInterpreter::Execute( void ) {
 			var_c = GetVariable( st->c );
 			obj = GetScriptObject( *var_a.entityNumberPtr );
 			if( obj ) {
-				var.bytePtr = &obj->data[ st->b->value.ptrOffset ];
+				var.bytePtr = &obj->data[st->b->value.ptrOffset];
 				*var_c.entityNumberPtr = *var.entityNumberPtr;
 			} else {
 				*var_c.entityNumberPtr = 0;
@@ -1571,7 +1571,7 @@ bool idInterpreter::Execute( void ) {
 			var_c = GetVariable( st->c );
 			obj = GetScriptObject( *var_a.entityNumberPtr );
 			if( obj ) {
-				var.bytePtr = &obj->data[ st->b->value.ptrOffset ];
+				var.bytePtr = &obj->data[st->b->value.ptrOffset];
 				*var_c.intPtr = *var.intPtr;
 			} else {
 				*var_c.intPtr = 0;
@@ -1581,7 +1581,7 @@ bool idInterpreter::Execute( void ) {
 			var_a = GetVariable( st->a );
 			obj = GetScriptObject( *var_a.entityNumberPtr );
 			if( obj ) {
-				var.bytePtr = &obj->data[ st->b->value.ptrOffset ];
+				var.bytePtr = &obj->data[st->b->value.ptrOffset];
 				SetString( st->c, var.stringPtr );
 			} else {
 				SetString( st->c, "" );
@@ -1592,7 +1592,7 @@ bool idInterpreter::Execute( void ) {
 			var_c = GetVariable( st->c );
 			obj = GetScriptObject( *var_a.entityNumberPtr );
 			if( obj ) {
-				var.bytePtr = &obj->data[ st->b->value.ptrOffset ];
+				var.bytePtr = &obj->data[st->b->value.ptrOffset];
 				*var_c.vectorPtr = *var.vectorPtr;
 			} else {
 				var_c.vectorPtr->Zero();
@@ -1605,7 +1605,7 @@ bool idInterpreter::Execute( void ) {
 			if( !obj ) {
 				*var_c.entityNumberPtr = 0;
 			} else {
-				var.bytePtr = &obj->data[ st->b->value.ptrOffset ];
+				var.bytePtr = &obj->data[st->b->value.ptrOffset];
 				*var_c.entityNumberPtr = *var.entityNumberPtr;
 			}
 			break;
@@ -1719,7 +1719,7 @@ bool idInterpreter::EnterFunctionVarArgVN( const function_t *func, bool clearSta
 		case 'f':
 			f = va_arg( args, double );
 			// i = static_cast<int>(f);
-			i = *( ( int * ) &f );
+			i = *( ( int * )&f );
 			Push( i );
 			break;
 		case 'd':

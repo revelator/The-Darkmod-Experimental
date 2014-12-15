@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __GAME_PVS_H__
 #define __GAME_PVS_H__
@@ -23,9 +23,9 @@
 /*
 ===================================================================================
 
-	PVS
+PVS
 
-	Note: mirrors and other special view portals are not taken into account
+Note: mirrors and other special view portals are not taken into account
 
 ===================================================================================
 */
@@ -43,9 +43,9 @@ typedef struct pvsCurrent_s {
 #define MAX_CURRENT_PVS		16		// must be a power of 2
 
 typedef enum {
-	PVS_NORMAL				= 0,	// PVS through portals taking portal states into account
-	PVS_ALL_PORTALS_OPEN			= 1,	// PVS through portals assuming all portals are open
-	PVS_CONNECTED_AREAS			= 2	// PVS considering all topologically connected areas visible
+	PVS_NORMAL = 0,	// PVS through portals taking portal states into account
+	PVS_ALL_PORTALS_OPEN = 1,	// PVS through portals assuming all portals are open
+	PVS_CONNECTED_AREAS = 2	// PVS considering all topologically connected areas visible
 } pvsType_t;
 
 class idPVS {

@@ -23,7 +23,7 @@ static double rate_mapping_22_uncoupled[4] = {
 	16000., 28000., 50000., 90000.
 };
 
-static double _psy_lowpass_22[4] = {9.5, 11., 30., 99.};
+static double _psy_lowpass_22[4] = { 9.5, 11., 30., 99. };
 
 ve_setup_data_template ve_setup_22_stereo = {
 	3,
@@ -55,8 +55,8 @@ ve_setup_data_template ve_setup_22_stereo = {
 	_psy_compand_8_mapping,
 	_psy_compand_8_mapping,
 
-	{_noise_start_16, _noise_start_16},
-	{ _noise_part_16, _noise_part_16},
+	{ _noise_start_16, _noise_start_16 },
+	{ _noise_part_16, _noise_part_16 },
 	_noise_thresh_16,
 
 	_psy_ath_floater_16,
@@ -106,8 +106,8 @@ ve_setup_data_template ve_setup_22_uncoupled = {
 	_psy_compand_8_mapping,
 	_psy_compand_8_mapping,
 
-	{_noise_start_16, _noise_start_16},
-	{ _noise_part_16, _noise_part_16},
+	{ _noise_start_16, _noise_start_16 },
+	{ _noise_part_16, _noise_part_16 },
 	_noise_thresh_16,
 
 	_psy_ath_floater_16,

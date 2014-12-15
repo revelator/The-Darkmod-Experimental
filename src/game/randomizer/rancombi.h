@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 /************************ RANCOMBI.CPP ****************** AgF 2001-10-18 *
 *                                                                        *
 *  This file defines a template class for combining two different        *
@@ -37,7 +37,7 @@ class TRandomCombined : private RG1, private RG2 {
 public:
 	TRandomCombined( int32 seed = 19 ) : RG1( seed ), RG2( seed + 1 ) {};
 
-	void RandomInit( int32 seed ) {      // re-seed
+	void RandomInit( int32 seed ) {    // re-seed
 		RG1::RandomInit( seed );
 		RG2::RandomInit( seed + 1 );
 	}
@@ -50,7 +50,7 @@ public:
 		return r;
 	}
 
-	long IRandom( long min, long max ) {    // output random integer
+	long IRandom( long min, long max ) {  // output random integer
 		// get integer random number in desired interval
 		int iinterval = max - min + 1;
 		if( iinterval <= 0 ) {
@@ -74,14 +74,14 @@ public:
 #include "rancombi.cpp"
 
 int main() {
-  // Make an object of the template class. The names inside <> define the
-  // class names of the two random number generators to combine.
-  // Use time as seed.
-  TRandomCombined<TRanrotWGenerator,TRandomMersenne> RG(time(0));
+// Make an object of the template class. The names inside <> define the
+// class names of the two random number generators to combine.
+// Use time as seed.
+TRandomCombined<TRanrotWGenerator,TRandomMersenne> RG(time(0));
 
-  for (int i=0; i<20; i++) {
-    // generate 20 random floating point numbers and 20 random integers
-    printf("\n%14.10f   %2i",  RG.Random(),  RG.IRandom(0,99));}
+for (int i=0; i<20; i++) {
+// generate 20 random floating point numbers and 20 random integers
+printf("\n%14.10f   %2i",  RG.Random(),  RG.IRandom(0,99));}
 
-  return 0;}
+return 0;}
 */

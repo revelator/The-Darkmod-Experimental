@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -928,23 +928,23 @@ void CMissionManager::LoadModDetailsFromXml( const XmlDocumentPtr &doc, int modN
 
 	<?xml version="1.0"?>
 	<tdm>
-		<mission id="10">
-			<id>10</id>
-			<title>Trapped!</title>
-			<releaseDate>2009-12-30</releaseDate>
-			<size>6.3</size>
-			<version>1</version>
-			<internalName>trapped</internalName>
-			<author>RailGun</author>
-			<description>I was hired ...</description>
-			<downloadLocations>
-				<downloadLocation language="English" url="http://www.bloodgate.com/mirrors/tdm/pub/pk4/fms/trapped.pk4" />
-			</downloadLocations>
-			<screenshots>
-				<screenshot thumbpath="/darkmod/screenshots/tp2-1442_thumb.png" path="/darkmod/screenshots/tp2-1442.jpg" />
-				<screenshot thumbpath="/darkmod/screenshots/tp10317_thumb.png" path="/darkmod/screenshots/tp10317.jpg" />
-			</screenshots>
-		</mission>
+	<mission id="10">
+	<id>10</id>
+	<title>Trapped!</title>
+	<releaseDate>2009-12-30</releaseDate>
+	<size>6.3</size>
+	<version>1</version>
+	<internalName>trapped</internalName>
+	<author>RailGun</author>
+	<description>I was hired ...</description>
+	<downloadLocations>
+	<downloadLocation language="English" url="http://www.bloodgate.com/mirrors/tdm/pub/pk4/fms/trapped.pk4" />
+	</downloadLocations>
+	<screenshots>
+	<screenshot thumbpath="/darkmod/screenshots/tp2-1442_thumb.png" path="/darkmod/screenshots/tp2-1442.jpg" />
+	<screenshot thumbpath="/darkmod/screenshots/tp10317_thumb.png" path="/darkmod/screenshots/tp10317.jpg" />
+	</screenshots>
+	</mission>
 	</tdm>
 
 	*/
@@ -981,8 +981,8 @@ void CMissionManager::LoadModListFromXml( const XmlDocumentPtr &doc ) {
 	/* Example XML Snippet
 
 	<mission id="11" title="Living Expenses" releaseDate="2010-01-02" size="5.9" author="Sonosuke">
-		<downloadLocation language="English" url="http://www.bloodgate.com/mirrors/tdm/pub/pk4/fms/living_expenses.pk4"/>
-		<downloadLocation language="German" url="http://www.bloodgate.com/mirrors/tdm/pub/pk4/fms/living_expenses_de.pk4"/>
+	<downloadLocation language="English" url="http://www.bloodgate.com/mirrors/tdm/pub/pk4/fms/living_expenses.pk4"/>
+	<downloadLocation language="German" url="http://www.bloodgate.com/mirrors/tdm/pub/pk4/fms/living_expenses_de.pk4"/>
 	</mission>
 
 	*/

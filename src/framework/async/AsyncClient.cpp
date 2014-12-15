@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -26,9 +26,9 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 #include "../Session_local.h"
 
-const int SETUP_CONNECTION_RESEND_TIME	= 1000;
-const int EMPTY_RESEND_TIME				= 500;
-const int PREDICTION_FAST_ADJUST		= 4;
+const int SETUP_CONNECTION_RESEND_TIME = 1000;
+const int EMPTY_RESEND_TIME = 500;
+const int PREDICTION_FAST_ADJUST = 4;
 
 /*
 ==================
@@ -217,7 +217,7 @@ void idAsyncClient::ConnectToServer( const char *address ) {
 			session->MessageBox( MSG_OK, va( common->Translate( "#str_06733" ), serverNum ), common->Translate( "#str_06735" ), true );
 			return;
 		}
-		adr = serverList[ serverNum ].adr;
+		adr = serverList[serverNum].adr;
 	} else {
 		if( !Sys_StringToNetAdr( address, &adr, true ) ) {
 			session->MessageBox( MSG_OK, va( common->Translate( "#str_06734" ), address ), common->Translate( "#str_06735" ), true );
@@ -337,8 +337,8 @@ void idAsyncClient::GetNETServers( void ) {
 	byte		msgBuf[MAX_MESSAGE_SIZE];
 	idAsyncNetwork::LANServer.SetBool( false );
 	// NetScan only clears GUI and results, not the stored list
-	serverList.Clear( );
-	serverList.NetScan( );
+	serverList.Clear();
+	serverList.NetScan();
 	serverList.StartServers( true );
 	msg.Init( msgBuf, sizeof( msgBuf ) );
 	msg.WriteShort( CONNECTIONLESS_MESSAGE_ID );
@@ -362,7 +362,7 @@ idAsyncClient::ListServers
 void idAsyncClient::ListServers( void ) {
 	int i;
 	for( i = 0; i < serverList.Num(); i++ ) {
-		common->Printf( "%3d: %s %dms (%s)\n", i, serverList[i].serverInfo.GetString( "si_name" ), serverList[ i ].ping, Sys_NetAdrToString( serverList[i].adr ) );
+		common->Printf( "%3d: %s %dms (%s)\n", i, serverList[i].serverInfo.GetString( "si_name" ), serverList[i].ping, Sys_NetAdrToString( serverList[i].adr ) );
 	}
 }
 
@@ -527,7 +527,7 @@ void idAsyncClient::SendUserInfoToServer( void ) {
 	// send reliable client info to server
 	msg.Init( msgBuf, sizeof( msgBuf ) );
 	msg.WriteByte( CLIENT_RELIABLE_MESSAGE_CLIENTINFO );
-	msg.WriteDeltaDict( info, &sessLocal.mapSpawnData.userInfo[ clientNum ] );
+	msg.WriteDeltaDict( info, &sessLocal.mapSpawnData.userInfo[clientNum] );
 	if( !channel.SendReliableMessage( msg ) ) {
 		common->Error( "client->server reliable messages overflow\n" );
 	}
@@ -638,7 +638,7 @@ void idAsyncClient::InitGame( int serverGameInitId, int serverGameFrame, int ser
 	gameTimeResidual = 0;
 	memset( userCmds, 0, sizeof( userCmds ) );
 	for( int i = 0; i < MAX_ASYNC_CLIENTS; i++ ) {
-		sessLocal.mapSpawnData.userInfo[ i ].Clear();
+		sessLocal.mapSpawnData.userInfo[i].Clear();
 	}
 	sessLocal.mapSpawnData.serverInfo = serverSI;
 }
@@ -727,7 +727,7 @@ void idAsyncClient::ProcessUnreliableServerMessage( const idBitMsg &msg ) {
 		if( clientState == CS_CONNECTED ) {
 			gameTimeResidual = 0;
 			clientState = CS_INGAME;
-			assert( !sessLocal.GetActiveMenu( ) );
+			assert( !sessLocal.GetActiveMenu() );
 			if( idAsyncNetwork::verbose.GetInteger() ) {
 				common->Printf( "received first snapshot, gameInitId = %d, gameFrame %d gameTime %d\n", gameInitId, snapshotGameFrame, snapshotGameTime );
 			}
@@ -787,7 +787,7 @@ void idAsyncClient::ProcessReliableServerMessages( void ) {
 		case SERVER_RELIABLE_MESSAGE_CLIENTINFO: {
 			int clientNum;
 			clientNum = msg.ReadByte();
-			idDict &info = sessLocal.mapSpawnData.userInfo[ clientNum ];
+			idDict &info = sessLocal.mapSpawnData.userInfo[clientNum];
 			bool haveBase = ( msg.ReadBits( 1 ) != 0 );
 #if ID_CLIENTINFO_TAGS
 			int checksum = info.Checksum();
@@ -831,7 +831,7 @@ void idAsyncClient::ProcessReliableServerMessages( void ) {
 		case SERVER_RELIABLE_MESSAGE_DISCONNECT: {
 			int clientNum;
 			char string[MAX_STRING_CHARS];
-			clientNum = msg.ReadLong( );
+			clientNum = msg.ReadLong();
 			ReadLocalizedServerString( msg, string, MAX_STRING_CHARS );
 			if( clientNum == idAsyncClient::clientNum ) {
 				session->Stop();
@@ -839,8 +839,8 @@ void idAsyncClient::ProcessReliableServerMessages( void ) {
 				session->StartMenu();
 			} else {
 				common->Printf( "client %d %s\n", clientNum, string );
-				cmdSystem->BufferCommandText( CMD_EXEC_NOW, va( "addChatLine \"%s^0 %s\"", sessLocal.mapSpawnData.userInfo[ clientNum ].GetString( "ui_name" ), string ) );
-				sessLocal.mapSpawnData.userInfo[ clientNum ].Clear();
+				cmdSystem->BufferCommandText( CMD_EXEC_NOW, va( "addChatLine \"%s^0 %s\"", sessLocal.mapSpawnData.userInfo[clientNum].GetString( "ui_name" ), string ) );
+				sessLocal.mapSpawnData.userInfo[clientNum].Clear();
 			}
 			break;
 		}
@@ -863,7 +863,7 @@ void idAsyncClient::ProcessReliableServerMessages( void ) {
 		}
 		case SERVER_RELIABLE_MESSAGE_ENTERGAME: {
 			SendUserInfoToServer();
-			game->SetUserInfo( clientNum, sessLocal.mapSpawnData.userInfo[ clientNum ], true, false );
+			game->SetUserInfo( clientNum, sessLocal.mapSpawnData.userInfo[clientNum], true, false );
 			cvarSystem->ClearModifiedFlags( CVAR_USERINFO );
 			break;
 		}
@@ -882,7 +882,7 @@ idAsyncClient::ProcessChallengeResponseMessage
 ==================
 */
 void idAsyncClient::ProcessChallengeResponseMessage( const netadr_t from, const idBitMsg &msg ) {
-	char serverGame[ MAX_STRING_CHARS ], serverGameBase[ MAX_STRING_CHARS ];
+	char serverGame[MAX_STRING_CHARS], serverGameBase[MAX_STRING_CHARS];
 	if( clientState != CS_CHALLENGING ) {
 		common->Printf( "Unwanted challenge response received.\n" );
 		return;
@@ -992,11 +992,11 @@ void idAsyncClient::ProcessInfoResponseMessage( const netadr_t from, const idBit
 		serverInfo.serverInfo.Print();
 	}
 	for( i = msg.ReadByte(); i < MAX_ASYNC_CLIENTS; i = msg.ReadByte() ) {
-		serverInfo.pings[ serverInfo.clients ] = msg.ReadShort();
-		serverInfo.rate[ serverInfo.clients ] = msg.ReadLong();
-		msg.ReadString( serverInfo.nickname[ serverInfo.clients ], MAX_NICKLEN );
+		serverInfo.pings[serverInfo.clients] = msg.ReadShort();
+		serverInfo.rate[serverInfo.clients] = msg.ReadLong();
+		msg.ReadString( serverInfo.nickname[serverInfo.clients], MAX_NICKLEN );
 		if( verbose ) {
-			common->Printf( "client %2d: %s, ping = %d, rate = %d\n", i, serverInfo.nickname[ serverInfo.clients ], serverInfo.pings[ serverInfo.clients ], serverInfo.rate[ serverInfo.clients ] );
+			common->Printf( "client %2d: %s, ping = %d, rate = %d\n", i, serverInfo.nickname[serverInfo.clients], serverInfo.pings[serverInfo.clients], serverInfo.rate[serverInfo.clients] );
 		}
 		serverInfo.clients++;
 	}
@@ -1011,7 +1011,7 @@ idAsyncClient::ProcessPrintMessage
 ==================
 */
 void idAsyncClient::ProcessPrintMessage( const netadr_t from, const idBitMsg &msg ) {
-	char		string[ MAX_STRING_CHARS ];
+	char		string[MAX_STRING_CHARS];
 	int			opcode;
 	int			game_opcode = ALLOW_YES;
 	const char	*retpass;
@@ -1026,7 +1026,7 @@ void idAsyncClient::ProcessPrintMessage( const netadr_t from, const idBitMsg &ms
 		if( game_opcode == ALLOW_BADPASS ) {
 			retpass = session->MessageBox( MSG_PROMPT, common->Translate( "#str_04321" ), string, true, "passprompt_ok" );
 			ClearPendingPackets();
-			guiNetMenu->SetStateString( "status",  common->Translate( "#str_04322" ) );
+			guiNetMenu->SetStateString( "status", common->Translate( "#str_04322" ) );
 			if( retpass ) {
 				// #790
 				cvarSystem->SetCVarString( "password", "" );
@@ -1080,77 +1080,77 @@ idAsyncClient::ProcessAuthKeyMessage
 	idStr				auth_msg;
 
 	if ( clientState != CS_CONNECTING && !session->WaitingForGameAuth() ) {
-		common->Printf( "clientState != CS_CONNECTING, not waiting for game auth, authKey ignored\n" );
-		return;
+	common->Printf( "clientState != CS_CONNECTING, not waiting for game auth, authKey ignored\n" );
+	return;
 	}
 
 	authMsg = (authKeyMsg_t)msg.ReadByte();
 	if ( authMsg == AUTHKEY_BADKEY ) {
-		valid[ 0 ] = valid[ 1 ] = true;
-		key_index = 0;
-		authBadStatus = (authBadKeyStatus_t)msg.ReadByte();
-		switch ( authBadStatus ) {
-		case AUTHKEY_BAD_INVALID:
-			valid[ 0 ] = ( msg.ReadByte() == 1 );
-			valid[ 1 ] = ( msg.ReadByte() == 1 );
-			idAsyncNetwork::BuildInvalidKeyMsg( auth_msg, valid );
-			break;
-		case AUTHKEY_BAD_BANNED:
-			key_index = msg.ReadByte();
-			auth_msg = common->Translate( va( "#str_0719%1d", 6 + key_index ) );
-			auth_msg += "\n";
-			auth_msg += common->Translate( "#str_04304" );
-			valid[ key_index ] = false;
-			break;
-		case AUTHKEY_BAD_INUSE:
-			key_index = msg.ReadByte();
-			auth_msg = common->Translate( va( "#str_0719%1d", 8 + key_index ) );
-			auth_msg += "\n";
-			auth_msg += common->Translate( "#str_04304" );
-			valid[ key_index ] = false;
-			break;
-		case AUTHKEY_BAD_MSG:
-			// a general message explaining why this key is denied
-			// no specific use for this atm. let's not clear the keys either
-			msg.ReadString( read_string, MAX_STRING_CHARS );
-			auth_msg = read_string;
-			break;
-		}
-		common->DPrintf( "auth deny: %s\n", auth_msg.c_str() );
-
-		// keys to be cleared. applies to both net connect and game auth
-		session->ClearCDKey( valid );
-
-		// get rid of the bad key - at least that's gonna annoy people who stole a fake key
-		if ( clientState == CS_CONNECTING ) {
-			while ( 1 ) {
-				// here we use the auth status message
-				retkey = session->MessageBox( MSG_CDKEY, auth_msg, common->Translate( "#str_04325" ), true );
-				if ( retkey ) {
-					if ( session->CheckKey( retkey, true, valid ) ) {
-						cmdSystem->BufferCommandText( CMD_EXEC_NOW, "reconnect" );
-					} else {
-						// build a more precise message about the offline check failure
-						idAsyncNetwork::BuildInvalidKeyMsg( auth_msg, valid );
-						session->MessageBox( MSG_OK, auth_msg.c_str(), common->Translate( "#str_04327" ), true );
-						continue;
-					}
-				} else {
-					cmdSystem->BufferCommandText( CMD_EXEC_NOW, "disconnect" );
-				}
-				break;
-			}
-		} else {
-			// forward the auth status information to the session code
-			session->CDKeysAuthReply( false, auth_msg );
-		}
-	} else {
-		msg.ReadString( read_string, MAX_STRING_CHARS );
-		cvarSystem->SetCVarString( "com_guid", read_string );
-		common->Printf( "guid set to %s\n", read_string );
-		session->CDKeysAuthReply( true, NULL );
+	valid[ 0 ] = valid[ 1 ] = true;
+	key_index = 0;
+	authBadStatus = (authBadKeyStatus_t)msg.ReadByte();
+	switch ( authBadStatus ) {
+	case AUTHKEY_BAD_INVALID:
+	valid[ 0 ] = ( msg.ReadByte() == 1 );
+	valid[ 1 ] = ( msg.ReadByte() == 1 );
+	idAsyncNetwork::BuildInvalidKeyMsg( auth_msg, valid );
+	break;
+	case AUTHKEY_BAD_BANNED:
+	key_index = msg.ReadByte();
+	auth_msg = common->Translate( va( "#str_0719%1d", 6 + key_index ) );
+	auth_msg += "\n";
+	auth_msg += common->Translate( "#str_04304" );
+	valid[ key_index ] = false;
+	break;
+	case AUTHKEY_BAD_INUSE:
+	key_index = msg.ReadByte();
+	auth_msg = common->Translate( va( "#str_0719%1d", 8 + key_index ) );
+	auth_msg += "\n";
+	auth_msg += common->Translate( "#str_04304" );
+	valid[ key_index ] = false;
+	break;
+	case AUTHKEY_BAD_MSG:
+	// a general message explaining why this key is denied
+	// no specific use for this atm. let's not clear the keys either
+	msg.ReadString( read_string, MAX_STRING_CHARS );
+	auth_msg = read_string;
+	break;
 	}
-}*/
+	common->DPrintf( "auth deny: %s\n", auth_msg.c_str() );
+
+	// keys to be cleared. applies to both net connect and game auth
+	session->ClearCDKey( valid );
+
+	// get rid of the bad key - at least that's gonna annoy people who stole a fake key
+	if ( clientState == CS_CONNECTING ) {
+	while ( 1 ) {
+	// here we use the auth status message
+	retkey = session->MessageBox( MSG_CDKEY, auth_msg, common->Translate( "#str_04325" ), true );
+	if ( retkey ) {
+	if ( session->CheckKey( retkey, true, valid ) ) {
+	cmdSystem->BufferCommandText( CMD_EXEC_NOW, "reconnect" );
+	} else {
+	// build a more precise message about the offline check failure
+	idAsyncNetwork::BuildInvalidKeyMsg( auth_msg, valid );
+	session->MessageBox( MSG_OK, auth_msg.c_str(), common->Translate( "#str_04327" ), true );
+	continue;
+	}
+	} else {
+	cmdSystem->BufferCommandText( CMD_EXEC_NOW, "disconnect" );
+	}
+	break;
+	}
+	} else {
+	// forward the auth status information to the session code
+	session->CDKeysAuthReply( false, auth_msg );
+	}
+	} else {
+	msg.ReadString( read_string, MAX_STRING_CHARS );
+	cvarSystem->SetCVarString( "com_guid", read_string );
+	common->Printf( "guid set to %s\n", read_string );
+	session->CDKeysAuthReply( true, NULL );
+	}
+	}*/
 
 /*
 ==================
@@ -1158,7 +1158,7 @@ idAsyncClient::ProcessVersionMessage
 ==================
 */
 void idAsyncClient::ProcessVersionMessage( const netadr_t from, const idBitMsg &msg ) {
-	char string[ MAX_STRING_CHARS ];
+	char string[MAX_STRING_CHARS];
 	if( updateState != UPDATE_SENT ) {
 		common->Printf( "ProcessVersionMessage: version reply, != UPDATE_SENT\n" );
 		return;
@@ -1189,7 +1189,7 @@ void idAsyncClient::ConnectionlessMessage( const netadr_t from, const idBitMsg &
 		return;
 	}
 	// from master server:
-	if( Sys_CompareNetAdrBase( from, idAsyncNetwork::GetMasterAddress( ) ) ) {
+	if( Sys_CompareNetAdrBase( from, idAsyncNetwork::GetMasterAddress() ) ) {
 		// server list
 		if( idStr::Icmp( string, "servers" ) == 0 ) {
 			ProcessServersListMessage( from, msg );
@@ -1197,8 +1197,8 @@ void idAsyncClient::ConnectionlessMessage( const netadr_t from, const idBitMsg &
 		}
 		/*
 		if ( idStr::Icmp( string, "authKey" ) == 0 ) {
-			ProcessAuthKeyMessage( from, msg );
-			return;
+		ProcessAuthKeyMessage( from, msg );
+		return;
 		}
 		*/
 		if( idStr::Icmp( string, "newVersion" ) == 0 ) {
@@ -1329,10 +1329,10 @@ void idAsyncClient::SetupConnection( void ) {
 			const char *xpkey = session->GetCDKey( true );
 			msg.WriteByte( xpkey ? 1 : 0 );
 			if ( xpkey ) {
-				msg.WriteString( xpkey );
+			msg.WriteString( xpkey );
 			}
 			clientPort.SendPacket( idAsyncNetwork::GetMasterAddress(), msg.GetData(), msg.GetSize() );
-		}*/
+			}*/
 	} else {
 		return;
 	}
@@ -1444,9 +1444,9 @@ void idAsyncClient::RunFrame( void ) {
 	}
 	// check for user info changes
 	if( cvarSystem->GetModifiedFlags() & CVAR_USERINFO ) {
-		game->ThrottleUserInfo( );
-		SendUserInfoToServer( );
-		game->SetUserInfo( clientNum, sessLocal.mapSpawnData.userInfo[ clientNum ], true, false );
+		game->ThrottleUserInfo();
+		SendUserInfoToServer();
+		game->SetUserInfo( clientNum, sessLocal.mapSpawnData.userInfo[clientNum], true, false );
 		cvarSystem->ClearModifiedFlags( CVAR_USERINFO );
 	}
 	if( gameTimeResidual + clientPredictTime >= USERCMD_MSEC ) {
@@ -1468,7 +1468,7 @@ void idAsyncClient::RunFrame( void ) {
 			// indicate the last prediction frame before a render
 			bool lastPredictFrame = ( snapshotGameFrame + 1 >= gameFrame && gameTimeResidual + clientPredictTime < USERCMD_MSEC );
 			// run client prediction
-			gameReturn_t ret = game->ClientPrediction( clientNum, userCmds[ snapshotGameFrame & ( MAX_USERCMD_BACKUP - 1 ) ], lastPredictFrame );
+			gameReturn_t ret = game->ClientPrediction( clientNum, userCmds[snapshotGameFrame & ( MAX_USERCMD_BACKUP - 1 )], lastPredictFrame );
 			idAsyncNetwork::ExecuteSessionCommand( ret.sessionCommand );
 			snapshotGameFrame++;
 			snapshotGameTime += USERCMD_MSEC;
@@ -1561,7 +1561,7 @@ void idAsyncClient::HandleDownloads( void ) {
 				} else {
 					// we're just creating the file at toplevel inside fs_savepath
 					updateURL.ExtractFileName( updateFile );
-					idFile_Permanent *f = static_cast< idFile_Permanent *>( fileSystem->OpenFileWrite( updateFile ) );
+					idFile_Permanent *f = static_cast<idFile_Permanent *>( fileSystem->OpenFileWrite( updateFile ) );
 					dltotal = 0;
 					dlnow = 0;
 					backgroundDownload.completed = false;
@@ -1590,7 +1590,7 @@ void idAsyncClient::HandleDownloads( void ) {
 							session->MessageBox( MSG_OK, va( common->Translate( "#str_04333" ), fullPath.c_str() ), common->Translate( "#str_04334" ), true );
 						}
 					} else {
-						if( backgroundDownload.url.dlerror[ 0 ] ) {
+						if( backgroundDownload.url.dlerror[0] ) {
 							common->Warning( "update download failed. curl error: %s", backgroundDownload.url.dlerror );
 						}
 						SendVersionDLUpdate( 2 );
@@ -1614,13 +1614,13 @@ void idAsyncClient::HandleDownloads( void ) {
 			int progress_start, progress_end;
 			currentDlSize = 0;
 			do {
-				if( dlList[ 0 ].url[ 0 ] == '\0' ) {
+				if( dlList[0].url[0] == '\0' ) {
 					// ignore empty files
 					dlList.RemoveIndex( 0 );
 					continue;
 				}
-				common->Printf( "start download for %s\n", dlList[ 0 ].url.c_str() );
-				idFile_Permanent *f = static_cast< idFile_Permanent *>( fileSystem->MakeTemporaryFile( ) );
+				common->Printf( "start download for %s\n", dlList[0].url.c_str() );
+				idFile_Permanent *f = static_cast<idFile_Permanent *>( fileSystem->MakeTemporaryFile() );
 				if( !f ) {
 					common->Warning( "could not create temporary file" );
 					dlList.Clear();
@@ -1631,18 +1631,18 @@ void idAsyncClient::HandleDownloads( void ) {
 				backgroundDownload.f = f;
 				backgroundDownload.url.status = DL_WAIT;
 				backgroundDownload.url.dlnow = 0;
-				backgroundDownload.url.dltotal = dlList[ 0 ].size;
-				backgroundDownload.url.url = dlList[ 0 ].url;
+				backgroundDownload.url.dltotal = dlList[0].size;
+				backgroundDownload.url.url = dlList[0].url;
 				fileSystem->BackgroundDownload( &backgroundDownload );
 				idStr dltitle;
 				// "Downloading %s"
-				sprintf( dltitle, common->Translate( "#str_07213" ), dlList[ 0 ].filename.c_str() );
+				sprintf( dltitle, common->Translate( "#str_07213" ), dlList[0].filename.c_str() );
 				if( numPaks > 1 ) {
 					dltitle += va( " (%d/%d)", pakCount, numPaks );
 				}
 				if( totalDlSize ) {
 					progress_start = ( int )( ( float )currentDlSize * 100.0f / ( float )totalDlSize );
-					progress_end = ( int )( ( float )( currentDlSize + dlList[ 0 ].size ) * 100.0f / ( float )totalDlSize );
+					progress_end = ( int )( ( float )( currentDlSize + dlList[0].size ) * 100.0f / ( float )totalDlSize );
 				} else {
 					progress_start = 0;
 					progress_end = 100;
@@ -1658,7 +1658,7 @@ void idAsyncClient::HandleDownloads( void ) {
 					int			checksum;
 					common->Printf( "file downloaded\n" );
 					idStr finalPath = cvarSystem->GetCVarString( "fs_savepath" );
-					finalPath.AppendPath( dlList[ 0 ].filename );
+					finalPath.AppendPath( dlList[0].filename );
 					fileSystem->CreateOSPath( finalPath );
 					// do the final copy ourselves so we do by small chunks in case the file is big
 					saveas = fileSystem->OpenExplicitFileWrite( finalPath );
@@ -1683,19 +1683,19 @@ void idAsyncClient::HandleDownloads( void ) {
 					common->Printf( "saved as %s\n", finalPath.c_str() );
 					Mem_Free( buf );
 					// add that file to our paks list
-					checksum = fileSystem->AddZipFile( dlList[ 0 ].filename );
+					checksum = fileSystem->AddZipFile( dlList[0].filename );
 					// verify the checksum to be what the server says
-					if( !checksum || checksum != dlList[ 0 ].checksum ) {
+					if( !checksum || checksum != dlList[0].checksum ) {
 						// "pak is corrupted ( checksum 0x%x, expected 0x%x )"
-						session->MessageBox( MSG_OK, va( common->Translate( "#str_07214" ) , checksum, dlList[0].checksum ), "Download failed", true );
-						fileSystem->RemoveFile( dlList[ 0 ].filename );
+						session->MessageBox( MSG_OK, va( common->Translate( "#str_07214" ), checksum, dlList[0].checksum ), "Download failed", true );
+						fileSystem->RemoveFile( dlList[0].filename );
 						dlList.Clear();
 						return;
 					}
-					currentDlSize += dlList[ 0 ].size;
+					currentDlSize += dlList[0].size;
 				} else {
-					common->Warning( "download failed: %s", dlList[ 0 ].url.c_str() );
-					if( backgroundDownload.url.dlerror[ 0 ] ) {
+					common->Warning( "download failed: %s", dlList[0].url.c_str() );
+					if( backgroundDownload.url.dlerror[0] ) {
 						common->Warning( "curl error: %s", backgroundDownload.url.dlerror );
 					}
 					// "The download failed or was cancelled"
@@ -1733,7 +1733,7 @@ idAsyncClient::SendAuthCheck
 	InitPort();
 	clientPort.SendPacket( idAsyncNetwork::GetMasterAddress(), msg.GetData(), msg.GetSize() );
 	return true;
-}*/
+	}*/
 
 /*
 ===============
@@ -1756,7 +1756,7 @@ idAsyncClient::ProcessDownloadInfoMessage
 ===============
 */
 void idAsyncClient::ProcessDownloadInfoMessage( const netadr_t from, const idBitMsg &msg ) {
-	char			buf[ MAX_STRING_CHARS ];
+	char			buf[MAX_STRING_CHARS];
 	int				srvDlRequest = msg.ReadLong();
 	int				infoType = msg.ReadByte();
 	int				pakDl;
@@ -1777,7 +1777,7 @@ void idAsyncClient::ProcessDownloadInfoMessage( const netadr_t from, const idBit
 		// "You are missing required pak files to connect to this server.\nThe server gave a web page though:\n%s\nDo you want to go there now?"
 		// "Missing required files"
 		if( session->MessageBox( MSG_YESNO, va( common->Translate( "#str_07217" ), buf ),
-								 common->Translate( "#str_07218" ), true, "yes" )[ 0 ] ) {
+								 common->Translate( "#str_07218" ), true, "yes" )[0] ) {
 			sys->OpenURL( buf, true );
 		}
 	} else if( infoType == SERVER_DL_LIST ) {
@@ -1802,7 +1802,7 @@ void idAsyncClient::ProcessDownloadInfoMessage( const netadr_t from, const idBit
 				entry.url = buf;
 				entry.size = msg.ReadLong();
 				// checksums are not transmitted, we read them from the dl request we sent
-				entry.checksum = dlChecksums[ pakIndex ];
+				entry.checksum = dlChecksums[pakIndex];
 				totalDlSize += entry.size;
 				dlList.Append( entry );
 				common->Printf( "download %s from %s ( 0x%x )\n", entry.filename.c_str(), entry.url.c_str(), entry.checksum );
@@ -1814,8 +1814,8 @@ void idAsyncClient::ProcessDownloadInfoMessage( const netadr_t from, const idBit
 				entry.checksum = 0;
 				dlList.Append( entry );
 				// first pak is game pak, only fail it if we actually requested it
-				if( pakIndex != 0 || dlChecksums[ 0 ] != 0 ) {
-					common->Printf( "no download offered for %s ( 0x%x )\n", entry.filename.c_str(), dlChecksums[ pakIndex ] );
+				if( pakIndex != 0 || dlChecksums[0] != 0 ) {
+					common->Printf( "no download offered for %s ( 0x%x )\n", entry.filename.c_str(), dlChecksums[pakIndex] );
 					gotAllFiles = false;
 				}
 			} else {
@@ -1841,7 +1841,7 @@ void idAsyncClient::ProcessDownloadInfoMessage( const netadr_t from, const idBit
 			asked = true;
 			// "You need to download game code to connect to this server. Are you sure? You should only answer yes if you trust the server administrators."
 			// "Missing game binaries"
-			if( !session->MessageBox( MSG_YESNO, common->Translate( "#str_07220" ), common->Translate( "#str_07221" ), true, "yes" )[ 0 ] ) {
+			if( !session->MessageBox( MSG_YESNO, common->Translate( "#str_07220" ), common->Translate( "#str_07221" ), true, "yes" )[0] ) {
 				dlList.Clear();
 				return;
 			}
@@ -1851,7 +1851,7 @@ void idAsyncClient::ProcessDownloadInfoMessage( const netadr_t from, const idBit
 			// "The server only offers to download some of the files required to connect ( %s ). Download anyway?"
 			// "Missing required files"
 			if( !session->MessageBox( MSG_YESNO, va( common->Translate( "#str_07222" ), sizeStr.c_str() ),
-									  common->Translate( "#str_07218" ), true, "yes" )[ 0 ] ) {
+									  common->Translate( "#str_07218" ), true, "yes" )[0] ) {
 				dlList.Clear();
 				return;
 			}
@@ -1860,7 +1860,7 @@ void idAsyncClient::ProcessDownloadInfoMessage( const netadr_t from, const idBit
 			// "You need to download some files to connect to this server ( %s ), proceed?"
 			// "Missing required files"
 			if( !session->MessageBox( MSG_YESNO, va( common->Translate( "#str_07224" ), sizeStr.c_str() ),
-									  common->Translate( "#str_07218" ), true, "yes" )[ 0 ] ) {
+									  common->Translate( "#str_07218" ), true, "yes" )[0] ) {
 				dlList.Clear();
 				return;
 			}
@@ -1878,11 +1878,11 @@ void idAsyncClient::ProcessDownloadInfoMessage( const netadr_t from, const idBit
 idAsyncClient::GetDownloadRequest
 ===============
 */
-int idAsyncClient::GetDownloadRequest( const int checksums[ MAX_PURE_PAKS ], int count, int gamePakChecksum ) {
-	assert( !checksums[ count ] ); // 0-terminated
-	if( memcmp( dlChecksums + 1, checksums, sizeof( int ) * count ) || gamePakChecksum != dlChecksums[ 0 ] ) {
+int idAsyncClient::GetDownloadRequest( const int checksums[MAX_PURE_PAKS], int count, int gamePakChecksum ) {
+	assert( !checksums[count] ); // 0-terminated
+	if( memcmp( dlChecksums + 1, checksums, sizeof( int ) * count ) || gamePakChecksum != dlChecksums[0] ) {
 		idRandom newreq;
-		dlChecksums[ 0 ] = gamePakChecksum;
+		dlChecksums[0] = gamePakChecksum;
 		memcpy( dlChecksums + 1, checksums, sizeof( int ) * MAX_PURE_PAKS );
 		newreq.SetSeed( Sys_Milliseconds() );
 		dlRequest = newreq.RandomInt();

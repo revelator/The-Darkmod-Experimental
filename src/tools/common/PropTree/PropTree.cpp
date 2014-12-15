@@ -34,31 +34,31 @@ static char THIS_FILE[] = __FILE__;
 #define PROPTREEITEM_COLRNG				5			// width of splitter
 
 //static AFX_EXTENSION_MODULE PropTreeDLL = {NULL, NULL};
-static const CString strOfficeFontName	= _T( "Tahoma" );
+static const CString strOfficeFontName = _T( "Tahoma" );
 static const CString strDefaultFontName = _T( "MS Sans Serif" );
 
 HINSTANCE ghInst;
 
 /*extern "C" int APIENTRY DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
 {
-	if (dwReason == DLL_PROCESS_ATTACH)
-	{
-		TRACE0("PROPTREE.DLL Initializing!\n");
+if (dwReason == DLL_PROCESS_ATTACH)
+{
+TRACE0("PROPTREE.DLL Initializing!\n");
 
-		if (!AfxInitExtensionModule(PropTreeDLL, hInstance))
-			return 0;
+if (!AfxInitExtensionModule(PropTreeDLL, hInstance))
+return 0;
 
-		new CDynLinkLibrary(PropTreeDLL);
+new CDynLinkLibrary(PropTreeDLL);
 
-		ghInst = hInstance;
-	}
-	else if (dwReason == DLL_PROCESS_DETACH)
-	{
-		TRACE0("PROPTREE.DLL Terminating!\n");
-		AfxTermExtensionModule(PropTreeDLL);
-	}
+ghInst = hInstance;
+}
+else if (dwReason == DLL_PROCESS_DETACH)
+{
+TRACE0("PROPTREE.DLL Terminating!\n");
+AfxTermExtensionModule(PropTreeDLL);
+}
 
-	return 1;
+return 1;
 }*/
 
 void InitPropTree( HINSTANCE hInstance ) {

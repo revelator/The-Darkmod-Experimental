@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -61,7 +61,7 @@ idCVar				idAsyncNetwork::idleServer( "si_idleServer", "0", CVAR_SYSTEM | CVAR_B
 idCVar				idAsyncNetwork::clientDownload( "net_clientDownload", "1", CVAR_SYSTEM | CVAR_INTEGER | CVAR_ARCHIVE, "client pk4 downloads policy: 0 - never, 1 - ask, 2 - always (will still prompt for binary code)" );
 
 int					idAsyncNetwork::realTime;
-master_t			idAsyncNetwork::masters[ MAX_MASTER_SERVERS ];
+master_t			idAsyncNetwork::masters[MAX_MASTER_SERVERS];
 
 /*
 ==================
@@ -106,7 +106,7 @@ idAsyncNetwork::GetMasterAddress
 netadr_t idAsyncNetwork::GetMasterAddress( void ) {
 	netadr_t ret;
 	GetMasterAddress( 0, ret );
-	return masters[ 0 ].address;
+	return masters[0].address;
 }
 
 /*
@@ -115,26 +115,26 @@ idAsyncNetwork::GetMasterAddress
 ==================
 */
 bool idAsyncNetwork::GetMasterAddress( int index, netadr_t &adr ) {
-	if( !masters[ index ].var ) {
+	if( !masters[index].var ) {
 		return false;
 	}
-	if( masters[ index ].var->GetString()[0] == '\0' ) {
+	if( masters[index].var->GetString()[0] == '\0' ) {
 		return false;
 	}
-	if( !masters[ index ].resolved || masters[ index ].var->IsModified() ) {
-		masters[ index ].var->ClearModified();
-		if( !Sys_StringToNetAdr( masters[ index ].var->GetString(), &masters[ index ].address, true ) ) {
-			common->Printf( "Failed to resolve master%d: %s\n", index, masters[ index ].var->GetString() );
-			memset( &masters[ index ].address, 0, sizeof( netadr_t ) );
-			masters[ index ].resolved = true;
+	if( !masters[index].resolved || masters[index].var->IsModified() ) {
+		masters[index].var->ClearModified();
+		if( !Sys_StringToNetAdr( masters[index].var->GetString(), &masters[index].address, true ) ) {
+			common->Printf( "Failed to resolve master%d: %s\n", index, masters[index].var->GetString() );
+			memset( &masters[index].address, 0, sizeof( netadr_t ) );
+			masters[index].resolved = true;
 			return false;
 		}
-		if( masters[ index ].address.port == 0 ) {
-			masters[ index ].address.port = atoi( IDNET_MASTER_PORT );
+		if( masters[index].address.port == 0 ) {
+			masters[index].address.port = atoi( IDNET_MASTER_PORT );
 		}
-		masters[ index ].resolved = true;
+		masters[index].resolved = true;
 	}
-	adr = masters[ index ].address;
+	adr = masters[index].address;
 	return true;
 }
 
@@ -429,7 +429,7 @@ void idAsyncNetwork::Kick_f( const idCmdArgs &args ) {
 idAsyncNetwork::GetNETServers
 ==================
 */
-void idAsyncNetwork::GetNETServers( ) {
+void idAsyncNetwork::GetNETServers() {
 	client.GetNETServers();
 }
 
@@ -448,7 +448,7 @@ idAsyncNetwork::ExecuteSessionCommand
 ==================
 */
 void idAsyncNetwork::ExecuteSessionCommand( const char *sessCmd ) {
-	if( sessCmd[ 0 ] ) {
+	if( sessCmd[0] ) {
 		if( !idStr::Icmp( sessCmd, "game_startmenu" ) ) {
 			session->SetGUI( game->StartMenu(), NULL );
 		}
@@ -478,8 +478,8 @@ void idAsyncNetwork::UpdateUI_f( const idCmdArgs &args ) {
 idAsyncNetwork::BuildInvalidKeyMsg
 ===============
 */
-void idAsyncNetwork::BuildInvalidKeyMsg( idStr &msg, bool valid[ 2 ] ) {
-	if( !valid[ 0 ] ) {
+void idAsyncNetwork::BuildInvalidKeyMsg( idStr &msg, bool valid[2] ) {
+	if( !valid[0] ) {
 		msg += common->Translate( "#str_07194" );
 	}
 	msg += "\n";

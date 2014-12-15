@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -36,7 +36,7 @@ static bool FormatIsDXT( int internalFormat ) {
 
 int MakePowerOfTwo( int num ) {
 	int		pot;
-	for( pot = 1 ; pot < num ; pot <<= 1 ) {
+	for( pot = 1; pot < num; pot <<= 1 ) {
 	}
 	return pot;
 }
@@ -121,11 +121,11 @@ void idImage::UploadCompressedNormalMap( int width, int height, const byte *rgba
 	}
 	in = rgba;
 	out = normals;
-	for( int i = 0 ; i < height ; i++, out += row, in += width * 4 ) {
-		for( int j = 0 ; j < width ; j++ ) {
-			x = in[ j * 4 + 0 ];
-			y = in[ j * 4 + 1 ];
-			z = in[ j * 4 + 2 ];
+	for( int i = 0; i < height; i++, out += row, in += width * 4 ) {
+		for( int j = 0; j < width; j++ ) {
+			x = in[j * 4 + 0];
+			y = in[j * 4 + 1];
+			z = in[j * 4 + 2];
 			int c;
 			if( x == 128 && y == 128 && z == 128 ) {
 				// the "nullnormal" color
@@ -156,22 +156,22 @@ void idImage::UploadCompressedNormalMap( int width, int height, const byte *rgba
 //=======================================================================
 
 static byte	mipBlendColors[16][4] = {
-	{0, 0, 0, 0},
-	{255, 0, 0, 128},
-	{0, 255, 0, 128},
-	{0, 0, 255, 128},
-	{255, 0, 0, 128},
-	{0, 255, 0, 128},
-	{0, 0, 255, 128},
-	{255, 0, 0, 128},
-	{0, 255, 0, 128},
-	{0, 0, 255, 128},
-	{255, 0, 0, 128},
-	{0, 255, 0, 128},
-	{0, 0, 255, 128},
-	{255, 0, 0, 128},
-	{0, 255, 0, 128},
-	{0, 0, 255, 128},
+	{ 0, 0, 0, 0 },
+	{ 255, 0, 0, 128 },
+	{ 0, 255, 0, 128 },
+	{ 0, 0, 255, 128 },
+	{ 255, 0, 0, 128 },
+	{ 0, 255, 0, 128 },
+	{ 0, 0, 255, 128 },
+	{ 255, 0, 0, 128 },
+	{ 0, 255, 0, 128 },
+	{ 0, 0, 255, 128 },
+	{ 255, 0, 0, 128 },
+	{ 0, 255, 0, 128 },
+	{ 0, 0, 255, 128 },
+	{ 255, 0, 0, 128 },
+	{ 0, 255, 0, 128 },
+	{ 0, 0, 255, 128 },
 };
 
 /*
@@ -197,7 +197,7 @@ GLenum idImage::SelectInternalFormat( const byte **dataPtrs, int numDataPtrs, in
 	aOr = 0;
 	aAnd = -1;
 	*monochromeResult = true;	// until shown otherwise
-	for( int side = 0 ; side < numDataPtrs ; side++ ) {
+	for( int side = 0; side < numDataPtrs; side++ ) {
 		scan = dataPtrs[side];
 		for( i = 0; i < c; i++, scan += 4 ) {
 			int		cor, cand;
@@ -568,8 +568,8 @@ void idImage::GenerateImage( const byte *pic, int width, int height,
 	// then it is loaded above and the swap never happens here
 	if( depth == TD_BUMP && globalImages->image_useNormalCompression.GetInteger() != 1 ) {
 		for( int i = 0; i < scaled_width * scaled_height * 4; i += 4 ) {
-			scaledBuffer[ i + 3 ] = scaledBuffer[ i ];
-			scaledBuffer[ i ] = 0;
+			scaledBuffer[i + 3] = scaledBuffer[i];
+			scaledBuffer[i] = 0;
 		}
 	}
 	// upload the main image level
@@ -762,7 +762,7 @@ void idImage::GenerateCubeImage( const byte *pic[6], int size,
 	if( !glConfig.isInitialized ) {
 		return;
 	}
-	if( ! glConfig.cubeMapAvailable ) {
+	if( !glConfig.cubeMapAvailable ) {
 		return;
 	}
 	width = height = size;
@@ -798,19 +798,19 @@ void idImage::GenerateCubeImage( const byte *pic[6], int size,
 	}
 	// upload the base level
 	// FIXME: support GL_COLOR_INDEX8_EXT?
-	for( i = 0 ; i < 6 ; i++ ) {
+	for( i = 0; i < 6; i++ ) {
 		glTexImage2D( GL_TEXTURE_CUBE_MAP_POSITIVE_X_EXT + i, 0, internalFormat, scaled_width, scaled_height, 0,
 					  GL_RGBA, GL_UNSIGNED_BYTE, pic[i] );
 	}
 	// create and upload the mip map levels
 	int		miplevel;
 	byte	*shrunk[6];
-	for( i = 0 ; i < 6 ; i++ ) {
+	for( i = 0; i < 6; i++ ) {
 		shrunk[i] = R_MipMap( pic[i], scaled_width, scaled_height, false );
 	}
 	miplevel = 1;
 	while( scaled_width > 1 ) {
-		for( i = 0 ; i < 6 ; i++ ) {
+		for( i = 0; i < 6; i++ ) {
 			byte	*shrunken;
 			glTexImage2D( GL_TEXTURE_CUBE_MAP_POSITIVE_X_EXT + i, miplevel, internalFormat,
 						  scaled_width / 2, scaled_height / 2, 0,
@@ -848,7 +848,7 @@ void idImage::ImageProgramStringToCompressedFileName( const char *imageProg, cha
 	f = fileName + strlen( fileName );
 	// convert all illegal characters to underscores
 	// this could conceivably produce a duplicated mapping, but we aren't going to worry about it
-	for( s = imageProg ; *s ; s++ ) {
+	for( s = imageProg; *s; s++ ) {
 		// tels: TODO: Why the strange difference between "/ ", ')', ',' and all the other special characters?
 		if( *s == '/' || *s == '\\' || *s == '(' ) {
 			*f = '/';
@@ -1061,7 +1061,7 @@ void idImage::WritePrecompressedImage() {
 	int uh = uploadHeight;
 	// Will be allocated first time through the loop
 	byte *data = NULL;
-	for( int level = 0 ; level < numLevels ; level++ ) {
+	for( int level = 0; level < numLevels; level++ ) {
 		int size = 0;
 		if( FormatIsDXT( altInternalFormat ) ) {
 			size = ( ( uw + 3 ) / 4 ) * ( ( uh + 3 ) / 4 ) *
@@ -1307,7 +1307,7 @@ void idImage::UploadPrecompressedImage( byte *data, int len ) {
 	int skipMip = 0;
 	GetDownsize( uploadWidth, uploadHeight );
 	byte *imagedata = data + sizeof( ddsFileHeader_t ) + 4;
-	for( int i = 0 ; i < numMipmaps; i++ ) {
+	for( int i = 0; i < numMipmaps; i++ ) {
 		int size = 0;
 		if( FormatIsDXT( internalFormat ) ) {
 			size = ( ( uw + 3 ) / 4 ) * ( ( uh + 3 ) / 4 ) *
@@ -1377,7 +1377,7 @@ void	idImage::ActuallyLoadImage( bool checkForPrecompressed, bool fromBackEnd ) 
 		}
 		GenerateCubeImage( ( const byte ** )pics, width, filter, allowDownSize, depth );
 		precompressedFile = false;
-		for( int i = 0 ; i < 6 ; i++ ) {
+		for( int i = 0; i < 6; i++ ) {
 			if( pics[i] ) {
 				R_StaticFree( pics[i] );
 			}
@@ -1425,7 +1425,7 @@ void idImage::PurgeImage() {
 		texnum = TEXTURE_NOT_LOADED;
 	}
 	// clear all the current binding caches, so the next bind will do a real one
-	for( int i = 0 ; i < MAX_MULTITEXTURE_UNITS ; i++ ) {
+	for( int i = 0; i < MAX_MULTITEXTURE_UNITS; i++ ) {
 		backEnd.glState.tmu[i].current2DMap = -1;
 		backEnd.glState.tmu[i].current3DMap = -1;
 		backEnd.glState.tmu[i].currentCubeMap = -1;
@@ -1477,7 +1477,7 @@ void idImage::Bind() {
 	bindCount++;
 	tmu_t *tmu = &backEnd.glState.tmu[backEnd.glState.currenttmu];
 	// enable or disable apropriate texture modes
-	if( tmu->textureType != type && ( backEnd.glState.currenttmu <	glConfig.maxTextureUnits ) ) {
+	if( tmu->textureType != type && ( backEnd.glState.currenttmu < glConfig.maxTextureUnits ) ) {
 		if( tmu->textureType == TT_CUBIC ) {
 			glDisable( GL_TEXTURE_CUBE_MAP_EXT );
 		} else if( tmu->textureType == TT_3D ) {
@@ -1690,14 +1690,14 @@ void idImage::UploadScratch( const byte *data, int cols, int rows ) {
 			uploadWidth = cols;
 			uploadHeight = rows;
 			// upload the base level
-			for( i = 0 ; i < 6 ; i++ ) {
+			for( i = 0; i < 6; i++ ) {
 				glTexImage2D( GL_TEXTURE_CUBE_MAP_POSITIVE_X_EXT + i, 0, GL_RGB8, cols, rows, 0,
 							  GL_RGBA, GL_UNSIGNED_BYTE, data + cols * rows * 4 * i );
 			}
 		} else {
 			// otherwise, just subimage upload it so that drivers can tell we are going to be changing
 			// it and don't try and do a texture compression
-			for( i = 0 ; i < 6 ; i++ ) {
+			for( i = 0; i < 6; i++ ) {
 				glTexSubImage2D( GL_TEXTURE_CUBE_MAP_POSITIVE_X_EXT + i, 0, 0, 0, cols, rows,
 								 GL_RGBA, GL_UNSIGNED_BYTE, data + cols * rows * 4 * i );
 			}
@@ -1729,7 +1729,7 @@ void idImage::UploadScratch( const byte *data, int cols, int rows ) {
 		// these probably should be clamp, but we have a lot of issues with editor
 		// geometry coming out with texcoords slightly off one side, resulting in
 		// a smear across the entire polygon (fixored revelator)
-		if (com_editorActive) {
+		if( com_editorActive ) {
 			glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
 			glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
 		} else {
@@ -1802,7 +1802,7 @@ void idImage::Print() const {
 		common->Printf( "<BAD TYPE:%i>", type );
 		break;
 	}
-	common->Printf( "%4i %4i ",	uploadWidth, uploadHeight );
+	common->Printf( "%4i %4i ", uploadWidth, uploadHeight );
 	switch( filter ) {
 	case TF_DEFAULT:
 		common->Printf( "dflt " );

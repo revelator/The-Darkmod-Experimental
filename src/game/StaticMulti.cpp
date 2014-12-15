@@ -1,33 +1,33 @@
 // vim:ts=4:sw=4:cindent
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 /*
 	StaticMulti - 	A variant of func_static that can use a idPhys_StaticMulti
-					for the clipmodel, e.g. has more than one clipmodel. Used
-					for entities with many models combined into one rendermodel.
+	for the clipmodel, e.g. has more than one clipmodel. Used
+	for entities with many models combined into one rendermodel.
 
 	Copyright (C) 2010-2011 Tels (Donated to The Dark Mod Team)
 
-TODO: track skin changes on the different LOD stages
+	TODO: track skin changes on the different LOD stages
 
-*/
+	*/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -49,7 +49,7 @@ int updates = 0;
 
 //===============================================================
 CLASS_DECLARATION( idStaticEntity, CStaticMulti )
-EVENT( EV_Activate,				CStaticMulti::Event_Activate )
+EVENT( EV_Activate, CStaticMulti::Event_Activate )
 END_CLASS
 
 /*
@@ -242,7 +242,7 @@ bool CStaticMulti::UpdateRenderModel( const bool force ) {
 		return false;
 	}
 #ifdef M_TIMINGS
-	updates ++;
+	updates++;
 	timer_total.Start();
 #endif
 	idVec3 origin = GetPhysics()->GetOrigin();
@@ -254,9 +254,9 @@ bool CStaticMulti::UpdateRenderModel( const bool force ) {
 	// apply all our changes to the offsets list
 	for( int i = 0; i < n; i++ ) {
 #ifdef M_DEBUG
-		gameLocal.Printf( "%s updating offset %i from LOD %i to %i\n", GetName(), i, m_Offsets->Ptr()[ m_Changes[i].entity ].lod, m_Changes[i].newLOD );
+		gameLocal.Printf( "%s updating offset %i from LOD %i to %i\n", GetName(), i, m_Offsets->Ptr()[m_Changes[i].entity].lod, m_Changes[i].newLOD );
 #endif
-		m_Offsets->Ptr()[ m_Changes[i].entity ].lod = m_Changes[i].newLOD;
+		m_Offsets->Ptr()[m_Changes[i].entity].lod = m_Changes[i].newLOD;
 	}
 	// now clear the changes
 	m_Changes.Clear();
@@ -265,8 +265,8 @@ bool CStaticMulti::UpdateRenderModel( const bool force ) {
 	model_ofs_t *p = m_Offsets->Ptr();
 	n = m_Offsets->Num();
 	for( int i = 0; i < n; i++ ) {
-		if( p[ i ].lod >= 0 ) {
-			m_iVisibleModels ++;
+		if( p[i].lod >= 0 ) {
+			m_iVisibleModels++;
 		}
 	}
 #ifdef M_DEBUG
@@ -303,7 +303,7 @@ bool CStaticMulti::UpdateRenderModel( const bool force ) {
 		}
 		LODs.Append( hModel );
 	}
-	for( int i = 0; i < LOD_LEVELS; i ++ ) {
+	for( int i = 0; i < LOD_LEVELS; i++ ) {
 		// func_static as source?
 		if( m_hModel ) {
 			LODs.Append( m_hModel );
@@ -427,11 +427,11 @@ void CStaticMulti::Think( void ) {
 			gameLocal.Printf( "%s LOD data %p.\n", GetName(), LOD );
 			gameLocal.Printf( " checkXY %i\n", LOD->bDistCheckXYOnly );
 			gameLocal.Printf( " interval %i\n", LOD->DistCheckInterval );
-			for( int i = 0; i < LOD_LEVELS; i ++ ) {
+			for( int i = 0; i < LOD_LEVELS; i++ ) {
 				gameLocal.Printf( " LOD %i dist %0.2f.\n", i, LOD->DistLODSq[i] );
-				gameLocal.Printf( " LOD %i model %s.\n",   i, LOD->ModelLOD[i].c_str() );
-				gameLocal.Printf( " LOD %i skin %s.\n",    i, LOD->SkinLOD[i].c_str() );
-				gameLocal.Printf( " LOD %i offset %s.\n",  i, LOD->OffsetLOD[i].ToString() );
+				gameLocal.Printf( " LOD %i model %s.\n", i, LOD->ModelLOD[i].c_str() );
+				gameLocal.Printf( " LOD %i skin %s.\n", i, LOD->SkinLOD[i].c_str() );
+				gameLocal.Printf( " LOD %i offset %s.\n", i, LOD->OffsetLOD[i].ToString() );
 			}
 		}
 #endif
@@ -448,7 +448,7 @@ void CStaticMulti::Think( void ) {
 			}
 			// divide by the user LOD bias setting (squared)
 			float dist = delta.LengthSqr() / lod_bias;
-			float fAlpha  = ThinkAboutLOD( m_LODHandle == 0 ? NULL : LOD, dist );
+			float fAlpha = ThinkAboutLOD( m_LODHandle == 0 ? NULL : LOD, dist );
 			if( fAlpha == 0 ) {
 				// the entity should be invisible
 				m_LODLevel = -2;
@@ -462,7 +462,7 @@ void CStaticMulti::Think( void ) {
 				// 0 => default model, 1 => first stage etc
 				// TODO: compute flags for noclip
 				int flags = 0;
-				m_LODLevel ++;
+				m_LODLevel++;
 				if( m_LODHandle && ( LOD->noshadowsLOD & ( 1 << m_LODLevel ) ) ) {
 					flags += SEED_MODEL_NOSHADOW;
 				}
@@ -548,7 +548,7 @@ void CStaticMulti::Restore( idRestoreGame *savefile ) {
 	savefile->ReadInt( n );
 	m_Changes.SetGranularity( 64 );
 	m_Changes.SetNum( n );
-	for( int i = 0; i < n; i ++ ) {
+	for( int i = 0; i < n; i++ ) {
 		savefile->ReadInt( m_Changes[i].entity );
 		savefile->ReadInt( m_Changes[i].oldLOD );
 		savefile->ReadInt( m_Changes[i].newLOD );
@@ -578,12 +578,12 @@ void CStaticMulti::Event_Activate( idEntity *activator ) {
 			Hide();
 		}
 	}
-	renderEntity.shaderParms[ SHADERPARM_TIMEOFFSET ] = -MS2SEC( spawnTime );
+	renderEntity.shaderParms[SHADERPARM_TIMEOFFSET] = -MS2SEC( spawnTime );
 	renderEntity.shaderParms[5] = active;
 	// this change should be a good thing, it will automatically turn on
 	// lights etc.. when triggered so that does not have to be specifically done
 	// with trigger parms.. it MIGHT break things so need to keep an eye on it
-	renderEntity.shaderParms[ SHADERPARM_MODE ] = ( renderEntity.shaderParms[ SHADERPARM_MODE ] ) ?  0.0f : 1.0f;
+	renderEntity.shaderParms[SHADERPARM_MODE] = ( renderEntity.shaderParms[SHADERPARM_MODE] ) ? 0.0f : 1.0f;
 	BecomeActive( TH_UPDATEVISUALS );
 }
 
@@ -626,8 +626,8 @@ void CStaticMulti::AddChange( const int entity, const int newLOD, const int newF
 	// found no change set, add one
 	model_changeinfo_t change;
 	change.entity = entity;
-	change.oldLOD = m_Offsets->Ptr()[ entity ].lod;
-	change.oldFlags = m_Offsets->Ptr()[ entity ].flags;
+	change.oldLOD = m_Offsets->Ptr()[entity].lod;
+	change.oldFlags = m_Offsets->Ptr()[entity].flags;
 	change.newLOD = newLOD;
 	change.newFlags = newFlags;
 #ifdef M_DEBUG

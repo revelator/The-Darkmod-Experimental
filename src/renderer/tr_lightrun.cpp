@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -76,9 +76,9 @@ generation procedure in dmap:
 carve original surfaces into areas
 
 for each light
-	build shadow volume and beam tree
-	cut all potentially lit surfaces into the beam tree
-		move lit fragments into a new optimize group
+build shadow volume and beam tree
+cut all potentially lit surfaces into the beam tree
+move lit fragments into a new optimize group
 
 optimize groups
 
@@ -110,9 +110,9 @@ void R_ModulateLights_f( const idCmdArgs &args ) {
 		return;
 	}
 	int count = 0;
-	float modulate[3] = {atof( args.Argv( 1 ) ), atof( args.Argv( 2 ) ), atof( args.Argv( 3 ) )};
+	float modulate[3] = { atof( args.Argv( 1 ) ), atof( args.Argv( 2 ) ), atof( args.Argv( 3 ) ) };
 	idRenderLightLocal *light;
-	for( int i = 0 ; i < tr.primaryWorld->lightDefs.Num() ; i++ ) {
+	for( int i = 0; i < tr.primaryWorld->lightDefs.Num(); i++ ) {
 		light = tr.primaryWorld->lightDefs[i];
 		if( light ) {
 			light->parms.shaderParms[0] *= modulate[0];
@@ -157,7 +157,7 @@ void R_CreateEntityRefs( idRenderEntityLocal *def ) {
 				( def->referenceBounds[1][1] - def->referenceBounds[0][1] ) > 1024 ) ) {
 		common->Printf( "big entityRef: %f,%f\n", def->referenceBounds[1][0] - def->referenceBounds[0][0], def->referenceBounds[1][1] - def->referenceBounds[0][1] );
 	}
-	for( int i = 0 ; i < 8 ; i++ ) {
+	for( int i = 0; i < 8; i++ ) {
 		v[0] = def->referenceBounds[i & 1][0];
 		v[1] = def->referenceBounds[( i >> 1 ) & 1][1];
 		v[2] = def->referenceBounds[( i >> 2 ) & 1][2];
@@ -362,7 +362,7 @@ void R_CreateLightRefs( idRenderLightLocal *light ) {
 	if( tri->numVerts > MAX_LIGHT_VERTS ) {
 		common->Error( "R_CreateLightRefs: %i points in frustumTris!", tri->numVerts );
 	}
-	for( int i = 0 ; i < tri->numVerts ; i++ ) {
+	for( int i = 0; i < tri->numVerts; i++ ) {
 		points[i] = tri->verts[i].xyz;
 	}
 	if( r_showUpdates.GetBool() && ( tri->bounds[1][0] - tri->bounds[0][0] > 1024 || tri->bounds[1][1] - tri->bounds[0][1] > 1024 ) ) {
@@ -420,8 +420,8 @@ WindingCompletelyInsideLight
 */
 bool WindingCompletelyInsideLight( const idWinding *w, const idRenderLightLocal *ldef ) {
 	float d = 0.0f;
-	for( int i = 0 ; i < w->GetNumPoints() ; i++ ) {
-		for( int j = 0 ; j < 6 ; j++ ) {
+	for( int i = 0; i < w->GetNumPoints(); i++ ) {
+		for( int j = 0; j < 6; j++ ) {
 			d = ( *w )[i].ToVec3() * ldef->frustum[j].Normal() + ldef->frustum[j][3];
 			if( d > 0.0f ) {
 				return false;
@@ -450,10 +450,10 @@ void R_CreateLightDefFogPortals( idRenderLightLocal *ldef ) {
 	const portal_t	*prt;
 	portalArea_t	*area;
 	doublePortal_t	*dp;
-	for( lref = ldef->references ; lref ; lref = lref->ownerNext ) {
+	for( lref = ldef->references; lref; lref = lref->ownerNext ) {
 		// check all the models in this area
 		area = lref->area;
-		for( prt = area->portals ; prt ; prt = prt->next ) {
+		for( prt = area->portals; prt; prt = prt->next ) {
 			dp = prt->doublePortal;
 			// we only handle a single fog volume covering a portal
 			// this will never cause incorrect drawing, but it may
@@ -525,9 +525,9 @@ void R_FreeEntityDefDerivedData( idRenderEntityLocal *def, bool keepDecals, bool
 			def->parms.callbackData = NULL;
 		}
 		for( int i = 0; i < MAX_RENDERENTITY_GUI; i++ ) {
-			if( def->parms.gui[ i ] ) {
-				delete def->parms.gui[ i ];
-				def->parms.gui[ i ] = NULL;
+			if( def->parms.gui[i] ) {
+				delete def->parms.gui[i];
+				def->parms.gui[i] = NULL;
 			}
 		}
 	}
@@ -658,7 +658,7 @@ void R_CheckForEntityDefsUsingModel( idRenderModel *model ) {
 	idRenderEntityLocal	*def;
 	for( int j = 0; j < tr.worlds.Num(); j++ ) {
 		rw = tr.worlds[j];
-		for( int i = 0 ; i < rw->entityDefs.Num(); i++ ) {
+		for( int i = 0; i < rw->entityDefs.Num(); i++ ) {
 			def = rw->entityDefs[i];
 			if( def && def->parms.hModel == model ) {
 				//assert( 0 );
@@ -687,7 +687,7 @@ void R_ReCreateWorldReferences( void ) {
 	tr.viewDef = NULL;
 	for( int j = 0; j < tr.worlds.Num(); j++ ) {
 		rw = tr.worlds[j];
-		for( i = 0 ; i < rw->entityDefs.Num() ; i++ ) {
+		for( i = 0; i < rw->entityDefs.Num(); i++ ) {
 			def = rw->entityDefs[i];
 			if( !def ) {
 				continue;
@@ -700,7 +700,7 @@ void R_ReCreateWorldReferences( void ) {
 				R_CreateEntityRefs( def );
 			}
 		}
-		for( i = 0 ; i < rw->lightDefs.Num() ; i++ ) {
+		for( i = 0; i < rw->lightDefs.Num(); i++ ) {
 			light = rw->lightDefs[i];
 			if( !light ) {
 				continue;

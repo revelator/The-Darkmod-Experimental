@@ -42,7 +42,7 @@ If you have questions concerning this license or the applicable additional terms
 //
 // function declarations
 //
-bool QGL_Init(const char *dllname);
-void QGL_Shutdown(void);
+bool QGL_Init( const char *dllname );
+void QGL_Shutdown( void );
 
 #endif

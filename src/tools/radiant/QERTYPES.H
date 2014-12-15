@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #ifndef _QERTYPE_H
 #define _QERTYPE_H
 
@@ -32,14 +32,14 @@ public:
 	}
 	~texdef_t() {
 		if( name && name[0] ) {
-			delete []name;
+			delete[]name;
 		}
 		name = NULL;
 	}
 
 	void SetName( const char *p ) {
 		if( name && name[0] ) {
-			delete []name;
+			delete[]name;
 		}
 		if( p && p[0] ) {
 			name = strcpy( new char[strlen( p ) + 1], p );
@@ -111,7 +111,7 @@ public:
 typedef struct qtexture_s {
 	struct	qtexture_s *next;
 	char	name[64];		// includes partial directory and extension
-	int		width,  height;
+	int		width, height;
 	int		contents;
 	int		flags;
 	int		value;
@@ -394,6 +394,6 @@ extern	eclass_t	*eclass;
 #define	W_ALL			0xFFFFFFFF
 
 // used in some Drawing routines
-enum VIEWTYPE {YZ, XZ, XY};
+enum VIEWTYPE { YZ, XZ, XY };
 
 #endif

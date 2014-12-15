@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -85,7 +85,7 @@ bool idSoundShader::SetDefaultText( void ) {
 	wavname = GetName();
 	wavname.DefaultFileExtension( ".wav" );		// if the name has .ogg in it, that will stay
 	// if there exists a wav file with the same name
-	if( 1 ) {  //fileSystem->ReadFile( wavname, NULL ) != -1 ) {
+	if( 1 ) { //fileSystem->ReadFile( wavname, NULL ) != -1 ) {
 		char generated[2048];
 		idStr::snPrintf( generated, sizeof( generated ),
 						 "sound %s // IMPLICITLY GENERATED\n"
@@ -115,7 +115,7 @@ const char *idSoundShader::DefaultDefinition() const {
 ===============
 idSoundShader::Parse
 
-  this is called by the declManager
+this is called by the declManager
 ===============
 */
 bool idSoundShader::Parse( const char *text, const int textLength ) {
@@ -200,8 +200,8 @@ bool idSoundShader::ParseShader( idLexer &src ) {
 		else if( !token.Icmp( "reverb" ) ) {
 			/*int reg0 = src.ParseFloat();
 			if ( !src.ExpectTokenString( "," ) ) {
-				src.FreeSource();
-				return false;
+			src.FreeSource();
+			return false;
 			}
 			int reg1 = src.ParseFloat();
 			*/
@@ -316,7 +316,7 @@ bool idSoundShader::ParseShader( idLexer &src ) {
 				return false;
 			}
 			if( soundSystemLocal.soundCache && numLeadins < maxSamples ) {
-				leadins[ numLeadins ] = soundSystemLocal.soundCache->FindSound( token.c_str(), onDemand );
+				leadins[numLeadins] = soundSystemLocal.soundCache->FindSound( token.c_str(), onDemand );
 				numLeadins++;
 			}
 		} else if( token.Find( ".wav", false ) != -1 || token.Find( ".ogg", false ) != -1 ) {
@@ -339,7 +339,7 @@ bool idSoundShader::ParseShader( idLexer &src ) {
 						}
 					}
 				}
-				entries[ numEntries ] = soundSystemLocal.soundCache->FindSound( token.c_str(), onDemand );
+				entries[numEntries] = soundSystemLocal.soundCache->FindSound( token.c_str(), onDemand );
 				numEntries++;
 			}
 		} else {
@@ -362,16 +362,16 @@ bool idSoundShader::CheckShakesAndOgg( void ) const {
 	int i;
 	bool ret = false;
 	for( i = 0; i < numLeadins; i++ ) {
-		if( leadins[ i ]->objectInfo.wFormatTag == WAVE_FORMAT_TAG_OGG ) {
+		if( leadins[i]->objectInfo.wFormatTag == WAVE_FORMAT_TAG_OGG ) {
 			common->Warning( "sound shader '%s' has shakes and uses OGG file '%s'",
-							 GetName(), leadins[ i ]->name.c_str() );
+							 GetName(), leadins[i]->name.c_str() );
 			ret = true;
 		}
 	}
 	for( i = 0; i < numEntries; i++ ) {
-		if( entries[ i ]->objectInfo.wFormatTag == WAVE_FORMAT_TAG_OGG ) {
+		if( entries[i]->objectInfo.wFormatTag == WAVE_FORMAT_TAG_OGG ) {
 			common->Warning( "sound shader '%s' has shakes and uses OGG file '%s'",
-							 GetName(), entries[ i ]->name.c_str() );
+							 GetName(), entries[i]->name.c_str() );
 			ret = true;
 		}
 	}
@@ -389,7 +389,7 @@ void idSoundShader::List() const {
 	if( idStr::Icmp( GetDescription(), "<no description>" ) != 0 ) {
 		common->Printf( "      description: %s\n", GetDescription() );
 	}
-	for( int k = 0; k < numLeadins ; k++ ) {
+	for( int k = 0; k < numLeadins; k++ ) {
 		const idSoundSample *objectp = leadins[k];
 		if( objectp ) {
 			common->Printf( "      %5dms %4dKb %s (LEADIN)\n", soundSystemLocal.SamplesToMilliseconds( objectp->LengthIn44kHzSamples() ), ( objectp->objectMemSize / 1024 )

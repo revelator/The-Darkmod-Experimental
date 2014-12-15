@@ -14,7 +14,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 IMPLEMENT_DYNCREATE( CPropTreeView, CFormView )
 
 CPropTreeView::CPropTreeView()
-	: CFormView( ( LPCTSTR ) NULL ) {
+	: CFormView( ( LPCTSTR )NULL ) {
 }
 
 CPropTreeView::~CPropTreeView() {
@@ -51,7 +51,7 @@ BOOL CPropTreeView::Create( LPCTSTR lpszClassName, LPCTSTR lpszWindowName,
 	// create the view window itself
 	m_pCreateContext = pContext;
 	if( !CView::Create( lpszClassName, lpszWindowName,
-						dwStyle, rect, pParentWnd,  nID, pContext ) ) {
+						dwStyle, rect, pParentWnd, nID, pContext ) ) {
 		return FALSE;
 	}
 	return TRUE;

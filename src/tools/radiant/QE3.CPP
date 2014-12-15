@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -133,7 +133,7 @@ void Map_Snapshot() {
 
 /*
  =======================================================================================================================
-    QE_CheckAutoSave If five minutes have passed since making a change and the map hasn't been saved, save it out.
+ QE_CheckAutoSave If five minutes have passed since making a change and the map hasn't been saved, save it out.
  =======================================================================================================================
  */
 void QE_CheckAutoSave( void ) {
@@ -186,14 +186,14 @@ const int	g_nPathFixupCount = sizeof( g_pPathFixups ) / sizeof( const char * );
 
 /*
  =======================================================================================================================
-    QE_LoadProject
+ QE_LoadProject
  =======================================================================================================================
  */
 bool QE_LoadProject( char *projectfile ) {
 	char		*data;
 	ID_TIME_T		time;
 	common->Printf( "QE_LoadProject (%s)\n", projectfile );
-	if( fileSystem->ReadFile( projectfile, reinterpret_cast < void ** >( &data ), &time ) <= 0 ) {
+	if( fileSystem->ReadFile( projectfile, reinterpret_cast <void **>( &data ), &time ) <= 0 ) {
 		return false;
 	}
 	g_strProject = projectfile;
@@ -221,7 +221,7 @@ bool QE_LoadProject( char *projectfile ) {
 
 /*
  =======================================================================================================================
-    QE_SaveProject £
+ QE_SaveProject £
  =======================================================================================================================
  */
 bool QE_SaveProject( const char *pProjectFile ) {
@@ -245,7 +245,7 @@ bool QE_SaveProject( const char *pProjectFile ) {
 
 /*
  =======================================================================================================================
-    ConnectEntities Sets target / name on the two entities selected from the first selected to the secon
+ ConnectEntities Sets target / name on the two entities selected from the first selected to the secon
  =======================================================================================================================
  */
 void ConnectEntities( void ) {

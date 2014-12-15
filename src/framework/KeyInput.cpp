@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -38,138 +38,138 @@ const char *OSX_GetLocalizedString( const char * );
 // names not in this list can either be lowercase ascii, or '0xnn' hex sequences
 // TODO: add CTRL RIGHT, SHIFT RIGHT
 keyname_t keynames[] = {
-	{"TAB",				K_TAB,				"#str_07018"},
-	{"ENTER",			K_ENTER,			"#str_07019"},
-	{"ESCAPE",			K_ESCAPE,			"#str_07020"},
-	{"SPACE",			K_SPACE,			"#str_07021"},
-	{"BACKSPACE",		K_BACKSPACE,		"#str_07022"},
-	{"UPARROW",			K_UPARROW,			"#str_07023"},
-	{"DOWNARROW",		K_DOWNARROW,		"#str_07024"},
-	{"LEFTARROW",		K_LEFTARROW,		"#str_07025"},
-	{"RIGHTARROW",		K_RIGHTARROW,		"#str_07026"},
+	{ "TAB", K_TAB, "#str_07018" },
+	{ "ENTER", K_ENTER, "#str_07019" },
+	{ "ESCAPE", K_ESCAPE, "#str_07020" },
+	{ "SPACE", K_SPACE, "#str_07021" },
+	{ "BACKSPACE", K_BACKSPACE, "#str_07022" },
+	{ "UPARROW", K_UPARROW, "#str_07023" },
+	{ "DOWNARROW", K_DOWNARROW, "#str_07024" },
+	{ "LEFTARROW", K_LEFTARROW, "#str_07025" },
+	{ "RIGHTARROW", K_RIGHTARROW, "#str_07026" },
 
-	{"ALT",				K_ALT,				"#str_07027"},
-	{"RIGHTALT",		K_RIGHT_ALT,		"#str_07193"},
-	{"CTRL",			K_CTRL,				"#str_07028"},
-	{"SHIFT",			K_SHIFT,			"#str_07029"},
+	{ "ALT", K_ALT, "#str_07027" },
+	{ "RIGHTALT", K_RIGHT_ALT, "#str_07193" },
+	{ "CTRL", K_CTRL, "#str_07028" },
+	{ "SHIFT", K_SHIFT, "#str_07029" },
 
-	{"LWIN", 			K_LWIN, 			"#str_07030"},
-	{"RWIN", 			K_RWIN, 			"#str_07031"},
-	{"MENU", 			K_MENU, 			"#str_07032"},
+	{ "LWIN", K_LWIN, "#str_07030" },
+	{ "RWIN", K_RWIN, "#str_07031" },
+	{ "MENU", K_MENU, "#str_07032" },
 
-	{"COMMAND",			K_COMMAND,			"#str_07033"},
+	{ "COMMAND", K_COMMAND, "#str_07033" },
 
-	{"CAPSLOCK",		K_CAPSLOCK,			"#str_07034"},
-	{"SCROLL",			K_SCROLL,			"#str_07035"},
-	{"PRINTSCREEN",		K_PRINT_SCR,		"#str_07179"},
+	{ "CAPSLOCK", K_CAPSLOCK, "#str_07034" },
+	{ "SCROLL", K_SCROLL, "#str_07035" },
+	{ "PRINTSCREEN", K_PRINT_SCR, "#str_07179" },
 
-	{"F1", 				K_F1, 				"#str_07036"},
-	{"F2", 				K_F2, 				"#str_07037"},
-	{"F3", 				K_F3, 				"#str_07038"},
-	{"F4", 				K_F4, 				"#str_07039"},
-	{"F5", 				K_F5, 				"#str_07040"},
-	{"F6", 				K_F6, 				"#str_07041"},
-	{"F7", 				K_F7, 				"#str_07042"},
-	{"F8", 				K_F8, 				"#str_07043"},
-	{"F9", 				K_F9, 				"#str_07044"},
-	{"F10", 			K_F10, 				"#str_07045"},
-	{"F11", 			K_F11, 				"#str_07046"},
-	{"F12", 			K_F12, 				"#str_07047"},
+	{ "F1", K_F1, "#str_07036" },
+	{ "F2", K_F2, "#str_07037" },
+	{ "F3", K_F3, "#str_07038" },
+	{ "F4", K_F4, "#str_07039" },
+	{ "F5", K_F5, "#str_07040" },
+	{ "F6", K_F6, "#str_07041" },
+	{ "F7", K_F7, "#str_07042" },
+	{ "F8", K_F8, "#str_07043" },
+	{ "F9", K_F9, "#str_07044" },
+	{ "F10", K_F10, "#str_07045" },
+	{ "F11", K_F11, "#str_07046" },
+	{ "F12", K_F12, "#str_07047" },
 
-	{"INS", 			K_INS, 				"#str_07048"},
-	{"DEL", 			K_DEL, 				"#str_07049"},
-	{"PGDN", 			K_PGDN, 			"#str_07050"},
-	{"PGUP", 			K_PGUP, 			"#str_07051"},
-	{"HOME", 			K_HOME, 			"#str_07052"},
-	{"END",				K_END,				"#str_07053"},
+	{ "INS", K_INS, "#str_07048" },
+	{ "DEL", K_DEL, "#str_07049" },
+	{ "PGDN", K_PGDN, "#str_07050" },
+	{ "PGUP", K_PGUP, "#str_07051" },
+	{ "HOME", K_HOME, "#str_07052" },
+	{ "END", K_END, "#str_07053" },
 
-	{"MOUSE1", 			K_MOUSE1, 			"#str_07054"},
-	{"MOUSE2", 			K_MOUSE2, 			"#str_07055"},
-	{"MOUSE3", 			K_MOUSE3, 			"#str_07056"},
-	{"MOUSE4", 			K_MOUSE4, 			"#str_07057"},
-	{"MOUSE5", 			K_MOUSE5, 			"#str_07058"},
-	{"MOUSE6", 			K_MOUSE6, 			"#str_07059"},
-	{"MOUSE7", 			K_MOUSE7, 			"#str_07060"},
-	{"MOUSE8", 			K_MOUSE8, 			"#str_07061"},
+	{ "MOUSE1", K_MOUSE1, "#str_07054" },
+	{ "MOUSE2", K_MOUSE2, "#str_07055" },
+	{ "MOUSE3", K_MOUSE3, "#str_07056" },
+	{ "MOUSE4", K_MOUSE4, "#str_07057" },
+	{ "MOUSE5", K_MOUSE5, "#str_07058" },
+	{ "MOUSE6", K_MOUSE6, "#str_07059" },
+	{ "MOUSE7", K_MOUSE7, "#str_07060" },
+	{ "MOUSE8", K_MOUSE8, "#str_07061" },
 
-	{"MWHEELUP",		K_MWHEELUP,			"#str_07131"},
-	{"MWHEELDOWN",		K_MWHEELDOWN,		"#str_07132"},
+	{ "MWHEELUP", K_MWHEELUP, "#str_07131" },
+	{ "MWHEELDOWN", K_MWHEELDOWN, "#str_07132" },
 
-	{"JOY1", 			K_JOY1, 			"#str_07062"},
-	{"JOY2", 			K_JOY2, 			"#str_07063"},
-	{"JOY3", 			K_JOY3, 			"#str_07064"},
-	{"JOY4", 			K_JOY4, 			"#str_07065"},
-	{"JOY5", 			K_JOY5, 			"#str_07066"},
-	{"JOY6", 			K_JOY6, 			"#str_07067"},
-	{"JOY7", 			K_JOY7, 			"#str_07068"},
-	{"JOY8", 			K_JOY8, 			"#str_07069"},
-	{"JOY9", 			K_JOY9, 			"#str_07070"},
-	{"JOY10", 			K_JOY10, 			"#str_07071"},
-	{"JOY11", 			K_JOY11, 			"#str_07072"},
-	{"JOY12", 			K_JOY12, 			"#str_07073"},
-	{"JOY13", 			K_JOY13, 			"#str_07074"},
-	{"JOY14", 			K_JOY14, 			"#str_07075"},
-	{"JOY15", 			K_JOY15, 			"#str_07076"},
-	{"JOY16", 			K_JOY16, 			"#str_07077"},
-	{"JOY17", 			K_JOY17, 			"#str_07078"},
-	{"JOY18", 			K_JOY18, 			"#str_07079"},
-	{"JOY19", 			K_JOY19, 			"#str_07080"},
-	{"JOY20", 			K_JOY20, 			"#str_07081"},
-	{"JOY21", 			K_JOY21, 			"#str_07082"},
-	{"JOY22", 			K_JOY22, 			"#str_07083"},
-	{"JOY23", 			K_JOY23, 			"#str_07084"},
-	{"JOY24", 			K_JOY24, 			"#str_07085"},
-	{"JOY25", 			K_JOY25, 			"#str_07086"},
-	{"JOY26", 			K_JOY26, 			"#str_07087"},
-	{"JOY27", 			K_JOY27, 			"#str_07088"},
-	{"JOY28", 			K_JOY28, 			"#str_07089"},
-	{"JOY29", 			K_JOY29, 			"#str_07090"},
-	{"JOY30", 			K_JOY30, 			"#str_07091"},
-	{"JOY31", 			K_JOY31, 			"#str_07092"},
-	{"JOY32", 			K_JOY32, 			"#str_07093"},
+	{ "JOY1", K_JOY1, "#str_07062" },
+	{ "JOY2", K_JOY2, "#str_07063" },
+	{ "JOY3", K_JOY3, "#str_07064" },
+	{ "JOY4", K_JOY4, "#str_07065" },
+	{ "JOY5", K_JOY5, "#str_07066" },
+	{ "JOY6", K_JOY6, "#str_07067" },
+	{ "JOY7", K_JOY7, "#str_07068" },
+	{ "JOY8", K_JOY8, "#str_07069" },
+	{ "JOY9", K_JOY9, "#str_07070" },
+	{ "JOY10", K_JOY10, "#str_07071" },
+	{ "JOY11", K_JOY11, "#str_07072" },
+	{ "JOY12", K_JOY12, "#str_07073" },
+	{ "JOY13", K_JOY13, "#str_07074" },
+	{ "JOY14", K_JOY14, "#str_07075" },
+	{ "JOY15", K_JOY15, "#str_07076" },
+	{ "JOY16", K_JOY16, "#str_07077" },
+	{ "JOY17", K_JOY17, "#str_07078" },
+	{ "JOY18", K_JOY18, "#str_07079" },
+	{ "JOY19", K_JOY19, "#str_07080" },
+	{ "JOY20", K_JOY20, "#str_07081" },
+	{ "JOY21", K_JOY21, "#str_07082" },
+	{ "JOY22", K_JOY22, "#str_07083" },
+	{ "JOY23", K_JOY23, "#str_07084" },
+	{ "JOY24", K_JOY24, "#str_07085" },
+	{ "JOY25", K_JOY25, "#str_07086" },
+	{ "JOY26", K_JOY26, "#str_07087" },
+	{ "JOY27", K_JOY27, "#str_07088" },
+	{ "JOY28", K_JOY28, "#str_07089" },
+	{ "JOY29", K_JOY29, "#str_07090" },
+	{ "JOY30", K_JOY30, "#str_07091" },
+	{ "JOY31", K_JOY31, "#str_07092" },
+	{ "JOY32", K_JOY32, "#str_07093" },
 
-	{"AUX1", 			K_AUX1, 			"#str_07094"},
-	{"AUX2", 			K_AUX2, 			"#str_07095"},
-	{"AUX3", 			K_AUX3, 			"#str_07096"},
-	{"AUX4", 			K_AUX4, 			"#str_07097"},
-	{"AUX5", 			K_AUX5, 			"#str_07098"},
-	{"AUX6", 			K_AUX6, 			"#str_07099"},
-	{"AUX7", 			K_AUX7, 			"#str_07100"},
-	{"AUX8", 			K_AUX8, 			"#str_07101"},
-	{"AUX9", 			K_AUX9, 			"#str_07102"},
-	{"AUX10", 			K_AUX10, 			"#str_07103"},
-	{"AUX11", 			K_AUX11, 			"#str_07104"},
-	{"AUX12", 			K_AUX12, 			"#str_07105"},
-	{"AUX13", 			K_AUX13, 			"#str_07106"},
-	{"AUX14", 			K_AUX14, 			"#str_07107"},
-	{"AUX15", 			K_AUX15, 			"#str_07108"},
-	{"AUX16", 			K_AUX16, 			"#str_07109"},
+	{ "AUX1", K_AUX1, "#str_07094" },
+	{ "AUX2", K_AUX2, "#str_07095" },
+	{ "AUX3", K_AUX3, "#str_07096" },
+	{ "AUX4", K_AUX4, "#str_07097" },
+	{ "AUX5", K_AUX5, "#str_07098" },
+	{ "AUX6", K_AUX6, "#str_07099" },
+	{ "AUX7", K_AUX7, "#str_07100" },
+	{ "AUX8", K_AUX8, "#str_07101" },
+	{ "AUX9", K_AUX9, "#str_07102" },
+	{ "AUX10", K_AUX10, "#str_07103" },
+	{ "AUX11", K_AUX11, "#str_07104" },
+	{ "AUX12", K_AUX12, "#str_07105" },
+	{ "AUX13", K_AUX13, "#str_07106" },
+	{ "AUX14", K_AUX14, "#str_07107" },
+	{ "AUX15", K_AUX15, "#str_07108" },
+	{ "AUX16", K_AUX16, "#str_07109" },
 
-	{"KP_HOME",			K_KP_HOME,			"#str_07110"},
-	{"KP_UPARROW",		K_KP_UPARROW,		"#str_07111"},
-	{"KP_PGUP",			K_KP_PGUP,			"#str_07112"},
-	{"KP_LEFTARROW",	K_KP_LEFTARROW, 	"#str_07113"},
-	{"KP_5",			K_KP_5,				"#str_07114"},
-	{"KP_RIGHTARROW",	K_KP_RIGHTARROW,	"#str_07115"},
-	{"KP_END",			K_KP_END,			"#str_07116"},
-	{"KP_DOWNARROW",	K_KP_DOWNARROW,		"#str_07117"},
-	{"KP_PGDN",			K_KP_PGDN,			"#str_07118"},
-	{"KP_ENTER",		K_KP_ENTER,			"#str_07119"},
-	{"KP_INS",			K_KP_INS, 			"#str_07120"},
-	{"KP_DEL",			K_KP_DEL, 			"#str_07121"},
-	{"KP_SLASH",		K_KP_SLASH, 		"#str_07122"},
-	{"KP_MINUS",		K_KP_MINUS, 		"#str_07123"},
-	{"KP_PLUS",			K_KP_PLUS,			"#str_07124"},
-	{"KP_NUMLOCK",		K_KP_NUMLOCK,		"#str_07125"},
-	{"KP_STAR",			K_KP_STAR,			"#str_07126"},
-	{"KP_EQUALS",		K_KP_EQUALS,		"#str_07127"},
+	{ "KP_HOME", K_KP_HOME, "#str_07110" },
+	{ "KP_UPARROW", K_KP_UPARROW, "#str_07111" },
+	{ "KP_PGUP", K_KP_PGUP, "#str_07112" },
+	{ "KP_LEFTARROW", K_KP_LEFTARROW, "#str_07113" },
+	{ "KP_5", K_KP_5, "#str_07114" },
+	{ "KP_RIGHTARROW", K_KP_RIGHTARROW, "#str_07115" },
+	{ "KP_END", K_KP_END, "#str_07116" },
+	{ "KP_DOWNARROW", K_KP_DOWNARROW, "#str_07117" },
+	{ "KP_PGDN", K_KP_PGDN, "#str_07118" },
+	{ "KP_ENTER", K_KP_ENTER, "#str_07119" },
+	{ "KP_INS", K_KP_INS, "#str_07120" },
+	{ "KP_DEL", K_KP_DEL, "#str_07121" },
+	{ "KP_SLASH", K_KP_SLASH, "#str_07122" },
+	{ "KP_MINUS", K_KP_MINUS, "#str_07123" },
+	{ "KP_PLUS", K_KP_PLUS, "#str_07124" },
+	{ "KP_NUMLOCK", K_KP_NUMLOCK, "#str_07125" },
+	{ "KP_STAR", K_KP_STAR, "#str_07126" },
+	{ "KP_EQUALS", K_KP_EQUALS, "#str_07127" },
 
-	{"PAUSE",			K_PAUSE,			"#str_07128"},
+	{ "PAUSE", K_PAUSE, "#str_07128" },
 
-	{"SEMICOLON",		';',				"#str_07129"},	// because a raw semicolon separates commands
-	{"APOSTROPHE",		'\'',				"#str_07130"},	// because a raw apostrophe messes with parsing
+	{ "SEMICOLON", ';', "#str_07129" },	// because a raw semicolon separates commands
+	{ "APOSTROPHE", '\'', "#str_07130" },	// because a raw apostrophe messes with parsing
 
-	{NULL,				0,					NULL}
+	{ NULL, 0, NULL }
 };
 
 static const int	MAX_KEYS = 256;
@@ -199,7 +199,7 @@ void idKeyInput::ArgCompletion_KeyName( const idCmdArgs &args, void( *callback )
 	keyname_t *kn;
 	int i;
 	for( i = 0; i < sizeof( unnamedkeys ) - 1; i++ ) {
-		callback( va( "%s %c", args.Argv( 0 ), unnamedkeys[ i ] ) );
+		callback( va( "%s %c", args.Argv( 0 ), unnamedkeys[i] ) );
 	}
 	for( kn = keynames; kn->name; kn++ ) {
 		callback( va( "%s %s", args.Argv( 0 ), kn->name ) );
@@ -325,7 +325,7 @@ const char *idKeyInput::KeyNumToString( int keynum, bool localized ) {
 				case K_PRINT_SCR:
 					return OSX_GetLocalizedString( kn->name );
 					break;
-				default :
+				default:
 					return common->Translate( kn->strId );
 					break;
 				}
@@ -381,7 +381,7 @@ const char *idKeyInput::GetBinding( int keynum ) {
 	if( keynum == -1 ) {
 		return "";
 	}
-	return keys[ keynum ].binding;
+	return keys[keynum].binding;
 }
 
 /*
@@ -390,7 +390,7 @@ idKeyInput::GetUsercmdAction
 ===================
 */
 int idKeyInput::GetUsercmdAction( int keynum ) {
-	return keys[ keynum ].usercmdAction;
+	return keys[keynum].usercmdAction;
 }
 
 /*
@@ -680,6 +680,6 @@ idKeyInput::Shutdown
 ===================
 */
 void idKeyInput::Shutdown( void ) {
-	delete [] keys;
+	delete[] keys;
 	keys = NULL;
 }

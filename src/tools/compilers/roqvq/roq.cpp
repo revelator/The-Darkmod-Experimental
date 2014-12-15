@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #include "precompiled_engine.h"
 #pragma hdrstop
 
@@ -189,7 +189,7 @@ typedef my_destination_mgr *my_dest_ptr;
  */
 
 void roq::JPEGInitDestination( j_compress_ptr cinfo ) {
-	my_dest_ptr dest = ( my_dest_ptr ) cinfo->dest;
+	my_dest_ptr dest = ( my_dest_ptr )cinfo->dest;
 	dest->pub.next_output_byte = dest->outfile;
 	dest->pub.free_in_buffer = dest->size;
 }
@@ -241,10 +241,10 @@ void roq::JPEGStartCompress( j_compress_ptr cinfo, bool write_all_tables ) {
 		ERREXIT1( cinfo, JERR_BAD_STATE, cinfo->global_state );
 	}
 	if( write_all_tables ) {
-		jpeg_suppress_tables( cinfo, FALSE );    /* mark all tables to be written */
+		jpeg_suppress_tables( cinfo, FALSE );  /* mark all tables to be written */
 	}
 	/* (Re)initialize error mgr and destination modules */
-	( *cinfo->err->reset_error_mgr )( ( j_common_ptr ) cinfo );
+	( *cinfo->err->reset_error_mgr )( ( j_common_ptr )cinfo );
 	( *cinfo->dest->init_destination )( cinfo );
 	/* Perform master selection of active modules */
 	jinit_compress_master( cinfo );
@@ -282,9 +282,9 @@ JDIMENSION roq::JPEGWriteScanlines( j_compress_ptr cinfo, JSAMPARRAY scanlines, 
 	}
 	/* Call progress monitor hook if present */
 	if( cinfo->progress != NULL ) {
-		cinfo->progress->pass_counter = ( long ) cinfo->next_scanline;
-		cinfo->progress->pass_limit = ( long ) cinfo->image_height;
-		( *cinfo->progress->progress_monitor )( ( j_common_ptr ) cinfo );
+		cinfo->progress->pass_counter = ( long )cinfo->next_scanline;
+		cinfo->progress->pass_limit = ( long )cinfo->image_height;
+		( *cinfo->progress->progress_monitor )( ( j_common_ptr )cinfo );
 	}
 	/* Give master control module another chance if this is first call to
 	 * jpeg_write_scanlines.  This lets output of the frame/scan headers be
@@ -317,7 +317,7 @@ JDIMENSION roq::JPEGWriteScanlines( j_compress_ptr cinfo, JSAMPARRAY scanlines, 
 static int hackSize;
 
 void roq::JPEGTermDestination( j_compress_ptr cinfo ) {
-	my_dest_ptr dest = ( my_dest_ptr ) cinfo->dest;
+	my_dest_ptr dest = ( my_dest_ptr )cinfo->dest;
 	size_t datacount = dest->size - dest->pub.free_in_buffer;
 	hackSize = datacount;
 }
@@ -338,10 +338,10 @@ void roq::JPEGDest( j_compress_ptr cinfo, byte *outfile, int size ) {
 	 */
 	if( cinfo->dest == NULL ) {	/* first time for this JPEG object? */
 		cinfo->dest = ( struct jpeg_destination_mgr * )
-					  ( *cinfo->mem->alloc_small )( ( j_common_ptr ) cinfo, JPOOL_PERMANENT,
+					  ( *cinfo->mem->alloc_small )( ( j_common_ptr )cinfo, JPOOL_PERMANENT,
 							  sizeof( my_destination_mgr ) );
 	}
-	dest = ( my_dest_ptr ) cinfo->dest;
+	dest = ( my_dest_ptr )cinfo->dest;
 	dest->pub.init_destination = JPEGInitDestination;
 	dest->pub.empty_output_buffer = JPEGEmptyOutputBuffer;
 	dest->pub.term_destination = JPEGTermDestination;
@@ -433,7 +433,7 @@ void roq::WriteLossless( void ) {
 		 * more than one scanline at a time if that's more convenient.
 		 */
 		row_pointer[0] = &pixbuf[( ( cinfo.image_height - 1 ) * row_stride ) - cinfo.next_scanline * row_stride];
-		( void ) JPEGWriteScanlines( &cinfo, row_pointer, 1 );
+		( void )JPEGWriteScanlines( &cinfo, row_pointer, 1 );
 	}
 	/* Step 6: Finish compression */
 	jpeg_finish_compress( &cinfo );
@@ -702,7 +702,7 @@ void roq::WriteFrame( quadcel *pquad ) {
 	Write16Word( &direct, RoQFile );
 	j = onCCC;
 	Write32Word( &j, RoQFile );
-	direct  = dyMean;
+	direct = dyMean;
 	direct &= 0xff;
 	direct += ( dxMean << 8 );		// flags
 	Write16Word( &direct, RoQFile );
@@ -724,7 +724,7 @@ void roq::LoadAndDisplayImage( const char *filename ) {
 	common->Printf( "loadAndDisplayImage: %s\n", filename );
 	currentFile = filename;
 	image = new NSBitmapImageRep( filename );
-	numQuadCels  = ( ( image->pixelsWide() & 0xfff0 ) * ( image->pixelsHigh() & 0xfff0 ) ) / ( MINSIZE * MINSIZE );
+	numQuadCels = ( ( image->pixelsWide() & 0xfff0 ) * ( image->pixelsHigh() & 0xfff0 ) ) / ( MINSIZE * MINSIZE );
 	numQuadCels += numQuadCels / 4 + numQuadCels / 16;
 	//	if (paramFile->deltaFrames] == true && cleared == false && [image isPlanar] == false) {
 	//		cleared = true;

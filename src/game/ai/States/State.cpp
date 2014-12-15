@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -116,7 +116,7 @@ const int WARNING_RESPONSE_DELAY = 1000; // grayman #2920 - how long to delay be
 
 const int WARN_DIST_MAX_Z = 100; // no warning if the sender is farther than this vertically from the alert spot (same for each alert type)
 //----------------------------------------------------------------------------------------
-const int VIS_STIM_DELAY_MIN =  500; // grayman #2924 - min amount of time delay (ms) before processing certain visual stims
+const int VIS_STIM_DELAY_MIN = 500; // grayman #2924 - min amount of time delay (ms) before processing certain visual stims
 const int VIS_STIM_DELAY_MAX = 1000; // grayman #2924 - max amount of time delay (ms) before processing certain visual stims
 //----------------------------------------------------------------------------------------
 // The following defines a key that should be non-0 if the device should be closed
@@ -281,36 +281,36 @@ void State::OnTactileAlert( idEntity *tactEnt ) {
 /* grayman #3140 - no longer used
 void State::OnProjectileHit(idProjectile* projectile)
 {
-	idAI* owner = _owner.GetEntity();
+idAI* owner = _owner.GetEntity();
 
-	if (owner->AI_DEAD || owner->AI_KNOCKEDOUT)
-	{
-		return;
-	}
+if (owner->AI_DEAD || owner->AI_KNOCKEDOUT)
+{
+return;
+}
 
-	if (owner->AI_AlertLevel <= (owner->thresh_5 - 0.1f))
-	{
-		// Set the alert level right below combat threshold
-		owner->SetAlertLevel(owner->thresh_5 - 0.1f);
+if (owner->AI_AlertLevel <= (owner->thresh_5 - 0.1f))
+{
+// Set the alert level right below combat threshold
+owner->SetAlertLevel(owner->thresh_5 - 0.1f);
 
-		// The owner will start to search, set up the parameters
-		Memory& memory = owner->GetMemory();
+// The owner will start to search, set up the parameters
+Memory& memory = owner->GetMemory();
 
-		memory.alertClass = EAlertTactile;
-		memory.alertType = EAlertTypeDamage;
+memory.alertClass = EAlertTactile;
+memory.alertType = EAlertTypeDamage;
 
-		idVec3 projVel = projectile->GetPhysics()->GetLinearVelocity();
-		projVel.NormalizeFast();
+idVec3 projVel = projectile->GetPhysics()->GetLinearVelocity();
+projVel.NormalizeFast();
 
-		memory.alertPos = owner->GetPhysics()->GetOrigin() - projVel * 300;
-		memory.alertPos.x += 200 * gameLocal.random.RandomFloat() - 100;
-		memory.alertPos.y += 200 * gameLocal.random.RandomFloat() - 100;
-		memory.alertRadius = LOST_ENEMY_ALERT_RADIUS;
-		memory.alertSearchVolume = LOST_ENEMY_SEARCH_VOLUME;
-		memory.alertSearchExclusionVolume.Zero();
-		memory.visualAlert = false;
-		memory.mandatory = true; // grayman #3331
-	}
+memory.alertPos = owner->GetPhysics()->GetOrigin() - projVel * 300;
+memory.alertPos.x += 200 * gameLocal.random.RandomFloat() - 100;
+memory.alertPos.y += 200 * gameLocal.random.RandomFloat() - 100;
+memory.alertRadius = LOST_ENEMY_ALERT_RADIUS;
+memory.alertSearchVolume = LOST_ENEMY_SEARCH_VOLUME;
+memory.alertSearchExclusionVolume.Zero();
+memory.visualAlert = false;
+memory.mandatory = true; // grayman #3331
+}
 }
 */
 
@@ -478,11 +478,11 @@ void State::OnVisualStim( idEntity *stimSource ) {
 	}
 	// grayman #2416 - If I'm in the middle of certain animations, do nothing
 	moveType_t moveType = owner->GetMoveType();
-	if( moveType == MOVETYPE_SIT_DOWN			||  // standing->sitting
-			moveType == MOVETYPE_GET_UP			|| // sitting->standing
-			moveType == MOVETYPE_GET_UP_FROM_LYING	|| // sleeping->standing
-			moveType == MOVETYPE_SLEEP				|| // sleeping
-			moveType == MOVETYPE_LAY_DOWN ) {	   // standing->lying down
+	if( moveType == MOVETYPE_SIT_DOWN ||  // standing->sitting
+			moveType == MOVETYPE_GET_UP || // sitting->standing
+			moveType == MOVETYPE_GET_UP_FROM_LYING || // sleeping->standing
+			moveType == MOVETYPE_SLEEP || // sleeping
+			moveType == MOVETYPE_LAY_DOWN ) {	  // standing->lying down
 		return;
 	}
 	// Get AI use of the stim
@@ -579,7 +579,7 @@ void State::OnVisualStim( idEntity *stimSource ) {
 
 		if (convState != NULL)
 		{
-			return; // we're in a conversation, so delay processing the rest of the relight
+		return; // we're in a conversation, so delay processing the rest of the relight
 		}
 		*/
 		// Before we check the odds of noticing this stim, see if it belongs
@@ -1091,7 +1091,7 @@ int State::ProcessWarning( idActor *owner, idActor *other, EventType type, const
 	// Go through the owner's list of suspicious events and see if any
 	// are this event type. If there's one I haven't told 'other' about yet, see if we're
 	// close enough to the event site to tell him.
-	for( int i = 0 ; i < owner->m_suspiciousEventIDs.Num() ; i++ ) {
+	for( int i = 0; i < owner->m_suspiciousEventIDs.Num(); i++ ) {
 		int eventID = owner->m_suspiciousEventIDs[i];
 		SuspiciousEvent se = gameLocal.m_suspiciousEvents[eventID];
 		if( se.type == type ) { // type of event
@@ -1205,7 +1205,7 @@ void State::OnActorEncounter( idEntity *stimSource, idAI *owner ) {
 								// Should I warn about an enemy?
 								int eventID = ProcessWarning( owner, player, E_EventTypeEnemy, WARN_DIST_ENEMY_SEEN ); // grayman #3424
 								if( eventID >= 0 ) {
-									player->AddSuspiciousEvent( eventID );  // player now knows about this event
+									player->AddSuspiciousEvent( eventID ); // player now knows about this event
 									owner->AddWarningEvent( player, eventID ); // log that a warning passed between us
 									player->AddWarningEvent( owner, eventID ); // log that a warning passed between us
 									// grayman #3848 - I have a warning! Did I kill the enemy in that warning?
@@ -1220,7 +1220,7 @@ void State::OnActorEncounter( idEntity *stimSource, idAI *owner ) {
 									// Should I warn about finding a corpse?
 									eventID = ProcessWarning( owner, player, E_EventTypeDeadPerson, WARN_DIST_CORPSE_FOUND ); // grayman #3424
 									if( eventID >= 0 ) {
-										player->AddSuspiciousEvent( eventID );  // player now knows about this event
+										player->AddSuspiciousEvent( eventID ); // player now knows about this event
 										owner->AddWarningEvent( player, eventID ); // log that a warning passed between us
 										player->AddWarningEvent( owner, eventID ); // log that a warning passed between us
 										soundName = "snd_warnFoundCorpse";
@@ -1230,7 +1230,7 @@ void State::OnActorEncounter( idEntity *stimSource, idAI *owner ) {
 									// Should I warn about a missing item?
 									eventID = ProcessWarning( owner, player, E_EventTypeMissingItem, WARN_DIST_MISSING_ITEM ); // grayman #3424
 									if( eventID >= 0 ) {
-										player->AddSuspiciousEvent( eventID );  // player now knows about this event
+										player->AddSuspiciousEvent( eventID ); // player now knows about this event
 										owner->AddWarningEvent( player, eventID ); // log that a warning passed between us
 										player->AddWarningEvent( owner, eventID ); // log that a warning passed between us
 										soundName = "snd_warnMissingItem";
@@ -1419,9 +1419,9 @@ void State::OnActorEncounter( idEntity *stimSource, idAI *owner ) {
 							int warningAmount = otherMemory.countEvidenceOfIntruders;
 							if ( memory.countEvidenceOfIntruders < warningAmount )
 							{
-								memory.countEvidenceOfIntruders = warningAmount;
+							memory.countEvidenceOfIntruders = warningAmount;
 							}
-							 */
+							*/
 						}
 					}
 					if( !soundName.IsEmpty() ) { // grayman #2903
@@ -1453,7 +1453,7 @@ void State::OnActorEncounter( idEntity *stimSource, idAI *owner ) {
 				}
 				// grayman #3202 - don't issue a warning or greeting if you're mute
 				// grayman #3424 - or if your friend has been searching recently
-				else if( !( otherAI->m_recentHighestAlertLevel >= owner->thresh_3 )  && !owner->m_isMute ) { // grayman #2903 // grayman #3438
+				else if( !( otherAI->m_recentHighestAlertLevel >= owner->thresh_3 ) && !owner->m_isMute ) { // grayman #2903 // grayman #3438
 					// grayman #1327 - apply the distance check to both warnings and greetings
 					const idVec3 &origin = owner->GetPhysics()->GetOrigin();
 					const idVec3 &otherOrigin = otherAI->GetPhysics()->GetOrigin();
@@ -1823,7 +1823,7 @@ idStr State::GetGreetingResponseSound( idAI *owner, idAI *otherAI ) {
 	idStr ownPersonType( owner->spawnArgs.GetString( PERSONTYPE_KEY ) );
 	idStr otherPersonType( otherAI->spawnArgs.GetString( PERSONTYPE_KEY ) );
 	// Nobles and priests just use the generic ones for everybody.
-	if( ( ownPersonType == PERSONTYPE_NOBLE ) || /*ownPersonType == PERSONTYPE_ELITE || */  // grayman #3457 - no longer need ELITE
+	if( ( ownPersonType == PERSONTYPE_NOBLE ) || /*ownPersonType == PERSONTYPE_ELITE || */ // grayman #3457 - no longer need ELITE
 			( ownPersonType == PERSONTYPE_PRIEST ) ) {
 		// Owner is a "superior"
 		return "snd_response_positive";
@@ -1854,7 +1854,7 @@ bool State::OnDeadPersonEncounter( idActor *person, idAI *owner ) {
 	// stuck into this body
 	idList<idEntity *> children;
 	person->GetTeamChildren( &children ); // gets the head, other attachments, and children of all
-	for( int i = 0 ; i < children.Num() ; i++ ) {
+	for( int i = 0; i < children.Num(); i++ ) {
 		idEntity *child = children[i];
 		if( child == NULL ) {
 			continue;
@@ -2374,11 +2374,11 @@ void State::OnMovementBlocked( idAI *owner ) {
 			/* grayman #3725 - no need for this last swap, because it can
 			   lead to confusion if we ask the master and slave to both
 			   resolve the same block
-			if (slave->movementSubsystem->IsResolvingBlock() || !slave->m_canResolveBlock) // grayman #2345
-			{
-				std::swap(master, slave);
-			}
-			*/
+			   if (slave->movementSubsystem->IsResolvingBlock() || !slave->m_canResolveBlock) // grayman #2345
+			   {
+			   std::swap(master, slave);
+			   }
+			   */
 		}
 		// Tell the slave to get out of the way.
 		slave->movementSubsystem->ResolveBlock( master );
@@ -2400,9 +2400,9 @@ void State::OnVisualStimBlood( idEntity *stimSource, idAI *owner ) {
 	/*     grayman #3075 - no longer
 		if (memory.deadPeopleHaveBeenFound)
 		{
-			return;
+		return;
 		}
-	 */
+		*/
 	// grayman #3075 - Each blood marker knows who spilled it.
 	// If the body is nearby and visible, don't process this blood marker.
 	CBloodMarker *marker = static_cast<CBloodMarker *>( stimSource );
@@ -2467,7 +2467,7 @@ bool State::CheckTorch( idAI *owner, idLight *light ) {
 		idLight *torchLight = NULL;
 		idList<idEntity *> children;
 		torch->GetTeamChildren( &children );
-		for( int i = 0 ; i < children.Num() ; i++ ) {
+		for( int i = 0; i < children.Num(); i++ ) {
 			if( children[i]->IsType( idLight::Type ) ) {
 				torchLight = static_cast<idLight *>( children[i] );
 				break;
@@ -2499,9 +2499,9 @@ bool State::CheckTorch( idAI *owner, idLight *light ) {
 				/*				// If you're in the middle of lighting a light, stop
 								if (owner->m_RelightingLight)
 								{
-									owner->GetMemory().stopRelight = true;
+								owner->GetMemory().stopRelight = true;
 								}
-				*/
+								*/
 				return false; // My torch is out, so don't start a relight
 			}
 		} else {
@@ -2527,7 +2527,7 @@ void State::IgnoreSiblingLights( idAI *owner, idLight *light ) {
 	if( parent ) {
 		idList<idEntity *> children;
 		parent->GetTeamChildren( &children ); // gets all children
-		for( int i = 0 ; i < children.Num() ; i++ ) {
+		for( int i = 0; i < children.Num(); i++ ) {
 			idEntity *child = children[i];
 			if( ( child == NULL ) || ( child == light ) ) {
 				continue;
@@ -2652,17 +2652,17 @@ void State::OnVisualStimLightSource( idEntity *stimSource, idAI *owner ) {
 			/*			// Raise alert level if we already have some evidence of intruders
 
 						if ((owner->AI_AlertLevel < owner->thresh_3) &&
-							(memory.enemiesHaveBeenSeen || (memory.countEvidenceOfIntruders >= MIN_EVIDENCE_OF_INTRUDERS_TO_SEARCH_ON_LIGHT_OFF)))
+						(memory.enemiesHaveBeenSeen || (memory.countEvidenceOfIntruders >= MIN_EVIDENCE_OF_INTRUDERS_TO_SEARCH_ON_LIGHT_OFF)))
 						{
-							owner->SetAlertLevel(owner->thresh_3 - 0.1 + (owner->thresh_4 - owner->thresh_3) * 0.2
-								* (memory.countEvidenceOfIntruders - MIN_EVIDENCE_OF_INTRUDERS_TO_SEARCH_ON_LIGHT_OFF)); // grayman #2603 - subtract a tenth
+						owner->SetAlertLevel(owner->thresh_3 - 0.1 + (owner->thresh_4 - owner->thresh_3) * 0.2
+						* (memory.countEvidenceOfIntruders - MIN_EVIDENCE_OF_INTRUDERS_TO_SEARCH_ON_LIGHT_OFF)); // grayman #2603 - subtract a tenth
 
-							if (owner->AI_AlertLevel >= (owner->thresh_5 + owner->thresh_4) * 0.5)
-							{
-								owner->SetAlertLevel((owner->thresh_5 + owner->thresh_4) * 0.45);
-							}
+						if (owner->AI_AlertLevel >= (owner->thresh_5 + owner->thresh_4) * 0.5)
+						{
+						owner->SetAlertLevel((owner->thresh_5 + owner->thresh_4) * 0.45);
 						}
-			 */
+						}
+						*/
 			owner->m_LatchedSearch = true; // set up search after light is relit
 		}
 	}
@@ -2868,12 +2868,12 @@ void State::OnVisualStimBrokenItem( idEntity *stimSource, idAI *owner ) {
 bool State::SomeoneNearDoor( idAI *owner, CFrobDoor *door ) {
 	int num;
 	idEntity *candidate;
-	idClipModel *clipModels[ MAX_GENTITIES ];
+	idClipModel *clipModels[MAX_GENTITIES];
 	idVec3 doorCenter = door->GetClosedBox().GetCenter();
 	idBounds doorBounds( idVec3( doorCenter.x - PERSON_NEAR_DOOR, doorCenter.y - PERSON_NEAR_DOOR, doorCenter.z - 50 ),
 						 idVec3( doorCenter.x + PERSON_NEAR_DOOR, doorCenter.y + PERSON_NEAR_DOOR, doorCenter.z + 50 ) );
 	num = gameLocal.clip.ClipModelsTouchingBounds( doorBounds, MASK_MONSTERSOLID, clipModels, MAX_GENTITIES );
-	for( int i = 0 ; i < num ; i++ ) {
+	for( int i = 0; i < num; i++ ) {
 		candidate = clipModels[i]->GetEntity();
 		if( candidate == owner ) {
 			continue; // skip observer
@@ -2942,10 +2942,10 @@ void State::OnVisualStimDoor( idEntity *stimSource, idAI *owner ) {
 				idVec3 doorCenter = door->GetClosedBox().GetCenter();
 				if ( (personOrigin - doorCenter).LengthSqr() <= Square(PERSON_NEAR_DOOR) )
 				{
-					stimSource->IgnoreResponse(ST_VISUAL, owner);
-					return; // someone I can't see opened the door and is still near it, so all is well
+				stimSource->IgnoreResponse(ST_VISUAL, owner);
+				return; // someone I can't see opened the door and is still near it, so all is well
 				}
-		 */
+				*/
 	}
 	// grayman #3104 - is anyone near the door who might have opened it?
 	if( SomeoneNearDoor( owner, door ) ) {
@@ -3556,12 +3556,12 @@ void State::OnFrobDoorEncounter( CFrobDoor *frobDoor ) {
 
 						if (boost::dynamic_pointer_cast<HandleDoorTask>(task) == NULL)
 						{
-							// angua: current door is set but no door handling task active
-							// door handling task was probably terminated before initialisation
-							// clear current door
-							memory.doorRelated.currentDoor = NULL;
+						// angua: current door is set but no door handling task active
+						// door handling task was probably terminated before initialisation
+						// clear current door
+						memory.doorRelated.currentDoor = NULL;
 						}
-			*/
+						*/
 		}
 	}
 }

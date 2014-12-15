@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -87,7 +87,7 @@ int FS_WriteFloatString( char *buf, const char *fmt, va_list argPtr ) {
 				break;
 			case 'c':
 				i = va_arg( argPtr, long );
-				index += sprintf( buf + index, format.c_str(), ( char ) i );
+				index += sprintf( buf + index, format.c_str(), ( char )i );
 				break;
 			case 's':
 				str = va_arg( argPtr, char * );
@@ -381,7 +381,7 @@ int idFile::ReadString( idStr &string ) {
 	ReadInt( len );
 	if( len >= 0 ) {
 		string.Fill( ' ', len );
-		result = Read( &string[ 0 ], len );
+		result = Read( &string[0], len );
 	}
 	return result;
 }
@@ -703,7 +703,7 @@ int idFile_Memory::Write( const void *buffer, int len ) {
 			return 0;
 		}
 		const int extra = granularity * ( 1 + alloc / granularity );
-		char *newPtr = ( char * ) Mem_Alloc( allocated + extra );
+		char *newPtr = ( char * )Mem_Alloc( allocated + extra );
 		if( allocated ) {
 			memcpy( newPtr, filePtr, allocated );
 		}
@@ -717,7 +717,7 @@ int idFile_Memory::Write( const void *buffer, int len ) {
 	memcpy( curPtr, buffer, len );
 	curPtr += len;
 	fileSize += len;
-	filePtr[ fileSize ] = 0; // len + 1
+	filePtr[fileSize] = 0; // len + 1
 	return len;
 }
 
@@ -768,7 +768,7 @@ void idFile_Memory::Flush( void ) {
 =================
 idFile_Memory::Seek
 
-  returns zero on success and -1 on failure
+returns zero on success and -1 on failure
 =================
 */
 int idFile_Memory::Seek( long offset, fsOrigin_t origin ) {
@@ -933,7 +933,7 @@ idFile_BitMsg::Tell
 =================
 */
 int idFile_BitMsg::Tell( void ) {
-	if( mode && FS_READ ) {  // Serp: changed from bitwise & to && - since flag is 0
+	if( mode && FS_READ ) { // Serp: changed from bitwise & to && - since flag is 0
 		return msg->GetReadCount();
 	} else {
 		return msg->GetSize();
@@ -960,7 +960,7 @@ void idFile_BitMsg::Flush( void ) {
 =================
 idFile_BitMsg::Seek
 
-  returns zero on success and -1 on failure
+returns zero on success and -1 on failure
 =================
 */
 int idFile_BitMsg::Seek( long offset, fsOrigin_t origin ) {
@@ -1138,7 +1138,7 @@ ID_TIME_T idFile_Permanent::Timestamp( void ) {
 =================
 idFile_Permanent::Seek
 
-  returns zero on success and -1 on failure
+returns zero on success and -1 on failure
 =================
 */
 int idFile_Permanent::Seek( long offset, fsOrigin_t origin ) {
@@ -1268,7 +1268,7 @@ ID_TIME_T idFile_InZip::Timestamp( void ) {
 =================
 idFile_InZip::Seek
 
-  returns zero on success and -1 on failure
+returns zero on success and -1 on failure
 =================
 */
 #define ZIP_SEEK_BUF_SIZE	(1<<15)
@@ -1289,7 +1289,7 @@ int idFile_InZip::Seek( long offset, fsOrigin_t origin ) {
 		}
 	}
 	case FS_SEEK_CUR: {
-		buf = ( char * ) _alloca16( ZIP_SEEK_BUF_SIZE );
+		buf = ( char * )_alloca16( ZIP_SEEK_BUF_SIZE );
 		for( i = 0; i < ( offset - ZIP_SEEK_BUF_SIZE ); i += ZIP_SEEK_BUF_SIZE ) {
 			res = unzReadCurrentFile( z, buf, ZIP_SEEK_BUF_SIZE );
 			if( res < ZIP_SEEK_BUF_SIZE ) {

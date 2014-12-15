@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #include "precompiled_engine.h"
 #pragma hdrstop
 
@@ -71,9 +71,9 @@ void CVectorCtl::DrawItem( LPDRAWITEMSTRUCT lpDrawItemStruct ) {
 	if( !m_bSelected && lpDrawItemStruct->itemState & ODS_SELECTED ) {
 		// Just got re-selected (user starts a new mouse dragging session)
 	} else if( m_bSelected && // Last state was selected
-			   !( lpDrawItemStruct->itemState & ODS_SELECTED ) &&   // New state is NOT selected
-			   ( lpDrawItemStruct->itemState & ODS_FOCUS ) &&       // New state is still in focus
-			   m_procVectorChanged )    // User asked for a callback
+			   !( lpDrawItemStruct->itemState & ODS_SELECTED ) && // New state is NOT selected
+			   ( lpDrawItemStruct->itemState & ODS_FOCUS ) &&     // New state is still in focus
+			   m_procVectorChanged )   // User asked for a callback
 		// User has left the track-ball and asked for a callback.
 	{
 		m_procVectorChanged( rotationQuat );
@@ -83,9 +83,9 @@ void CVectorCtl::DrawItem( LPDRAWITEMSTRUCT lpDrawItemStruct ) {
 	if( !m_bBmpCreated ) { // 1st time
 		InitBitmap( lpDrawItemStruct, pDC );
 	}
-	if( m_bImageChange ) {  // Image has changes - recalc it!
+	if( m_bImageChange ) { // Image has changes - recalc it!
 		if( m_procVectorChanging ) { // User has specified a callback
-			m_procVectorChanging( rotationQuat );    // Call it!
+			m_procVectorChanging( rotationQuat );  // Call it!
 		}
 		BuildImage( lpDrawItemStruct );
 		m_bImageChange = FALSE;
@@ -124,7 +124,7 @@ BOOL CVectorCtl::Normalize() {
 		m_dVec[1] /= Norm;
 		m_dVec[2] /= Norm;
 		return TRUE;
-	} else {    // Reset to defualt vector
+	} else {  // Reset to defualt vector
 		double DefaultVec[3] = DEFAULT_VEC;
 		for( int i = 0; i < 3; i++ ) {
 			m_dVec[i] = DefaultVec[i];
@@ -145,16 +145,16 @@ COLORREF CVectorCtl::CalcLight( double dx, double dy, double dz ) {
 	}
 	RV = max( 0.0, -rz );
 	RV = double( pow( RV, m_dSpecularExponent ) );
-	int  r = int ( double( GetRValue( m_clrDiffuse ) ) * NL + // Diffuse
-				   double( GetRValue( m_clrLight ) ) * RV + // Specular
-				   double( GetRValue( m_clrAmbient ) ) ),  // Ambient
-			 g = int ( double( GetGValue( m_clrDiffuse ) ) * NL + // Diffuse
-					   double( GetGValue( m_clrLight ) ) * RV + // Specular
-					   double( GetGValue( m_clrAmbient ) ) ),  // Ambient
-				 b = int ( double( GetBValue( m_clrDiffuse ) ) * NL + // Diffuse
-						   double( GetBValue( m_clrLight ) ) * RV + // Specular
-						   double( GetBValue( m_clrAmbient ) ) );  // Ambient
-	r = min( 255, r );  // Cutoff highlight
+	int  r = int( double( GetRValue( m_clrDiffuse ) ) * NL + // Diffuse
+				  double( GetRValue( m_clrLight ) ) * RV + // Specular
+				  double( GetRValue( m_clrAmbient ) ) ), // Ambient
+			 g = int( double( GetGValue( m_clrDiffuse ) ) * NL + // Diffuse
+					  double( GetGValue( m_clrLight ) ) * RV + // Specular
+					  double( GetGValue( m_clrAmbient ) ) ), // Ambient
+				 b = int( double( GetBValue( m_clrDiffuse ) ) * NL + // Diffuse
+						  double( GetBValue( m_clrLight ) ) * RV + // Specular
+						  double( GetBValue( m_clrAmbient ) ) ); // Ambient
+	r = min( 255, r ); // Cutoff highlight
 	g = min( 255, g );
 	b = min( 255, b );
 	return RGB( BYTE( r ), BYTE( g ), BYTE( b ) );
@@ -200,7 +200,7 @@ void CVectorCtl::RotateByXandY( double XRot, double YRot ) {
 		m_dVec[0] = dx;
 		m_dVec[1] = dy;
 		m_dVec[2] = dz;
-	} else {    // Otherwise, do not allow Z to be negative (light shines from behind)
+	} else {  // Otherwise, do not allow Z to be negative (light shines from behind)
 		m_dVec[2] = 0.0;
 		m_dVec[0] = dx;
 		m_dVec[1] = dy;
@@ -351,7 +351,7 @@ void CVectorCtl::OnMouseMove( UINT nFlags, CPoint point ) {
 	axis.Cross( to, lastPress );
 	float len = ( lastPress - to ).Length() / ( 2.0f * radius );
 	len = idMath::ClampFloat( -1.0f, 1.0f, len );
-	float phi = 2.0f * asin( len ) ;
+	float phi = 2.0f * asin( len );
 	axis.Normalize();
 	axis *= sin( phi / 2.0f );
 	idQuat rot( axis.z, axis.y, axis.x, cos( phi / 2.0f ) );

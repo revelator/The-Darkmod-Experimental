@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __GAME_MOVEABLE_H__
 #define __GAME_MOVEABLE_H__
@@ -23,7 +23,7 @@
 /*
 ===============================================================================
 
-  Entity using rigid body physics.
+Entity using rigid body physics.
 
 ===============================================================================
 */
@@ -113,8 +113,8 @@ protected:
 /*
 ===============================================================================
 
-  A barrel using rigid body physics. The barrel has special handling of
-  the view model orientation to make it look like it rolls instead of slides.
+A barrel using rigid body physics. The barrel has special handling of
+the view model orientation to make it look like it rolls instead of slides.
 
 ===============================================================================
 */
@@ -146,9 +146,9 @@ private:
 /*
 ===============================================================================
 
-  A barrel using rigid body physics and special handling of the view model
-  orientation to make it look like it rolls instead of slides. The barrel
-  can burn and explode when damaged.
+A barrel using rigid body physics and special handling of the view model
+orientation to make it look like it rolls instead of slides. The barrel
+can burn and explode when damaged.
 
 ===============================================================================
 */
@@ -200,7 +200,7 @@ private:
 	float					time;
 
 	void					AddParticles( const char *name, bool burn );
-	void					AddLight( const char *name , bool burn );
+	void					AddLight( const char *name, bool burn );
 	void					ExplodingEffects( void );
 
 	void					Event_Activate( idEntity *activator );

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -130,7 +130,7 @@ END_MESSAGE_MAP()
 /*
 ===================================================
 
-  SURFACE INSPECTOR
+SURFACE INSPECTOR
 
 ===================================================
 */
@@ -163,7 +163,7 @@ void CSurfaceDlg::SetTexMods() {
 	int faceCount = g_ptrSelectedFaces.GetSize();
 	face_t *selFace = NULL;
 	if( faceCount ) {
-		selFace = reinterpret_cast < face_t * >( g_ptrSelectedFaces.GetAt( 0 ) );
+		selFace = reinterpret_cast <face_t *>( g_ptrSelectedFaces.GetAt( 0 ) );
 	} else {
 		if( selected_brushes.next != &selected_brushes ) {
 			brush_t *b = selected_brushes.next;
@@ -197,25 +197,25 @@ void CSurfaceDlg::UpdateSpinners( bool up, int nID ) {
 	float hdiv = 0.0f;
 	float vdiv = 0.0f;
 	switch( nID ) {
-	case IDC_SPIN_ROTATE :
+	case IDC_SPIN_ROTATE:
 		Select_RotateTexture( ( up ) ? m_rotate : -m_rotate );
 		break;
-	case IDC_SPIN_HSCALE :
+	case IDC_SPIN_HSCALE:
 		m_horzScale += ( up ) ? 0.1f : -0.1f;
 		hdiv = ( m_horzScale == 0.0f ) ? 1.0f : m_horzScale;
 		Select_ScaleTexture( 1.0f / hdiv, 0.0f, true, ( m_absolute != FALSE ) );
 		UpdateData( FALSE );
 		break;
-	case IDC_SPIN_VSCALE :
+	case IDC_SPIN_VSCALE:
 		m_vertScale += ( up ) ? 0.1f : -0.1f;
 		vdiv = ( m_vertScale == 0.0f ) ? 1.0f : m_vertScale;
 		Select_ScaleTexture( 0.0f, 1.0f / vdiv, true, ( m_absolute != FALSE ) );
 		UpdateData( FALSE );
 		break;
-	case IDC_SPIN_HSHIFT :
+	case IDC_SPIN_HSHIFT:
 		Select_ShiftTexture( ( up ) ? m_horzShift : -m_horzShift, 0 );
 		break;
-	case IDC_SPIN_VSHIFT :
+	case IDC_SPIN_VSHIFT:
 		Select_ShiftTexture( 0, ( up ) ? m_vertShift : -m_vertShift );
 		break;
 	}
@@ -458,14 +458,14 @@ void CSurfaceDlg::OnBtnFacefit() {
 	/*
 		brush_t *b;
 		for (b=selected_brushes.next ; b != &selected_brushes ; b=b->next) {
-			if (!b->patchBrush) {
-				for (face_t* pFace = b->brush_faces; pFace; pFace = pFace->next) {
-					g_ptrSelectedFaces.Add(pFace);
-					g_ptrSelectedFaceBrushes.Add(b);
-				}
-			}
+		if (!b->patchBrush) {
+		for (face_t* pFace = b->brush_faces; pFace; pFace = pFace->next) {
+		g_ptrSelectedFaces.Add(pFace);
+		g_ptrSelectedFaceBrushes.Add(b);
 		}
-	*/
+		}
+		}
+		*/
 	Select_FitTexture( m_fHeight, m_fWidth );
 	g_pParentWnd->GetCamera()->MarkWorldDirty();
 	//SetTexMods();

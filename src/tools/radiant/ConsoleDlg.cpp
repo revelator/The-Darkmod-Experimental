@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -111,7 +111,7 @@ BOOL CConsoleDlg::PreTranslateMessage( MSG *pMsg ) {
 			if( consoleHistory.Num() > 0 ) {
 				editInput.SetWindowText( consoleHistory[currentHistoryPosition] );
 				int selLocation = consoleHistory[currentHistoryPosition].Length();
-				editInput.SetSel( selLocation , selLocation + 1 );
+				editInput.SetSel( selLocation, selLocation + 1 );
 			}
 			if( currentHistoryPosition > 0 ) {
 				--currentHistoryPosition;
@@ -130,13 +130,13 @@ BOOL CConsoleDlg::PreTranslateMessage( MSG *pMsg ) {
 				currentCommand.Clear();
 				saveCurrentCommand = true;
 			}
-			editInput.SetSel( selLocation , selLocation + 1 );
+			editInput.SetSel( selLocation, selLocation + 1 );
 			return TRUE;
 		}
 		if( pMsg->message == WM_KEYDOWN && pMsg->wParam == VK_TAB ) {
 			common->Printf( "Command History\n----------------\n" );
-			for( int i = 0 ; i < consoleHistory.Num(); i++ ) {
-				common->Printf( "[cmd %d]:  %s\n" , i , consoleHistory[i].c_str() );
+			for( int i = 0; i < consoleHistory.Num(); i++ ) {
+				common->Printf( "[cmd %d]:  %s\n", i, consoleHistory[i].c_str() );
 			}
 			common->Printf( "----------------\n" );
 		}
@@ -191,7 +191,7 @@ void CConsoleDlg::ExecuteCommand( const idStr &cmd ) {
 		bool propogateCommand = true;
 		//process some of our own special commands
 		if( str.CompareNoCase( "clear" ) == 0 ) {
-			editConsole.SetSel( 0 , -1 );
+			editConsole.SetSel( 0, -1 );
 			editConsole.Clear();
 		} else if( str.CompareNoCase( "edit" ) == 0 ) {
 			propogateCommand = false;

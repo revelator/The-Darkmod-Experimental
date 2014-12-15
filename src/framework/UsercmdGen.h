@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __USERCMDGEN_H__
 #define __USERCMDGEN_H__
@@ -23,13 +23,13 @@
 /*
 ===============================================================================
 
-	Samples a set of user commands from player input.
+Samples a set of user commands from player input.
 
 ===============================================================================
 */
 
-const int USERCMD_HZ			= 60;			// 60 frames per second
-const int USERCMD_MSEC			= 1000 / USERCMD_HZ;
+const int USERCMD_HZ = 60;			// 60 frames per second
+const int USERCMD_MSEC = 1000 / USERCMD_HZ;
 
 // ButtonState inputs; originally from UsercmdGen.cpp, left out of SDK by accident
 // sourced from http://www.doom3world.org/phpbb2/viewtopic.php?f=26&t=18587&p=170143
@@ -138,14 +138,14 @@ typedef enum {
 } UserCmdButton;
 
 // usercmd_t->button bits
-const int BUTTON_ATTACK			= BIT( 0 );
-const int BUTTON_RUN			= BIT( 1 );
-const int BUTTON_ZOOM			= BIT( 2 );
-const int BUTTON_SCORES			= BIT( 3 );
-const int BUTTON_MLOOK			= BIT( 4 );
-const int BUTTON_5				= BIT( 5 );
-const int BUTTON_6				= BIT( 6 );
-const int BUTTON_7				= BIT( 7 );
+const int BUTTON_ATTACK = BIT( 0 );
+const int BUTTON_RUN = BIT( 1 );
+const int BUTTON_ZOOM = BIT( 2 );
+const int BUTTON_SCORES = BIT( 3 );
+const int BUTTON_MLOOK = BIT( 4 );
+const int BUTTON_5 = BIT( 5 );
+const int BUTTON_6 = BIT( 6 );
+const int BUTTON_7 = BIT( 7 );
 
 // usercmd_t->impulse commands
 enum {
@@ -244,11 +244,11 @@ const int IMPULSE_52			= 52;			// Inventory drop item
 // Darkmod: Added as a baseoffset for the impulse keys, when used with ButtonState.
 // This function requires an int as input which defines the key that should be used,
 // and it looks as if the first impulse starts with the number 25.
-const int IMPULSE_BUTTON_BASE	= 25;
+const int IMPULSE_BUTTON_BASE = 25;
 #define KEY_FROM_IMPULSE(n)		(n + IMPULSE_BUTTON_BASE)
 
 // usercmd_t->flags
-const int UCF_IMPULSE_SEQUENCE	= 0x0001;		// toggled every time an impulse command is sent
+const int UCF_IMPULSE_SEQUENCE = 0x0001;		// toggled every time an impulse command is sent
 
 class usercmd_t {
 public:

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -203,7 +203,7 @@ void DialogAF::SetTab( int id ) {
 ================
 DialogAF::SetTabChildPos
 
-  position the child dialog box
+position the child dialog box
 ================
 */
 void DialogAF::SetTabChildPos( void ) {
@@ -224,7 +224,7 @@ BOOL DialogAF::OnInitDialog()  {
 	// initialize list with articulated figure files
 	InitAFList();
 	// initialize tabs
-	wndTabs = ( CTabCtrl * ) GetDlgItem( IDC_DIALOG_AF_TAB_MODE );
+	wndTabs = ( CTabCtrl * )GetDlgItem( IDC_DIALOG_AF_TAB_MODE );
 	AddTabItem( AFTAB_VIEW, "View" );
 	AddTabItem( AFTAB_PROPERTIES, "Properties" );
 	AddTabItem( AFTAB_BODIES, "Bodies" );
@@ -289,7 +289,7 @@ void AFEditorInit( const idDict *spawnArgs ) {
 				// FIXME: restore position
 				CRect rct;
 				g_AFDialog->SetWindowPos( NULL, rct.left, rct.top, 0, 0, SWP_NOSIZE );
-		*/
+				*/
 	}
 	idKeyInput::ClearStates();
 	g_AFDialog->ShowWindow( SW_SHOW );
@@ -393,7 +393,7 @@ void DialogAF::OnMove( int x, int y ) {
 ================
 DialogAF::OnTcnSelchangeTabMode
 
-  tab control notification handler
+tab control notification handler
 ================
 */
 void DialogAF::OnTcnSelchangeTabMode( NMHDR *pNMHDR, LRESULT *pResult ) {

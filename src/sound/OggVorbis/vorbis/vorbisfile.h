@@ -37,9 +37,9 @@ extern "C"
  * unseekable
  */
 typedef struct {
-	size_t ( *read_func )( void *ptr, size_t size, size_t nmemb, void *datasource );
-	int ( *seek_func )( void *datasource, ogg_int64_t offset, int whence );
-	int ( *close_func )( void *datasource );
+	size_t( *read_func )( void *ptr, size_t size, size_t nmemb, void *datasource );
+	int( *seek_func )( void *datasource, ogg_int64_t offset, int whence );
+	int( *close_func )( void *datasource );
 	long( *tell_func )( void *datasource );
 } ov_callbacks;
 
@@ -63,8 +63,8 @@ typedef struct OggVorbis_File {
 	ogg_int64_t     *dataoffsets;
 	long            *serialnos;
 	ogg_int64_t     *pcmlengths; /* overloaded to maintain binary
-				  compatability; x2 size, stores both
-				  beginning and end values */
+					  compatability; x2 size, stores both
+					  beginning and end values */
 	vorbis_info     *vi;
 	vorbis_comment  *vc;
 
@@ -78,7 +78,7 @@ typedef struct OggVorbis_File {
 	double           samptrack;
 
 	ogg_stream_state os; /* take physical pages, weld into a logical
-                          stream of packets */
+							  stream of packets */
 	vorbis_dsp_state vd; /* central working state for the packet->PCM decoder */
 	vorbis_block     vb; /* local working space for packet->PCM decode */
 

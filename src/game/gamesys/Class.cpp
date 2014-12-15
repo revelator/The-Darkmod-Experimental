@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 // Copyright (C) 2004 Id Software, Inc.
 //
@@ -40,12 +40,12 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
   idTypeInfo
 
-***********************************************************************/
+  ***********************************************************************/
 
 // this is the head of a singly linked list of all the idTypes
 static idTypeInfo				*typelist = NULL;
 static idHierarchy<idTypeInfo>	classHierarchy;
-static int						eventCallbackMemory	= 0;
+static int						eventCallbackMemory = 0;
 
 /*
 ================
@@ -62,23 +62,23 @@ idTypeInfo::idTypeInfo( const char *classname, const char *superclass, idEventFu
 						void ( idClass::*Spawn )( void ), void ( idClass::*Save )( idSaveGame *savefile ) const, void ( idClass::*Restore )( idRestoreGame *savefile ) ) {
 	idTypeInfo *type;
 	idTypeInfo **insert;
-	this->classname			= classname;
-	this->superclass		= superclass;
-	this->eventCallbacks	= eventCallbacks;
-	this->eventMap			= NULL;
-	this->Spawn				= Spawn;
-	this->Save				= Save;
-	this->Restore			= Restore;
-	this->CreateInstance	= CreateInstance;
-	this->super				= idClass::GetClass( superclass );
-	this->freeEventMap		= false;
-	typeNum					= 0;
-	lastChild				= 0;
+	this->classname = classname;
+	this->superclass = superclass;
+	this->eventCallbacks = eventCallbacks;
+	this->eventMap = NULL;
+	this->Spawn = Spawn;
+	this->Save = Save;
+	this->Restore = Restore;
+	this->CreateInstance = CreateInstance;
+	this->super = idClass::GetClass( superclass );
+	this->freeEventMap = false;
+	typeNum = 0;
+	lastChild = 0;
 	// Check if any subclasses were initialized before their superclass
 	for( type = typelist; type != NULL; type = type->next ) {
 		if( ( type->super == NULL ) && !idStr::Cmp( type->superclass, this->classname ) &&
 				idStr::Cmp( type->classname, "idClass" ) ) {
-			type->super	= this;
+			type->super = this;
 		}
 	}
 	// Insert sorted
@@ -150,12 +150,12 @@ void idTypeInfo::Init( void ) {
 	// are events.  NOTE: could save some space by keeping track of the maximum
 	// event that the class responds to and doing range checking.
 	num = idEventDef::NumEventCommands();
-	eventMap = new eventCallback_t[ num ];
+	eventMap = new eventCallback_t[num];
 	memset( eventMap, 0, sizeof( eventCallback_t ) * num );
 	eventCallbackMemory += sizeof( eventCallback_t ) * num;
 	// allocate temporary memory for flags so that the subclass's event callbacks
 	// override the superclass's event callback
-	set = new bool[ num ];
+	set = new bool[num];
 	memset( set, 0, sizeof( bool ) * num );
 	// go through the inheritence order and copies the event callback function into
 	// a list indexed by the event number.  This allows fast lookups of
@@ -166,13 +166,13 @@ void idTypeInfo::Init( void ) {
 			continue;
 		}
 		// go through each entry until we hit the NULL terminator
-		for( i = 0; def[ i ].event != NULL; i++ )	{
-			ev = def[ i ].event->GetEventNum();
-			if( set[ ev ] ) {
+		for( i = 0; def[i].event != NULL; i++ )	{
+			ev = def[i].event->GetEventNum();
+			if( set[ev] ) {
 				continue;
 			}
-			set[ ev ] = true;
-			eventMap[ ev ] = def[ i ].function;
+			set[ev] = true;
+			eventMap[ev] = def[i].function;
 		}
 	}
 	delete[] set;
@@ -203,7 +203,7 @@ void idTypeInfo::Shutdown() {
 
   idClass
 
-***********************************************************************/
+  ***********************************************************************/
 
 const idEventDef EV_Remove( "<immediateremove>", EventArgs(), EV_RETURNS_VOID,
 							"Internalad. Removes the entity from the game. Use remove() or kill()." );
@@ -211,8 +211,8 @@ const idEventDef EV_SafeRemove( "remove", EventArgs(), EV_RETURNS_VOID,
 								"Removes the entity from the game. For AI, use kill() instead." );
 
 ABSTRACT_DECLARATION( NULL, idClass )
-EVENT( EV_Remove,				idClass::Event_Remove )
-EVENT( EV_SafeRemove,			idClass::Event_SafeRemove )
+EVENT( EV_Remove, idClass::Event_Remove )
+EVENT( EV_SafeRemove, idClass::Event_SafeRemove )
 END_CLASS
 
 // alphabetical order
@@ -220,10 +220,10 @@ idList<idTypeInfo *>	idClass::types;
 // typenum order
 idList<idTypeInfo *>	idClass::typenums;
 
-bool	idClass::initialized	= false;
-int		idClass::typeNumBits	= 0;
-int		idClass::memused		= 0;
-int		idClass::numobjects		= 0;
+bool	idClass::initialized = false;
+int		idClass::typeNumBits = 0;
+int		idClass::memused = 0;
+int		idClass::numobjects = 0;
 
 /*
 ================
@@ -314,7 +314,7 @@ void idClass::ListClasses_f( const idCmdArgs &args ) {
 	gameLocal.Printf( "%-24s %-24s %-6s %-6s\n", "Classname", "Superclass", "Type", "Subclasses" );
 	gameLocal.Printf( "----------------------------------------------------------------------\n" );
 	for( i = 0; i < types.Num(); i++ ) {
-		type = types[ i ];
+		type = types[i];
 		gameLocal.Printf( "%-24s %-24s %6d %6d\n", type->classname, type->superclass, type->typeNum, type->lastChild - type->typeNum );
 	}
 	gameLocal.Printf( "...%d classes", types.Num() );
@@ -375,8 +375,8 @@ void idClass::Init( void ) {
 	typenums.SetNum( num );
 	num = 0;
 	for( c = typelist; c != NULL; c = c->next, num++ ) {
-		types[ num ] = c;
-		typenums[ c->typeNum ] = c;
+		types[num] = c;
+		typenums[c->typeNum] = c;
 	}
 	initialized = true;
 	gameLocal.Printf( "...%i classes, %i bytes for event callbacks\n", types.Num(), eventCallbackMemory );
@@ -500,7 +500,7 @@ idTypeInfo *idClass::GetClass( const char *name ) {
 		max = types.Num() - 1;
 		while( min <= max ) {
 			mid = ( min + max ) / 2;
-			c = types[ mid ];
+			c = types[mid];
 			order = idStr::Cmp( c->classname, name );
 			if( !order ) {
 				return c;
@@ -528,7 +528,7 @@ idTypeInfo *idClass::GetType( const int typeNum ) {
 			}
 		}
 	} else if( ( typeNum >= 0 ) && ( typeNum < types.Num() ) ) {
-		return typenums[ typeNum ];
+		return typenums[typeNum];
 	}
 	return NULL;
 }
@@ -582,7 +582,7 @@ bool idClass::PostEventArgs( const idEventDef *ev, int time, int numargs, ... ) 
 		return false;
 	}
 	c = GetType();
-	if( !c->eventMap[ ev->GetEventNum() ] ) {
+	if( !c->eventMap[ev->GetEventNum()] ) {
 		// we don't respond to this event, so ignore it
 		return false;
 	}
@@ -769,13 +769,13 @@ idClass::ProcessEventArgs
 bool idClass::ProcessEventArgs( const idEventDef *ev, int numargs, ... ) {
 	idTypeInfo	*c;
 	int			num;
-	int			data[ D_EVENT_MAXARGS ];
+	int			data[D_EVENT_MAXARGS];
 	va_list		args;
 	assert( ev );
 	assert( idEvent::initialized );
 	c = GetType();
 	num = ev->GetEventNum();
-	if( !c->eventMap[ num ] ) {
+	if( !c->eventMap[num] ) {
 		// we don't respond to this event, so ignore it
 		return false;
 	}
@@ -884,11 +884,11 @@ bool idClass::ProcessEventArgPtr( const idEventDef *ev, int *data ) {
 	}
 	c = GetType();
 	num = ev->GetEventNum();
-	if( !c->eventMap[ num ] ) {
+	if( !c->eventMap[num] ) {
 		// we don't respond to this event, so ignore it
 		return false;
 	}
-	callback = c->eventMap[ num ];
+	callback = c->eventMap[num];
 #if !CPU_EASYARGS
 	/*
 	on ppc architecture, floats are passed in a seperate set of registers
@@ -897,7 +897,7 @@ bool idClass::ProcessEventArgPtr( const idEventDef *ev, int *data ) {
 	http://developer.apple.com/documentation/DeveloperTools/Conceptual/MachORuntime/2rt_powerpc_abi/chapter_9_section_5.html
 	*/
 	switch( ev->GetFormatspecIndex() ) {
-	case 1 << D_EVENT_MAXARGS :
+	case 1 << D_EVENT_MAXARGS:
 		( this->*callback )();
 		break;
 		// generated file - see CREATE_EVENT_CODE
@@ -909,40 +909,40 @@ bool idClass::ProcessEventArgPtr( const idEventDef *ev, int *data ) {
 #else
 	assert( D_EVENT_MAXARGS == 8 );
 	switch( ev->GetNumArgs() ) {
-	case 0 :
+	case 0:
 		( this->*callback )();
 		break;
-	case 1 :
+	case 1:
 		typedef void ( idClass::*eventCallback_1_t )( const int );
-		( this->*( eventCallback_1_t )callback )( data[ 0 ] );
+		( this->*( eventCallback_1_t )callback )( data[0] );
 		break;
-	case 2 :
+	case 2:
 		typedef void ( idClass::*eventCallback_2_t )( const int, const int );
-		( this->*( eventCallback_2_t )callback )( data[ 0 ], data[ 1 ] );
+		( this->*( eventCallback_2_t )callback )( data[0], data[1] );
 		break;
-	case 3 :
+	case 3:
 		typedef void ( idClass::*eventCallback_3_t )( const int, const int, const int );
-		( this->*( eventCallback_3_t )callback )( data[ 0 ], data[ 1 ], data[ 2 ] );
+		( this->*( eventCallback_3_t )callback )( data[0], data[1], data[2] );
 		break;
-	case 4 :
+	case 4:
 		typedef void ( idClass::*eventCallback_4_t )( const int, const int, const int, const int );
-		( this->*( eventCallback_4_t )callback )( data[ 0 ], data[ 1 ], data[ 2 ], data[ 3 ] );
+		( this->*( eventCallback_4_t )callback )( data[0], data[1], data[2], data[3] );
 		break;
-	case 5 :
+	case 5:
 		typedef void ( idClass::*eventCallback_5_t )( const int, const int, const int, const int, const int );
-		( this->*( eventCallback_5_t )callback )( data[ 0 ], data[ 1 ], data[ 2 ], data[ 3 ], data[ 4 ] );
+		( this->*( eventCallback_5_t )callback )( data[0], data[1], data[2], data[3], data[4] );
 		break;
-	case 6 :
+	case 6:
 		typedef void ( idClass::*eventCallback_6_t )( const int, const int, const int, const int, const int, const int );
-		( this->*( eventCallback_6_t )callback )( data[ 0 ], data[ 1 ], data[ 2 ], data[ 3 ], data[ 4 ], data[ 5 ] );
+		( this->*( eventCallback_6_t )callback )( data[0], data[1], data[2], data[3], data[4], data[5] );
 		break;
-	case 7 :
+	case 7:
 		typedef void ( idClass::*eventCallback_7_t )( const int, const int, const int, const int, const int, const int, const int );
-		( this->*( eventCallback_7_t )callback )( data[ 0 ], data[ 1 ], data[ 2 ], data[ 3 ], data[ 4 ], data[ 5 ], data[ 6 ] );
+		( this->*( eventCallback_7_t )callback )( data[0], data[1], data[2], data[3], data[4], data[5], data[6] );
 		break;
-	case 8 :
+	case 8:
 		typedef void ( idClass::*eventCallback_8_t )( const int, const int, const int, const int, const int, const int, const int, const int );
-		( this->*( eventCallback_8_t )callback )( data[ 0 ], data[ 1 ], data[ 2 ], data[ 3 ], data[ 4 ], data[ 5 ], data[ 6 ], data[ 7 ] );
+		( this->*( eventCallback_8_t )callback )( data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7] );
 		break;
 	default:
 		gameLocal.Warning( "Invalid formatspec on event '%s'", ev->GetName() );

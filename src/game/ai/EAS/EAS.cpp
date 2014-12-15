@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -50,8 +50,8 @@ void tdmEAS::AddElevator( CMultiStateMover *mover ) {
 void tdmEAS::PrintClusterInfo() {
 	// print all route counts from cluster to cluster
 	int numClusters = _aas->file->GetNumClusters();
-	for( int j = 1 ; j < numClusters ; j++ ) {
-		for( int k = 1 ; k < numClusters ; k++ ) {
+	for( int j = 1; j < numClusters; j++ ) {
+		for( int k = 1; k < numClusters; k++ ) {
 			if( k != j ) {
 				DM_LOG( LC_AI, LT_DEBUG )LOGSTRING( "..... there are %d routes from %d to %d\r", _clusterInfo[j]->routeToCluster[k].size(), j, k );
 			}
@@ -59,7 +59,7 @@ void tdmEAS::PrintClusterInfo() {
 	}
 	// print which cluster areas live in, and show area bounds
 	int numAreas = _aas->file->GetNumAreas();
-	for( int j = 0 ; j < numAreas ; j++ ) {
+	for( int j = 0; j < numAreas; j++ ) {
 		DM_LOG( LC_AI, LT_DEBUG )LOGSTRING( "..... area %d (%s) is in cluster %d\r", j, _aas->file->GetArea( j ).bounds.ToString(), _aas->file->GetArea( j ).cluster );
 	}
 }
@@ -139,8 +139,8 @@ void tdmEAS::AssignElevatorsToClusters() {
 #if 0
 void tdmEAS::PrintRoutes() {
 	DM_LOG( LC_AI, LT_DEBUG )LOGSTRING( "Routing data ---------------------------------\r" );
-	for( std::size_t startCluster = 1 ; startCluster < _clusterInfo.size() ; startCluster++ ) {
-		for( std::size_t goalCluster = 1 ; goalCluster < _clusterInfo.size() ; goalCluster++ ) {
+	for( std::size_t startCluster = 1; startCluster < _clusterInfo.size(); startCluster++ ) {
+		for( std::size_t goalCluster = 1; goalCluster < _clusterInfo.size(); goalCluster++ ) {
 			if( startCluster == goalCluster ) {
 				continue;
 			}
@@ -153,7 +153,7 @@ void tdmEAS::PrintRoutes() {
 			DM_LOG( LC_AI, LT_DEBUG )LOGSTRING( "----- %d Routes from %d to %d\r", numRoutes, startCluster, goalCluster );
 			RouteInfoList &routes = _clusterInfo[startCluster]->routeToCluster[goalCluster];
 			int counter = 1;
-			for( RouteInfoList::const_iterator j = routes.begin() ; j != routes.end() ; ++j ) {
+			for( RouteInfoList::const_iterator j = routes.begin(); j != routes.end(); ++j ) {
 				RouteType type = ( *j )->routeType;
 				idStr routeType = "BAD ROUTE TYPE";
 				switch( type ) {
@@ -172,7 +172,7 @@ void tdmEAS::PrintRoutes() {
 				DM_LOG( LC_AI, LT_DEBUG )LOGSTRING( "     ==========\r" );
 				DM_LOG( LC_AI, LT_DEBUG )LOGSTRING( "     Route %d is type %s with routeTravelTime %d\r", counter, routeType.c_str(), ( *j )->routeTravelTime );
 				RouteNodeList &routeNodes = ( *j )->routeNodes;
-				for( RouteNodeList::const_iterator k = routeNodes.begin() ; k != routeNodes.end() ; ++k ) {
+				for( RouteNodeList::const_iterator k = routeNodes.begin(); k != routeNodes.end(); ++k ) {
 					DM_LOG( LC_AI, LT_DEBUG )LOGSTRING( "     node----------\r" );
 					ActionType actionType = ( *k )->type;
 					DM_LOG( LC_AI, LT_DEBUG )LOGSTRING( "          ActionType = %s\r", actionType == ACTION_WALK ? "WALK" : "ELEVATOR" );
@@ -213,22 +213,22 @@ void tdmEAS::SetupRoutesBetweenClusters() {
 	// was already done when the later instance of the route was reached.
 	// Instead, clear the routes in one loop and fill them in using a second loop
 	// Clear routing lists.
-	for( std::size_t startCluster = 0 ; startCluster < _clusterInfo.size() ; startCluster++ ) {
+	for( std::size_t startCluster = 0; startCluster < _clusterInfo.size(); startCluster++ ) {
 		int startArea = _aas->GetAreaInCluster( startCluster );
 		if( startArea <= 0 ) {
 			continue;
 		}
-		for( std::size_t goalCluster = 0 ; goalCluster < _clusterInfo[startCluster]->routeToCluster.size() ; goalCluster++ ) {
+		for( std::size_t goalCluster = 0; goalCluster < _clusterInfo[startCluster]->routeToCluster.size(); goalCluster++ ) {
 			_clusterInfo[startCluster]->routeToCluster[goalCluster].clear();
 		}
 	}
 	// Fill in routing lists.
-	for( std::size_t startCluster = 0 ; startCluster < _clusterInfo.size() ; startCluster++ ) {
+	for( std::size_t startCluster = 0; startCluster < _clusterInfo.size(); startCluster++ ) {
 		int startArea = _aas->GetAreaInCluster( startCluster );
 		if( startArea <= 0 ) {
 			continue;
 		}
-		for( std::size_t goalCluster = 0 ; goalCluster < _clusterInfo[startCluster]->routeToCluster.size() ; goalCluster++ ) {
+		for( std::size_t goalCluster = 0; goalCluster < _clusterInfo[startCluster]->routeToCluster.size(); goalCluster++ ) {
 			if( _clusterInfo[startCluster]->routeToCluster[goalCluster].size() > 0 ) {
 				continue; // routes already established from startCluster to goalCluster
 			}
@@ -249,14 +249,14 @@ void tdmEAS::SetupRoutesBetweenClusters() {
 // grayman #3029 - sum the travel times for each node in a route and place the total in the route info
 
 void tdmEAS::SumRouteTravelTimes() {
-	for( std::size_t startCluster = 0 ; startCluster < _clusterInfo.size() ; startCluster++ ) {
-		for( std::size_t goalCluster = 0 ; goalCluster < _clusterInfo[startCluster]->routeToCluster.size() ; goalCluster++ ) {
+	for( std::size_t startCluster = 0; startCluster < _clusterInfo.size(); startCluster++ ) {
+		for( std::size_t goalCluster = 0; goalCluster < _clusterInfo[startCluster]->routeToCluster.size(); goalCluster++ ) {
 			RouteInfoList &routes = _clusterInfo[startCluster]->routeToCluster[goalCluster];
 			if( !routes.empty() ) {
-				for( RouteInfoList::const_iterator route = routes.begin() ; route != routes.end() ; route++ ) {
+				for( RouteInfoList::const_iterator route = routes.begin(); route != routes.end(); route++ ) {
 					RouteNodeList &routeNodes = ( *route )->routeNodes;
 					int travelTime = 0;
-					for( RouteNodeList::const_iterator node = routeNodes.begin() ; node != routeNodes.end() ; node++ ) {
+					for( RouteNodeList::const_iterator node = routeNodes.begin(); node != routeNodes.end(); node++ ) {
 						travelTime += ( *node )->nodeTravelTime;
 					}
 					( *route )->routeTravelTime = travelTime;
@@ -298,7 +298,7 @@ void tdmEAS::SortRoute( int startCluster, int goalCluster ) {
 	// 2 route nodes, so we'll recognize ELEVATOR routes if their node count
 	// is > 1.
 	int bestTime = 100000;
-	for( RouteSortMap::const_iterator i = sorted.begin() ; i != sorted.end() ; i++ ) {
+	for( RouteSortMap::const_iterator i = sorted.begin(); i != sorted.end(); i++ ) {
 		if( ( i->second )->routeNodes.size() > 1 ) {
 			int routeTravelTime = ( i->second )->routeTravelTime;
 			if( routeTravelTime > bestTime ) {
@@ -571,7 +571,7 @@ bool tdmEAS::EvaluateRoute( int startCluster, int goalCluster, int forbiddenElev
 		return false;
 	}
 	// Does the route come across our source cluster?
-	for( RouteNodeList::const_iterator node = route->routeNodes.begin() ; node != route->routeNodes.end(); ++node ) {
+	for( RouteNodeList::const_iterator node = route->routeNodes.begin(); node != route->routeNodes.end(); ++node ) {
 		if( ( *node )->toCluster == startCluster || ( *node )->elevator == forbiddenElevator ) {
 			// Route is coming across the same cluster or elevator since we started, so this is a loop. Reject.
 			return false;
@@ -637,7 +637,7 @@ bool tdmEAS::FindRouteToGoal( aasPath_t &path, int areaNum, const idVec3 &origin
 		RouteType type = ( *route )->routeType;
 		DM_LOG( LC_AI, LT_DEBUG )LOGSTRING( "     type = %s for route 1\r", type == ROUTE_TO_AREA ? "AREA" : "CLUSTER" );
 		RouteNodeList &routeNodes = ( *route )->routeNodes;
-		for( RouteNodeList::const_iterator node = routeNodes.begin() ; node != routeNodes.end() ; node++ ) {
+		for( RouteNodeList::const_iterator node = routeNodes.begin(); node != routeNodes.end(); node++ ) {
 			DM_LOG( LC_AI, LT_DEBUG )LOGSTRING( "     node:\r" );
 			ActionType actionType = ( *node )->type;
 			DM_LOG( LC_AI, LT_DEBUG )LOGSTRING( "          ActionType = %s\r", actionType == ACTION_WALK ? "WALK" : "ELEVATOR" );
@@ -658,8 +658,8 @@ bool tdmEAS::FindRouteToGoal( aasPath_t &path, int areaNum, const idVec3 &origin
 // grayman #3548
 CMultiStateMover *tdmEAS::GetNearbyElevator( idVec3 pos, float maxDist, float maxVertDist ) {
 	CMultiStateMover *elevator = NULL;
-	for( int j = 0 ; ( j < _elevators.Num() ) && ( elevator == NULL ) ; j++ ) {
-		CMultiStateMover *ent = _elevators[ j ].GetEntity();
+	for( int j = 0; ( j < _elevators.Num() ) && ( elevator == NULL ); j++ ) {
+		CMultiStateMover *ent = _elevators[j].GetEntity();
 		if( ent ) {
 			const idList<MoverPositionInfo> &positionList = ent->GetPositionInfoList();
 			for( int positionIdx = 0; positionIdx < positionList.Num(); positionIdx++ ) {

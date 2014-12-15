@@ -1,26 +1,26 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 /*
 ===============================================================================
 
-	Trace model vs. polygonal model collision detection.
+Trace model vs. polygonal model collision detection.
 
 ===============================================================================
 */
@@ -49,7 +49,7 @@ Collision detection for rotational motion
 ================
 CM_RotatePoint
 
-  rotates a point about an arbitrary axis using the tangent of half the rotation angle
+rotates a point about an arbitrary axis using the tangent of half the rotation angle
 ================
 */
 void CM_RotatePoint( idVec3 &point, const idVec3 &origin, const idVec3 &axis, const float tanHalfAngle ) {
@@ -73,7 +73,7 @@ void CM_RotatePoint( idVec3 &point, const idVec3 &origin, const idVec3 &axis, co
 ================
 CM_RotateEdge
 
-  rotates an edge about an arbitrary axis using the tangent of half the rotation angle
+rotates an edge about an arbitrary axis using the tangent of half the rotation angle
 ================
 */
 void CM_RotateEdge( idVec3 &start, idVec3 &end, const idVec3 &origin, const idVec3 &axis, const float tanHalfAngle ) {
@@ -102,8 +102,8 @@ void CM_RotateEdge( idVec3 &start, idVec3 &end, const idVec3 &origin, const idVe
 ================
 idCollisionModelManagerLocal::CollisionBetweenEdgeBounds
 
-  verifies if the collision of two edges occurs between the edge bounds
-  also calculates the collision point and collision plane normal if the collision occurs between the bounds
+verifies if the collision of two edges occurs between the edge bounds
+also calculates the collision point and collision plane normal if the collision occurs between the bounds
 ================
 */
 int idCollisionModelManagerLocal::CollisionBetweenEdgeBounds( cm_traceWork_t *tw, const idVec3 &va, const idVec3 &vb,
@@ -161,7 +161,7 @@ int idCollisionModelManagerLocal::CollisionBetweenEdgeBounds( cm_traceWork_t *tw
 ================
 idCollisionModelManagerLocal::RotateEdgeThroughEdge
 
-  calculates the tangent of half the rotation angle at which the edges collide
+calculates the tangent of half the rotation angle at which the edges collide
 ================
 */
 int idCollisionModelManagerLocal::RotateEdgeThroughEdge( cm_traceWork_t *tw, const idPluecker &pl1,
@@ -233,11 +233,11 @@ int idCollisionModelManagerLocal::RotateEdgeThroughEdge( cm_traceWork_t *tw, con
 	pl2[0] * v[4] + pl2[1] * v[5] + pl2[2] * v[3] + pl2[4] * v[0] + pl2[5] * v[1] + pl2[3] * v[2] = 0;
 
 	0 =	pl2[0] * pl1[4] +
-		pl2[1] * (pl1[5] * cos(t) + pl1[2] * sin(t)) +
-		pl2[2] * (pl1[3] * cos(t) - pl1[1] * sin(t)) +
-		pl2[4] * pl1[0] +
-		pl2[5] * (pl1[1] * cos(t) + pl1[3] * sin(t)) +
-		pl2[3] * (pl1[2] * cos(t) - pl1[5] * sin(t));
+	pl2[1] * (pl1[5] * cos(t) + pl1[2] * sin(t)) +
+	pl2[2] * (pl1[3] * cos(t) - pl1[1] * sin(t)) +
+	pl2[4] * pl1[0] +
+	pl2[5] * (pl1[1] * cos(t) + pl1[3] * sin(t)) +
+	pl2[3] * (pl1[2] * cos(t) - pl1[5] * sin(t));
 
 	v2 * cos(t) + v1 * sin(t) + v0 = 0;
 
@@ -289,9 +289,9 @@ int idCollisionModelManagerLocal::RotateEdgeThroughEdge( cm_traceWork_t *tw, con
 		}
 		sqrtd = sqrt( d );
 		if( b > 0.0f ) {
-			q = - b + sqrtd;
+			q = -b + sqrtd;
 		} else {
-			q = - b - sqrtd;
+			q = -b - sqrtd;
 		}
 		frac1 = q / a;
 		frac2 = c / q;
@@ -317,9 +317,9 @@ int idCollisionModelManagerLocal::RotateEdgeThroughEdge( cm_traceWork_t *tw, con
 ================
 idCollisionModelManagerLocal::EdgeFurthestFromEdge
 
-  calculates the direction of motion at the initial position, where dir < 0 means the edges move towards each other
-  if the edges move away from each other the tangent of half the rotation angle at which
-  the edges are furthest apart is also calculated
+calculates the direction of motion at the initial position, where dir < 0 means the edges move towards each other
+if the edges move away from each other the tangent of half the rotation angle at which
+the edges are furthest apart is also calculated
 ================
 */
 int idCollisionModelManagerLocal::EdgeFurthestFromEdge( cm_traceWork_t *tw, const idPluecker &pl1,
@@ -393,9 +393,9 @@ int idCollisionModelManagerLocal::EdgeFurthestFromEdge( cm_traceWork_t *tw, cons
 		}
 		sqrtd = sqrt( d );
 		if( b > 0.0f ) {
-			q = - b + sqrtd;
+			q = -b + sqrtd;
 		} else {
-			q = - b - sqrtd;
+			q = -b - sqrtd;
 		}
 		frac1 = q / a;
 		frac2 = c / q;
@@ -544,7 +544,7 @@ void idCollisionModelManagerLocal::RotateTrmEdgeThroughPolygon( cm_traceWork_t *
 ================
 idCollisionModelManagerLocal::RotatePointThroughPlane
 
-  calculates the tangent of half the rotation angle at which the point collides with the plane
+calculates the tangent of half the rotation angle at which the point collides with the plane
 ================
 */
 int idCollisionModelManagerLocal::RotatePointThroughPlane( const cm_traceWork_t *tw, const idVec3 &point, const idPlane &plane,
@@ -558,12 +558,12 @@ int idCollisionModelManagerLocal::RotatePointThroughPlane( const cm_traceWork_t 
 	p[2] = point[2];
 
 	normal[0] * (p[0] * cos(t) + p[1] * sin(t)) +
-		normal[1] * (p[0] * -sin(t) + p[1] * cos(t)) +
-			normal[2] * p[2] + dist = 0
+	normal[1] * (p[0] * -sin(t) + p[1] * cos(t)) +
+	normal[2] * p[2] + dist = 0
 
 	normal[0] * p[0] * cos(t) + normal[0] * p[1] * sin(t) +
-		-normal[1] * p[0] * sin(t) + normal[1] * p[1] * cos(t) +
-			normal[2] * p[2] + dist = 0
+	-normal[1] * p[0] * sin(t) + normal[1] * p[1] * cos(t) +
+	normal[2] * p[2] + dist = 0
 
 	v2 * cos(t) + v1 * sin(t) + v0
 
@@ -608,9 +608,9 @@ int idCollisionModelManagerLocal::RotatePointThroughPlane( const cm_traceWork_t 
 		}
 		sqrtd = sqrt( d );
 		if( b > 0.0f ) {
-			q = - b + sqrtd;
+			q = -b + sqrtd;
 		} else {
-			q = - b - sqrtd;
+			q = -b - sqrtd;
 		}
 		frac1 = q / a;
 		frac2 = c / q;
@@ -636,9 +636,9 @@ int idCollisionModelManagerLocal::RotatePointThroughPlane( const cm_traceWork_t 
 ================
 idCollisionModelManagerLocal::PointFurthestFromPlane
 
-  calculates the direction of motion at the initial position, where dir < 0 means the point moves towards the plane
-  if the point moves away from the plane the tangent of half the rotation angle at which
-  the point is furthest away from the plane is also calculated
+calculates the direction of motion at the initial position, where dir < 0 means the point moves towards the plane
+if the point moves away from the plane the tangent of half the rotation angle at which
+the point is furthest away from the plane is also calculated
 ================
 */
 int idCollisionModelManagerLocal::PointFurthestFromPlane( const cm_traceWork_t *tw, const idVec3 &point, const idPlane &plane,
@@ -699,9 +699,9 @@ int idCollisionModelManagerLocal::PointFurthestFromPlane( const cm_traceWork_t *
 		}
 		sqrtd = sqrt( d );
 		if( b > 0.0f ) {
-			q = - b + sqrtd;
+			q = -b + sqrtd;
 		} else {
-			q = - b - sqrtd;
+			q = -b - sqrtd;
 		}
 		frac1 = q / a;
 		frac2 = c / q;
@@ -923,7 +923,7 @@ void idCollisionModelManagerLocal::RotateVertexThroughTrmPolygon( cm_traceWork_t
 ================
 idCollisionModelManagerLocal::RotateTrmThroughPolygon
 
-  returns true if the polygon blocks the complete rotation
+returns true if the polygon blocks the complete rotation
 ================
 */
 bool idCollisionModelManagerLocal::RotateTrmThroughPolygon( cm_traceWork_t *tw, cm_polygon_t *p ) {
@@ -1059,7 +1059,7 @@ bool idCollisionModelManagerLocal::RotateTrmThroughPolygon( cm_traceWork_t *tw, 
 ================
 idCollisionModelManagerLocal::BoundsForRotation
 
-  only for rotations < 180 degrees
+only for rotations < 180 degrees
 ================
 */
 void idCollisionModelManagerLocal::BoundsForRotation( const idVec3 &origin, const idVec3 &axis, const idVec3 &start, const idVec3 &end, idBounds &bounds ) {

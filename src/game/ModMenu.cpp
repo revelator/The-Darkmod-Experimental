@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #include "precompiled_game.h"
 #pragma hdrstop
 
@@ -222,7 +222,7 @@ void CModMenu::UpdateGUI( idUserInterface *gui ) {
 		if( _modTop + modIndex < numMissions ) {
 			info = gameLocal.m_MissionManager->GetModInfo( missionIndex );
 		}
-		gui->SetStateInt( guiAvailable,	info != NULL ? 1 : 0 );
+		gui->SetStateInt( guiAvailable, info != NULL ? 1 : 0 );
 		idStr name = common->Translate( info != NULL ? info->displayName : "" );
 		// grayman #3110
 		idStr prefix = "";
@@ -233,11 +233,11 @@ void CModMenu::UpdateGUI( idUserInterface *gui ) {
 			name.StripLeadingOnce( prefix.c_str() );
 			name += suffix;
 		}
-		gui->SetStateString( guiName,	name );
-		gui->SetStateString( guiDesc,	common->Translate( info != NULL ? info->description : "" ) );
-		gui->SetStateString( guiAuthor,	info != NULL ? info->author : "" );
-		gui->SetStateString( guiImage,	info != NULL ? info->image : "" );
-		gui->SetStateBool( guiCompleted,	info != NULL ? info->ModCompleted() : false );
+		gui->SetStateString( guiName, name );
+		gui->SetStateString( guiDesc, common->Translate( info != NULL ? info->description : "" ) );
+		gui->SetStateString( guiAuthor, info != NULL ? info->author : "" );
+		gui->SetStateString( guiImage, info != NULL ? info->image : "" );
+		gui->SetStateBool( guiCompleted, info != NULL ? info->ModCompleted() : false );
 	}
 	gui->SetStateBool( "isModsScrollUpVisible", _modTop != 0 );
 	gui->SetStateBool( "isModsScrollDownVisible", _modTop + modsPerPage < gameLocal.m_MissionManager->GetNumMods() );

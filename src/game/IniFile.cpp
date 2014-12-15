@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -196,29 +196,29 @@ public:
 };
 
 void IniFile::ParseFromString( const std::string &str ) {
-	bs::rule<> char_ident_start = bs::alpha_p | bs::ch_p( '_' ) ;
+	bs::rule<> char_ident_start = bs::alpha_p | bs::ch_p( '_' );
 	// Allow anthing but the closing bracket for section names
 	bs::rule<> char_section_ident_middle = ~( bs::ch_p( ']' ) );
 	// Allow anthing but the "=" for key names
 	bs::rule<> char_ident_middle = ~( bs::ch_p( '=' ) );
-	bs::rule<> ident = char_ident_start >> * char_ident_middle ;
-	bs::rule<> sectionIdent = char_ident_start >> * char_section_ident_middle;
+	bs::rule<> ident = char_ident_start >> *char_ident_middle;
+	bs::rule<> sectionIdent = char_ident_start >> *char_section_ident_middle;
 	bs::rule<> char_start_comment = bs::ch_p( '#' ) | bs::ch_p( ';' ) | bs::str_p( "//" );
-	bs::rule<> blanks_p = * bs::blank_p;
-	bs::rule<> value_p = * ( bs::alnum_p | bs::blank_p | bs::punct_p );
+	bs::rule<> blanks_p = *bs::blank_p;
+	bs::rule<> value_p = *( bs::alnum_p | bs::blank_p | bs::punct_p );
 	// Create the helper object pushing the data
 	IniParser parser( *this );
 	bs::rule<> l_category =
 		blanks_p >>
 		bs::ch_p( '[' ) >>
 		blanks_p >>
-		sectionIdent [ bind( &IniParser::AddSection, &parser, _1, _2 ) ] >>
+		sectionIdent[bind( &IniParser::AddSection, &parser, _1, _2 )] >>
 		blanks_p >>
 		bs::ch_p( ']' ) >>
 		blanks_p >>
 		bs::eol_p
 		;
-	bs::rule<> l_comment = blanks_p >> char_start_comment >> * bs::print_p >> bs::eol_p;
+	bs::rule<> l_comment = blanks_p >> char_start_comment >> *bs::print_p >> bs::eol_p;
 	bs::rule<> l_empty = blanks_p >> bs::eol_p;
 	bs::rule<> c_comment_rule = bs::confix_p( "/*", *bs::anychar_p, "*/" );
 	bs::rule<> b_comment =
@@ -229,15 +229,15 @@ void IniFile::ParseFromString( const std::string &str ) {
 		;
 	bs::rule<> l_entry =
 		blanks_p >>
-		ident [ bind( &IniParser::AddKey, &parser, _1, _2 ) ] >>
+		ident[bind( &IniParser::AddKey, &parser, _1, _2 )] >>
 		blanks_p >>
 		bs::ch_p( '=' ) >>
 		blanks_p >>
-		value_p [ bind( &IniParser::AddValue, &parser, _1, _2 ) ] >>
+		value_p[bind( &IniParser::AddValue, &parser, _1, _2 )] >>
 		blanks_p >>
 		bs::eol_p
 		;
 	bs::rule<> lines = l_comment | b_comment | l_category | l_entry | l_empty;
-	bs::rule<> iniFileDef =  bs::lexeme_d [ * lines ] ;
+	bs::rule<> iniFileDef = bs::lexeme_d[*lines];
 	bs::parse_info<> info = bs::parse( str.c_str(), iniFileDef );
 }

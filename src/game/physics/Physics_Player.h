@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __PHYSICS_PLAYER_H__
 #define __PHYSICS_PLAYER_H__
@@ -25,10 +25,10 @@
 /*
 ===================================================================================
 
-	Player physics
+Player physics
 
-	Simulates the motion of a player through the environment. Input from the
-	player is used to allow a certain degree of control over the motion.
+Simulates the motion of a player through the environment. Input from the
+player is used to allow a certain degree of control over the motion.
 
 ===================================================================================
 */
@@ -73,7 +73,7 @@ typedef struct playerPState_s {
 
 // This enumreation defines the phases of the mantling movement
 enum EMantlePhase {
-	notMantling_DarkModMantlePhase	= 0,
+	notMantling_DarkModMantlePhase = 0,
 	hang_DarkModMantlePhase,
 	pull_DarkModMantlePhase,
 	shiftHands_DarkModMantlePhase,

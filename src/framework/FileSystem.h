@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __FILESYSTEM_H__
 #define __FILESYSTEM_H__
@@ -23,34 +23,34 @@
 /*
 ===============================================================================
 
-	File System
+File System
 
-	No stdio calls should be used by any part of the game, because of all sorts
-	of directory and separator char issues. Throughout the game a forward slash
-	should be used as a separator. The file system takes care of the conversion
-	to an OS specific separator. The file system treats all file and directory
-	names as case insensitive.
+No stdio calls should be used by any part of the game, because of all sorts
+of directory and separator char issues. Throughout the game a forward slash
+should be used as a separator. The file system takes care of the conversion
+to an OS specific separator. The file system treats all file and directory
+names as case insensitive.
 
-	The following cvars store paths used by the file system:
+The following cvars store paths used by the file system:
 
-	"fs_basepath"		path to local install, read-only
-	"fs_savepath"		path to config, save game, etc. files, read & write
-	"fs_devpath"		path to files created during development, read & write
+"fs_basepath"		path to local install, read-only
+"fs_savepath"		path to config, save game, etc. files, read & write
+"fs_devpath"		path to files created during development, read & write
 
-	The base path for file saving can be set to "fs_savepath" or "fs_devpath".
+The base path for file saving can be set to "fs_savepath" or "fs_devpath".
 
 ===============================================================================
 */
 
-static const ID_TIME_T	FILE_NOT_FOUND_TIMESTAMP	= 0xFFFFFFFF;
-static const int		MAX_PURE_PAKS				= 128;
-static const int		MAX_OSPATH					= 256;
+static const ID_TIME_T	FILE_NOT_FOUND_TIMESTAMP = 0xFFFFFFFF;
+static const int		MAX_PURE_PAKS = 128;
+static const int		MAX_OSPATH = 256;
 
 // modes for OpenFileByMode. used as bit mask internally
 typedef enum {
-	FS_READ		= 0,
-	FS_WRITE	= 1,
-	FS_APPEND	= 2
+	FS_READ = 0,
+	FS_WRITE = 1,
+	FS_APPEND = 2
 } fsMode_t;
 
 typedef enum {
@@ -79,7 +79,7 @@ typedef enum {
 
 typedef struct urlDownload_s {
 	idStr				url;
-	char				dlerror[ MAX_STRING_CHARS ];
+	char				dlerror[MAX_STRING_CHARS];
 	int					dltotal;
 	int					dlnow;
 	int					dlstatus;
@@ -223,7 +223,7 @@ public:
 	// adds to the read count
 	virtual void			AddToReadCount( int c ) = 0;
 	// look for a dynamic module
-	virtual void			FindDLL( const char *basename, char dllPath[ MAX_OSPATH ], bool updateChecksum ) = 0;
+	virtual void			FindDLL( const char *basename, char dllPath[MAX_OSPATH], bool updateChecksum ) = 0;
 	// case sensitive filesystems use an internal directory cache
 	// the cache is cleared when calling OpenFileWrite and RemoveFile
 	// in some cases you may need to use this directly
@@ -233,7 +233,7 @@ public:
 	virtual void			CopyFile( const char *fromOSPath, const char *toOSPath ) = 0;
 
 	// lookup a relative path, return the size or 0 if not found
-	virtual int				ValidateDownloadPakForChecksum( int checksum, char path[ MAX_STRING_CHARS ], bool isGamePak ) = 0;
+	virtual int				ValidateDownloadPakForChecksum( int checksum, char path[MAX_STRING_CHARS], bool isGamePak ) = 0;
 
 	virtual idFile 		*MakeTemporaryFile( void ) = 0;
 

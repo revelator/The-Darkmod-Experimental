@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -55,13 +55,13 @@ void R_CalcInteractionFacing( const idRenderEntityLocal *ent, const srfTriangles
 	if( !tri->facePlanes || !tri->facePlanesCalculated ) {
 		R_DeriveFacePlanes( const_cast<srfTriangles_t *>( tri ) );
 	}
-	cullInfo.facing = ( byte * ) R_StaticAlloc( ( numFaces + 1 ) * sizeof( cullInfo.facing[0] ) );
+	cullInfo.facing = ( byte * )R_StaticAlloc( ( numFaces + 1 ) * sizeof( cullInfo.facing[0] ) );
 	// calculate back face culling
-	float *planeSide = ( float * ) _alloca16( numFaces * sizeof( float ) );
+	float *planeSide = ( float * )_alloca16( numFaces * sizeof( float ) );
 	// exact geometric cull against face
 	SIMDProcessor->Dot( planeSide, localLightOrigin, tri->facePlanes, numFaces );
 	SIMDProcessor->CmpGE( cullInfo.facing, planeSide, 0.0f, numFaces );
-	cullInfo.facing[ numFaces ] = 1;	// for dangling edges to reference
+	cullInfo.facing[numFaces] = 1;	// for dangling edges to reference
 }
 
 /*
@@ -93,9 +93,9 @@ void R_CalcInteractionCullBits( const idRenderEntityLocal *ent, const srfTriangl
 		cullInfo.cullBits = LIGHT_CULL_ALL_FRONT;
 		return;
 	}
-	cullInfo.cullBits = ( byte * ) R_StaticAlloc( tri->numVerts * sizeof( cullInfo.cullBits[0] ) );
+	cullInfo.cullBits = ( byte * )R_StaticAlloc( tri->numVerts * sizeof( cullInfo.cullBits[0] ) );
 	SIMDProcessor->Memset( cullInfo.cullBits, 0, tri->numVerts * sizeof( cullInfo.cullBits[0] ) );
-	float *planeSide = ( float * ) _alloca16( tri->numVerts * sizeof( float ) );
+	float *planeSide = ( float * )_alloca16( tri->numVerts * sizeof( float ) );
 	for( i = 0; i < 6; i++ ) {
 		// if completely infront of this clipping plane
 		if( frontBits & ( 1 << i ) ) {
@@ -182,7 +182,7 @@ static int R_ChopWinding( clipTri_t clipTris[2], int inNum, const idPlane plane 
 	dists[i] = dists[0];
 	in->verts[in->numVerts] = in->verts[0];
 	out->numVerts = 0;
-	for( i = 0 ; i < in->numVerts ; i++ ) {
+	for( i = 0; i < in->numVerts; i++ ) {
 		idVec3 &p1 = in->verts[i];
 		if( sides[i] == SIDE_FRONT ) {
 			out->verts[out->numVerts] = p1;
@@ -219,7 +219,7 @@ static bool	R_ClipTriangleToLight( const idVec3 &a, const idVec3 &b, const idVec
 	pingPong[0].verts[1] = b;
 	pingPong[0].verts[2] = c;
 	p = 0;
-	for( i = 0 ; i < 6 ; i++ ) {
+	for( i = 0; i < 6; i++ ) {
 		if( planeBits & ( 1 << i ) ) {
 			p = R_ChopWinding( pingPong, p, frustum[i] );
 			if( pingPong[p].numVerts < 1 ) {
@@ -257,10 +257,10 @@ static srfTriangles_t *R_CreateLightTris( const idRenderEntityLocal *ent,
 	indexes = NULL;
 	// it is debatable if non-shadowing lights should light back faces. we aren't at the moment
 	if( r_lightAllBackFaces.GetBool() ||
-		light->lightShader->LightEffectsBackSides() ||
-		shader->ReceivesLightingOnBackSides() ||
-		ent->parms.noSelfShadow ||
-		ent->parms.noShadow ) {
+			light->lightShader->LightEffectsBackSides() ||
+			shader->ReceivesLightingOnBackSides() ||
+			ent->parms.noSelfShadow ||
+			ent->parms.noShadow ) {
 		includeBackFaces = true;
 	} else {
 		includeBackFaces = false;
@@ -294,7 +294,7 @@ static srfTriangles_t *R_CreateLightTris( const idRenderEntityLocal *ent,
 			indexes = newTri->indexes;
 			const byte *facing = cullInfo.facing;
 			for( faceNum = i = 0; i < tri->numIndexes; i += 3, faceNum++ ) {
-				if( !facing[ faceNum ] ) {
+				if( !facing[faceNum] ) {
 					c_backfaced++;
 					continue;
 				}
@@ -322,7 +322,7 @@ static srfTriangles_t *R_CreateLightTris( const idRenderEntityLocal *ent,
 			// through so the smooth shaded bump maps light all the way around
 			if( !includeBackFaces ) {
 				// back face cull
-				if( !facing[ faceNum ] ) {
+				if( !facing[faceNum] ) {
 					c_backfaced++;
 					continue;
 				}
@@ -372,17 +372,17 @@ idInteraction::idInteraction
 ===============
 */
 idInteraction::idInteraction( void ) {
-	numSurfaces				= 0;
-	surfaces				= NULL;
-	entityDef				= NULL;
-	lightDef				= NULL;
-	lightNext				= NULL;
-	lightPrev				= NULL;
-	entityNext				= NULL;
-	entityPrev				= NULL;
-	dynamicModelFrameCount	= 0;
-	frustumState			= FRUSTUM_UNINITIALIZED;
-	frustumAreas			= NULL;
+	numSurfaces = 0;
+	surfaces = NULL;
+	entityDef = NULL;
+	lightDef = NULL;
+	lightNext = NULL;
+	lightPrev = NULL;
+	entityNext = NULL;
+	entityPrev = NULL;
+	dynamicModelFrameCount = 0;
+	frustumState = FRUSTUM_UNINITIALIZED;
+	frustumAreas = NULL;
 }
 
 /*
@@ -428,7 +428,7 @@ idInteraction *idInteraction::AllocAndLink( idRenderEntityLocal *edef, idRenderL
 		if( renderWorld->interactionTable[index] != NULL ) {
 			common->Error( "idInteraction::AllocAndLink: non NULL table entry" );
 		}
-		renderWorld->interactionTable[ index ] = interaction;
+		renderWorld->interactionTable[index] = interaction;
 	}
 	return interaction;
 }
@@ -443,7 +443,7 @@ will be regenerated automatically
 */
 void idInteraction::FreeSurfaces( void ) {
 	if( this->surfaces ) {
-		for( int i = 0 ; i < this->numSurfaces ; i++ ) {
+		for( int i = 0; i < this->numSurfaces; i++ ) {
 			surfaceInteraction_t *sint = &this->surfaces[i];
 			if( sint->lightTris ) {
 				if( sint->lightTris != LIGHT_TRIS_DEFERRED ) {
@@ -578,7 +578,7 @@ will be used to determine when we need to start purging old interactions.
 */
 int idInteraction::MemoryUsed( void ) {
 	int		total = 0;
-	for( int i = 0 ; i < numSurfaces ; i++ ) {
+	for( int i = 0; i < numSurfaces; i++ ) {
 		surfaceInteraction_t *inter = &surfaces[i];
 		total += R_TriSurfMemory( inter->lightTris );
 		total += R_TriSurfMemory( inter->shadowTris );
@@ -731,7 +731,7 @@ void idInteraction::CreateInteraction( const idRenderModel *model ) {
 	surfaces = ( surfaceInteraction_t * )R_ClearedStaticAlloc( sizeof( *surfaces ) * numSurfaces );
 	interactionGenerated = false;
 	// check each surface in the model
-	for( int c = 0 ; c < model->NumSurfaces() ; c++ ) {
+	for( int c = 0; c < model->NumSurfaces(); c++ ) {
 		const modelSurface_t	*surf;
 		srfTriangles_t	*tri;
 		surf = model->Surface( c );
@@ -989,11 +989,11 @@ void idInteraction::AddActiveInteraction( void ) {
 			// check for view specific shadow suppression (player shadows, etc)
 			if( !r_skipSuppress.GetBool() ) {
 				if( entityDef->parms.suppressShadowInViewID &&
-					entityDef->parms.suppressShadowInViewID == tr.viewDef->renderView.viewID ) {
+						entityDef->parms.suppressShadowInViewID == tr.viewDef->renderView.viewID ) {
 					continue;
 				}
 				if( entityDef->parms.suppressShadowInLightID &&
-					entityDef->parms.suppressShadowInLightID == lightDef->parms.lightId ) {
+						entityDef->parms.suppressShadowInLightID == lightDef->parms.lightId ) {
 					continue;
 				}
 			}

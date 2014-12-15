@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __R_IMAGE_H__
 #define __R_IMAGE_H__
@@ -58,29 +58,29 @@ typedef enum {
 #define	MAX_TEXTURE_LEVELS				14
 
 // surface description flags
-const unsigned long DDSF_CAPS           = 0x00000001l;
-const unsigned long DDSF_HEIGHT         = 0x00000002l;
-const unsigned long DDSF_WIDTH          = 0x00000004l;
-const unsigned long DDSF_PITCH          = 0x00000008l;
-const unsigned long DDSF_PIXELFORMAT    = 0x00001000l;
-const unsigned long DDSF_MIPMAPCOUNT    = 0x00020000l;
-const unsigned long DDSF_LINEARSIZE     = 0x00080000l;
-const unsigned long DDSF_DEPTH          = 0x00800000l;
+const unsigned long DDSF_CAPS = 0x00000001l;
+const unsigned long DDSF_HEIGHT = 0x00000002l;
+const unsigned long DDSF_WIDTH = 0x00000004l;
+const unsigned long DDSF_PITCH = 0x00000008l;
+const unsigned long DDSF_PIXELFORMAT = 0x00001000l;
+const unsigned long DDSF_MIPMAPCOUNT = 0x00020000l;
+const unsigned long DDSF_LINEARSIZE = 0x00080000l;
+const unsigned long DDSF_DEPTH = 0x00800000l;
 
 // pixel format flags
-const unsigned long DDSF_ALPHAPIXELS    = 0x00000001l;
-const unsigned long DDSF_FOURCC         = 0x00000004l;
-const unsigned long DDSF_RGB            = 0x00000040l;
-const unsigned long DDSF_RGBA           = 0x00000041l;
+const unsigned long DDSF_ALPHAPIXELS = 0x00000001l;
+const unsigned long DDSF_FOURCC = 0x00000004l;
+const unsigned long DDSF_RGB = 0x00000040l;
+const unsigned long DDSF_RGBA = 0x00000041l;
 
 // our extended flags
-const unsigned long DDSF_ID_INDEXCOLOR	= 0x10000000l;
-const unsigned long DDSF_ID_MONOCHROME	= 0x20000000l;
+const unsigned long DDSF_ID_INDEXCOLOR = 0x10000000l;
+const unsigned long DDSF_ID_MONOCHROME = 0x20000000l;
 
 // dwCaps1 flags
-const unsigned long DDSF_COMPLEX        = 0x00000008l;
-const unsigned long DDSF_TEXTURE        = 0x00001000l;
-const unsigned long DDSF_MIPMAP         = 0x00400000l;
+const unsigned long DDSF_COMPLEX = 0x00000008l;
+const unsigned long DDSF_TEXTURE = 0x00001000l;
+const unsigned long DDSF_MIPMAP = 0x00400000l;
 
 #define DDS_MAKEFOURCC(a, b, c, d) ((a) | ((b) << 8) | ((c) << 16) | ((d) << 24))
 
@@ -222,7 +222,7 @@ public:
 
 	// parameters that define this image
 	idStr				imgName;				// game path, including extension (except for cube maps), may be an image program
-	void	( *generatorFunction )( idImage *image );	// NULL for files
+	void( *generatorFunction )( idImage *image );	// NULL for files
 	bool				allowDownSize;			// this also doubles as a don't-partially-load flag
 	textureFilter_t		filter;
 	textureRepeat_t		repeat;
@@ -310,7 +310,7 @@ public:
 
 	// The callback will be issued immediately, and later if images are reloaded or vid_restart
 	// The callback function should call one of the idImage::Generate* functions to fill in the data
-	idImage 			*ImageFromFunction( const char *name, void ( *generatorFunction )( idImage *image ) );
+	idImage 			*ImageFromFunction( const char *name, void( *generatorFunction )( idImage *image ) );
 
 	// called once a frame to allow any background loads that have been completed
 	// to turn into textures.

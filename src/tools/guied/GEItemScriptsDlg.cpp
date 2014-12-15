@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -28,7 +28,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "GEPropertyPage.h"
 
 LRESULT CALLBACK GEScriptEdit_WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam ) {
-	WNDPROC wndproc = ( WNDPROC ) GetWindowLong( hwnd, GWL_USERDATA );
+	WNDPROC wndproc = ( WNDPROC )GetWindowLong( hwnd, GWL_USERDATA );
 	switch( msg ) {
 	case WM_CHAR:
 		if( wParam == VK_ESCAPE ) {
@@ -56,7 +56,7 @@ bool GEItescriptsDlg_Init( HWND hwnd ) {
 	UINT tabsize = 16;
 	SendMessage( script, EM_SETTABSTOPS, 1, ( LPARAM )&tabsize );
 	SetWindowLong( script, GWL_USERDATA, GetWindowLong( script, GWL_WNDPROC ) );
-	SetWindowLong( script, GWL_WNDPROC, ( LONG ) GEScriptEdit_WndProc );
+	SetWindowLong( script, GWL_WNDPROC, ( LONG )GEScriptEdit_WndProc );
 	TEXTMETRIC tm;
 	HDC dc;
 	dc = GetDC( script );
@@ -69,7 +69,7 @@ bool GEItescriptsDlg_Init( HWND hwnd ) {
 	SendMessage( script, WM_SETFONT, ( WPARAM )CreateFontIndirect( &lf ), 0 );
 	SendMessage( script, EM_SETMARGINS, EC_LEFTMARGIN | EC_RIGHTMARGIN, MAKELONG( 10, 10 ) );
 	int i;
-	for( i = 0; i < wrapper->GetVariableDict().GetNumKeyVals( ); i ++ ) {
+	for( i = 0; i < wrapper->GetVariableDict().GetNumKeyVals(); i++ ) {
 		const idKeyValue *key = wrapper->GetVariableDict().GetKeyVal( i );
 		SendMessage( script, EM_SETSEL, -1, -1 );
 		SendMessage( script, EM_REPLACESEL, FALSE, ( LPARAM )key->GetKey().c_str() );
@@ -84,7 +84,7 @@ bool GEItescriptsDlg_Init( HWND hwnd ) {
 		SendMessage( script, EM_SETSEL, -1, -1 );
 		SendMessage( script, EM_REPLACESEL, FALSE, ( LPARAM )"\r\n" );
 	}
-	for( i = 0; i < wrapper->GetScriptDict().GetNumKeyVals( ); i ++ ) {
+	for( i = 0; i < wrapper->GetScriptDict().GetNumKeyVals(); i++ ) {
 		const idKeyValue *key = wrapper->GetScriptDict().GetKeyVal( i );
 		SendMessage( script, EM_SETSEL, -1, -1 );
 		SendMessage( script, EM_REPLACESEL, FALSE, ( LPARAM )va( "%s\r\n", key->GetKey().c_str() ) );
@@ -128,8 +128,8 @@ bool GEItescriptsDlg_Apply( HWND hwnd ) {
 	try {
 		idParser src( parse, parse.Length(), "", LEXFL_ALLOWMULTICHARLITERALS | LEXFL_NOSTRINGCONCAT | LEXFL_ALLOWBACKSLASHSTRINGCONCAT );
 		idToken token;
-		wrapper->GetVariableDict().Clear( );
-		wrapper->GetScriptDict().Clear( );
+		wrapper->GetVariableDict().Clear();
+		wrapper->GetScriptDict().Clear();
 		while( src.ReadToken( &token ) ) {
 			idStr scriptName;
 			idStr out;
@@ -145,8 +145,8 @@ bool GEItescriptsDlg_Apply( HWND hwnd ) {
 				idWindow				tempwin( &ui );
 				idStr					out;
 				int						i;
-				src.SetMarker( );
-				for( i = 0; i < 3; i ++ ) {
+				src.SetMarker();
+				for( i = 0; i < 3; i++ ) {
 					tempwin.ParseExpression( &src, &var );
 					src.ExpectTokenString( "," );
 				}
@@ -165,7 +165,7 @@ bool GEItescriptsDlg_Apply( HWND hwnd ) {
 				idUserInterfaceLocal	ui;
 				idWindow				tempwin( &ui );
 				idStr					out;
-				src.SetMarker( );
+				src.SetMarker();
 				tempwin.ParseExpression( &src, &var );
 				src.GetStringFromMarker( out, true );
 				wrapper->GetVariableDict().Set( token + "\t\"" + token2 + "\"", out );
@@ -192,7 +192,7 @@ bool GEItescriptsDlg_Apply( HWND hwnd ) {
 				scriptName.Append( token );
 			} else {
 				int i;
-				for( i = 0; i < idWindow::SCRIPT_COUNT; i ++ ) {
+				for( i = 0; i < idWindow::SCRIPT_COUNT; i++ ) {
 					if( idStr::Icmp( idWindow::ScriptNames[i], token ) == 0 ) {
 						scriptName = idWindow::ScriptNames[i];
 						break;
@@ -254,7 +254,7 @@ Starts the item properties dialog
 */
 bool GEItemScriptsDlg_DoModal( HWND parent, idWindow *window ) {
 	LoadLibrary( "Riched20.dll" );
-	if( DialogBoxParam( gApp.GetInstance(), MAKEINTRESOURCE( IDD_GUIED_SCRIPTS ), parent, GEItescriptsDlg_WndProc, ( LPARAM ) window ) ) {
+	if( DialogBoxParam( gApp.GetInstance(), MAKEINTRESOURCE( IDD_GUIED_SCRIPTS ), parent, GEItescriptsDlg_WndProc, ( LPARAM )window ) ) {
 		return true;
 	}
 	return false;

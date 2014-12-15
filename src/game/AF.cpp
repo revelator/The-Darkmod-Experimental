@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -27,7 +27,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 ===============================================================================
 
-  Articulated figure controller.
+Articulated figure controller.
 
 ===============================================================================
 */
@@ -173,7 +173,7 @@ bool idAF::UpdateAnimation( void ) {
 ================
 idAF::GetBounds
 
-  returns bounds for the current pose
+returns bounds for the current pose
 ================
 */
 idBounds idAF::GetBounds( void ) const {
@@ -203,7 +203,7 @@ idBounds idAF::GetBounds( void ) const {
 ================
 idAF::SetupPose
 
-  Transforms the articulated figure to match the current animation pose of the given entity.
+Transforms the articulated figure to match the current animation pose of the given entity.
 ================
 */
 void idAF::SetupPose( idEntity *ent, int time ) {
@@ -248,8 +248,8 @@ void idAF::SetupPose( idEntity *ent, int time ) {
 ================
 idAF::ChangePose
 
-   Change the articulated figure to match the current animation pose of the given entity
-   and set the velocity relative to the previous pose.
+Change the articulated figure to match the current animation pose of the given entity
+and set the velocity relative to the previous pose.
 ================
 */
 void idAF::ChangePose( idEntity *ent, int time ) {
@@ -298,11 +298,11 @@ void idAF::ChangePose( idEntity *ent, int time ) {
 idAF::EntitiesTouchingAF
 ================
 */
-int idAF::EntitiesTouchingAF( afTouch_t touchList[ MAX_GENTITIES ] ) const {
+int idAF::EntitiesTouchingAF( afTouch_t touchList[MAX_GENTITIES] ) const {
 	int i, j, numClipModels;
 	idAFBody *body;
 	idClipModel *cm;
-	idClipModel *clipModels[ MAX_GENTITIES ];
+	idClipModel *clipModels[MAX_GENTITIES];
 	int numTouching;
 	if( !IsLoaded() ) {
 		return 0;
@@ -328,9 +328,9 @@ int idAF::EntitiesTouchingAF( afTouch_t touchList[ MAX_GENTITIES ] ) const {
 			}
 			// ishtvan: Apply the body clipmask
 			if( gameLocal.clip.ContentsModel( body->GetWorldOrigin(), body->GetClipModel(), body->GetWorldAxis(), body->GetClipMask(), cm->Handle(), cm->GetOrigin(), cm->GetAxis() ) ) {
-				touchList[ numTouching ].touchedByBody = body;
-				touchList[ numTouching ].touchedClipModel = cm;
-				touchList[ numTouching ].touchedEnt  = cm->GetEntity();
+				touchList[numTouching].touchedByBody = body;
+				touchList[numTouching].touchedClipModel = cm;
+				touchList[numTouching].touchedEnt = cm->GetEntity();
 				numTouching++;
 				clipModels[j] = NULL;
 			}
@@ -368,7 +368,7 @@ jointHandle_t idAF::JointForBody( int body ) {
 	jointHandle_t joint = ( jointHandle_t ) - 1;
 	for( int i = 0; i < jointBody.Num(); i++ ) {
 		if( jointBody[i] == body ) {
-			joint = ( jointHandle_t ) i;
+			joint = ( jointHandle_t )i;
 			break;
 		}
 	}
@@ -382,7 +382,7 @@ idAF::BodyForJoint
 */
 int	idAF::BodyForJoint( jointHandle_t joint ) {
 	if( joint < jointBody.Num() ) {
-		return jointBody[ joint ];
+		return jointBody[joint];
 	} else {
 		return 0;
 	}
@@ -394,7 +394,7 @@ idAF::GetPhysicsToVisualTransform
 ================
 */
 void idAF::GetPhysicsToVisualTransform( idVec3 &origin, idMat3 &axis ) const {
-	origin = - baseOrigin;
+	origin = -baseOrigin;
 	axis = baseAxis.Transpose();
 }
 
@@ -432,7 +432,7 @@ void idAF::AddForce( idEntity *ent, int id, const idVec3 &point, const idVec3 &f
 ================
 idAF::AddBody
 
-  Adds a body.
+Adds a body.
 ================
 */
 void idAF::AddBody( idAFBody *body, const idJointMat *joints, const char *jointName, const AFJointModType_t mod ) {
@@ -445,8 +445,8 @@ void idAF::AddBody( idAFBody *body, const idJointMat *joints, const char *jointN
 		gameLocal.Error( "idAF for entity '%s' at (%s) modifies unknown joint '%s'", self->name.c_str(), self->GetPhysics()->GetOrigin().ToString( 0 ), jointName );
 	}
 	assert( handle < animator->NumJoints() );
-	origin = joints[ handle ].ToVec3();
-	axis = joints[ handle ].ToMat3();
+	origin = joints[handle].ToVec3();
+	axis = joints[handle].ToMat3();
 	index = jointMods.Num();
 	jointMods.SetNum( index + 1, false );
 	jointMods[index].bodyId = physicsObj.GetBodyId( body );
@@ -463,7 +463,7 @@ void idAF::AddBodyExtern
 	idAFBody *bodyExist, AFJointModType_t mod,
 	jointHandle_t joint
 ) {
-	int indexNew( 0 ),  matchID( 0 );
+	int indexNew( 0 ), matchID( 0 );
 	jointHandle_t tempJoint = INVALID_JOINT;
 	idVec3 origin;
 	idMat3 axis;
@@ -478,7 +478,7 @@ void idAF::AddBodyExtern
 			if( jointMods[i].bodyId == matchID ) {
 				tempJoint = jointMods[i].jointHandle;
 				if( tempJoint == INVALID_JOINT ) {
-					gameLocal.Error( "idAF for entity '%s' at (%s) modifies unknown joint %d", self->name.c_str(), self->GetPhysics()->GetOrigin().ToString( 0 ), ( int ) tempJoint );
+					gameLocal.Error( "idAF for entity '%s' at (%s) modifies unknown joint %d", self->name.c_str(), self->GetPhysics()->GetOrigin().ToString( 0 ), ( int )tempJoint );
 				}
 				assert( tempJoint < animator->NumJoints() );
 				break;
@@ -518,7 +518,7 @@ void idAF::DeleteBodyExtern( idAFEntity_Base *ent, const char *bodyName ) {
 ================
 idAF::SetBase
 
-  Sets the base body.
+Sets the base body.
 ================
 */
 void idAF::SetBase( idAFBody *body, const idJointMat *joints ) {
@@ -643,12 +643,12 @@ bool idAF::LoadBody( const idDeclAF_Body *fb, const idJointMat *joints ) {
 	// update table to find the nearest articulated figure body for a joint of the skeletal model
 	animator->GetJointList( fb->containedJoints, jointList );
 	for( i = 0; i < jointList.Num(); i++ ) {
-		if( jointBody[ jointList[ i ] ] != -1 ) {
+		if( jointBody[jointList[i]] != -1 ) {
 			gameLocal.Warning( "%s: joint '%s' is already contained by body '%s'",
 							   name.c_str(), animator->GetJointName( ( jointHandle_t )jointList[i] ),
-							   physicsObj.GetBody( jointBody[ jointList[ i ] ] )->GetName().c_str() );
+							   physicsObj.GetBody( jointBody[jointList[i]] )->GetName().c_str() );
 		}
-		jointBody[ jointList[ i ] ] = id;
+		jointBody[jointList[i]] = id;
 	}
 	return true;
 }
@@ -812,8 +812,8 @@ static bool GetJointTransform( void *model, const idJointMat *frame, const char 
 	jointHandle_t	joint;
 	joint = reinterpret_cast<idAnimator *>( model )->GetJointHandle( jointName );
 	if( ( joint >= 0 ) && ( joint < reinterpret_cast<idAnimator *>( model )->NumJoints() ) ) {
-		origin = frame[ joint ].ToVec3();
-		axis = frame[ joint ].ToMat3();
+		origin = frame[joint].ToVec3();
+		axis = frame[joint].ToMat3();
 		return true;
 	} else {
 		return false;
@@ -1063,7 +1063,7 @@ void idAF::Rest( void ) {
 ================
 idAF::SetConstraintPosition
 
-  Only moves constraints that bind the entity to another entity.
+Only moves constraints that bind the entity to another entity.
 ================
 */
 void idAF::SetConstraintPosition( const char *name, const idVec3 &pos ) {

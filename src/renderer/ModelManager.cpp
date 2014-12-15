@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -109,7 +109,7 @@ void idRenderModelManagerLocal::ListModels_f( const idCmdArgs &args ) {
 	int		inUse = 0;
 	common->Printf( " mem   srf verts tris\n" );
 	common->Printf( " ---   --- ----- ----\n" );
-	for( int i = 0 ; i < localModelManager.models.Num() ; i++ ) {
+	for( int i = 0; i < localModelManager.models.Num(); i++ ) {
 		idRenderModel	*model = localModelManager.models[i];
 		if( !model->IsLoaded() ) {
 			continue;
@@ -164,7 +164,7 @@ idRenderModelManagerLocal::WritePrecacheCommands
 =================
 */
 void idRenderModelManagerLocal::WritePrecacheCommands( idFile *f ) {
-	for( int i = 0 ; i < models.Num() ; i++ ) {
+	for( int i = 0; i < models.Num(); i++ ) {
 		idRenderModel	*model = models[i];
 		if( !model ) {
 			continue;
@@ -393,7 +393,7 @@ void idRenderModelManagerLocal::ReloadModels( bool forceAll ) {
 	}
 	R_FreeDerivedData();
 	// skip the default model at index 0
-	for( int i = 1 ; i < models.Num() ; i++ ) {
+	for( int i = 1; i < models.Num(); i++ ) {
 		idRenderModel	*model = models[i];
 		// we may want to allow world model reloading in the future, but we don't now
 		if( !model->IsReloadable() ) {
@@ -421,7 +421,7 @@ idRenderModelManagerLocal::FreeModelVertexCaches
 =================
 */
 void idRenderModelManagerLocal::FreeModelVertexCaches() {
-	for( int i = 0 ; i < models.Num() ; i++ ) {
+	for( int i = 0; i < models.Num(); i++ ) {
 		idRenderModel *model = models[i];
 		model->FreeVertexCache();
 	}
@@ -434,7 +434,7 @@ idRenderModelManagerLocal::BeginLevelLoad
 */
 void idRenderModelManagerLocal::BeginLevelLoad() {
 	insideLevelLoad = true;
-	for( int i = 0 ; i < models.Num() ; i++ ) {
+	for( int i = 0; i < models.Num(); i++ ) {
 		idRenderModel *model = models[i];
 		if( com_purgeAll.GetBool() && model->IsReloadable() ) {
 			R_CheckForEntityDefsUsingModel( model );
@@ -459,7 +459,7 @@ void idRenderModelManagerLocal::EndLevelLoad() {
 	int	keepCount = 0;
 	int	loadCount = 0;
 	// purge any models not touched
-	for( int i = 0 ; i < models.Num() ; i++ ) {
+	for( int i = 0; i < models.Num(); i++ ) {
 		idRenderModel *model = models[i];
 		if( !model->IsLevelLoadReferenced() && model->IsLoaded() && model->IsReloadable() ) {
 			//			common->Printf( "purging %s\n", model->Name() );
@@ -474,14 +474,14 @@ void idRenderModelManagerLocal::EndLevelLoad() {
 	// purge unused triangle surface memory
 	R_PurgeTriSurfData( frameData );
 	// load any new ones
-	for( int i = 0 ; i < models.Num() ; i++ ) {
+	for( int i = 0; i < models.Num(); i++ ) {
 		idRenderModel *model = models[i];
 		if( model->IsLevelLoadReferenced() && !model->IsLoaded() && model->IsReloadable() ) {
 			loadCount++;
 			model->LoadModel();
 			/* grayman #3763 - obsolete
 			if ( ( loadCount & 15 ) == 0 ) {
-				session->PacifierUpdate();
+			session->PacifierUpdate();
 			}
 			*/
 		}
@@ -510,13 +510,13 @@ void idRenderModelManagerLocal::PrintMemInfo( MemInfo_t *mi ) {
 		return;
 	}
 	// sort first
-	sortIndex = new int[ localModelManager.models.Num()];
-	for( i = 0; i <  localModelManager.models.Num(); i++ ) {
+	sortIndex = new int[localModelManager.models.Num()];
+	for( i = 0; i < localModelManager.models.Num(); i++ ) {
 		sortIndex[i] = i;
 	}
-	for( i = 0; i <  localModelManager.models.Num() - 1; i++ ) {
-		for( j = i + 1; j <  localModelManager.models.Num(); j++ ) {
-			if( localModelManager.models[sortIndex[i]]->Memory() <  localModelManager.models[sortIndex[j]]->Memory() ) {
+	for( i = 0; i < localModelManager.models.Num() - 1; i++ ) {
+		for( j = i + 1; j < localModelManager.models.Num(); j++ ) {
+			if( localModelManager.models[sortIndex[i]]->Memory() < localModelManager.models[sortIndex[j]]->Memory() ) {
 				int temp = sortIndex[i];
 				sortIndex[i] = sortIndex[j];
 				sortIndex[j] = temp;
@@ -524,7 +524,7 @@ void idRenderModelManagerLocal::PrintMemInfo( MemInfo_t *mi ) {
 		}
 	}
 	// print next
-	for( int i = 0 ; i < localModelManager.models.Num() ; i++ ) {
+	for( int i = 0; i < localModelManager.models.Num(); i++ ) {
 		idRenderModel	*model = localModelManager.models[sortIndex[i]];
 		int mem;
 		if( !model->IsLoaded() ) {

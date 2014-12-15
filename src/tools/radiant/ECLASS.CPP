@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -32,15 +32,15 @@ struct evarPrefix_t {
 };
 
 const evarPrefix_t EvarPrefixes[] = {
-	{ EVAR_STRING,  "editor_var " },
-	{ EVAR_INT,		"editor_int " },
-	{ EVAR_FLOAT,	"editor_float " },
-	{ EVAR_BOOL,	"editor_bool " },
-	{ EVAR_COLOR,	"editor_color " },
+	{ EVAR_STRING, "editor_var " },
+	{ EVAR_INT, "editor_int " },
+	{ EVAR_FLOAT, "editor_float " },
+	{ EVAR_BOOL, "editor_bool " },
+	{ EVAR_COLOR, "editor_color " },
 	{ EVAR_MATERIAL, "editor_mat " },
-	{ EVAR_MODEL,	"editor_model " },
-	{ EVAR_GUI,		"editor_gui " },
-	{ EVAR_SOUND,	"editor_snd "}
+	{ EVAR_MODEL, "editor_model " },
+	{ EVAR_GUI, "editor_gui " },
+	{ EVAR_SOUND, "editor_snd " }
 };
 
 const int NumEvarPrefixes = sizeof( EvarPrefixes ) / sizeof( evarPrefix_t );
@@ -85,7 +85,7 @@ void CleanUpEntities() {
 }
 
 void ExtendBounds( idVec3 v, idVec3 &vMin, idVec3 &vMax ) {
-	for( int i = 0 ; i < 3 ; i++ ) {
+	for( int i = 0; i < 3; i++ ) {
 		float	f = v[i];
 		if( f < vMin[i] ) {
 			vMin[i] = f;
@@ -168,7 +168,7 @@ eclass_t *EClass_InitFromDict( const idDict *d, const char *name ) {
 	kv = d->MatchPrefix( "editor_usage" );
 	while( kv != NULL ) {
 		text += kv->GetValue();
-		if( !kv->GetValue().Length() || ( text[ text.Length() - 1 ] != '\n' ) ) {
+		if( !kv->GetValue().Length() || ( text[text.Length() - 1] != '\n' ) ) {
 			text += "\n";
 		}
 		kv = d->MatchPrefix( "editor_usage", kv );
@@ -188,17 +188,17 @@ eclass_t *EClass_InitFromDict( const idDict *d, const char *name ) {
 	}
 	/*
 		while( kv != NULL ) {
-			kv->key.Right( kv->key.Length() - 11, varname );
-			str += va( "'%s':\t %s", varname.c_str(), kv->value.c_str() );
-			if ( d->GetString( varname, "", defaultStr ) && defaultStr.Length() ) {
-				str += va( "  Default '%s'.", defaultStr.c_str() );
-			}
-			str += "\n";
-			kv = d->MatchPrefix( "editor_var ", kv );
+		kv->key.Right( kv->key.Length() - 11, varname );
+		str += va( "'%s':\t %s", varname.c_str(), kv->value.c_str() );
+		if ( d->GetString( varname, "", defaultStr ) && defaultStr.Length() ) {
+		str += va( "  Default '%s'.", defaultStr.c_str() );
+		}
+		str += "\n";
+		kv = d->MatchPrefix( "editor_var ", kv );
 		}
 
 		e->comments = Mem_CopyString( str.c_str() );
-	*/
+		*/
 	// concatenate all variable comments
 	kv = d->MatchPrefix( "editor_copy" );
 	while( kv ) {
@@ -357,7 +357,7 @@ eclass_t *GetCachedModel( entity_t *pEntity, const char *pName, idVec3 &vMin, id
 	if( pName == NULL || strlen( pName ) == 0 ) {
 		return NULL;
 	}
-	for( e = g_md3Cache; e ; e = e->next ) {
+	for( e = g_md3Cache; e; e = e->next ) {
 		if( !strcmp( pName, e->name ) ) {
 			pEntity->md3Class = e;
 			VectorCopy( e->mins, vMin );

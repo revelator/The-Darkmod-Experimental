@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -131,7 +131,7 @@ Creates a 0-255 ramp image
 */
 static void R_RampImage( idImage *image ) {
 	byte	data[256][4];
-	for( int x = 0 ; x < 256 ; x++ ) {
+	for( int x = 0; x < 256; x++ ) {
 		data[x][0] =
 			data[x][1] =
 				data[x][2] =
@@ -152,7 +152,7 @@ static void R_SpecularTableImage( idImage *image ) {
 	byte	data[256][4];
 	float	f;
 	int		b;
-	for( int x = 0 ; x < 256 ; x++ ) {
+	for( int x = 0; x < 256; x++ ) {
 		f = x / 255.0f;
 #if 0
 		f = pow( f, 16 );
@@ -187,7 +187,7 @@ static void R_Specular2DTableImage( idImage *image ) {
 	float	f;
 	int		b;
 	memset( data, 0, sizeof( data ) );
-	for( int x = 0 ; x < 256 ; x++ ) {
+	for( int x = 0; x < 256; x++ ) {
 		f = x / 255.0f;
 		for( int y = 0; y < 256; y++ ) {
 			b = ( byte )( pow( f, y ) * 255.0f );
@@ -214,7 +214,7 @@ Creates a 0-255 ramp image
 */
 static void R_AlphaRampImage( idImage *image ) {
 	byte	data[256][4];
-	for( int x = 0 ; x < 256 ; x++ ) {
+	for( int x = 0; x < 256; x++ ) {
 		data[x][0] =
 			data[x][1] =
 				data[x][2] = 255;
@@ -236,8 +236,8 @@ void idImage::MakeDefault() {
 	byte	data[DEFAULT_SIZE][DEFAULT_SIZE][4];
 	if( com_developer.GetBool() ) {
 		// grey center
-		for( int y = 0 ; y < DEFAULT_SIZE ; y++ ) {
-			for( int x = 0 ; x < DEFAULT_SIZE ; x++ ) {
+		for( int y = 0; y < DEFAULT_SIZE; y++ ) {
+			for( int x = 0; x < DEFAULT_SIZE; x++ ) {
 				data[y][x][0] = 32;
 				data[y][x][1] = 32;
 				data[y][x][2] = 32;
@@ -245,7 +245,7 @@ void idImage::MakeDefault() {
 			}
 		}
 		// white border
-		for( int x = 0 ; x < DEFAULT_SIZE ; x++ ) {
+		for( int x = 0; x < DEFAULT_SIZE; x++ ) {
 			data[0][x][0] =
 				data[0][x][1] =
 					data[0][x][2] =
@@ -264,8 +264,8 @@ void idImage::MakeDefault() {
 						data[x][DEFAULT_SIZE - 1][3] = 255;
 		}
 	} else {
-		for( int y = 0 ; y < DEFAULT_SIZE ; y++ ) {
-			for( int x = 0 ; x < DEFAULT_SIZE ; x++ ) {
+		for( int y = 0; y < DEFAULT_SIZE; y++ ) {
+			for( int x = 0; x < DEFAULT_SIZE; x++ ) {
 				data[y][x][0] = 0;
 				data[y][x][1] = 0;
 				data[y][x][2] = 0;
@@ -303,7 +303,7 @@ static void R_BorderClampImage( idImage *image ) {
 	byte	data[BORDER_CLAMP_SIZE][BORDER_CLAMP_SIZE][4];
 	// solid white texture with a single pixel black border
 	memset( data, 255, sizeof( data ) );
-	for( int i = 0 ; i < BORDER_CLAMP_SIZE ; i++ ) {
+	for( int i = 0; i < BORDER_CLAMP_SIZE; i++ ) {
 		data[i][0][0] =
 			data[i][0][1] =
 				data[i][0][2] =
@@ -371,7 +371,7 @@ static void R_FlatNormalImage( idImage *image ) {
 	const int red = ( globalImages->image_useNormalCompression.GetInteger() == 1 ) ? 0 : 3;
 	const int alpha = ( red == 0 ) ? 3 : 0;
 	// flat normal map for default bunp mapping
-	for( int i = 0 ; i < 4 ; i++ ) {
+	for( int i = 0; i < 4; i++ ) {
 		data[0][i][red] = 128;
 		data[0][i][1] = 128;
 		data[0][i][2] = 255;
@@ -386,14 +386,14 @@ static void R_AmbientNormalImage( idImage *image ) {
 	const int red = ( globalImages->image_useNormalCompression.GetInteger() == 1 ) ? 0 : 3;
 	const int alpha = ( red == 0 ) ? 3 : 0;
 	// flat normal map for default bunp mapping
-	for( int i = 0 ; i < 4 ; i++ ) {
+	for( int i = 0; i < 4; i++ ) {
 		data[0][i][red] = ( byte )( 255 * tr.ambientLightVector[0] );
 		data[0][i][1] = ( byte )( 255 * tr.ambientLightVector[1] );
 		data[0][i][2] = ( byte )( 255 * tr.ambientLightVector[2] );
 		data[0][i][alpha] = 255;
 	}
 	const byte	*pics[6];
-	for( int i = 0 ; i < 6 ; i++ ) {
+	for( int i = 0; i < 6; i++ ) {
 		pics[i] = data[0][0];
 	}
 	// this must be a cube map for fragment programs to simply substitute for the normalization cube map
@@ -407,7 +407,7 @@ static void CreateSquareLight( void ) {
 	const int width = 128;
 	const int height = 128;
 	buffer = ( byte * )R_StaticAlloc( 128 * 128 * 4 );
-	for( int x = 0 ; x < 128 ; x++ ) {
+	for( int x = 0; x < 128; x++ ) {
 		if( x < 32 ) {
 			dx = 32 - x;
 		} else if( x > 96 ) {
@@ -415,7 +415,7 @@ static void CreateSquareLight( void ) {
 		} else {
 			dx = 0;
 		}
-		for( int y = 0 ; y < 128 ; y++ ) {
+		for( int y = 0; y < 128; y++ ) {
 			if( y < 32 ) {
 				dy = 32 - y;
 			} else if( y > 96 ) {
@@ -447,8 +447,8 @@ static void CreateFlashOff( void ) {
 	const int width = 256;
 	const int height = 4;
 	buffer = ( byte * )R_StaticAlloc( width * height * 4 );
-	for( int x = 0 ; x < width ; x++ ) {
-		for( int y = 0 ; y < height ; y++ ) {
+	for( int x = 0; x < width; x++ ) {
+		for( int y = 0; y < height; y++ ) {
 			d = 255 - ( x * 256 / width );
 			buffer[( y * width + x ) * 4 + 0] =
 				buffer[( y * width + x ) * 4 + 1] =
@@ -469,12 +469,12 @@ void CreatePitFogImage( void ) {
 	byte	data[16][16][4];
 	int		a;
 	memset( data, 0, sizeof( data ) );
-	for( int i = 0 ; i < 16 ; i++ ) {
+	for( int i = 0; i < 16; i++ ) {
 		a = i * ( 255 / 15 );
 		if( a > 255 ) {
 			a = 255;
 		}
-		for( int j = 0 ; j < 16 ; j++ ) {
+		for( int j = 0; j < 16; j++ ) {
 			data[j][i][0] =
 				data[j][i][1] =
 					data[j][i][2] = 255;
@@ -492,8 +492,8 @@ CreatealphaSquareImage
 void CreatealphaSquareImage( void ) {
 	byte	data[16][16][4];
 	int	a;
-	for( int i = 0 ; i < 16 ; i++ ) {
-		for( int j = 0 ; j < 16 ; j++ ) {
+	for( int i = 0; i < 16; i++ ) {
+		for( int j = 0; j < 16; j++ ) {
 			if( i == 0 || i == 15 || j == 0 || j == 15 ) {
 				a = 0;
 			} else {
@@ -565,7 +565,7 @@ static void makeNormalizeVectorCubeMap( idImage *image ) {
 	float	vector[3];
 	byte	*pixels[6];
 	const int size = NORMAL_MAP_SIZE;
-	pixels[0] = ( GLubyte * ) Mem_Alloc( size * size * 4 * 6 );
+	pixels[0] = ( GLubyte * )Mem_Alloc( size * size * 4 * 6 );
 	for( int i = 0; i < 6; i++ ) {
 		pixels[i] = pixels[0] + i * size * size * 4;
 		for( int y = 0; y < size; y++ ) {
@@ -593,8 +593,8 @@ This is a solid white texture that is zero clamped.
 static void R_CreateNoFalloffImage( idImage *image ) {
 	byte	data[16][FALLOFF_TEXTURE_SIZE][4];
 	memset( data, 0, sizeof( data ) );
-	for( int x = 1 ; x < FALLOFF_TEXTURE_SIZE - 1 ; x++ ) {
-		for( int y = 1 ; y < 15 ; y++ ) {
+	for( int x = 1; x < FALLOFF_TEXTURE_SIZE - 1; x++ ) {
+		for( int y = 1; y < 15; y++ ) {
 			data[y][x][0] = 255;
 			data[y][x][1] = 255;
 			data[y][x][2] = 255;
@@ -619,12 +619,12 @@ void R_FogImage( idImage *image ) {
 	float	d;
 	float	step[256];
 	float	remaining = 1.0f;
-	for( int i = 0 ; i < 256 ; i++ ) {
+	for( int i = 0; i < 256; i++ ) {
 		step[i] = remaining;
 		remaining *= 0.982f;
 	}
-	for( int x = 0 ; x < FOG_SIZE ; x++ ) {
-		for( int y = 0 ; y < FOG_SIZE ; y++ ) {
+	for( int x = 0; x < FOG_SIZE; x++ ) {
+		for( int y = 0; y < FOG_SIZE; y++ ) {
 			d = idMath::Sqrt( ( x - FOG_SIZE / 2 ) * ( x - FOG_SIZE / 2 ) + ( y - FOG_SIZE / 2 ) * ( y - FOG_SIZE / 2 ) ) / ( ( FOG_SIZE / 2 ) - 1.0f );
 			b = ( byte )( d * 255 );
 			if( b <= 0 ) {
@@ -711,13 +711,13 @@ void R_FogEnterImage( idImage *image ) {
 	byte	data[FOG_ENTER_SIZE][FOG_ENTER_SIZE][4];
 	int		b;
 	float	d;
-	for( int x = 0 ; x < FOG_ENTER_SIZE ; x++ ) {
-		for( int y = 0 ; y < FOG_ENTER_SIZE ; y++ ) {
+	for( int x = 0; x < FOG_ENTER_SIZE; x++ ) {
+		for( int y = 0; y < FOG_ENTER_SIZE; y++ ) {
 			d = FogFraction( x - ( FOG_ENTER_SIZE / 2 ), y - ( FOG_ENTER_SIZE / 2 ) );
 			b = ( byte )( d * 255.0f );
-			if( b < 1 ) {  // Rounding issues
+			if( b < 1 ) { // Rounding issues
 				b = 0;
-			} else if( b > 254 ) {  // Rounding issues
+			} else if( b > 254 ) { // Rounding issues
 				b = 255;
 			}
 			data[y][x][0] =
@@ -741,8 +741,8 @@ void R_QuadraticImage( idImage *image ) {
 	byte	data[QUADRATIC_HEIGHT][QUADRATIC_WIDTH][4];
 	int		b;
 	float	d;
-	for( int x = 0 ; x < QUADRATIC_WIDTH ; x++ ) {
-		for( int y = 0 ; y < QUADRATIC_HEIGHT ; y++ ) {
+	for( int x = 0; x < QUADRATIC_WIDTH; x++ ) {
+		for( int y = 0; y < QUADRATIC_HEIGHT; y++ ) {
 			d = x - ( QUADRATIC_WIDTH / 2 - 0.5f );
 			d = idMath::Fabs( d );
 			d -= 0.5f;
@@ -773,12 +773,12 @@ typedef struct {
 } filterName_t;
 
 static filterName_t textureFilters[] = {
-	{"GL_LINEAR_MIPMAP_NEAREST", GL_LINEAR_MIPMAP_NEAREST, GL_LINEAR},
-	{"GL_LINEAR_MIPMAP_LINEAR", GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR},
-	{"GL_NEAREST", GL_NEAREST, GL_NEAREST},
-	{"GL_LINEAR", GL_LINEAR, GL_LINEAR},
-	{"GL_NEAREST_MIPMAP_NEAREST", GL_NEAREST_MIPMAP_NEAREST, GL_NEAREST},
-	{"GL_NEAREST_MIPMAP_LINEAR", GL_NEAREST_MIPMAP_LINEAR, GL_NEAREST}
+	{ "GL_LINEAR_MIPMAP_NEAREST", GL_LINEAR_MIPMAP_NEAREST, GL_LINEAR },
+	{ "GL_LINEAR_MIPMAP_LINEAR", GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR },
+	{ "GL_NEAREST", GL_NEAREST, GL_NEAREST },
+	{ "GL_LINEAR", GL_LINEAR, GL_LINEAR },
+	{ "GL_NEAREST_MIPMAP_NEAREST", GL_NEAREST_MIPMAP_NEAREST, GL_NEAREST },
+	{ "GL_NEAREST_MIPMAP_LINEAR", GL_NEAREST_MIPMAP_LINEAR, GL_NEAREST }
 };
 
 /*
@@ -819,8 +819,8 @@ void idImageManager::ChangeTextureFilter( void ) {
 	textureLODBias = image_lodbias.GetFloat();
 	// change all the existing mipmap texture objects with default filtering
 	unsigned int texEnum;
-	for( i = 0 ; i < images.Num() ; i++ ) {
-		glt = images[ i ];
+	for( i = 0; i < images.Num(); i++ ) {
+		glt = images[i];
 		switch( glt->type ) {
 		case TT_2D:
 			texEnum = GL_TEXTURE_2D;
@@ -864,7 +864,7 @@ void idImage::Reload( bool checkPrecompressed, bool force ) {
 		generatorFunction( this );
 		common->DPrintf( "regenerating %s.\n", imgName.c_str() );
 		return;
-	} else if( !force ) {  // check file times
+	} else if( !force ) { // check file times
 		ID_TIME_T	current;
 		if( cubeFiles != CF_2D ) {
 			R_LoadCubeImages( imgName, cubeFiles, NULL, NULL, &current );
@@ -912,8 +912,8 @@ void R_ReloadImages_f( const idCmdArgs &args ) {
 			return;
 		}
 	}
-	for( int i = 0 ; i < globalImages->images.Num() ; i++ ) {
-		image = globalImages->images[ i ];
+	for( int i = 0; i < globalImages->images.Num(); i++ ) {
+		image = globalImages->images[i];
 		image->Reload( checkPrecompressed, all );
 	}
 	if( game ) {
@@ -1007,8 +1007,8 @@ void R_ListImages_f( const idCmdArgs &args ) {
 	common->Printf( "\n%s", header );
 	totalSize = 0;
 	sortedImage_t	*sortedArray = ( sortedImage_t * )alloca( sizeof( sortedImage_t ) * globalImages->images.Num() );
-	for( i = 0 ; i < globalImages->images.Num() ; i++ ) {
-		image = globalImages->images[ i ];
+	for( i = 0; i < globalImages->images.Num(); i++ ) {
+		image = globalImages->images[i];
 		if( uncompressedOnly ) {
 			if( ( image->internalFormat >= GL_COMPRESSED_RGB_S3TC_DXT1_EXT && image->internalFormat <= GL_COMPRESSED_RGBA_S3TC_DXT5_EXT )
 					|| image->internalFormat == GL_COLOR_INDEX8_EXT ) {
@@ -1032,8 +1032,8 @@ void R_ListImages_f( const idCmdArgs &args ) {
 		}
 		// only print duplicates (from mismatched wrap / clamp, etc)
 		if( duplicated ) {
-			for( j = i + 1 ; j < globalImages->images.Num() ; j++ ) {
-				if( idStr::Icmp( image->imgName, globalImages->images[ j ]->imgName ) == 0 ) {
+			for( j = i + 1; j < globalImages->images.Num(); j++ ) {
+				if( idStr::Icmp( image->imgName, globalImages->images[j]->imgName ) == 0 ) {
 					break;
 				}
 			}
@@ -1052,7 +1052,7 @@ void R_ListImages_f( const idCmdArgs &args ) {
 			sortedArray[count].image = image;
 			sortedArray[count].size = image->StorageSize();
 		} else {
-			common->Printf( "%4i:",	i );
+			common->Printf( "%4i:", i );
 			image->Print();
 		}
 		totalSize += image->StorageSize();
@@ -1061,8 +1061,8 @@ void R_ListImages_f( const idCmdArgs &args ) {
 	if( sorted ) {
 		qsort( sortedArray, count, sizeof( sortedImage_t ), R_QsortImageSizes );
 		partialSize = 0;
-		for( i = 0 ; i < count ; i++ ) {
-			common->Printf( "%4i:",	i );
+		for( i = 0; i < count; i++ ) {
+			common->Printf( "%4i:", i );
 			sortedArray[i].image->Print();
 			partialSize += sortedArray[i].image->StorageSize();
 			if( ( ( i + 1 ) % 10 ) == 0 ) {
@@ -1076,18 +1076,18 @@ void R_ListImages_f( const idCmdArgs &args ) {
 	common->Printf( " %5.1f total megabytes of images\n\n\n", totalSize / ( 1024 * 1024.0 ) );
 	if( byClassification ) {
 		idList< int > classifications[IC_COUNT];
-		for( i = 0 ; i < count ; i++ ) {
+		for( i = 0; i < count; i++ ) {
 			int cl = ClassifyImage( sortedArray[i].image->imgName );
-			classifications[ cl ].Append( i );
+			classifications[cl].Append( i );
 		}
 		for( i = 0; i < IC_COUNT; i++ ) {
 			partialSize = 0;
 			idList< int > overSizedList;
-			for( j = 0; j < classifications[ i ].Num(); j++ ) {
-				partialSize += sortedArray[ classifications[ i ][ j ] ].image->StorageSize();
+			for( j = 0; j < classifications[i].Num(); j++ ) {
+				partialSize += sortedArray[classifications[i][j]].image->StorageSize();
 				if( overSized ) {
-					if( sortedArray[ classifications[ i ][ j ] ].image->uploadWidth > IC_Info[i].maxWidth && sortedArray[ classifications[ i ][ j ] ].image->uploadHeight > IC_Info[i].maxHeight ) {
-						overSizedList.Append( classifications[ i ][ j ] );
+					if( sortedArray[classifications[i][j]].image->uploadWidth > IC_Info[i].maxWidth && sortedArray[classifications[i][j]].image->uploadHeight > IC_Info[i].maxHeight ) {
+						overSizedList.Append( classifications[i][j] );
 					}
 				}
 			}
@@ -1096,7 +1096,7 @@ void R_ListImages_f( const idCmdArgs &args ) {
 				common->Printf( "  The following images may be oversized\n" );
 				for( j = 0; j < overSizedList.Num(); j++ ) {
 					common->Printf( "    " );
-					sortedArray[ overSizedList[ j ] ].image->Print();
+					sortedArray[overSizedList[j]].image->Print();
 					common->Printf( "\n" );
 				}
 			}
@@ -1119,19 +1119,19 @@ void idImageManager::SetNormalPalette( void ) {
 	int		compressedToOriginal[16];
 	float	t, f, y;
 	// make an ad-hoc separable compression mapping scheme
-	for( int i = 0 ; i < 8 ; i++ ) {
+	for( int i = 0; i < 8; i++ ) {
 		f = ( i + 1 ) / 8.5f;
-		y =  1.0f - idMath::Sqrt( 1.0f - f * f );
+		y = 1.0f - idMath::Sqrt( 1.0f - f * f );
 		compressedToOriginal[7 - i] = 127 - ( int )( y * 127 + 0.5f );
 		compressedToOriginal[8 + i] = 128 + ( int )( y * 127 + 0.5f );
 	}
-	for( int i = 0 ; i < 256 ; i++ ) {
+	for( int i = 0; i < 256; i++ ) {
 		if( i <= compressedToOriginal[0] ) {
 			originalToCompressed[i] = 0;
 		} else if( i >= compressedToOriginal[15] ) {
 			originalToCompressed[i] = 15;
 		} else {
-			for( j = 0 ; j < 14 ; j++ ) {
+			for( j = 0; j < 14; j++ ) {
 				if( i <= compressedToOriginal[j + 1] ) {
 					break;
 				}
@@ -1145,7 +1145,7 @@ void idImageManager::SetNormalPalette( void ) {
 	}
 #if 0
 	for( i = 0; i < 16; i++ ) {
-		for( j = 0 ; j < 16 ; j++ ) {
+		for( j = 0; j < 16; j++ ) {
 			v[0] = ( i - 7.5 ) / 8;
 			v[1] = ( j - 7.5 ) / 8;
 			t = 1.0 - ( v[0] * v[0] + v[1] * v[1] );
@@ -1160,7 +1160,7 @@ void idImageManager::SetNormalPalette( void ) {
 	}
 #else
 	for( int i = 0; i < 16; i++ ) {
-		for( j = 0 ; j < 16 ; j++ ) {
+		for( j = 0; j < 16; j++ ) {
 			v[0] = ( compressedToOriginal[i] - 127.5 ) / 128;
 			v[1] = ( compressedToOriginal[j] - 127.5 ) / 128;
 			t = 1.0 - ( v[0] * v[0] + v[1] * v[1] );
@@ -1190,7 +1190,7 @@ copies the name, and adds it to the hash chain.
 */
 idImage *idImageManager::AllocImage( const char *name ) {
 	if( strlen( name ) >= MAX_IMAGE_NAME || strlen( name ) < MIN_IMAGE_NAME ) {
-		const char *warnp  = ( strlen( name ) >= MAX_IMAGE_NAME ) ? "long" : "short";
+		const char *warnp = ( strlen( name ) >= MAX_IMAGE_NAME ) ? "long" : "short";
 		common->Warning( "Image name \"%s\" is too %s", name, warnp );
 	}
 	idImage *image = new idImage;
@@ -1212,7 +1212,7 @@ with a callback which must work at any time, allowing the OpenGL
 system to be completely regenerated if needed.
 ==================
 */
-idImage *idImageManager::ImageFromFunction( const char *_name, void ( *generatorFunction )( idImage *image ) ) {
+idImage *idImageManager::ImageFromFunction( const char *_name, void( *generatorFunction )( idImage *image ) ) {
 	if( !_name ) {
 		common->FatalError( "idImageManager::ImageFromFunction: NULL name" );
 	}
@@ -1223,7 +1223,7 @@ idImage *idImageManager::ImageFromFunction( const char *_name, void ( *generator
 	name.BackSlashesToSlashes();
 	// see if the image already exists
 	int	hash = name.FileNameHash();
-	for( image = imageHashTable[hash] ; image; image = image->hashNext ) {
+	for( image = imageHashTable[hash]; image; image = image->hashNext ) {
 		if( name.Icmp( image->imgName ) == 0 ) {
 			if( image->generatorFunction != generatorFunction ) {
 				common->Warning( "Reused image %s with mixed generators", name.c_str() );
@@ -1399,7 +1399,7 @@ PurgeAllImages
 */
 void idImageManager::PurgeAllImages() {
 	idImage	*image;
-	for( int i = 0; i < images.Num() ; i++ ) {
+	for( int i = 0; i < images.Num(); i++ ) {
 		image = images[i];
 		image->PurgeImage();
 	}
@@ -1437,13 +1437,13 @@ void R_CombineCubeImages_f( const idCmdArgs &args ) {
 	}
 	idStr	baseName = args.Argv( 1 );
 	common->SetRefreshOnPrint( true );
-	for( int frameNum = 1 ; frameNum < 10000 ; frameNum++ ) {
+	for( int frameNum = 1; frameNum < 10000; frameNum++ ) {
 		char	filename[MAX_IMAGE_NAME];
 		byte	*pics[6];
 		int		width, height;
 		int		side;
 		int		orderRemap[6] = { 1, 3, 4, 2, 5, 6 };
-		for( side = 0 ; side < 6 ; side++ ) {
+		for( side = 0; side < 6; side++ ) {
 			sprintf( filename, "%s%i%04i.tga", baseName.c_str(), orderRemap[side], frameNum );
 			common->Printf( "reading %s\n", filename );
 			R_LoadImage( filename, &pics[side], &width, &height, NULL, true );
@@ -1476,13 +1476,13 @@ void R_CombineCubeImages_f( const idCmdArgs &args ) {
 			}
 		}
 		if( side != 6 ) {
-			for( int i = 0 ; i < side ; side++ ) {
+			for( int i = 0; i < side; side++ ) {
 				Mem_Free( pics[side] );
 			}
 			break;
 		}
 		byte *combined = ( byte * )Mem_Alloc( width * height * 6 * 4 );
-		for( side = 0 ; side < 6 ; side++ ) {
+		for( side = 0; side < 6; side++ ) {
 			memcpy( combined + width * height * 4 * side, pics[side], width * height * 4 );
 			Mem_Free( pics[side] );
 		}
@@ -1532,7 +1532,7 @@ void idImage::StartBackgroundImageLoad() {
 	imageManager.numActiveBackgroundImageLoads++;
 	// purge some images if necessary
 	int	totalSize = 0;
-	for( idImage *check = globalImages->cacheLRU.cacheUsageNext ; check != &globalImages->cacheLRU ; check = check->cacheUsageNext ) {
+	for( idImage *check = globalImages->cacheLRU.cacheUsageNext; check != &globalImages->cacheLRU; check = check->cacheUsageNext ) {
 		totalSize += check->StorageSize();
 	}
 	const int needed = this->StorageSize();
@@ -1564,7 +1564,7 @@ Do we need to worry about vid_restarts here?
 void idImageManager::CompleteBackgroundImageLoads() {
 	idImage	*remainingList = NULL;
 	idImage	*next;
-	for( idImage *image = backgroundImageLoads ; image ; image = next ) {
+	for( idImage *image = backgroundImageLoads; image; image = next ) {
 		next = image->bglNext;
 		if( image->bgl.completed ) {
 			numActiveBackgroundImageLoads--;
@@ -1712,8 +1712,8 @@ loading the actual data.
 void idImageManager::BeginLevelLoad() {
 	insideLevelLoad = true;
 	idImage	*image;
-	for( int i = 0 ; i < images.Num() ; i++ ) {
-		image = images[ i ];
+	for( int i = 0; i < images.Num(); i++ ) {
+		image = images[i];
 		// generator function images are always kept around
 		if( image->generatorFunction ) {
 			continue;
@@ -1749,8 +1749,8 @@ void idImageManager::EndLevelLoad() {
 	int	keepCount = 0;
 	int	loadCount = 0;
 	// purge the ones we don't need
-	for( int i = 0 ; i < images.Num() ; i++ ) {
-		idImage	*image = images[ i ];
+	for( int i = 0; i < images.Num(); i++ ) {
+		idImage	*image = images[i];
 		if( image->generatorFunction ) {
 			continue;
 		} else if( !image->levelLoadReferenced && !image->referencedOutsideLevelLoad ) {
@@ -1764,8 +1764,8 @@ void idImageManager::EndLevelLoad() {
 	}
 	common->PacifierUpdate( LOAD_KEY_IMAGES_START, images.Num() / LOAD_KEY_IMAGE_GRANULARITY ); // grayman #3763
 	// load the ones we do need, if we are preloading
-	for( int i = 0 ; i < images.Num() ; i++ ) {
-		idImage	*image = images[ i ];
+	for( int i = 0; i < images.Num(); i++ ) {
+		idImage	*image = images[i];
 		if( image->generatorFunction ) {
 			continue;
 		}
@@ -1776,7 +1776,7 @@ void idImageManager::EndLevelLoad() {
 			/* grayman #3763 - old way
 			if ( ( loadCount & 15 ) == 0 )
 			{
-				session->PacifierUpdate();
+			session->PacifierUpdate();
 			}
 			*/
 		}
@@ -1835,7 +1835,7 @@ void idImageManager::FinishBuild( bool removeDups ) {
 	if( batchFile ) {
 		int ddsNum = ddsList.Num();
 		for( int i = 0; i < ddsNum; i++ ) {
-			batchFile->WriteFloatString( "%s", ddsList[ i ].c_str() );
+			batchFile->WriteFloatString( "%s", ddsList[i].c_str() );
 			batchFile->Printf( "@echo Finished compressing %d of %d.  %.1f percent done.\n", i + 1, ddsNum, ( ( float )( i + 1 ) / ( float )ddsNum ) * 100.0f );
 		}
 		fileSystem->CloseFile( batchFile );

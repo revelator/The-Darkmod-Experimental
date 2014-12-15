@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 // TODO: Make sure drag to point is not within a solid
 // TODO: Detecting stuck items (distance + angular offset)
@@ -34,7 +34,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 ===============================================================================
 
-	Allows entities to be dragged through the world with physics.
+Allows entities to be dragged through the world with physics.
 
 ===============================================================================
 */
@@ -43,25 +43,25 @@ const idEventDef EV_Grabber_CheckClipList( "<checkClipList>", EventArgs(), EV_RE
 
 // TODO: Make most of these cvars
 
-const int CHECK_CLIP_LIST_INTERVAL =	200;
+const int CHECK_CLIP_LIST_INTERVAL = 200;
 
-const int MOUSE_DEADZONE =				5;
+const int MOUSE_DEADZONE = 5;
 // const float MOUSE_SCALE =				0.7f;
-const float MOUSE_SCALE =				0.2f;
+const float MOUSE_SCALE = 0.2f;
 
 // when you let go of an item, the velocity is clamped to this value
-const float MAX_RELEASE_LINVEL =		30.0f;
+const float MAX_RELEASE_LINVEL = 30.0f;
 // when you let go of an item, the angular velocity is clamped to this value
-const float MAX_RELEASE_ANGVEL =		10.0f;
+const float MAX_RELEASE_ANGVEL = 10.0f;
 // limits how close you can hold an item to the player view point
-const float MIN_HELD_DISTANCE  =		35.0f;
+const float MIN_HELD_DISTANCE = 35.0f;
 // granularity of the distance control
-const int	DIST_GRANULARITY	=		12;
+const int	DIST_GRANULARITY = 12;
 
 const char *SHOULDER_ANIM = "drop_body";
 
 CLASS_DECLARATION( idEntity, CGrabber )
-EVENT( EV_Grabber_CheckClipList, 	CGrabber::Event_CheckClipList )
+EVENT( EV_Grabber_CheckClipList, CGrabber::Event_CheckClipList )
 END_CLASS
 
 /*
@@ -89,15 +89,15 @@ CGrabber::Clear
 ==============
 */
 void CGrabber::Clear( void ) {
-	m_dragEnt			= NULL;
-	m_player			= NULL;
-	m_rotation			= idRotation( vec3_zero, vec3_zero, 0.0f );
-	m_rotationAxis		= 0;
-	m_mousePosition		= idVec2( 0.0f, 0.0f );
+	m_dragEnt = NULL;
+	m_player = NULL;
+	m_rotation = idRotation( vec3_zero, vec3_zero, 0.0f );
+	m_rotationAxis = 0;
+	m_mousePosition = idVec2( 0.0f, 0.0f );
 	m_bAllowPlayerRotation = true;
 	m_bAllowPlayerTranslation = true;
-	m_joint			= INVALID_JOINT;
-	m_id				= 0;
+	m_joint = INVALID_JOINT;
+	m_id = 0;
 	m_LocalEntPoint.Zero();
 	m_vLocalEntOffset.Zero();
 	m_vOffset.Zero();
@@ -111,8 +111,8 @@ void CGrabber::Clear( void ) {
 	m_DragUpTimer = 0;
 	m_AFBodyLastZ = 0.0f;
 	m_DistanceCount = 0;
-	m_MinHeldDist	= 0;
-	m_MaxDistCount	= DIST_GRANULARITY;
+	m_MinHeldDist = 0;
+	m_MaxDistCount = DIST_GRANULARITY;
 	m_LockedHeldDist = 0;
 	m_bObjStuck = false;
 	m_MaxForce = 0;
@@ -291,7 +291,7 @@ void CGrabber::StopDrag( void ) {
 	// TODO: This assumes we can never equip an object and drag a second object
 	/*
 	if( m_EquippedEnt.GetEntity() && m_player.GetEntity() )
-		Dequip();
+	Dequip();
 	*/
 }
 
@@ -338,8 +338,8 @@ void CGrabber::Update( idPlayer *player, bool hold ) {
 		goto Quit;
 	}
 	// Set actor info on the entity
-	drag->m_SetInMotionByActor = ( idActor * ) player;
-	drag->m_MovedByActor = ( idActor * ) player;
+	drag->m_SetInMotionByActor = ( idActor * )player;
+	drag->m_MovedByActor = ( idActor * )player;
 	// Check for throwing:
 	bAttackHeld = player->usercmd.buttons & BUTTON_ATTACK;
 	if( m_bAttackPressed && !bAttackHeld ) {
@@ -374,7 +374,7 @@ void CGrabber::Update( idPlayer *player, bool hold ) {
 		m_DistanceCount = idMath::ClampInt( ( m_LockedHeldDist - 2 ), ( m_LockedHeldDist + 1 ), m_DistanceCount );
 	}
 	vPlayerPoint.x = 1.0f; // (1, 0, 0)
-	distFactor = ( float ) m_DistanceCount / ( float ) m_MaxDistCount;
+	distFactor = ( float )m_DistanceCount / ( float )m_MaxDistCount;
 	// equipped entities lock in position
 	if( !m_bEquippedEntInWorld ) {
 		vPlayerPoint *= m_MinHeldDist + ( m_dragEnt.GetEntity()->m_FrobDistance - m_MinHeldDist ) * distFactor;
@@ -387,7 +387,7 @@ void CGrabber::Update( idPlayer *player, bool hold ) {
 	// If dragging a body with a certain spawnarg set, you should only be able to pick
 	// it up so far off the ground
 	if( drag->IsType( idAFEntity_Base::Type ) && ( cv_drag_AF_free.GetBool() == false ) ) {
-		idAFEntity_Base *AFPtr = ( idAFEntity_Base * ) drag;
+		idAFEntity_Base *AFPtr = ( idAFEntity_Base * )drag;
 		if( AFPtr->IsActiveAF() && AFPtr->m_bGroundWhenDragged ) {
 			// Quick fix : Do not add player's reference velocity when grounding
 			m_drag.SetRefEnt( NULL );
@@ -639,9 +639,9 @@ void CGrabber::ManipulateObject( idPlayer *player ) {
 			yAxis.Set( 0.0f, 1.0f, 0.0f ); // y is always pitch
 			// run held => x = roll, release => x = yaw
 			if( player->usercmd.buttons & BUTTON_RUN ) {
-				xAxis.Set( -1.0f, 0.0f, 0.0f );    // roll
+				xAxis.Set( -1.0f, 0.0f, 0.0f );  // roll
 			} else {
-				xAxis.Set( 0.0f, 0.0f, -1.0f );    // yaw
+				xAxis.Set( 0.0f, 0.0f, -1.0f );  // yaw
 			}
 			rotationVec = xMag * xAxis + yMag * yAxis;
 			angle = rotationVec.Normalize();
@@ -915,7 +915,7 @@ void CGrabber::Throw( int HeldTime ) {
 	idEntity *ent = m_dragEnt.GetEntity();
 	ImpulseVec = m_player.GetEntity()->firstPersonViewAxis[0];
 	ImpulseVec.Normalize();
-	FracPower = ( float ) HeldTime / ( float ) cv_throw_time.GetInteger();
+	FracPower = ( float )HeldTime / ( float )cv_throw_time.GetInteger();
 	if( FracPower > 1.0 ) {
 		FracPower = 1.0;
 	}
@@ -938,7 +938,7 @@ void CGrabber::Throw( int HeldTime ) {
 		TumbleVec *= ( mass / 2.0 );
 		ent->ApplyImpulse( m_player.GetEntity(), m_id, ThrowPoint + TumbleVec, ImpulseVec );
 		ent->m_SetInMotionByActor = m_player.GetEntity();
-		ent->m_MovedByActor =  m_player.GetEntity();
+		ent->m_MovedByActor = m_player.GetEntity();
 	}
 	StopDrag();
 	// tels: also clear the equipped entity, in case Equip() was called
@@ -1021,7 +1021,7 @@ bool CGrabber::PutInHandsAtPoint( idEntity *ent, idVec3 point, idMat3 axis, int 
 	}
 	ent->SetOrigin( orig );
 	// Tels: re-enable LOD here, including all possible attachments
-	ent->EnableLOD( true ) ;
+	ent->EnableLOD( true );
 	ent->Show();
 	StartDrag( m_player.GetEntity(), ent, bodyID );
 	return true;
@@ -1094,8 +1094,8 @@ bool CGrabber::FitsInWorld( idEntity *ent, idVec3 viewPoint, idVec3 point, idMat
 		/*
 		collisionModelManager->DrawModel
 		(
-			ClipModel->Handle(), clipOrig + trans2, ClipModel->GetAxis(),
-			gameLocal.GetLocalPlayer()->GetEyePosition(), idMath::INFINITY
+		ClipModel->Handle(), clipOrig + trans2, ClipModel->GetAxis(),
+		gameLocal.GetLocalPlayer()->GetEyePosition(), idMath::INFINITY
 		);
 		*/
 		// first try a zero-motion translation to see if we start out in solid
@@ -1304,7 +1304,7 @@ bool CGrabber::Dequip( void ) {
 	// junk items and shouldered bodies dequip back to the hands
 	// test if item is successfully dequipped
 	else if( player->DropToHands( ent ) ) {
-		ent->m_SetInMotionByActor = ( idActor * ) player; // grayman #3394
+		ent->m_SetInMotionByActor = ( idActor * )player; // grayman #3394
 		// put in hands (should already be dragged?)
 		bDequipped = true;
 	} else {

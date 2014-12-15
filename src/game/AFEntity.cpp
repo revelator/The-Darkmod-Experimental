@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -29,7 +29,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 ===============================================================================
 
-  idMultiModelAF
+idMultiModelAF
 
 ===============================================================================
 */
@@ -136,7 +136,7 @@ void idMultiModelAF::ParseAttachmentsAF( void ) {
 /*
 ===============================================================================
 
-  idChain
+idChain
 
 ===============================================================================
 */
@@ -148,9 +148,9 @@ END_CLASS
 ================
 idChain::BuildChain
 
-  builds a chain hanging down from the ceiling
-  the highest link is a child of the link below it etc.
-  this allows an object to be attached to multiple chains while keeping a single tree structure
+builds a chain hanging down from the ceiling
+the highest link is a child of the link below it etc.
+this allows an object to be attached to multiple chains while keeping a single tree structure
 ================
 */
 void idChain::BuildChain( const idStr &name, const idVec3 &origin, float linkLength, float linkWidth, float density, int numLinks, bool bindToWorld ) {
@@ -233,7 +233,7 @@ void idChain::Spawn( void ) {
 /*
 ===============================================================================
 
-  idAFAttachment
+idAFAttachment
 
 ===============================================================================
 */
@@ -247,10 +247,10 @@ idAFAttachment::idAFAttachment
 =====================
 */
 idAFAttachment::idAFAttachment( void ) {
-	body			= NULL;
-	combatModel		= NULL;
-	idleAnim		= 0;
-	attachJoint		= INVALID_JOINT;
+	body = NULL;
+	combatModel = NULL;
+	idleAnim = 0;
+	attachJoint = INVALID_JOINT;
 }
 
 /*
@@ -344,7 +344,7 @@ bool idAFAttachment::IsMantleable() {
 /**
 * idAFAttachment::BindNotify
 **/
-void idAFAttachment::BindNotify( idEntity *ent , const char *jointName ) { // grayman #3074
+void idAFAttachment::BindNotify( idEntity *ent, const char *jointName ) { // grayman #3074
 	// copy information over to a bound idAfAttachment
 	if( ent->IsType( idAFAttachment::Type ) ) {
 		CopyBodyTo( static_cast<idAFAttachment *>( ent ) );
@@ -370,7 +370,7 @@ void idAFAttachment::DropOnRagdoll( void ) {
 	idEntity *ent = NULL;
 	int mask( 0 );
 	// Drop TDM attachments
-	for( int i = 0 ; i < m_Attachments.Num() ; i++ ) {
+	for( int i = 0; i < m_Attachments.Num(); i++ ) {
 		ent = m_Attachments[i].ent.GetEntity();
 		if( !ent || !m_Attachments[i].ent.IsValid() ) {
 			continue;
@@ -391,12 +391,12 @@ void idAFAttachment::DropOnRagdoll( void ) {
 			gameLocal.Printf("TEST: drop_set_nonsolid, Num team children = %d", AttChildren.Num() );
 			for( int i=0; i < AttChildren.Num(); i++ )
 			{
-				idPhysics *pChildPhys = AttChildren[i]->GetPhysics();
-				if( pChildPhys == NULL )
-					continue;
+			idPhysics *pChildPhys = AttChildren[i]->GetPhysics();
+			if( pChildPhys == NULL )
+			continue;
 
-				int childContents = pChildPhys->GetContents();
-				pChildPhys->SetContents( childContents & ~(CONTENTS_SOLID|CONTENTS_CORPSE) );
+			int childContents = pChildPhys->GetContents();
+			pChildPhys->SetContents( childContents & ~(CONTENTS_SOLID|CONTENTS_CORPSE) );
 			}
 			*/
 		}
@@ -422,22 +422,22 @@ void idAFAttachment::DropOnRagdoll( void ) {
 		/*
 				bool bSetFrob = ent->spawnArgs.GetBool( "drop_set_frobable" );
 				if( bSetFrob )
-					ent->m_bFrobable = true;
+				ent->m_bFrobable = true;
 
 				// greebo: Check if we should extinguish the attachment, like torches
 				bool bExtinguish = ent->spawnArgs.GetBool("extinguish_on_drop", "0");
 				if ( bExtinguish )
 				{
-					// Get the delay in milliseconds
-					int delay = SEC2MS(ent->spawnArgs.GetInt("extinguish_on_drop_delay", "3"));
-					if (delay < 0) {
-						delay = 0;
-					}
-
-					// Schedule the extinguish event
-					ent->PostEventMS(&EV_ExtinguishLights, delay);
+				// Get the delay in milliseconds
+				int delay = SEC2MS(ent->spawnArgs.GetInt("extinguish_on_drop_delay", "3"));
+				if (delay < 0) {
+				delay = 0;
 				}
-		 */
+
+				// Schedule the extinguish event
+				ent->PostEventMS(&EV_ExtinguishLights, delay);
+				}
+				*/
 		ent->GetPhysics()->Activate();
 		ent->m_droppedByAI = true; // grayman #1330
 		// grayman #3075 - set m_SetInMotionByActor here
@@ -544,7 +544,7 @@ void idAFAttachment::Damage( idEntity *inflictor, idEntity *attacker, const idVe
 		pTrace = &TraceCopy;
 	}
 	if( body ) {
-		DM_LOG( LC_AI, LT_DEBUG )LOGSTRING( "AF Attachment %s passing along damage to actor %s at attachjoint %d \r", name.c_str(), body->name.c_str(), ( int ) attachJoint );
+		DM_LOG( LC_AI, LT_DEBUG )LOGSTRING( "AF Attachment %s passing along damage to actor %s at attachjoint %d \r", name.c_str(), body->name.c_str(), ( int )attachJoint );
 		body->Damage( inflictor, attacker, dir, damageDefName, damageScale, attachJoint, pTrace );
 	}
 }
@@ -683,7 +683,7 @@ idEntity *idAFAttachment::GetResponseEntity() {
 /*
 ===============================================================================
 
-  idAFEntity_Base
+idAFEntity_Base
 
 ===============================================================================
 */
@@ -711,18 +711,18 @@ const idEventDef EV_GetNumBodies( "getNumBodies", EventArgs(), 'd',
 const idEventDef EV_RestoreAddedEnts( "restoreAddedEnts", EventArgs(), EV_RETURNS_VOID, "" );
 
 CLASS_DECLARATION( idAnimatedEntity, idAFEntity_Base )
-EVENT( EV_SetConstraintPosition,	idAFEntity_Base::Event_SetConstraintPosition )
-EVENT( EV_GetLinearVelocityB,		idAFEntity_Base::Event_GetLinearVelocityB )
-EVENT( EV_GetAngularVelocityB,		idAFEntity_Base::Event_GetAngularVelocityB )
-EVENT( EV_SetLinearVelocityB,		idAFEntity_Base::Event_SetLinearVelocityB )
-EVENT( EV_SetAngularVelocityB,		idAFEntity_Base::Event_SetAngularVelocityB )
-EVENT( EV_GetNumBodies,				idAFEntity_Base::Event_GetNumBodies )
-EVENT( EV_RestoreAddedEnts,			idAFEntity_Base::RestoreAddedEnts )
+EVENT( EV_SetConstraintPosition, idAFEntity_Base::Event_SetConstraintPosition )
+EVENT( EV_GetLinearVelocityB, idAFEntity_Base::Event_GetLinearVelocityB )
+EVENT( EV_GetAngularVelocityB, idAFEntity_Base::Event_GetAngularVelocityB )
+EVENT( EV_SetLinearVelocityB, idAFEntity_Base::Event_SetLinearVelocityB )
+EVENT( EV_SetAngularVelocityB, idAFEntity_Base::Event_SetAngularVelocityB )
+EVENT( EV_GetNumBodies, idAFEntity_Base::Event_GetNumBodies )
+EVENT( EV_RestoreAddedEnts, idAFEntity_Base::RestoreAddedEnts )
 
 END_CLASS
 
-static const float BOUNCE_SOUND_MIN_VELOCITY	= 80.0f;
-static const float BOUNCE_SOUND_MAX_VELOCITY	= 200.0f;
+static const float BOUNCE_SOUND_MIN_VELOCITY = 80.0f;
+static const float BOUNCE_SOUND_MAX_VELOCITY = 200.0f;
 
 /*
 ================
@@ -907,27 +907,27 @@ void idAFEntity_Base::Think( void ) {
 			&& animator.FrameHasChanged( gameLocal.time ) ) {
 		af.ChangePose( this, gameLocal.time );
 		// copied from idAI::PushWithAF
-		afTouch_t touchList[ MAX_GENTITIES ];
-		idEntity *pushed_ents[ MAX_GENTITIES ];
+		afTouch_t touchList[MAX_GENTITIES];
+		idEntity *pushed_ents[MAX_GENTITIES];
 		idEntity *ent;
 		idVec3 vel( vec3_origin );
 		int num_pushed( 0 ), i, j;
 		int num = af.EntitiesTouchingAF( touchList );
 		for( i = 0; i < num; i++ ) {
 			// skip projectiles
-			if( touchList[ i ].touchedEnt->IsType( idProjectile::Type ) ) {
+			if( touchList[i].touchedEnt->IsType( idProjectile::Type ) ) {
 				continue;
 			}
 			// make sure we havent pushed this entity already.  this avoids causing double damage
 			for( j = 0; j < num_pushed; j++ ) {
-				if( pushed_ents[ j ] == touchList[ i ].touchedEnt ) {
+				if( pushed_ents[j] == touchList[i].touchedEnt ) {
 					break;
 				}
 			}
 			if( j >= num_pushed ) {
-				ent = touchList[ i ].touchedEnt;
+				ent = touchList[i].touchedEnt;
 				pushed_ents[num_pushed++] = ent;
-				vel = ent->GetPhysics()->GetAbsBounds().GetCenter() - touchList[ i ].touchedByBody->GetWorldOrigin();
+				vel = ent->GetPhysics()->GetAbsBounds().GetCenter() - touchList[i].touchedByBody->GetWorldOrigin();
 				vel.Normalize();
 				ent->ApplyImpulse( this, touchList[i].touchedClipModel->GetId(), ent->GetPhysics()->GetOrigin(), cv_ai_bumpobject_impulse.GetFloat() * vel );
 			}
@@ -1086,7 +1086,7 @@ bool idAFEntity_Base::Collide( const trace_t &collision, const idVec3 &velocity 
 				StartSoundShader( sndShader, SND_CHANNEL_ANY, 0, false, NULL );
 				// Propagate a suspicious sound, using the "group" convention (soft, hard, small, med, etc.)
 				idStr sndPropName = GetSoundPropNameForMaterial( surfaceName );
-				PropSoundS( NULL, sndPropName, f , 0 ); // grayman #3355
+				PropSoundS( NULL, sndPropName, f, 0 ); // grayman #3355
 				nextSoundTime = gameLocal.time + 500;
 			}
 		}
@@ -1212,12 +1212,12 @@ void idAFEntity_Base::ShowEditingDialog( void ) {
 ================
 idAFEntity_Base::DropAFs
 
-  The entity should have the following key/value pairs set:
-	"def_drop<type>AF"		"af def"
-	"drop<type>Skin"		"skin name"
-  To drop multiple articulated figures the following key/value pairs can be used:
-	"def_drop<type>AF*"		"af def"
-  where * is an aribtrary string.
+The entity should have the following key/value pairs set:
+"def_drop<type>AF"		"af def"
+"drop<type>Skin"		"skin name"
+To drop multiple articulated figures the following key/value pairs can be used:
+"def_drop<type>AF*"		"af def"
+where * is an aribtrary string.
 ================
 */
 void idAFEntity_Base::DropAFs( idEntity *ent, const char *type, idList<idEntity *> *list ) {
@@ -1622,8 +1622,8 @@ const idEventDef EV_Gib( "gib", EventArgs( 's', "damageDefName", "" ), EV_RETURN
 const idEventDef EV_Gibbed( "<gibbed>", EventArgs(), EV_RETURNS_VOID, "internal" );
 
 CLASS_DECLARATION( idAFEntity_Base, idAFEntity_Gibbable )
-EVENT( EV_Gib,		idAFEntity_Gibbable::Event_Gib )
-EVENT( EV_Gibbed,	idAFEntity_Base::Event_Remove )
+EVENT( EV_Gib, idAFEntity_Gibbable::Event_Gib )
+EVENT( EV_Gibbed, idAFEntity_Base::Event_Remove )
 END_CLASS
 
 /*
@@ -1796,7 +1796,7 @@ void idAFEntity_Gibbable::SpawnGibs( const idVec3 &dir, const char *damageDefNam
 			list[i]->GetPhysics()->SetLinearVelocity( velocity * 75.0f );
 		}
 		list[i]->GetRenderEntity()->noShadow = true;
-		list[i]->GetRenderEntity()->shaderParms[ SHADERPARM_TIME_OF_DEATH ] = gameLocal.time * 0.001f;
+		list[i]->GetRenderEntity()->shaderParms[SHADERPARM_TIME_OF_DEATH] = gameLocal.time * 0.001f;
 		list[i]->PostEventSec( &EV_Remove, 4.0f );
 	}
 }
@@ -1833,7 +1833,7 @@ void idAFEntity_Gibbable::Gib( const idVec3 &dir, const char *damageDefName ) {
 			gameLocal.SetGibTime( gameLocal.time + GIB_DELAY );
 			SpawnGibs( dir, damageDefName );
 			renderEntity.noShadow = true;
-			renderEntity.shaderParms[ SHADERPARM_TIME_OF_DEATH ] = gameLocal.time * 0.001f;
+			renderEntity.shaderParms[SHADERPARM_TIME_OF_DEATH] = gameLocal.time * 0.001f;
 			StartSound( "snd_gibbed", SND_CHANNEL_ANY, 0, false, NULL );
 			gibbed = true;
 		}
@@ -1855,13 +1855,13 @@ void idAFEntity_Gibbable::Event_Gib( const char *damageDefName ) {
 /*
 ===============================================================================
 
-  idAFEntity_Generic
+idAFEntity_Generic
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idAFEntity_Gibbable, idAFEntity_Generic )
-EVENT( EV_Activate,			idAFEntity_Generic::Event_Activate )
+EVENT( EV_Activate, idAFEntity_Generic::Event_Activate )
 END_CLASS
 
 /*
@@ -1963,14 +1963,14 @@ void idAFEntity_Generic::Event_Activate( idEntity *activator ) {
 /*
 ===============================================================================
 
-  idAFEntity_WithAttachedHead
+idAFEntity_WithAttachedHead
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idAFEntity_Gibbable, idAFEntity_WithAttachedHead )
-EVENT( EV_Gib,				idAFEntity_WithAttachedHead::Event_Gib )
-EVENT( EV_Activate,			idAFEntity_WithAttachedHead::Event_Activate )
+EVENT( EV_Gib, idAFEntity_WithAttachedHead::Event_Gib )
+EVENT( EV_Activate, idAFEntity_WithAttachedHead::Event_Activate )
 END_CLASS
 
 /*
@@ -2232,7 +2232,7 @@ void idAFEntity_WithAttachedHead::Event_Activate( idEntity *activator ) {
 /*
 ===============================================================================
 
-  idAFEntity_Vehicle
+idAFEntity_Vehicle
 
 ===============================================================================
 */
@@ -2246,13 +2246,13 @@ idAFEntity_Vehicle::idAFEntity_Vehicle
 ================
 */
 idAFEntity_Vehicle::idAFEntity_Vehicle( void ) {
-	player				= NULL;
-	eyesJoint			= INVALID_JOINT;
-	steeringWheelJoint	= INVALID_JOINT;
-	wheelRadius			= 0.0f;
-	steerAngle			= 0.0f;
-	steerSpeed			= 0.0f;
-	dustSmoke			= NULL;
+	player = NULL;
+	eyesJoint = INVALID_JOINT;
+	steeringWheelJoint = INVALID_JOINT;
+	wheelRadius = 0.0f;
+	steerAngle = 0.0f;
+	steerSpeed = 0.0f;
+	dustSmoke = NULL;
 }
 
 /*
@@ -2333,7 +2333,7 @@ float idAFEntity_Vehicle::GetSteerAngle( void ) {
 /*
 ===============================================================================
 
-  idAFEntity_VehicleSimple
+idAFEntity_VehicleSimple
 
 ===============================================================================
 */
@@ -2396,11 +2396,11 @@ void idAFEntity_VehicleSimple::Spawn( void ) {
 		origin = renderEntity.origin + origin * renderEntity.axis;
 		suspension[i] = new idAFConstraint_Suspension();
 		suspension[i]->Setup( va( "suspension%d", i ), af.GetPhysics()->GetBody( 0 ), origin, af.GetPhysics()->GetAxis( 0 ), wheelModel );
-		suspension[i]->SetSuspension(	g_vehicleSuspensionUp.GetFloat(),
-										g_vehicleSuspensionDown.GetFloat(),
-										g_vehicleSuspensionKCompress.GetFloat(),
-										g_vehicleSuspensionDamping.GetFloat(),
-										g_vehicleTireFriction.GetFloat() );
+		suspension[i]->SetSuspension( g_vehicleSuspensionUp.GetFloat(),
+									  g_vehicleSuspensionDown.GetFloat(),
+									  g_vehicleSuspensionKCompress.GetFloat(),
+									  g_vehicleSuspensionDamping.GetFloat(),
+									  g_vehicleTireFriction.GetFloat() );
 		af.GetPhysics()->AddConstraint( suspension[i] );
 	}
 	memset( wheelAngles, 0, sizeof( wheelAngles ) );
@@ -2449,11 +2449,11 @@ void idAFEntity_VehicleSimple::Think( void ) {
 		}
 		// update suspension with latest cvar settings
 		for( i = 0; i < 4; i++ ) {
-			suspension[i]->SetSuspension(	g_vehicleSuspensionUp.GetFloat(),
-											g_vehicleSuspensionDown.GetFloat(),
-											g_vehicleSuspensionKCompress.GetFloat(),
-											g_vehicleSuspensionDamping.GetFloat(),
-											g_vehicleTireFriction.GetFloat() );
+			suspension[i]->SetSuspension( g_vehicleSuspensionUp.GetFloat(),
+										  g_vehicleSuspensionDown.GetFloat(),
+										  g_vehicleSuspensionKCompress.GetFloat(),
+										  g_vehicleSuspensionDamping.GetFloat(),
+										  g_vehicleTireFriction.GetFloat() );
 		}
 		// run the physics
 		RunPhysics();
@@ -2483,16 +2483,16 @@ void idAFEntity_VehicleSimple::Think( void ) {
 		/*
 				// spawn dust particle effects
 				if ( force != 0.0f && !( gameLocal.framenum & 7 ) ) {
-					int numContacts;
-					idAFConstraint_Contact *contacts[2];
-					for ( i = 0; i < 4; i++ ) {
-						numContacts = af.GetPhysics()->GetBodyContactConstraints( wheels[i]->GetClipModel()->GetId(), contacts, 2 );
-						for ( int j = 0; j < numContacts; j++ ) {
-							gameLocal.smokeParticles->EmitSmoke( dustSmoke, gameLocal.time, gameLocal.random.RandomFloat(), contacts[j]->GetContact().point, contacts[j]->GetContact().normal.ToMat3() );
-						}
-					}
+				int numContacts;
+				idAFConstraint_Contact *contacts[2];
+				for ( i = 0; i < 4; i++ ) {
+				numContacts = af.GetPhysics()->GetBodyContactConstraints( wheels[i]->GetClipModel()->GetId(), contacts, 2 );
+				for ( int j = 0; j < numContacts; j++ ) {
+				gameLocal.smokeParticles->EmitSmoke( dustSmoke, gameLocal.time, gameLocal.random.RandomFloat(), contacts[j]->GetContact().point, contacts[j]->GetContact().normal.ToMat3() );
 				}
-		*/
+				}
+				}
+				*/
 	}
 	UpdateAnimation();
 	if( thinkFlags & TH_UPDATEVISUALS ) {
@@ -2504,7 +2504,7 @@ void idAFEntity_VehicleSimple::Think( void ) {
 /*
 ===============================================================================
 
-  idAFEntity_VehicleFourWheels
+idAFEntity_VehicleFourWheels
 
 ===============================================================================
 */
@@ -2520,12 +2520,12 @@ idAFEntity_VehicleFourWheels::idAFEntity_VehicleFourWheels
 idAFEntity_VehicleFourWheels::idAFEntity_VehicleFourWheels( void ) {
 	int i;
 	for( i = 0; i < 4; i++ ) {
-		wheels[i]		= NULL;
-		wheelJoints[i]	= INVALID_JOINT;
-		wheelAngles[i]	= 0.0f;
+		wheels[i] = NULL;
+		wheelJoints[i] = INVALID_JOINT;
+		wheelAngles[i] = 0.0f;
 	}
-	steering[0]			= NULL;
-	steering[1]			= NULL;
+	steering[0] = NULL;
+	steering[1] = NULL;
 }
 
 /*
@@ -2663,7 +2663,7 @@ void idAFEntity_VehicleFourWheels::Think( void ) {
 /*
 ===============================================================================
 
-  idAFEntity_VehicleSixWheels
+idAFEntity_VehicleSixWheels
 
 ===============================================================================
 */
@@ -2679,14 +2679,14 @@ idAFEntity_VehicleSixWheels::idAFEntity_VehicleSixWheels
 idAFEntity_VehicleSixWheels::idAFEntity_VehicleSixWheels( void ) {
 	int i;
 	for( i = 0; i < 6; i++ ) {
-		wheels[i]		= NULL;
-		wheelJoints[i]	= INVALID_JOINT;
-		wheelAngles[i]	= 0.0f;
+		wheels[i] = NULL;
+		wheelJoints[i] = INVALID_JOINT;
+		wheelAngles[i] = 0.0f;
 	}
-	steering[0]			= NULL;
-	steering[1]			= NULL;
-	steering[2]			= NULL;
-	steering[3]			= NULL;
+	steering[0] = NULL;
+	steering[1] = NULL;
+	steering[2] = NULL;
+	steering[3] = NULL;
 }
 
 /*
@@ -2836,7 +2836,7 @@ void idAFEntity_VehicleSixWheels::Think( void ) {
 /*
 ===============================================================================
 
-  idAFEntity_SteamPipe
+idAFEntity_SteamPipe
 
 ===============================================================================
 */
@@ -2850,10 +2850,10 @@ idAFEntity_SteamPipe::idAFEntity_SteamPipe
 ================
 */
 idAFEntity_SteamPipe::idAFEntity_SteamPipe( void ) {
-	steamBody			= 0;
-	steamForce			= 0.0f;
-	steamUpForce		= 0.0f;
-	steamModelDefHandle	= -1;
+	steamBody = 0;
+	steamForce = 0.0f;
+	steamUpForce = 0.0f;
+	steamModelDefHandle = -1;
 	memset( &steamRenderEntity, 0, sizeof( steamRenderEntity ) );
 }
 
@@ -2918,9 +2918,9 @@ void idAFEntity_SteamPipe::InitSteamRenderEntity( void ) {
 	const char	*temp;
 	const idDeclModelDef *modelDef;
 	memset( &steamRenderEntity, 0, sizeof( steamRenderEntity ) );
-	steamRenderEntity.shaderParms[ SHADERPARM_RED ]		= 1.0f;
-	steamRenderEntity.shaderParms[ SHADERPARM_GREEN ]	= 1.0f;
-	steamRenderEntity.shaderParms[ SHADERPARM_BLUE ]	= 1.0f;
+	steamRenderEntity.shaderParms[SHADERPARM_RED] = 1.0f;
+	steamRenderEntity.shaderParms[SHADERPARM_GREEN] = 1.0f;
+	steamRenderEntity.shaderParms[SHADERPARM_BLUE] = 1.0f;
 	modelDef = NULL;
 	temp = spawnArgs.GetString( "model_steam" );
 	if( *temp != '\0' ) {
@@ -2970,7 +2970,7 @@ void idAFEntity_SteamPipe::Think( void ) {
 /*
 ===============================================================================
 
-  editor support routines
+editor support routines
 
 ===============================================================================
 */
@@ -3152,7 +3152,7 @@ idRenderModel *idGameEdit::AF_CreateMesh( const idDict &args, idVec3 &meshOrigin
 	}
 	// get the md5 model
 	modelName = GetArgString( args, defArgs, "model" );
-	modelDef = static_cast< const idDeclModelDef *>( declManager->FindType( DECL_MODELDEF, modelName, false ) );
+	modelDef = static_cast<const idDeclModelDef *>( declManager->FindType( DECL_MODELDEF, modelName, false ) );
 	if( !modelDef ) {
 		return NULL;
 	}
@@ -3186,10 +3186,10 @@ idRenderModel *idGameEdit::AF_CreateMesh( const idDict &args, idVec3 &meshOrigin
 	// create animation from of the af_pose
 	ANIM_CreateAnimFrame( md5, MD5anim, ent.numJoints, ent.joints, 1, modelDef->GetVisualOffset(), false );
 	// buffers to store the initial origin and axis for each body
-	bodyOrigin = ( idVec3 * ) _alloca16( af->bodies.Num() * sizeof( idVec3 ) );
-	bodyAxis = ( idMat3 * ) _alloca16( af->bodies.Num() * sizeof( idMat3 ) );
-	newBodyOrigin = ( idVec3 * ) _alloca16( af->bodies.Num() * sizeof( idVec3 ) );
-	newBodyAxis = ( idMat3 * ) _alloca16( af->bodies.Num() * sizeof( idMat3 ) );
+	bodyOrigin = ( idVec3 * )_alloca16( af->bodies.Num() * sizeof( idVec3 ) );
+	bodyAxis = ( idMat3 * )_alloca16( af->bodies.Num() * sizeof( idMat3 ) );
+	newBodyOrigin = ( idVec3 * )_alloca16( af->bodies.Num() * sizeof( idVec3 ) );
+	newBodyAxis = ( idMat3 * )_alloca16( af->bodies.Num() * sizeof( idMat3 ) );
 	// finish the AF positions
 	data.ent = &ent;
 	data.joints = MD5joints;
@@ -3236,11 +3236,11 @@ idRenderModel *idGameEdit::AF_CreateMesh( const idDict &args, idVec3 &meshOrigin
 	originalJoints = ( idJointMat * )_alloca16( numMD5joints * sizeof( originalJoints[0] ) );
 	memcpy( originalJoints, ent.joints, numMD5joints * sizeof( originalJoints[0] ) );
 	// buffer to store the joint mods
-	jointMod = ( declAFJointMod_t * ) _alloca16( numMD5joints * sizeof( declAFJointMod_t ) );
+	jointMod = ( declAFJointMod_t * )_alloca16( numMD5joints * sizeof( declAFJointMod_t ) );
 	memset( jointMod, -1, numMD5joints * sizeof( declAFJointMod_t ) );
-	modifiedOrigin = ( idVec3 * ) _alloca16( numMD5joints * sizeof( idVec3 ) );
+	modifiedOrigin = ( idVec3 * )_alloca16( numMD5joints * sizeof( idVec3 ) );
 	memset( modifiedOrigin, 0, numMD5joints * sizeof( idVec3 ) );
-	modifiedAxis = ( idMat3 * ) _alloca16( numMD5joints * sizeof( idMat3 ) );
+	modifiedAxis = ( idMat3 * )_alloca16( numMD5joints * sizeof( idMat3 ) );
 	memset( modifiedAxis, 0, numMD5joints * sizeof( idMat3 ) );
 	// get all the joint modifications
 	for( i = 0; i < af->bodies.Num(); i++ ) {
@@ -3254,38 +3254,38 @@ idRenderModel *idGameEdit::AF_CreateMesh( const idDict &args, idVec3 &meshOrigin
 			}
 		}
 		if( jointNum >= 0 && jointNum < ent.numJoints ) {
-			jointMod[ jointNum ] = fb->jointMod;
-			modifiedAxis[ jointNum ] = ( bodyAxis[i] * originalJoints[jointNum].ToMat3().Transpose() ).Transpose() * ( newBodyAxis[i] * meshAxis.Transpose() );
+			jointMod[jointNum] = fb->jointMod;
+			modifiedAxis[jointNum] = ( bodyAxis[i] * originalJoints[jointNum].ToMat3().Transpose() ).Transpose() * ( newBodyAxis[i] * meshAxis.Transpose() );
 			// FIXME: calculate correct modifiedOrigin
-			modifiedOrigin[ jointNum ] = originalJoints[ jointNum ].ToVec3();
+			modifiedOrigin[jointNum] = originalJoints[jointNum].ToVec3();
 		}
 	}
 	// apply joint modifications to the skeleton
 	MD5joint = MD5joints + 1;
 	for( i = 1; i < numMD5joints; i++, MD5joint++ ) {
 		parentNum = MD5joint->parent - MD5joints;
-		idMat3 parentAxis = originalJoints[ parentNum ].ToMat3();
+		idMat3 parentAxis = originalJoints[parentNum].ToMat3();
 		idMat3 localm = originalJoints[i].ToMat3() * parentAxis.Transpose();
-		idVec3 localt = ( originalJoints[i].ToVec3() - originalJoints[ parentNum ].ToVec3() ) * parentAxis.Transpose();
+		idVec3 localt = ( originalJoints[i].ToVec3() - originalJoints[parentNum].ToVec3() ) * parentAxis.Transpose();
 		switch( jointMod[i] ) {
 		case DECLAF_JOINTMOD_ORIGIN: {
-			ent.joints[ i ].SetRotation( localm * ent.joints[ parentNum ].ToMat3() );
-			ent.joints[ i ].SetTranslation( modifiedOrigin[ i ] );
+			ent.joints[i].SetRotation( localm * ent.joints[parentNum].ToMat3() );
+			ent.joints[i].SetTranslation( modifiedOrigin[i] );
 			break;
 		}
 		case DECLAF_JOINTMOD_AXIS: {
-			ent.joints[ i ].SetRotation( modifiedAxis[ i ] );
-			ent.joints[ i ].SetTranslation( ent.joints[ parentNum ].ToVec3() + localt * ent.joints[ parentNum ].ToMat3() );
+			ent.joints[i].SetRotation( modifiedAxis[i] );
+			ent.joints[i].SetTranslation( ent.joints[parentNum].ToVec3() + localt * ent.joints[parentNum].ToMat3() );
 			break;
 		}
 		case DECLAF_JOINTMOD_BOTH: {
-			ent.joints[ i ].SetRotation( modifiedAxis[ i ] );
-			ent.joints[ i ].SetTranslation( modifiedOrigin[ i ] );
+			ent.joints[i].SetRotation( modifiedAxis[i] );
+			ent.joints[i].SetTranslation( modifiedOrigin[i] );
 			break;
 		}
 		default: {
-			ent.joints[ i ].SetRotation( localm * ent.joints[ parentNum ].ToMat3() );
-			ent.joints[ i ].SetTranslation( ent.joints[ parentNum ].ToVec3() + localt * ent.joints[ parentNum ].ToMat3() );
+			ent.joints[i].SetRotation( localm * ent.joints[parentNum].ToMat3() );
+			ent.joints[i].SetTranslation( ent.joints[parentNum].ToVec3() + localt * ent.joints[parentNum].ToMat3() );
 			break;
 		}
 		}

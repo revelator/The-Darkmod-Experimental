@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __CSYNTAXRICHEDITCTR_H__
 #define __CSYNTAXRICHEDITCTR_H__
@@ -23,16 +23,16 @@
 /*
 ===============================================================================
 
-	Rich Edit Control with:
+Rich Edit Control with:
 
-	- syntax highlighting
-	- braced section highlighting
-	- braced section auto-indentation
-	- multi-line tabs
-	- keyword auto-completion
-	- object member auto-completion
-	- keyword tool tip
-	- function parameter tool tip
+- syntax highlighting
+- braced section highlighting
+- braced section auto-indentation
+- multi-line tabs
+- keyword auto-completion
+- object member auto-completion
+- keyword tool tip
+- function parameter tool tip
 
 ===============================================================================
 */
@@ -48,29 +48,29 @@
 #	include "riched20.tlh"
 #endif
 
-static const char 		*FONT_NAME				= "Courier";
-static const int		FONT_HEIGHT				= 10;
-static const int		FONT_WIDTH				= 8;
-static const int		TAB_SIZE				= 4;
+static const char 		*FONT_NAME = "Courier";
+static const int		FONT_HEIGHT = 10;
+static const int		FONT_WIDTH = 8;
+static const int		TAB_SIZE = 4;
 
-static const COLORREF	SRE_COLOR_BLACK			= RGB( 0,   0,   0 );
-static const COLORREF	SRE_COLOR_WHITE			= RGB( 255, 255, 255 );
-static const COLORREF	SRE_COLOR_RED			= RGB( 255,   0,   0 );
-static const COLORREF	SRE_COLOR_GREEN			= RGB( 0, 255,   0 );
-static const COLORREF	SRE_COLOR_BLUE			= RGB( 0,   0, 255 );
-static const COLORREF	SRE_COLOR_YELLOW		= RGB( 255, 255,   0 );
-static const COLORREF	SRE_COLOR_MAGENTA		= RGB( 255,   0, 255 );
-static const COLORREF	SRE_COLOR_CYAN			= RGB( 0, 255, 255 );
-static const COLORREF	SRE_COLOR_ORANGE		= RGB( 255, 128,   0 );
-static const COLORREF	SRE_COLOR_PURPLE		= RGB( 150,   0, 150 );
-static const COLORREF	SRE_COLOR_PINK			= RGB( 186, 102, 123 );
-static const COLORREF	SRE_COLOR_GREY			= RGB( 85,  85,  85 );
-static const COLORREF	SRE_COLOR_BROWN			= RGB( 100,  90,  20 );
-static const COLORREF	SRE_COLOR_LIGHT_GREY	= RGB( 170, 170, 170 );
-static const COLORREF	SRE_COLOR_LIGHT_BROWN	= RGB( 170, 150,  20 );
-static const COLORREF	SRE_COLOR_DARK_GREEN	= RGB( 0, 128,   0 );
-static const COLORREF	SRE_COLOR_DARK_CYAN		= RGB( 0, 150, 150 );
-static const COLORREF	SRE_COLOR_DARK_YELLOW	= RGB( 220, 200,  20 );
+static const COLORREF	SRE_COLOR_BLACK = RGB( 0, 0, 0 );
+static const COLORREF	SRE_COLOR_WHITE = RGB( 255, 255, 255 );
+static const COLORREF	SRE_COLOR_RED = RGB( 255, 0, 0 );
+static const COLORREF	SRE_COLOR_GREEN = RGB( 0, 255, 0 );
+static const COLORREF	SRE_COLOR_BLUE = RGB( 0, 0, 255 );
+static const COLORREF	SRE_COLOR_YELLOW = RGB( 255, 255, 0 );
+static const COLORREF	SRE_COLOR_MAGENTA = RGB( 255, 0, 255 );
+static const COLORREF	SRE_COLOR_CYAN = RGB( 0, 255, 255 );
+static const COLORREF	SRE_COLOR_ORANGE = RGB( 255, 128, 0 );
+static const COLORREF	SRE_COLOR_PURPLE = RGB( 150, 0, 150 );
+static const COLORREF	SRE_COLOR_PINK = RGB( 186, 102, 123 );
+static const COLORREF	SRE_COLOR_GREY = RGB( 85, 85, 85 );
+static const COLORREF	SRE_COLOR_BROWN = RGB( 100, 90, 20 );
+static const COLORREF	SRE_COLOR_LIGHT_GREY = RGB( 170, 170, 170 );
+static const COLORREF	SRE_COLOR_LIGHT_BROWN = RGB( 170, 150, 20 );
+static const COLORREF	SRE_COLOR_DARK_GREEN = RGB( 0, 128, 0 );
+static const COLORREF	SRE_COLOR_DARK_CYAN = RGB( 0, 150, 150 );
+static const COLORREF	SRE_COLOR_DARK_YELLOW = RGB( 220, 200, 20 );
 
 typedef struct {
 	const char 		*keyWord;
@@ -78,8 +78,8 @@ typedef struct {
 	const char 		*description;
 } keyWord_t;
 
-typedef bool ( *objectMemberCallback_t )( const char *objectName, CListBox &listBox );
-typedef bool ( *toolTipCallback_t )( const char *name, CString &string );
+typedef bool( *objectMemberCallback_t )( const char *objectName, CListBox &listBox );
+typedef bool( *toolTipCallback_t )( const char *name, CString &string );
 
 class CSyntaxRichEditCtrl : public CRichEditCtrl {
 public:

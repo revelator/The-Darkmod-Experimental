@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 // Copyright (C) 2004 Id Software, Inc.
 //
@@ -41,8 +41,8 @@ Every map should have exactly one worldspawn.
 ================
 */
 CLASS_DECLARATION( idEntity, idWorldspawn )
-EVENT( EV_Remove,				idWorldspawn::Event_Remove )
-EVENT( EV_SafeRemove,			idWorldspawn::Event_Remove )
+EVENT( EV_Remove, idWorldspawn::Event_Remove )
+EVENT( EV_SafeRemove, idWorldspawn::Event_Remove )
 END_CLASS
 
 /*
@@ -62,7 +62,7 @@ void idWorldspawn::Spawn( void ) {
 	/*
 	// disable stamina on hell levels
 	if ( spawnArgs.GetBool( "no_stamina" ) ) {
-		pm_stamina.SetFloat( 0.0f );
+	pm_stamina.SetFloat( 0.0f );
 	}*/
 	// load script
 	scriptname = gameLocal.GetMapName();
@@ -110,7 +110,7 @@ void idWorldspawn::Restore( idRestoreGame *savefile ) {
 	// Commented out by Dram. TDM does not use stamina
 	/*// disable stamina on hell levels
 	if ( spawnArgs.GetBool( "no_stamina" ) ) {
-		pm_stamina.SetFloat( 0.0f );
+	pm_stamina.SetFloat( 0.0f );
 	}*/
 }
 

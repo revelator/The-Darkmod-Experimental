@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -93,190 +93,190 @@ CString			g_strProject;						// holds the active project filename
 #define MIN_GRID	0.125f
 
 SCommandInfo	g_Commands[] = {
-	{ "Texture_AxialByHeight",   'U', 0,	ID_SELECT_AXIALTEXTURE_BYHEIGHT },
-	{ "Texture_AxialArbitrary",  'U', RAD_SHIFT, ID_SELECT_AXIALTEXTURE_ARBITRARY },
-	{ "Texture_AxialByWidth",    'U', RAD_CONTROL, ID_SELECT_AXIALTEXTURE_BYWIDTH },
-	{ "Texture_Decrement",       VK_SUBTRACT, RAD_SHIFT, ID_SELECTION_TEXTURE_DEC },
-	{ "Texture_Increment",       VK_ADD, RAD_SHIFT, ID_SELECTION_TEXTURE_INC },
-	{ "Texture_Fit",             '5', RAD_SHIFT, ID_SELECTION_TEXTURE_FIT },
-	{ "Texture_RotateClock",     VK_NEXT, RAD_SHIFT, ID_SELECTION_TEXTURE_ROTATECLOCK },
-	{ "Texture_RotateCounter",   VK_PRIOR, RAD_SHIFT, ID_SELECTION_TEXTURE_ROTATECOUNTER },
-	{ "Texture_ScaleUp",         VK_UP, RAD_CONTROL, ID_SELECTION_TEXTURE_SCALEUP },
-	{ "Texture_ScaleDown",       VK_DOWN, RAD_CONTROL, ID_SELECTION_TEXTURE_SCALEDOWN },
-	{ "Texture_ShiftLeft",       VK_LEFT, RAD_SHIFT, ID_SELECTION_TEXTURE_SHIFTLEFT },
-	{ "Texture_ShiftRight",      VK_RIGHT, RAD_SHIFT, ID_SELECTION_TEXTURE_SHIFTRIGHT },
-	{ "Texture_ShiftUp",         VK_UP, RAD_SHIFT, ID_SELECTION_TEXTURE_SHIFTUP },
-	{ "Texture_ShiftDown",       VK_DOWN, RAD_SHIFT, ID_SELECTION_TEXTURE_SHIFTDOWN },
-	{ "Texture_ScaleLeft",       VK_LEFT, RAD_CONTROL, ID_SELECTION_TEXTURE_SCALELEFT },
-	{ "Texture_ScaleRight",      VK_RIGHT, RAD_CONTROL, ID_SELECTION_TEXTURE_SCALERIGHT },
-	{ "Texture_InvertX",         'I', RAD_CONTROL | RAD_SHIFT, ID_CURVE_NEGATIVETEXTUREY },
-	{ "Texture_InvertY",         'I', RAD_SHIFT, ID_CURVE_NEGATIVETEXTUREX },
-	{ "Texture_ToggleLock",      'T', RAD_SHIFT, ID_TOGGLE_LOCK },
+	{ "Texture_AxialByHeight", 'U', 0, ID_SELECT_AXIALTEXTURE_BYHEIGHT },
+	{ "Texture_AxialArbitrary", 'U', RAD_SHIFT, ID_SELECT_AXIALTEXTURE_ARBITRARY },
+	{ "Texture_AxialByWidth", 'U', RAD_CONTROL, ID_SELECT_AXIALTEXTURE_BYWIDTH },
+	{ "Texture_Decrement", VK_SUBTRACT, RAD_SHIFT, ID_SELECTION_TEXTURE_DEC },
+	{ "Texture_Increment", VK_ADD, RAD_SHIFT, ID_SELECTION_TEXTURE_INC },
+	{ "Texture_Fit", '5', RAD_SHIFT, ID_SELECTION_TEXTURE_FIT },
+	{ "Texture_RotateClock", VK_NEXT, RAD_SHIFT, ID_SELECTION_TEXTURE_ROTATECLOCK },
+	{ "Texture_RotateCounter", VK_PRIOR, RAD_SHIFT, ID_SELECTION_TEXTURE_ROTATECOUNTER },
+	{ "Texture_ScaleUp", VK_UP, RAD_CONTROL, ID_SELECTION_TEXTURE_SCALEUP },
+	{ "Texture_ScaleDown", VK_DOWN, RAD_CONTROL, ID_SELECTION_TEXTURE_SCALEDOWN },
+	{ "Texture_ShiftLeft", VK_LEFT, RAD_SHIFT, ID_SELECTION_TEXTURE_SHIFTLEFT },
+	{ "Texture_ShiftRight", VK_RIGHT, RAD_SHIFT, ID_SELECTION_TEXTURE_SHIFTRIGHT },
+	{ "Texture_ShiftUp", VK_UP, RAD_SHIFT, ID_SELECTION_TEXTURE_SHIFTUP },
+	{ "Texture_ShiftDown", VK_DOWN, RAD_SHIFT, ID_SELECTION_TEXTURE_SHIFTDOWN },
+	{ "Texture_ScaleLeft", VK_LEFT, RAD_CONTROL, ID_SELECTION_TEXTURE_SCALELEFT },
+	{ "Texture_ScaleRight", VK_RIGHT, RAD_CONTROL, ID_SELECTION_TEXTURE_SCALERIGHT },
+	{ "Texture_InvertX", 'I', RAD_CONTROL | RAD_SHIFT, ID_CURVE_NEGATIVETEXTUREY },
+	{ "Texture_InvertY", 'I', RAD_SHIFT, ID_CURVE_NEGATIVETEXTUREX },
+	{ "Texture_ToggleLock", 'T', RAD_SHIFT, ID_TOGGLE_LOCK },
 
 	{ "Texture_ShowAllTextures", 'A', RAD_CONTROL, ID_TEXTURES_SHOWALL },
 
-	{ "Edit_Copy",              'C', RAD_CONTROL, ID_EDIT_COPYBRUSH },
-	{ "Edit_Paste",             'V', RAD_CONTROL, ID_EDIT_PASTEBRUSH },
-	{ "Edit_Undo",              'Z', RAD_CONTROL, ID_EDIT_UNDO },
-	{ "Edit_Redo",              'Y', RAD_CONTROL, ID_EDIT_REDO },
+	{ "Edit_Copy", 'C', RAD_CONTROL, ID_EDIT_COPYBRUSH },
+	{ "Edit_Paste", 'V', RAD_CONTROL, ID_EDIT_PASTEBRUSH },
+	{ "Edit_Undo", 'Z', RAD_CONTROL, ID_EDIT_UNDO },
+	{ "Edit_Redo", 'Y', RAD_CONTROL, ID_EDIT_REDO },
 
-	{ "Camera_Forward",          VK_UP, 0, ID_CAMERA_FORWARD },
-	{ "Camera_Back",             VK_DOWN, 0, ID_CAMERA_BACK },
-	{ "Camera_Left",             VK_LEFT, 0, ID_CAMERA_LEFT },
-	{ "Camera_Right",            VK_RIGHT, 0, ID_CAMERA_RIGHT },
-	{ "Camera_Up",               'D', 0, ID_CAMERA_UP },
-	{ "Camera_Down",             'C', 0, ID_CAMERA_DOWN },
-	{ "Camera_AngleUp",          'A', 0, ID_CAMERA_ANGLEUP },
-	{ "Camera_AngleDown",        'Z', 0, ID_CAMERA_ANGLEDOWN },
-	{ "Camera_StrafeRight",      VK_PERIOD, 0, ID_CAMERA_STRAFERIGHT },
-	{ "Camera_StrafeLeft",       VK_COMMA, 0, ID_CAMERA_STRAFELEFT },
-	{ "Camera_UpFloor",          VK_PRIOR, 0, ID_VIEW_UPFLOOR },
-	{ "Camera_DownFloor",        VK_NEXT, 0, ID_VIEW_DOWNFLOOR },
-	{ "Camera_CenterView",       VK_END, 0, ID_VIEW_CENTER },
+	{ "Camera_Forward", VK_UP, 0, ID_CAMERA_FORWARD },
+	{ "Camera_Back", VK_DOWN, 0, ID_CAMERA_BACK },
+	{ "Camera_Left", VK_LEFT, 0, ID_CAMERA_LEFT },
+	{ "Camera_Right", VK_RIGHT, 0, ID_CAMERA_RIGHT },
+	{ "Camera_Up", 'D', 0, ID_CAMERA_UP },
+	{ "Camera_Down", 'C', 0, ID_CAMERA_DOWN },
+	{ "Camera_AngleUp", 'A', 0, ID_CAMERA_ANGLEUP },
+	{ "Camera_AngleDown", 'Z', 0, ID_CAMERA_ANGLEDOWN },
+	{ "Camera_StrafeRight", VK_PERIOD, 0, ID_CAMERA_STRAFERIGHT },
+	{ "Camera_StrafeLeft", VK_COMMA, 0, ID_CAMERA_STRAFELEFT },
+	{ "Camera_UpFloor", VK_PRIOR, 0, ID_VIEW_UPFLOOR },
+	{ "Camera_DownFloor", VK_NEXT, 0, ID_VIEW_DOWNFLOOR },
+	{ "Camera_CenterView", VK_END, 0, ID_VIEW_CENTER },
 
-	{ "Grid_ZoomOut",            VK_INSERT, 0, ID_VIEW_ZOOMOUT },
-	{ "FileSaveCopy",            'C', RAD_CONTROL | RAD_ALT | RAD_SHIFT, D3XP_ID_FILE_SAVE_COPY },
-	{ "ShowHideModels",          'M', RAD_CONTROL, D3XP_ID_SHOW_MODELS },
-	{ "NextView",                VK_HOME, 0, ID_VIEW_NEXTVIEW },
-	{ "Grid_ZoomIn",             VK_DELETE, 0, ID_VIEW_ZOOMIN },
+	{ "Grid_ZoomOut", VK_INSERT, 0, ID_VIEW_ZOOMOUT },
+	{ "FileSaveCopy", 'C', RAD_CONTROL | RAD_ALT | RAD_SHIFT, D3XP_ID_FILE_SAVE_COPY },
+	{ "ShowHideModels", 'M', RAD_CONTROL, D3XP_ID_SHOW_MODELS },
+	{ "NextView", VK_HOME, 0, ID_VIEW_NEXTVIEW },
+	{ "Grid_ZoomIn", VK_DELETE, 0, ID_VIEW_ZOOMIN },
 
-	{ "Grid_SetPoint5",          '4', RAD_SHIFT, ID_GRID_POINT5 },
-	{ "Grid_SetPoint25",         '3', RAD_SHIFT, ID_GRID_POINT25 },
-	{ "Grid_SetPoint125",        '2', RAD_SHIFT, ID_GRID_POINT125 },
+	{ "Grid_SetPoint5", '4', RAD_SHIFT, ID_GRID_POINT5 },
+	{ "Grid_SetPoint25", '3', RAD_SHIFT, ID_GRID_POINT25 },
+	{ "Grid_SetPoint125", '2', RAD_SHIFT, ID_GRID_POINT125 },
 	//{ "Grid_SetPoint0625",     '1', RAD_SHIFT, ID_GRID_POINT0625 },
-	{ "Grid_Set1",               '1', 0, ID_GRID_1 },
-	{ "Grid_Set2",               '2', 0, ID_GRID_2 },
-	{ "Grid_Set4",               '3', 0, ID_GRID_4 },
-	{ "Grid_Set8",               '4', 0, ID_GRID_8 },
-	{ "Grid_Set16",              '5', 0, ID_GRID_16 },
-	{ "Grid_Set32",              '6', 0, ID_GRID_32 },
-	{ "Grid_Set64",              '7', 0, ID_GRID_64 },
-	{ "Grid_Down",               219, 0, ID_GRID_PREV },
-	{ "Grid_Up",                 221, 0, ID_GRID_NEXT },
+	{ "Grid_Set1", '1', 0, ID_GRID_1 },
+	{ "Grid_Set2", '2', 0, ID_GRID_2 },
+	{ "Grid_Set4", '3', 0, ID_GRID_4 },
+	{ "Grid_Set8", '4', 0, ID_GRID_8 },
+	{ "Grid_Set16", '5', 0, ID_GRID_16 },
+	{ "Grid_Set32", '6', 0, ID_GRID_32 },
+	{ "Grid_Set64", '7', 0, ID_GRID_64 },
+	{ "Grid_Down", 219, 0, ID_GRID_PREV },
+	{ "Grid_Up", 221, 0, ID_GRID_NEXT },
 
-	{ "Grid_Toggle",             '0', 0, ID_GRID_TOGGLE },
-	{ "Grid_ToggleSizePaint",    'Q', RAD_PRESS, ID_SELECTION_TOGGLESIZEPAINT },
+	{ "Grid_Toggle", '0', 0, ID_GRID_TOGGLE },
+	{ "Grid_ToggleSizePaint", 'Q', RAD_PRESS, ID_SELECTION_TOGGLESIZEPAINT },
 
-	{ "Grid_PrecisionCursorMode", VK_F11, 0 , ID_PRECISION_CURSOR_CYCLE},
+	{ "Grid_PrecisionCursorMode", VK_F11, 0, ID_PRECISION_CURSOR_CYCLE },
 
-	{ "Grid_NextView",           VK_TAB, RAD_CONTROL, ID_VIEW_NEXTVIEW },
-	{ "Grid_ToggleCrosshairs",   'X', RAD_SHIFT, ID_VIEW_CROSSHAIR },
+	{ "Grid_NextView", VK_TAB, RAD_CONTROL, ID_VIEW_NEXTVIEW },
+	{ "Grid_ToggleCrosshairs", 'X', RAD_SHIFT, ID_VIEW_CROSSHAIR },
 
-	{ "Grid_ZZoomOut",           VK_INSERT, RAD_CONTROL, ID_VIEW_ZZOOMOUT },
-	{ "Grid_ZZoomIn",            VK_DELETE, RAD_CONTROL, ID_VIEW_ZZOOMIN },
+	{ "Grid_ZZoomOut", VK_INSERT, RAD_CONTROL, ID_VIEW_ZZOOMOUT },
+	{ "Grid_ZZoomIn", VK_DELETE, RAD_CONTROL, ID_VIEW_ZZOOMIN },
 
-	{ "Brush_Make3Sided",        '3', RAD_CONTROL, ID_BRUSH_3SIDED },
-	{ "Brush_Make4Sided",        '4', RAD_CONTROL, ID_BRUSH_4SIDED },
-	{ "Brush_Make5Sided",        '5', RAD_CONTROL, ID_BRUSH_5SIDED },
-	{ "Brush_Make6Sided",        '6', RAD_CONTROL, ID_BRUSH_6SIDED },
-	{ "Brush_Make7Sided",        '7', RAD_CONTROL, ID_BRUSH_7SIDED },
-	{ "Brush_Make8Sided",        '8', RAD_CONTROL, ID_BRUSH_8SIDED },
-	{ "Brush_Make9Sided",        '9', RAD_CONTROL, ID_BRUSH_9SIDED },
+	{ "Brush_Make3Sided", '3', RAD_CONTROL, ID_BRUSH_3SIDED },
+	{ "Brush_Make4Sided", '4', RAD_CONTROL, ID_BRUSH_4SIDED },
+	{ "Brush_Make5Sided", '5', RAD_CONTROL, ID_BRUSH_5SIDED },
+	{ "Brush_Make6Sided", '6', RAD_CONTROL, ID_BRUSH_6SIDED },
+	{ "Brush_Make7Sided", '7', RAD_CONTROL, ID_BRUSH_7SIDED },
+	{ "Brush_Make8Sided", '8', RAD_CONTROL, ID_BRUSH_8SIDED },
+	{ "Brush_Make9Sided", '9', RAD_CONTROL, ID_BRUSH_9SIDED },
 
-	{ "Leak_NextSpot",           'K', RAD_CONTROL | RAD_SHIFT, ID_MISC_NEXTLEAKSPOT },
-	{ "Leak_PrevSpot",           'L', RAD_CONTROL | RAD_SHIFT, ID_MISC_PREVIOUSLEAKSPOT },
+	{ "Leak_NextSpot", 'K', RAD_CONTROL | RAD_SHIFT, ID_MISC_NEXTLEAKSPOT },
+	{ "Leak_PrevSpot", 'L', RAD_CONTROL | RAD_SHIFT, ID_MISC_PREVIOUSLEAKSPOT },
 
-	{ "File_Open",               'O', RAD_CONTROL, ID_FILE_OPEN },
-	{ "File_Save",               'S', RAD_CONTROL, ID_FILE_SAVE },
+	{ "File_Open", 'O', RAD_CONTROL, ID_FILE_OPEN },
+	{ "File_Save", 'S', RAD_CONTROL, ID_FILE_SAVE },
 
-	{ "TAB",                      VK_TAB, 0, ID_PATCH_TAB },
-	{ "TAB",                      VK_TAB, RAD_SHIFT, ID_PATCH_TAB },
+	{ "TAB", VK_TAB, 0, ID_PATCH_TAB },
+	{ "TAB", VK_TAB, RAD_SHIFT, ID_PATCH_TAB },
 
-	{ "Patch_BendMode",           'B', 0, ID_PATCH_BEND },
-	{ "Patch_FreezeVertices",     'F', 0, ID_CURVE_FREEZE },
-	{ "Patch_UnFreezeVertices",   'F', RAD_CONTROL, ID_CURVE_UNFREEZE },
+	{ "Patch_BendMode", 'B', 0, ID_PATCH_BEND },
+	{ "Patch_FreezeVertices", 'F', 0, ID_CURVE_FREEZE },
+	{ "Patch_UnFreezeVertices", 'F', RAD_CONTROL, ID_CURVE_UNFREEZE },
 	{ "Patch_UnFreezeAllVertices", 'F', RAD_CONTROL | RAD_SHIFT, ID_CURVE_UNFREEZEALL },
-	{ "Patch_Thicken",            'T', RAD_CONTROL, ID_CURVE_THICKEN },
-	{ "Patch_ClearOverlays",      'Y', RAD_SHIFT, ID_CURVE_OVERLAY_CLEAR },
-	{ "Patch_MakeOverlay",        'Y', 0, ID_CURVE_OVERLAY_SET },
-	{ "Patch_CycleCapTexturing",   'P', RAD_CONTROL | RAD_SHIFT, ID_CURVE_CYCLECAP },
+	{ "Patch_Thicken", 'T', RAD_CONTROL, ID_CURVE_THICKEN },
+	{ "Patch_ClearOverlays", 'Y', RAD_SHIFT, ID_CURVE_OVERLAY_CLEAR },
+	{ "Patch_MakeOverlay", 'Y', 0, ID_CURVE_OVERLAY_SET },
+	{ "Patch_CycleCapTexturing", 'P', RAD_CONTROL | RAD_SHIFT, ID_CURVE_CYCLECAP },
 	{ "Patch_CycleCapTexturingAlt", 'P', RAD_SHIFT, ID_CURVE_CYCLECAPALT },
-	{ "Patch_InvertCurve",        'I', RAD_CONTROL, ID_CURVE_NEGATIVE },
-	{ "Patch_IncPatchColumn",     VK_ADD, RAD_CONTROL | RAD_SHIFT, ID_CURVE_INSERTCOLUMN },
-	{ "Patch_IncPatchRow",        VK_ADD, RAD_CONTROL, ID_CURVE_INSERTROW },
-	{ "Patch_DecPatchColumn",     VK_SUBTRACT, RAD_CONTROL | RAD_SHIFT, ID_CURVE_DELETECOLUMN },
-	{ "Patch_DecPatchRow",        VK_SUBTRACT, RAD_CONTROL, ID_CURVE_DELETEROW },
-	{ "Patch_RedisperseRows",     'E', RAD_CONTROL, ID_CURVE_REDISPERSE_ROWS },
-	{ "Patch_RedisperseCols",     'E', RAD_CONTROL | RAD_SHIFT, ID_CURVE_REDISPERSE_COLS },
-	{ "Patch_Naturalize",         'N', RAD_CONTROL, ID_PATCH_NATURALIZE },
-	{ "Patch_SnapToGrid",         'G', RAD_CONTROL, ID_SELECT_SNAPTOGRID },
-	{ "Patch_CapCurrentCurve",    'C', RAD_SHIFT, ID_CURVE_CAP },
+	{ "Patch_InvertCurve", 'I', RAD_CONTROL, ID_CURVE_NEGATIVE },
+	{ "Patch_IncPatchColumn", VK_ADD, RAD_CONTROL | RAD_SHIFT, ID_CURVE_INSERTCOLUMN },
+	{ "Patch_IncPatchRow", VK_ADD, RAD_CONTROL, ID_CURVE_INSERTROW },
+	{ "Patch_DecPatchColumn", VK_SUBTRACT, RAD_CONTROL | RAD_SHIFT, ID_CURVE_DELETECOLUMN },
+	{ "Patch_DecPatchRow", VK_SUBTRACT, RAD_CONTROL, ID_CURVE_DELETEROW },
+	{ "Patch_RedisperseRows", 'E', RAD_CONTROL, ID_CURVE_REDISPERSE_ROWS },
+	{ "Patch_RedisperseCols", 'E', RAD_CONTROL | RAD_SHIFT, ID_CURVE_REDISPERSE_COLS },
+	{ "Patch_Naturalize", 'N', RAD_CONTROL, ID_PATCH_NATURALIZE },
+	{ "Patch_SnapToGrid", 'G', RAD_CONTROL, ID_SELECT_SNAPTOGRID },
+	{ "Patch_CapCurrentCurve", 'C', RAD_SHIFT, ID_CURVE_CAP },
 
-	{ "Clipper_Toggle",          'X', 0, ID_VIEW_CLIPPER },
-	{ "Clipper_ClipSelected",    VK_RETURN, 0, ID_CLIP_SELECTED },
-	{ "Clipper_SplitSelected",   VK_RETURN, RAD_SHIFT, ID_SPLIT_SELECTED },
-	{ "Clipper_FlipClip",        VK_RETURN, RAD_CONTROL, ID_FLIP_CLIP },
+	{ "Clipper_Toggle", 'X', 0, ID_VIEW_CLIPPER },
+	{ "Clipper_ClipSelected", VK_RETURN, 0, ID_CLIP_SELECTED },
+	{ "Clipper_SplitSelected", VK_RETURN, RAD_SHIFT, ID_SPLIT_SELECTED },
+	{ "Clipper_FlipClip", VK_RETURN, RAD_CONTROL, ID_FLIP_CLIP },
 
-	{ "CameraClip_ZoomOut",       219, RAD_CONTROL, ID_VIEW_CUBEOUT },
-	{ "CameraClip_ZoomIn",        221, RAD_CONTROL, ID_VIEW_CUBEIN },
-	{ "CameraClip_Toggle",        220, RAD_CONTROL, ID_VIEW_CUBICCLIPPING },
+	{ "CameraClip_ZoomOut", 219, RAD_CONTROL, ID_VIEW_CUBEOUT },
+	{ "CameraClip_ZoomIn", 221, RAD_CONTROL, ID_VIEW_CUBEIN },
+	{ "CameraClip_Toggle", 220, RAD_CONTROL, ID_VIEW_CUBICCLIPPING },
 
-	{ "ViewTab_EntityInfo",     'N', 0, ID_VIEW_ENTITY },
-	{ "ViewTab_Console",        'O', 0, ID_VIEW_CONSOLE },
-	{ "ViewTab_Textures",       'T', 0, ID_VIEW_TEXTURE },
-	{ "ViewTab_MediaBrowser",   'M', 0, ID_VIEW_MEDIABROWSER },
+	{ "ViewTab_EntityInfo", 'N', 0, ID_VIEW_ENTITY },
+	{ "ViewTab_Console", 'O', 0, ID_VIEW_CONSOLE },
+	{ "ViewTab_Textures", 'T', 0, ID_VIEW_TEXTURE },
+	{ "ViewTab_MediaBrowser", 'M', 0, ID_VIEW_MEDIABROWSER },
 
 	{ "Window_SurfaceInspector", 'S', 0, ID_TEXTURES_INSPECTOR },
-	{ "Window_PatchInspector",  'S', RAD_SHIFT, ID_PATCH_INSPECTOR },
-	{ "Window_EntityList",      'I', 0, ID_EDIT_ENTITYINFO },
-	{ "Window_Preferences",     'P', 0, ID_PREFS },
-	{ "Window_ToggleCamera",    'C', RAD_CONTROL | RAD_SHIFT, ID_TOGGLECAMERA },
-	{ "Window_ToggleView",      'V', RAD_CONTROL | RAD_SHIFT, ID_TOGGLEVIEW },
-	{ "Window_ToggleZ",         'Z', RAD_CONTROL | RAD_SHIFT, ID_TOGGLEZ },
-	{ "Window_LightEditor",     'J', 0, ID_PROJECTED_LIGHT },
-	{ "Window_EntityColor",     'K', 0, ID_MISC_SELECTENTITYCOLOR },
+	{ "Window_PatchInspector", 'S', RAD_SHIFT, ID_PATCH_INSPECTOR },
+	{ "Window_EntityList", 'I', 0, ID_EDIT_ENTITYINFO },
+	{ "Window_Preferences", 'P', 0, ID_PREFS },
+	{ "Window_ToggleCamera", 'C', RAD_CONTROL | RAD_SHIFT, ID_TOGGLECAMERA },
+	{ "Window_ToggleView", 'V', RAD_CONTROL | RAD_SHIFT, ID_TOGGLEVIEW },
+	{ "Window_ToggleZ", 'Z', RAD_CONTROL | RAD_SHIFT, ID_TOGGLEZ },
+	{ "Window_LightEditor", 'J', 0, ID_PROJECTED_LIGHT },
+	{ "Window_EntityColor", 'K', 0, ID_MISC_SELECTENTITYCOLOR },
 
-	{ "Selection_DragEdges",     'E', 0, ID_SELECTION_DRAGEDGES },
-	{ "Selection_DragVertices",  'V', 0, ID_SELECTION_DRAGVERTECIES },
-	{ "Selection_Clone",         VK_SPACE, 0, ID_SELECTION_CLONE },
-	{ "Selection_Delete",        VK_BACK, 0, ID_SELECTION_DELETE },
-	{ "Selection_UnSelect",      VK_ESCAPE, 0, ID_SELECTION_DESELECT },
-	{ "Selection_Invert",        'I' , 0 , ID_SELECTION_INVERT },
+	{ "Selection_DragEdges", 'E', 0, ID_SELECTION_DRAGEDGES },
+	{ "Selection_DragVertices", 'V', 0, ID_SELECTION_DRAGVERTECIES },
+	{ "Selection_Clone", VK_SPACE, 0, ID_SELECTION_CLONE },
+	{ "Selection_Delete", VK_BACK, 0, ID_SELECTION_DELETE },
+	{ "Selection_UnSelect", VK_ESCAPE, 0, ID_SELECTION_DESELECT },
+	{ "Selection_Invert", 'I', 0, ID_SELECTION_INVERT },
 	{ "Selection_ToggleMoveOnly", 'W', 0, ID_SELECTION_MOVEONLY },
 
-	{ "Selection_MoveDown",     VK_SUBTRACT, 0, ID_SELECTION_MOVEDOWN },
-	{ "Selection_MoveUp",       VK_ADD, 0, ID_SELECTION_MOVEUP },
-	{ "Selection_DumpBrush",    'D', RAD_SHIFT, ID_SELECTION_PRINT },
-	{ "Selection_NudgeLeft",    VK_LEFT, RAD_ALT, ID_SELECTION_SELECT_NUDGELEFT },
-	{ "Selection_NudgeRight",   VK_RIGHT, RAD_ALT, ID_SELECTION_SELECT_NUDGERIGHT },
-	{ "Selection_NudgeUp",      VK_UP, RAD_ALT, ID_SELECTION_SELECT_NUDGEUP },
-	{ "Selection_NudgeDown",    VK_DOWN, RAD_ALT, ID_SELECTION_SELECT_NUDGEDOWN },
-	{ "Selection_Combine",      'K', RAD_SHIFT, ID_SELECTION_COMBINE },
-	{ "Selection_Connect",      'K', RAD_CONTROL, ID_SELECTION_CONNECT },
-	{ "Selection_Ungroup",      'G', RAD_SHIFT, ID_SELECTION_UNGROUPENTITY },
-	{ "Selection_CSGMerge",     'M', RAD_SHIFT, ID_SELECTION_CSGMERGE },
+	{ "Selection_MoveDown", VK_SUBTRACT, 0, ID_SELECTION_MOVEDOWN },
+	{ "Selection_MoveUp", VK_ADD, 0, ID_SELECTION_MOVEUP },
+	{ "Selection_DumpBrush", 'D', RAD_SHIFT, ID_SELECTION_PRINT },
+	{ "Selection_NudgeLeft", VK_LEFT, RAD_ALT, ID_SELECTION_SELECT_NUDGELEFT },
+	{ "Selection_NudgeRight", VK_RIGHT, RAD_ALT, ID_SELECTION_SELECT_NUDGERIGHT },
+	{ "Selection_NudgeUp", VK_UP, RAD_ALT, ID_SELECTION_SELECT_NUDGEUP },
+	{ "Selection_NudgeDown", VK_DOWN, RAD_ALT, ID_SELECTION_SELECT_NUDGEDOWN },
+	{ "Selection_Combine", 'K', RAD_SHIFT, ID_SELECTION_COMBINE },
+	{ "Selection_Connect", 'K', RAD_CONTROL, ID_SELECTION_CONNECT },
+	{ "Selection_Ungroup", 'G', RAD_SHIFT, ID_SELECTION_UNGROUPENTITY },
+	{ "Selection_CSGMerge", 'M', RAD_SHIFT, ID_SELECTION_CSGMERGE },
 
-	{ "Selection_CenterOrigin",           'O', RAD_SHIFT, ID_SELECTION_CENTER_ORIGIN },
-	{ "Selection_SelectCompleteEntity",   'E' , RAD_CONTROL | RAD_ALT | RAD_SHIFT , ID_SELECT_COMPLETE_ENTITY },
-	{ "Selection_SelectAllOfType",        'A', RAD_SHIFT, ID_SELECT_ALL },
+	{ "Selection_CenterOrigin", 'O', RAD_SHIFT, ID_SELECTION_CENTER_ORIGIN },
+	{ "Selection_SelectCompleteEntity", 'E', RAD_CONTROL | RAD_ALT | RAD_SHIFT, ID_SELECT_COMPLETE_ENTITY },
+	{ "Selection_SelectAllOfType", 'A', RAD_SHIFT, ID_SELECT_ALL },
 
-	{ "Show_ToggleLights",       '0' , RAD_ALT , ID_VIEW_SHOWLIGHTS },
-	{ "Show_TogglePatches",      'P', RAD_CONTROL, ID_VIEW_SHOWCURVES },
-	{ "Show_ToggleClip",         'L', RAD_CONTROL, ID_VIEW_SHOWCLIP },
+	{ "Show_ToggleLights", '0', RAD_ALT, ID_VIEW_SHOWLIGHTS },
+	{ "Show_TogglePatches", 'P', RAD_CONTROL, ID_VIEW_SHOWCURVES },
+	{ "Show_ToggleClip", 'L', RAD_CONTROL, ID_VIEW_SHOWCLIP },
 
-	{ "Show_HideSelected",       'H', 0, ID_VIEW_HIDESHOW_HIDESELECTED },
-	{ "Show_ShowHidden",         'H', RAD_SHIFT, ID_VIEW_HIDESHOW_SHOWHIDDEN },
-	{ "Show_HideNotSelected",    'H', RAD_CONTROL | RAD_SHIFT, ID_VIEW_HIDESHOW_HIDENOTSELECTED },
+	{ "Show_HideSelected", 'H', 0, ID_VIEW_HIDESHOW_HIDESELECTED },
+	{ "Show_ShowHidden", 'H', RAD_SHIFT, ID_VIEW_HIDESHOW_SHOWHIDDEN },
+	{ "Show_HideNotSelected", 'H', RAD_CONTROL | RAD_SHIFT, ID_VIEW_HIDESHOW_HIDENOTSELECTED },
 
-	{ "Render_ToggleSound",      VK_F9, 0, ID_VIEW_RENDERSOUND },
+	{ "Render_ToggleSound", VK_F9, 0, ID_VIEW_RENDERSOUND },
 	{ "Render_ToggleSelections", VK_F8, 0, ID_VIEW_RENDERSELECTION },
-	{ "Render_RebuildData",      VK_F7, 0, ID_VIEW_REBUILDRENDERDATA },
-	{ "Render_ToggleAnimation",  VK_F6, 0, ID_VIEW_MATERIALANIMATION},
+	{ "Render_RebuildData", VK_F7, 0, ID_VIEW_REBUILDRENDERDATA },
+	{ "Render_ToggleAnimation", VK_F6, 0, ID_VIEW_MATERIALANIMATION },
 	{ "Render_ToggleEntityOutlines", VK_F5, 0, ID_VIEW_RENDERENTITYOUTLINES },
-	{ "Render_ToggleRealtimeBuild",  VK_F4, 0, ID_VIEW_REALTIMEREBUILD },
-	{ "Render_Toggle",           VK_F3, 0, ID_VIEW_RENDERMODE },
+	{ "Render_ToggleRealtimeBuild", VK_F4, 0, ID_VIEW_REALTIMEREBUILD },
+	{ "Render_Toggle", VK_F3, 0, ID_VIEW_RENDERMODE },
 
-	{ "Find_Textures",    'F', RAD_SHIFT, ID_TEXTURE_REPLACEALL },
-	{ "Find_Entity",       VK_F3, RAD_CONTROL, ID_MISC_FINDORREPLACEENTITY},
-	{ "Find_NextEntity",   VK_F3, RAD_SHIFT, ID_MISC_FINDNEXTENT},
+	{ "Find_Textures", 'F', RAD_SHIFT, ID_TEXTURE_REPLACEALL },
+	{ "Find_Entity", VK_F3, RAD_CONTROL, ID_MISC_FINDORREPLACEENTITY },
+	{ "Find_NextEntity", VK_F3, RAD_SHIFT, ID_MISC_FINDNEXTENT },
 
-	{ "_ShowDOOM",               VK_F2, 0, ID_SHOW_DOOM },
+	{ "_ShowDOOM", VK_F2, 0, ID_SHOW_DOOM },
 
-	{ "Rotate_MouseRotate",            'R', 0, ID_SELECT_MOUSEROTATE },
-	{ "Rotate_ToggleFlatRotation",     'R', RAD_CONTROL, ID_VIEW_CAMERAUPDATE },
-	{ "Rotate_CycleRotationAxis",      'R', RAD_SHIFT, ID_TOGGLE_ROTATELOCK },
+	{ "Rotate_MouseRotate", 'R', 0, ID_SELECT_MOUSEROTATE },
+	{ "Rotate_ToggleFlatRotation", 'R', RAD_CONTROL, ID_VIEW_CAMERAUPDATE },
+	{ "Rotate_CycleRotationAxis", 'R', RAD_SHIFT, ID_TOGGLE_ROTATELOCK },
 
-	{ "_AutoCaulk",	             'A', RAD_CONTROL | RAD_SHIFT, ID_AUTOCAULK },	// ctrl-shift-a, since SHIFT-A is already taken
+	{ "_AutoCaulk", 'A', RAD_CONTROL | RAD_SHIFT, ID_AUTOCAULK },	// ctrl-shift-a, since SHIFT-A is already taken
 };
 
 int				g_nCommandCount = sizeof( g_Commands ) / sizeof( SCommandInfo );
@@ -484,7 +484,7 @@ BEGIN_MESSAGE_MAP( CMainFrame, CFrameWnd )
 	ON_COMMAND( ID_COLOR_SETORIGINAL, OnColorSetoriginal )
 	ON_COMMAND( ID_COLOR_SETQER, OnColorSetqer )
 	ON_COMMAND( ID_COLOR_SUPERMAL, OnColorSetSuperMal )
-	ON_COMMAND( ID_THEMES_MAX , OnColorSetMax )
+	ON_COMMAND( ID_THEMES_MAX, OnColorSetMax )
 	ON_COMMAND( ID_COLOR_SETBLACK, OnColorSetblack )
 	ON_COMMAND( ID_SNAPTOGRID, OnSnaptogrid )
 	ON_COMMAND( ID_SELECT_SCALE, OnSelectScale )
@@ -673,7 +673,7 @@ BEGIN_MESSAGE_MAP( CMainFrame, CFrameWnd )
 	ON_COMMAND( ID_SOUND_SHOWSELECTEDSOUNDVOLUMES, OnSoundShowselectedsoundvolumes )
 	ON_COMMAND( ID_PATCH_NURBEDITOR, OnNurbEditor )
 	ON_COMMAND( ID_SELECT_COMPLETE_ENTITY, OnSelectCompleteEntity )
-	ON_COMMAND( ID_PRECISION_CURSOR_CYCLE , OnPrecisionCursorCycle )
+	ON_COMMAND( ID_PRECISION_CURSOR_CYCLE, OnPrecisionCursorCycle )
 	ON_COMMAND( ID_MATERIALS_GENERATEMATERIALSLIST, OnGenerateMaterialsList )
 	ON_COMMAND( ID_SELECTION_VIEW_WIREFRAMEON, OnSelectionWireFrameOn )
 	ON_COMMAND( ID_SELECTION_VIEW_WIREFRAMEOFF, OnSelectionWireFrameOff )
@@ -987,8 +987,8 @@ void MFCCreate( HINSTANCE hInstance ) {
 		g_qeglobals.d_savedinfo.m_nTextureTweak = 1.0;
 		//g_qeglobals.d_savedinfo.exclude = INCLUDE_EASY | INCLUDE_NORMAL | INCLUDE_HARD | INCLUDE_DEATHMATCH;
 		g_qeglobals.d_savedinfo.show_coordinates = true;
-		g_qeglobals.d_savedinfo.show_names       = false;
-		for( i = 0 ; i < 3 ; i++ ) {
+		g_qeglobals.d_savedinfo.show_names = false;
+		for( i = 0; i < 3; i++ ) {
 			g_qeglobals.d_savedinfo.colors[COLOR_TEXTUREBACK][i] = 0;
 			g_qeglobals.d_savedinfo.colors[COLOR_GRIDBACK][i] = 1.0;
 			g_qeglobals.d_savedinfo.colors[COLOR_GRIDMINOR][i] = 0.75;
@@ -1217,7 +1217,7 @@ void CMainFrame::CreateQEChildren() {
 		bProjectLoaded = QE_LoadProject( EDITOR_DEFAULT_PROJECT );
 	}
 	if( !bProjectLoaded ) {
-		CFileDialog dlgFile( true, NULL, NULL, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, EDITOR_WINDOWTEXT " Project files (*.qe4, *.prj)|*.qe4|*.prj||",	this );
+		CFileDialog dlgFile( true, NULL, NULL, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, EDITOR_WINDOWTEXT " Project files (*.qe4, *.prj)|*.qe4|*.prj||", this );
 		if( dlgFile.DoModal() == IDOK ) {
 			bProjectLoaded = QE_LoadProject( dlgFile.GetPathName().GetBuffer( 0 ) );
 		}
@@ -1875,7 +1875,7 @@ BOOL DoMru( HWND hWnd, WORD wId ) {
 	BOOL fExist;
 	GetMenuItem( g_qeglobals.d_lpMruMenu, wId, TRUE, szFileName, sizeof( szFileName ) );
 	// Test if the file exists.
-	fExist = OpenFile( szFileName , &of, OF_EXIST ) != HFILE_ERROR;
+	fExist = OpenFile( szFileName, &of, OF_EXIST ) != HFILE_ERROR;
 	if( fExist ) {
 		// Place the file on the top of MRU.
 		AddNewItem( g_qeglobals.d_lpMruMenu, ( LPSTR )szFileName );
@@ -2471,7 +2471,7 @@ LPCSTR String_ToLower( LPCSTR psString ) {
 		common->Printf( "String_ToLower(): Warning, input string was %d bytes too large, performing strlwr() inline!\n", strlen( psString ) - ( iBufferSize - 1 ) );
 		return strlwr( const_cast<char *>( psString ) );
 	}
-	iIndex = ++ iIndex & 7;
+	iIndex = ++iIndex & 7;
 	strcpy( sString[iIndex], psString );
 	strlwr( sString[iIndex] );
 	return sString[iIndex];
@@ -2488,7 +2488,7 @@ bool FindNextBrush( brush_t *pPrevFoundBrush ) {	// can be NULL for fresh search
 	brush_t *pStartBrush = active_brushes.next;
 	if( pPrevFoundBrush && !gbSelectAllMatchingEnts ) {
 		brush_t *pPrev = NULL;
-		for( brush_t *b = active_brushes.next ; b != &active_brushes ; b = b->next ) {
+		for( brush_t *b = active_brushes.next; b != &active_brushes; b = b->next ) {
 			if( pPrev == pPrevFoundBrush && pPrevFoundBrush ) {
 				pStartBrush = b;
 				break;
@@ -2502,7 +2502,7 @@ bool FindNextBrush( brush_t *pPrevFoundBrush ) {	// can be NULL for fresh search
 	int iBrushesSelected = 0;
 	int iEntsScanned = 0;
 	brush_t *pNextBrush;
-	for( brush_t *b = pStartBrush; b != &active_brushes ; b = pNextBrush ) {
+	for( brush_t *b = pStartBrush; b != &active_brushes; b = pNextBrush ) {
 		// setup the <nextbrush> ptr before going any further (because selecting a brush down below moves it to a
 		//	different link list), but we need to ensure that the next brush has a different ent-owner than the current
 		//	one, or multi-brush ents will confuse the list process if they get selected (infinite loop badness)...
@@ -2517,7 +2517,7 @@ bool FindNextBrush( brush_t *pPrevFoundBrush ) {	// can be NULL for fresh search
 		//
 		static int iDotBodge = 0;
 		if( !( ++iDotBodge & 15 ) ) {
-			common->Printf( "." );    // cut down on printing
+			common->Printf( "." );  // cut down on printing
 		}
 		bool bMatch = false;
 		entity_t *ent = b->owner;
@@ -2552,7 +2552,7 @@ bool FindNextBrush( brush_t *pPrevFoundBrush ) {	// can be NULL for fresh search
 				for( int i = 0; i < iNumEntKeys; i++ ) {
 					const char *psEntFoundValue = ValueForKey( ent, GetKeyString( ent, i ) );
 					if( psEntFoundValue ) {
-						if(	( strlen( psEntFoundValue ) &&	strFindValue.IsEmpty() )	// if blank <value> search specified then any found-value is ok
+						if( ( strlen( psEntFoundValue ) && strFindValue.IsEmpty() )	// if blank <value> search specified then any found-value is ok
 								||
 								( gbWholeStringMatchOnly && stricmp( psEntFoundValue, strFindValue ) == 0 )
 								||
@@ -2574,8 +2574,8 @@ bool FindNextBrush( brush_t *pPrevFoundBrush ) {	// can be NULL for fresh search
 			}
 			if( bMatch ) {
 				bFoundSomething = true;
-				pLastFoundEnt	= ent;
-				pLastFoundBrush	= b;
+				pLastFoundEnt = ent;
+				pLastFoundBrush = b;
 				iBrushesSelected++;
 				g_bScreenUpdates = false;	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				Select_Brush( b );
@@ -2626,7 +2626,7 @@ void CMainFrame::OnMiscFindOrReplaceEntity() {
 	case ID_RET_REPLACE: {
 		brush_t *next = NULL;
 		int iOccurences = 0;
-		for( brush_t *b = active_brushes.next ; b != &active_brushes ; b = next ) {
+		for( brush_t *b = active_brushes.next; b != &active_brushes; b = next ) {
 			next = b->next;	// important to do this here, in case brush gets linked to a different list
 			entity_t *ent = b->owner;
 			if( ent ) {	// needed!
@@ -2635,7 +2635,7 @@ void CMainFrame::OnMiscFindOrReplaceEntity() {
 				}
 				const char *psEntFoundValue = ValueForKey( ent, strFindKey );
 				if( stricmp( strFindValue, psEntFoundValue ) == 0 ||		// found this exact key/value
-						( strlen( psEntFoundValue ) &&	strFindValue.IsEmpty() ) // or any value for this key if blank value search specified
+						( strlen( psEntFoundValue ) && strFindValue.IsEmpty() ) // or any value for this key if blank value search specified
 				  ) {
 					// found this search key/value, so delete it...
 					//
@@ -3908,7 +3908,7 @@ void CMainFrame::OnColorSetblack() {
 }
 
 void CMainFrame::OnColorSetMax() {
-	for( int i = 0 ; i < 3 ; i++ ) {
+	for( int i = 0; i < 3; i++ ) {
 		g_qeglobals.d_savedinfo.colors[COLOR_TEXTUREBACK][i] = 0.25f;
 		g_qeglobals.d_savedinfo.colors[COLOR_GRIDBACK][i] = 0.77f;
 		g_qeglobals.d_savedinfo.colors[COLOR_GRIDMINOR][i] = 0.83f;
@@ -5178,7 +5178,7 @@ void CMainFrame::OnPatchTab() {
 	} else if( g_bAxialMode ) {
 		int faceCount = g_ptrSelectedFaces.GetSize();
 		if( faceCount > 0 ) {
-			face_t	*selFace = reinterpret_cast < face_t * >( g_ptrSelectedFaces.GetAt( 0 ) );
+			face_t	*selFace = reinterpret_cast <face_t *>( g_ptrSelectedFaces.GetAt( 0 ) );
 			int *ip = ( Sys_KeyDown( VK_SHIFT ) ) ? &g_axialAnchor : &g_axialDest;
 			( *ip )++;
 			if( *ip >= selFace->face_winding->GetNumPoints() ) {
@@ -6113,7 +6113,7 @@ void CMainFrame::OnAxialTextureByWidth() {
 	int faceCount = g_ptrSelectedFaces.GetSize();
 	if( faceCount > 0 ) {
 		for( int i = 0; i < faceCount; i++ ) {
-			face_t	*selFace = reinterpret_cast < face_t * >( g_ptrSelectedFaces.GetAt( i ) );
+			face_t	*selFace = reinterpret_cast <face_t *>( g_ptrSelectedFaces.GetAt( i ) );
 			Face_SetAxialScale_BrushPrimit( selFace, false );
 		}
 		Sys_UpdateWindows( W_CAMERA );
@@ -6125,7 +6125,7 @@ void CMainFrame::OnAxialTextureByHeight() {
 	int faceCount = g_ptrSelectedFaces.GetSize();
 	if( faceCount > 0 ) {
 		for( int i = 0; i < faceCount; i++ ) {
-			face_t	*selFace = reinterpret_cast < face_t * >( g_ptrSelectedFaces.GetAt( i ) );
+			face_t	*selFace = reinterpret_cast <face_t *>( g_ptrSelectedFaces.GetAt( i ) );
 			Face_SetAxialScale_BrushPrimit( selFace, true );
 		}
 		Sys_UpdateWindows( W_CAMERA );
@@ -6266,7 +6266,7 @@ void CMainFrame::OnSelectCompleteEntity() {
 		return; //don't select the world entity
 	}
 	for( b = e->brushes.onext; b != &e->brushes; b = b->onext ) {
-		Select_Brush( b , false );
+		Select_Brush( b, false );
 	}
 	Sys_UpdateWindows( W_ALL );
 }
@@ -6290,14 +6290,14 @@ void CMainFrame::OnGenerateMaterialsList() {
 	g_Inspectors->consoleWnd.ExecuteCommand( "clear" );
 	Sys_BeginWait();
 	common->Printf( "Generating list of active materials...\n" );
-	for( brush_t *b = active_brushes.next ; b != &active_brushes ; b = b->next ) {
+	for( brush_t *b = active_brushes.next; b != &active_brushes; b = b->next ) {
 		if( b->pPatch ) {
 			mtrName = b->pPatch->d_texture->GetName();
 			if( !mtrList.Find( mtrName ) ) {
 				mtrList.Insert( mtrName );
 			}
 		} else {
-			for( face_t *f = b->brush_faces ; f != NULL ; f = f->next ) {
+			for( face_t *f = b->brush_faces; f != NULL; f = f->next ) {
 				mtrName = f->d_texture->GetName();
 				if( !mtrList.Find( mtrName ) ) {
 					mtrList.Insert( mtrName );
@@ -6306,16 +6306,16 @@ void CMainFrame::OnGenerateMaterialsList() {
 		}
 	}
 	mtrList.Sort();
-	for( int i = 0 ; i < mtrList.Num() ; i++ ) {
-		common->Printf( "%s\n" , mtrList[i].c_str() );
+	for( int i = 0; i < mtrList.Num(); i++ ) {
+		common->Printf( "%s\n", mtrList[i].c_str() );
 	}
 	mtrFileName = currentmap;
 	//	mtrFileName.ExtractFileName( mtrFileName );
 	mtrFileName = mtrFileName.StripPath();
-	common->Printf( "Done...found %i unique materials\n" , mtrList.Num() );
+	common->Printf( "Done...found %i unique materials\n", mtrList.Num() );
 	mtrFileName = mtrFileName + idStr( "_Materials.txt" );
-	g_Inspectors->SetMode( W_CONSOLE , true );
-	g_Inspectors->consoleWnd.SetConsoleText( va( "condump %s" , mtrFileName.c_str() ) );
+	g_Inspectors->SetMode( W_CONSOLE, true );
+	g_Inspectors->consoleWnd.SetConsoleText( va( "condump %s", mtrFileName.c_str() ) );
 	Sys_EndWait();
 }
 

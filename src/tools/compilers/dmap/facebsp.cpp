@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -58,7 +58,7 @@ void FreeTreePortals_r( node_t *node ) {
 		FreeTreePortals_r( node->children[1] );
 	}
 	// free portals
-	for( p = node->portals ; p ; p = nextp ) {
+	for( p = node->portals; p; p = nextp ) {
 		s = ( p->nodes[1] == node );
 		nextp = p->next[s];
 		RemovePortalFromNode( p, p->nodes[!s] );
@@ -104,14 +104,14 @@ void FreeTree( tree_t *tree ) {
 void PrintTree_r( node_t *node, int depth ) {
 	int			i;
 	uBrush_t	*bb;
-	for( i = 0 ; i < depth ; i++ ) {
+	for( i = 0; i < depth; i++ ) {
 		common->Printf( "  " );
 	}
 	if( node->planenum == PLANENUM_LEAF ) {
 		if( !node->brushlist ) {
 			common->Printf( "NULL\n" );
 		} else {
-			for( bb = node->brushlist ; bb ; bb = bb->next ) {
+			for( bb = node->brushlist; bb; bb = bb->next ) {
 				common->Printf( "%i ", bb->original->brushnum );
 			}
 			common->Printf( "\n" );
@@ -193,25 +193,25 @@ int SelectSplitPlaneNum( node_t *node, bspface_t *list ) {
 	bestValue = -999999;
 	bestSplit = list;
 	havePortals = false;
-	for( split = list ; split ; split = split->next ) {
+	for( split = list; split; split = split->next ) {
 		split->checked = false;
 		if( split->portal ) {
 			havePortals = true;
 		}
 	}
-	for( split = list ; split ; split = split->next ) {
+	for( split = list; split; split = split->next ) {
 		if( split->checked ) {
 			continue;
 		}
 		if( havePortals != split->portal ) {
 			continue;
 		}
-		mapPlane = &dmapGlobals.mapPlanes[ split->planenum ];
+		mapPlane = &dmapGlobals.mapPlanes[split->planenum];
 		splits = 0;
 		facing = 0;
 		front = 0;
 		back = 0;
-		for( check = list ; check ; check = check->next ) {
+		for( check = list; check; check = check->next ) {
 			if( check->planenum == split->planenum ) {
 				facing++;
 				check->checked = true;	// won't need to test this plane again
@@ -226,7 +226,7 @@ int SelectSplitPlaneNum( node_t *node, bspface_t *list ) {
 				back++;
 			}
 		}
-		value =  5 * facing - 5 * splits; // - abs(front-back);
+		value = 5 * facing - 5 * splits; // - abs(front-back);
 		if( mapPlane->Type() < PLANETYPE_TRUEAXIAL ) {
 			value += 5;		// axial is better
 		}
@@ -264,10 +264,10 @@ void	BuildFaceTree_r( node_t *node, bspface_t *list ) {
 	}
 	// partition the list
 	node->planenum = splitPlaneNum;
-	idPlane &plane = dmapGlobals.mapPlanes[ splitPlaneNum ];
+	idPlane &plane = dmapGlobals.mapPlanes[splitPlaneNum];
 	childLists[0] = NULL;
 	childLists[1] = NULL;
-	for( split = list ; split ; split = next ) {
+	for( split = list; split; split = next ) {
 		next = split->next;
 		if( split->planenum == node->planenum ) {
 			FreeBspFace( split );
@@ -300,20 +300,20 @@ void	BuildFaceTree_r( node_t *node, bspface_t *list ) {
 		}
 	}
 	// recursively process children
-	for( i = 0 ; i < 2 ; i++ ) {
+	for( i = 0; i < 2; i++ ) {
 		node->children[i] = AllocNode();
 		node->children[i]->parent = node;
 		node->children[i]->bounds = node->bounds;
 	}
 	// split the bounds if we have a nice axial plane
-	for( i = 0 ; i < 3 ; i++ ) {
+	for( i = 0; i < 3; i++ ) {
 		if( idMath::Fabs( plane[i] - 1.0 ) < 0.001 ) {
 			node->children[0]->bounds[0][i] = plane.Dist();
 			node->children[1]->bounds[1][i] = plane.Dist();
 			break;
 		}
 	}
-	for( i = 0 ; i < 2 ; i++ ) {
+	for( i = 0; i < 2; i++ ) {
 		BuildFaceTree_r( node->children[i], childLists[i] );
 	}
 }
@@ -336,9 +336,9 @@ tree_t *FaceBSP( bspface_t *list ) {
 	tree = AllocTree();
 	count = 0;
 	tree->bounds.Clear();
-	for( face = list ; face ; face = face->next ) {
+	for( face = list; face; face = face->next ) {
 		count++;
-		for( i = 0 ; i < face->w->GetNumPoints() ; i++ ) {
+		for( i = 0; i < face->w->GetNumPoints(); i++ ) {
 			tree->bounds.AddPoint( ( *face->w )[i].ToVec3() );
 		}
 	}
@@ -367,7 +367,7 @@ bspface_t	*MakeStructuralBspFaceList( primitive_t *list ) {
 	idWinding	*w;
 	bspface_t	*f, *flist;
 	flist = NULL;
-	for( ; list ; list = list->next ) {
+	for( ; list; list = list->next ) {
 		b = list->brush;
 		if( !b ) {
 			continue;
@@ -375,7 +375,7 @@ bspface_t	*MakeStructuralBspFaceList( primitive_t *list ) {
 		if( !b->opaque && !( b->contents & CONTENTS_AREAPORTAL ) ) {
 			continue;
 		}
-		for( i = 0 ; i < b->numsides ; i++ ) {
+		for( i = 0; i < b->numsides; i++ ) {
 			s = &b->sides[i];
 			w = s->winding;
 			if( !w ) {
@@ -409,7 +409,7 @@ bspface_t	*MakeVisibleBspFaceList( primitive_t *list ) {
 	idWinding	*w;
 	bspface_t	*f, *flist;
 	flist = NULL;
-	for( ; list ; list = list->next ) {
+	for( ; list; list = list->next ) {
 		b = list->brush;
 		if( !b ) {
 			continue;
@@ -417,7 +417,7 @@ bspface_t	*MakeVisibleBspFaceList( primitive_t *list ) {
 		if( !b->opaque && !( b->contents & CONTENTS_AREAPORTAL ) ) {
 			continue;
 		}
-		for( i = 0 ; i < b->numsides ; i++ ) {
+		for( i = 0; i < b->numsides; i++ ) {
 			s = &b->sides[i];
 			w = s->visibleHull;
 			if( !w ) {

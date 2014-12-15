@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -75,11 +75,11 @@ void CEntityDlg::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Control( pDX, IDC_BUTTON_CURVE, btnCurve );
 	DDX_Control( pDX, IDC_BUTTON_CREATE, btnCreate );
 	DDX_Control( pDX, IDC_LIST_VARS, listVars );
-	DDX_Control( pDX, IDC_ENTITY_ANIMATIONS , cbAnimations );
-	DDX_Control( pDX, IDC_ANIMATION_SLIDER , slFrameSlider );
-	DDX_Control( pDX, IDC_ENTITY_CURRENT_ANIM , staticFrame );
-	DDX_Control( pDX, IDC_ENTITY_PLAY_ANIM , btnPlayAnim );
-	DDX_Control( pDX, IDC_ENTITY_STOP_ANIM , btnStopAnim );
+	DDX_Control( pDX, IDC_ENTITY_ANIMATIONS, cbAnimations );
+	DDX_Control( pDX, IDC_ANIMATION_SLIDER, slFrameSlider );
+	DDX_Control( pDX, IDC_ENTITY_CURRENT_ANIM, staticFrame );
+	DDX_Control( pDX, IDC_ENTITY_PLAY_ANIM, btnPlayAnim );
+	DDX_Control( pDX, IDC_ENTITY_STOP_ANIM, btnStopAnim );
 }
 
 BOOL CEntityDlg::OnInitDialog() {
@@ -132,8 +132,8 @@ BEGIN_MESSAGE_MAP( CEntityDlg, CDialog )
 	ON_BN_CLICKED( IDC_BUTTON_SKIN, OnBnClickedButtonSkin )
 	ON_BN_CLICKED( IDC_BUTTON_CURVE, OnBnClickedButtonCurve )
 	ON_CBN_SELCHANGE( IDC_ENTITY_ANIMATIONS, OnCbnAnimationChange )
-	ON_BN_CLICKED( IDC_ENTITY_PLAY_ANIM , OnBnClickedStartAnimation )
-	ON_BN_CLICKED( IDC_ENTITY_STOP_ANIM , OnBnClickedStopAnimation )
+	ON_BN_CLICKED( IDC_ENTITY_PLAY_ANIM, OnBnClickedStartAnimation )
+	ON_BN_CLICKED( IDC_ENTITY_STOP_ANIM, OnBnClickedStopAnimation )
 	ON_WM_TIMER()
 	ON_BN_CLICKED( IDOK, OnOK )
 END_MESSAGE_MAP()
@@ -185,20 +185,20 @@ void CEntityDlg::OnSize( UINT nType, int cx, int cy ) {
 	int rightAnimAreaBorder = rect.right - 75 - crect.Width();  /*models, etc button width*/
 	btnStopAnim.GetWindowRect( crect );
 	btnStopAnim.SetWindowPos( NULL, rightAnimAreaBorder - crect.Width(),
-							  top + 8  , crect.Width(), crect.Height(), SWP_SHOWWINDOW );
+							  top + 8, crect.Width(), crect.Height(), SWP_SHOWWINDOW );
 	left = rightAnimAreaBorder - crect.Width() - 4;
 	btnPlayAnim.GetWindowRect( crect );
-	btnPlayAnim.SetWindowPos( NULL, left - crect.Width() , top + 8 , crect.Width(), crect.Height(), SWP_SHOWWINDOW );
+	btnPlayAnim.SetWindowPos( NULL, left - crect.Width(), top + 8, crect.Width(), crect.Height(), SWP_SHOWWINDOW );
 	left -= crect.Width() + 4;
 	cbAnimations.GetWindowRect( crect );
-	cbAnimations.SetWindowPos( NULL, left - crect.Width(), top + 8  , crect.Width(), crect.Height(), SWP_SHOWWINDOW );
+	cbAnimations.SetWindowPos( NULL, left - crect.Width(), top + 8, crect.Width(), crect.Height(), SWP_SHOWWINDOW );
 	staticFrame.GetWindowRect( crect );
 	staticFrame.SetWindowPos( NULL, rightAnimAreaBorder - crect.Width(),
-							  top + 34  , crect.Width(), crect.Height(), SWP_SHOWWINDOW );
+							  top + 34, crect.Width(), crect.Height(), SWP_SHOWWINDOW );
 	left = rightAnimAreaBorder - crect.Width() - 4;
 	slFrameSlider.GetWindowRect( crect );
 	slFrameSlider.SetWindowPos( NULL, left - crect.Width(),
-								top + 32  , crect.Width(), crect.Height(), SWP_SHOWWINDOW );
+								top + 32, crect.Width(), crect.Height(), SWP_SHOWWINDOW );
 	//*************************************
 	//*************************************
 	btn135.GetWindowRect( crect );
@@ -275,7 +275,7 @@ void CEntityDlg::UpdateFromListBox() {
 		return;
 	}
 	int c = listKeyVal.GetCount();
-	for( int i = 0 ; i < c; i++ ) {
+	for( int i = 0; i < c; i++ ) {
 		CPropertyItem *pItem = ( CPropertyItem * )listKeyVal.GetItemDataPtr( i );
 		if( pItem ) {
 			editEntity->epairs.Set( pItem->m_propName, pItem->m_curValue );
@@ -296,28 +296,28 @@ void CEntityDlg::SetKeyValPairs( bool updateAnims ) {
 			for( int j = 0; j < vc; j++ ) {
 				if( editEntity->eclass->vars[j].name.Icmp( kv->GetKey() ) == 0 ) {
 					switch( editEntity->eclass->vars[j].type ) {
-					case EVAR_STRING :
-					case EVAR_INT :
-					case EVAR_FLOAT :
+					case EVAR_STRING:
+					case EVAR_INT:
+					case EVAR_FLOAT:
 						pi->m_nItemType = PIT_EDIT;
 						break;
-					case EVAR_BOOL :
+					case EVAR_BOOL:
 						pi->m_nItemType = PIT_EDIT;
 						//pi->m_cmbItems = "0|1";
 						break;
-					case EVAR_COLOR :
+					case EVAR_COLOR:
 						pi->m_nItemType = PIT_COLOR;
 						break;
-					case EVAR_MATERIAL :
+					case EVAR_MATERIAL:
 						pi->m_nItemType = PIT_MATERIAL;
 						break;
-					case EVAR_MODEL :
+					case EVAR_MODEL:
 						pi->m_nItemType = PIT_MODEL;
 						break;
-					case EVAR_GUI :
+					case EVAR_GUI:
 						pi->m_nItemType = PIT_GUI;
 						break;
-					case EVAR_SOUND :
+					case EVAR_SOUND:
 						pi->m_nItemType = PIT_SOUND;
 						break;
 					}
@@ -356,7 +356,7 @@ void CEntityDlg::SetKeyValPairs( bool updateAnims ) {
 			}
 			const idKeyValue *kv = editEntity->epairs.FindKey( "anim" );
 			if( kv ) {
-				int selIndex = cbAnimations.FindStringExact( 0 , kv->GetValue().c_str() );
+				int selIndex = cbAnimations.FindStringExact( 0, kv->GetValue().c_str() );
 				if( selIndex != -1 ) {
 					cbAnimations.SetCurSel( selIndex );
 					OnCbnAnimationChange();
@@ -529,7 +529,7 @@ BOOL CEntityDlg::PreTranslateMessage( MSG *pMsg ) {
 
 /*
  =======================================================================================================================
-    AddProp
+ AddProp
  =======================================================================================================================
  */
 void CEntityDlg::AddProp() {
@@ -576,7 +576,7 @@ void CEntityDlg::AddProp() {
 			VectorAdd( mins, editEntity->origin, mins );
 			VectorAdd( maxs, editEntity->origin, maxs );
 			Brush_RebuildBrush( selected_brushes.next, mins, maxs, false );
-			Brush_Build( selected_brushes.next , false, false , false, true );
+			Brush_Build( selected_brushes.next, false, false, false, true );
 		}
 	}
 	// refresh the prop listbox
@@ -979,12 +979,12 @@ void CEntityDlg::OnNMReleasedcaptureSlider1( NMHDR *pNMHDR, LRESULT *pResult ) {
 
 void CEntityDlg::UpdateFromAnimationFrame( bool updateKeyValueDisplay ) {
 	int frame = slFrameSlider.GetPos();
-	editEntity->epairs.SetInt( "frame" , frame );
-	SetDlgItemText( IDC_ENTITY_CURRENT_ANIM , va( "%i" , frame ) );
+	editEntity->epairs.SetInt( "frame", frame );
+	SetDlgItemText( IDC_ENTITY_CURRENT_ANIM, va( "%i", frame ) );
 	if( updateKeyValueDisplay ) {
 		SetKeyValPairs();
 	}
-	g_pParentWnd->GetCamera()->BuildEntityRenderState( editEntity , true );
+	g_pParentWnd->GetCamera()->BuildEntityRenderState( editEntity, true );
 	Sys_UpdateWindows( W_ALL );
 }
 
@@ -997,17 +997,17 @@ void CEntityDlg::OnCbnAnimationChange() {
 	currentAnimation = NULL;
 	int currFrame = 0;
 	if( sel != -1 ) {
-		cbAnimations.GetLBText( sel , animName );
+		cbAnimations.GetLBText( sel, animName );
 		if( animName.GetLength() > 0 ) {
 			//preserve the existing frame number
-			currFrame = editEntity->epairs.GetInt( "frame" , "1" );
-			editEntity->epairs.Set( "anim" , animName.GetBuffer( 0 ) );
+			currFrame = editEntity->epairs.GetInt( "frame", "1" );
+			editEntity->epairs.Set( "anim", animName.GetBuffer( 0 ) );
 			SetKeyValPairs( false/*don't update anims combo box :)*/ );
 			//update the slider
-			currentAnimation = gameEdit->ANIM_GetAnimFromEntityDef( editEntity->eclass->name , animName.GetBuffer( 0 ) );
+			currentAnimation = gameEdit->ANIM_GetAnimFromEntityDef( editEntity->eclass->name, animName.GetBuffer( 0 ) );
 			currentAnimationFrame = 0;
 			if( currentAnimation ) {
-				slFrameSlider.SetRange( 1 , gameEdit->ANIM_GetNumFrames( currentAnimation ), TRUE );
+				slFrameSlider.SetRange( 1, gameEdit->ANIM_GetNumFrames( currentAnimation ), TRUE );
 				slFrameSlider.SetPos( currFrame );
 				currentAnimationFrame = currFrame;
 			}
@@ -1020,7 +1020,7 @@ void CEntityDlg::OnBnClickedStartAnimation() {
 	if( !editEntity ) {
 		return;
 	}
-	SetTimer( 0 , 1000 / 24 , NULL );
+	SetTimer( 0, 1000 / 24, NULL );
 }
 
 void CEntityDlg::OnBnClickedStopAnimation() {
@@ -1034,7 +1034,7 @@ void CEntityDlg::OnTimer( UINT nIDEvent ) {
 	}
 	if( currentAnimation ) {
 		currentAnimationFrame = ( ( currentAnimationFrame + 1 ) % gameEdit->ANIM_GetNumFrames( currentAnimation ) );
-		editEntity->epairs.SetInt( "frame" , currentAnimationFrame );
+		editEntity->epairs.SetInt( "frame", currentAnimationFrame );
 		slFrameSlider.SetPos( currentAnimationFrame );
 		UpdateFromAnimationFrame( false/*don't update key/value display*/ );
 		Sys_UpdateWindows( W_CAMERA | W_XY );
@@ -1214,5 +1214,5 @@ void CEntityDlg::SelectCurvePointByRay( const idVec3 &org, const idVec3 &dir, in
 	}
 	g_qeglobals.d_num_move_points = 0;
 	assert( besti < editEntity->curve->GetNumValues() );
-	g_qeglobals.d_move_points[ g_qeglobals.d_num_move_points++ ] = editEntity->curve->GetValueAddress( besti );
+	g_qeglobals.d_move_points[g_qeglobals.d_num_move_points++] = editEntity->curve->GetValueAddress( besti );
 }

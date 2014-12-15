@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -116,7 +116,7 @@ void idAASLocal::DrawFace( int faceNum, bool side ) const {
 	for( i = 0; i < numEdges; i++ ) {
 		DrawEdge( abs( file->GetEdgeIndex( firstEdge + i ) ), ( face->flags & FACE_FLOOR ) != 0 );
 		j = file->GetEdgeIndex( firstEdge + i );
-		mid += file->GetVertex( file->GetEdge( abs( j ) ).vertexNum[ j < 0 ] );
+		mid += file->GetVertex( file->GetEdge( abs( j ) ).vertexNum[j < 0] );
 	}
 	mid /= numEdges;
 	if( side ) {
@@ -207,8 +207,8 @@ void idAASLocal::ShowArea( const idVec3 &origin ) const {
 		lastAreaNum = areaNum;
 	}
 	if( org != origin ) {
-		idBounds bnds = file->GetSettings().boundingBoxes[ 0 ];
-		bnds[ 1 ].z = bnds[ 0 ].z;
+		idBounds bnds = file->GetSettings().boundingBoxes[0];
+		bnds[1].z = bnds[0].z;
 		gameRenderWorld->DebugBounds( colorYellow, bnds, org );
 	}
 	DrawArea( areaNum );
@@ -474,14 +474,14 @@ void idAASLocal::DrawAreas( const idVec3 &playerOrigin ) {
 	if( aasColors.Num() == 0 ) {
 		// Get a color for each cluster
 		int numClusters = file->GetNumClusters();
-		for( int c = 0 ; c < numClusters ; c++ ) {
+		for( int c = 0; c < numClusters; c++ ) {
 			aasColors.Alloc() = idVec4( gameLocal.random.RandomFloat() + 0.1f, gameLocal.random.RandomFloat() + 0.1f, gameLocal.random.RandomFloat() + 0.1f, 1 );
 		}
 	}
 	idMat3 playerViewMatrix( gameLocal.GetLocalPlayer()->viewAngles.ToMat3() );
 	idList<int> clusterNums;
 	// Paint the AAS areas
-	for( int i = 0 ; i < file->GetNumAreas() ; i++ ) {
+	for( int i = 0; i < file->GetNumAreas(); i++ ) {
 		idVec3 areaCenter = AreaCenter( i );
 		// angua: only draw areas near the player, no need to see them at the other end of the map
 		if( ( areaCenter - playerOrigin ).LengthFast() < 150 ) {
@@ -494,7 +494,7 @@ void idAASLocal::DrawAreas( const idVec3 &playerOrigin ) {
 		}
 	}
 	// Paint the cluster numbers
-	for( int i = 0 ; i < clusterNums.Num() ; i++ ) {
+	for( int i = 0; i < clusterNums.Num(); i++ ) {
 		int area = GetAreaInCluster( clusterNums[i] );
 		if( area <= 0 ) {
 			continue;

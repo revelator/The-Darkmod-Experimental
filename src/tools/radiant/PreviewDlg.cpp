@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -363,7 +363,7 @@ void CPreviewDlg::OnTvnSelchangedTreeMedia( NMHDR *pNMHDR, LRESULT *pResult ) {
 }
 
 BOOL CPreviewDlg::Create( LPCTSTR lpszTemplateName, CWnd *pParentWnd ) {
-	BOOL b =  CDialog::Create( lpszTemplateName, pParentWnd );
+	BOOL b = CDialog::Create( lpszTemplateName, pParentWnd );
 	ShowWindow( SW_SHOW );
 	return b;
 }
@@ -422,7 +422,7 @@ void CPreviewDlg::OnBnClickedButtonAdd() {
 			idStr str;
 			void *buffer;
 			fileSystem->ReadFile( path, &buffer );
-			str = ( char * ) buffer;
+			str = ( char * )buffer;
 			fileSystem->FreeFile( buffer );
 			str += "\r\n\r\n{\r\n\t\"";
 			str += ci.Name;
@@ -480,10 +480,10 @@ void CPreviewDlg::SetMode( int mode, const char *preSelect ) {
 	}
 	CWnd *wnd;
 	switch( currentMode ) {
-	case GUIS :
-	case SKINS :
-	case MODELS :
-	case PARTICLES :
+	case GUIS:
+	case SKINS:
+	case MODELS:
+	case PARTICLES:
 		wndPreview.ShowWindow( SW_SHOW );
 		wnd = GetDlgItem( IDC_BUTTON_PLAY );
 		if( wnd ) {
@@ -498,7 +498,7 @@ void CPreviewDlg::SetMode( int mode, const char *preSelect ) {
 			wnd->ShowWindow( SW_SHOW );
 		}
 		break;
-	case MATERIALS :
+	case MATERIALS:
 		wndPreview.ShowWindow( SW_SHOW );
 		wnd = GetDlgItem( IDC_BUTTON_PLAY );
 		if( wnd ) {
@@ -513,8 +513,8 @@ void CPreviewDlg::SetMode( int mode, const char *preSelect ) {
 			wnd->ShowWindow( SW_HIDE );
 		}
 		break;
-	case SOUNDS :
-	case WAVES :
+	case SOUNDS:
+	case WAVES:
 		wndPreview.ShowWindow( SW_HIDE );
 		wnd = GetDlgItem( IDC_BUTTON_PLAY );
 		if( wnd ) {

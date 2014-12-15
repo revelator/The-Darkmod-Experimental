@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -185,7 +185,7 @@ void R_ToggleSmpFrame( void ) {
 	// reset the memory allocation to the first block
 	frame->alloc = frame->memory;
 	// clear all the blocks
-	for( block = frame->memory ; block ; block = block->next ) {
+	for( block = frame->memory; block; block = block->next ) {
 		block->used = 0;
 	}
 	R_ClearCommandChain();
@@ -210,7 +210,7 @@ void R_ShutdownFrameData( void ) {
 	}
 	R_FreeDeferredTriSurfs( frame );
 	frameMemoryBlock_t *nextBlock;
-	for( block = frame->memory ; block ; block = nextBlock ) {
+	for( block = frame->memory; block; block = nextBlock ) {
 		nextBlock = block->next;
 		Mem_Free( block );
 	}
@@ -254,7 +254,7 @@ int R_CountFrameData( void ) {
 	int				count;
 	count = 0;
 	frame = frameData;
-	for( block = frame->memory ; block ; block = block->next ) {
+	for( block = frame->memory; block; block = block->next ) {
 		count += block->used;
 		if( block == frame->alloc ) {
 			break;
@@ -508,8 +508,8 @@ void R_LocalPlaneToGlobal( const float modelMatrix[16], const idPlane &in, idPla
 void R_TransformEyeZToWin( float src_z, const float *projectionMatrix, float &dst_z ) {
 	float clip_z, clip_w;
 	// projection
-	clip_z = src_z * projectionMatrix[ 2 + 2 * 4 ] + projectionMatrix[ 2 + 3 * 4 ];
-	clip_w = src_z * projectionMatrix[ 3 + 2 * 4 ] + projectionMatrix[ 3 + 3 * 4 ];
+	clip_z = src_z * projectionMatrix[2 + 2 * 4] + projectionMatrix[2 + 3 * 4];
+	clip_w = src_z * projectionMatrix[3 + 2 * 4] + projectionMatrix[3 + 3 * 4];
 	if( clip_w <= 0.0f ) {
 		dst_z = 0.0f;					// clamp to near plane
 	} else {
@@ -539,7 +539,7 @@ bool R_RadiusCullLocalBox( const idBounds &bounds, const float modelMatrix[16], 
 	idVec3	localOrigin = ( bounds[0] + bounds[1] ) * 0.5;
 	R_LocalPointToGlobal( modelMatrix, localOrigin, worldOrigin );
 	worldRadius = ( bounds[0] - localOrigin ).Length();	// FIXME: won't be correct for scaled objects
-	for( i = 0 ; i < numPlanes ; i++ ) {
+	for( i = 0; i < numPlanes; i++ ) {
 		frust = planes + i;
 		d = frust->Distance( worldOrigin );
 		if( d > worldRadius ) {
@@ -569,16 +569,16 @@ bool R_CornerCullLocalBox( const idBounds &bounds, const float modelMatrix[16], 
 		return false;
 	}
 	// transform into world space
-	for( i = 0 ; i < 8 ; i++ ) {
+	for( i = 0; i < 8; i++ ) {
 		v[0] = bounds[i & 1][0];
 		v[1] = bounds[( i >> 1 ) & 1][1];
 		v[2] = bounds[( i >> 2 ) & 1][2];
 		R_LocalPointToGlobal( modelMatrix, v, transformed[i] );
 	}
 	// check against frustum planes
-	for( i = 0 ; i < numPlanes ; i++ ) {
+	for( i = 0; i < numPlanes; i++ ) {
 		frust = planes + i;
-		for( j = 0 ; j < 8 ; j++ ) {
+		for( j = 0; j < 8; j++ ) {
 			dists[j] = frust->Distance( transformed[j] );
 			if( dists[j] < 0 ) {
 				break;
@@ -616,19 +616,19 @@ R_TransformModelToClip
 */
 void R_TransformModelToClip( const idVec3 &src, const float *modelMatrix, const float *projectionMatrix, idPlane &eye, idPlane &dst ) {
 	int i;
-	for( i = 0 ; i < 4 ; i++ ) {
+	for( i = 0; i < 4; i++ ) {
 		eye[i] =
-			src[0] * modelMatrix[ i + 0 * 4 ] +
-			src[1] * modelMatrix[ i + 1 * 4 ] +
-			src[2] * modelMatrix[ i + 2 * 4 ] +
-			1 * modelMatrix[ i + 3 * 4 ];
+			src[0] * modelMatrix[i + 0 * 4] +
+			src[1] * modelMatrix[i + 1 * 4] +
+			src[2] * modelMatrix[i + 2 * 4] +
+			1 * modelMatrix[i + 3 * 4];
 	}
-	for( i = 0 ; i < 4 ; i++ ) {
+	for( i = 0; i < 4; i++ ) {
 		dst[i] =
-			eye[0] * projectionMatrix[ i + 0 * 4 ] +
-			eye[1] * projectionMatrix[ i + 1 * 4 ] +
-			eye[2] * projectionMatrix[ i + 2 * 4 ] +
-			eye[3] * projectionMatrix[ i + 3 * 4 ];
+			eye[0] * projectionMatrix[i + 0 * 4] +
+			eye[1] * projectionMatrix[i + 1 * 4] +
+			eye[2] * projectionMatrix[i + 2 * 4] +
+			eye[3] * projectionMatrix[i + 3 * 4];
 	}
 }
 
@@ -645,34 +645,34 @@ void R_GlobalToNormalizedDeviceCoordinates( const idVec3 &global, idVec3 &ndc ) 
 	idPlane	clip;
 	// _D3XP added work on primaryView when no viewDef
 	if( !tr.viewDef ) {
-		for( i = 0 ; i < 4 ; i ++ ) {
+		for( i = 0; i < 4; i++ ) {
 			view[i] =
-				global[0] * tr.primaryView->worldSpace.modelViewMatrix[ i + 0 * 4 ] +
-				global[1] * tr.primaryView->worldSpace.modelViewMatrix[ i + 1 * 4 ] +
-				global[2] * tr.primaryView->worldSpace.modelViewMatrix[ i + 2 * 4 ] +
-				tr.primaryView->worldSpace.modelViewMatrix[ i + 3 * 4 ];
+				global[0] * tr.primaryView->worldSpace.modelViewMatrix[i + 0 * 4] +
+				global[1] * tr.primaryView->worldSpace.modelViewMatrix[i + 1 * 4] +
+				global[2] * tr.primaryView->worldSpace.modelViewMatrix[i + 2 * 4] +
+				tr.primaryView->worldSpace.modelViewMatrix[i + 3 * 4];
 		}
-		for( i = 0 ; i < 4 ; i ++ ) {
+		for( i = 0; i < 4; i++ ) {
 			clip[i] =
-				view[0] * tr.primaryView->projectionMatrix[ i + 0 * 4 ] +
-				view[1] * tr.primaryView->projectionMatrix[ i + 1 * 4 ] +
-				view[2] * tr.primaryView->projectionMatrix[ i + 2 * 4 ] +
-				view[3] * tr.primaryView->projectionMatrix[ i + 3 * 4 ];
+				view[0] * tr.primaryView->projectionMatrix[i + 0 * 4] +
+				view[1] * tr.primaryView->projectionMatrix[i + 1 * 4] +
+				view[2] * tr.primaryView->projectionMatrix[i + 2 * 4] +
+				view[3] * tr.primaryView->projectionMatrix[i + 3 * 4];
 		}
 	} else {
-		for( i = 0 ; i < 4 ; i ++ ) {
+		for( i = 0; i < 4; i++ ) {
 			view[i] =
-				global[0] * tr.viewDef->worldSpace.modelViewMatrix[ i + 0 * 4 ] +
-				global[1] * tr.viewDef->worldSpace.modelViewMatrix[ i + 1 * 4 ] +
-				global[2] * tr.viewDef->worldSpace.modelViewMatrix[ i + 2 * 4 ] +
-				tr.viewDef->worldSpace.modelViewMatrix[ i + 3 * 4 ];
+				global[0] * tr.viewDef->worldSpace.modelViewMatrix[i + 0 * 4] +
+				global[1] * tr.viewDef->worldSpace.modelViewMatrix[i + 1 * 4] +
+				global[2] * tr.viewDef->worldSpace.modelViewMatrix[i + 2 * 4] +
+				tr.viewDef->worldSpace.modelViewMatrix[i + 3 * 4];
 		}
-		for( i = 0 ; i < 4 ; i ++ ) {
+		for( i = 0; i < 4; i++ ) {
 			clip[i] =
-				view[0] * tr.viewDef->projectionMatrix[ i + 0 * 4 ] +
-				view[1] * tr.viewDef->projectionMatrix[ i + 1 * 4 ] +
-				view[2] * tr.viewDef->projectionMatrix[ i + 2 * 4 ] +
-				view[3] * tr.viewDef->projectionMatrix[ i + 3 * 4 ];
+				view[0] * tr.viewDef->projectionMatrix[i + 0 * 4] +
+				view[1] * tr.viewDef->projectionMatrix[i + 1 * 4] +
+				view[2] * tr.viewDef->projectionMatrix[i + 2 * 4] +
+				view[3] * tr.viewDef->projectionMatrix[i + 3 * 4];
 		}
 	}
 	ndc[0] = clip[0] / clip[3];
@@ -701,13 +701,13 @@ myGlMultMatrix
 void myGlMultMatrix( const float a[16], const float b[16], float out[16] ) {
 #if 0
 	int		i, j;
-	for( i = 0 ; i < 4 ; i++ ) {
-		for( j = 0 ; j < 4 ; j++ ) {
-			out[ i * 4 + j ] =
-				a [ i * 4 + 0 ] * b [ 0 * 4 + j ]
-				+ a [ i * 4 + 1 ] * b [ 1 * 4 + j ]
-				+ a [ i * 4 + 2 ] * b [ 2 * 4 + j ]
-				+ a [ i * 4 + 3 ] * b [ 3 * 4 + j ];
+	for( i = 0; i < 4; i++ ) {
+		for( j = 0; j < 4; j++ ) {
+			out[i * 4 + j] =
+				a[i * 4 + 0] * b[0 * 4 + j]
+				+ a[i * 4 + 1] * b[1 * 4 + j]
+				+ a[i * 4 + 2] * b[2 * 4 + j]
+				+ a[i * 4 + 3] * b[3 * 4 + j];
 		}
 	}
 #else
@@ -737,8 +737,8 @@ R_TransposeGLMatrix
 */
 void R_TransposeGLMatrix( const float in[16], float out[16] ) {
 	int		i, j;
-	for( i = 0 ; i < 4 ; i++ ) {
-		for( j = 0 ; j < 4 ; j++ ) {
+	for( i = 0; i < 4; i++ ) {
+		for( j = 0; j < 4; j++ ) {
 			out[i * 4 + j] = in[j * 4 + i];
 		}
 	}
@@ -817,7 +817,7 @@ void R_SetupProjection( void ) {
 	//
 	// set up projection matrix
 	//
-	zNear	= r_znear.GetFloat();
+	zNear = r_znear.GetFloat();
 	if( tr.viewDef->renderView.cramZNear ) {
 		zNear *= 0.25;
 	}

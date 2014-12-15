@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -215,7 +215,7 @@ void DialogAFBody::InitBodyList( void ) {
 ================
 DialogAFBody::InitJointLists
 
-  initialize the joint lists for bone collision models
+initialize the joint lists for bone collision models
 ================
 */
 void DialogAFBody::InitJointLists( void ) {
@@ -235,7 +235,7 @@ void DialogAFBody::InitJointLists( void ) {
 	}
 	numJoints = model->NumJoints();
 	for( int i = 0; i < numJoints; i++ ) {
-		const char *jointName = model->GetJointName( ( jointHandle_t ) i );
+		const char *jointName = model->GetJointName( ( jointHandle_t )i );
 		cm_comboBoneJoint1.AddString( jointName );
 		cm_comboBoneJoint2.AddString( jointName );
 		cm_originBoneCenterJoint1.AddString( jointName );
@@ -329,7 +329,7 @@ void DialogAFBody::InitModifiedJointList( void ) {
 	}
 	numJoints = model->NumJoints();
 	for( i = 0; i < numJoints; i++ ) {
-		const char *jointName = model->GetJointName( ( jointHandle_t ) i );
+		const char *jointName = model->GetJointName( ( jointHandle_t )i );
 		for( j = 0; j < file->bodies.Num(); j++ ) {
 			if( file->bodies[j] == body ) {
 				continue;
@@ -824,11 +824,11 @@ void DialogAFBody::ValidateCollisionModelLength( bool update ) {
 }
 
 void DialogAFBody::OnEnChangeEditCmLength() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_CM_LENGTH ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_CM_LENGTH ) ) ) {
 		ValidateCollisionModelLength( false );
 		UpdateFile();
 	} else {
-		cm_length = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_CM_LENGTH ), false );
+		cm_length = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_CM_LENGTH ), false );
 	}
 }
 
@@ -855,11 +855,11 @@ void DialogAFBody::ValidateCollisionModelHeight( bool update ) {
 }
 
 void DialogAFBody::OnEnChangeEditCmHeight() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_CM_HEIGHT ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_CM_HEIGHT ) ) ) {
 		ValidateCollisionModelHeight( false );
 		UpdateFile();
 	} else {
-		cm_height = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_CM_HEIGHT ), false );
+		cm_height = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_CM_HEIGHT ), false );
 	}
 }
 
@@ -886,11 +886,11 @@ void DialogAFBody::ValidateCollisionModelWidth( bool update ) {
 }
 
 void DialogAFBody::OnEnChangeEditCmWidth() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_CM_WIDTH ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_CM_WIDTH ) ) ) {
 		ValidateCollisionModelWidth( false );
 		UpdateFile();
 	} else {
-		cm_width = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_CM_WIDTH ), false );
+		cm_width = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_CM_WIDTH ), false );
 	}
 }
 
@@ -907,7 +907,7 @@ void DialogAFBody::OnDeltaposSpinCmWidth( NMHDR *pNMHDR, LRESULT *pResult ) {
 }
 
 void DialogAFBody::ValidateCollisionModelNumSides( bool update ) {
-	cm_numSides = ( int ) cm_numSides;
+	cm_numSides = ( int )cm_numSides;
 	if( cm_numSides < 3 ) {
 		cm_numSides = 3;
 		update = true;
@@ -921,7 +921,7 @@ void DialogAFBody::ValidateCollisionModelNumSides( bool update ) {
 }
 
 void DialogAFBody::OnEnChangeEditCmNumsides() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_CM_NUMSIDES ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_CM_NUMSIDES ) ) ) {
 		ValidateCollisionModelNumSides( false );
 		UpdateFile();
 	}
@@ -964,11 +964,11 @@ void DialogAFBody::ValidateCollisionModelDensity( bool update ) {
 }
 
 void DialogAFBody::OnEnChangeEditCmDensity() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_CM_DENSITY ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_CM_DENSITY ) ) ) {
 		ValidateCollisionModelDensity( false );
 		UpdateFile();
 	} else {
-		cm_density = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_CM_DENSITY ), false );
+		cm_density = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_CM_DENSITY ), false );
 	}
 }
 
@@ -981,7 +981,7 @@ void DialogAFBody::OnDeltaposSpinCmDensity( NMHDR *pNMHDR, LRESULT *pResult ) {
 }
 
 void DialogAFBody::OnEnChangeEditCmInertiascale() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_CM_INERTIASCALE ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_CM_INERTIASCALE ) ) ) {
 		UpdateFile();
 	}
 }
@@ -1014,10 +1014,10 @@ void DialogAFBody::OnBnClickedRadioOriginJoint() {
 }
 
 void DialogAFBody::OnEnChangeEditAfVectorX() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_AF_VECTOR_X ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_AF_VECTOR_X ) ) ) {
 		UpdateFile();
 	} else {
-		cm_origin_x = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_AF_VECTOR_X ) );
+		cm_origin_x = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_AF_VECTOR_X ) );
 	}
 }
 
@@ -1034,10 +1034,10 @@ void DialogAFBody::OnDeltaposSpinAfVectorX( NMHDR *pNMHDR, LRESULT *pResult ) {
 }
 
 void DialogAFBody::OnEnChangeEditAfVectorY() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_AF_VECTOR_Y ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_AF_VECTOR_Y ) ) ) {
 		UpdateFile();
 	} else {
-		cm_origin_y = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_AF_VECTOR_Y ) );
+		cm_origin_y = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_AF_VECTOR_Y ) );
 	}
 }
 
@@ -1054,10 +1054,10 @@ void DialogAFBody::OnDeltaposSpinAfVectorY( NMHDR *pNMHDR, LRESULT *pResult ) {
 }
 
 void DialogAFBody::OnEnChangeEditAfVectorZ() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_AF_VECTOR_Z ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_AF_VECTOR_Z ) ) ) {
 		UpdateFile();
 	} else {
-		cm_origin_z = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_AF_VECTOR_Z ) );
+		cm_origin_z = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_AF_VECTOR_Z ) );
 	}
 }
 
@@ -1092,10 +1092,10 @@ void DialogAFBody::OnOnCbnSelchangeComboOriginJoint() {
 }
 
 void DialogAFBody::OnEnChangeEditAnglesPitch() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANGLES_PITCH ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANGLES_PITCH ) ) ) {
 		UpdateFile();
 	} else {
-		cm_angles_pitch = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_ANGLES_PITCH ) );
+		cm_angles_pitch = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_ANGLES_PITCH ) );
 	}
 }
 
@@ -1113,10 +1113,10 @@ void DialogAFBody::OnDeltaposSpinAnglesPitch( NMHDR *pNMHDR, LRESULT *pResult ) 
 }
 
 void DialogAFBody::OnEnChangeEditAnglesYaw() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANGLES_YAW ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANGLES_YAW ) ) ) {
 		UpdateFile();
 	} else {
-		cm_angles_yaw = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_ANGLES_YAW ) );
+		cm_angles_yaw = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_ANGLES_YAW ) );
 	}
 }
 
@@ -1134,10 +1134,10 @@ void DialogAFBody::OnDeltaposSpinAnglesYaw( NMHDR *pNMHDR, LRESULT *pResult ) {
 }
 
 void DialogAFBody::OnEnChangeEditAnglesRoll() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANGLES_ROLL ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANGLES_ROLL ) ) ) {
 		UpdateFile();
 	} else {
-		cm_angles_roll = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_ANGLES_ROLL ) );
+		cm_angles_roll = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_ANGLES_ROLL ) );
 	}
 }
 
@@ -1171,10 +1171,10 @@ void DialogAFBody::OnEnChangeEditClipmask() {
 }
 
 void DialogAFBody::OnEnChangeEditLinearfriction() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_LINEARFRICTION ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_LINEARFRICTION ) ) ) {
 		UpdateFile();
 	} else {
-		m_linearFriction = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_LINEARFRICTION ), false );
+		m_linearFriction = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_LINEARFRICTION ), false );
 	}
 }
 
@@ -1186,10 +1186,10 @@ void DialogAFBody::OnDeltaposSpinLinearfriction( NMHDR *pNMHDR, LRESULT *pResult
 }
 
 void DialogAFBody::OnEnChangeEditAngularfriction() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANGULARFRICTION ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANGULARFRICTION ) ) ) {
 		UpdateFile();
 	} else {
-		m_angularFriction = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_ANGULARFRICTION ), false );
+		m_angularFriction = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_ANGULARFRICTION ), false );
 	}
 }
 
@@ -1201,10 +1201,10 @@ void DialogAFBody::OnDeltaposSpinAngularfriction( NMHDR *pNMHDR, LRESULT *pResul
 }
 
 void DialogAFBody::OnEnChangeEditContactfriction() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_CONTACTFRICTION ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_CONTACTFRICTION ) ) ) {
 		UpdateFile();
 	} else {
-		m_contactFriction = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_CONTACTFRICTION ), false );
+		m_contactFriction = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_CONTACTFRICTION ), false );
 	}
 }
 
@@ -1216,13 +1216,13 @@ void DialogAFBody::OnDeltaposSpinContactfriction( NMHDR *pNMHDR, LRESULT *pResul
 }
 
 void DialogAFBody::OnEnChangeEditFrictionDirection() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_FRICTIONDIRECTION ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_FRICTIONDIRECTION ) ) ) {
 		UpdateFile();
 	}
 }
 
 void DialogAFBody::OnEnChangeEditContactMotorDirection() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_CONTACTMOTORDIRECTION ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_CONTACTMOTORDIRECTION ) ) ) {
 		UpdateFile();
 	}
 }

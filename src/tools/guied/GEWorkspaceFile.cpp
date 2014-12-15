@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -45,11 +45,11 @@ bool rvGEWorkspace::SaveFile( const char *filename ) {
 	ospath = fileSystem->RelativePathToOSPath( tempfile, "fs_basepath" );
 	// Open the output file for write
 	if( !( file = fileSystem->OpenFileWrite( tempfile ) ) ) {
-		int error = GetLastError( );
+		int error = GetLastError();
 		SetCursor( LoadCursor( NULL, MAKEINTRESOURCE( IDC_ARROW ) ) );
 		return false;
 	}
-	window = mInterface->GetDesktop( );
+	window = mInterface->GetDesktop();
 	WriteWindow( file, 1, window );
 	fileSystem->CloseFile( file );
 	if( !CopyFile( ospath, filename, FALSE ) ) {
@@ -60,8 +60,8 @@ bool rvGEWorkspace::SaveFile( const char *filename ) {
 	DeleteFile( ospath );
 	mFilename = filename;
 	mModified = false;
-	mNew      = false;
-	UpdateTitle( );
+	mNew = false;
+	UpdateTitle();
 	SetCursor( LoadCursor( NULL, MAKEINTRESOURCE( IDC_ARROW ) ) );
 	return true;
 }
@@ -75,7 +75,7 @@ Writes the given number of tabs to the given file
 */
 void rvGEWorkspace::WriteTabs( idFile *file, int depth ) {
 	int i;
-	for( i = 0; i < depth; i ++ ) {
+	for( i = 0; i < depth; i++ ) {
 		file->Write( "\t", 1 );
 	}
 }
@@ -95,22 +95,22 @@ bool rvGEWorkspace::WriteWindow( idFile *file, int depth, idWindow *window ) {
 	if( !wrapper ) {
 		return true;
 	}
-	if( wrapper->IsDeleted( ) ) {
+	if( wrapper->IsDeleted() ) {
 		return true;
 	}
 	// Window def header
 	WriteTabs( file, depth - 1 );
-	out = wrapper->WindowTypeToString( wrapper->GetWindowType( ) );
+	out = wrapper->WindowTypeToString( wrapper->GetWindowType() );
 	out.Append( " " );
 	file->Write( out, out.Length() );
-	out = window->GetName( );
+	out = window->GetName();
 	file->Write( out, out.Length() );
 	file->Write( "\r\n", 2 );
 	WriteTabs( file, depth - 1 );
 	out = "{\r\n";
 	file->Write( out, out.Length() );
-	file->ForceFlush( );
-	for( i = 0; i < wrapper->GetStateDict().GetNumKeyVals(); i ++ ) {
+	file->ForceFlush();
+	for( i = 0; i < wrapper->GetStateDict().GetNumKeyVals(); i++ ) {
 		const idKeyValue *key = wrapper->GetStateDict().GetKeyVal( i );
 		// Dont write name to the files
 		if( !key->GetKey().Icmp( "name" ) ) {
@@ -121,7 +121,7 @@ bool rvGEWorkspace::WriteWindow( idFile *file, int depth, idWindow *window ) {
 		out.Append( "\t" );
 		file->Write( out, out.Length() );
 		const char *p;
-		for( p = key->GetValue().c_str(); *p; p ++ ) {
+		for( p = key->GetValue().c_str(); *p; p++ ) {
 			switch( *p ) {
 			case '\n':
 				file->Write( "\\n", 2 );
@@ -133,7 +133,7 @@ bool rvGEWorkspace::WriteWindow( idFile *file, int depth, idWindow *window ) {
 		}
 		file->Write( "\r\n", 2 );
 	}
-	for( i = 0; i < wrapper->GetVariableDict().GetNumKeyVals(); i ++ ) {
+	for( i = 0; i < wrapper->GetVariableDict().GetNumKeyVals(); i++ ) {
 		const idKeyValue *key = wrapper->GetVariableDict().GetKeyVal( i );
 		WriteTabs( file, depth );
 		out = key->GetKey();
@@ -145,7 +145,7 @@ bool rvGEWorkspace::WriteWindow( idFile *file, int depth, idWindow *window ) {
 	if( wrapper->GetScriptDict().GetNumKeyVals() ) {
 		file->Write( "\r\n", 2 );
 	}
-	for( i = 0; i < wrapper->GetScriptDict().GetNumKeyVals(); i ++ ) {
+	for( i = 0; i < wrapper->GetScriptDict().GetNumKeyVals(); i++ ) {
 		const idKeyValue *key = wrapper->GetScriptDict().GetKeyVal( i );
 		WriteTabs( file, depth );
 		file->Write( key->GetKey(), key->GetKey().Length() );
@@ -156,7 +156,7 @@ bool rvGEWorkspace::WriteWindow( idFile *file, int depth, idWindow *window ) {
 		file->Write( "\r\n", 2 );
 		file->Write( "\r\n", 2 );
 	}
-	for( i = 0; i < wrapper->GetChildCount(); i ++ ) {
+	for( i = 0; i < wrapper->GetChildCount(); i++ ) {
 		idWindow *child = wrapper->GetChild( i );
 		WriteWindow( file, depth + 1, child );
 	}
@@ -164,7 +164,7 @@ bool rvGEWorkspace::WriteWindow( idFile *file, int depth, idWindow *window ) {
 	WriteTabs( file, depth - 1 );
 	out = "}\r\n";
 	file->Write( out, out.Length() );
-	file->ForceFlush( );
+	file->ForceFlush();
 	return true;
 }
 
@@ -200,7 +200,7 @@ bool rvGEWorkspace::NewFile( void ) {
 	// Ensure the temp file doesnt hang around
 	DeleteFile( ospath );
 	// Go back to using a .gui extensions
-	ospath.StripFileExtension( );
+	ospath.StripFileExtension();
 	ospath.Append( ".gui" );
 	mFilename = ospath;
 	return true;
@@ -222,7 +222,7 @@ bool rvGEWorkspace::LoadFile( const char *filename, idStr *error ) {
 	ospath = fileSystem->RelativePathToOSPath( tempfile, "fs_basepath" );
 	// Make sure the gui directory exists
 	idStr createDir = ospath;
-	createDir.StripFilename( );
+	createDir.StripFilename();
 	CreateDirectory( createDir, NULL );
 	SetFileAttributes( ospath, FILE_ATTRIBUTE_NORMAL );
 	DeleteFile( ospath );
@@ -234,12 +234,12 @@ bool rvGEWorkspace::LoadFile( const char *filename, idStr *error ) {
 	}
 	SetFileAttributes( ospath, FILE_ATTRIBUTE_NORMAL );
 	mFilename = filename;
-	UpdateTitle( );
+	UpdateTitle();
 	// Let the real window system parse it first
 	mInterface = NULL;
-	result     = true;
+	result = true;
 	try {
-		mInterface = reinterpret_cast< idUserInterfaceLocal * >( uiManager->FindGui( tempfile, true, true ) );
+		mInterface = reinterpret_cast<idUserInterfaceLocal *>( uiManager->FindGui( tempfile, true, true ) );
 		if( !mInterface && error ) {
 			*error = "File not found";
 		}
@@ -251,7 +251,7 @@ bool rvGEWorkspace::LoadFile( const char *filename, idStr *error ) {
 		return false;
 	}
 	if( result ) {
-		rvGEWindowWrapper::GetWrapper( mInterface->GetDesktop( ) )->Expand( );
+		rvGEWindowWrapper::GetWrapper( mInterface->GetDesktop() )->Expand();
 	} else {
 		DeleteFile( ospath );
 	}

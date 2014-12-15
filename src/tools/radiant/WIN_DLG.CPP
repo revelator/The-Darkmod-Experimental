@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -40,7 +40,7 @@ BOOL CALLBACK EditCommandDlgProc(
 	case WM_INITDIALOG:
 		index = SendDlgItemMessage( hOwner, IDC_CMD_LIST, LB_GETCURSEL, 0, 0 );
 		if( index >= 0 ) {
-			SendDlgItemMessage( hOwner, IDC_CMD_LIST, LB_GETTEXT, index, ( LPARAM )( LPCTSTR ) key );
+			SendDlgItemMessage( hOwner, IDC_CMD_LIST, LB_GETTEXT, index, ( LPARAM )( LPCTSTR )key );
 			temp = ValueForKey( g_qeglobals.d_project_entity, key );
 			strcpy( value, temp );
 			SetDlgItemText( hwndDlg, IDC_CMDMENUTEXT, key );
@@ -114,12 +114,12 @@ BOOL CALLBACK AddCommandDlgProc(
 
 void UpdateBSPCommandList( HWND hwndDlg ) {
 	int			i;
-	SendDlgItemMessage( hwndDlg, IDC_CMD_LIST, LB_RESETCONTENT, 0 , 0 );
+	SendDlgItemMessage( hwndDlg, IDC_CMD_LIST, LB_RESETCONTENT, 0, 0 );
 	i = 0;
 	int count = g_qeglobals.d_project_entity->epairs.GetNumKeyVals();
 	for( int j = 0; j < count; j++ ) {
 		if( g_qeglobals.d_project_entity->epairs.GetKeyVal( j )->GetKey()[0] == 'b' && g_qeglobals.d_project_entity->epairs.GetKeyVal( j )->GetKey()[1] == 's' && g_qeglobals.d_project_entity->epairs.GetKeyVal( j )->GetKey()[2] == 'p' ) {
-			SendDlgItemMessage( hwndDlg, IDC_CMD_LIST, LB_ADDSTRING, i , ( LPARAM ) g_qeglobals.d_project_entity->epairs.GetKeyVal( j )->GetKey().c_str() );
+			SendDlgItemMessage( hwndDlg, IDC_CMD_LIST, LB_ADDSTRING, i, ( LPARAM )g_qeglobals.d_project_entity->epairs.GetKeyVal( j )->GetKey().c_str() );
 			i++;
 		}
 	}
@@ -163,7 +163,7 @@ BOOL CALLBACK ProjectDlgProc(
 			break;
 		case IDC_REMCMD:
 			index = SendDlgItemMessage( hwndDlg, IDC_CMD_LIST, LB_GETCURSEL, 0, 0 );
-			SendDlgItemMessage( hwndDlg, IDC_CMD_LIST, LB_GETTEXT, index, ( LPARAM )( LPCTSTR ) key );
+			SendDlgItemMessage( hwndDlg, IDC_CMD_LIST, LB_GETTEXT, index, ( LPARAM )( LPCTSTR )key );
 			DeleteKey( g_qeglobals.d_project_entity, key );
 			common->Printf( "Selected %d\n", index );
 			UpdateBSPCommandList( hwndDlg );
@@ -269,7 +269,7 @@ void SelectBrush( int entitynum, int brushnum ) {
 	Brush_RemoveFromList( b );
 	Brush_AddToList( b, &selected_brushes );
 	Sys_UpdateWindows( W_ALL );
-	for( i = 0 ; i < 3 ; i++ ) {
+	for( i = 0; i < 3; i++ ) {
 		if( g_pParentWnd->GetXYWnd() ) {
 			g_pParentWnd->GetXYWnd()->GetOrigin()[i] = ( b->mins[i] + b->maxs[i] ) / 2;
 		}
@@ -299,7 +299,7 @@ void GetSelectionIndex( int *ent, int *brush ) {
 	// find entity
 	if( b->owner != world_entity ) {
 		( *ent )++;
-		for( entity = entities.next ; entity != &entities
+		for( entity = entities.next; entity != &entities
 				; entity = entity->next, ( *ent )++ )
 			;
 	}
@@ -354,7 +354,7 @@ void DoFind( void ) {
 /*
 ===================================================
 
-  ARBITRARY ROTATE
+ARBITRARY ROTATE
 
 ===================================================
 */
@@ -408,7 +408,7 @@ void DoRotate( void ) {
 /*
 ===================================================
 
-  ARBITRARY SIDES
+ARBITRARY SIDES
 
 ===================================================
 */
@@ -507,5 +507,5 @@ BOOL CALLBACK AboutDlgProc( HWND hwndDlg,
 }
 
 void DoAbout( void ) {
-	DialogBox( g_qeglobals.d_hInstance, ( char * ) IDD_ABOUT, g_pParentWnd->GetSafeHwnd(), AboutDlgProc );
+	DialogBox( g_qeglobals.d_hInstance, ( char * )IDD_ABOUT, g_pParentWnd->GetSafeHwnd(), AboutDlgProc );
 }

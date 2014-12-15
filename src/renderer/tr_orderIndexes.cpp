@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #include "precompiled_engine.h"
 #pragma hdrstop
 
@@ -36,22 +36,22 @@ int	R_MeshCost( int numIndexes, glIndex_t *indexes ) {
 	int	c_stalls;
 	int	c_loads;
 	int	fifo;
-	for( i = 0 ; i < CACHE_SIZE ; i++ ) {
+	for( i = 0; i < CACHE_SIZE; i++ ) {
 		inCache[i] = -1;
 	}
 	c_loads = 0;
 	c_stalls = 0;
 	fifo = 0;
-	for( i = 0 ; i < numIndexes ; i++ ) {
+	for( i = 0; i < numIndexes; i++ ) {
 		v = indexes[i];
-		for( j = 0 ; j < CACHE_SIZE ; j++ ) {
-			if( inCache[( fifo + j ) % CACHE_SIZE ] == v ) {
+		for( j = 0; j < CACHE_SIZE; j++ ) {
+			if( inCache[( fifo + j ) % CACHE_SIZE] == v ) {
 				break;
 			}
 		}
 		if( j == CACHE_SIZE ) {
 			c_loads++;
-			inCache[ fifo % CACHE_SIZE ] = v;
+			inCache[fifo % CACHE_SIZE] = v;
 			fifo++;
 		} else if( j < STALL_SIZE ) {
 			c_stalls++;
@@ -99,7 +99,7 @@ void R_OrderIndexes( int numIndexes, glIndex_t *indexes ) {
 	memset( triangleUsed, 0, numTris * sizeof( *triangleUsed ) );
 	// find the highest vertex number
 	numVerts = 0;
-	for( i = 0 ; i < numIndexes ; i++ ) {
+	for( i = 0; i < numIndexes; i++ ) {
 		if( indexes[i] > numVerts ) {
 			numVerts = indexes[i];
 		}
@@ -109,7 +109,7 @@ void R_OrderIndexes( int numIndexes, glIndex_t *indexes ) {
 	vrefs = ( vertRef_t ** )_alloca( numVerts * sizeof( *vrefs ) );
 	memset( vrefs, 0, numVerts * sizeof( *vrefs ) );
 	vrefTable = ( vertRef_t * )_alloca( numIndexes * sizeof( *vrefTable ) );
-	for( i = 0 ; i < numIndexes ; i++ ) {
+	for( i = 0; i < numIndexes; i++ ) {
 		tri = i / 3;
 		vrefTable[i].tri = tri;
 		vrefTable[i].next = vrefs[oldIndexes[i]];
@@ -120,7 +120,7 @@ void R_OrderIndexes( int numIndexes, glIndex_t *indexes ) {
 	c_starts = 0;
 	while( numIndexes != numOldIndexes ) {
 		// find a triangle that hasn't been used
-		for( tri = 0 ; tri < numTris ; tri++ ) {
+		for( tri = 0; tri < numTris; tri++ ) {
 			if( !triangleUsed[tri] ) {
 				break;
 			}
@@ -138,10 +138,10 @@ void R_OrderIndexes( int numIndexes, glIndex_t *indexes ) {
 			numIndexes += 3;
 			triangleUsed[tri] = true;
 			// try to find a shared edge to another unused tri
-			for( i = 0 ; i < 3 ; i++ ) {
+			for( i = 0; i < 3; i++ ) {
 				v1 = base[i];
 				v2 = base[( i + 1 ) % 3];
-				for( vref = vrefs[v1] ; vref ; vref = vref->next ) {
+				for( vref = vrefs[v1]; vref; vref = vref->next ) {
 					tri = vref->tri;
 					if( triangleUsed[tri] ) {
 						continue;
@@ -176,4 +176,4 @@ void R_OrderIndexes( int numIndexes, glIndex_t *indexes ) {
 
   look for a vert that shares an edge with the vert about to be evicted
 
-*/
+  */

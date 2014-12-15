@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -57,7 +57,7 @@ idBlockAlloc<clipLink_t, 1024>	clipLinkAllocator;
 /*
 ===============================================================
 
-	idClipModel trace model cache
+idClipModel trace model cache
 
 ===============================================================
 */
@@ -189,7 +189,7 @@ void idClipModel::RestoreTraceModels( idRestoreGame *savefile ) {
 /*
 ===============================================================
 
-	idClipModel
+idClipModel
 
 ===============================================================
 */
@@ -579,7 +579,7 @@ cmHandle_t idClipModel::CheckModel( const char *name ) {
 /*
 ===============================================================
 
-	idClip
+idClip
 
 ===============================================================
 */
@@ -724,7 +724,7 @@ void idClip::ClipModelsTouchingBounds_r( const struct clipSector_s *node, listPa
 			continue;
 		}
 		// if the bounds really do overlap
-		if(	check->absBounds[0][0] > parms.bounds[1][0] ||
+		if( check->absBounds[0][0] > parms.bounds[1][0] ||
 				check->absBounds[1][0] < parms.bounds[0][0] ||
 				check->absBounds[0][1] > parms.bounds[1][1] ||
 				check->absBounds[1][1] < parms.bounds[0][1] ||
@@ -749,7 +749,7 @@ idClip::ClipModelsTouchingBounds
 */
 int idClip::ClipModelsTouchingBounds( const idBounds &bounds, int contentMask, idClipModel **clipModelList, int maxCount ) const {
 	listParms_t parms;
-	if(	bounds[0][0] > bounds[1][0] ||
+	if( bounds[0][0] > bounds[1][0] ||
 			bounds[0][1] > bounds[1][1] ||
 			bounds[0][2] > bounds[1][2] ) {
 		// we should not go through the tree for degenerate or backwards bounds
@@ -800,11 +800,11 @@ int idClip::EntitiesTouchingBounds( const idBounds &bounds, int contentMask, idE
 ====================
 idClip::GetTraceClipModels
 
-  an ent will be excluded from testing if:
-  cm->entity == passEntity ( don't clip against the pass entity )
-  cm->entity == passOwner ( missiles don't clip with owner )
-  cm->owner == passEntity ( don't interact with your own missiles )
-  cm->owner == passOwner ( don't interact with other missiles from same owner )
+an ent will be excluded from testing if:
+cm->entity == passEntity ( don't clip against the pass entity )
+cm->entity == passOwner ( missiles don't clip with owner )
+cm->owner == passEntity ( don't interact with your own missiles )
+cm->owner == passOwner ( don't interact with other missiles from same owner )
 ====================
 */
 int idClip::GetTraceClipModels( const idBounds &bounds, int contentMask, const idEntity *passEntity, idClipModel **clipModelList ) const {

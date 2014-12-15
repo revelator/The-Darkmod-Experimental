@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -332,7 +332,7 @@ void idDeviceContext::DrawMaterial( float x, float y, float w, float h, const id
 	}
 	//
 	if( w < 0 ) {	// flip about vertical
-		w  = -w;
+		w = -w;
 		s0 = 1 * scalex;
 		s1 = 0;
 	} else {
@@ -340,7 +340,7 @@ void idDeviceContext::DrawMaterial( float x, float y, float w, float h, const id
 		s1 = 1 * scalex;
 	}
 	if( h < 0 ) {	// flip about horizontal
-		h  = -h;
+		h = -h;
 		t0 = 1 * scaley;
 		t1 = 0;
 	} else {
@@ -369,7 +369,7 @@ void idDeviceContext::DrawMaterialRotated( float x, float y, float w, float h, c
 	}
 	//
 	if( w < 0 ) {	// flip about vertical
-		w  = -w;
+		w = -w;
 		s0 = 1 * scalex;
 		s1 = 0;
 	} else {
@@ -377,7 +377,7 @@ void idDeviceContext::DrawMaterialRotated( float x, float y, float w, float h, c
 		s1 = 1 * scalex;
 	}
 	if( h < 0 ) {	// flip about horizontal
-		h  = -h;
+		h = -h;
 		t0 = 1 * scaley;
 		t1 = 0;
 	} else {
@@ -761,12 +761,12 @@ idRegion *idDeviceContext::GetTextRegion( const char *text, float textScale, idR
 	return NULL;
 	/*
 		if (text == NULL) {
-			return;
+		return;
 		}
 
 		textPtr = text;
 		if (*textPtr == '\0') {
-			return;
+		return;
 		}
 
 		y = lineSkip + rectDraw.y + yStart;
@@ -778,40 +778,40 @@ idRegion *idDeviceContext::GetTextRegion( const char *text, float textScale, idR
 
 		textWidth = 0;
 		while (p) {
-			if (*p == ' ' || *p == '\t' || *p == '\n' || *p == '\0') {
-				newLine = len;
-				newLinePtr = p + 1;
-				newLineWidth = textWidth;
-			}
-
-			if ((newLine && textWidth > rectDraw.w) || *p == '\n' || *p == '\0') {
-				if (len) {
-					float x = rectDraw.x ;
-
-					buff[newLine] = '\0';
-					DrawText(x, y, textScale, color, buff, 0, 0, 0);
-					if (!wrap) {
-						return;
-					}
-				}
-
-				if (*p == '\0') {
-					break;
-				}
-
-				y += lineSkip + 5;
-				p = newLinePtr;
-				len = 0;
-				newLine = 0;
-				newLineWidth = 0;
-				continue;
-			}
-
-			buff[len++] = *p++;
-			buff[len] = '\0';
-			textWidth = TextWidth( buff, textScale, -1 );
+		if (*p == ' ' || *p == '\t' || *p == '\n' || *p == '\0') {
+		newLine = len;
+		newLinePtr = p + 1;
+		newLineWidth = textWidth;
 		}
-	*/
+
+		if ((newLine && textWidth > rectDraw.w) || *p == '\n' || *p == '\0') {
+		if (len) {
+		float x = rectDraw.x ;
+
+		buff[newLine] = '\0';
+		DrawText(x, y, textScale, color, buff, 0, 0, 0);
+		if (!wrap) {
+		return;
+		}
+		}
+
+		if (*p == '\0') {
+		break;
+		}
+
+		y += lineSkip + 5;
+		p = newLinePtr;
+		len = 0;
+		newLine = 0;
+		newLineWidth = 0;
+		continue;
+		}
+
+		buff[len++] = *p++;
+		buff[len] = '\0';
+		textWidth = TextWidth( buff, textScale, -1 );
+		}
+		*/
 }
 
 void idDeviceContext::DrawEditCursor( float x, float y, float scale ) {
@@ -936,7 +936,7 @@ int idDeviceContext::DrawText( const char *text, float textScale, int textAlign,
 		buff[len] = '\0';
 		// update the width
 		if( *( buff + len - 1 ) != C_COLOR_ESCAPE && ( len <= 1 || *( buff + len - 2 ) != C_COLOR_ESCAPE ) ) {
-			textWidth += textScale * useFont->glyphScale * useFont->glyphs[( const unsigned char ) * ( buff + len - 1 ) ].xSkip;
+			textWidth += textScale * useFont->glyphScale * useFont->glyphs[( const unsigned char ) * ( buff + len - 1 )].xSkip;
 		}
 	}
 	return idMath::FtoiFast( rectDraw.w / charSkip );
@@ -949,11 +949,11 @@ idRectangle::String
 */
 char *idRectangle::String( void ) const {
 	static	int		index = 0;
-	static	char	str[ 8 ][ 48 ];
+	static	char	str[8][48];
 	char	*s;
 	// use an array so that multiple toString's won't collide
 	// TODO: This is not thread-safe and can still collide!
-	s = str[ index ];
+	s = str[index];
 	index = ( index + 1 ) & 7;
 	sprintf( s, "%.2f %.2f %.2f %.2f", x, y, w, h );
 	return s;

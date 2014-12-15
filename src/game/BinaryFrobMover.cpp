@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 // Copyright (C) 2004 Gerhard W. Gruber <sparhawk@gmx.at>
 //
@@ -55,21 +55,21 @@ const idEventDef EV_TDM_FrobMover_ClearPlayerImmobilization( "_EV_TDM_FrobMover_
 		EventArgs( 'e', "", "" ), EV_RETURNS_VOID, "internal" ); // grayman #3643 - allows player to handle weapons again
 
 CLASS_DECLARATION( idMover, CBinaryFrobMover )
-EVENT( EV_PostSpawn,					CBinaryFrobMover::Event_PostSpawn )
-EVENT( EV_TDM_FrobMover_Open,			CBinaryFrobMover::Event_Open )
-EVENT( EV_TDM_FrobMover_Close,			CBinaryFrobMover::Event_Close )
-EVENT( EV_TDM_FrobMover_ToggleOpen,		CBinaryFrobMover::Event_ToggleOpen )
-EVENT( EV_TDM_FrobMover_Lock,			CBinaryFrobMover::Event_Lock )
-EVENT( EV_TDM_FrobMover_Unlock,			CBinaryFrobMover::Event_Unlock )
-EVENT( EV_TDM_FrobMover_ToggleLock,		CBinaryFrobMover::Event_ToggleLock )
-EVENT( EV_TDM_FrobMover_IsOpen,			CBinaryFrobMover::Event_IsOpen )
-EVENT( EV_TDM_FrobMover_IsLocked,		CBinaryFrobMover::Event_IsLocked )
-EVENT( EV_TDM_FrobMover_IsPickable,		CBinaryFrobMover::Event_IsPickable )
-EVENT( EV_Activate,						CBinaryFrobMover::Event_Activate )
-EVENT( EV_TDM_FrobMover_HandleLockRequest,	CBinaryFrobMover::Event_HandleLockRequest )
-EVENT( EV_TDM_FrobMover_ClearPlayerImmobilization,	CBinaryFrobMover::Event_ClearPlayerImmobilization ) // grayman #3643
-EVENT( EV_TDM_Lock_StatusUpdate,		CBinaryFrobMover::Event_Lock_StatusUpdate ) // grayman #3643
-EVENT( EV_TDM_Lock_OnLockPicked,		CBinaryFrobMover::Event_Lock_OnLockPicked ) // grayman #3643
+EVENT( EV_PostSpawn, CBinaryFrobMover::Event_PostSpawn )
+EVENT( EV_TDM_FrobMover_Open, CBinaryFrobMover::Event_Open )
+EVENT( EV_TDM_FrobMover_Close, CBinaryFrobMover::Event_Close )
+EVENT( EV_TDM_FrobMover_ToggleOpen, CBinaryFrobMover::Event_ToggleOpen )
+EVENT( EV_TDM_FrobMover_Lock, CBinaryFrobMover::Event_Lock )
+EVENT( EV_TDM_FrobMover_Unlock, CBinaryFrobMover::Event_Unlock )
+EVENT( EV_TDM_FrobMover_ToggleLock, CBinaryFrobMover::Event_ToggleLock )
+EVENT( EV_TDM_FrobMover_IsOpen, CBinaryFrobMover::Event_IsOpen )
+EVENT( EV_TDM_FrobMover_IsLocked, CBinaryFrobMover::Event_IsLocked )
+EVENT( EV_TDM_FrobMover_IsPickable, CBinaryFrobMover::Event_IsPickable )
+EVENT( EV_Activate, CBinaryFrobMover::Event_Activate )
+EVENT( EV_TDM_FrobMover_HandleLockRequest, CBinaryFrobMover::Event_HandleLockRequest )
+EVENT( EV_TDM_FrobMover_ClearPlayerImmobilization, CBinaryFrobMover::Event_ClearPlayerImmobilization ) // grayman #3643
+EVENT( EV_TDM_Lock_StatusUpdate, CBinaryFrobMover::Event_Lock_StatusUpdate ) // grayman #3643
+EVENT( EV_TDM_Lock_OnLockPicked, CBinaryFrobMover::Event_Lock_OnLockPicked ) // grayman #3643
 END_CLASS
 
 CBinaryFrobMover::CBinaryFrobMover() {
@@ -156,7 +156,7 @@ void CBinaryFrobMover::Save( idSaveGame *savefile ) const {
 	savefile->WriteBox( m_closedBox ); // grayman #2345
 	// grayman #1145 - registered AI for a locked door
 	savefile->WriteInt( m_registeredAI.Num() );
-	for( int i = 0 ; i < m_registeredAI.Num() ; i++ ) {
+	for( int i = 0; i < m_registeredAI.Num(); i++ ) {
 		m_registeredAI[i].Save( savefile );
 	}
 	m_lastUsedBy.Save( savefile );			// grayman #2859
@@ -204,7 +204,7 @@ void CBinaryFrobMover::Restore( idRestoreGame *savefile ) {
 	int num;
 	savefile->ReadInt( num );
 	m_registeredAI.SetNum( num );
-	for( int i = 0 ; i < num ; i++ ) {
+	for( int i = 0; i < num; i++ ) {
 		m_registeredAI[i].Restore( savefile );
 	}
 	m_lastUsedBy.Restore( savefile );				// grayman #2859
@@ -375,7 +375,7 @@ void CBinaryFrobMover::PostSpawn() {
 	// to their switch list.
 	// grayman #3643 - For those that are doors, add yourself to
 	// their controller list.
-	for( int i = 0 ; i < targets.Num() ; i++ ) {
+	for( int i = 0; i < targets.Num(); i++ ) {
 		idEntity *e = targets[i].GetEntity();
 		if( e ) {
 			if( e->IsType( idLight::Type ) ) {
@@ -430,7 +430,7 @@ void CBinaryFrobMover::Lock( bool bMaster ) {
 void CBinaryFrobMover::TellRegisteredUsers() {
 	// grayman #1145 - remove this door's area number from each registered AI's forbidden area list
 	int numUsers = m_registeredAI.Num();
-	for( int i = 0 ; i < numUsers ; i++ ) {
+	for( int i = 0; i < numUsers; i++ ) {
 		idAI *ai = m_registeredAI[i].GetEntity();
 		idAAS *aas = ai->GetAAS();
 		if( aas != NULL ) {
@@ -1062,7 +1062,7 @@ bool CBinaryFrobMover::OnUnlock( bool bMaster ) {
 		completes. When the sound completes, it toggles the door, expecting
 		that to cause the open to begin. Since the door is already moving,
 		this causes the door to stop moving, and think it's been interruped.
-	*/
+		*/
 	if( cv_door_auto_open_on_unlock.GetBool() && bMaster ) {
 		// The configuration says: open the mover when it's unlocked, but let's check the mapper's settings
 		bool openOnUnlock = true;
@@ -1193,7 +1193,7 @@ void CBinaryFrobMover::FrobHeld( bool frobMaster, bool isFrobPeerAction, int hol
 	idPlayer *player = gameLocal.GetLocalPlayer();
 	if( m_bFineControlStarting ) {
 		// initialize fine control
-		player->SetImmobilization( "door handling",  EIM_VIEW_ANGLE );
+		player->SetImmobilization( "door handling", EIM_VIEW_ANGLE );
 		m_mousePosition.x = player->usercmd.mx;
 		m_mousePosition.y = player->usercmd.my;
 		// Stop the door from opening or closing as normal:
@@ -1227,7 +1227,7 @@ void CBinaryFrobMover::FrobHeld( bool frobMaster, bool isFrobPeerAction, int hol
 
 void CBinaryFrobMover::FrobReleased( bool frobMaster, bool isFrobPeerAction, int holdTime ) {
 	idPlayer *player = gameLocal.GetLocalPlayer();
-	player->SetImmobilization( "door handling",  0 );
+	player->SetImmobilization( "door handling", 0 );
 }
 
 // grayman #1145 - add an AI who unsuccessfully tried to open a locked door
@@ -1295,7 +1295,7 @@ bool CBinaryFrobMover::GetSwitchGoal( idVec3 &goal, float &standOff, int relight
 	// prevent AI from operating a switch through a wall.
 	trace_t result;
 	bool pointFound = false;
-	for( int i = 0 ; i < 4 ; i++ ) {
+	for( int i = 0; i < 4; i++ ) {
 		switch( i ) {
 		case 0:
 			break;

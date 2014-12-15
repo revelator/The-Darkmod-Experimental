@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled.h"
 #pragma hdrstop
@@ -39,7 +39,7 @@
 idSIMD_SSE3::GetName
 ============
 */
-const char * idSIMD_SSE3::GetName( void ) const {
+const char * idSIMD_SSE3::GetName(void) const {
 	return "MMX & SSE & SSE2 & SSE3";
 }
 
@@ -94,7 +94,7 @@ const char * idSIMD_SSE3::GetName( void ) const {
 	For instance:  haddps   xmm0, [esi+eax*4+64]
 	becomes:       haddps( _xmm0, ADDRESS_SCALEADDRC( _esi, _eax, 4, 64 ) )
 
-*/
+	*/
 
 #define _eax	0x00
 #define _ecx	0x01
@@ -227,16 +227,16 @@ const char * idSIMD_SSE3::GetName( void ) const {
 SSE3_Dot
 ============
 */
-float SSE3_Dot( const idVec4 &v1, const idVec4 &v2 ) {
+float SSE3_Dot(const idVec4 &v1, const idVec4 &v2) {
 	float d;
 	__asm {
 		mov		esi, v1
-		mov		edi, v2
-		movaps	xmm0, [esi]
-		mulps	xmm0, [edi]
-		haddps(	_xmm0, _xmm0 )
-		haddps(	_xmm0, _xmm0 )
-		movss	d, xmm0
+			mov		edi, v2
+			movaps	xmm0, [esi]
+			mulps	xmm0, [edi]
+			haddps(_xmm0, _xmm0)
+			haddps(_xmm0, _xmm0)
+			movss	d, xmm0
 	}
 	return d;
 }
@@ -246,7 +246,7 @@ float SSE3_Dot( const idVec4 &v1, const idVec4 &v2 ) {
 idSIMD_SSE3::GetName
 ============
 */
-const char * idSIMD_SSE3::GetName( void ) const {
+const char * idSIMD_SSE3::GetName(void) const {
 	return "MMX & SSE & SSE2 & SSE3";
 }
 
@@ -255,79 +255,79 @@ const char * idSIMD_SSE3::GetName( void ) const {
 idSIMD_SSE3::TransformVerts
 ============
 */
-void VPCALL idSIMD_SSE3::TransformVerts( idDrawVert *verts, const int numVerts, const idJointMat *joints, const idVec4 *weights, const int *index, const int numWeights ) {
+void VPCALL idSIMD_SSE3::TransformVerts(idDrawVert *verts, const int numVerts, const idJointMat *joints, const idVec4 *weights, const int *index, const int numWeights) {
 #if 1
 
-	assert( sizeof( idDrawVert ) == DRAWVERT_SIZE );
-	assert( (int)&((idDrawVert *)0)->xyz == DRAWVERT_XYZ_OFFSET );
-	assert( sizeof( idVec4 ) == JOINTWEIGHT_SIZE );
-	assert( sizeof( idJointMat ) == JOINTMAT_SIZE );
+	assert(sizeof(idDrawVert) == DRAWVERT_SIZE);
+	assert((int)&((idDrawVert *)0)->xyz == DRAWVERT_XYZ_OFFSET);
+	assert(sizeof(idVec4) == JOINTWEIGHT_SIZE);
+	assert(sizeof(idJointMat) == JOINTMAT_SIZE);
 
 	__asm
 	{
 		mov			eax, numVerts
-		test		eax, eax
-		jz			done
-		imul		eax, DRAWVERT_SIZE
+			test		eax, eax
+			jz			done
+			imul		eax, DRAWVERT_SIZE
 
-		mov			ecx, verts
-		mov			edx, index
-		mov			esi, weights
-		mov			edi, joints
+			mov			ecx, verts
+			mov			edx, index
+			mov			esi, weights
+			mov			edi, joints
 
-		add			ecx, eax
-		neg			eax
+			add			ecx, eax
+			neg			eax
 
-	loopVert:
+		loopVert :
 		mov			ebx, [edx]
-		movaps		xmm2, [esi]
-		add			edx, 8
-		movaps		xmm0, xmm2
-		add			esi, JOINTWEIGHT_SIZE
-		movaps		xmm1, xmm2
+			movaps		xmm2, [esi]
+			add			edx, 8
+			movaps		xmm0, xmm2
+			add			esi, JOINTWEIGHT_SIZE
+			movaps		xmm1, xmm2
 
-		mulps		xmm0, [edi+ebx+ 0]						// xmm0 = m0, m1, m2, t0
-		mulps		xmm1, [edi+ebx+16]						// xmm1 = m3, m4, m5, t1
-		mulps		xmm2, [edi+ebx+32]						// xmm2 = m6, m7, m8, t2
+			mulps		xmm0, [edi + ebx + 0]						// xmm0 = m0, m1, m2, t0
+			mulps		xmm1, [edi + ebx + 16]						// xmm1 = m3, m4, m5, t1
+			mulps		xmm2, [edi + ebx + 32]						// xmm2 = m6, m7, m8, t2
 
-		cmp			dword ptr [edx-4], 0
+			cmp			dword ptr[edx - 4], 0
 
-		jne			doneWeight
+			jne			doneWeight
 
-	loopWeight:
+		loopWeight :
 		mov			ebx, [edx]
-		movaps		xmm5, [esi]
-		add			edx, 8
-		movaps		xmm3, xmm5
-		add			esi, JOINTWEIGHT_SIZE
-		movaps		xmm4, xmm5
+			movaps		xmm5, [esi]
+			add			edx, 8
+			movaps		xmm3, xmm5
+			add			esi, JOINTWEIGHT_SIZE
+			movaps		xmm4, xmm5
 
-		mulps		xmm3, [edi+ebx+ 0]						// xmm3 = m0, m1, m2, t0
-		mulps		xmm4, [edi+ebx+16]						// xmm4 = m3, m4, m5, t1
-		mulps		xmm5, [edi+ebx+32]						// xmm5 = m6, m7, m8, t2
+			mulps		xmm3, [edi + ebx + 0]						// xmm3 = m0, m1, m2, t0
+			mulps		xmm4, [edi + ebx + 16]						// xmm4 = m3, m4, m5, t1
+			mulps		xmm5, [edi + ebx + 32]						// xmm5 = m6, m7, m8, t2
 
-		cmp			dword ptr [edx-4], 0
+			cmp			dword ptr[edx - 4], 0
 
-		addps		xmm0, xmm3
-		addps		xmm1, xmm4
-		addps		xmm2, xmm5
+			addps		xmm0, xmm3
+			addps		xmm1, xmm4
+			addps		xmm2, xmm5
 
-		je			loopWeight
+			je			loopWeight
 
-	doneWeight:
+		doneWeight :
 		add			eax, DRAWVERT_SIZE
 
-		haddps(		_xmm0, _xmm1 )
-		haddps(		_xmm2, _xmm0 )
+			haddps(_xmm0, _xmm1)
+			haddps(_xmm2, _xmm0)
 
-		movhps		[ecx+eax-DRAWVERT_SIZE+0], xmm2
+			movhps[ecx + eax - DRAWVERT_SIZE + 0], xmm2
 
-		haddps(		_xmm2, _xmm2 )
+			haddps(_xmm2, _xmm2)
 
-		movss		[ecx+eax-DRAWVERT_SIZE+8], xmm2
+			movss[ecx + eax - DRAWVERT_SIZE + 8], xmm2
 
-		jl			loopVert
-	done:
+			jl			loopVert
+		done :
 	}
 
 #else
@@ -335,13 +335,13 @@ void VPCALL idSIMD_SSE3::TransformVerts( idDrawVert *verts, const int numVerts, 
 	int i, j;
 	const byte *jointsPtr = (byte *)joints;
 
-	for( j = i = 0; i < numVerts; i++ ) {
+	for (j = i = 0; i < numVerts; i++) {
 		idVec3 v;
 
-		v = ( *(idJointMat *) ( jointsPtr + index[j*2+0] ) ) * weights[j];
-		while( index[j*2+1] == 0 ) {
+		v = (*(idJointMat *)(jointsPtr + index[j * 2 + 0])) * weights[j];
+		while (index[j * 2 + 1] == 0) {
 			j++;
-			v += ( *(idJointMat *) ( jointsPtr + index[j*2+0] ) ) * weights[j];
+			v += (*(idJointMat *)(jointsPtr + index[j * 2 + 0])) * weights[j];
 		}
 		j++;
 

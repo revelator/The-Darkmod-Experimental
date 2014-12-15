@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 // This is real evil but allows the code to inspect arbitrary class variables.
 #define private		public
@@ -37,7 +37,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 // disabled because it's adds about 64MB to state dumps and takes a really long time
 //#define DUMP_GAMELOCAL
 
-typedef void ( *WriteVariableType_t )( const char *varName, const char *varType, const char *scope, const char *prefix, const char *postfix, const char *value, const void *varPtr, int varSize );
+typedef void( *WriteVariableType_t )( const char *varName, const char *varType, const char *scope, const char *prefix, const char *postfix, const char *value, const void *varPtr, int varSize );
 
 class idTypeInfoTools {
 public:
@@ -68,11 +68,11 @@ private:
 	static void						WriteClass_r( const void *classPtr, const char *className, const char *classType, const char *scope, const char *prefix, const int pointerDepth );
 };
 
-idFile 							*idTypeInfoTools::fp			= NULL;
-int									idTypeInfoTools::initValue	= 0;
-WriteVariableType_t					idTypeInfoTools::Write		= NULL;
-idLexer 							*idTypeInfoTools::src		= NULL;
-bool								idTypeInfoTools::typeError	= false;
+idFile 							*idTypeInfoTools::fp = NULL;
+int									idTypeInfoTools::initValue = 0;
+WriteVariableType_t					idTypeInfoTools::Write = NULL;
+idLexer 							*idTypeInfoTools::src = NULL;
+bool								idTypeInfoTools::typeError = false;
 
 /*
 ================
@@ -419,7 +419,7 @@ idTypeInfoTools::WriteVariable
 */
 void idTypeInfoTools::WriteVariable( const char *varName, const char *varType, const char *scope, const char *prefix, const char *postfix, const char *value, const void *varPtr, int varSize ) {
 	for( int i = idStr::FindChar( value, '#', 0 ); i >= 0; i = idStr::FindChar( value, '#', i + 1 ) ) {
-		if(	idStr::Icmpn( value + i + 1, "INF", 3 ) == 0 ||
+		if( idStr::Icmpn( value + i + 1, "INF", 3 ) == 0 ||
 				idStr::Icmpn( value + i + 1, "IND", 3 ) == 0 ||
 				idStr::Icmpn( value + i + 1, "NAN", 3 ) == 0 ||
 				idStr::Icmpn( value + i + 1, "QNAN", 4 ) == 0 ||
@@ -438,7 +438,7 @@ idTypeInfoTools::WriteGameStateVariable
 */
 void idTypeInfoTools::WriteGameStateVariable( const char *varName, const char *varType, const char *scope, const char *prefix, const char *postfix, const char *value, const void *varPtr, int varSize ) {
 	for( int i = idStr::FindChar( value, '#', 0 ); i >= 0; i = idStr::FindChar( value, '#', i + 1 ) ) {
-		if(	idStr::Icmpn( value + i + 1, "INF", 3 ) == 0 ||
+		if( idStr::Icmpn( value + i + 1, "INF", 3 ) == 0 ||
 				idStr::Icmpn( value + i + 1, "IND", 3 ) == 0 ||
 				idStr::Icmpn( value + i + 1, "NAN", 3 ) == 0 ||
 				idStr::Icmpn( value + i + 1, "QNAN", 4 ) == 0 ||
@@ -532,7 +532,7 @@ int idTypeInfoTools::WriteVariable_r( const void *varPtr, const char *varName, c
 			if( size == -1 ) {
 				break;
 			}
-			varPtr = ( void * )( ( ( byte * ) varPtr ) + size );
+			varPtr = ( void * )( ( ( byte * )varPtr ) + size );
 		}
 		return typeSize;
 	}
@@ -709,7 +709,7 @@ int idTypeInfoTools::WriteVariable_r( const void *varPtr, const char *varName, c
 				if( size == -1 ) {
 					break;
 				}
-				listVarPtr = ( void * )( ( ( byte * ) listVarPtr ) + size );
+				listVarPtr = ( void * )( ( ( byte * )listVarPtr ) + size );
 			}
 		}
 		typeSize = sizeof( idList<int> );
@@ -726,7 +726,7 @@ int idTypeInfoTools::WriteVariable_r( const void *varPtr, const char *varName, c
 					break;
 				}
 				totalSize += size;
-				listVarPtr = ( void * )( ( ( byte * ) listVarPtr ) + size );
+				listVarPtr = ( void * )( ( ( byte * )listVarPtr ) + size );
 			}
 		}
 		typeSize = sizeof( int ) + totalSize;

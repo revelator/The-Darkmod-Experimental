@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -27,7 +27,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 ======================================================================
 
-	Parses Maya ASCII files.
+Parses Maya ASCII files.
 
 ======================================================================
 */
@@ -141,7 +141,7 @@ bool MA_ParseTransform( idParser &parser ) {
 				if( !MA_ReadVec3( parser, transform->translate ) ) {
 					return false;
 				}
-				transform->translate.y *=  -1;
+				transform->translate.y *= -1;
 			} else if( !token.Icmp( ".r" ) ) {
 				if( !MA_ReadVec3( parser, transform->rotate ) ) {
 					return false;
@@ -579,7 +579,7 @@ void MA_ParseMesh( idParser &parser ) {
 	}
 	//Now apply the pt transformations
 	for( int i = 0; i < pMesh->numVertTransforms; i++ ) {
-		pMesh->vertexes[( int )pMesh->vertTransforms[i].w] +=  pMesh->vertTransforms[i].ToVec3();
+		pMesh->vertexes[( int )pMesh->vertTransforms[i].w] += pMesh->vertTransforms[i].ToVec3();
 	}
 	MA_VERBOSE( ( va( "MESH %s - parent %s\n", header.name, header.parent ) ) );
 	MA_VERBOSE( ( va( "\tverts:%d\n", maGlobal.currentObject->mesh.numVertexes ) ) );

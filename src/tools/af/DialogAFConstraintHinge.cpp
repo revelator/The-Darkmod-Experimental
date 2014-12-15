@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -122,7 +122,7 @@ void DialogAFConstraintHinge::InitJointLists( void ) {
 	}
 	int numJoints = model->NumJoints();
 	for( int i = 0; i < numJoints; i++ ) {
-		const char *jointName = model->GetJointName( ( jointHandle_t ) i );
+		const char *jointName = model->GetJointName( ( jointHandle_t )i );
 		m_comboAnchorJoint.AddString( jointName );
 		m_comboAxisJoint1.AddString( jointName );
 		m_comboAxisJoint2.AddString( jointName );
@@ -311,26 +311,26 @@ void DialogAFConstraintHinge::OnCbnSelchangeComboAnchorJoint() {
 }
 
 void DialogAFConstraintHinge::OnEnChangeEditAnchorX() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_X ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_X ) ) ) {
 		UpdateFile();
 	} else {
-		m_anchor_x = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_X ) );
+		m_anchor_x = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_X ) );
 	}
 }
 
 void DialogAFConstraintHinge::OnEnChangeEditAnchorY() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_Y ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_Y ) ) ) {
 		UpdateFile();
 	} else {
-		m_anchor_y = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_Y ) );
+		m_anchor_y = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_Y ) );
 	}
 }
 
 void DialogAFConstraintHinge::OnEnChangeEditAnchorZ() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_Z ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_Z ) ) ) {
 		UpdateFile();
 	} else {
-		m_anchor_z = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_Z ) );
+		m_anchor_z = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_Z ) );
 	}
 }
 
@@ -403,10 +403,10 @@ void DialogAFConstraintHinge::OnCbnSelchangeComboHingeAxisJoint2() {
 }
 
 void DialogAFConstraintHinge::OnEnChangeEditHingeAxisPitch() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_HINGE_AXIS_PITCH ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_HINGE_AXIS_PITCH ) ) ) {
 		UpdateFile();
 	} else {
-		m_axisPitch = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_HINGE_AXIS_PITCH ) );
+		m_axisPitch = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_HINGE_AXIS_PITCH ) );
 	}
 }
 
@@ -423,10 +423,10 @@ void DialogAFConstraintHinge::OnDeltaposSpinHingeAxisPitch( NMHDR *pNMHDR, LRESU
 }
 
 void DialogAFConstraintHinge::OnEnChangeEditHingeAxisYaw() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_HINGE_AXIS_YAW ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_HINGE_AXIS_YAW ) ) ) {
 		UpdateFile();
 	} else {
-		m_axisYaw = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_HINGE_AXIS_YAW ) );
+		m_axisYaw = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_HINGE_AXIS_YAW ) );
 	}
 }
 
@@ -461,10 +461,10 @@ void DialogAFConstraintHinge::OnBnClickedRadioHingeLimitAngles() {
 }
 
 void DialogAFConstraintHinge::OnEnChangeEditHingeLimitAngle1() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_HINGE_LIMIT_ANGLE1 ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_HINGE_LIMIT_ANGLE1 ) ) ) {
 		UpdateFile();
 	} else {
-		m_limitAngle1 = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_HINGE_LIMIT_ANGLE1 ) );
+		m_limitAngle1 = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_HINGE_LIMIT_ANGLE1 ) );
 	}
 }
 
@@ -481,10 +481,10 @@ void DialogAFConstraintHinge::OnDeltaposSpinHingeLimitAngle1( NMHDR *pNMHDR, LRE
 }
 
 void DialogAFConstraintHinge::OnEnChangeEditHingeLimitAngle2() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_HINGE_LIMIT_ANGLE2 ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_HINGE_LIMIT_ANGLE2 ) ) ) {
 		UpdateFile();
 	} else {
-		m_limitAngle2 = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_HINGE_LIMIT_ANGLE2 ), false );
+		m_limitAngle2 = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_HINGE_LIMIT_ANGLE2 ), false );
 	}
 }
 
@@ -501,10 +501,10 @@ void DialogAFConstraintHinge::OnDeltaposSpinHingeLimitAngle2( NMHDR *pNMHDR, LRE
 }
 
 void DialogAFConstraintHinge::OnEnChangeEditHingeLimitAngle3() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_HINGE_LIMIT_ANGLE3 ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_HINGE_LIMIT_ANGLE3 ) ) ) {
 		UpdateFile();
 	} else {
-		m_limitAngle3 = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_HINGE_LIMIT_ANGLE3 ) );
+		m_limitAngle3 = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_HINGE_LIMIT_ANGLE3 ) );
 	}
 }
 

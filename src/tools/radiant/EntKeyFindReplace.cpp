@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -46,7 +46,7 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CEntKeyFindReplace dialog
 
-CEntKeyFindReplace::CEntKeyFindReplace(	CString *p_strFindKey,
+CEntKeyFindReplace::CEntKeyFindReplace( CString *p_strFindKey,
 										CString *p_strFindValue,
 										CString *p_strReplaceKey,
 										CString *p_strReplaceValue,
@@ -54,16 +54,16 @@ CEntKeyFindReplace::CEntKeyFindReplace(	CString *p_strFindKey,
 										bool	 *p_bSelectAllMatchingEnts,
 										CWnd	 *pParent /*=NULL*/ )
 	: CDialog( CEntKeyFindReplace::IDD, pParent ) {
-	m_pStrFindKey		= p_strFindKey;
-	m_pStrFindValue		= p_strFindValue;
-	m_pStrReplaceKey	= p_strReplaceKey;
-	m_pStrReplaceValue	= p_strReplaceValue;
+	m_pStrFindKey = p_strFindKey;
+	m_pStrFindValue = p_strFindValue;
+	m_pStrReplaceKey = p_strReplaceKey;
+	m_pStrReplaceValue = p_strReplaceValue;
 	m_pbWholeStringMatchOnly = p_bWholeStringMatchOnly;
 	m_pbSelectAllMatchingEnts = p_bSelectAllMatchingEnts;
 	//{{AFX_DATA_INIT(CEntKeyFindReplace)
-	m_strFindKey	  = *m_pStrFindKey;
-	m_strFindValue	  = *m_pStrFindValue;
-	m_strReplaceKey	  = *m_pStrReplaceKey;
+	m_strFindKey = *m_pStrFindKey;
+	m_strFindValue = *m_pStrFindValue;
+	m_strReplaceKey = *m_pStrReplaceKey;
 	m_strReplaceValue = *m_pStrReplaceValue;
 	m_bWholeStringMatchOnly = *m_pbWholeStringMatchOnly;
 	m_bSelectAllMatchingEnts = *m_pbSelectAllMatchingEnts;
@@ -85,7 +85,7 @@ void CEntKeyFindReplace::DoDataExchange( CDataExchange *pDX ) {
 BEGIN_MESSAGE_MAP( CEntKeyFindReplace, CDialog )
 	//{{AFX_MSG_MAP(CEntKeyFindReplace)
 	ON_BN_CLICKED( IDC_REPLACE, OnReplace )
-	ON_BN_CLICKED( IDC_FIND,	 OnFind )
+	ON_BN_CLICKED( IDC_FIND, OnFind )
 	ON_BN_CLICKED( IDC_KEYCOPY, OnKeycopy )
 	ON_BN_CLICKED( IDC_VALUECOPY, OnValuecopy )
 	//}}AFX_MSG_MAP
@@ -143,10 +143,10 @@ void CEntKeyFindReplace::OnFind() {
 
 void CEntKeyFindReplace::CopyFields() {
 	UpdateData( DIALOG_TO_DATA );
-	*m_pStrFindKey		= m_strFindKey;
-	*m_pStrFindValue	= m_strFindValue;
-	*m_pStrReplaceKey	= m_strReplaceKey;
-	*m_pStrReplaceValue	= m_strReplaceValue;
+	*m_pStrFindKey = m_strFindKey;
+	*m_pStrFindValue = m_strFindValue;
+	*m_pStrReplaceKey = m_strReplaceKey;
+	*m_pStrReplaceValue = m_strReplaceValue;
 	*m_pbWholeStringMatchOnly = m_bWholeStringMatchOnly != 0;
 	*m_pbSelectAllMatchingEnts = m_bSelectAllMatchingEnts != 0;
 }

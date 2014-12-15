@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -27,7 +27,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 ==============================================================
 
-	Clock ticks
+Clock ticks
 
 ==============================================================
 */
@@ -41,7 +41,7 @@ double Sys_GetClockTicks( void ) {
 #if 0
 	LARGE_INTEGER li;
 	QueryPerformanceCounter( &li );
-	return = ( double ) li.LowPart + ( double ) 0xFFFFFFFF * li.HighPart;
+	return = ( double )li.LowPart + ( double )0xFFFFFFFF * li.HighPart;
 #else
 	unsigned long lo, hi;
 	__asm {
@@ -53,7 +53,7 @@ double Sys_GetClockTicks( void ) {
 		mov hi, edx
 		pop ebx
 	}
-	return ( double ) lo + ( double ) 0xFFFFFFFF * hi;
+	return ( double )lo + ( double )0xFFFFFFFF * hi;
 #endif
 }
 
@@ -78,13 +78,13 @@ double Sys_ClockTicksPerSecond( void ) {
 		if( !RegOpenKeyEx( HKEY_LOCAL_MACHINE, "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0", 0, KEY_READ, &hKey ) ) {
 			ProcSpeed = 0;
 			buflen = sizeof( ProcSpeed );
-			ret = RegQueryValueEx( hKey, "~MHz", NULL, NULL, ( LPBYTE ) &ProcSpeed, &buflen );
+			ret = RegQueryValueEx( hKey, "~MHz", NULL, NULL, ( LPBYTE )&ProcSpeed, &buflen );
 			// If we don't succeed, try some other spellings.
 			if( ret != ERROR_SUCCESS ) {
-				ret = RegQueryValueEx( hKey, "~Mhz", NULL, NULL, ( LPBYTE ) &ProcSpeed, &buflen );
+				ret = RegQueryValueEx( hKey, "~Mhz", NULL, NULL, ( LPBYTE )&ProcSpeed, &buflen );
 			}
 			if( ret != ERROR_SUCCESS ) {
-				ret = RegQueryValueEx( hKey, "~mhz", NULL, NULL, ( LPBYTE ) &ProcSpeed, &buflen );
+				ret = RegQueryValueEx( hKey, "~mhz", NULL, NULL, ( LPBYTE )&ProcSpeed, &buflen );
 			}
 			RegCloseKey( hKey );
 			if( ret == ERROR_SUCCESS ) {
@@ -99,7 +99,7 @@ double Sys_ClockTicksPerSecond( void ) {
 /*
 ==============================================================
 
-	CPU
+CPU
 
 ==============================================================
 */
@@ -123,7 +123,7 @@ static bool HasCPUID( void ) {
 		test	eax, 0x00200000		// check ID bit
 		jz		good
 		jmp		err					// cpuid not supported
-		set21:
+		set21 :
 		or		eax, 0x00200000		// set ID bit
 		push	eax					// store new value
 		popfd						// store new value in EFLAGS
@@ -175,7 +175,7 @@ static bool IsAMD( void ) {
 	char pstring[16];
 	char processorString[13];
 	// get name of processor
-	CPUID( 0, ( unsigned int * ) pstring );
+	CPUID( 0, ( unsigned int * )pstring );
 	processorString[0] = pstring[4];
 	processorString[1] = pstring[5];
 	processorString[2] = pstring[6];
@@ -335,9 +335,9 @@ static unsigned char GetAPIC_ID( void ) {
 ================
 CPUCount
 
-	logicalNum is the number of logical CPU per physical CPU
-    physicalNum is the total number of physical processor
-	returns one of the HT_* flags
+logicalNum is the number of logical CPU per physical CPU
+physicalNum is the total number of physical processor
+returns one of the HT_* flags
 ================
 */
 #define HT_NOT_CAPABLE				0
@@ -366,10 +366,10 @@ int CPUCount( int &logicalNum, int &physicalNum ) {
 		DWORD  dwAffinityMask;
 		// Calculate the appropriate  shifts and mask based on the
 		// number of logical processors.
-		unsigned char i = 1, PHY_ID_MASK  = 0xFF, PHY_ID_SHIFT = 0;
+		unsigned char i = 1, PHY_ID_MASK = 0xFF, PHY_ID_SHIFT = 0;
 		while( i < logicalNum ) {
 			i *= 2;
-			PHY_ID_MASK  <<= 1;
+			PHY_ID_MASK <<= 1;
 			PHY_ID_SHIFT++;
 		}
 		hCurrentProcessHandle = GetCurrentProcess();
@@ -389,8 +389,8 @@ int CPUCount( int &logicalNum, int &physicalNum ) {
 					unsigned char APIC_ID, LOG_ID, PHY_ID;
 					Sleep( 0 ); // Give OS time to switch CPU
 					APIC_ID = GetAPIC_ID();
-					LOG_ID  = APIC_ID & ~PHY_ID_MASK;
-					PHY_ID  = APIC_ID >> PHY_ID_SHIFT;
+					LOG_ID = APIC_ID & ~PHY_ID_MASK;
+					PHY_ID = APIC_ID >> PHY_ID_SHIFT;
 					if( LOG_ID != 0 ) {
 						HT_Enabled = 1;
 					}
@@ -400,7 +400,7 @@ int CPUCount( int &logicalNum, int &physicalNum ) {
 		}
 		// Reset the processor affinity
 		SetProcessAffinityMask( hCurrentProcessHandle, dwProcessAffinity );
-		if( logicalNum == 1 ) {   // Normal P4 : HT is disabled in hardware
+		if( logicalNum == 1 ) {  // Normal P4 : HT is disabled in hardware
 			statusFlag = HT_DISABLED;
 		} else {
 			if( HT_Enabled ) {
@@ -455,7 +455,7 @@ static bool HasDAZ( void ) {
 	memset( FXArea, 0, sizeof( FXSaveArea ) );
 	__asm {
 		mov		eax, FXArea
-		FXSAVE	[eax]
+		FXSAVE[eax]
 	}
 	dwMask = *( DWORD * )&FXArea[28];						// Read the MXCSR Mask
 	return ( ( dwMask & ( 1 << 6 ) ) == ( 1 << 6 ) );	// Return if the DAZ bit is set
@@ -516,7 +516,7 @@ cpuid_t Sys_GetCPUId( void ) {
 /*
 ===============================================================================
 
-	FPU
+FPU
 
 ===============================================================================
 */
@@ -570,7 +570,7 @@ Sys_FPU_PrintStateFlags
 */
 int Sys_FPU_PrintStateFlags( char *ptr, int ctrl, int stat, int tags, int inof, int inse, int opof, int opse ) {
 	int i, length = 0;
-	length += sprintf( ptr + length,	"CTRL = %08x\n"
+	length += sprintf( ptr + length, "CTRL = %08x\n"
 					   "STAT = %08x\n"
 					   "TAGS = %08x\n"
 					   "INOF = %08x\n"
@@ -602,8 +602,8 @@ Sys_FPU_StackIsEmpty
 bool Sys_FPU_StackIsEmpty( void ) {
 	__asm {
 		mov			eax, statePtr
-		fnstenv		[eax]
-		mov			eax, [eax+8]
+		fnstenv[eax]
+		mov			eax, [eax + 8]
 		xor			eax, 0xFFFFFFFF
 		and			eax, 0x0000FFFF
 		jz			empty
@@ -621,10 +621,10 @@ Sys_FPU_ClearStack
 void Sys_FPU_ClearStack( void ) {
 	__asm {
 		mov			eax, statePtr
-		fnstenv		[eax]
-		mov			eax, [eax+8]
+		fnstenv[eax]
+		mov			eax, [eax + 8]
 		xor			eax, 0xFFFFFFFF
-		mov			edx, ( 3<<14 )
+		mov			edx, ( 3 << 14 )
 		emptyStack:
 		mov			ecx, eax
 		and			ecx, edx
@@ -632,7 +632,7 @@ void Sys_FPU_ClearStack( void ) {
 		fstp		st
 		shr			edx, 2
 		jmp			emptyStack
-		done:
+		done :
 	}
 }
 
@@ -640,7 +640,7 @@ void Sys_FPU_ClearStack( void ) {
 ===============
 Sys_FPU_GetState
 
-  gets the FPU state without changing the state
+gets the FPU state without changing the state
 ===============
 */
 const char *Sys_FPU_GetState( void ) {
@@ -651,22 +651,22 @@ const char *Sys_FPU_GetState( void ) {
 	__asm {
 		mov			esi, statePtr
 		mov			edi, fpuStackPtr
-		fnstenv		[esi]
-		mov			esi, [esi+8]
+		fnstenv[esi]
+		mov			esi, [esi + 8]
 		xor			esi, 0xFFFFFFFF
-		mov			edx, ( 3<<14 )
+		mov			edx, ( 3 << 14 )
 		xor			eax, eax
 		mov			ecx, esi
 		and			ecx, edx
 		jz			done
-		fst			qword ptr [edi + 0]
+		fst			qword ptr[edi + 0]
 		inc			eax
 		shr			edx, 2
 		mov			ecx, esi
 		and			ecx, edx
 		jz			done
 		fxch		st( 1 )
-		fst			qword ptr [edi + 8]
+		fst			qword ptr[edi + 8]
 		inc			eax
 		fxch		st( 1 )
 		shr			edx, 2
@@ -674,7 +674,7 @@ const char *Sys_FPU_GetState( void ) {
 		and			ecx, edx
 		jz			done
 		fxch		st( 2 )
-		fst			qword ptr [edi + 16]
+		fst			qword ptr[edi + 16]
 		inc			eax
 		fxch		st( 2 )
 		shr			edx, 2
@@ -682,7 +682,7 @@ const char *Sys_FPU_GetState( void ) {
 		and			ecx, edx
 		jz			done
 		fxch		st( 3 )
-		fst			qword ptr [edi + 24]
+		fst			qword ptr[edi + 24]
 		inc			eax
 		fxch		st( 3 )
 		shr			edx, 2
@@ -690,7 +690,7 @@ const char *Sys_FPU_GetState( void ) {
 		and			ecx, edx
 		jz			done
 		fxch		st( 4 )
-		fst			qword ptr [edi + 32]
+		fst			qword ptr[edi + 32]
 		inc			eax
 		fxch		st( 4 )
 		shr			edx, 2
@@ -698,7 +698,7 @@ const char *Sys_FPU_GetState( void ) {
 		and			ecx, edx
 		jz			done
 		fxch		st( 5 )
-		fst			qword ptr [edi + 40]
+		fst			qword ptr[edi + 40]
 		inc			eax
 		fxch		st( 5 )
 		shr			edx, 2
@@ -706,7 +706,7 @@ const char *Sys_FPU_GetState( void ) {
 		and			ecx, edx
 		jz			done
 		fxch		st( 6 )
-		fst			qword ptr [edi + 48]
+		fst			qword ptr[edi + 48]
 		inc			eax
 		fxch		st( 6 )
 		shr			edx, 2
@@ -714,7 +714,7 @@ const char *Sys_FPU_GetState( void ) {
 		and			ecx, edx
 		jz			done
 		fxch		st( 7 )
-		fst			qword ptr [edi + 56]
+		fst			qword ptr[edi + 56]
 		inc			eax
 		fxch		st( 7 )
 		done:
@@ -748,12 +748,12 @@ void Sys_FPU_EnableExceptions( int exceptions ) {
 		mov			ecx, exceptions
 		and			cx, 63
 		not			cx
-		fnstcw		word ptr [eax]
-		mov			bx, word ptr [eax]
+		fnstcw		word ptr[eax]
+		mov			bx, word ptr[eax]
 		or			bx, 63
 		and			bx, cx
-		mov			word ptr [eax], bx
-		fldcw		word ptr [eax]
+		mov			word ptr[eax], bx
+		fldcw		word ptr[eax]
 	}
 }
 
@@ -769,12 +769,12 @@ void Sys_FPU_SetPrecision( int precision ) {
 	__asm {
 		mov			eax, statePtr
 		mov			cx, precisionBits
-		fnstcw		word ptr [eax]
-		mov			bx, word ptr [eax]
+		fnstcw		word ptr[eax]
+		mov			bx, word ptr[eax]
 		and			bx, precisionMask
 		or			bx, cx
-		mov			word ptr [eax], bx
-		fldcw		word ptr [eax]
+		mov			word ptr[eax], bx
+		fldcw		word ptr[eax]
 	}
 }
 
@@ -790,12 +790,12 @@ void Sys_FPU_SetRounding( int rounding ) {
 	__asm {
 		mov			eax, statePtr
 		mov			cx, roundingBits
-		fnstcw		word ptr [eax]
-		mov			bx, word ptr [eax]
+		fnstcw		word ptr[eax]
+		mov			bx, word ptr[eax]
 		and			bx, roundingMask
 		or			bx, cx
-		mov			word ptr [eax], bx
-		fldcw		word ptr [eax]
+		mov			word ptr[eax], bx
+		fldcw		word ptr[eax]
 	}
 }
 
@@ -812,7 +812,7 @@ void Sys_FPU_SetDAZ( bool enable ) {
 		shl		ecx, 6
 		STMXCSR	dword ptr dwData
 		mov		eax, dwData
-		and		eax, ~( 1<<6 )	// clear DAX bit
+		and		eax, ~( 1 << 6 )	// clear DAX bit
 		or		eax, ecx		// set the DAZ bit
 		mov		dwData, eax
 		LDMXCSR	dword ptr dwData
@@ -832,7 +832,7 @@ void Sys_FPU_SetFTZ( bool enable ) {
 		shl		ecx, 15
 		STMXCSR	dword ptr dwData
 		mov		eax, dwData
-		and		eax, ~( 1<<15 )	// clear FTZ bit
+		and		eax, ~( 1 << 15 )	// clear FTZ bit
 		or		eax, ecx		// set the FTZ bit
 		mov		dwData, eax
 		LDMXCSR	dword ptr dwData

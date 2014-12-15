@@ -38,7 +38,7 @@ static double quality_mapping_8[3] = {
 	-.1, .0, 1.
 };
 
-static double _psy_compand_8_mapping[3] = { 0., 1., 1.};
+static double _psy_compand_8_mapping[3] = { 0., 1., 1. };
 
 static double _global_mapping_8[3] = { 1., 2., 3. };
 
@@ -72,8 +72,8 @@ ve_setup_data_template ve_setup_8_stereo = {
 	_psy_compand_8_mapping,
 	NULL,
 
-	{_noise_start_8, _noise_start_8},
-	{_noise_part_8, _noise_part_8},
+	{ _noise_start_8, _noise_start_8 },
+	{ _noise_part_8, _noise_part_8 },
 	_noise_thresh_44_2,
 
 	_psy_ath_floater_8,
@@ -123,8 +123,8 @@ ve_setup_data_template ve_setup_8_uncoupled = {
 	_psy_compand_8_mapping,
 	NULL,
 
-	{_noise_start_8, _noise_start_8},
-	{_noise_part_8, _noise_part_8},
+	{ _noise_start_8, _noise_start_8 },
+	{ _noise_part_8, _noise_part_8 },
 	_noise_thresh_44_2,
 
 	_psy_ath_floater_8,

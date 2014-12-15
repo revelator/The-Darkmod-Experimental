@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -65,9 +65,9 @@ void idSmokeParticles::Init( void ) {
 	memset( &renderEntity, 0, sizeof( renderEntity ) );
 	renderEntity.bounds.Clear();
 	renderEntity.axis = mat3_identity;
-	renderEntity.shaderParms[ SHADERPARM_RED ]		= 1;
-	renderEntity.shaderParms[ SHADERPARM_GREEN ]	= 1;
-	renderEntity.shaderParms[ SHADERPARM_BLUE ]		= 1;
+	renderEntity.shaderParms[SHADERPARM_RED] = 1;
+	renderEntity.shaderParms[SHADERPARM_GREEN] = 1;
+	renderEntity.shaderParms[SHADERPARM_BLUE] = 1;
 	renderEntity.shaderParms[3] = 1;
 	renderEntity.hModel = renderModelManager->AllocModel();
 	renderEntity.hModel->InitEmpty( smokeParticle_SnapshotName );
@@ -76,7 +76,7 @@ void idSmokeParticles::Init( void ) {
 	renderEntity.noShadow = 1;
 	// huge bounds, so it will be present in every world area
 	renderEntity.bounds.AddPoint( idVec3( -100000, -100000, -100000 ) );
-	renderEntity.bounds.AddPoint( idVec3( 100000,  100000,  100000 ) );
+	renderEntity.bounds.AddPoint( idVec3( 100000, 100000, 100000 ) );
 	renderEntity.callback = idSmokeParticles::ModelCallback;
 	// add to renderer list
 	renderEntityHandle = gameRenderWorld->AddEntityDef( &renderEntity );
@@ -208,7 +208,7 @@ bool idSmokeParticles::EmitSmoke( const idDeclParticle *smoke, const int systemS
 		// find an activeSmokeStage that matches this
 		activeSmokeStage_t	*active( NULL );
 		int i;
-		for( i = 0 ; i < activeStages.Num() ; i++ ) {
+		for( i = 0; i < activeStages.Num(); i++ ) {
 			active = &activeStages[i];
 			if( active->stage == stage ) {
 				break;
@@ -223,7 +223,7 @@ bool idSmokeParticles::EmitSmoke( const idDeclParticle *smoke, const int systemS
 			active = &activeStages[i];
 		}
 		// add all the required particles
-		for( prevCount++ ; prevCount <= nowCount ; prevCount++ ) {
+		for( prevCount++; prevCount <= nowCount; prevCount++ ) {
 			if( !freeSmokes ) {
 				gameLocal.Printf( "idSmokeParticles::EmitSmoke: no free smokes with %d active stages\n", activeStages.Num() );
 				return true;
@@ -328,7 +328,7 @@ bool idSmokeParticles::UpdateRenderEntity( renderEntity_s *renderEntity, const r
 		} else {
 			// build the index list
 			int	indexes = 0;
-			for( int i = 0 ; i < tri->numVerts ; i += 4 ) {
+			for( int i = 0; i < tri->numVerts; i += 4 ) {
 				tri->indexes[indexes + 0] = i;
 				tri->indexes[indexes + 1] = i + 2;
 				tri->indexes[indexes + 2] = i + 3;

@@ -1,26 +1,26 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 /*
 ===============================================================================
 
-	Trace model vs. polygonal model collision detection.
+Trace model vs. polygonal model collision detection.
 
 ===============================================================================
 */
@@ -44,7 +44,7 @@ Contents test
 ================
 idCollisionModelManagerLocal::TestTrmVertsInBrush
 
-  returns true if any of the trm vertices is inside the brush
+returns true if any of the trm vertices is inside the brush
 ================
 */
 bool idCollisionModelManagerLocal::TestTrmVertsInBrush( cm_traceWork_t *tw, cm_brush_t *b ) {
@@ -109,7 +109,7 @@ CM_SetTrmEdgeSidedness
 		fl = (bpl).PermutedInnerProduct( epl );										\
 		edge->side = (edge->side & ~(1<<bitNum)) | (FLOATSIGNBITSET(fl) << bitNum);	\
 		edge->sideSet |= (1 << bitNum);												\
-	}																				\
+		}																				\
 }
 
 /*
@@ -124,19 +124,19 @@ CM_SetTrmPolygonSidedness
 		/* cannot use float sign bit because it is undetermined when fl == 0.0f */	\
 		if ( fl < 0.0f ) {															\
 			(v)->side |= (1 << bitNum);												\
-		}																			\
-		else {																		\
+				}																			\
+				else {																		\
 			(v)->side &= ~(1 << bitNum);											\
 		}																			\
 		(v)->sideSet |= (1 << bitNum);												\
-	}																				\
+		}																				\
 }
 
 /*
 ================
 idCollisionModelManagerLocal::TestTrmInPolygon
 
-  returns true if the trm intersects the polygon
+returns true if the trm intersects the polygon
 ================
 */
 bool idCollisionModelManagerLocal::TestTrmInPolygon( cm_traceWork_t *tw, cm_polygon_t *p ) {
@@ -276,7 +276,7 @@ bool idCollisionModelManagerLocal::TestTrmInPolygon( cm_traceWork_t *tw, cm_poly
 			tw->trace.c.dist = p->plane.Dist();
 			tw->trace.c.contents = p->contents;
 			tw->trace.c.material = p->material;
-			tw->trace.c.point = tw->vertices[tw->edges[i].vertexNum[ !flip ]].p;
+			tw->trace.c.point = tw->vertices[tw->edges[i].vertexNum[!flip]].p;
 			tw->trace.c.modelFeature = *reinterpret_cast<int *>( &p );
 			tw->trace.c.trmFeature = i;
 			return true;
@@ -349,7 +349,7 @@ bool idCollisionModelManagerLocal::TestTrmInPolygon( cm_traceWork_t *tw, cm_poly
 				tw->trace.c.dist = -tw->polys[j].plane.Dist();
 				tw->trace.c.contents = p->contents;
 				tw->trace.c.material = p->material;
-				tw->trace.c.point = tw->model->vertices[edge->vertexNum[ !flip ]].p;
+				tw->trace.c.point = tw->model->vertices[edge->vertexNum[!flip]].p;
 				tw->trace.c.modelFeature = edgeNum;
 				tw->trace.c.trmFeature = j;
 				return true;

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __DECLMANAGER_H__
 #define __DECLMANAGER_H__
@@ -23,38 +23,38 @@
 /*
 ===============================================================================
 
-	Declaration Manager
+Declaration Manager
 
-	All "small text" data types, like materials, sound shaders, fx files,
-	entity defs, etc. are managed uniformly, allowing reloading, purging,
-	listing, printing, etc. All "large text" data types that never have more
-	than one declaration in a given file, like maps, models, AAS files, etc.
-	are not handled here.
+All "small text" data types, like materials, sound shaders, fx files,
+entity defs, etc. are managed uniformly, allowing reloading, purging,
+listing, printing, etc. All "large text" data types that never have more
+than one declaration in a given file, like maps, models, AAS files, etc.
+are not handled here.
 
-	A decl will never, ever go away once it is created. The manager is
-	garranteed to always return the same decl pointer for a decl type/name
-	combination. The index of a decl in the per type list also stays the
-	same throughout the lifetime of the engine. Although the pointer to
-	a decl always stays the same, one should never maintain pointers to
-	data inside decls. The data stored in a decl is not guaranteed to stay
-	the same for more than one engine frame.
+A decl will never, ever go away once it is created. The manager is
+garranteed to always return the same decl pointer for a decl type/name
+combination. The index of a decl in the per type list also stays the
+same throughout the lifetime of the engine. Although the pointer to
+a decl always stays the same, one should never maintain pointers to
+data inside decls. The data stored in a decl is not guaranteed to stay
+the same for more than one engine frame.
 
-	The decl indexes of explicitely defined decls are guaranteed to be
-	consistent based on the parsed decl files. However, the indexes of
-	implicit decls may be different based on the order in which levels
-	are loaded.
+The decl indexes of explicitely defined decls are guaranteed to be
+consistent based on the parsed decl files. However, the indexes of
+implicit decls may be different based on the order in which levels
+are loaded.
 
-	The decl namespaces are separate for each type. Comments for decls go
-	above the text definition to keep them associated with the proper decl.
+The decl namespaces are separate for each type. Comments for decls go
+above the text definition to keep them associated with the proper decl.
 
-	During decl parsing, errors should never be issued, only warnings
-	followed by a call to MakeDefault().
+During decl parsing, errors should never be issued, only warnings
+followed by a call to MakeDefault().
 
 ===============================================================================
 */
 
 typedef enum {
-	DECL_TABLE				= 0,
+	DECL_TABLE = 0,
 	DECL_MATERIAL,
 	DECL_SKIN,
 	DECL_SOUND,
@@ -71,7 +71,7 @@ typedef enum {
 	DECL_TDM_MATINFO,			// Material information local to TDM.
 	DECL_TDM_MISSIONINFO, 			// Mission information
 
-	DECL_MAX_TYPES			= 32
+	DECL_MAX_TYPES = 32
 } declType_t;
 
 typedef enum {
@@ -80,12 +80,12 @@ typedef enum {
 	DS_PARSED
 } declState_t;
 
-const int DECL_LEXER_FLAGS	=	LEXFL_NOSTRINGCONCAT |				// multiple strings seperated by whitespaces are not concatenated
-								LEXFL_NOSTRINGESCAPECHARS |			// no escape characters inside strings
-								LEXFL_ALLOWPATHNAMES |				// allow path seperators in names
-								LEXFL_ALLOWMULTICHARLITERALS |		// allow multi character literals
-								LEXFL_ALLOWBACKSLASHSTRINGCONCAT |	// allow multiple strings seperated by '\' to be concatenated
-								LEXFL_NOFATALERRORS;				// just set a flag instead of fatal erroring
+const int DECL_LEXER_FLAGS = LEXFL_NOSTRINGCONCAT |				// multiple strings seperated by whitespaces are not concatenated
+							 LEXFL_NOSTRINGESCAPECHARS |			// no escape characters inside strings
+							 LEXFL_ALLOWPATHNAMES |				// allow path seperators in names
+							 LEXFL_ALLOWMULTICHARLITERALS |		// allow multi character literals
+							 LEXFL_ALLOWBACKSLASHSTRINGCONCAT |	// allow multiple strings seperated by '\' to be concatenated
+							 LEXFL_NOFATALERRORS;				// just set a flag instead of fatal erroring
 
 class idDeclBase {
 public:

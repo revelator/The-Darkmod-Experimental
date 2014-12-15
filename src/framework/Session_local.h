@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __SESSIONLOCAL_H__
 #define __SESSIONLOCAL_H__
@@ -28,16 +28,16 @@ IsGuiActive();
 IsPlayingRenderDemo();
 
 if connected to a server
-	if handshaking
-	if map loading
-	if in game
+if handshaking
+if map loading
+if in game
 else if a game loaded
-	if in load game menu
-	if main menu up
+if in load game menu
+if main menu up
 else if playing render demo
 else
-	if error dialog
-	full console
+if error dialog
+full console
 
 */
 
@@ -69,9 +69,9 @@ typedef enum {
 	TD_YES_THEN_QUIT
 } timeDemo_t;
 
-const int USERCMD_PER_DEMO_FRAME	= 2;
-const int CONNECT_TRANSMIT_TIME		= 1000;
-const int MAX_LOGGED_USERCMDS		= 60 * 60 * 60;	// one hour of single player, 15 minutes of four player
+const int USERCMD_PER_DEMO_FRAME = 2;
+const int CONNECT_TRANSMIT_TIME = 1000;
+const int MAX_LOGGED_USERCMDS = 60 * 60 * 60;	// one hour of single player, 15 minutes of four player
 
 class idSessionLocal : public idSession {
 public:
@@ -229,7 +229,7 @@ public:
 
 	idUserInterface 	*guiMsg;
 	idUserInterface 	*guiMsgRestore;				// store the calling GUI for restore
-	idStr				msgFireBack[ 2 ];
+	idStr				msgFireBack[2];
 	bool				msgRunning;
 	int					msgRetIndex;
 	bool				msgIgnoreButtons;

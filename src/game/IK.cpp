@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -27,7 +27,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 ===============================================================================
 
-  idIK
+idIK
 
 ===============================================================================
 */
@@ -204,7 +204,7 @@ float idIK::GetBoneAxis( const idVec3 &startPos, const idVec3 &endPos, const idV
 /*
 ===============================================================================
 
-  idIK_Walk
+idIK_Walk
 
 ===============================================================================
 */
@@ -410,8 +410,8 @@ bool idIK_Walk::Init( idEntity *self, const char *anim, const idVec3 &modelOffse
 	idVec3 dir, ankleOrigin, kneeOrigin, hipOrigin, dirOrigin;
 	idMat3 axis, ankleAxis, kneeAxis, hipAxis;
 	static idVec3 footWinding[4] = {
-		idVec3( 1.0f,  1.0f, 0.0f ),
-		idVec3( -1.0f,  1.0f, 0.0f ),
+		idVec3( 1.0f, 1.0f, 0.0f ),
+		idVec3( -1.0f, 1.0f, 0.0f ),
 		idVec3( -1.0f, -1.0f, 0.0f ),
 		idVec3( 1.0f, -1.0f, 0.0f )
 	};
@@ -464,15 +464,15 @@ bool idIK_Walk::Init( idEntity *self, const char *anim, const idVec3 &modelOffse
 	// get the leg bone lengths and rotation matrices
 	for( i = 0; i < numLegs; i++ ) {
 		oldAnkleHeights[i] = 0.0f;
-		ankleAxis = joints[ ankleJoints[ i ] ].ToMat3();
-		ankleOrigin = joints[ ankleJoints[ i ] ].ToVec3();
-		kneeAxis = joints[ kneeJoints[ i ] ].ToMat3();
-		kneeOrigin = joints[ kneeJoints[ i ] ].ToVec3();
-		hipAxis = joints[ hipJoints[ i ] ].ToMat3();
-		hipOrigin = joints[ hipJoints[ i ] ].ToVec3();
+		ankleAxis = joints[ankleJoints[i]].ToMat3();
+		ankleOrigin = joints[ankleJoints[i]].ToVec3();
+		kneeAxis = joints[kneeJoints[i]].ToMat3();
+		kneeOrigin = joints[kneeJoints[i]].ToVec3();
+		hipAxis = joints[hipJoints[i]].ToMat3();
+		hipOrigin = joints[hipJoints[i]].ToVec3();
 		// get the IK direction
 		if( dirJoints[i] != INVALID_JOINT ) {
-			dirOrigin = joints[ dirJoints[ i ] ].ToVec3();
+			dirOrigin = joints[dirJoints[i]].ToVec3();
 			dir = dirOrigin - kneeOrigin;
 		} else {
 			dir.Set( 1.0f, 0.0f, 0.0f );
@@ -531,7 +531,7 @@ void idIK_Walk::Evaluate( void ) {
 	if( !enabledLegs ) {
 		return;
 	}
-	normal = - self->GetPhysics()->GetGravityNormal();
+	normal = -self->GetPhysics()->GetGravityNormal();
 	modelOrigin = self->GetPhysics()->GetOrigin();
 	modelAxis = self->GetRenderEntity()->axis;
 	modelHeight = modelOrigin * normal;
@@ -584,7 +584,7 @@ void idIK_Walk::Evaluate( void ) {
 	// test whether or not the character is standing on a plat
 	bool onPlat = false;
 	for( i = 0; i < phys->GetNumContacts(); i++ ) {
-		idEntity *ent = gameLocal.entities[ phys->GetContact( i ).entityNum ];
+		idEntity *ent = gameLocal.entities[phys->GetContact( i ).entityNum];
 		if( ent != NULL && ent->IsType( idPlat::Type ) ) {
 			onPlat = true;
 			break;
@@ -745,7 +745,7 @@ void idIK_Walk::DisableLeg( int num ) {
 /*
 ===============================================================================
 
-  idIK_Reach
+idIK_Reach
 
 ===============================================================================
 */
@@ -792,34 +792,34 @@ void idIK_Reach::Save( idSaveGame *savefile ) const {
 	idIK::Save( savefile );
 	savefile->WriteInt( numArms );
 	savefile->WriteInt( enabledArms );
-	for( i = 0; i <  MAX_ARMS; i++ ) {
+	for( i = 0; i < MAX_ARMS; i++ ) {
 		savefile->WriteInt( handJoints[i] );
 	}
-	for( i = 0; i <  MAX_ARMS; i++ ) {
+	for( i = 0; i < MAX_ARMS; i++ ) {
 		savefile->WriteInt( elbowJoints[i] );
 	}
-	for( i = 0; i <  MAX_ARMS; i++ ) {
+	for( i = 0; i < MAX_ARMS; i++ ) {
 		savefile->WriteInt( shoulderJoints[i] );
 	}
-	for( i = 0; i <  MAX_ARMS; i++ ) {
+	for( i = 0; i < MAX_ARMS; i++ ) {
 		savefile->WriteInt( dirJoints[i] );
 	}
-	for( i = 0; i <  MAX_ARMS; i++ ) {
+	for( i = 0; i < MAX_ARMS; i++ ) {
 		savefile->WriteVec3( shoulderForward[i] );
 	}
-	for( i = 0; i <  MAX_ARMS; i++ ) {
+	for( i = 0; i < MAX_ARMS; i++ ) {
 		savefile->WriteVec3( elbowForward[i] );
 	}
-	for( i = 0; i <  MAX_ARMS; i++ ) {
+	for( i = 0; i < MAX_ARMS; i++ ) {
 		savefile->WriteFloat( upperArmLength[i] );
 	}
-	for( i = 0; i <  MAX_ARMS; i++ ) {
+	for( i = 0; i < MAX_ARMS; i++ ) {
 		savefile->WriteFloat( lowerArmLength[i] );
 	}
-	for( i = 0; i <  MAX_ARMS; i++ ) {
+	for( i = 0; i < MAX_ARMS; i++ ) {
 		savefile->WriteMat3( upperArmToShoulderJoint[i] );
 	}
-	for( i = 0; i <  MAX_ARMS; i++ ) {
+	for( i = 0; i < MAX_ARMS; i++ ) {
 		savefile->WriteMat3( lowerArmToElbowJoint[i] );
 	}
 }
@@ -834,34 +834,34 @@ void idIK_Reach::Restore( idRestoreGame *savefile ) {
 	idIK::Restore( savefile );
 	savefile->ReadInt( numArms );
 	savefile->ReadInt( enabledArms );
-	for( i = 0; i <  MAX_ARMS; i++ ) {
+	for( i = 0; i < MAX_ARMS; i++ ) {
 		savefile->ReadInt( ( int & )handJoints[i] );
 	}
-	for( i = 0; i <  MAX_ARMS; i++ ) {
+	for( i = 0; i < MAX_ARMS; i++ ) {
 		savefile->ReadInt( ( int & )elbowJoints[i] );
 	}
-	for( i = 0; i <  MAX_ARMS; i++ ) {
+	for( i = 0; i < MAX_ARMS; i++ ) {
 		savefile->ReadInt( ( int & )shoulderJoints[i] );
 	}
-	for( i = 0; i <  MAX_ARMS; i++ ) {
+	for( i = 0; i < MAX_ARMS; i++ ) {
 		savefile->ReadInt( ( int & )dirJoints[i] );
 	}
-	for( i = 0; i <  MAX_ARMS; i++ ) {
+	for( i = 0; i < MAX_ARMS; i++ ) {
 		savefile->ReadVec3( shoulderForward[i] );
 	}
-	for( i = 0; i <  MAX_ARMS; i++ ) {
+	for( i = 0; i < MAX_ARMS; i++ ) {
 		savefile->ReadVec3( elbowForward[i] );
 	}
-	for( i = 0; i <  MAX_ARMS; i++ ) {
+	for( i = 0; i < MAX_ARMS; i++ ) {
 		savefile->ReadFloat( upperArmLength[i] );
 	}
-	for( i = 0; i <  MAX_ARMS; i++ ) {
+	for( i = 0; i < MAX_ARMS; i++ ) {
 		savefile->ReadFloat( lowerArmLength[i] );
 	}
-	for( i = 0; i <  MAX_ARMS; i++ ) {
+	for( i = 0; i < MAX_ARMS; i++ ) {
 		savefile->ReadMat3( upperArmToShoulderJoint[i] );
 	}
-	for( i = 0; i <  MAX_ARMS; i++ ) {
+	for( i = 0; i < MAX_ARMS; i++ ) {
 		savefile->ReadMat3( lowerArmToElbowJoint[i] );
 	}
 }
@@ -915,15 +915,15 @@ bool idIK_Reach::Init( idEntity *self, const char *anim, const idVec3 &modelOffs
 	}
 	// get the arm bone lengths and rotation matrices
 	for( i = 0; i < numArms; i++ ) {
-		handAxis = joints[ handJoints[ i ] ].ToMat3();
-		handOrigin = joints[ handJoints[ i ] ].ToVec3();
-		elbowAxis = joints[ elbowJoints[ i ] ].ToMat3();
-		elbowOrigin = joints[ elbowJoints[ i ] ].ToVec3();
-		shoulderAxis = joints[ shoulderJoints[ i ] ].ToMat3();
-		shoulderOrigin = joints[ shoulderJoints[ i ] ].ToVec3();
+		handAxis = joints[handJoints[i]].ToMat3();
+		handOrigin = joints[handJoints[i]].ToVec3();
+		elbowAxis = joints[elbowJoints[i]].ToMat3();
+		elbowOrigin = joints[elbowJoints[i]].ToVec3();
+		shoulderAxis = joints[shoulderJoints[i]].ToMat3();
+		shoulderOrigin = joints[shoulderJoints[i]].ToVec3();
 		// get the IK direction
 		if( dirJoints[i] != INVALID_JOINT ) {
-			dirOrigin = joints[ dirJoints[ i ] ].ToVec3();
+			dirOrigin = joints[dirJoints[i]].ToVec3();
 			dir = dirOrigin - elbowOrigin;
 		} else {
 			dir.Set( -1.0f, 0.0f, 0.0f );

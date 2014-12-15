@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -473,7 +473,7 @@ void CDialogParticleEditor::OnBnClickedButtonBrowseEntitycolor() {
 						dict2.Clear();
 						dict2.Set( "_color", str );
 						gameEdit->EntityChangeSpawnArgs( ent, &dict2 );
-						gameEdit->MapSetEntityKeyVal( name, "_color",  str );
+						gameEdit->MapSetEntityKeyVal( name, "_color", str );
 					}
 				}
 			}
@@ -707,30 +707,30 @@ void CDialogParticleEditor::SetParticleView() {
 	cmdSystem->BufferCommandText( CMD_EXEC_NOW, "testmodel" );
 	idStr str;
 	switch( visualization ) {
-	case TESTMODEL :
+	case TESTMODEL:
 		str = idp->GetName();
 		str.SetFileExtension( ".prt" );
 		cmdSystem->BufferCommandText( CMD_EXEC_NOW, va( "testmodel %s\n", str.c_str() ) );
 		break;
-	case IMPACT :
+	case IMPACT:
 		str = idp->GetName();
 		str.SetFileExtension( ".prt" );
 		cvarSystem->SetCVarInteger( "g_testParticle", TEST_PARTICLE_IMPACT );
 		cvarSystem->SetCVarString( "g_testParticleName", str );
 		break;
-	case MUZZLE :
+	case MUZZLE:
 		str = idp->GetName();
 		str.SetFileExtension( ".prt" );
 		cvarSystem->SetCVarInteger( "g_testParticle", TEST_PARTICLE_MUZZLE );
 		cvarSystem->SetCVarString( "g_testParticleName", str );
 		break;
-	case FLIGHT :
+	case FLIGHT:
 		str = idp->GetName();
 		str.SetFileExtension( ".prt" );
 		cvarSystem->SetCVarInteger( "g_testParticle", TEST_PARTICLE_FLIGHT );
 		cvarSystem->SetCVarString( "g_testParticleName", str );
 		break;
-	case SELECTED :
+	case SELECTED:
 		str = idp->GetName();
 		str.SetFileExtension( ".prt" );
 		cvarSystem->SetCVarInteger( "g_testParticle", TEST_PARTICLE_FLIGHT );
@@ -1209,7 +1209,7 @@ BOOL CDialogParticleEditor::OnInitDialog() {
 
 void CDialogParticleEditor::OnHScroll( UINT nSBCode, UINT nPos, CScrollBar *pScrollBar ) {
 	CDialog::OnHScroll( nSBCode, nPos, pScrollBar );
-	CSliderCtrl *ctrl = dynamic_cast< CSliderCtrl * >( pScrollBar );
+	CSliderCtrl *ctrl = dynamic_cast<CSliderCtrl *>( pScrollBar );
 	if( !ctrl ) {
 		return;
 	}
@@ -1288,7 +1288,7 @@ void CDialogParticleEditor::EnableStageControls() {
 	idParticleStage *stage = GetCurStage();
 	bool b = ( stage && stage->hidden ) ? false : true;
 	for( int i = 0; i < StageIDCount; i++ ) {
-		CWnd *wnd = GetDlgItem( StageEnableID[ i ] );
+		CWnd *wnd = GetDlgItem( StageEnableID[i] );
 		if( wnd ) {
 			wnd->EnableWindow( b );
 		}
@@ -1297,7 +1297,7 @@ void CDialogParticleEditor::EnableStageControls() {
 
 void CDialogParticleEditor::EnableEditControls() {
 	for( int i = 0; i < EditIDCount; i++ ) {
-		CWnd *wnd = GetDlgItem( EditEnableID[ i ] );
+		CWnd *wnd = GetDlgItem( EditEnableID[i] );
 		if( wnd ) {
 			wnd->EnableWindow( particleMode );
 		}

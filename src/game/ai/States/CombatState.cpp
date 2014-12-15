@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -209,7 +209,7 @@ void CombatState::Init( idAI *owner ) {
 	// grayman #3331 - clear combat state
 	_combatType = COMBAT_NONE;
 	// get melee possibilities
-	_meleePossible  = ( owner->GetNumMeleeWeapons()  > 0 );
+	_meleePossible = ( owner->GetNumMeleeWeapons() > 0 );
 	_rangedPossible = ( owner->GetNumRangedWeapons() > 0 );
 	/* grayman #3492 - should wait until after the reaction time before fleeing
 
@@ -217,10 +217,10 @@ void CombatState::Init( idAI *owner ) {
 
 	if (!_meleePossible && !_rangedPossible)
 	{
-		owner->fleeingEvent = false; // grayman #3356
-		owner->emitFleeBarks = true; // grayman #3474
-		owner->GetMind()->SwitchState(STATE_FLEE);
-		return;
+	owner->fleeingEvent = false; // grayman #3356
+	owner->emitFleeBarks = true; // grayman #3474
+	owner->GetMind()->SwitchState(STATE_FLEE);
+	return;
 	} */
 	// grayman #3331 - save combat possibilities
 	_unarmedMelee = owner->spawnArgs.GetBool( "unarmed_melee", "0" );
@@ -232,7 +232,7 @@ void CombatState::Init( idAI *owner ) {
 	idVec3 vec2Enemy = enemy->GetPhysics()->GetOrigin() - owner->GetPhysics()->GetOrigin();
 	//vec2Enemy.z = 0; // ignore vertical component
 	float dist2Enemy = vec2Enemy.LengthFast();
-	int reactionTime =  REACTION_TIME_MIN + ( dist2Enemy * ( REACTION_TIME_MAX - REACTION_TIME_MIN ) ) / ( cv_ai_sight_combat_cutoff.GetFloat() / s_DOOM_TO_METERS );
+	int reactionTime = REACTION_TIME_MIN + ( dist2Enemy * ( REACTION_TIME_MAX - REACTION_TIME_MIN ) ) / ( cv_ai_sight_combat_cutoff.GetFloat() / s_DOOM_TO_METERS );
 	if( reactionTime > REACTION_TIME_MAX ) {
 		reactionTime = REACTION_TIME_MAX;
 	}
@@ -481,10 +481,10 @@ void CombatState::Think( idAI *owner ) {
 			/* old way
 			if ( !owner->CanSee(enemy, true) )
 			{
-				owner->ClearEnemy();
-				owner->SetAlertLevel(owner->thresh_5 - 0.1); // reset alert level just under Combat
-				owner->GetMind()->EndState();
-				return;
+			owner->ClearEnemy();
+			owner->SetAlertLevel(owner->thresh_5 - 0.1); // reset alert level just under Combat
+			owner->GetMind()->EndState();
+			return;
 			}
 			*/
 		}
@@ -781,7 +781,7 @@ void CombatState::Think( idAI *owner ) {
 		// Check whether the enemy can hit us in the near future
 		memory.canBeHitByEnemy = owner->CanBeHitByEntity( enemy, _combatType );
 		if( !owner->AI_ENEMY_VISIBLE &&
-				( ( ( _combatType == COMBAT_MELEE )  && !memory.canHitEnemy ) || ( _combatType == COMBAT_RANGED ) ) ) {
+				( ( ( _combatType == COMBAT_MELEE ) && !memory.canHitEnemy ) || ( _combatType == COMBAT_RANGED ) ) ) {
 			// The enemy is not visible, let's keep track of him for a small amount of time
 			if( gameLocal.time - memory.lastTimeEnemySeen < MAX_BLIND_CHASE_TIME ) {
 				// Cheat a bit and take the last reachable position as "visible & reachable"
@@ -855,20 +855,20 @@ bool CombatState::CheckEnemyStatus( idActor *enemy, idAI *owner ) {
 		idStr enemyAiUse = enemy->spawnArgs.GetString("AIUse");
 		if ( ( enemyAiUse == AIUSE_MONSTER ) || ( enemyAiUse == AIUSE_UNDEAD ) )
 		{
-			bark = "snd_killed_monster";
+		bark = "snd_killed_monster";
 		}
 		else
 		{
-			bark = "snd_killed_enemy";
+		bark = "snd_killed_enemy";
 		}
 		owner->PostEventMS(&AI_Bark,ENEMY_DEAD_BARK_DELAY,bark);
 		*/
 		/* old way
 				// Emit the killed enemy bark
 				owner->commSubsystem->AddCommTask(
-					CommunicationTaskPtr(new SingleBarkTask("snd_killed_enemy"))
+				CommunicationTaskPtr(new SingleBarkTask("snd_killed_enemy"))
 				);
-		 */
+				*/
 		_endgame = true; // grayman #3848
 		_endTime = gameLocal.time + 1500 + gameLocal.random.RandomInt( 1500 );
 		_combatSubState = EStateVictor1;

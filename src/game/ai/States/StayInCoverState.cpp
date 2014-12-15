@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -120,23 +120,23 @@ void StayInCoverState::Think( idAI *owner ) {
 /* grayman #3140 - no longer used
 void StayInCoverState::OnProjectileHit(idProjectile* projectile)
 {
-	idAI* owner = _owner.GetEntity();
-	assert(owner != NULL);
+idAI* owner = _owner.GetEntity();
+assert(owner != NULL);
 
-	// Call the base class first
-	State::OnProjectileHit(projectile);
+// Call the base class first
+State::OnProjectileHit(projectile);
 
-	if ((owner->GetNumMeleeWeapons() == 0 && owner->GetNumRangedWeapons() == 0) ||
-		owner->spawnArgs.GetBool("is_civilian"))
-	{
-		// We are unarmed or civilian and got hit by a projectile while in cover, run!
-		owner->GetMind()->SwitchState(STATE_FLEE);
-	}
-	else
-	{
-		// We are armed, so let's just end this state and deal with it
-		owner->GetMind()->EndState();
-	}
+if ((owner->GetNumMeleeWeapons() == 0 && owner->GetNumRangedWeapons() == 0) ||
+owner->spawnArgs.GetBool("is_civilian"))
+{
+// We are unarmed or civilian and got hit by a projectile while in cover, run!
+owner->GetMind()->SwitchState(STATE_FLEE);
+}
+else
+{
+// We are armed, so let's just end this state and deal with it
+owner->GetMind()->EndState();
+}
 }
 */
 

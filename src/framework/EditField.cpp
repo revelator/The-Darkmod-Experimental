@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -152,7 +152,7 @@ idEditField::ClearAutoComplete
 ===============
 */
 void idEditField::ClearAutoComplete( void ) {
-	if( autoComplete.length > 0 && autoComplete.length <= ( int ) strlen( buffer ) ) {
+	if( autoComplete.length > 0 && autoComplete.length <= ( int )strlen( buffer ) ) {
 		buffer[autoComplete.length] = '\0';
 		if( cursor > autoComplete.length ) {
 			cursor = autoComplete.length;
@@ -343,10 +343,10 @@ void idEditField::KeyDownEvent( int key ) {
 	if( key == K_RIGHTARROW ) {
 		if( idKeyInput::IsDown( K_CTRL ) ) {
 			// skip to next word
-			while( ( cursor < len ) && ( buffer[ cursor ] != ' ' ) ) {
+			while( ( cursor < len ) && ( buffer[cursor] != ' ' ) ) {
 				cursor++;
 			}
-			while( ( cursor < len ) && ( buffer[ cursor ] == ' ' ) ) {
+			while( ( cursor < len ) && ( buffer[cursor] == ' ' ) ) {
 				cursor++;
 			}
 		} else {
@@ -366,10 +366,10 @@ void idEditField::KeyDownEvent( int key ) {
 	if( key == K_LEFTARROW ) {
 		if( idKeyInput::IsDown( K_CTRL ) ) {
 			// skip to previous word
-			while( ( cursor > 0 ) && ( buffer[ cursor - 1 ] == ' ' ) ) {
+			while( ( cursor > 0 ) && ( buffer[cursor - 1] == ' ' ) ) {
 				cursor--;
 			}
-			while( ( cursor > 0 ) && ( buffer[ cursor - 1 ] != ' ' ) ) {
+			while( ( cursor > 0 ) && ( buffer[cursor - 1] != ' ' ) ) {
 				cursor--;
 			}
 		} else {
@@ -498,7 +498,7 @@ void idEditField::Draw( int x, int y, int width, bool showCursor, const idMateri
 		common->Error( "drawLen >= MAX_EDIT_LINE" );
 	}
 	memcpy( str, buffer + prestep, drawLen );
-	str[ drawLen ] = 0;
+	str[drawLen] = 0;
 	// draw it
 	renderSystem->DrawSmallStringExt( x, y, str, colorWhite, false, shader );
 	// draw the cursor

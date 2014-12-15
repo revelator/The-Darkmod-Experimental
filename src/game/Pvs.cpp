@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -178,20 +178,20 @@ void idPVS::FloodFrontPortalPVS_r( pvsPortal_t *portal, int areaNum ) const {
 	int i, n;
 	pvsArea_t *area;
 	pvsPortal_t *p;
-	area = &pvsAreas[ areaNum ];
+	area = &pvsAreas[areaNum];
 	for( i = 0; i < area->numPortals; i++ ) {
 		p = area->portals[i];
 		n = p - pvsPortals;
 		// don't flood through if this portal is not at the front
-		if( !( portal->mightSee[ n >> 3 ] & ( 1 << ( n & 7 ) ) ) ) {
+		if( !( portal->mightSee[n >> 3] & ( 1 << ( n & 7 ) ) ) ) {
 			continue;
 		}
 		// don't flood through if already visited this portal
-		if( portal->vis[ n >> 3 ] & ( 1 << ( n & 7 ) ) ) {
+		if( portal->vis[n >> 3] & ( 1 << ( n & 7 ) ) ) {
 			continue;
 		}
 		// this portal might be visible
-		portal->vis[ n >> 3 ] |= ( 1 << ( n & 7 ) );
+		portal->vis[n >> 3] |= ( 1 << ( n & 7 ) );
 		// flood through the portal
 		FloodFrontPortalPVS_r( portal, p->areaNum );
 	}
@@ -258,7 +258,7 @@ void idPVS::FrontPortalPVS( void ) const {
 				}
 				// the portal might be visible at the front
 				n = p2 - pvsPortals;
-				p1->mightSee[ n >> 3 ] |= 1 << ( n & 7 );
+				p1->mightSee[n >> 3] |= 1 << ( n & 7 );
 			}
 		}
 	}
@@ -504,7 +504,7 @@ void idPVS::CreatePassages( void ) const {
 			n = target - pvsPortals;
 			passage = &source->passages[j];
 			// if the source portal cannot see this portal
-			if( !( source->mightSee[ n >> 3 ] & ( 1 << ( n & 7 ) ) ) ) {
+			if( !( source->mightSee[n >> 3] & ( 1 << ( n & 7 ) ) ) ) {
 				// not all portals in the area have to be visible because areas are not necesarily convex
 				// also no passage has to be created for the portal which is the opposite of the source
 				passage->canSee = NULL;
@@ -635,7 +635,7 @@ int idPVS::AreaPVSFromPortalPVS( void ) const {
 		area = &pvsAreas[i];
 		pvs = areaPVS + i * areaVisBytes;
 		// the area is visible to itself
-		pvs[ i >> 3 ] |= 1 << ( i & 7 );
+		pvs[i >> 3] |= 1 << ( i & 7 );
 		if( !area->numPortals ) {
 			continue;
 		}
@@ -650,7 +650,7 @@ int idPVS::AreaPVSFromPortalPVS( void ) const {
 		// the portals of this area are always visible
 		for( j = 0; j < area->numPortals; j++ ) {
 			k = area->portals[j] - pvsPortals;
-			area->portals[0]->vis[ k >> 3 ] |= 1 << ( k & 7 );
+			area->portals[0]->vis[k >> 3] |= 1 << ( k & 7 );
 		}
 		// set all areas to visible that can be seen from the portals of this area
 		portalPVS = area->portals[0]->vis;
@@ -658,7 +658,7 @@ int idPVS::AreaPVSFromPortalPVS( void ) const {
 			// if this portal is visible
 			if( portalPVS[j >> 3] & ( 1 << ( j & 7 ) ) ) {
 				areaNum = pvsPortals[j].areaNum;
-				pvs[ areaNum >> 3 ] |= 1 << ( areaNum & 7 );
+				pvs[areaNum >> 3] |= 1 << ( areaNum & 7 );
 			}
 		}
 		// count the number of visible areas
@@ -748,7 +748,7 @@ void idPVS::Shutdown( void ) {
 ================
 idPVS::GetConnectedAreas
 
-  assumes the 'areas' array is initialized to false
+assumes the 'areas' array is initialized to false
 ================
 */
 void idPVS::GetConnectedAreas( int srcArea, bool *areas ) const {
@@ -940,10 +940,10 @@ pvsHandle_t idPVS::AllocCurrentPVS( unsigned int h ) const {
 			/*
 						// angua: debug output, shows allocated PVS numbers in front of the player
 						idVec3 viewPos = gameLocal.GetLocalPlayer()->GetPhysics()->GetOrigin() + idVec3(0,0,50+6*i)
-							+ gameLocal.GetLocalPlayer()->viewAngles.ToForward() * 30;
+						+ gameLocal.GetLocalPlayer()->viewAngles.ToForward() * 30;
 						idStr maxPVS(i);
 						gameRenderWorld->DrawText(maxPVS.c_str(), viewPos, 0.1f, colorWhite, gameLocal.GetLocalPlayer()->viewAngles.ToMat3(), 1,  gameLocal.msec);
-			*/
+						*/
 			return currentPVS[i].handle;
 		}
 	}
@@ -1179,7 +1179,7 @@ idPVS::WritePVS
 ===================
 */
 void idPVS::WritePVS( const pvsHandle_t handle, idBitMsg &msg ) {
-	msg.WriteData( currentPVS[ handle.i ].pvs, areaVisBytes );
+	msg.WriteData( currentPVS[handle.i].pvs, areaVisBytes );
 }
 
 /*
@@ -1188,18 +1188,18 @@ idPVS::ReadPVS
 ===================
 */
 void idPVS::ReadPVS( const pvsHandle_t handle, const idBitMsg &msg ) {
-	byte	l_pvs[ 256 ];
+	byte	l_pvs[256];
 	int		i;
 	assert( areaVisBytes <= 256 );
 	msg.ReadData( l_pvs, areaVisBytes );
-	if( memcmp( l_pvs, currentPVS[ handle.i ].pvs, areaVisBytes ) ) {
+	if( memcmp( l_pvs, currentPVS[handle.i].pvs, areaVisBytes ) ) {
 		common->Printf( "PVS not matching ( %d areaVisBytes ) - server then client:\n", areaVisBytes );
 		for( i = 0; i < areaVisBytes; i++ ) {
-			common->Printf( "%x ", l_pvs[ i ] );
+			common->Printf( "%x ", l_pvs[i] );
 		}
 		common->Printf( "\n" );
 		for( i = 0; i < areaVisBytes; i++ ) {
-			common->Printf( "%x ", currentPVS[ handle.i ].pvs[ i ] );
+			common->Printf( "%x ", currentPVS[handle.i].pvs[i] );
 		}
 		common->Printf( "\n" );
 	}
@@ -1229,7 +1229,7 @@ bool idPVS::CheckAreasForPortalSky( const pvsHandle_t handle, const idVec3 &orig
 		// end 7318
 		return false;
 	}
-	for( j = 0 ; j < numAreas ; j++ ) {
+	for( j = 0; j < numAreas; j++ ) {
 		if( !( currentPVS[handle.i].pvs[j >> 3] & ( 1 << ( j & 7 ) ) ) ) {
 			continue;
 		}
@@ -1240,7 +1240,7 @@ bool idPVS::CheckAreasForPortalSky( const pvsHandle_t handle, const idVec3 &orig
 	// grayman #3108 - contributed by 7318
 	// If the player is in an unreachable AAS like inside a sealed room, where he teleports in,
 	// the function will return false. So let's repeat the global/local PS check!
-	if( gameLocal.CheckGlobalPortalSky()  || ( gameLocal.GetCurrentPortalSkyType() == PORTALSKY_LOCAL ) ) {
+	if( gameLocal.CheckGlobalPortalSky() || ( gameLocal.GetCurrentPortalSkyType() == PORTALSKY_LOCAL ) ) {
 		// this is... if the current PS is local, or there exists a global PS in the map, even if it's not current...
 		return true;	// in any one of those cases keep calculating for the global or the local portalSky
 	}

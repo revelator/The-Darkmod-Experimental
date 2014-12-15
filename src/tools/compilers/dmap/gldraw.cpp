@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -49,8 +49,8 @@ void Draw_ClearWindow( void ) {
 	my = dmapGlobals.drawBounds.b[1][1] + h / 2;
 	g = w > h ? w : h;
 	glLoadIdentity();
-	gluPerspective( 90,  1,  2,  16384 );
-	gluLookAt( mx, my, draw_maxs[2] + g / 2, mx , my, draw_maxs[2], 0, 1, 0 );
+	gluPerspective( 90, 1, 2, 16384 );
+	gluLookAt( mx, my, draw_maxs[2] + g / 2, mx, my, draw_maxs[2], 0, 1, 0 );
 #else
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity();
@@ -221,7 +221,7 @@ void GLS_Winding( const idWinding *w, int code ) {
 	( ( int * )buf )[0] = w->GetNumPoints();
 	( ( int * )buf )[1] = code;
 	for( i = 0; i < w->GetNumPoints(); i++ )
-		for( j = 0 ; j < 3 ; j++ ) {
+		for( j = 0; j < 3; j++ ) {
 			( ( float * )buf )[2 + i * 3 + j] = ( *w )[i][j];
 		}
 	send( draw_socket, ( const char * )buf, w->GetNumPoints() * 12 + 8, 0 );

@@ -1,22 +1,22 @@
 // vim:ts=4:sw=4:cindent
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 // Copyright (C) 2010-2011 Tels (Donated to The Dark Mod)
 
@@ -69,7 +69,7 @@ const char *seed_debug_materials[SEED_DEBUG_MATERIAL_COUNT] = {
 };
 
 /** To sort a list of offsets by distance, but still keep the info which offset
-    belongs to which entity so we can take the N nearest: */
+	belongs to which entity so we can take the N nearest: */
 struct seed_sort_ofs_t {
 	model_ofs_t	ofs;					//!< the offset data
 	int			entity;					//!< Index into m_Entities
@@ -195,14 +195,14 @@ struct seed_inhibitor_t {
 #define SEED_ENTITY_FLAGSHIFT 24
 
 enum seed_entity_flags {
-	SEED_ENTITY_HIDDEN		= 0x0001,		//!< the entity is currently not existing (e.g. was culled or never spawned)
-	SEED_ENTITY_EXISTS		= 0x0002,		//!< the entity is currently existing (e.g. was spawned)
-	SEED_ENTITY_WAS_SPAWNED	= 0x0004,		//!< entity was spawned at least once (to trigger actions on first spawn)
-	SEED_ENTITY_PSEUDO		= 0x0008,		//!< the entity is a pseudo-class entity, e.g. a multi-static
-	SEED_ENTITY_WAITING		= 0x0010,		//!< the entity is still waiting for a timer before being spawned
-	SEED_ENTITY_WATCHED		= 0x0020,		//!< Set on entities that are merely watched, so we do not cull
+	SEED_ENTITY_HIDDEN = 0x0001,		//!< the entity is currently not existing (e.g. was culled or never spawned)
+	SEED_ENTITY_EXISTS = 0x0002,		//!< the entity is currently existing (e.g. was spawned)
+	SEED_ENTITY_WAS_SPAWNED = 0x0004,		//!< entity was spawned at least once (to trigger actions on first spawn)
+	SEED_ENTITY_PSEUDO = 0x0008,		//!< the entity is a pseudo-class entity, e.g. a multi-static
+	SEED_ENTITY_WAITING = 0x0010,		//!< the entity is still waiting for a timer before being spawned
+	SEED_ENTITY_WATCHED = 0x0020,		//!< Set on entities that are merely watched, so we do not cull
 	//!< them unnec., f.i. when the menu setting changes
-	SEED_ENTITY_COMBINED	= 0x0040		//!< Set on entities combined into other entities already, these will be removed afterwards.
+	SEED_ENTITY_COMBINED = 0x0040		//!< Set on entities combined into other entities already, these will be removed afterwards.
 };
 
 // Defines one entity to be spawned/culled
@@ -217,9 +217,9 @@ struct seed_entity_t {
 												  0x02 exists? 1 => exists, 0 => culled
 												  0x04 0 => never spawned before, 1 => already spawned at least once
 												  0x08 if 1, this entity has a pseudo class (e.g. it is a combined entity)
-												 flags >> 24:
+												  flags >> 24:
 												  Current LOD (0 - normal, 1,2,3,4,5 LOD, 6 hidden)
-											 */
+												  */
 	int						entity;			//!< nr of the entity if exists == true
 	int						classIdx;		//!< index into m_Classes
 };
@@ -510,16 +510,16 @@ private:
 	*/
 	int 						m_iNumEntitiesInGame;
 
-	static const unsigned long	IEEE_ONE  = 0x3f800000;
+	static const unsigned long	IEEE_ONE = 0x3f800000;
 	static const unsigned long	IEEE_MASK = 0x007fffff;
 
-	static const unsigned long	NOCOLLIDE_SAME   = 0x01;
-	static const unsigned long	NOCOLLIDE_OTHER  = 0x02;
+	static const unsigned long	NOCOLLIDE_SAME = 0x01;
+	static const unsigned long	NOCOLLIDE_OTHER = 0x02;
 	static const unsigned long	NOCOLLIDE_STATIC = 0x04;
-	static const unsigned long	NOCOLLIDE_WORLD  = 0x08;
-	static const unsigned long	NOCOLLIDE_ATALL  = NOCOLLIDE_WORLD + NOCOLLIDE_STATIC + NOCOLLIDE_OTHER + NOCOLLIDE_SAME;
-	static const unsigned long	COLLIDE_WORLD    = NOCOLLIDE_STATIC + NOCOLLIDE_OTHER + NOCOLLIDE_SAME;
-	static const unsigned long	COLLIDE_ALL  	 = 0x00;
+	static const unsigned long	NOCOLLIDE_WORLD = 0x08;
+	static const unsigned long	NOCOLLIDE_ATALL = NOCOLLIDE_WORLD + NOCOLLIDE_STATIC + NOCOLLIDE_OTHER + NOCOLLIDE_SAME;
+	static const unsigned long	COLLIDE_WORLD = NOCOLLIDE_STATIC + NOCOLLIDE_OTHER + NOCOLLIDE_SAME;
+	static const unsigned long	COLLIDE_ALL = 0x00;
 };
 
 #endif /* !__GAME_SEED_H__ */

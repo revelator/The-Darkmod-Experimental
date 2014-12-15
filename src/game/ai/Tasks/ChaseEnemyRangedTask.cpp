@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -74,25 +74,25 @@ bool ChaseEnemyRangedTask::Perform( Subsystem &subsystem ) {
 	   enemy position, but the truth is that it might be unreachable, the aas system giving a false
 	   positive. Trying to get to it causes unwanted behavior. Let's try skipping this part.
 
-	    // try to get to the last visible enemy position
-		else if (waitState != "ranged_attack" && owner->MoveToPosition(owner->lastVisibleEnemyPos))
-		{
-			_hasGoal = false;
-			if (owner->AI_MOVE_DONE)
-			{
-				// Position has been reached, turn to enemy, if visible
-				if (owner->AI_ENEMY_VISIBLE)
-				{
-					// Turn to the enemy
-					owner->TurnToward(enemy->GetEyePosition());
-				}
-			}
-			else
-			{
-				// AI is moving, this is ok
-			}
-		}
-	 */
+	   // try to get to the last visible enemy position
+	   else if (waitState != "ranged_attack" && owner->MoveToPosition(owner->lastVisibleEnemyPos))
+	   {
+	   _hasGoal = false;
+	   if (owner->AI_MOVE_DONE)
+	   {
+	   // Position has been reached, turn to enemy, if visible
+	   if (owner->AI_ENEMY_VISIBLE)
+	   {
+	   // Turn to the enemy
+	   owner->TurnToward(enemy->GetEyePosition());
+	   }
+	   }
+	   else
+	   {
+	   // AI is moving, this is ok
+	   }
+	   }
+	   */
 	else {
 		// try to find an attack position using the AAS system
 		if( ( waitState != "ranged_attack" ) && ( !_hasGoal || owner->AI_MOVE_DONE ) ) {

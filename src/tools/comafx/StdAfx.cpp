@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -31,7 +31,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 ===============================================================================
 
-	Afx initialization.
+Afx initialization.
 
 ===============================================================================
 */
@@ -54,7 +54,7 @@ void InitAfx( void ) {
 /*
 ===============================================================================
 
-	Tool Tips.
+Tool Tips.
 
 ===============================================================================
 */
@@ -80,7 +80,7 @@ int DefaultOnToolHitTest( const toolTip_t *toolTips, const CDialog *dialog, CPoi
 			pTI->hwnd = dialog->GetSafeHwnd();
 			pTI->uFlags |= TTF_IDISHWND;
 			pTI->uFlags &= ~TTF_CENTERTIP;
-			pTI->uId = ( UINT_PTR ) wnd->GetSafeHwnd();
+			pTI->uId = ( UINT_PTR )wnd->GetSafeHwnd();
 			return pTI->uId;
 		}
 	}
@@ -122,7 +122,7 @@ BOOL DefaultOnToolTipNotify( const toolTip_t *toolTips, UINT id, NMHDR *pNMHDR, 
 /*
 ===============================================================================
 
-	Common control tools.
+Common control tools.
 
 ===============================================================================
 */
@@ -131,9 +131,9 @@ BOOL DefaultOnToolTipNotify( const toolTip_t *toolTips, UINT id, NMHDR *pNMHDR, 
 ================
 EditControlEnterHit
 
-  returns true if [Enter] was hit in the edit box
-  all 'return' characters in the text are removed and a single line is maintained
-  the edit control must be multi-line with auto-vscroll
+returns true if [Enter] was hit in the edit box
+all 'return' characters in the text are removed and a single line is maintained
+the edit control must be multi-line with auto-vscroll
 ================
 */
 bool EditControlEnterHit( CEdit *edit ) {

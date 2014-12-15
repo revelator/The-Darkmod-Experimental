@@ -1,26 +1,26 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 /*
 ===============================================================================
 
-	Trace model vs. polygonal model collision detection.
+Trace model vs. polygonal model collision detection.
 
 ===============================================================================
 */
@@ -233,7 +233,7 @@ void idCollisionModelManagerLocal::WriteCollisionModelsToFile( const char *filen
 	fp->WriteFloatString( "%u\n\n", mapFileCRC );
 	// write the collision models
 	for( i = firstModel; i < lastModel; i++ ) {
-		WriteCollisionModel( fp, models[ i ] );
+		WriteCollisionModel( fp, models[i] );
 	}
 	fileSystem->CloseFile( fp );
 }
@@ -292,7 +292,7 @@ void idCollisionModelManagerLocal::ParseVertices( idLexer *src, cm_model_t *mode
 	src->ExpectTokenString( "{" );
 	model->numVertices = src->ParseInt();
 	model->maxVertices = model->numVertices;
-	model->vertices = ( cm_vertex_t * ) Mem_Alloc( model->maxVertices * sizeof( cm_vertex_t ) );
+	model->vertices = ( cm_vertex_t * )Mem_Alloc( model->maxVertices * sizeof( cm_vertex_t ) );
 	for( i = 0; i < model->numVertices; i++ ) {
 		src->Parse1DMatrix( 3, model->vertices[i].p.ToFloatPtr() );
 		model->vertices[i].side = 0;
@@ -312,7 +312,7 @@ void idCollisionModelManagerLocal::ParseEdges( idLexer *src, cm_model_t *model )
 	src->ExpectTokenString( "{" );
 	model->numEdges = src->ParseInt();
 	model->maxEdges = model->numEdges;
-	model->edges = ( cm_edge_t * ) Mem_Alloc( model->maxEdges * sizeof( cm_edge_t ) );
+	model->edges = ( cm_edge_t * )Mem_Alloc( model->maxEdges * sizeof( cm_edge_t ) );
 	for( i = 0; i < model->numEdges; i++ ) {
 		src->ExpectTokenString( "(" );
 		model->edges[i].vertexNum[0] = src->ParseInt();
@@ -363,9 +363,9 @@ void idCollisionModelManagerLocal::ParsePolygons( idLexer *src, cm_model_t *mode
 	idVec3 normal;
 	idToken token;
 	if( src->CheckTokenType( TT_NUMBER, 0, &token ) ) {
-		model->polygonBlock = ( cm_polygonBlock_t * ) Mem_Alloc( sizeof( cm_polygonBlock_t ) + token.GetIntValue() );
+		model->polygonBlock = ( cm_polygonBlock_t * )Mem_Alloc( sizeof( cm_polygonBlock_t ) + token.GetIntValue() );
 		model->polygonBlock->bytesRemaining = token.GetIntValue();
-		model->polygonBlock->next = ( ( byte * ) model->polygonBlock ) + sizeof( cm_polygonBlock_t );
+		model->polygonBlock->next = ( ( byte * )model->polygonBlock ) + sizeof( cm_polygonBlock_t );
 	}
 	src->ExpectTokenString( "{" );
 	while( !src->CheckTokenString( "}" ) ) {
@@ -404,9 +404,9 @@ void idCollisionModelManagerLocal::ParseBrushes( idLexer *src, cm_model_t *model
 	idVec3 normal;
 	idToken token;
 	if( src->CheckTokenType( TT_NUMBER, 0, &token ) ) {
-		model->brushBlock = ( cm_brushBlock_t * ) Mem_Alloc( sizeof( cm_brushBlock_t ) + token.GetIntValue() );
+		model->brushBlock = ( cm_brushBlock_t * )Mem_Alloc( sizeof( cm_brushBlock_t ) + token.GetIntValue() );
 		model->brushBlock->bytesRemaining = token.GetIntValue();
-		model->brushBlock->next = ( ( byte * ) model->brushBlock ) + sizeof( cm_brushBlock_t );
+		model->brushBlock->next = ( ( byte * )model->brushBlock ) + sizeof( cm_brushBlock_t );
 	}
 	src->ExpectTokenString( "{" );
 	while( !src->CheckTokenString( "}" ) ) {
@@ -449,7 +449,7 @@ bool idCollisionModelManagerLocal::ParseCollisionModel( idLexer *src ) {
 		return false;
 	}
 	model = AllocModel();
-	models[numModels ] = model;
+	models[numModels] = model;
 	numModels++;
 	// parse the file
 	src->ExpectTokenType( TT_STRING, 0, &token );

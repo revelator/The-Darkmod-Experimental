@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -69,7 +69,7 @@ void CDIB::DestroyDIB() {
 BOOL CDIB::Create( int width, int height, int bits ) {
 	/*
 		Free existing image
-	*/
+		*/
 	DestroyDIB();
 	//	ASSERT(bits == 24 || bits == 8);
 	BITMAPINFOHEADER bmInfo;
@@ -99,7 +99,7 @@ BOOL CDIB::Create( BITMAPINFOHEADER &bmInfo ) {
 	}
 	m_pInfo = ( PBITMAPINFO )m_pVoid;
 	memcpy( ( void * )&m_pInfo->bmiHeader, ( void * )&bmInfo, sizeof( BITMAPINFOHEADER ) );
-	m_pRGB = ( RGBQUAD * )( ( unsigned char * )m_pVoid + sizeof( BITMAPINFOHEADER ) ) ;
+	m_pRGB = ( RGBQUAD * )( ( unsigned char * )m_pVoid + sizeof( BITMAPINFOHEADER ) );
 	m_pBits = ( unsigned char * )( m_pVoid ) + sizeof( BITMAPINFOHEADER ) + sizeof( RGBQUAD ) * GetPaletteSize();
 	int i;
 	BYTE **ptr;
@@ -271,7 +271,7 @@ void CDIB::InitDIB( COLORREF color ) {
 		col[2] = GetRValue( color );
 		for( i = 0, ptr = m_pBits; i < height; i++ ) {
 			ptr = m_pBits + i * bytes;
-			for( j = 0; j < width ; j++, ptr += 3 ) {
+			for( j = 0; j < width; j++, ptr += 3 ) {
 				memcpy( ptr, col, 3 );
 			}
 		}
@@ -303,7 +303,7 @@ void CDIB::Expand( int nXDest, int nYDest, int xRatio, int yRatio, CDIB &dibSrc,
 	int nDWidth, nDHeight;
 	nDWidth = nSWidth * xRatio;
 	nDHeight = nSHeight * yRatio;
-	nDWidth = nXDest + nDWidth > width ? width - nXDest : nDWidth ;
+	nDWidth = nXDest + nDWidth > width ? width - nXDest : nDWidth;
 	nDHeight = nYDest + nDHeight > height ? height - nYDest : nDHeight;
 	xNum = nDWidth / xRatio;
 	yNum = nDHeight / yRatio;
@@ -323,7 +323,7 @@ void CDIB::Expand( int nXDest, int nYDest, int xRatio, int yRatio, CDIB &dibSrc,
 			k = *( srcPtr + j );
 		}
 		memset( ptr, ( unsigned char )k, xErr );
-		for( j = 0; j < yRatio ; j++, nYDest++ ) {
+		for( j = 0; j < yRatio; j++, nYDest++ ) {
 			destPtr = GetLinePtr( nYDest ) + nXDest;
 			memcpy( destPtr, buffer, nDWidth );
 		}
@@ -337,7 +337,7 @@ void CDIB::Expand( int nXDest, int nYDest, int xRatio, int yRatio, CDIB &dibSrc,
 
 void CDIB::StretchBlt( int nXDest, int nYDest, int nDWidth, int nDHeight, CDIB &dibSrc, int xSrc, int ySrc, int  nSWidth, int nSHeight ) {
 	SetPalette( dibSrc.m_pRGB );
-	nDWidth = nXDest + nDWidth > width ? width - nXDest : nDWidth ;
+	nDWidth = nXDest + nDWidth > width ? width - nXDest : nDWidth;
 	nDHeight = nYDest + nDHeight > height ? height - nYDest : nDHeight;
 	nSWidth = xSrc + nSWidth > dibSrc.width ? dibSrc.width - xSrc : nSWidth;
 	nSHeight = ySrc + nSHeight > dibSrc.height ? dibSrc.height - ySrc : nSHeight;
@@ -420,7 +420,7 @@ void CDIB::BitBlt( int nXDest, int nYDest, int nWidth, int nHeight, CDIB &dibSrc
 		nHeight += nSrcY;
 		nSrcY = 0;
 	}
-	nWidth = nXDest + nWidth > width ? width - nXDest : nWidth ;
+	nWidth = nXDest + nWidth > width ? width - nXDest : nWidth;
 	nHeight = nYDest + nHeight > height ? height - nYDest : nHeight;
 	nWidth = nSrcX + nWidth > dibSrc.width ? dibSrc.width - nSrcX : nWidth;
 	nHeight = nSrcY + nHeight > dibSrc.height ? dibSrc.height - nSrcY : nHeight;
@@ -512,7 +512,7 @@ HANDLE CDIB::DIBHandle() {
 	HANDLE hMem;
 	nSize = sizeof( BITMAPINFOHEADER ) + sizeof( RGBQUAD ) * GetPaletteSize() + bytes * height;
 	hMem = GlobalAlloc( GMEM_DDESHARE | GMEM_MOVEABLE, nSize );
-	if( hMem  == NULL ) {
+	if( hMem == NULL ) {
 		return NULL;
 	}
 	UCHAR *lpVoid, *pBits;
@@ -616,19 +616,19 @@ BOOL CDIB::SwitchFrom24(CDIB& dib)
 {
 int i,j,w,h;
 unsigned char *sPtr,*dPtr;
-	w = Width();
-	h = Height();
-	memset(CachePtr,0,sizeof(CachePtr));
-	for(i=0; i < h; i++)
-	{
-		dPtr = GetLinePtr(i);
-		sPtr = dib.GetLinePtr(i);
-		for(j=0 ; j < w; j++,dPtr++,sPtr+=3)
-		{
-			*dPtr = ClosestColor((RGBQUAD *)sPtr);
-		}
-	}
-	return TRUE;
+w = Width();
+h = Height();
+memset(CachePtr,0,sizeof(CachePtr));
+for(i=0; i < h; i++)
+{
+dPtr = GetLinePtr(i);
+sPtr = dib.GetLinePtr(i);
+for(j=0 ; j < w; j++,dPtr++,sPtr+=3)
+{
+*dPtr = ClosestColor((RGBQUAD *)sPtr);
+}
+}
+return TRUE;
 }
 */
 
@@ -644,7 +644,7 @@ BOOL CDIB::SwitchFromOne( CDIB &dib ) {
 	for( i = 0; i < h; i++ ) {
 		dPtr = GetLinePtr( i );
 		sPtr = dib.GetLinePtr( i );
-		for( j = 0 ; j < w; j++, dPtr++ ) {
+		for( j = 0; j < w; j++, dPtr++ ) {
 			if( !( sPtr[j >> 3] & masktable[j & 7] ) ) {
 				*dPtr = cols[0];
 			} else {
@@ -668,7 +668,7 @@ BOOL CDIB::SwitchFromFour( CDIB &dib ) {
 	for( i = 0; i < h; i++ ) {
 		dPtr = GetLinePtr( i );
 		sPtr = dib.GetLinePtr( i );
-		for( j = 0 ; j < w; j++, dPtr++ ) {
+		for( j = 0; j < w; j++, dPtr++ ) {
 			if( !( j & 1 ) ) {
 				n = ( *sPtr & 0xf0 ) >> 4;
 			} else {
@@ -694,7 +694,7 @@ BOOL CDIB::SwitchPalette( CDIB &dib ) {
 	for( i = 0; i < h; i++ ) {
 		dPtr = GetLinePtr( i );
 		sPtr = dib.GetLinePtr( i );
-		for( j = 0 ; j < w; j++, sPtr++, dPtr++ ) {
+		for( j = 0; j < w; j++, sPtr++, dPtr++ ) {
 			*dPtr = cols[*sPtr];
 		}
 	}
@@ -731,8 +731,8 @@ int CDIB::ClosestColor( RGBQUAD *pRgb ) {
 
 unsigned int CDIB::Distance( RGBQUAD &rgb1, RGBQUAD &rgb2 ) {
 	unsigned int d;
-	d =  3 * ( unsigned )( ( rgb1.rgbRed ) - ( rgb2.rgbRed ) ) * ( unsigned )( ( rgb1.rgbRed ) - ( rgb2.rgbRed ) );
-	d += 4 * ( unsigned )( ( rgb1.rgbGreen ) - ( rgb2.rgbGreen ) ) * ( unsigned )( ( rgb1.rgbGreen ) - ( rgb2.rgbGreen ) ) ;
+	d = 3 * ( unsigned )( ( rgb1.rgbRed ) - ( rgb2.rgbRed ) ) * ( unsigned )( ( rgb1.rgbRed ) - ( rgb2.rgbRed ) );
+	d += 4 * ( unsigned )( ( rgb1.rgbGreen ) - ( rgb2.rgbGreen ) ) * ( unsigned )( ( rgb1.rgbGreen ) - ( rgb2.rgbGreen ) );
 	d += 2 * ( unsigned )( ( rgb1.rgbBlue ) - ( rgb2.rgbBlue ) ) * ( unsigned )( ( rgb1.rgbBlue ) - ( rgb2.rgbBlue ) );
 	return d;
 }
@@ -869,7 +869,7 @@ BOOL CDIB::SwitchFrom24( CDIB &dib ) {
 	for( i = 0; i < h; i++ ) {
 		dPtr = GetLinePtr( i );
 		sPtr = dib.GetLinePtr( i );
-		for( j = 0 ; j < w; j++, dPtr++, sPtr += 3 ) {
+		for( j = 0; j < w; j++, dPtr++, sPtr += 3 ) {
 			c = ( *sPtr >> 3 ) | ( ( *( sPtr + 1 ) >> 3 ) << 5 ) | ( ( *( sPtr + 2 ) >> 3 ) << 10 );
 			*dPtr = index_ptr[c];
 		}

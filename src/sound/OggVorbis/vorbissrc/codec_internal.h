@@ -85,7 +85,7 @@ typedef struct private_state {
    specific compression/decompression mode in progress (eg,
    psychoacoustic settings, channel setup, options, codebook
    etc).
-*********************************************************************/
+   *********************************************************************/
 
 #include "highlevel.h"
 typedef struct codec_setup_info {
@@ -121,8 +121,8 @@ typedef struct codec_setup_info {
 
 	bitrate_manager_info   bi;
 	highlevel_encode_setup hi; /* used only by vorbisenc.c.  It's a
-                                highly redundant structure, but
-                                improves clarity of program flow. */
+								highly redundant structure, but
+								improves clarity of program flow. */
 	int         halfrate_flag; /* painless downsample for decode */
 } codec_setup_info;
 

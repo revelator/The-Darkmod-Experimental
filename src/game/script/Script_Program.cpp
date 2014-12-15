@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -62,7 +62,7 @@ idVarDef	def_boolean( &type_boolean );
 
   function_t
 
-***********************************************************************/
+  ***********************************************************************/
 
 /*
 ================
@@ -106,14 +106,14 @@ function_t::Clear
 ================
 */
 void function_t::Clear( void ) {
-	eventdef		= NULL;
-	def				= NULL;
-	type			= NULL;
-	firstStatement	= 0;
-	numStatements	= 0;
-	parmTotal		= 0;
-	locals			= 0;
-	filenum			= 0;
+	eventdef = NULL;
+	def = NULL;
+	type = NULL;
+	firstStatement = 0;
+	numStatements = 0;
+	parmTotal = 0;
+	locals = 0;
+	filenum = 0;
 	name.Clear();
 	parmSize.Clear();
 }
@@ -122,7 +122,7 @@ void function_t::Clear( void ) {
 
   idTypeDef
 
-***********************************************************************/
+  ***********************************************************************/
 
 /*
 ================
@@ -130,11 +130,11 @@ idTypeDef::idTypeDef
 ================
 */
 idTypeDef::idTypeDef( etype_t etype, idVarDef *edef, const char *ename, int esize, idTypeDef *aux ) {
-	name		= ename;
-	type		= etype;
-	def			= edef;
-	size		= esize;
-	auxType		= aux;
+	name = ename;
+	type = etype;
+	def = edef;
+	size = esize;
+	auxType = aux;
 	parmTypes.SetGranularity( 1 );
 	parmNames.SetGranularity( 1 );
 	functions.SetGranularity( 1 );
@@ -155,14 +155,14 @@ idTypeDef::operator=
 ================
 */
 void idTypeDef::operator=( const idTypeDef &other ) {
-	type		= other.type;
-	def			= other.def;
-	name		= other.name;
-	size		= other.size;
-	auxType		= other.auxType;
-	parmTypes	= other.parmTypes;
-	parmNames	= other.parmNames;
-	functions	= other.functions;
+	type = other.type;
+	def = other.def;
+	name = other.name;
+	size = other.size;
+	auxType = other.auxType;
+	parmTypes = other.parmTypes;
+	parmNames = other.parmNames;
+	functions = other.functions;
 }
 
 /*
@@ -175,7 +175,7 @@ size_t idTypeDef::Allocated( void ) const {
 	int i;
 	memsize = name.Allocated() + parmTypes.Allocated() + parmNames.Allocated() + functions.Allocated();
 	for( i = 0; i < parmTypes.Num(); i++ ) {
-		memsize += parmNames[ i ].Allocated();
+		memsize += parmNames[i].Allocated();
 	}
 	return memsize;
 }
@@ -222,7 +222,7 @@ bool idTypeDef::MatchesType( const idTypeDef &matchtype ) const {
 		return false;
 	}
 	for( i = 0; i < matchtype.parmTypes.Num(); i++ ) {
-		if( parmTypes[ i ] != matchtype.parmTypes[ i ] ) {
+		if( parmTypes[i] != matchtype.parmTypes[i] ) {
 			return false;
 		}
 	}
@@ -248,12 +248,12 @@ bool idTypeDef::MatchesVirtualFunction( const idTypeDef &matchfunc ) const {
 		return false;
 	}
 	if( parmTypes.Num() > 0 ) {
-		if( !parmTypes[ 0 ]->Inherits( matchfunc.parmTypes[ 0 ] ) ) {
+		if( !parmTypes[0]->Inherits( matchfunc.parmTypes[0] ) ) {
 			return false;
 		}
 	}
 	for( i = 1; i < matchfunc.parmTypes.Num(); i++ ) {
-		if( parmTypes[ i ] != matchfunc.parmTypes[ i ] ) {
+		if( parmTypes[i] != matchfunc.parmTypes[i] ) {
 			return false;
 		}
 	}
@@ -448,7 +448,7 @@ idTypeDef::GetParmType
 idTypeDef *idTypeDef::GetParmType( int parmNumber ) const {
 	assert( parmNumber >= 0 );
 	assert( parmNumber < parmTypes.Num() );
-	return parmTypes[ parmNumber ];
+	return parmTypes[parmNumber];
 }
 
 /*
@@ -459,7 +459,7 @@ idTypeDef::GetParmName
 const char *idTypeDef::GetParmName( int parmNumber ) const {
 	assert( parmNumber >= 0 );
 	assert( parmNumber < parmTypes.Num() );
-	return parmNames[ parmNumber ];
+	return parmNames[parmNumber];
 }
 
 /*
@@ -479,7 +479,7 @@ idTypeDef::GetFunctionNumber
 int idTypeDef::GetFunctionNumber( const function_t *func ) const {
 	int i;
 	for( i = 0; i < functions.Num(); i++ ) {
-		if( functions[ i ] == func ) {
+		if( functions[i] == func ) {
 			return i;
 		}
 	}
@@ -494,7 +494,7 @@ idTypeDef::GetFunction
 const function_t *idTypeDef::GetFunction( int funcNumber ) const {
 	assert( funcNumber >= 0 );
 	assert( funcNumber < functions.Num() );
-	return functions[ funcNumber ];
+	return functions[funcNumber];
 }
 
 /*
@@ -505,9 +505,9 @@ idTypeDef::AddFunction
 void idTypeDef::AddFunction( const function_t *func ) {
 	int i;
 	for( i = 0; i < functions.Num(); i++ ) {
-		if( !strcmp( functions[ i ]->def->Name(), func->def->Name() ) ) {
-			if( func->def->TypeDef()->MatchesVirtualFunction( *functions[ i ]->def->TypeDef() ) ) {
-				functions[ i ] = func;
+		if( !strcmp( functions[i]->def->Name(), func->def->Name() ) ) {
+			if( func->def->TypeDef()->MatchesVirtualFunction( *functions[i]->def->TypeDef() ) ) {
+				functions[i] = func;
 				return;
 			}
 		}
@@ -519,7 +519,7 @@ void idTypeDef::AddFunction( const function_t *func ) {
 
   idVarDef
 
-***********************************************************************/
+  ***********************************************************************/
 
 /*
 ================
@@ -527,14 +527,14 @@ idVarDef::idVarDef()
 ================
 */
 idVarDef::idVarDef( idTypeDef *typeptr ) {
-	typeDef		= typeptr;
-	num			= 0;
-	scope		= NULL;
-	numUsers	= 0;
+	typeDef = typeptr;
+	num = 0;
+	scope = NULL;
+	numUsers = 0;
 	initialized = idVarDef::uninitialized;
 	memset( &value, 0, sizeof( value ) );
-	name		= NULL;
-	next		= NULL;
+	name = NULL;
+	next = NULL;
 }
 
 /*
@@ -625,41 +625,41 @@ void idVarDef::SetValue( const eval_t &_value, bool constant ) {
 		initialized = initializedVariable;
 	}
 	switch( typeDef->Type() ) {
-	case ev_pointer :
-	case ev_boolean :
-	case ev_field :
+	case ev_pointer:
+	case ev_boolean:
+	case ev_field:
 		*value.intPtr = _value._int;
 		break;
-	case ev_jumpoffset :
+	case ev_jumpoffset:
 		value.jumpOffset = _value._int;
 		break;
-	case ev_argsize :
+	case ev_argsize:
 		value.argSize = _value._int;
 		break;
-	case ev_entity :
+	case ev_entity:
 		*value.entityNumberPtr = _value.entity;
 		break;
-	case ev_string :
+	case ev_string:
 		idStr::Copynz( value.stringPtr, _value.stringPtr, MAX_STRING_LEN );
 		break;
-	case ev_float :
+	case ev_float:
 		*value.floatPtr = _value._float;
 		break;
-	case ev_vector :
-		value.vectorPtr->x = _value.vector[ 0 ];
-		value.vectorPtr->y = _value.vector[ 1 ];
-		value.vectorPtr->z = _value.vector[ 2 ];
+	case ev_vector:
+		value.vectorPtr->x = _value.vector[0];
+		value.vectorPtr->y = _value.vector[1];
+		value.vectorPtr->z = _value.vector[2];
 		break;
-	case ev_function :
+	case ev_function:
 		value.functionPtr = _value.function;
 		break;
-	case ev_virtualfunction :
+	case ev_virtualfunction:
 		value.virtualFunction = _value._int;
 		break;
-	case ev_object :
+	case ev_object:
 		*value.entityNumberPtr = _value.entity;
 		break;
-	default :
+	default:
 		throw idCompileError( va( "weird type on '%s'", Name() ) );
 		break;
 	}
@@ -697,19 +697,19 @@ void idVarDef::PrintInfo( idFile *file, int instructionPointer ) const {
 	}
 	etype = typeDef->Type();
 	switch( etype ) {
-	case ev_jumpoffset :
+	case ev_jumpoffset:
 		jumpto = instructionPointer + value.jumpOffset;
 		jumpst = &gameLocal.program.GetStatement( jumpto );
 		file->Printf( "address %d [%s(%d)]", jumpto, gameLocal.program.GetFilename( jumpst->file ), jumpst->linenumber );
 		break;
-	case ev_function :
+	case ev_function:
 		if( value.functionPtr->eventdef ) {
 			file->Printf( "event %s", GlobalName() );
 		} else {
 			file->Printf( "function %s", GlobalName() );
 		}
 		break;
-	case ev_field :
+	case ev_field:
 		file->Printf( "field %d", value.ptrOffset );
 		break;
 	case ev_argsize:
@@ -719,7 +719,7 @@ void idVarDef::PrintInfo( idFile *file, int instructionPointer ) const {
 		file->Printf( "%s ", typeDef->Name() );
 		if( initialized == initializedConstant ) {
 			switch( etype ) {
-			case ev_string :
+			case ev_string:
 				file->Printf( "\"" );
 				len = strlen( value.stringPtr );
 				ch = value.stringPtr;
@@ -734,16 +734,16 @@ void idVarDef::PrintInfo( idFile *file, int instructionPointer ) const {
 				}
 				file->Printf( "\"" );
 				break;
-			case ev_vector :
+			case ev_vector:
 				file->Printf( "'%s'", value.vectorPtr->ToString() );
 				break;
-			case ev_float :
+			case ev_float:
 				file->Printf( "%f", *value.floatPtr );
 				break;
-			case ev_virtualfunction :
+			case ev_virtualfunction:
 				file->Printf( "vtable[ %d ]", value.virtualFunction );
 				break;
-			default :
+			default:
 				file->Printf( "%d", *value.intPtr );
 				break;
 			}
@@ -760,7 +760,7 @@ void idVarDef::PrintInfo( idFile *file, int instructionPointer ) const {
 
   idVarDef
 
-***********************************************************************/
+  ***********************************************************************/
 
 /*
 ============
@@ -798,7 +798,7 @@ void idVarDefName::RemoveDef( idVarDef *def ) {
 
   idScriptObject
 
-***********************************************************************/
+  ***********************************************************************/
 
 /*
 ============
@@ -1012,7 +1012,7 @@ byte *idScriptObject::GetVariable( const char *name, etype_t etype ) const {
 				if( etype != parm->FieldType()->Type() ) {
 					return NULL;
 				}
-				return &data[ pos ];
+				return &data[pos];
 			}
 			if( parm->FieldType()->Inherits( &type_object ) ) {
 				pos += type_object.Size();
@@ -1029,7 +1029,7 @@ byte *idScriptObject::GetVariable( const char *name, etype_t etype ) const {
 
   idProgram
 
-***********************************************************************/
+  ***********************************************************************/
 
 /*
 ============
@@ -1038,7 +1038,7 @@ idProgram::AllocType
 */
 idTypeDef *idProgram::AllocType( idTypeDef &type ) {
 	idTypeDef *newtype;
-	newtype	= new idTypeDef( type );
+	newtype = new idTypeDef( type );
 	types.Append( newtype );
 	return newtype;
 }
@@ -1050,7 +1050,7 @@ idProgram::AllocType
 */
 idTypeDef *idProgram::AllocType( etype_t etype, idVarDef *edef, const char *ename, int esize, idTypeDef *aux ) {
 	idTypeDef *newtype;
-	newtype	= new idTypeDef( etype, edef, ename, esize, aux );
+	newtype = new idTypeDef( etype, edef, ename, esize, aux );
 	types.Append( newtype );
 	return newtype;
 }
@@ -1067,8 +1067,8 @@ idTypeDef *idProgram::GetType( idTypeDef &type, bool allocate ) {
 	int i;
 	//FIXME: linear search == slow
 	for( i = types.Num() - 1; i >= 0; i-- ) {
-		if( types[ i ]->MatchesType( type ) && !strcmp( types[ i ]->Name(), type.Name() ) ) {
-			return types[ i ];
+		if( types[i]->MatchesType( type ) && !strcmp( types[i]->Name(), type.Name() ) ) {
+			return types[i];
 		}
 	}
 	if( !allocate ) {
@@ -1089,7 +1089,7 @@ idTypeDef *idProgram::FindType( const char *name ) {
 	idTypeDef	*check;
 	int			i;
 	for( i = types.Num() - 1; i >= 0; i-- ) {
-		check = types[ i ];
+		check = types[i];
 		if( !strcmp( check->Name(), name ) ) {
 			return check;
 		}
@@ -1146,9 +1146,9 @@ idVarDef *idProgram::AllocDef( idTypeDef *type, const char *name, idVarDef *scop
 	idVarDef	*def_z;
 	// allocate a new def
 	def = new idVarDef( type );
-	def->scope		= scope;
-	def->numUsers	= 1;
-	def->num		= varDefs.Append( def );
+	def->scope = scope;
+	def->numUsers = 1;
+	def->num = varDefs.Append( def );
 	// add the def to the list with defs with this name and set the name pointer
 	AddDefToNameList( def, name );
 	if( ( type->Type() == ev_vector ) || ( ( type->Type() == ev_field ) && ( type->FieldType()->Type() == ev_vector ) ) ) {
@@ -1158,8 +1158,8 @@ idVarDef *idProgram::AllocDef( idTypeDef *type, const char *name, idVarDef *scop
 		if( !strcmp( name, RESULT_STRING ) ) {
 			// <RESULT> vector defs don't need the _x, _y and _z components
 			assert( scope->Type() == ev_function );
-			def->value.stackOffset	= scope->value.functionPtr->locals;
-			def->initialized		= idVarDef::stackVariable;
+			def->value.stackOffset = scope->value.functionPtr->locals;
+			def->initialized = idVarDef::stackVariable;
 			scope->value.functionPtr->locals += type->Size();
 		} else if( scope->TypeDef()->Inherits( &type_object ) ) {
 			idTypeDef	newtype( ev_field, NULL, "float field", 0, &type_float );
@@ -1186,8 +1186,8 @@ idVarDef *idProgram::AllocDef( idTypeDef *type, const char *name, idVarDef *scop
 			sprintf( element, "%s_z", def->Name() );
 			def_z = AllocDef( &type_float, element, scope, constant );
 			// point the vector def to the x coordinate
-			def->value			= def_x->value;
-			def->initialized	= def_x->initialized;
+			def->value = def_x->value;
+			def->initialized = def_x->initialized;
 		}
 	} else if( scope->TypeDef()->Inherits( &type_object ) ) {
 		//
@@ -1201,8 +1201,8 @@ idVarDef *idProgram::AllocDef( idTypeDef *type, const char *name, idVarDef *scop
 		//
 		// since we don't know how many local variables there are,
 		// we have to have them go backwards on the stack
-		def->value.stackOffset	= scope->value.functionPtr->locals;
-		def->initialized		= idVarDef::stackVariable;
+		def->value.stackOffset = scope->value.functionPtr->locals;
+		def->initialized = idVarDef::stackVariable;
 		if( type->Inherits( &type_object ) ) {
 			// objects only have their entity number on the stack, not the entire object
 			scope->value.functionPtr->locals += type_object.Size();
@@ -1213,7 +1213,7 @@ idVarDef *idProgram::AllocDef( idTypeDef *type, const char *name, idVarDef *scop
 		//
 		// global variable
 		//
-		def->value.bytePtr = &variables[ numVariables ];
+		def->value.bytePtr = &variables[numVariables];
 		numVariables += def->TypeDef()->Size();
 		if( numVariables > sizeof( variables ) ) {
 			throw idCompileError( va( "Exceeded global memory size (%d bytes)", sizeof( variables ) ) );
@@ -1290,7 +1290,7 @@ void idProgram::FreeDef( idVarDef *def, const idVarDef *scope ) {
 	}
 	varDefs.RemoveIndex( def->num );
 	for( i = def->num; i < varDefs.Num(); i++ ) {
-		varDefs[ i ]->num = i;
+		varDefs[i]->num = i;
 	}
 	delete def;
 }
@@ -1402,15 +1402,15 @@ function_t &idProgram::AllocFunction( idVarDef *def ) {
 		throw idCompileError( va( "Exceeded maximum allowed number of functions (%d)", functions.Max() ) );
 	}
 	// fill in the dfunction
-	function_t &func	= *functions.Alloc();
-	func.eventdef		= NULL;
-	func.def			= def;
-	func.type			= def->TypeDef();
-	func.firstStatement	= 0;
-	func.numStatements	= 0;
-	func.parmTotal		= 0;
-	func.locals			= 0;
-	func.filenum		= filenum;
+	function_t &func = *functions.Alloc();
+	func.eventdef = NULL;
+	func.def = def;
+	func.type = def->TypeDef();
+	func.firstStatement = 0;
+	func.numStatements = 0;
+	func.parmTotal = 0;
+	func.locals = 0;
+	func.filenum = filenum;
 	func.parmSize.SetGranularity( 1 );
 	func.SetName( def->GlobalName() );
 	def->SetFunction( &func );
@@ -1462,12 +1462,12 @@ void idProgram::BeginCompilation( void ) {
 	try {
 		// make the first statement a return for a "NULL" function
 		statement = AllocStatement();
-		statement->linenumber	= 0;
-		statement->file 		= 0;
-		statement->op			= OP_RETURN;
-		statement->a			= NULL;
-		statement->b			= NULL;
-		statement->c			= NULL;
+		statement->linenumber = 0;
+		statement->file = 0;
+		statement->op = OP_RETURN;
+		statement->a = NULL;
+		statement->b = NULL;
+		statement->c = NULL;
 		// define NULL
 		//AllocDef( &type_void, "<NULL>", &def_namespace, true );
 		// define the return def
@@ -1489,9 +1489,9 @@ idProgram::DisassembleStatement
 void idProgram::DisassembleStatement( idFile *file, int instructionPointer ) const {
 	opcode_t			*op;
 	const statement_t	*statement;
-	statement = &statements[ instructionPointer ];
-	op = &idCompiler::opcodes[ statement->op ];
-	file->Printf( "%20s(%d):\t%6d: %15s\t", fileList[ statement->file ].c_str(), statement->linenumber, instructionPointer, op->opname );
+	statement = &statements[instructionPointer];
+	op = &idCompiler::opcodes[statement->op];
+	file->Printf( "%20s(%d):\t%6d: %15s\t", fileList[statement->file].c_str(), statement->linenumber, instructionPointer, op->opname );
 	if( statement->a ) {
 		file->Printf( "\ta: " );
 		statement->a->PrintInfo( file, instructionPointer );
@@ -1519,7 +1519,7 @@ void idProgram::Disassemble( void ) const {
 	idFile				*file;
 	file = fileSystem->OpenFileByMode( "script/disasm.txt", FS_WRITE );
 	for( i = 0; i < functions.Num(); i++ ) {
-		func = &functions[ i ];
+		func = &functions[i];
 		if( func->eventdef ) {
 			// skip eventdefs
 			continue;
@@ -1542,15 +1542,15 @@ Called after all files are compiled to check for errors
 */
 void idProgram::FinishCompilation( void ) {
 	int	i;
-	top_functions	= functions.Num();
-	top_statements	= statements.Num();
-	top_types		= types.Num();
-	top_defs		= varDefs.Num();
-	top_files		= fileList.Num();
+	top_functions = functions.Num();
+	top_statements = statements.Num();
+	top_types = types.Num();
+	top_defs = varDefs.Num();
+	top_files = fileList.Num();
 	variableDefaults.Clear();
 	variableDefaults.SetNum( numVariables );
 	for( i = 0; i < ( int )numVariables; i++ ) {
-		variableDefaults[ i ] = variables[ i ];
+		variableDefaults[i] = variables[i];
 	}
 }
 
@@ -1572,8 +1572,8 @@ void idProgram::CompileStats( void ) {
 	gameLocal.DPrintf( "Files loaded:\n" );
 	stringspace = 0;
 	for( i = 0; i < fileList.Num(); i++ ) {
-		gameLocal.DPrintf( "   %s\n", fileList[ i ].c_str() );
-		stringspace += fileList[ i ].Allocated();
+		gameLocal.DPrintf( "   %s\n", fileList[i].c_str() );
+		stringspace += fileList[i].Allocated();
 	}
 	stringspace += fileList.Size();
 	numdefs = varDefs.Num();
@@ -1581,11 +1581,11 @@ void idProgram::CompileStats( void ) {
 	memused += types.Num() * sizeof( idTypeDef );
 	memused += stringspace;
 	for( i = 0; i < types.Num(); i++ ) {
-		memused += types[ i ]->Allocated();
+		memused += types[i]->Allocated();
 	}
 	funcMem = functions.MemoryUsed();
 	for( i = 0; i < functions.Num(); i++ ) {
-		funcMem += functions[ i ].Allocated();
+		funcMem += functions[i].Allocated();
 	}
 	memallocated = funcMem + memused + sizeof( idProgram );
 	memused += statements.MemoryUsed();
@@ -1619,7 +1619,7 @@ bool idProgram::CompileText( const char *source, const char *text, bool console 
 		compiler.CompileFile( text, filename, console );
 		// check to make sure all functions prototyped have code
 		for( i = 0; i < varDefs.Num(); i++ ) {
-			def = varDefs[ i ];
+			def = varDefs[i];
 			if( ( def->Type() == ev_function ) && ( ( def->scope->Type() == ev_namespace ) || def->scope->TypeDef()->Inherits( &type_object ) ) ) {
 				if( !def->value.functionPtr->eventdef && !def->value.functionPtr->firstStatement ) {
 					throw idCompileError( va( "function %s was not defined\n", def->GlobalName() ) );
@@ -1689,9 +1689,9 @@ void idProgram::FreeData( void ) {
 	varDefs.DeleteContents( true );
 	varDefNames.DeleteContents( true );
 	varDefNameHash.Free();
-	returnDef		= NULL;
+	returnDef = NULL;
 	returnStringDef = NULL;
-	sysDef			= NULL;
+	sysDef = NULL;
 	// free any special types we've created
 	types.DeleteContents( true );
 	filenum = 0;
@@ -1699,17 +1699,17 @@ void idProgram::FreeData( void ) {
 	memset( variables, 0, sizeof( variables ) );
 	// clear all the strings in the functions so that it doesn't look like we're leaking memory.
 	for( i = 0; i < functions.Num(); i++ ) {
-		functions[ i ].Clear();
+		functions[i].Clear();
 	}
 	filename.Clear();
 	fileList.Clear();
 	statements.Clear();
 	functions.Clear();
-	top_functions	= 0;
-	top_statements	= 0;
-	top_types		= 0;
-	top_defs		= 0;
-	top_files		= 0;
+	top_functions = 0;
+	top_statements = 0;
+	top_types = 0;
+	top_defs = 0;
+	top_files = 0;
 	filename = "";
 }
 
@@ -1738,8 +1738,8 @@ void idProgram::RegisterScriptEvents() {
 		idTypeDef *returnType = idCompiler::GetTypeForEventArg( eventDef->GetReturnType() );
 		idTypeDef *type = AllocType( ev_function, NULL, eventDef->GetName(), type_function.Size(), returnType );
 		type->def = AllocDef( type, eventDef->GetName(), &def_namespace, true );
-		function_t &func	= AllocFunction( type->def );
-		func.eventdef		= eventDef;
+		function_t &func = AllocFunction( type->def );
+		func.eventdef = eventDef;
 		func.parmSize.SetNum( eventDef->GetNumArgs() );
 		for( int arg = 0; arg < numArgs; ++arg ) {
 			idTypeDef *argType = idCompiler::GetTypeForEventArg( argFormat[arg] );
@@ -1748,7 +1748,7 @@ void idProgram::RegisterScriptEvents() {
 			func.parmSize[arg] = argType->Size();
 		}
 		// mark the parms as local
-		func.locals	= func.parmTotal;
+		func.locals = func.parmTotal;
 	}
 }
 
@@ -1782,7 +1782,7 @@ void idProgram::Save( idSaveGame *savefile ) const {
 	int currentFileNum = top_files;
 	savefile->WriteInt( ( fileList.Num() - currentFileNum ) );
 	while( currentFileNum < fileList.Num() ) {
-		savefile->WriteString( fileList[ currentFileNum ] );
+		savefile->WriteString( fileList[currentFileNum] );
 		currentFileNum++;
 	}
 	for( i = 0; i < variableDefaults.Num(); i++ ) {
@@ -1848,7 +1848,7 @@ int idProgram::CalculateChecksum( void ) const {
 		unsigned short	linenumber;
 		unsigned short	file;
 	} statementBlock_t;
-	statementBlock_t	*statementList = new statementBlock_t[ statements.Num() ];
+	statementBlock_t	*statementList = new statementBlock_t[statements.Num()];
 	memset( statementList, 0, ( sizeof( statementBlock_t ) * statements.Num() ) );
 	// Copy info into new list, using the variable numbers instead of a pointer to the variable
 	for( i = 0; i < statements.Num(); i++ ) {
@@ -1872,7 +1872,7 @@ int idProgram::CalculateChecksum( void ) const {
 		statementList[i].file = statements[i].file;
 	}
 	result = MD4_BlockChecksum( statementList, ( sizeof( statementBlock_t ) * statements.Num() ) );
-	delete [] statementList;
+	delete[] statementList;
 	return result;
 }
 
@@ -1892,24 +1892,24 @@ void idProgram::Restart( void ) {
 	// have been allocated after the initial startup
 	//
 	for( i = top_types; i < types.Num(); i++ ) {
-		delete types[ i ];
+		delete types[i];
 	}
 	types.SetNum( top_types, false );
 	for( i = top_defs; i < varDefs.Num(); i++ ) {
-		delete varDefs[ i ];
+		delete varDefs[i];
 	}
 	varDefs.SetNum( top_defs, false );
 	for( i = top_functions; i < functions.Num(); i++ ) {
-		functions[ i ].Clear();
+		functions[i].Clear();
 	}
-	functions.SetNum( top_functions	);
+	functions.SetNum( top_functions );
 	statements.SetNum( top_statements );
 	fileList.SetNum( top_files, false );
 	filename.Clear();
 	// reset the variables to their default values
 	numVariables = variableDefaults.Num();
 	for( i = 0; i < ( int )numVariables; i++ ) {
-		variables[ i ] = variableDefaults[ i ];
+		variables[i] = variableDefaults[i];
 	}
 }
 

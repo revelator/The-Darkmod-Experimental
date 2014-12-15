@@ -1,28 +1,28 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #ifndef GESTATUSBAR_H_
 #define GESTATUSBAR_H_
 
 class rvGEStatusBar {
 public:
 
-	rvGEStatusBar( );
+	rvGEStatusBar();
 
 	bool	Create( HWND parent, UINT id, bool visible = true );
 	void	Resize( int width, int height );
@@ -51,21 +51,21 @@ ID_INLINE HWND rvGEStatusBar::GetWindow( void ) {
 ID_INLINE void rvGEStatusBar::SetZoom( int zoom ) {
 	if( mZoom != zoom ) {
 		mZoom = zoom;
-		Update( );
+		Update();
 	}
 }
 
 ID_INLINE void rvGEStatusBar::SetTriangles( int triangles ) {
 	if( triangles != mTriangles ) {
 		mTriangles = triangles;
-		Update( );
+		Update();
 	}
 }
 
 ID_INLINE void rvGEStatusBar::SetSimple( bool simple ) {
 	if( mSimple != simple ) {
 		mSimple = simple;
-		Update( );
+		Update();
 	}
 }
 

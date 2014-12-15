@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -133,7 +133,7 @@ void CDarkmodAASHidingSpotFinder::EnsurePVS() {
 
 bool CDarkmodAASHidingSpotFinder::initialize
 (
-	const idVec3 &hideFromPos ,
+	const idVec3 &hideFromPos,
 	//idAAS* in_p_aas,
 	float in_hidingHeight,
 	idBounds in_searchLimits,
@@ -352,7 +352,7 @@ bool CDarkmodAASHidingSpotFinder::testNewPVSArea
 				searchState = EIteratingNonVisibleAASAreas;
 			} else {
 				// Finished searching this PVS area, on to next PVS area
-				numPVSAreasIterated ++;
+				numPVSAreasIterated++;
 			}
 		} // end non-visible pvs area
 		else {
@@ -377,7 +377,7 @@ bool CDarkmodAASHidingSpotFinder::testingAASAreas_InNonVisiblePVSArea
 	int numPointsToTestThisPass,
 	int &inout_numPointsTestedThisPass
 ) {
-	for( ; numAASAreaIndicesSearched < aasAreaIndices.Num(); numAASAreaIndicesSearched ++ ) {
+	for( ; numAASAreaIndicesSearched < aasAreaIndices.Num(); numAASAreaIndicesSearched++ ) {
 		int aasAreaIndex = aasAreaIndices[numAASAreaIndicesSearched];
 		// No aas area in hiding spot tree yet
 		TDarkmodHidingSpotAreaNode *p_hidingAreaNode = NULL;
@@ -431,7 +431,7 @@ bool CDarkmodAASHidingSpotFinder::testingAASAreas_InNonVisiblePVSArea
 			//DM_LOG(LC_AI, LT_DEBUG)LOGSTRING("Hiding spot added for PVS non-visible area %d, AAS area %d, goal [%s]\r", PVSAreas[numPVSAreasIterated], hidingSpot.goal.areaNum,hidingSpot.goal.origin.ToString());
 		}
 		// This counts as a point tested
-		inout_numPointsTestedThisPass ++;
+		inout_numPointsTestedThisPass++;
 		if( inout_numPointsTestedThisPass >= numPointsToTestThisPass ) {
 			// This area was iterated (we aren't looping around to do this)
 			if( numAASAreaIndicesSearched < aasAreaIndices.Num() - 1 ) {
@@ -444,7 +444,7 @@ bool CDarkmodAASHidingSpotFinder::testingAASAreas_InNonVisiblePVSArea
 	aasAreaIndices.Clear();
 	numAASAreaIndicesSearched = 0;
 	// Finished this PVS area
-	numPVSAreasIterated ++;
+	numPVSAreasIterated++;
 	// On to next PVS area
 	searchState = ENewPVSArea;
 	// Potentially more PVS areas to search
@@ -461,7 +461,7 @@ bool CDarkmodAASHidingSpotFinder::testingAASAreas_InVisiblePVSArea
 ) {
 	// The PVS area is visible through the PVS system.
 	// Iterate the aas area indices
-	for( ; numAASAreaIndicesSearched < aasAreaIndices.Num(); numAASAreaIndicesSearched ++ ) {
+	for( ; numAASAreaIndicesSearched < aasAreaIndices.Num(); numAASAreaIndicesSearched++ ) {
 		// Get AAS area index for this AAS area
 		int aasAreaIndex = aasAreaIndices[numAASAreaIndicesSearched];
 		// Check area flags
@@ -495,7 +495,7 @@ bool CDarkmodAASHidingSpotFinder::testingAASAreas_InVisiblePVSArea
 	aasAreaIndices.Clear();
 	numAASAreaIndicesSearched = 0;
 	// Finished this PVS area
-	numPVSAreasIterated ++;
+	numPVSAreasIterated++;
 	// On to next PVS area
 	searchState = ENewPVSArea;
 	// Potentially more PVS areas to search
@@ -582,7 +582,7 @@ bool CDarkmodAASHidingSpotFinder::testingInsideVisibleAASArea
 				//DM_LOG(LC_AI, LT_DEBUG)LOGSTRING("Found hiding spot within AAS area %d at (X:%f, Y:%f, Z:%f) with type bitflags %d, quality %f\r", currentGridSearchAASAreaNum, currentGridSearchPoint.x, currentGridSearchPoint.y, currentGridSearchPoint.z, hidingSpot.hidingSpotTypes, hidingSpot.quality);
 			}
 			// One more point tested
-			inout_numPointsTestedThisPass ++;
+			inout_numPointsTestedThisPass++;
 			// Increase search coordinate. Ensure we search along bounds, which might be a
 			// wall or other cover providing surface.
 			if( ( currentGridSearchPoint.y < currentGridSearchBoundMaxes.y - WALL_MARGIN_SIZE ) &&
@@ -605,7 +605,7 @@ bool CDarkmodAASHidingSpotFinder::testingInsideVisibleAASArea
 	} // X iteration
 	//DM_LOG(LC_AI, LT_DEBUG)LOGSTRING("Finished hide grid iteration for AAS area %d\r", currentGridSearchAASAreaNum);
 	// One more AAS area searched
-	numAASAreaIndicesSearched ++;
+	numAASAreaIndicesSearched++;
 	// Increase the area investigation counter
 	areasTestedThisPass++;
 	// Go back to iterating the list of AAS areas in this visible PVS area
@@ -713,26 +713,26 @@ int CDarkmodAASHidingSpotFinder::TestHidingPoint
 /*
 void CDarkmodAASHidingSpotFinder::insertHidingSpotWithQualitySorting
 (
-	darkModHidingSpot& hidingSpot,
-	//idList<darkModHidingSpot>& inout_hidingSpots
-	CDarkmodHidingSpotTree& inout_hidingSpots
+darkModHidingSpot& hidingSpot,
+//idList<darkModHidingSpot>& inout_hidingSpots
+CDarkmodHidingSpotTree& inout_hidingSpots
 )
 {
-	// Find the right place
-	int numSpots = inout_hidingSpots.Num();
+// Find the right place
+int numSpots = inout_hidingSpots.Num();
 
-	int spotIndex = 0;
-	for (spotIndex = 0; spotIndex < numSpots; spotIndex ++)
-	{
-		if (inout_hidingSpots[spotIndex].quality <= hidingSpot.quality)
-		{
-			// Insert it before this spot (at this spot and move all rest down)
-			break;
-		}
-	}
+int spotIndex = 0;
+for (spotIndex = 0; spotIndex < numSpots; spotIndex ++)
+{
+if (inout_hidingSpots[spotIndex].quality <= hidingSpot.quality)
+{
+// Insert it before this spot (at this spot and move all rest down)
+break;
+}
+}
 
-	// Do insertion
-	inout_hidingSpots.Insert (hidingSpot, spotIndex);
+// Do insertion
+inout_hidingSpots.Insert (hidingSpot, spotIndex);
 }
 */
 
@@ -750,24 +750,24 @@ void CDarkmodAASHidingSpotFinder::CombineRedundantHidingSpots
 
 	for (int index = 0; index < listLength; index ++)
 	{
-		// Get the hiding spot
-		darkModHidingSpot spot = inout_hidingSpots[index];
+	// Get the hiding spot
+	darkModHidingSpot spot = inout_hidingSpots[index];
 
-		// compare with other hiding spots later in the list
-		for (int otherIndex = index+1; otherIndex < listLength; otherIndex ++)
-		{
-			darkModHidingSpot otherSpot = inout_hidingSpots[otherIndex];
-			float distance = abs((spot.goal.origin - otherSpot.goal.origin).Length());
-			if ((spot.hidingSpotTypes == otherSpot.hidingSpotTypes) && (distance < distanceAtWhichToCombine))
-			{
-				// Remove the other spot
-				inout_hidingSpots.RemoveIndex(otherIndex);
-				listLength --;
+	// compare with other hiding spots later in the list
+	for (int otherIndex = index+1; otherIndex < listLength; otherIndex ++)
+	{
+	darkModHidingSpot otherSpot = inout_hidingSpots[otherIndex];
+	float distance = abs((spot.goal.origin - otherSpot.goal.origin).Length());
+	if ((spot.hidingSpotTypes == otherSpot.hidingSpotTypes) && (distance < distanceAtWhichToCombine))
+	{
+	// Remove the other spot
+	inout_hidingSpots.RemoveIndex(otherIndex);
+	listLength --;
 
-				// A point may have been pulled down into this other index
-				otherIndex --;
-			}
-		}
+	// A point may have been pulled down into this other index
+	otherIndex --;
+	}
+	}
 	}
 	*/
 }
@@ -790,7 +790,7 @@ void CDarkmodAASHidingSpotFinder::debugAppendHidingSpotsToDraw
 ) {
 	idList<darkModHidingSpot> hidingSpotsToAppend;
 	unsigned long numSpots = inout_hidingSpots.getNumSpots();
-	for( unsigned long spotIndex = 0; spotIndex < numSpots; spotIndex ++ ) {
+	for( unsigned long spotIndex = 0; spotIndex < numSpots; spotIndex++ ) {
 		darkModHidingSpot *p_spot = inout_hidingSpots.getNthSpot( spotIndex );
 		darkModHidingSpot spotCopy;
 		spotCopy = *p_spot;
@@ -822,7 +822,7 @@ void CDarkmodAASHidingSpotFinder::debugDrawHidingSpots( int viewLifetime ) {
 			markerColor += OcclusionMarkerColor;
 		}
 		// Scale from blackness to the color
-		for( int i = 0; i < 4; i ++ ) {
+		for( int i = 0; i < 4; i++ ) {
 			markerColor[i] *= DebugDrawList[spotIndex].quality;
 		}
 		// Render this hiding spot
@@ -949,7 +949,7 @@ bool CDarkmodAASHidingSpotFinder::continueSearchForHidingSpots
 	// The number of points this pass
 	int numPointsTestedThisPass = 0;
 	// Call the interior function
-	if( !findMoreHidingSpots( inout_hidingSpots,	numPointsToTestThisPass, numPointsTestedThisPass ) ) {
+	if( !findMoreHidingSpots( inout_hidingSpots, numPointsToTestThisPass, numPointsTestedThisPass ) ) {
 		// Sub divide the tree
 		inout_hidingSpots.subDivideAreas( NUM_POINTS_PER_AREA_FOR_SUBDIVISION );
 		return false;

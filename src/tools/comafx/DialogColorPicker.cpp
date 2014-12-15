@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -55,7 +55,7 @@ protected:
 protected:
 	// ClassWizard generate virtual function overrides
 	//{{AFX_VIRTUAL(CMyColorDialog)
-	virtual void DoDataExchange( CDataExchange *pDX );  // DDX/DDV support
+	virtual void DoDataExchange( CDataExchange *pDX ); // DDX/DDV support
 	//}}AFX_VIRTUAL
 
 	// Generated message map functions
@@ -245,7 +245,7 @@ int Distance( CPoint pt1, CPoint pt2 ) {
 	y *= y;
 	x = ( pt1.x - pt2.x );
 	x *= x;
-	a = ( double )x + ( double )y ;
+	a = ( double )x + ( double )y;
 	a = idMath::Sqrt( a );
 	return ( int )a;
 }
@@ -470,7 +470,7 @@ void CDialogColorPicker::OnMouseMove( UINT nFlags, CPoint point ) {
 			color.r = ( int )val;
 			CPoint pt;
 			pt = PointOnLine( Vertex, Top, ( color.r * RedLen ) / 255, RedLen );
-			rects[RED] = CRect( pt.x - RECT_WIDTH , pt.y - RECT_WIDTH , pt.x + RECT_WIDTH , pt.y + RECT_WIDTH );
+			rects[RED] = CRect( pt.x - RECT_WIDTH, pt.y - RECT_WIDTH, pt.x + RECT_WIDTH, pt.y + RECT_WIDTH );
 			CalcCuboid();
 			DrawLines( &dc );
 			bChange = TRUE;
@@ -489,7 +489,7 @@ void CDialogColorPicker::OnMouseMove( UINT nFlags, CPoint point ) {
 			color.g = ( int )val;
 			CPoint pt;
 			pt = PointOnLine( Vertex, Left, ( color.g * GreenLen ) / 255, GreenLen );
-			rects[GREEN] = CRect( pt.x - RECT_WIDTH , pt.y - RECT_WIDTH , pt.x + RECT_WIDTH , pt.y + RECT_WIDTH );
+			rects[GREEN] = CRect( pt.x - RECT_WIDTH, pt.y - RECT_WIDTH, pt.x + RECT_WIDTH, pt.y + RECT_WIDTH );
 			CalcCuboid();
 			DrawLines( &dc );
 			bChange = TRUE;
@@ -508,7 +508,7 @@ void CDialogColorPicker::OnMouseMove( UINT nFlags, CPoint point ) {
 			color.b = ( int )val;
 			CPoint pt;
 			pt = PointOnLine( Vertex, Right, ( color.b * GreenLen ) / 255, BlueLen );
-			rects[BLUE] = CRect( pt.x - RECT_WIDTH , pt.y - RECT_WIDTH , pt.x + RECT_WIDTH , pt.y + RECT_WIDTH );
+			rects[BLUE] = CRect( pt.x - RECT_WIDTH, pt.y - RECT_WIDTH, pt.x + RECT_WIDTH, pt.y + RECT_WIDTH );
 			CalcCuboid();
 			DrawLines( &dc );
 			bChange = TRUE;
@@ -677,7 +677,7 @@ void CDialogColorPicker::SetDIBPalette() {
 	double d;
 	d = 255.0 / brightRect.Height();
 	p = palette;
-	for( int i = brightRect.Height() - 1; i >= 0 ; i--, p += 3 ) {
+	for( int i = brightRect.Height() - 1; i >= 0; i--, p += 3 ) {
 		h.v = ( int )( ( double )i * d );
 		RGBType rgb = h.toRGB();
 		p[0] = rgb.r;
@@ -699,8 +699,8 @@ void CDialogColorPicker::CalcRects() {
 
 void CDialogColorPicker::DrawHSB( CDC *pDC ) {
 	if( m_HsbBitmap.GetSafeHandle() ) {
-		CBitmap *pOldBitmap ;
-		pOldBitmap  = ( CBitmap * )memDC.SelectObject( &m_HsbBitmap );
+		CBitmap *pOldBitmap;
+		pOldBitmap = ( CBitmap * )memDC.SelectObject( &m_HsbBitmap );
 		pDC->BitBlt( hsbRect.left, hsbRect.top, hsbWidth, hsbHeight, &memDC, 0, 0, SRCCOPY );
 		m_BrightDIB.BitBlt( pDC->m_hDC, brightRect.left, brightRect.top, brightRect.Width(), brightRect.Height(), 0, 0 );
 		DrawMarkers( pDC );
@@ -710,8 +710,8 @@ void CDialogColorPicker::DrawHSB( CDC *pDC ) {
 
 void CDialogColorPicker::DrawRGB( CDC *pDC ) {
 	if( m_RgbBitmap.GetSafeHandle() ) {
-		CBitmap *pOldBitmap ;
-		pOldBitmap  = ( CBitmap * )memDC.SelectObject( &m_RgbBitmap );
+		CBitmap *pOldBitmap;
+		pOldBitmap = ( CBitmap * )memDC.SelectObject( &m_RgbBitmap );
 		pDC->BitBlt( rgbRect.left, rgbRect.top, rgbWidth, rgbHeight, &memDC, 0, 0, SRCCOPY );
 		DrawLines( pDC );
 		memDC.SelectObject( pOldBitmap );
@@ -726,7 +726,7 @@ void CDialogColorPicker::DrawLines( CDC *pDC ) {
 	COLORREF col = RGB( 255, 255, 255 );
 	CRect cr;
 	for( int i = 0; i < 3; i++ ) {
-		cr = CRect( pt[i].x - RECT_WIDTH , pt[i].y - RECT_WIDTH , pt[i].x + RECT_WIDTH , pt[i].y + RECT_WIDTH );
+		cr = CRect( pt[i].x - RECT_WIDTH, pt[i].y - RECT_WIDTH, pt[i].x + RECT_WIDTH, pt[i].y + RECT_WIDTH );
 		rects[i] = cr;
 		DrawXorRect( pDC, cr );
 	}
@@ -737,14 +737,14 @@ void CDialogColorPicker::DrawLines( CDC *pDC ) {
 	/*
 	Draw the following lines :
 
-		1 -2
-		2 -3
-		3 - 4
-		4- 5
-		5 -2
-		5 - 6
-		6-7
-		7-4
+	1 -2
+	2 -3
+	3 - 4
+	4- 5
+	5 -2
+	5 - 6
+	6-7
+	7-4
 	*/
 	pDC->MoveTo( m_Cuboid[1] );
 	pDC->LineTo( m_Cuboid[2] );
@@ -793,26 +793,26 @@ void CDialogColorPicker::CalcSlopes() {
 /*
 
   Cuboid points
-   0 = vertex
-   1 = Red Axis
-   2 = Red Green Intersection
-   3 = Green Axis
-   4 = Blue Green Intersection
-   5 = Blue Green Red Intersection
-   6 = Red Blue Intersection
-   7 = Blue Axis
+  0 = vertex
+  1 = Red Axis
+  2 = Red Green Intersection
+  3 = Green Axis
+  4 = Blue Green Intersection
+  5 = Blue Green Red Intersection
+  6 = Red Blue Intersection
+  7 = Blue Axis
 
   Draw the following lines :
 
-	1 -2
-	2 -3
-	3 - 4
-	4- 5
-	5 -2
-	5 - 6
-	6-7
-	7-4
-*/
+  1 -2
+  2 -3
+  3 - 4
+  4- 5
+  5 -2
+  5 - 6
+  6-7
+  7-4
+  */
 
 void CDialogColorPicker::CalcCuboid() {
 	double rLen, gLen, bLen;
@@ -1059,7 +1059,7 @@ void CDialogColorPicker::OnBtnColor() {
 	DrawAll();
 }
 
-bool DoNewColor( int *i1, int *i2, int *i3, float *overBright, void ( *Update )( float, float, float, float ) ) {
+bool DoNewColor( int *i1, int *i2, int *i3, float *overBright, void( *Update )( float, float, float, float ) ) {
 	COLORREF cr = ( *i1 ) + ( ( *i2 ) << 8 ) + ( ( *i3 ) << 16 );
 	CDialogColorPicker dlg( cr );
 	//CMyColorDialog dlg(cr, CC_FULLOPEN | CC_RGBINIT | CC_ANYCOLOR);

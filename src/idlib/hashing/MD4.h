@@ -36,6 +36,6 @@ typedef struct {
 	MD4_u32plus block[16];
 } MD4_CTX;
 
-unsigned long MD4_BlockChecksum( const void *data, int length );
+unsigned long MD4_BlockChecksum(const void *data, int length);
 
 #endif /* !__MD4_H__ */

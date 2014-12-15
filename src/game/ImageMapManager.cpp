@@ -1,22 +1,22 @@
 // vim:ts=4:sw=4:cindent
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 /*
 	Copyright (C) 2011 Tels (Donated to The Dark Mod Team)
@@ -26,7 +26,7 @@
 	Image maps (usually grayscale images) are loaded only once and the can
 	be shared between different SEED entities.
 
-*/
+	*/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -83,7 +83,7 @@ void ImageMapManager::Restore( idRestoreGame *savefile ) {
 		savefile->ReadUnsignedInt( m_imageMaps[i].users );
 		if( m_imageMaps[i].users > 0 ) {
 			// need to load it again
-			if( ! LoadImage( &m_imageMaps[i] ) ) {
+			if( !LoadImage( &m_imageMaps[i] ) ) {
 				// TODO: Error happened
 			}
 		}
@@ -290,7 +290,7 @@ unsigned int ImageMapManager::GetMapDataAt( const unsigned int id, const float x
 	}
 	const unsigned char *imgData = img->GetImageData();
 	if( imgData ) {
-		return imgData[ x + y * img->m_Width ];
+		return imgData[x + y * img->m_Width];
 	}
 	m_lastError = "Can't access image data.";
 	return 0;
@@ -312,7 +312,7 @@ bool ImageMapManager::UnregisterMap( const unsigned int id ) {
 		return false;
 	}
 	// unregister one user
-	map->users --;
+	map->users--;
 	return true;
 }
 
@@ -372,7 +372,7 @@ bool ImageMapManager::LoadImage( imagemap_t *map ) {
 	int h = map->img->m_Height;
 	for( int x = 0; x < w; x++ ) {
 		for( int y = 0; y < h; y++ ) {
-			fImgDensity += ( double )imgData[ w * y + x ];	// 0 .. 255
+			fImgDensity += ( double )imgData[w * y + x];	// 0 .. 255
 		}
 	}
 	// divide the sum by (w*h) (pixel count)
@@ -397,7 +397,7 @@ imagemap_t	*ImageMapManager::GetMap( unsigned int handle ) {
 */
 Image	*ImageMapManager::GetImage( unsigned int handle ) {
 	if( handle > 0 && handle <= ( unsigned int )m_imageMaps.Num() ) {
-		handle --;
+		handle--;
 		if( LoadImage( &m_imageMaps[handle] ) ) {
 			return m_imageMaps[handle].img;
 		}

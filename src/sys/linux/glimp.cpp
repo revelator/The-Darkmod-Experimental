@@ -268,11 +268,11 @@ Initialize GLEW
 */
 bool Glimp_GLEW_Init( void ) {
 	GLenum GlewInitResult = glewInit();
-	if ( GLEW_OK != GlewInitResult ) {
-		common->Printf( "ERROR: %s\n", glewGetErrorString(GlewInitResult) );
+	if( GLEW_OK != GlewInitResult ) {
+		common->Printf( "ERROR: %s\n", glewGetErrorString( GlewInitResult ) );
 		return false;
 	}
-	common->Printf( "INFO: OpenGL Version: %s\n", glGetString(GL_VERSION) );
+	common->Printf( "INFO: OpenGL Version: %s\n", glGetString( GL_VERSION ) );
 	return true;
 }
 
@@ -336,7 +336,7 @@ int GLX_Init( glimpParms_t a ) {
 			best_fit = -1;
 			for( i = 0; i < num_vidmodes; i++ ) {
 				if( a.width > vidmodes[i]->hdisplay ||
-					a.height > vidmodes[i]->vdisplay ) {
+						a.height > vidmodes[i]->vdisplay ) {
 					continue;
 				}
 				x = a.width - vidmodes[i]->hdisplay;

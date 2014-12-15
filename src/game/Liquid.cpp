@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -28,19 +28,19 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 // We do these splashes if the mass of the colliding object is less than these values.
 // Anything large than MEDIUM_SPLASH does a large splash. (get it?)
-const int SMALL_SPLASH		= 5;
-const int MEDIUM_SPLASH		= 20;
+const int SMALL_SPLASH = 5;
+const int MEDIUM_SPLASH = 20;
 
 /*
 ===============================================================================
 
-	idLiquid
+idLiquid
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idEntity, idLiquid )
-EVENT( EV_Touch,			idLiquid::Event_Touch )
+EVENT( EV_Touch, idLiquid::Event_Touch )
 END_CLASS
 
 idLiquid::idLiquid( void ) {
@@ -97,10 +97,10 @@ void idLiquid::Spawn() {
 	/*
 		model = dynamic_cast<idRenderModelLiquid *>( renderEntity.hModel );
 		if ( !model ) {
-			gameLocal.Error( "Entity '%s' must have liquid model", name.c_str() );
+		gameLocal.Error( "Entity '%s' must have liquid model", name.c_str() );
 		}
 		model->Reset();
-	*/
+		*/
 	float liquidDensity;
 	float liquidViscosity;
 	float liquidFriction;
@@ -145,15 +145,15 @@ void idLiquid::Spawn() {
 	this->physicsObj.SetMinSplashVelocity( minSplash );
 	this->physicsObj.SetMinWaveVelocity( minWave );
 	this->SetPhysics( &this->physicsObj );
-	renderEntity.shaderParms[ 3 ]	= spawnArgs.GetFloat( "shaderParm3", "1" );
-	renderEntity.shaderParms[ 4 ]	= spawnArgs.GetFloat( "shaderParm4", "0" );
-	renderEntity.shaderParms[ 5 ]	= spawnArgs.GetFloat( "shaderParm5", "0.1" );
-	renderEntity.shaderParms[ 6 ]	= spawnArgs.GetFloat( "shaderParm6", "1.5" );
-	renderEntity.shaderParms[ 7 ]	= spawnArgs.GetFloat( "shaderParm7", "0" );
-	renderEntity.shaderParms[ 8 ]	= spawnArgs.GetFloat( "shaderParm8", "0" );
-	renderEntity.shaderParms[ 9 ]	= spawnArgs.GetFloat( "shaderParm9", "0" );
-	renderEntity.shaderParms[ 10 ]	= spawnArgs.GetFloat( "shaderParm10", "0" );
-	renderEntity.shaderParms[ 11 ]	= spawnArgs.GetFloat( "shaderParm11", "0" );
+	renderEntity.shaderParms[3] = spawnArgs.GetFloat( "shaderParm3", "1" );
+	renderEntity.shaderParms[4] = spawnArgs.GetFloat( "shaderParm4", "0" );
+	renderEntity.shaderParms[5] = spawnArgs.GetFloat( "shaderParm5", "0.1" );
+	renderEntity.shaderParms[6] = spawnArgs.GetFloat( "shaderParm6", "1.5" );
+	renderEntity.shaderParms[7] = spawnArgs.GetFloat( "shaderParm7", "0" );
+	renderEntity.shaderParms[8] = spawnArgs.GetFloat( "shaderParm8", "0" );
+	renderEntity.shaderParms[9] = spawnArgs.GetFloat( "shaderParm9", "0" );
+	renderEntity.shaderParms[10] = spawnArgs.GetFloat( "shaderParm10", "0" );
+	renderEntity.shaderParms[11] = spawnArgs.GetFloat( "shaderParm11", "0" );
 	BecomeActive( TH_THINK );
 }
 
@@ -161,8 +161,8 @@ void idLiquid::Spawn() {
 ================
 idLiquid::Event_Touch
 
-	This is mainly used for actors who touch the liquid, it spawns a splash
-	near their feet if they're moving fast enough.
+This is mainly used for actors who touch the liquid, it spawns a splash
+near their feet if they're moving fast enough.
 ================
 */
 void idLiquid::Event_Touch( idEntity *other, trace_t *trace ) {
@@ -187,7 +187,7 @@ void idLiquid::Event_Touch( idEntity *other, trace_t *trace ) {
 	//		function set/reset that timer for when the actor should spawn particles at its feet.
 	//		2) Actors don't spawn particles at their feet, it's usually at the origin, for some
 	//		reason info.position is (null), needs a fix so that splash position is correct
-	if(	gameLocal.random.RandomFloat() > 0.5f ) {
+	if( gameLocal.random.RandomFloat() > 0.5f ) {
 		return;
 	}
 	this->Collide( *trace, info.velocity );
@@ -196,7 +196,7 @@ void idLiquid::Event_Touch( idEntity *other, trace_t *trace ) {
 /*
 ================
 idLiquid::Collide
-	Spawns a splash particle and attaches a sound to the colliding entity.
+Spawns a splash particle and attaches a sound to the colliding entity.
 ================
 */
 bool idLiquid::Collide( const trace_t &collision, const idVec3 &velocity ) {

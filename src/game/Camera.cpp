@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -27,9 +27,9 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 ===============================================================================
 
-  idCamera
+idCamera
 
-  Base class for cameras
+Base class for cameras
 
 ===============================================================================
 */
@@ -60,11 +60,11 @@ renderView_t *idCamera::GetRenderView() {
 
   idCameraView
 
-***********************************************************************/
+  ***********************************************************************/
 const idEventDef EV_Camera_SetAttachments( "<getattachments>", EventArgs(), EV_RETURNS_VOID, "internal" );
 
 CLASS_DECLARATION( idCamera, idCameraView )
-EVENT( EV_Activate,				idCameraView::Event_Activate )
+EVENT( EV_Activate, idCameraView::Event_Activate )
 EVENT( EV_Camera_SetAttachments, idCameraView::Event_SetAttachments )
 END_CLASS
 
@@ -106,7 +106,7 @@ void idCameraView::Restore( idRestoreGame *savefile ) {
 idCameraView::Event_SetAttachments
 ================
 */
-void idCameraView::Event_SetAttachments( ) {
+void idCameraView::Event_SetAttachments() {
 	SetAttachment( &attachedTo, "attachedTo" );
 	SetAttachment( &attachedView, "attachedView" );
 }
@@ -204,7 +204,7 @@ void idCameraView::GetViewParms( renderView_t *view ) {
 /*
 ===============================================================================
 
-  idCameraAnim
+idCameraAnim
 
 ===============================================================================
 */
@@ -213,10 +213,10 @@ const idEventDef EV_Camera_Start( "start", EventArgs(), EV_RETURNS_VOID, "Starts
 const idEventDef EV_Camera_Stop( "stop", EventArgs(), EV_RETURNS_VOID, "Stops a spline or anim camera moving." );
 
 CLASS_DECLARATION( idCamera, idCameraAnim )
-EVENT( EV_Thread_SetCallback,	idCameraAnim::Event_SetCallback )
-EVENT( EV_Camera_Stop,			idCameraAnim::Event_Stop )
-EVENT( EV_Camera_Start,			idCameraAnim::Event_Start )
-EVENT( EV_Activate,				idCameraAnim::Event_Activate )
+EVENT( EV_Thread_SetCallback, idCameraAnim::Event_SetCallback )
+EVENT( EV_Camera_Stop, idCameraAnim::Event_Stop )
+EVENT( EV_Camera_Start, idCameraAnim::Event_Start )
+EVENT( EV_Activate, idCameraAnim::Event_Activate )
 END_CLASS
 
 /*
@@ -350,8 +350,8 @@ void idCameraAnim::LoadAnim( void ) {
 	parser.ExpectTokenString( "{" );
 	cameraCuts.SetNum( numCuts );
 	for( i = 0; i < numCuts; i++ ) {
-		cameraCuts[ i ] = parser.ParseInt();
-		if( ( cameraCuts[ i ] < 1 ) || ( cameraCuts[ i ] >= numFrames ) ) {
+		cameraCuts[i] = parser.ParseInt();
+		if( ( cameraCuts[i] < 1 ) || ( cameraCuts[i] >= numFrames ) ) {
 			parser.Error( "Invalid camera cut" );
 		}
 	}
@@ -361,9 +361,9 @@ void idCameraAnim::LoadAnim( void ) {
 	parser.ExpectTokenString( "{" );
 	camera.SetNum( numFrames );
 	for( i = 0; i < numFrames; i++ ) {
-		parser.Parse1DMatrix( 3, camera[ i ].t.ToFloatPtr() );
-		parser.Parse1DMatrix( 3, camera[ i ].q.ToFloatPtr() );
-		camera[ i ].fov = parser.ParseFloat();
+		parser.Parse1DMatrix( 3, camera[i].t.ToFloatPtr() );
+		parser.Parse1DMatrix( 3, camera[i].q.ToFloatPtr() );
+		camera[i].fov = parser.ParseFloat();
 	}
 	parser.ExpectTokenString( "}" );
 #if 0
@@ -386,8 +386,8 @@ void idCameraAnim::LoadAnim( void ) {
 	diff_t = last_t = 0.0f;
 	diff_q = last_q = 0.0f;
 	for( i = 1; i < numFrames; i++ ) {
-		t = ( camera[ i ].t - camera[ i - 1 ].t ).Length();
-		q = ( camera[ i ].q.ToQuat() - camera[ i - 1 ].q.ToQuat() ).Length();
+		t = ( camera[i].t - camera[i - 1].t ).Length();
+		q = ( camera[i].q.ToQuat() - camera[i - 1].q.ToQuat() ).Length();
 		diff_t = t - last_t;
 		diff_q = q - last_q;
 		gGraph.AddValue( ( i % 10 ) == 0 );
@@ -467,11 +467,11 @@ void idCameraAnim::Think( void ) {
 			return;
 		}
 		if( frameRate == USERCMD_HZ ) {
-			frameTime	= gameLocal.time - starttime;
-			frame		= frameTime / gameLocal.msec;
+			frameTime = gameLocal.time - starttime;
+			frame = frameTime / gameLocal.msec;
 		} else {
-			frameTime	= ( gameLocal.time - starttime ) * frameRate;
-			frame		= frameTime / 1000;
+			frameTime = ( gameLocal.time - starttime ) * frameRate;
+			frame = frameTime / 1000;
 		}
 		if( frame > camera.Num() + cameraCuts.Num() - 2 ) {
 			if( cycle > 0 ) {
@@ -512,31 +512,31 @@ void idCameraAnim::GetViewParms( renderView_t *view ) {
 		return;
 	}
 	if( frameRate == USERCMD_HZ ) {
-		frameTime	= gameLocal.time - starttime;
-		frame		= frameTime / gameLocal.msec;
-		lerp		= 0.0f;
+		frameTime = gameLocal.time - starttime;
+		frame = frameTime / gameLocal.msec;
+		lerp = 0.0f;
 	} else {
-		frameTime	= ( gameLocal.time - starttime ) * frameRate;
-		frame		= frameTime / 1000;
-		lerp		= ( frameTime % 1000 ) * 0.001f;
+		frameTime = ( gameLocal.time - starttime ) * frameRate;
+		frame = frameTime / 1000;
+		lerp = ( frameTime % 1000 ) * 0.001f;
 	}
 	// skip any frames where camera cuts occur
 	realFrame = frame;
 	cut = 0;
 	for( i = 0; i < cameraCuts.Num(); i++ ) {
-		if( frame < cameraCuts[ i ] ) {
+		if( frame < cameraCuts[i] ) {
 			break;
 		}
 		frame++;
 		cut++;
 	}
 	if( g_debugCinematic.GetBool() ) {
-		int prevFrameTime	= ( gameLocal.time - starttime - gameLocal.msec ) * frameRate;
-		int prevFrame		= prevFrameTime / 1000;
+		int prevFrameTime = ( gameLocal.time - starttime - gameLocal.msec ) * frameRate;
+		int prevFrame = prevFrameTime / 1000;
 		int prevCut;
 		prevCut = 0;
 		for( i = 0; i < cameraCuts.Num(); i++ ) {
-			if( prevFrame < cameraCuts[ i ] ) {
+			if( prevFrame < cameraCuts[i] ) {
 				break;
 			}
 			prevFrame++;
@@ -549,9 +549,9 @@ void idCameraAnim::GetViewParms( renderView_t *view ) {
 	// clamp to the first frame.  also check if this is a one frame anim.  one frame anims would end immediately,
 	// but since they're mainly used for static cams anyway, just stay on it infinitely.
 	if( ( frame < 0 ) || ( camera.Num() < 2 ) ) {
-		view->viewaxis = camera[ 0 ].q.ToQuat().ToMat3();
-		view->vieworg = camera[ 0 ].t + offset;
-		view->fov_x = camera[ 0 ].fov;
+		view->viewaxis = camera[0].q.ToQuat().ToMat3();
+		view->vieworg = camera[0].t + offset;
+		view->fov_x = camera[0].fov;
 	} else if( frame > camera.Num() - 2 ) {
 		if( cycle > 0 ) {
 			cycle--;
@@ -569,25 +569,25 @@ void idCameraAnim::GetViewParms( renderView_t *view ) {
 			return;
 		} else {
 			// just use our last frame
-			camFrame = &camera[ camera.Num() - 1 ];
+			camFrame = &camera[camera.Num() - 1];
 			view->viewaxis = camFrame->q.ToQuat().ToMat3();
 			view->vieworg = camFrame->t + offset;
 			view->fov_x = camFrame->fov;
 		}
 	} else if( lerp == 0.0f ) {
-		camFrame = &camera[ frame ];
-		view->viewaxis = camFrame[ 0 ].q.ToMat3();
-		view->vieworg = camFrame[ 0 ].t + offset;
-		view->fov_x = camFrame[ 0 ].fov;
+		camFrame = &camera[frame];
+		view->viewaxis = camFrame[0].q.ToMat3();
+		view->vieworg = camFrame[0].t + offset;
+		view->fov_x = camFrame[0].fov;
 	} else {
-		camFrame = &camera[ frame ];
+		camFrame = &camera[frame];
 		invlerp = 1.0f - lerp;
-		q1 = camFrame[ 0 ].q.ToQuat();
-		q2 = camFrame[ 1 ].q.ToQuat();
+		q1 = camFrame[0].q.ToQuat();
+		q2 = camFrame[1].q.ToQuat();
 		q3.Slerp( q1, q2, lerp );
 		view->viewaxis = q3.ToMat3();
-		view->vieworg = camFrame[ 0 ].t * invlerp + camFrame[ 1 ].t * lerp + offset;
-		view->fov_x = camFrame[ 0 ].fov * invlerp + camFrame[ 1 ].fov * lerp;
+		view->vieworg = camFrame[0].t * invlerp + camFrame[1].t * lerp + offset;
+		view->fov_x = camFrame[0].fov * invlerp + camFrame[1].fov * lerp;
 	}
 	gameLocal.CalcFov( view->fov_x, view->fov_x, view->fov_y );
 	// setup the pvs for this frame
@@ -599,8 +599,8 @@ void idCameraAnim::GetViewParms( renderView_t *view ) {
 		gameRenderWorld->DebugBounds( colorCyan, idBounds( view->vieworg ).Expand( 16.0f ), vec3_origin, gameLocal.msec );
 		gameRenderWorld->DebugLine( colorRed, view->vieworg, view->vieworg + idVec3( 0.0f, 0.0f, 2.0f ), 10000, false );
 		gameRenderWorld->DebugLine( colorCyan, lastFrameVec, view->vieworg, 10000, false );
-		gameRenderWorld->DebugLine( colorYellow, view->vieworg + view->viewaxis[ 0 ] * 64.0f, view->vieworg + view->viewaxis[ 0 ] * 66.0f, 10000, false );
-		gameRenderWorld->DebugLine( colorOrange, view->vieworg + view->viewaxis[ 0 ] * 64.0f, view->vieworg + view->viewaxis[ 0 ] * 64.0f + idVec3( 0.0f, 0.0f, 2.0f ), 10000, false );
+		gameRenderWorld->DebugLine( colorYellow, view->vieworg + view->viewaxis[0] * 64.0f, view->vieworg + view->viewaxis[0] * 66.0f, 10000, false );
+		gameRenderWorld->DebugLine( colorOrange, view->vieworg + view->viewaxis[0] * 64.0f, view->vieworg + view->viewaxis[0] * 64.0f + idVec3( 0.0f, 0.0f, 2.0f ), 10000, false );
 		lastFrameVec = view->vieworg;
 		lastFrame = gameLocal.time;
 	}

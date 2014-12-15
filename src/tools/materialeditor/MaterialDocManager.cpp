@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -419,7 +419,7 @@ void MaterialDocManager::PasteMaterial( const char *name, const char *filename )
 	//Paste the material
 	idMaterial *material = copyMat->renderMaterial;
 	//Add a material with the existing source text
-	char *declText = ( char * ) _alloca( material->GetTextLength() + 1 );
+	char *declText = ( char * )_alloca( material->GetTextLength() + 1 );
 	material->GetText( declText );
 	AddMaterial( name, filename, declText, !cutMaterial );
 	//If this is a cut then remove the original
@@ -592,7 +592,7 @@ bool MaterialDocManager::FindMaterial( const char *name, MaterialSearchData_t *s
 			}
 		}
 		//Skip to the open braket so the name is not checked
-		char *declText = ( char * ) _alloca( material->GetTextLength() + 1 );
+		char *declText = ( char * )_alloca( material->GetTextLength() + 1 );
 		material->GetText( declText );
 		idStr text = declText;
 		int start = text.Find( "{" );

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #include "precompiled_game.h"
 #pragma hdrstop
 
@@ -69,12 +69,12 @@ CStimPtr CStimResponseCollection::CreateStim( idEntity *p_owner, StimType type )
 		// grayman #2862 - don't create a visual stim for a door that's not marked shouldBeClosed
 
 		if (( type == ST_VISUAL ) &&
-			( idStr::Cmp( p_owner->spawnArgs.GetString("AIUse"), AIUSE_DOOR ) == 0 ) &&
-			( !p_owner->spawnArgs.GetBool("shouldBeClosed","0" ) ) )
+		( idStr::Cmp( p_owner->spawnArgs.GetString("AIUse"), AIUSE_DOOR ) == 0 ) &&
+		( !p_owner->spawnArgs.GetBool("shouldBeClosed","0" ) ) )
 		{
-			return CStimPtr(); // null result
+		return CStimPtr(); // null result
 		}
-	 */
+		*/
 	// Increase the counter to the next ID
 	gameLocal.m_HighestSRId++;
 	DM_LOG( LC_STIM_RESPONSE, LT_DEBUG )LOGSTRING( "Creating Stim with ID: %d\r", gameLocal.m_HighestSRId );
@@ -105,7 +105,7 @@ CStimPtr CStimResponseCollection::AddStim( idEntity *Owner, int Type, float fRad
 	}
 	if( stim == NULL ) {
 		// Create either type specific descended class, or the default base class
-		stim = CreateStim( Owner, ( StimType ) Type );
+		stim = CreateStim( Owner, ( StimType )Type );
 		if( stim != NULL ) { // grayman #2862
 			m_Stims.Append( stim );
 		}
@@ -269,7 +269,7 @@ bool CStimResponseCollection::ParseSpawnArg( const idDict &args, idEntity *owner
 			goto Quit;
 		}
 	} else if( str[0] >= '0' && str[0] <= '9' ) { // Is it numeric?
-		typeOfStim = ( StimType ) atol( str.c_str() );
+		typeOfStim = ( StimType )atol( str.c_str() );
 	} else {	// neither a character nor a number, thus it is invalid.
 		DM_LOG( LC_STIM_RESPONSE, LT_ERROR )LOGSTRING( "Invalid sr_type id [%s]\r", str.c_str() );
 		sr.reset();
@@ -374,7 +374,7 @@ void CStimResponseCollection::InitFromSpawnargs( const idDict &args, idEntity *o
 
 void CStimResponseCollection::CreateTimer( const idDict &args, const CStimPtr &stim, int index ) {
 	CStimResponseTimer *timer = stim->GetTimer();
-	timer->m_Reload = args.GetInt( va( "sr_timer_reload_%u", index ) , "-1" );
+	timer->m_Reload = args.GetInt( va( "sr_timer_reload_%u", index ), "-1" );
 	idStr str = args.GetString( va( "sr_timer_type_%u", index ), "" );
 	timer->m_Type = ( str == "RELOAD" ) ? CStimResponseTimer::SRTT_RELOAD : CStimResponseTimer::SRTT_SINGLESHOT;
 	args.GetString( va( "sr_timer_time_%u", index ), "0:0:0:0", str );

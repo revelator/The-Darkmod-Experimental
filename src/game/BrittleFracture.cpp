@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -39,8 +39,8 @@ EVENT( EV_UpdateSoundLoss, idBrittleFracture::UpdateSoundLoss )
 EVENT( EV_DampenSound, idBrittleFracture::Event_DampenSound )
 END_CLASS
 
-const int SHARD_ALIVE_TIME	= 5000;
-const int SHARD_FADE_START	= 2000;
+const int SHARD_ALIVE_TIME = 5000;
+const int SHARD_FADE_START = 2000;
 
 static const char *brittleFracture_SnapshotName = "_BrittleFracture_Snapshot_";
 
@@ -155,7 +155,7 @@ idBrittleFracture::Restore
 ================
 */
 void idBrittleFracture::Restore( idRestoreGame *savefile ) {
-	int i, j , num;
+	int i, j, num;
 	renderEntity.hModel = renderModelManager->AllocModel();
 	renderEntity.hModel->InitEmpty( brittleFracture_SnapshotName );
 	renderEntity.callback = idBrittleFracture::ModelCallback;
@@ -308,7 +308,7 @@ void idBrittleFracture::RemoveShard( int index ) {
 	// that got moved, so we only need to update it's clipModel ID:
 	/*for ( i = index; i < shards.Num(); i++ ) {
 		shards[i]->clipModel->SetId( i );
-	}*/
+		}*/
 	// [0,1,2,3,4,5] (remove index == 2) => [ 0,1,5,3,4 ]
 	if( index < shards.Num() ) {
 		shards[index]->clipModel->SetId( index );
@@ -366,12 +366,12 @@ bool idBrittleFracture::UpdateRenderEntity( renderEntity_s *renderEntity, const 
 		if( shards[i]->droppedTime >= 0 ) {
 			msec = gameLocal.time - shards[i]->droppedTime - SHARD_FADE_START;
 			if( msec > 0 ) {
-				fade = 1.0f - ( float ) msec / ( SHARD_ALIVE_TIME - SHARD_FADE_START );
+				fade = 1.0f - ( float )msec / ( SHARD_ALIVE_TIME - SHARD_FADE_START );
 			}
 		}
-		packedColor = PackColor( idVec4( renderEntity->shaderParms[ SHADERPARM_RED ] * fade,
-										 renderEntity->shaderParms[ SHADERPARM_GREEN ] * fade,
-										 renderEntity->shaderParms[ SHADERPARM_BLUE ] * fade,
+		packedColor = PackColor( idVec4( renderEntity->shaderParms[SHADERPARM_RED] * fade,
+										 renderEntity->shaderParms[SHADERPARM_GREEN] * fade,
+										 renderEntity->shaderParms[SHADERPARM_BLUE] * fade,
 										 fade ) );
 		const idWinding &winding = shards[i]->winding;
 		winding.GetPlane( plane );
@@ -478,7 +478,7 @@ idBrittleFracture::ModelCallback
 */
 bool idBrittleFracture::ModelCallback( renderEntity_s *renderEntity, const renderView_t *renderView ) {
 	const idBrittleFracture *ent;
-	ent = static_cast<idBrittleFracture *>( gameLocal.entities[ renderEntity->entityNum ] );
+	ent = static_cast<idBrittleFracture *>( gameLocal.entities[renderEntity->entityNum] );
 	if( !ent ) {
 		gameLocal.Error( "idBrittleFracture::ModelCallback: callback with NULL game entity" );
 	}
@@ -653,8 +653,8 @@ void idBrittleFracture::ProjectDecal( const idVec3 &point, const idVec3 &dir, co
 	axis[2] = -dir;
 	axis[2].Normalize();
 	axis[2].NormalVectors( axistemp[0], axistemp[1] );
-	axis[0] = axistemp[ 0 ] * c + axistemp[ 1 ] * s;
-	axis[1] = axistemp[ 0 ] * s + axistemp[ 1 ] * -c;
+	axis[0] = axistemp[0] * c + axistemp[1] * s;
+	axis[1] = axistemp[0] * s + axistemp[1] * -c;
 	textureAxis[0] = axis[0] * ( 1.0f / decalSize );
 	textureAxis[0][3] = -( point * textureAxis[0].Normal() ) + 0.5f;
 	textureAxis[1] = axis[1] * ( 1.0f / decalSize );
@@ -809,7 +809,7 @@ void idBrittleFracture::DropFloatingIslands( const idVec3 &point, const idVec3 &
 	dir = impulse;
 	dir.Normalize();
 	numIslands = 0;
-	queue = ( shard_t ** ) _alloca16( shards.Num() * sizeof( shard_t ** ) );
+	queue = ( shard_t ** )_alloca16( shards.Num() * sizeof( shard_t ** ) );
 	for( i = 0; i < shards.Num(); i++ ) {
 		shards[i]->islandNum = 0;
 	}
@@ -939,8 +939,8 @@ void idBrittleFracture::Fracture_r( idFixedWinding &w ) {
 		s = -sin( a );
 		axis[2] = windingPlane.Normal();
 		axis[2].NormalVectors( axistemp[0], axistemp[1] );
-		axis[0] = axistemp[ 0 ] * c + axistemp[ 1 ] * s;
-		axis[1] = axistemp[ 0 ] * s + axistemp[ 1 ] * -c;
+		axis[0] = axistemp[0] * c + axistemp[1] * s;
+		axis[1] = axistemp[0] * s + axistemp[1] * -c;
 		// get the best split plane
 		bestDist = 0.0f;
 		bestPlane = 0;
@@ -999,7 +999,7 @@ void idBrittleFracture::CreateFractures( const idRenderModel *renderModel ) {
 		for( j = 0; j < surf->geometry->numIndexes; j += 3 ) {
 			w.Clear();
 			for( k = 0; k < 3; k++ ) {
-				v = &surf->geometry->verts[ surf->geometry->indexes[ j + 2 - k ] ];
+				v = &surf->geometry->verts[surf->geometry->indexes[j + 2 - k]];
 				w.AddPoint( v->xyz );
 				w[k].s = v->st[0];
 				w[k].t = v->st[1];
@@ -1196,8 +1196,8 @@ void idBrittleFracture::UpdateSoundLoss( void ) {
 	} else {
 		SetVal = spawnArgs.GetFloat( "loss_unbroken", "15.0" );
 	}
-	gameLocal.m_sndProp->SetPortalAILoss( m_AreaPortal, SetVal +  m_lossBaseAI ); // grayman #3042 - add base loss from portal entities
-	gameLocal.m_sndProp->SetPortalPlayerLoss( m_AreaPortal, SetVal +  m_lossBasePlayer ); // grayman #3042 - add base loss from portal entities
+	gameLocal.m_sndProp->SetPortalAILoss( m_AreaPortal, SetVal + m_lossBaseAI ); // grayman #3042 - add base loss from portal entities
+	gameLocal.m_sndProp->SetPortalPlayerLoss( m_AreaPortal, SetVal + m_lossBasePlayer ); // grayman #3042 - add base loss from portal entities
 }
 
 void idBrittleFracture::SetLossBase( float lossAI, float lossPlayer ) { // grayman #3042

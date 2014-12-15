@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -32,29 +32,29 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
   make 2D projection for each vertex
 
   for each edge
-	add edge, generating new points at each edge intersection
+  add edge, generating new points at each edge intersection
 
   ?add all additional edges to make a full triangulation
 
   make full triangulation
 
   for each triangle
-	find midpoint
-	find original triangle with midpoint closest to view
-	annotate triangle with that data
-	project all vertexes to that plane
-	output the triangle as a front cap
+  find midpoint
+  find original triangle with midpoint closest to view
+  annotate triangle with that data
+  project all vertexes to that plane
+  output the triangle as a front cap
 
   snap all vertexes
   make a back plane projection for all vertexes
 
   for each edge
-	if one side doesn't have a triangle
-		make a sil edge to back plane projection
-		continue
-	if triangles on both sides have two verts in common
-		continue
-	make a sil edge from one triangle to the other
+  if one side doesn't have a triangle
+  make a sil edge to back plane projection
+  continue
+  if triangles on both sides have two verts in common
+  continue
+  make a sil edge from one triangle to the other
 
   classify triangles on common planes, so they can be optimized
 
@@ -78,10 +78,10 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
   Perform the complete clipping on all triangles
   for each vertex
-	project onto the apropriate plane and mark plane bit as in use
-for each triangle
-	if points project onto different planes, clip
-*/
+  project onto the apropriate plane and mark plane bit as in use
+  for each triangle
+  if points project onto different planes, clip
+  */
 
 typedef struct {
 	idVec3	v[3];
@@ -121,7 +121,7 @@ typedef struct {
 	silQuad_t		*fragmentedQuads;
 } silPlane_t;
 
-static float EDGE_PLANE_EPSILON	= 0.1f;
+static float EDGE_PLANE_EPSILON = 0.1f;
 static float UNIQUE_EPSILON = 0.1f;
 
 static int		numSilPlanes;
@@ -146,7 +146,7 @@ CreateEdgesForTri
 =================
 */
 static void CreateEdgesForTri( shadowTri_t *tri ) {
-	for( int j = 0 ; j < 3 ; j++ ) {
+	for( int j = 0; j < 3; j++ ) {
 		idVec3 &v1 = tri->v[j];
 		idVec3 &v2 = tri->v[( j + 1 ) % 3];
 		tri->edge[j].Cross( v2, v1 );
@@ -174,9 +174,9 @@ static bool TriOutsideTri( const shadowTri_t *a, const shadowTri_t *b ) {
 		return true;
 	}
 #else
-	for( int i = 0 ; i < 3 ; i++ ) {
+	for( int i = 0; i < 3; i++ ) {
 		int		j;
-		for( j = 0 ; j < 3 ; j++ ) {
+		for( j = 0; j < 3; j++ ) {
 			float	d = a->v[j] * b->edge[i];
 			if( d > EDGE_EPSILON ) {
 				break;
@@ -216,7 +216,7 @@ static int c_removedFragments;
 static void ClipTriangle_r( const shadowTri_t *tri, int startTri, int skipTri, int numTris, const shadowTri_t *tris ) {
 	// create edge planes for this triangle
 	// compare against all the other triangles
-	for( int i = startTri ; i < numTris ; i++ ) {
+	for( int i = startTri; i < numTris; i++ ) {
 		if( i == skipTri ) {
 			continue;
 		}
@@ -234,7 +234,7 @@ static void ClipTriangle_r( const shadowTri_t *tri, int startTri, int skipTri, i
 		}
 		// clip it
 		idWinding	*w = new idWinding( tri->v, 3 );
-		for( int j = 0 ; j < 4 && w ; j++ ) {
+		for( int j = 0; j < 4 && w; j++ ) {
 			idWinding	*front, *back;
 			// keep any portion in front of other's plane
 			if( j == 0 ) {
@@ -244,7 +244,7 @@ static void ClipTriangle_r( const shadowTri_t *tri, int startTri, int skipTri, i
 			}
 			if( back ) {
 				// recursively clip these triangles to all subsequent triangles
-				for( int k = 2 ; k < back->GetNumPoints() ; k++ ) {
+				for( int k = 2; k < back->GetNumPoints(); k++ ) {
 					shadowTri_t	fragment = *tri;
 					fragment.v[0] = ( *back )[0].ToVec3();
 					fragment.v[1] = ( *back )[k - 1].ToVec3();
@@ -287,7 +287,7 @@ static void ClipOccluders( idVec4 *verts, glIndex_t *indexes, int numIndexes,
 	shadowTri_t			*tris = ( shadowTri_t * )_alloca( numTris * sizeof( *tris ) );
 	shadowTri_t			*tri;
 	common->Printf( "ClipOccluders: %i triangles\n", numTris );
-	for( i = 0 ; i < numTris ; i++ ) {
+	for( i = 0; i < numTris; i++ ) {
 		tri = &tris[i];
 		// the indexes are in reversed order from tr_stencilshadow
 		tri->v[0] = verts[indexes[i * 3 + 2]].ToVec3() - projectionOrigin;
@@ -297,7 +297,7 @@ static void ClipOccluders( idVec4 *verts, glIndex_t *indexes, int numIndexes,
 		idVec3	d2 = tri->v[2] - tri->v[0];
 		tri->plane.ToVec4().ToVec3().Cross( d2, d1 );
 		tri->plane.ToVec4().ToVec3().Normalize();
-		tri->plane[3] = - ( tri->v[0] * tri->plane.ToVec4().ToVec3() );
+		tri->plane[3] = -( tri->v[0] * tri->plane.ToVec4().ToVec3() );
 		// get the plane number before any clipping
 		// we should avoid polluting the regular dmap planes with these
 		// that are offset from the light origin...
@@ -310,7 +310,7 @@ static void ClipOccluders( idVec4 *verts, glIndex_t *indexes, int numIndexes,
 	int	numRemoved = 0;
 	int	numComplete = 0;
 	int numFragmented = 0;
-	for( i = 0 ; i < numTris ; i++ ) {
+	for( i = 0; i < numTris; i++ ) {
 		int oldOutput = numOutputTris;
 		c_removedFragments = 0;
 		ClipTriangle_r( &tris[i], 0, i, numTris, tris );
@@ -352,11 +352,11 @@ static void OptimizeOutputTris( void ) {
 	// optimize the clipped surfaces
 	optimizeGroup_t		*optGroups = NULL;
 	optimizeGroup_t *checkGroup;
-	for( i = 0 ; i < numOutputTris ; i++ ) {
+	for( i = 0; i < numOutputTris; i++ ) {
 		shadowTri_t		*tri = &outputTris[i];
 		int	planeNum = tri->planeNum;
 		// add it to an optimize group
-		for( checkGroup = optGroups ; checkGroup ; checkGroup = checkGroup->nextGroup ) {
+		for( checkGroup = optGroups; checkGroup; checkGroup = checkGroup->nextGroup ) {
 			if( checkGroup->planeNum == planeNum ) {
 				break;
 			}
@@ -378,8 +378,8 @@ static void OptimizeOutputTris( void ) {
 	}
 	OptimizeGroupList( optGroups );
 	numOutputTris = 0;
-	for( checkGroup = optGroups ; checkGroup ; checkGroup = checkGroup->nextGroup ) {
-		for( mapTri_t *mtri = checkGroup->triList ; mtri ; mtri = mtri->next ) {
+	for( checkGroup = optGroups; checkGroup; checkGroup = checkGroup->nextGroup ) {
+		for( mapTri_t *mtri = checkGroup->triList; mtri; mtri = mtri->next ) {
 			shadowTri_t *tri = &outputTris[numOutputTris];
 			numOutputTris++;
 			tri->v[0] = mtri->v[0].xyz;
@@ -392,7 +392,7 @@ static void OptimizeOutputTris( void ) {
 
 //==================================================================================
 
-static int EdgeSort( const void *a,  const void *b ) {
+static int EdgeSort( const void *a, const void *b ) {
 	if( *( unsigned * )a < * ( unsigned * )b ) {
 		return -1;
 	}
@@ -417,14 +417,14 @@ static void GenerateSilEdges( void ) {
 	unsigned	*edges = ( unsigned * )_alloca( ( numOutputTris * 3 + 1 ) * sizeof( *edges ) );
 	int		numEdges = 0;
 	numSilEdges = 0;
-	for( i = 0 ; i < numOutputTris ; i++ ) {
+	for( i = 0; i < numOutputTris; i++ ) {
 		int a = outputTris[i].index[0];
 		int b = outputTris[i].index[1];
 		int c = outputTris[i].index[2];
 		if( a == b || a == c || b == c ) {
 			continue;		// degenerate
 		}
-		for( j = 0 ; j < 3 ; j++ ) {
+		for( j = 0; j < 3; j++ ) {
 			int	v1, v2;
 			v1 = outputTris[i].index[j];
 			v2 = outputTris[i].index[( j + 1 ) % 3];
@@ -441,7 +441,7 @@ static void GenerateSilEdges( void ) {
 	}
 	qsort( edges, numEdges, sizeof( edges[0] ), EdgeSort );
 	edges[numEdges] = -1;	// force the last to make an edge if no matched to previous
-	for( i = 0 ; i < numEdges ; i++ ) {
+	for( i = 0; i < numEdges; i++ ) {
 		if( ( edges[i] ^ edges[i + 1] ) == 1 ) {
 			// skip the next one, because we matched and
 			// removed both
@@ -480,7 +480,7 @@ void GenerateSilPlanes( void ) {
 	silPlanes = ( silPlane_t * )Mem_Alloc( sizeof( *silPlanes ) * numSilEdges );
 	// identify the silPlanes
 	numSilPlanes = 0;
-	for( int i = 0 ; i < numSilEdges ; i++ ) {
+	for( int i = 0; i < numSilEdges; i++ ) {
 		if( silEdges[i].index[0] == silEdges[i].index[1] ) {
 			continue;	// degenerate
 		}
@@ -488,7 +488,7 @@ void GenerateSilPlanes( void ) {
 		idVec3 &v2 = uniqued[silEdges[i].index[1]];
 		// search for an existing plane
 		int	j;
-		for( j = 0 ; j < numSilPlanes ; j++ ) {
+		for( j = 0; j < numSilPlanes; j++ ) {
 			float d = v1 * silPlanes[j].normal;
 			float d2 = v2 * silPlanes[j].normal;
 			if( fabs( d ) < EDGE_PLANE_EPSILON
@@ -535,19 +535,19 @@ FragmentSilQuad
 Clip quads, or reconstruct?
 Generate them T-junction free, or require another pass of fix-tjunc?
 Call optimizer on a per-sil-plane basis?
-	will this ever introduce tjunctions with the front faces?
-	removal of planes can allow the rear projection to be farther optimized
+will this ever introduce tjunctions with the front faces?
+removal of planes can allow the rear projection to be farther optimized
 
 For quad clipping
-	PlaneThroughEdge
+PlaneThroughEdge
 
 quad clipping introduces new vertexes
 
 Cannot just fragment edges, must emit full indexes
 
 what is the bounds on max indexes?
-	the worst case is that all edges but one carve an existing edge in the middle,
-	giving twice the input number of indexes (I think)
+the worst case is that all edges but one carve an existing edge in the middle,
+giving twice the input number of indexes (I think)
 
 can we avoid knowing about projected positions and still optimize?
 
@@ -564,7 +564,7 @@ static void FragmentSilQuad( silQuad_t quad, silPlane_t *silPlane,
 	if( quad.nearV[0] == quad.nearV[1] ) {
 		return;
 	}
-	for( shadowOptEdge_t *check = startEdge ; check ; check = check->nextEdge ) {
+	for( shadowOptEdge_t *check = startEdge; check; check = check->nextEdge ) {
 		if( check == skipEdge ) {
 			// don't clip against self
 			continue;
@@ -573,7 +573,7 @@ static void FragmentSilQuad( silQuad_t quad, silPlane_t *silPlane,
 			continue;
 		}
 		// make planes through both points of check
-		for( int i = 0 ; i < 2 ; i++ ) {
+		for( int i = 0; i < 2; i++ ) {
 			idVec3	plane;
 			plane.Cross( uniqued[check->index[i]], silPlane->normal );
 			plane.Normalize();
@@ -668,9 +668,9 @@ static void FragmentSilQuads( void ) {
 	GenerateSilPlanes();
 	numSilQuads = 0;
 	// fragment overlapping edges
-	for( int i = 0 ; i < numSilPlanes ; i++ ) {
+	for( int i = 0; i < numSilPlanes; i++ ) {
 		silPlane_t *sil = &silPlanes[i];
-		for( shadowOptEdge_t *e1 = sil->edges ; e1 ; e1 = e1->nextEdge ) {
+		for( shadowOptEdge_t *e1 = sil->edges; e1; e1 = e1->nextEdge ) {
 			silQuad_t	quad;
 			quad.nearV[0] = e1->index[0];
 			quad.nearV[1] = e1->index[1];
@@ -695,7 +695,7 @@ EmitFragmentedSilQuads
 static void EmitFragmentedSilQuads( void ) {
 	int		i, j, k;
 	mapTri_t	*mtri;
-	for( i = 0 ; i < numSilPlanes ; i++ ) {
+	for( i = 0; i < numSilPlanes; i++ ) {
 		silPlane_t	*sil = &silPlanes[i];
 		// prepare for optimizing the sil quads on each side of the sil plane
 		optimizeGroup_t	groups[2];
@@ -707,9 +707,9 @@ static void EmitFragmentedSilQuads( void ) {
 		groups[0].planeNum = FindFloatPlane( planes[0] );
 		groups[1].planeNum = FindFloatPlane( planes[1] );
 		// emit the quads that aren't matched
-		for( silQuad_t *f1 = sil->fragmentedQuads ; f1 ; f1 = f1->nextQuad ) {
+		for( silQuad_t *f1 = sil->fragmentedQuads; f1; f1 = f1->nextQuad ) {
 			silQuad_t *f2;
-			for( f2 = sil->fragmentedQuads ; f2 ; f2 = f2->nextQuad ) {
+			for( f2 = sil->fragmentedQuads; f2; f2 = f2->nextQuad ) {
 				if( f2 == f1 ) {
 					continue;
 				}
@@ -760,7 +760,7 @@ static void EmitFragmentedSilQuads( void ) {
 			}
 		}
 		// optimize
-		for( j = 0 ; j < 2 ; j++ ) {
+		for( j = 0; j < 2; j++ ) {
 			if( !groups[j].triList ) {
 				continue;
 			}
@@ -768,8 +768,8 @@ static void EmitFragmentedSilQuads( void ) {
 				OptimizeGroupList( &groups[j] );
 			}
 			// add as indexes
-			for( mtri = groups[j].triList ; mtri ; mtri = mtri->next ) {
-				for( k = 0 ; k < 3 ; k++ ) {
+			for( mtri = groups[j].triList; mtri; mtri = mtri->next ) {
+				for( k = 0; k < 3; k++ ) {
 					if( ret.totalIndexes == maxRetIndexes ) {
 						common->Error( "maxRetIndexes exceeded" );
 					}
@@ -791,7 +791,7 @@ EmitUnoptimizedSilEdges
 */
 static void EmitUnoptimizedSilEdges( void ) {
 	int	i;
-	for( i = 0 ; i < numSilEdges ; i++ ) {
+	for( i = 0; i < numSilEdges; i++ ) {
 		int v1 = silEdges[i].index[0];
 		int v2 = silEdges[i].index[1];
 		int index = ret.totalIndexes;
@@ -814,7 +814,7 @@ FindUniqueVert
 */
 static int FindUniqueVert( idVec3 &v ) {
 	int	k;
-	for( k = 0 ; k < numUniqued ; k++ ) {
+	for( k = 0; k < numUniqued; k++ ) {
 		idVec3 &check = uniqued[k];
 		if( fabs( v[0] - check[0] ) < UNIQUE_EPSILON
 				&& fabs( v[1] - check[1] ) < UNIQUE_EPSILON
@@ -846,8 +846,8 @@ static void UniqueVerts( void ) {
 	maxUniqued = 100000; // numOutputTris * 10 + 1000;
 	uniqued = ( idVec3 * )Mem_Alloc( sizeof( *uniqued ) * maxUniqued );
 	numUniqued = 0;
-	for( i = 0 ; i < numOutputTris ; i++ ) {
-		for( j = 0 ; j < 3 ; j++ ) {
+	for( i = 0; i < numOutputTris; i++ ) {
+		for( j = 0; j < 3; j++ ) {
 			outputTris[i].index[j] = FindUniqueVert( outputTris[i].v[j] );
 		}
 	}
@@ -867,7 +867,7 @@ static void ProjectUniqued( idVec3 projectionOrigin, idPlane projectionPlane ) {
 	}
 	// this is goofy going back and forth between the spaces,
 	// but I don't want to change R_LightProjectionMatrix righ tnow...
-	for( int i = 0 ; i < numUniqued ; i++ ) {
+	for( int i = 0; i < numUniqued; i++ ) {
 		// put the vert back in global space, instead of light centered space
 		idVec3 in = uniqued[i] + projectionOrigin;
 		// project to far plane
@@ -924,7 +924,7 @@ optimizedShadow_t SuperOptimizeOccluders( idVec4 *verts, glIndex_t *indexes, int
 	ret.totalIndexes = 0;
 	maxRetIndexes = ret.numFrontCapIndexes + ret.numRearCapIndexes + ret.numSilPlaneIndexes;
 	ret.indexes = ( glIndex_t * )Mem_Alloc( maxRetIndexes * sizeof( ret.indexes[0] ) );
-	for( int i = 0 ; i < numOutputTris ; i++ ) {
+	for( int i = 0; i < numOutputTris; i++ ) {
 		// flip the indexes so the surface triangle faces outside the shadow volume
 		ret.indexes[i * 3 + 0] = outputTris[i].index[2];
 		ret.indexes[i * 3 + 1] = outputTris[i].index[1];
@@ -946,7 +946,7 @@ optimizedShadow_t SuperOptimizeOccluders( idVec4 *verts, glIndex_t *indexes, int
 	// create twice the uniqued verts
 	ret.numVerts = numUniqued;
 	ret.verts = ( idVec3 * )Mem_Alloc( ret.numVerts * sizeof( ret.verts[0] ) );
-	for( int i = 0 ; i < numUniqued ; i++ ) {
+	for( int i = 0; i < numUniqued; i++ ) {
 		// put the vert back in global space, instead of light centered space
 		ret.verts[i] = uniqued[i] + projectionOrigin;
 	}
@@ -968,7 +968,7 @@ static void RemoveDegenerateTriangles( srfTriangles_t *tri ) {
 	int		a, b, c;
 	// check for completely degenerate triangles
 	c_removed = 0;
-	for( i = 0 ; i < tri->numIndexes ; i += 3 ) {
+	for( i = 0; i < tri->numIndexes; i += 3 ) {
 		a = tri->indexes[i];
 		b = tri->indexes[i + 1];
 		c = tri->indexes[i + 2];
@@ -1007,27 +1007,27 @@ void CleanupOptimizedShadowTris( srfTriangles_t *tri ) {
 	uniqued = ( idVec3 * )_alloca( sizeof( *uniqued ) * maxUniqued );
 	numUniqued = 0;
 	glIndex_t	*remap = ( glIndex_t * )_alloca( sizeof( *remap ) * tri->numVerts );
-	for( i = 0 ; i < tri->numIndexes ; i++ ) {
+	for( i = 0; i < tri->numIndexes; i++ ) {
 		if( tri->indexes[i] > tri->numVerts || tri->indexes[i] < 0 ) {
 			common->Error( "CleanupOptimizedShadowTris: index out of range" );
 		}
 	}
-	for( i = 0 ; i < tri->numVerts ; i++ ) {
+	for( i = 0; i < tri->numVerts; i++ ) {
 		remap[i] = FindUniqueVert( tri->shadowVertexes[i].xyz.ToVec3() );
 	}
 	tri->numVerts = numUniqued;
-	for( i = 0 ; i < tri->numVerts ; i++ ) {
+	for( i = 0; i < tri->numVerts; i++ ) {
 		tri->shadowVertexes[i].xyz.ToVec3() = uniqued[i];
 		tri->shadowVertexes[i].xyz[3] = 1;
 	}
-	for( i = 0 ; i < tri->numIndexes ; i++ ) {
+	for( i = 0; i < tri->numIndexes; i++ ) {
 		tri->indexes[i] = remap[tri->indexes[i]];
 	}
 	// remove matched quads
 	int	numSilIndexes = tri->numShadowIndexesNoCaps;
-	for( int i = 0 ; i < numSilIndexes ; i += 6 ) {
+	for( int i = 0; i < numSilIndexes; i += 6 ) {
 		int	j;
-		for( j = i + 6 ; j < numSilIndexes ; j += 6 ) {
+		for( j = i + 6; j < numSilIndexes; j += 6 ) {
 			// if there is a reversed quad match, we can throw both of them out
 			// this is not a robust check, it relies on the exact ordering of
 			// quad indexes
@@ -1045,11 +1045,11 @@ void CleanupOptimizedShadowTris( srfTriangles_t *tri ) {
 		}
 		int	k;
 		// remove first quad
-		for( k = i + 6 ; k < j ; k++ ) {
+		for( k = i + 6; k < j; k++ ) {
 			tri->indexes[k - 6] = tri->indexes[k];
 		}
 		// remove second quad
-		for( k = j + 6 ; k < tri->numIndexes ; k++ ) {
+		for( k = j + 6; k < tri->numIndexes; k++ ) {
 			tri->indexes[k - 12] = tri->indexes[k];
 		}
 		numSilIndexes -= 12;
@@ -1082,7 +1082,7 @@ srfTriangles_t *CreateLightShadow( optimizeGroup_t *shadowerGroups, const mapLig
 	// combine all the triangles into one list
 	mapTri_t	*combined;
 	combined = NULL;
-	for( optimizeGroup_t *group = shadowerGroups ; group ; group = group->nextGroup ) {
+	for( optimizeGroup_t *group = shadowerGroups; group; group = group->nextGroup ) {
 		combined = MergeTriLists( combined, CopyTriList( group->triList ) );
 	}
 	if( !combined ) {

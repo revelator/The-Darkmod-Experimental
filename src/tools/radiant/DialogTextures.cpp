@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -58,7 +58,7 @@ const char *CDialogTextures::TypeNames[] = {
 //
 CDialogTextures::CDialogTextures( CWnd *pParent /* =NULL */ ) :
 	CDialog( CDialogTextures::IDD, pParent ) {
-	setTexture  = true;
+	setTexture = true;
 	ignoreCollapse = false;
 	mode = TEXTURES;
 	editMaterial = NULL;
@@ -460,7 +460,7 @@ void CDialogTextures::OnClickTreeTextures( NMHDR *pNMHDR, LRESULT *pResult ) {
  =======================================================================================================================
  */
 void CDialogTextures::OnSelchangedTreeTextures( NMHDR *pNMHDR, LRESULT *pResult ) {
-	NM_TREEVIEW *pNMTreeView = ( NM_TREEVIEW * ) pNMHDR;
+	NM_TREEVIEW *pNMTreeView = ( NM_TREEVIEW * )pNMHDR;
 	*pResult = 0;
 	editMaterial = NULL;
 	editGui = "";
@@ -790,9 +790,9 @@ void CDialogTextures::addScripts( bool rootItems ) {
 		files = fileSystem->ListFilesExt( "def", ".script" );
 
 		if ( files->GetNumFiles() ) {
-			addStrList("Scripts", files->GetList(), 3);
+		addStrList("Scripts", files->GetList(), 3);
 		}
-	*/
+		*/
 }
 
 /*
@@ -842,9 +842,9 @@ void CDialogTextures::OnPreview() {
 	CString str;
 	m_wndEditShader.GetWindowText(str);
 	if (currentFile.length() && str.GetLength()) {
-		fileSystem->WriteFile(currentFile, str.GetBuffer(0), str.GetLength());
+	fileSystem->WriteFile(currentFile, str.GetBuffer(0), str.GetLength());
 	}
-*/
+	*/
 //}
 
 int CDialogTextures::OnCreate( LPCREATESTRUCT lpCreateStruct ) {
@@ -941,15 +941,15 @@ void CDialogTextures::OnMaterialInfo() {
 	/*
 		idStr str;
 		if (editMaterial) {
-			str = "File: ";
-			str += editMaterial->getFileName();
-			str += "\r\nName: ";
-			str = editMaterial->getName();
-			ShowInfoDialog(str);
+		str = "File: ";
+		str += editMaterial->getFileName();
+		str += "\r\nName: ";
+		str = editMaterial->getName();
+		ShowInfoDialog(str);
 		} else if (editGui.Length()) {
-			str = "File: ";
-			str += editGui;
-			ShowInfoDialog(str);
+		str = "File: ";
+		str += editGui;
+		ShowInfoDialog(str);
 		}
-	*/
+		*/
 }

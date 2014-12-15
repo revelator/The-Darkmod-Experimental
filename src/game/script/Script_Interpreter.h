@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __SCRIPT_INTERPRETER_H__
 #define __SCRIPT_INTERPRETER_H__
@@ -35,11 +35,11 @@ typedef struct prstack_s {
 
 class idInterpreter {
 private:
-	prstack_t			callStack[ MAX_STACK_DEPTH ];
+	prstack_t			callStack[MAX_STACK_DEPTH];
 	int 				callStackDepth;
 	int 				maxStackDepth;
 
-	byte				localstack[ LOCALSTACK_SIZE ];
+	byte				localstack[LOCALSTACK_SIZE];
 	int 				localstackUsed;
 	int 				localstackBase;
 	int 				maxLocalstackUsed;
@@ -150,7 +150,7 @@ ID_INLINE void idInterpreter::Push( int value ) {
 	if( localstackUsed + sizeof( int ) > LOCALSTACK_SIZE ) {
 		Error( "Push: locals stack overflow\n" );
 	}
-	*( int * )&localstack[ localstackUsed ]	= value;
+	*( int * )&localstack[localstackUsed] = value;
 	localstackUsed += sizeof( int );
 }
 
@@ -163,7 +163,7 @@ ID_INLINE void idInterpreter::PushString( const char *string ) {
 	if( localstackUsed + MAX_STRING_LEN > LOCALSTACK_SIZE ) {
 		Error( "PushString: locals stack overflow\n" );
 	}
-	idStr::Copynz( ( char * )&localstack[ localstackUsed ], string, MAX_STRING_LEN );
+	idStr::Copynz( ( char * )&localstack[localstackUsed], string, MAX_STRING_LEN );
 	localstackUsed += MAX_STRING_LEN;
 }
 
@@ -173,7 +173,7 @@ idInterpreter::FloatToString
 ====================
 */
 ID_INLINE const char *idInterpreter::FloatToString( float value ) {
-	static char	text[ 32 ];
+	static char	text[32];
 	if( value == ( float )( int )value ) {
 		sprintf( text, "%d", ( int )value );
 	} else {
@@ -189,7 +189,7 @@ idInterpreter::AppendString
 */
 ID_INLINE void idInterpreter::AppendString( idVarDef *def, const char *from ) {
 	if( def->initialized == idVarDef::stackVariable ) {
-		idStr::Append( ( char * )&localstack[ localstackBase + def->value.stackOffset ], MAX_STRING_LEN, from );
+		idStr::Append( ( char * )&localstack[localstackBase + def->value.stackOffset], MAX_STRING_LEN, from );
 	} else {
 		idStr::Append( def->value.stringPtr, MAX_STRING_LEN, from );
 	}
@@ -202,7 +202,7 @@ idInterpreter::SetString
 */
 ID_INLINE void idInterpreter::SetString( idVarDef *def, const char *from ) {
 	if( def->initialized == idVarDef::stackVariable ) {
-		idStr::Copynz( ( char * )&localstack[ localstackBase + def->value.stackOffset ], from, MAX_STRING_LEN );
+		idStr::Copynz( ( char * )&localstack[localstackBase + def->value.stackOffset], from, MAX_STRING_LEN );
 	} else {
 		idStr::Copynz( def->value.stringPtr, from, MAX_STRING_LEN );
 	}
@@ -215,7 +215,7 @@ idInterpreter::GetString
 */
 ID_INLINE const char *idInterpreter::GetString( idVarDef *def ) {
 	if( def->initialized == idVarDef::stackVariable ) {
-		return ( char * )&localstack[ localstackBase + def->value.stackOffset ];
+		return ( char * )&localstack[localstackBase + def->value.stackOffset];
 	} else {
 		return def->value.stringPtr;
 	}
@@ -229,7 +229,7 @@ idInterpreter::GetVariable
 ID_INLINE varEval_t idInterpreter::GetVariable( idVarDef *def ) {
 	if( def->initialized == idVarDef::stackVariable ) {
 		varEval_t val;
-		val.intPtr = ( int * )&localstack[ localstackBase + def->value.stackOffset ];
+		val.intPtr = ( int * )&localstack[localstackBase + def->value.stackOffset];
 		return val;
 	} else {
 		return def->value;
@@ -244,7 +244,7 @@ idInterpreter::GetEntity
 ID_INLINE idEntity *idInterpreter::GetEntity( int entnum ) const {
 	assert( entnum <= MAX_GENTITIES );
 	if( ( entnum > 0 ) && ( entnum <= MAX_GENTITIES ) ) {
-		return gameLocal.entities[ entnum - 1 ];
+		return gameLocal.entities[entnum - 1];
 	}
 	return NULL;
 }
@@ -258,7 +258,7 @@ ID_INLINE idScriptObject *idInterpreter::GetScriptObject( int entnum ) const {
 	idEntity *ent;
 	assert( entnum <= MAX_GENTITIES );
 	if( ( entnum > 0 ) && ( entnum <= MAX_GENTITIES ) ) {
-		ent = gameLocal.entities[ entnum - 1 ];
+		ent = gameLocal.entities[entnum - 1];
 		if( ent && ent->scriptObject.data ) {
 			return &ent->scriptObject;
 		}

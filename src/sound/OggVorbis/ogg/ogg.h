@@ -52,8 +52,8 @@ typedef struct {
 
 	int     *lacing_vals;      /* The values that will go to the segment table */
 	ogg_int64_t *granule_vals; /* granulepos values for headers. Not compact
-				this way, but it is simple coupled to the
-				lacing fifo */
+					this way, but it is simple coupled to the
+					lacing fifo */
 	long    lacing_storage;
 	long    lacing_fill;
 	long    lacing_packet;
@@ -63,16 +63,16 @@ typedef struct {
 	int              header_fill;
 
 	int     e_o_s;          /* set when we have buffered the last packet in the
-                             logical bitstream */
+								 logical bitstream */
 	int     b_o_s;          /* set after we've written the initial page
-                             of a logical bitstream */
+								 of a logical bitstream */
 	long    serialno;
 	long    pageno;
 	ogg_int64_t  packetno;      /* sequence number for decode; the framing
-                             knows where there's a hole in the data,
-                             but we need coupling so that the codec
-                             (which is in a seperate abstraction
-                             layer) also knows about the gap */
+								 knows where there's a hole in the data,
+								 but we need coupling so that the codec
+								 (which is in a seperate abstraction
+								 layer) also knows about the gap */
 	ogg_int64_t   granulepos;
 } ogg_stream_state;
 
@@ -88,10 +88,10 @@ typedef struct {
 	ogg_int64_t  granulepos;
 
 	ogg_int64_t  packetno;     /* sequence number for decode; the framing
-				knows where there's a hole in the data,
-				but we need coupling so that the codec
-				(which is in a seperate abstraction
-				layer) also knows about the gap */
+					knows where there's a hole in the data,
+					but we need coupling so that the codec
+					(which is in a seperate abstraction
+					layer) also knows about the gap */
 } ogg_packet;
 
 typedef struct {

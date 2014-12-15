@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -27,7 +27,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 ===============================================================================
 
-	idEntityFx
+idEntityFx
 
 ===============================================================================
 */
@@ -36,8 +36,8 @@ const idEventDef EV_Fx_KillFx( "_killfx", EventArgs(), EV_RETURNS_VOID, "interna
 const idEventDef EV_Fx_Action( "_fxAction", EventArgs( 'e', "", "" ), EV_RETURNS_VOID, "internal" );		// implemented by subclasses
 
 CLASS_DECLARATION( idEntity, idEntityFx )
-EVENT( EV_Activate,	   	idEntityFx::Event_Trigger )
-EVENT( EV_Fx_KillFx,	idEntityFx::Event_ClearFx )
+EVENT( EV_Activate, idEntityFx::Event_Trigger )
+EVENT( EV_Fx_KillFx, idEntityFx::Event_ClearFx )
 END_CLASS
 
 /*
@@ -372,11 +372,11 @@ void idEntityFx::Run( int time ) {
 					useAction->renderLight.lightRadius[1] = fxaction.lightRadius;
 					useAction->renderLight.lightRadius[2] = fxaction.lightRadius;
 					useAction->renderLight.shader = declManager->FindMaterial( fxaction.data, false );
-					useAction->renderLight.shaderParms[ SHADERPARM_RED ]	= fxaction.lightColor.x;
-					useAction->renderLight.shaderParms[ SHADERPARM_GREEN ]	= fxaction.lightColor.y;
-					useAction->renderLight.shaderParms[ SHADERPARM_BLUE ]	= fxaction.lightColor.z;
-					useAction->renderLight.shaderParms[ SHADERPARM_TIMESCALE ]	= 1.0f;
-					useAction->renderLight.shaderParms[ SHADERPARM_TIMEOFFSET ] = -MS2SEC( time );
+					useAction->renderLight.shaderParms[SHADERPARM_RED] = fxaction.lightColor.x;
+					useAction->renderLight.shaderParms[SHADERPARM_GREEN] = fxaction.lightColor.y;
+					useAction->renderLight.shaderParms[SHADERPARM_BLUE] = fxaction.lightColor.z;
+					useAction->renderLight.shaderParms[SHADERPARM_TIMESCALE] = 1.0f;
+					useAction->renderLight.shaderParms[SHADERPARM_TIMEOFFSET] = -MS2SEC( time );
 					useAction->renderLight.referenceSound = refSound.referenceSound;
 					useAction->renderLight.pointLight = true;
 					if( fxaction.noshadows ) {
@@ -455,10 +455,10 @@ void idEntityFx::Run( int time ) {
 				useAction->renderEntity.origin = GetPhysics()->GetOrigin() + fxaction.offset;
 				useAction->renderEntity.axis = ( fxaction.explicitAxis ) ? fxaction.axis : GetPhysics()->GetAxis();
 				useAction->renderEntity.hModel = renderModelManager->FindModel( fxaction.data );
-				useAction->renderEntity.shaderParms[ SHADERPARM_RED ]		= 1.0f;
-				useAction->renderEntity.shaderParms[ SHADERPARM_GREEN ]		= 1.0f;
-				useAction->renderEntity.shaderParms[ SHADERPARM_BLUE ]		= 1.0f;
-				useAction->renderEntity.shaderParms[ SHADERPARM_TIMEOFFSET ] = -MS2SEC( time );
+				useAction->renderEntity.shaderParms[SHADERPARM_RED] = 1.0f;
+				useAction->renderEntity.shaderParms[SHADERPARM_GREEN] = 1.0f;
+				useAction->renderEntity.shaderParms[SHADERPARM_BLUE] = 1.0f;
+				useAction->renderEntity.shaderParms[SHADERPARM_TIMEOFFSET] = -MS2SEC( time );
 				useAction->renderEntity.shaderParms[3] = 1.0f;
 				useAction->renderEntity.shaderParms[5] = 0.0f;
 				if( useAction->renderEntity.hModel ) {
@@ -551,7 +551,7 @@ void idEntityFx::Spawn( void ) {
 ================
 idEntityFx::Think
 
-  Clears any visual fx started when {item,mob,player} was spawned
+Clears any visual fx started when {item,mob,player} was spawned
 ================
 */
 void idEntityFx::Think( void ) {
@@ -569,7 +569,7 @@ void idEntityFx::Think( void ) {
 ================
 idEntityFx::Event_ClearFx
 
-  Clears any visual fx started when item(mob) was spawned
+Clears any visual fx started when item(mob) was spawned
 ================
 */
 void idEntityFx::Event_ClearFx( void ) {
@@ -711,13 +711,13 @@ void idEntityFx::ClientPredictionThink( void ) {
 /*
 ===============================================================================
 
-  idTeleporter
+idTeleporter
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idEntityFx, idTeleporter )
-EVENT( EV_Fx_Action,	idTeleporter::Event_DoAction )
+EVENT( EV_Fx_Action, idTeleporter::Event_DoAction )
 END_CLASS
 
 /*

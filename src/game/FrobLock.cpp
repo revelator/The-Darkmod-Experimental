@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -37,15 +37,15 @@ const idEventDef EV_TDM_FrobLock_ClearPlayerImmobilization( "_EV_TDM_FrobLock_Cl
 const idEventDef EV_TDM_FrobLock_Open( "Open", EventArgs(), EV_RETURNS_VOID, "" ); // attempts to open the lock
 
 CLASS_DECLARATION( idStaticEntity, CFrobLock )
-EVENT( EV_PostSpawn,							CFrobLock::PostSpawn )
-EVENT( EV_TDM_Lock_StatusUpdate,				CFrobLock::Event_Lock_StatusUpdate )
-EVENT( EV_TDM_Lock_OnLockPicked,				CFrobLock::Event_Lock_OnLockPicked )
-EVENT( EV_TDM_Lock_OnLockStatusChange,			CFrobLock::Event_Lock_OnLockStatusChange )
-EVENT( EV_TDM_FrobLock_TriggerTargets,			CFrobLock::Event_TriggerTargets )
-EVENT( EV_TDM_FrobLock_TriggerLockTargets,		CFrobLock::Event_TriggerLockTargets )
-EVENT( EV_TDM_FrobLock_TriggerUnlockTargets,	CFrobLock::Event_TriggerUnlockTargets )
-EVENT( EV_TDM_FrobLock_Open,					CFrobLock::Event_Open )
-EVENT( EV_TDM_FrobLock_ClearPlayerImmobilization,	CFrobLock::Event_ClearPlayerImmobilization )
+EVENT( EV_PostSpawn, CFrobLock::PostSpawn )
+EVENT( EV_TDM_Lock_StatusUpdate, CFrobLock::Event_Lock_StatusUpdate )
+EVENT( EV_TDM_Lock_OnLockPicked, CFrobLock::Event_Lock_OnLockPicked )
+EVENT( EV_TDM_Lock_OnLockStatusChange, CFrobLock::Event_Lock_OnLockStatusChange )
+EVENT( EV_TDM_FrobLock_TriggerTargets, CFrobLock::Event_TriggerTargets )
+EVENT( EV_TDM_FrobLock_TriggerLockTargets, CFrobLock::Event_TriggerLockTargets )
+EVENT( EV_TDM_FrobLock_TriggerUnlockTargets, CFrobLock::Event_TriggerUnlockTargets )
+EVENT( EV_TDM_FrobLock_Open, CFrobLock::Event_Open )
+EVENT( EV_TDM_FrobLock_ClearPlayerImmobilization, CFrobLock::Event_ClearPlayerImmobilization )
 END_CLASS
 
 CFrobLock::CFrobLock() :
@@ -281,7 +281,7 @@ void CFrobLock::ToggleOpenTargets() {
 		FrobLockStartSound( "snd_locked" );
 	} else {
 		// Actually open any targetted frobmovers
-		for( int i = 0 ; i < targets.Num() ; i++ ) {
+		for( int i = 0; i < targets.Num(); i++ ) {
 			idEntity *target = targets[i].GetEntity();
 			if( ( target == NULL ) || !target->IsType( CBinaryFrobMover::Type ) ) {
 				continue;
@@ -334,7 +334,7 @@ void CFrobLock::LockTargets() {
 
 void CFrobLock::UnlockTargets() {
 	// Unlock any targetted frobmovers
-	for( int i = 0 ; i < targets.Num() ; i++ ) {
+	for( int i = 0; i < targets.Num(); i++ ) {
 		idEntity *target = targets[i].GetEntity();
 		if( ( target == NULL ) || !target->IsType( CBinaryFrobMover::Type ) ) {
 			continue;

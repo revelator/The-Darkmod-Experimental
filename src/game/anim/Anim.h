@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __ANIM_H__
 #define __ANIM_H__
@@ -27,18 +27,18 @@
 //
 // animation channels
 // these can be changed by modmakers and licensees to be whatever they need.
-const int ANIM_NumAnimChannels		= 5;
-const int ANIM_MaxAnimsPerChannel	= 3;
-const int ANIM_MaxSyncedAnims		= 3;
+const int ANIM_NumAnimChannels = 5;
+const int ANIM_MaxAnimsPerChannel = 3;
+const int ANIM_MaxSyncedAnims = 3;
 
 //
 // animation channels.  make sure to change script/doom_defs.script if you add any channels, or change their order
 //
-const int ANIMCHANNEL_ALL			= 0;
-const int ANIMCHANNEL_TORSO			= 1;
-const int ANIMCHANNEL_LEGS			= 2;
-const int ANIMCHANNEL_HEAD			= 3;
-const int ANIMCHANNEL_EYELIDS		= 4;
+const int ANIMCHANNEL_ALL = 0;
+const int ANIMCHANNEL_TORSO = 1;
+const int ANIMCHANNEL_LEGS = 2;
+const int ANIMCHANNEL_HEAD = 3;
+const int ANIMCHANNEL_EYELIDS = 4;
 
 // for converting from 24 frames per second to milliseconds
 ID_INLINE int FRAME2MS( int framenum ) {
@@ -218,18 +218,18 @@ typedef struct {
 } frameCommand_t;
 
 typedef struct {
-	bool					prevent_idle_override		: 1;
-	bool					random_cycle_start			: 1;
-	bool					ai_no_turn					: 1;
-	bool					anim_turn					: 1;
-	bool					no_random_headturning		: 1;
-	bool					has_voice_fc				: 1; // grayman #3182
+	bool					prevent_idle_override : 1;
+	bool					random_cycle_start : 1;
+	bool					ai_no_turn : 1;
+	bool					anim_turn : 1;
+	bool					no_random_headturning : 1;
+	bool					has_voice_fc : 1; // grayman #3182
 } animFlags_t;
 
 /*
 ==============================================================================================
 
-	idModelExport
+idModelExport
 
 ==============================================================================================
 */
@@ -265,7 +265,7 @@ public:
 /*
 ==============================================================================================
 
-	idMD5Anim
+idMD5Anim
 
 ==============================================================================================
 */
@@ -326,7 +326,7 @@ public:
 /*
 ==============================================================================================
 
-	idAnim
+idAnim
 
 ==============================================================================================
 */
@@ -334,7 +334,7 @@ public:
 class idAnim {
 private:
 	const class idDeclModelDef	*modelDef;
-	const idMD5Anim				*anims[ ANIM_MaxSyncedAnims ];
+	const idMD5Anim				*anims[ANIM_MaxSyncedAnims];
 	int							numAnims;
 	idStr						name;
 	idStr						realname;
@@ -347,7 +347,7 @@ public:
 	idAnim( const idDeclModelDef *modelDef, const idAnim *anim );
 	~idAnim();
 
-	void						SetAnim( const idDeclModelDef *modelDef, const char *sourcename, const char *animname, int num, const idMD5Anim *md5anims[ ANIM_MaxSyncedAnims ] );
+	void						SetAnim( const idDeclModelDef *modelDef, const char *sourcename, const char *animname, int num, const idMD5Anim *md5anims[ANIM_MaxSyncedAnims] );
 	const char					*Name( void ) const;
 	const char					*FullName( void ) const;
 	const idMD5Anim				*MD5Anim( int num ) const;
@@ -372,7 +372,7 @@ public:
 /*
 ==============================================================================================
 
-	idDeclModelDef
+idDeclModelDef
 
 ==============================================================================================
 */
@@ -421,7 +421,7 @@ private:
 	idVec3						offset;
 	idList<jointInfo_t>			joints;
 	idList<int>					jointParents;
-	idList<int>					channelJoints[ ANIM_NumAnimChannels ];
+	idList<int>					channelJoints[ANIM_NumAnimChannels];
 	idRenderModel 				*modelHandle;
 	idList<idAnim *>			anims;
 	const idDeclSkin 			*skin;
@@ -430,7 +430,7 @@ private:
 /*
 ==============================================================================================
 
-	idAnimBlend
+idAnimBlend
 
 ==============================================================================================
 */
@@ -448,7 +448,7 @@ private:
 	float						blendStartValue;
 	float						blendEndValue;
 
-	float						animWeights[ ANIM_MaxSyncedAnims ];
+	float						animWeights[ANIM_MaxSyncedAnims];
 	short						cycle;
 	short						frame;
 	short						animNum;
@@ -527,7 +527,7 @@ public:
 /*
 ==============================================================================================
 
-	idAFPoseJointMod
+idAFPoseJointMod
 
 ==============================================================================================
 */
@@ -557,7 +557,7 @@ ID_INLINE idAFPoseJointMod::idAFPoseJointMod( void ) {
 /*
 ==============================================================================================
 
-	idAnimator
+idAnimator
 
 ==============================================================================================
 */
@@ -574,7 +574,7 @@ public:
 	void						Restore( idRestoreGame *savefile );					// unarchives object from save game file
 
 	void						SetEntity( idEntity *ent );
-	idEntity					*GetEntity( void ) const ;
+	idEntity					*GetEntity( void ) const;
 	void						RemoveOriginOffset( bool remove );
 	bool						RemoveOrigin( void ) const;
 
@@ -653,7 +653,7 @@ private:
 	const idDeclModelDef 		*modelDef;
 	idEntity 					*entity;
 
-	idAnimBlend					channels[ ANIM_NumAnimChannels ][ ANIM_MaxAnimsPerChannel ];
+	idAnimBlend					channels[ANIM_NumAnimChannels][ANIM_MaxAnimsPerChannel];
 	idList<jointMod_t *>		jointMods;
 	int							numJoints;
 	idJointMat 				*joints;
@@ -676,7 +676,7 @@ private:
 /*
 ==============================================================================================
 
-	idAnimManager
+idAnimManager
 
 ==============================================================================================
 */

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -79,10 +79,10 @@ bool rvGEOptions::Save( void ) {
 	mRegistry.SetBool( "ignoreDesktopSelect", mIgnoreDesktopSelect );
 	// Custom colors
 	int i;
-	for( i = 0; i < 16; i ++ ) {
+	for( i = 0; i < 16; i++ ) {
 		mRegistry.SetLong( va( "customcol%d", i ), mCustomColors[i] );
 	}
-	return mRegistry.Save( );
+	return mRegistry.Save();
 }
 
 /*
@@ -93,7 +93,7 @@ Loads previsouly saved options from the registry
 ================
 */
 bool rvGEOptions::Load( void ) {
-	if( !mRegistry.Load( ) ) {
+	if( !mRegistry.Load() ) {
 		return false;
 	}
 	// Read the general stuff
@@ -102,7 +102,7 @@ bool rvGEOptions::Load( void ) {
 	mGridColor = mRegistry.GetVec4( "gridColor" );
 	mGridWidth = mRegistry.GetLong( "gridWidth" );
 	mGridHeight = mRegistry.GetLong( "gridHeight" );
-	mGridSnap  = mRegistry.GetBool( "gridSnap" );
+	mGridSnap = mRegistry.GetBool( "gridSnap" );
 	mGridVisible = mRegistry.GetBool( "gridVisible" );
 	// Tool window states
 	mNavigatorVisible = mRegistry.GetBool( "navigatorVisible" );
@@ -114,7 +114,7 @@ bool rvGEOptions::Load( void ) {
 	mIgnoreDesktopSelect = mRegistry.GetBool( "ignoreDesktopSelect" );
 	// Custom colors
 	int i;
-	for( i = 0; i < 16; i ++ ) {
+	for( i = 0; i < 16; i++ ) {
 		mCustomColors[i] = mRegistry.GetLong( va( "customcol%d", i ) );
 	}
 	return true;

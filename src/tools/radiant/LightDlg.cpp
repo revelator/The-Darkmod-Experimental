@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -142,14 +142,14 @@ void CLightInfo::FromDict( const idDict *e ) {
 }
 
 void CLightInfo::ToDictFromDifferences( idDict *e, const idDict *differences ) {
-	for( int i = 0 ; i < differences->GetNumKeyVals() ; i ++ ) {
+	for( int i = 0; i < differences->GetNumKeyVals(); i++ ) {
 		const idKeyValue *kv = differences->GetKeyVal( i );
 		if( kv->GetValue().Length() > 0 ) {
-			e->Set( kv->GetKey() , kv->GetValue() );
+			e->Set( kv->GetKey(), kv->GetValue() );
 		} else {
 			e->Delete( kv->GetKey() );
 		}
-		common->Printf( "Applied difference: %s %s\n" , kv->GetKey().c_str() , kv->GetValue().c_str() );
+		common->Printf( "Applied difference: %s %s\n", kv->GetKey().c_str(), kv->GetValue().c_str() );
 	}
 }
 
@@ -301,7 +301,7 @@ void CLightDlg::DoDataExchange( CDataExchange *pDX ) {
 	DDX_Check( pDX, IDC_CHECK_SHADOWS, m_bShadows );
 	DDX_Check( pDX, IDC_CHECK_SPECULAR, m_bSpecular );
 	DDX_Check( pDX, IDC_CHECK_DIFFUSE, m_bDiffuse );
-	DDX_Check( pDX , IDC_CHECK_PARALLEL , m_bIsParallel );
+	DDX_Check( pDX, IDC_CHECK_PARALLEL, m_bIsParallel );
 	DDX_Text( pDX, IDC_EDIT_ENDX, m_fEndX );
 	DDX_Text( pDX, IDC_EDIT_ENDY, m_fEndY );
 	DDX_Text( pDX, IDC_EDIT_ENDZ, m_fEndZ );
@@ -658,7 +658,7 @@ void CLightDlg::UpdateDialog( bool updateChecks ) {
 		} else {
 			//find the last brush belonging to the last entity selected and use that as the source
 			e = NULL;
-			for( brush_t *b = selected_brushes.next ; b != &selected_brushes ; b = b->next ) {
+			for( brush_t *b = selected_brushes.next; b != &selected_brushes; b = b->next ) {
 				if( ( b->owner->eclass->nShowFlags & ECLASS_LIGHT ) && !b->entityModel ) {
 					e = b->owner;
 					break;
@@ -848,7 +848,7 @@ void CLightDlg::OnApplyDifferences() {
 	lightInfoOriginal.ToDictWriteAllInfo( &original );
 	differences = modified;
 	// jhefty - compile a set of modified values to apply
-	for( int i = 0; i < modified.GetNumKeyVals(); i ++ ) {
+	for( int i = 0; i < modified.GetNumKeyVals(); i++ ) {
 		const idKeyValue *valModified = modified.GetKeyVal( i );
 		const idKeyValue *valOriginal = original.FindKey( valModified->GetKey() );
 		//if it hasn't changed, remove it from the list of values to apply

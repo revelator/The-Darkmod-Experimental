@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 /*
 
@@ -75,20 +75,20 @@ static void R_HeightmapToNormalMap( byte *data, int width, int height, float sca
 	// copy and convert to grey scale
 	j = width * height;
 	depth = ( byte * )R_StaticAlloc( j );
-	for( i = 0 ; i < j ; i++ ) {
+	for( i = 0; i < j; i++ ) {
 		depth[i] = ( data[i * 4] + data[i * 4 + 1] + data[i * 4 + 2] ) / 3;
 	}
 	idVec3	dir, dir2;
-	for( i = 0 ; i < height ; i++ ) {
-		for( j = 0 ; j < width ; j++ ) {
+	for( i = 0; i < height; i++ ) {
+		for( j = 0; j < width; j++ ) {
 			int		d1, d2, d3, d4;
 			int		a1, a2, a3, a4;
 			// FIXME: look at five points?
 			// look at three points to estimate the gradient
-			a1 = d1 = depth[( i * width + j ) ];
-			a2 = d2 = depth[( i * width + ( ( j + 1 ) & ( width - 1 ) ) ) ];
-			a3 = d3 = depth[( ( ( i + 1 ) & ( height - 1 ) ) * width + j ) ];
-			a4 = d4 = depth[( ( ( i + 1 ) & ( height - 1 ) ) * width + ( ( j + 1 ) & ( width - 1 ) ) ) ];
+			a1 = d1 = depth[( i * width + j )];
+			a2 = d2 = depth[( i * width + ( ( j + 1 ) & ( width - 1 ) ) )];
+			a3 = d3 = depth[( ( ( i + 1 ) & ( height - 1 ) ) * width + j )];
+			a4 = d4 = depth[( ( ( i + 1 ) & ( height - 1 ) ) * width + ( ( j + 1 ) & ( width - 1 ) ) )];
 			d2 -= d1;
 			d3 -= d1;
 			dir[0] = -d2 * scale;
@@ -104,10 +104,10 @@ static void R_HeightmapToNormalMap( byte *data, int width, int height, float sca
 			dir += dir2;
 			dir.NormalizeFast();
 			a1 = ( i * width + j ) * 4;
-			data[ a1 + 0 ] = ( byte )( dir[0] * 127 + 128 );
-			data[ a1 + 1 ] = ( byte )( dir[1] * 127 + 128 );
-			data[ a1 + 2 ] = ( byte )( dir[2] * 127 + 128 );
-			data[ a1 + 3 ] = 255;
+			data[a1 + 0] = ( byte )( dir[0] * 127 + 128 );
+			data[a1 + 1] = ( byte )( dir[1] * 127 + 128 );
+			data[a1 + 2] = ( byte )( dir[2] * 127 + 128 );
+			data[a1 + 3] = 255;
 		}
 	}
 	R_StaticFree( depth );
@@ -122,7 +122,7 @@ static void R_ImageScale( byte *data, int width, int height, float scale[4] ) {
 	int		i, j;
 	int		c;
 	c = width * height * 4;
-	for( i = 0 ; i < c ; i++ ) {
+	for( i = 0; i < c; i++ ) {
 		j = ( byte )( data[i] * scale[i & 3] );
 		if( j < 0 ) {
 			j = 0;
@@ -142,7 +142,7 @@ static void R_InvertAlpha( byte *data, int width, int height ) {
 	int		i;
 	int		c;
 	c = width * height * 4;
-	for( i = 0 ; i < c ; i += 4 ) {
+	for( i = 0; i < c; i += 4 ) {
 		data[i + 3] = 255 - data[i + 3];
 	}
 }
@@ -156,7 +156,7 @@ static void R_InvertColor( byte *data, int width, int height ) {
 	int		i;
 	int		c;
 	c = width * height * 4;
-	for( i = 0 ; i < c ; i += 4 ) {
+	for( i = 0; i < c; i += 4 ) {
 		data[i + 0] = 255 - data[i + 0];
 		data[i + 1] = 255 - data[i + 1];
 		data[i + 2] = 255 - data[i + 2];
@@ -180,8 +180,8 @@ static void R_AddNormalMaps( byte *data1, int width1, int height1, byte *data2, 
 		newMap = NULL;
 	}
 	// add the normal change from the second and renormalize
-	for( i = 0 ; i < height1 ; i++ ) {
-		for( j = 0 ; j < width1 ; j++ ) {
+	for( i = 0; i < height1; i++ ) {
+		for( j = 0; j < width1; j++ ) {
 			byte	*d1, *d2;
 			idVec3	n;
 			float   len;
@@ -227,11 +227,11 @@ static void R_SmoothNormalMap( byte *data, int width, int height ) {
 	};
 	orig = ( byte * )R_StaticAlloc( width * height * 4 );
 	memcpy( orig, data, width * height * 4 );
-	for( i = 0 ; i < width ; i++ ) {
-		for( j = 0 ; j < height ; j++ ) {
+	for( i = 0; i < width; i++ ) {
+		for( j = 0; j < height; j++ ) {
 			normal = vec3_origin;
-			for( k = -1 ; k < 2 ; k++ ) {
-				for( l = -1 ; l < 2 ; l++ ) {
+			for( k = -1; k < 2; k++ ) {
+				for( l = -1; l < 2; l++ ) {
 					byte	*in;
 					in = orig + ( ( ( j + l ) & ( height - 1 ) ) * width + ( ( i + k ) & ( width - 1 ) ) ) * 4;
 					// ignore 000 and -1 -1 -1
@@ -274,7 +274,7 @@ static void R_ImageAdd( byte *data1, int width1, int height1, byte *data2, int w
 		newMap = NULL;
 	}
 	c = width1 * height1 * 4;
-	for( i = 0 ; i < c ; i++ ) {
+	for( i = 0; i < c; i++ ) {
 		j = data1[i] + data2[i];
 		if( j > 255 ) {
 			j = 255;
@@ -418,7 +418,7 @@ static bool R_ParseImageProgram_r( idLexer &src, byte **pic, int *width, int *he
 		int		i;
 		MatchAndAppendToken( src, "(" );
 		R_ParseImageProgram_r( src, pic, width, height, timestamps, depth );
-		for( i = 0 ; i < 4 ; i++ ) {
+		for( i = 0; i < 4; i++ ) {
 			MatchAndAppendToken( src, "," );
 			src.ReadToken( &token );
 			AppendToken( token );
@@ -459,7 +459,7 @@ static bool R_ParseImageProgram_r( idLexer &src, byte **pic, int *width, int *he
 		if( pic ) {
 			int		c;
 			c = *width **height * 4;
-			for( i = 0 ; i < c ; i += 4 ) {
+			for( i = 0; i < c; i += 4 ) {
 				( *pic )[i + 1] =
 					( *pic )[i + 2] =
 						( *pic )[i + 3] = ( *pic )[i];
@@ -476,7 +476,7 @@ static bool R_ParseImageProgram_r( idLexer &src, byte **pic, int *width, int *he
 		if( pic ) {
 			int		c;
 			c = *width **height * 4;
-			for( i = 0 ; i < c ; i += 4 ) {
+			for( i = 0; i < c; i += 4 ) {
 				( *pic )[i + 3] = ( ( *pic )[i + 0] + ( *pic )[i + 1] + ( *pic )[i + 2] ) / 3;
 				( *pic )[i + 0] =
 					( *pic )[i + 1] =

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -330,7 +330,7 @@ bool HandleElevatorTask::Perform( Subsystem &subsystem ) {
 			// Elevator moved away while we were waiting to step on.
 			// Move towards the fetch button.
 			_state = EInitiateMoveToFetchButton;
-		} else if( ( masterElevatorUser == owner ) || ( elevator->IsMasterAtRideButton()  && ( elevator->GetRiderManager().GetNumUsers() < _maxRiders ) ) ) {
+		} else if( ( masterElevatorUser == owner ) || ( elevator->IsMasterAtRideButton() && ( elevator->GetRiderManager().GetNumUsers() < _maxRiders ) ) ) {
 			owner->MoveToPosition( pos->GetPhysics()->GetOrigin() );
 			_state = EMoveOntoElevator;
 		}
@@ -462,7 +462,7 @@ void HandleElevatorTask::PrintElevQueue( CMultiStateMover *elevator ) {
 	DM_LOG( LC_AI, LT_DEBUG )LOGSTRING( "Elevator queue ...\r" );
 	UserManager eum = elevator->GetUserManager();
 	int numUsers = eum.GetNumUsers();
-	for( int i = 0 ; i < numUsers ; i++ ) {
+	for( int i = 0; i < numUsers; i++ ) {
 		idActor *user = eum.GetUserAtIndex( i );
 		if( user != NULL ) {
 			DM_LOG( LC_AI, LT_DEBUG )LOGSTRING( "     %d: %s\r", i, user->name.c_str() );
@@ -479,7 +479,7 @@ void HandleElevatorTask::ReorderQueue( UserManager &um, idVec3 point ) {
 		idActor *closestUser = NULL;			// the user closest to the point
 		int masterIndex = 0;					// index of closest user
 		float minDistance = idMath::INFINITY;	// minimum distance of all users
-		for( int i = 0 ; i < numUsers ; i++ ) {
+		for( int i = 0; i < numUsers; i++ ) {
 			idActor *user = um.GetUserAtIndex( i );
 			if( user != NULL ) {
 				float distance = ( user->GetPhysics()->GetOrigin() - point ).LengthFast();

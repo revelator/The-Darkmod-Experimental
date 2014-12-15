@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __ASYNCNETWORK_H__
 #define __ASYNCNETWORK_H__
@@ -28,28 +28,28 @@ DOOM III gold:	33
 1.3 patch:		40
 1.3.1:			41
 */
-const int ASYNC_PROTOCOL_MINOR		= 41;
-const int ASYNC_PROTOCOL_VERSION	= ( ASYNC_PROTOCOL_MAJOR << 16 ) + ASYNC_PROTOCOL_MINOR;
+const int ASYNC_PROTOCOL_MINOR = 41;
+const int ASYNC_PROTOCOL_VERSION = ( ASYNC_PROTOCOL_MAJOR << 16 ) + ASYNC_PROTOCOL_MINOR;
 #define MAJOR_VERSION(v) ( v >> 16 )
 
-const int MAX_ASYNC_CLIENTS			= 32;
+const int MAX_ASYNC_CLIENTS = 32;
 
-const int MAX_USERCMD_BACKUP		= 256;
-const int MAX_USERCMD_DUPLICATION	= 25;
-const int MAX_USERCMD_RELAY			= 10;
+const int MAX_USERCMD_BACKUP = 256;
+const int MAX_USERCMD_DUPLICATION = 25;
+const int MAX_USERCMD_RELAY = 10;
 
 // index 0 is hardcoded to be the idnet master
 // which leaves 4 to user customization
-const int MAX_MASTER_SERVERS		= 5;
+const int MAX_MASTER_SERVERS = 5;
 
-const int MAX_NICKLEN				= 32;
+const int MAX_NICKLEN = 32;
 
 // max number of servers that will be scanned for at a single IP address
-const int MAX_SERVER_PORTS			= 8;
+const int MAX_SERVER_PORTS = 8;
 
 // special game init ids
-const int GAME_INIT_ID_INVALID		= -1;
-const int GAME_INIT_ID_MAP_LOAD		= -2;
+const int GAME_INIT_ID_INVALID = -1;
+const int GAME_INIT_ID_MAP_LOAD = -2;
 
 #include "MsgChannel.h"
 #include "AsyncServer.h"
@@ -59,7 +59,7 @@ const int GAME_INIT_ID_MAP_LOAD		= -2;
 /*
 ===============================================================================
 
-  Asynchronous Networking.
+Asynchronous Networking.
 
 ===============================================================================
 */
@@ -148,7 +148,7 @@ public:
 	// get the hardcoded idnet master, equivalent to GetMasterAddress( 0, .. )
 	static netadr_t			GetMasterAddress( void );
 
-	static void				GetNETServers( );
+	static void				GetNETServers();
 
 	static void				ExecuteSessionCommand( const char *sessCmd );
 
@@ -184,11 +184,11 @@ public:
 	static idCVar			clientDownload;					// preferred download policy
 
 	// same message used for offline check and network reply
-	static void				BuildInvalidKeyMsg( idStr &msg, bool valid[ 2 ] );
+	static void				BuildInvalidKeyMsg( idStr &msg, bool valid[2] );
 
 private:
 	static int				realTime;
-	static master_t			masters[ MAX_MASTER_SERVERS];	// master1 etc.
+	static master_t			masters[MAX_MASTER_SERVERS];	// master1 etc.
 
 	static void				SpawnServer_f( const idCmdArgs &args );
 	static void				NextMap_f( const idCmdArgs &args );

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -27,7 +27,7 @@ idCVar *idCVar::staticVars = NULL;
 /*
 ===============================================================================
 
-	idInternalCVar
+idInternalCVar
 
 ===============================================================================
 */
@@ -148,7 +148,7 @@ const char **idInternalCVar::CopyValueStrings( const char **strings ) {
 	for( i = 0; strings[i] != NULL; i++ ) {
 		totalLength += idStr::Length( strings[i] ) + 1;
 	}
-	ptr = ( const char ** ) Mem_Alloc( ( i + 1 ) * sizeof( char * ) + totalLength );
+	ptr = ( const char ** )Mem_Alloc( ( i + 1 ) * sizeof( char * ) + totalLength );
 	str = ( char * )( ( ( byte * )ptr ) + ( i + 1 ) * sizeof( char * ) );
 	for( i = 0; strings[i] != NULL; i++ ) {
 		ptr[i] = str;
@@ -408,7 +408,7 @@ void idInternalCVar::NotifyModifiedCallbacks() {
 /*
 ===============================================================================
 
-	idCVarSystemLocal
+idCVarSystemLocal
 
 ===============================================================================
 */
@@ -1102,7 +1102,7 @@ void idCVarSystemLocal::ListByFlags( const idCmdArgs &args, cvarFlags_t flags ) 
 				common->Printf( FORMAT_STRING S_COLOR_CYAN "bool\n", cvar->GetName() );
 			} else if( cvar->GetFlags() & CVAR_INTEGER ) {
 				if( cvar->GetMinValue() < cvar->GetMaxValue() ) {
-					common->Printf( FORMAT_STRING S_COLOR_GREEN "int " S_COLOR_WHITE "[%d, %d]\n", cvar->GetName(), ( int ) cvar->GetMinValue(), ( int ) cvar->GetMaxValue() );
+					common->Printf( FORMAT_STRING S_COLOR_GREEN "int " S_COLOR_WHITE "[%d, %d]\n", cvar->GetName(), ( int )cvar->GetMinValue(), ( int )cvar->GetMaxValue() );
 				} else {
 					common->Printf( FORMAT_STRING S_COLOR_GREEN "int\n", cvar->GetName() );
 				}
@@ -1157,14 +1157,14 @@ void idCVarSystemLocal::ListByFlags( const idCmdArgs &args, cvarFlags_t flags ) 
 			} else {
 				string += S_COLOR_WHITE "     ";
 			}
-			string += ( cvar->GetFlags() & CVAR_USERINFO ) ?	"UI "	: "   ";
-			string += ( cvar->GetFlags() & CVAR_SERVERINFO ) ?	"SI "	: "   ";
-			string += ( cvar->GetFlags() & CVAR_STATIC ) ?		"ST "	: "   ";
-			string += ( cvar->GetFlags() & CVAR_CHEAT ) ?		"CH "	: "   ";
-			string += ( cvar->GetFlags() & CVAR_INIT ) ?		"IN "	: "   ";
-			string += ( cvar->GetFlags() & CVAR_ROM ) ?			"RO "	: "   ";
-			string += ( cvar->GetFlags() & CVAR_ARCHIVE ) ?		"AR "	: "   ";
-			string += ( cvar->GetFlags() & CVAR_MODIFIED ) ?	"MO "	: "   ";
+			string += ( cvar->GetFlags() & CVAR_USERINFO ) ? "UI " : "   ";
+			string += ( cvar->GetFlags() & CVAR_SERVERINFO ) ? "SI " : "   ";
+			string += ( cvar->GetFlags() & CVAR_STATIC ) ? "ST " : "   ";
+			string += ( cvar->GetFlags() & CVAR_CHEAT ) ? "CH " : "   ";
+			string += ( cvar->GetFlags() & CVAR_INIT ) ? "IN " : "   ";
+			string += ( cvar->GetFlags() & CVAR_ROM ) ? "RO " : "   ";
+			string += ( cvar->GetFlags() & CVAR_ARCHIVE ) ? "AR " : "   ";
+			string += ( cvar->GetFlags() & CVAR_MODIFIED ) ? "MO " : "   ";
 			string += "\n";
 			common->Printf( string );
 		}
@@ -1172,7 +1172,7 @@ void idCVarSystemLocal::ListByFlags( const idCmdArgs &args, cvarFlags_t flags ) 
 	}
 	}
 	common->Printf( "\n%i cvars listed\n\n", cvarList.Num() );
-	common->Printf(	"listCvar [search string]          = list cvar values\n"
+	common->Printf( "listCvar [search string]          = list cvar values\n"
 					"listCvar -help [search string]    = list cvar descriptions\n"
 					"listCvar -type [search string]    = list cvar types\n"
 					"listCvar -flags [search string]   = list cvar flags\n" );

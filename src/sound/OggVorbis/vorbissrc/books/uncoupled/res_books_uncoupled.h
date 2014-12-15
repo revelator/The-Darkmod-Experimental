@@ -36,7 +36,7 @@ static float _vq_quantthresh__16u0__p1_0[] = {
 };
 
 static long _vq_quantmap__16u0__p1_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u0__p1_0 = {
@@ -77,7 +77,7 @@ static float _vq_quantthresh__16u0__p2_0[] = {
 };
 
 static long _vq_quantmap__16u0__p2_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u0__p2_0 = {
@@ -154,7 +154,7 @@ static float _vq_quantthresh__16u0__p3_0[] = {
 };
 
 static long _vq_quantmap__16u0__p3_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u0__p3_0 = {
@@ -231,7 +231,7 @@ static float _vq_quantthresh__16u0__p4_0[] = {
 };
 
 static long _vq_quantmap__16u0__p4_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u0__p4_0 = {
@@ -278,7 +278,7 @@ static float _vq_quantthresh__16u0__p5_0[] = {
 };
 
 static long _vq_quantmap__16u0__p5_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -336,8 +336,8 @@ static float _vq_quantthresh__16u0__p6_0[] = {
 };
 
 static long _vq_quantmap__16u0__p6_0[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u0__p6_0 = {
@@ -376,7 +376,7 @@ static float _vq_quantthresh__16u0__p6_1[] = {
 };
 
 static long _vq_quantmap__16u0__p6_1[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u0__p6_1 = {
@@ -417,7 +417,7 @@ static float _vq_quantthresh__16u0__p7_0[] = {
 };
 
 static long _vq_quantmap__16u0__p7_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u0__p7_0 = {
@@ -480,8 +480,8 @@ static float _vq_quantthresh__16u0__p7_1[] = {
 };
 
 static long _vq_quantmap__16u0__p7_1[] = {
-	13,   11,    9,    7,    5,    3,    1,    0,
-	2,    4,    6,    8,   10,   12,   14,
+	13, 11, 9, 7, 5, 3, 1, 0,
+	2, 4, 6, 8, 10, 12, 14,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u0__p7_1 = {
@@ -564,9 +564,9 @@ static float _vq_quantthresh__16u0__p7_2[] = {
 };
 
 static long _vq_quantmap__16u0__p7_2[] = {
-	19,   17,   15,   13,   11,    9,    7,    5,
-	3,    1,    0,    2,    4,    6,    8,   10,
-	12,   14,   16,   18,   20,
+	19, 17, 15, 13, 11, 9, 7, 5,
+	3, 1, 0, 2, 4, 6, 8, 10,
+	12, 14, 16, 18, 20,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u0__p7_2 = {
@@ -646,7 +646,7 @@ static float _vq_quantthresh__16u1__p1_0[] = {
 };
 
 static long _vq_quantmap__16u1__p1_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u1__p1_0 = {
@@ -687,7 +687,7 @@ static float _vq_quantthresh__16u1__p2_0[] = {
 };
 
 static long _vq_quantmap__16u1__p2_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u1__p2_0 = {
@@ -764,7 +764,7 @@ static float _vq_quantthresh__16u1__p3_0[] = {
 };
 
 static long _vq_quantmap__16u1__p3_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u1__p3_0 = {
@@ -841,7 +841,7 @@ static float _vq_quantthresh__16u1__p4_0[] = {
 };
 
 static long _vq_quantmap__16u1__p4_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u1__p4_0 = {
@@ -888,7 +888,7 @@ static float _vq_quantthresh__16u1__p5_0[] = {
 };
 
 static long _vq_quantmap__16u1__p5_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -936,7 +936,7 @@ static float _vq_quantthresh__16u1__p6_0[] = {
 };
 
 static long _vq_quantmap__16u1__p6_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -978,7 +978,7 @@ static float _vq_quantthresh__16u1__p7_0[] = {
 };
 
 static long _vq_quantmap__16u1__p7_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u1__p7_0 = {
@@ -1030,8 +1030,8 @@ static float _vq_quantthresh__16u1__p7_1[] = {
 };
 
 static long _vq_quantmap__16u1__p7_1[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u1__p7_1 = {
@@ -1083,8 +1083,8 @@ static float _vq_quantthresh__16u1__p8_0[] = {
 };
 
 static long _vq_quantmap__16u1__p8_0[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u1__p8_0 = {
@@ -1136,8 +1136,8 @@ static float _vq_quantthresh__16u1__p8_1[] = {
 };
 
 static long _vq_quantmap__16u1__p8_1[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u1__p8_1 = {
@@ -1200,8 +1200,8 @@ static float _vq_quantthresh__16u1__p9_0[] = {
 };
 
 static long _vq_quantmap__16u1__p9_0[] = {
-	13,   11,    9,    7,    5,    3,    1,    0,
-	2,    4,    6,    8,   10,   12,   14,
+	13, 11, 9, 7, 5, 3, 1, 0,
+	2, 4, 6, 8, 10, 12, 14,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u1__p9_0 = {
@@ -1264,8 +1264,8 @@ static float _vq_quantthresh__16u1__p9_1[] = {
 };
 
 static long _vq_quantmap__16u1__p9_1[] = {
-	13,   11,    9,    7,    5,    3,    1,    0,
-	2,    4,    6,    8,   10,   12,   14,
+	13, 11, 9, 7, 5, 3, 1, 0,
+	2, 4, 6, 8, 10, 12, 14,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u1__p9_1 = {
@@ -1334,8 +1334,8 @@ static float _vq_quantthresh__16u1__p9_2[] = {
 };
 
 static long _vq_quantmap__16u1__p9_2[] = {
-	15,   13,   11,    9,    7,    5,    3,    1,
-	0,    2,    4,    6,    8,   10,   12,   14,
+	15, 13, 11, 9, 7, 5, 3, 1,
+	0, 2, 4, 6, 8, 10, 12, 14,
 	16,
 };
 
@@ -1440,7 +1440,7 @@ static float _vq_quantthresh__16u2_p1_0[] = {
 };
 
 static long _vq_quantmap__16u2_p1_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u2_p1_0 = {
@@ -1517,7 +1517,7 @@ static float _vq_quantthresh__16u2_p2_0[] = {
 };
 
 static long _vq_quantmap__16u2_p2_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u2_p2_0 = {
@@ -1564,7 +1564,7 @@ static float _vq_quantthresh__16u2_p3_0[] = {
 };
 
 static long _vq_quantmap__16u2_p3_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -1634,8 +1634,8 @@ static float _vq_quantthresh__16u2_p4_0[] = {
 };
 
 static long _vq_quantmap__16u2_p4_0[] = {
-	15,   13,   11,    9,    7,    5,    3,    1,
-	0,    2,    4,    6,    8,   10,   12,   14,
+	15, 13, 11, 9, 7, 5, 3, 1,
+	0, 2, 4, 6, 8, 10, 12, 14,
 	16,
 };
 
@@ -1677,7 +1677,7 @@ static float _vq_quantthresh__16u2_p5_0[] = {
 };
 
 static long _vq_quantmap__16u2_p5_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u2_p5_0 = {
@@ -1729,8 +1729,8 @@ static float _vq_quantthresh__16u2_p5_1[] = {
 };
 
 static long _vq_quantmap__16u2_p5_1[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u2_p5_1 = {
@@ -1787,8 +1787,8 @@ static float _vq_quantthresh__16u2_p6_0[] = {
 };
 
 static long _vq_quantmap__16u2_p6_0[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u2_p6_0 = {
@@ -1827,7 +1827,7 @@ static float _vq_quantthresh__16u2_p6_1[] = {
 };
 
 static long _vq_quantmap__16u2_p6_1[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u2_p6_1 = {
@@ -1884,8 +1884,8 @@ static float _vq_quantthresh__16u2_p7_0[] = {
 };
 
 static long _vq_quantmap__16u2_p7_0[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u2_p7_0 = {
@@ -1937,8 +1937,8 @@ static float _vq_quantthresh__16u2_p7_1[] = {
 };
 
 static long _vq_quantmap__16u2_p7_1[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u2_p7_1 = {
@@ -2001,8 +2001,8 @@ static float _vq_quantthresh__16u2_p8_0[] = {
 };
 
 static long _vq_quantmap__16u2_p8_0[] = {
-	13,   11,    9,    7,    5,    3,    1,    0,
-	2,    4,    6,    8,   10,   12,   14,
+	13, 11, 9, 7, 5, 3, 1, 0,
+	2, 4, 6, 8, 10, 12, 14,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u2_p8_0 = {
@@ -2085,9 +2085,9 @@ static float _vq_quantthresh__16u2_p8_1[] = {
 };
 
 static long _vq_quantmap__16u2_p8_1[] = {
-	19,   17,   15,   13,   11,    9,    7,    5,
-	3,    1,    0,    2,    4,    6,    8,   10,
-	12,   14,   16,   18,   20,
+	19, 17, 15, 13, 11, 9, 7, 5,
+	3, 1, 0, 2, 4, 6, 8, 10,
+	12, 14, 16, 18, 20,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u2_p8_1 = {
@@ -2150,8 +2150,8 @@ static float _vq_quantthresh__16u2_p9_0[] = {
 };
 
 static long _vq_quantmap__16u2_p9_0[] = {
-	11,    9,    7,    5,    3,    1,   13,    0,
-	14,    2,    4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 13, 0,
+	14, 2, 4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u2_p9_0 = {
@@ -2227,9 +2227,9 @@ static float _vq_quantthresh__16u2_p9_1[] = {
 };
 
 static long _vq_quantmap__16u2_p9_1[] = {
-	15,   13,   11,    9,    7,    5,    3,    1,
-	17,    0,   18,    2,    4,    6,    8,   10,
-	12,   14,   16,
+	15, 13, 11, 9, 7, 5, 3, 1,
+	17, 0, 18, 2, 4, 6, 8, 10,
+	12, 14, 16,
 };
 
 static encode_aux_threshmatch _vq_auxt__16u2_p9_1 = {
@@ -2319,12 +2319,12 @@ static float _vq_quantthresh__16u2_p9_2[] = {
 };
 
 static long _vq_quantmap__16u2_p9_2[] = {
-	47,   45,   43,   41,   39,   37,   35,   33,
-	31,   29,   27,   25,   23,   21,   19,   17,
-	15,   13,   11,    9,    7,    5,    3,    1,
-	0,    2,    4,    6,    8,   10,   12,   14,
-	16,   18,   20,   22,   24,   26,   28,   30,
-	32,   34,   36,   38,   40,   42,   44,   46,
+	47, 45, 43, 41, 39, 37, 35, 33,
+	31, 29, 27, 25, 23, 21, 19, 17,
+	15, 13, 11, 9, 7, 5, 3, 1,
+	0, 2, 4, 6, 8, 10, 12, 14,
+	16, 18, 20, 22, 24, 26, 28, 30,
+	32, 34, 36, 38, 40, 42, 44, 46,
 	48,
 };
 
@@ -2384,7 +2384,7 @@ static float _vq_quantthresh__44u0__p1_0[] = {
 };
 
 static long _vq_quantmap__44u0__p1_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u0__p1_0 = {
@@ -2425,7 +2425,7 @@ static float _vq_quantthresh__44u0__p2_0[] = {
 };
 
 static long _vq_quantmap__44u0__p2_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u0__p2_0 = {
@@ -2502,7 +2502,7 @@ static float _vq_quantthresh__44u0__p3_0[] = {
 };
 
 static long _vq_quantmap__44u0__p3_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u0__p3_0 = {
@@ -2579,7 +2579,7 @@ static float _vq_quantthresh__44u0__p4_0[] = {
 };
 
 static long _vq_quantmap__44u0__p4_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u0__p4_0 = {
@@ -2626,7 +2626,7 @@ static float _vq_quantthresh__44u0__p5_0[] = {
 };
 
 static long _vq_quantmap__44u0__p5_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -2684,8 +2684,8 @@ static float _vq_quantthresh__44u0__p6_0[] = {
 };
 
 static long _vq_quantmap__44u0__p6_0[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u0__p6_0 = {
@@ -2724,7 +2724,7 @@ static float _vq_quantthresh__44u0__p6_1[] = {
 };
 
 static long _vq_quantmap__44u0__p6_1[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u0__p6_1 = {
@@ -2801,7 +2801,7 @@ static float _vq_quantthresh__44u0__p7_0[] = {
 };
 
 static long _vq_quantmap__44u0__p7_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u0__p7_0 = {
@@ -2858,8 +2858,8 @@ static float _vq_quantthresh__44u0__p7_1[] = {
 };
 
 static long _vq_quantmap__44u0__p7_1[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u0__p7_1 = {
@@ -2916,8 +2916,8 @@ static float _vq_quantthresh__44u0__p7_2[] = {
 };
 
 static long _vq_quantmap__44u0__p7_2[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u0__p7_2 = {
@@ -2994,7 +2994,7 @@ static float _vq_quantthresh__44u1__p1_0[] = {
 };
 
 static long _vq_quantmap__44u1__p1_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u1__p1_0 = {
@@ -3035,7 +3035,7 @@ static float _vq_quantthresh__44u1__p2_0[] = {
 };
 
 static long _vq_quantmap__44u1__p2_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u1__p2_0 = {
@@ -3112,7 +3112,7 @@ static float _vq_quantthresh__44u1__p3_0[] = {
 };
 
 static long _vq_quantmap__44u1__p3_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u1__p3_0 = {
@@ -3189,7 +3189,7 @@ static float _vq_quantthresh__44u1__p4_0[] = {
 };
 
 static long _vq_quantmap__44u1__p4_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u1__p4_0 = {
@@ -3236,7 +3236,7 @@ static float _vq_quantthresh__44u1__p5_0[] = {
 };
 
 static long _vq_quantmap__44u1__p5_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -3294,8 +3294,8 @@ static float _vq_quantthresh__44u1__p6_0[] = {
 };
 
 static long _vq_quantmap__44u1__p6_0[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u1__p6_0 = {
@@ -3334,7 +3334,7 @@ static float _vq_quantthresh__44u1__p6_1[] = {
 };
 
 static long _vq_quantmap__44u1__p6_1[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u1__p6_1 = {
@@ -3377,7 +3377,7 @@ static float _vq_quantthresh__44u1__p7_0[] = {
 };
 
 static long _vq_quantmap__44u1__p7_0[] = {
-	5,    3,    1,    0,    2,    4,    6,
+	5, 3, 1, 0, 2, 4, 6,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u1__p7_0 = {
@@ -3434,8 +3434,8 @@ static float _vq_quantthresh__44u1__p7_1[] = {
 };
 
 static long _vq_quantmap__44u1__p7_1[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u1__p7_1 = {
@@ -3492,8 +3492,8 @@ static float _vq_quantthresh__44u1__p7_2[] = {
 };
 
 static long _vq_quantmap__44u1__p7_2[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u1__p7_2 = {
@@ -3570,7 +3570,7 @@ static float _vq_quantthresh__44u2__p1_0[] = {
 };
 
 static long _vq_quantmap__44u2__p1_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u2__p1_0 = {
@@ -3611,7 +3611,7 @@ static float _vq_quantthresh__44u2__p2_0[] = {
 };
 
 static long _vq_quantmap__44u2__p2_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u2__p2_0 = {
@@ -3688,7 +3688,7 @@ static float _vq_quantthresh__44u2__p3_0[] = {
 };
 
 static long _vq_quantmap__44u2__p3_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u2__p3_0 = {
@@ -3765,7 +3765,7 @@ static float _vq_quantthresh__44u2__p4_0[] = {
 };
 
 static long _vq_quantmap__44u2__p4_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u2__p4_0 = {
@@ -3812,7 +3812,7 @@ static float _vq_quantthresh__44u2__p5_0[] = {
 };
 
 static long _vq_quantmap__44u2__p5_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -3870,8 +3870,8 @@ static float _vq_quantthresh__44u2__p6_0[] = {
 };
 
 static long _vq_quantmap__44u2__p6_0[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u2__p6_0 = {
@@ -3910,7 +3910,7 @@ static float _vq_quantthresh__44u2__p6_1[] = {
 };
 
 static long _vq_quantmap__44u2__p6_1[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u2__p6_1 = {
@@ -3957,7 +3957,7 @@ static float _vq_quantthresh__44u2__p7_0[] = {
 };
 
 static long _vq_quantmap__44u2__p7_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -4015,8 +4015,8 @@ static float _vq_quantthresh__44u2__p7_1[] = {
 };
 
 static long _vq_quantmap__44u2__p7_1[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u2__p7_1 = {
@@ -4073,8 +4073,8 @@ static float _vq_quantthresh__44u2__p7_2[] = {
 };
 
 static long _vq_quantmap__44u2__p7_2[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u2__p7_2 = {
@@ -4151,7 +4151,7 @@ static float _vq_quantthresh__44u3__p1_0[] = {
 };
 
 static long _vq_quantmap__44u3__p1_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u3__p1_0 = {
@@ -4192,7 +4192,7 @@ static float _vq_quantthresh__44u3__p2_0[] = {
 };
 
 static long _vq_quantmap__44u3__p2_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u3__p2_0 = {
@@ -4269,7 +4269,7 @@ static float _vq_quantthresh__44u3__p3_0[] = {
 };
 
 static long _vq_quantmap__44u3__p3_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u3__p3_0 = {
@@ -4346,7 +4346,7 @@ static float _vq_quantthresh__44u3__p4_0[] = {
 };
 
 static long _vq_quantmap__44u3__p4_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u3__p4_0 = {
@@ -4393,7 +4393,7 @@ static float _vq_quantthresh__44u3__p5_0[] = {
 };
 
 static long _vq_quantmap__44u3__p5_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -4451,8 +4451,8 @@ static float _vq_quantthresh__44u3__p6_0[] = {
 };
 
 static long _vq_quantmap__44u3__p6_0[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u3__p6_0 = {
@@ -4491,7 +4491,7 @@ static float _vq_quantthresh__44u3__p6_1[] = {
 };
 
 static long _vq_quantmap__44u3__p6_1[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u3__p6_1 = {
@@ -4538,7 +4538,7 @@ static float _vq_quantthresh__44u3__p7_0[] = {
 };
 
 static long _vq_quantmap__44u3__p7_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -4602,8 +4602,8 @@ static float _vq_quantthresh__44u3__p7_1[] = {
 };
 
 static long _vq_quantmap__44u3__p7_1[] = {
-	13,   11,    9,    7,    5,    3,    1,    0,
-	2,    4,    6,    8,   10,   12,   14,
+	13, 11, 9, 7, 5, 3, 1, 0,
+	2, 4, 6, 8, 10, 12, 14,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u3__p7_1 = {
@@ -4672,8 +4672,8 @@ static float _vq_quantthresh__44u3__p7_2[] = {
 };
 
 static long _vq_quantmap__44u3__p7_2[] = {
-	15,   13,   11,    9,    7,    5,    3,    1,
-	0,    2,    4,    6,    8,   10,   12,   14,
+	15, 13, 11, 9, 7, 5, 3, 1,
+	0, 2, 4, 6, 8, 10, 12, 14,
 	16,
 };
 
@@ -4751,7 +4751,7 @@ static float _vq_quantthresh__44u4__p1_0[] = {
 };
 
 static long _vq_quantmap__44u4__p1_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u4__p1_0 = {
@@ -4792,7 +4792,7 @@ static float _vq_quantthresh__44u4__p2_0[] = {
 };
 
 static long _vq_quantmap__44u4__p2_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u4__p2_0 = {
@@ -4869,7 +4869,7 @@ static float _vq_quantthresh__44u4__p3_0[] = {
 };
 
 static long _vq_quantmap__44u4__p3_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u4__p3_0 = {
@@ -4946,7 +4946,7 @@ static float _vq_quantthresh__44u4__p4_0[] = {
 };
 
 static long _vq_quantmap__44u4__p4_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u4__p4_0 = {
@@ -4993,7 +4993,7 @@ static float _vq_quantthresh__44u4__p5_0[] = {
 };
 
 static long _vq_quantmap__44u4__p5_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -5051,8 +5051,8 @@ static float _vq_quantthresh__44u4__p6_0[] = {
 };
 
 static long _vq_quantmap__44u4__p6_0[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u4__p6_0 = {
@@ -5091,7 +5091,7 @@ static float _vq_quantthresh__44u4__p6_1[] = {
 };
 
 static long _vq_quantmap__44u4__p6_1[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u4__p6_1 = {
@@ -5148,8 +5148,8 @@ static float _vq_quantthresh__44u4__p7_0[] = {
 };
 
 static long _vq_quantmap__44u4__p7_0[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u4__p7_0 = {
@@ -5212,8 +5212,8 @@ static float _vq_quantthresh__44u4__p7_1[] = {
 };
 
 static long _vq_quantmap__44u4__p7_1[] = {
-	13,   11,    9,    7,    5,    3,    1,    0,
-	2,    4,    6,    8,   10,   12,   14,
+	13, 11, 9, 7, 5, 3, 1, 0,
+	2, 4, 6, 8, 10, 12, 14,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u4__p7_1 = {
@@ -5282,8 +5282,8 @@ static float _vq_quantthresh__44u4__p7_2[] = {
 };
 
 static long _vq_quantmap__44u4__p7_2[] = {
-	15,   13,   11,    9,    7,    5,    3,    1,
-	0,    2,    4,    6,    8,   10,   12,   14,
+	15, 13, 11, 9, 7, 5, 3, 1,
+	0, 2, 4, 6, 8, 10, 12, 14,
 	16,
 };
 
@@ -5364,7 +5364,7 @@ static float _vq_quantthresh__44u5__p1_0[] = {
 };
 
 static long _vq_quantmap__44u5__p1_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u5__p1_0 = {
@@ -5405,7 +5405,7 @@ static float _vq_quantthresh__44u5__p2_0[] = {
 };
 
 static long _vq_quantmap__44u5__p2_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u5__p2_0 = {
@@ -5482,7 +5482,7 @@ static float _vq_quantthresh__44u5__p3_0[] = {
 };
 
 static long _vq_quantmap__44u5__p3_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u5__p3_0 = {
@@ -5559,7 +5559,7 @@ static float _vq_quantthresh__44u5__p4_0[] = {
 };
 
 static long _vq_quantmap__44u5__p4_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u5__p4_0 = {
@@ -5606,7 +5606,7 @@ static float _vq_quantthresh__44u5__p5_0[] = {
 };
 
 static long _vq_quantmap__44u5__p5_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -5654,7 +5654,7 @@ static float _vq_quantthresh__44u5__p6_0[] = {
 };
 
 static long _vq_quantmap__44u5__p6_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -5696,7 +5696,7 @@ static float _vq_quantthresh__44u5__p7_0[] = {
 };
 
 static long _vq_quantmap__44u5__p7_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u5__p7_0 = {
@@ -5748,8 +5748,8 @@ static float _vq_quantthresh__44u5__p7_1[] = {
 };
 
 static long _vq_quantmap__44u5__p7_1[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u5__p7_1 = {
@@ -5801,8 +5801,8 @@ static float _vq_quantthresh__44u5__p8_0[] = {
 };
 
 static long _vq_quantmap__44u5__p8_0[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u5__p8_0 = {
@@ -5854,8 +5854,8 @@ static float _vq_quantthresh__44u5__p8_1[] = {
 };
 
 static long _vq_quantmap__44u5__p8_1[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u5__p8_1 = {
@@ -5912,8 +5912,8 @@ static float _vq_quantthresh__44u5__p9_0[] = {
 };
 
 static long _vq_quantmap__44u5__p9_0[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u5__p9_0 = {
@@ -5976,8 +5976,8 @@ static float _vq_quantthresh__44u5__p9_1[] = {
 };
 
 static long _vq_quantmap__44u5__p9_1[] = {
-	13,   11,    9,    7,    5,    3,    1,    0,
-	2,    4,    6,    8,   10,   12,   14,
+	13, 11, 9, 7, 5, 3, 1, 0,
+	2, 4, 6, 8, 10, 12, 14,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u5__p9_1 = {
@@ -6046,8 +6046,8 @@ static float _vq_quantthresh__44u5__p9_2[] = {
 };
 
 static long _vq_quantmap__44u5__p9_2[] = {
-	15,   13,   11,    9,    7,    5,    3,    1,
-	0,    2,    4,    6,    8,   10,   12,   14,
+	15, 13, 11, 9, 7, 5, 3, 1,
+	0, 2, 4, 6, 8, 10, 12, 14,
 	16,
 };
 
@@ -6131,7 +6131,7 @@ static float _vq_quantthresh__44u6__p1_0[] = {
 };
 
 static long _vq_quantmap__44u6__p1_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u6__p1_0 = {
@@ -6172,7 +6172,7 @@ static float _vq_quantthresh__44u6__p2_0[] = {
 };
 
 static long _vq_quantmap__44u6__p2_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u6__p2_0 = {
@@ -6249,7 +6249,7 @@ static float _vq_quantthresh__44u6__p3_0[] = {
 };
 
 static long _vq_quantmap__44u6__p3_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u6__p3_0 = {
@@ -6326,7 +6326,7 @@ static float _vq_quantthresh__44u6__p4_0[] = {
 };
 
 static long _vq_quantmap__44u6__p4_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u6__p4_0 = {
@@ -6373,7 +6373,7 @@ static float _vq_quantthresh__44u6__p5_0[] = {
 };
 
 static long _vq_quantmap__44u6__p5_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -6421,7 +6421,7 @@ static float _vq_quantthresh__44u6__p6_0[] = {
 };
 
 static long _vq_quantmap__44u6__p6_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -6463,7 +6463,7 @@ static float _vq_quantthresh__44u6__p7_0[] = {
 };
 
 static long _vq_quantmap__44u6__p7_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u6__p7_0 = {
@@ -6515,8 +6515,8 @@ static float _vq_quantthresh__44u6__p7_1[] = {
 };
 
 static long _vq_quantmap__44u6__p7_1[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u6__p7_1 = {
@@ -6568,8 +6568,8 @@ static float _vq_quantthresh__44u6__p8_0[] = {
 };
 
 static long _vq_quantmap__44u6__p8_0[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u6__p8_0 = {
@@ -6621,8 +6621,8 @@ static float _vq_quantthresh__44u6__p8_1[] = {
 };
 
 static long _vq_quantmap__44u6__p8_1[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u6__p8_1 = {
@@ -6685,8 +6685,8 @@ static float _vq_quantthresh__44u6__p9_0[] = {
 };
 
 static long _vq_quantmap__44u6__p9_0[] = {
-	13,   11,    9,    7,    5,    3,    1,    0,
-	2,    4,    6,    8,   10,   12,   14,
+	13, 11, 9, 7, 5, 3, 1, 0,
+	2, 4, 6, 8, 10, 12, 14,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u6__p9_0 = {
@@ -6749,8 +6749,8 @@ static float _vq_quantthresh__44u6__p9_1[] = {
 };
 
 static long _vq_quantmap__44u6__p9_1[] = {
-	13,   11,    9,    7,    5,    3,    1,    0,
-	2,    4,    6,    8,   10,   12,   14,
+	13, 11, 9, 7, 5, 3, 1, 0,
+	2, 4, 6, 8, 10, 12, 14,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u6__p9_1 = {
@@ -6819,8 +6819,8 @@ static float _vq_quantthresh__44u6__p9_2[] = {
 };
 
 static long _vq_quantmap__44u6__p9_2[] = {
-	15,   13,   11,    9,    7,    5,    3,    1,
-	0,    2,    4,    6,    8,   10,   12,   14,
+	15, 13, 11, 9, 7, 5, 3, 1,
+	0, 2, 4, 6, 8, 10, 12, 14,
 	16,
 };
 
@@ -6904,7 +6904,7 @@ static float _vq_quantthresh__44u7__p1_0[] = {
 };
 
 static long _vq_quantmap__44u7__p1_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u7__p1_0 = {
@@ -6945,7 +6945,7 @@ static float _vq_quantthresh__44u7__p2_0[] = {
 };
 
 static long _vq_quantmap__44u7__p2_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u7__p2_0 = {
@@ -7022,7 +7022,7 @@ static float _vq_quantthresh__44u7__p3_0[] = {
 };
 
 static long _vq_quantmap__44u7__p3_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u7__p3_0 = {
@@ -7099,7 +7099,7 @@ static float _vq_quantthresh__44u7__p4_0[] = {
 };
 
 static long _vq_quantmap__44u7__p4_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u7__p4_0 = {
@@ -7146,7 +7146,7 @@ static float _vq_quantthresh__44u7__p5_0[] = {
 };
 
 static long _vq_quantmap__44u7__p5_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -7194,7 +7194,7 @@ static float _vq_quantthresh__44u7__p6_0[] = {
 };
 
 static long _vq_quantmap__44u7__p6_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -7236,7 +7236,7 @@ static float _vq_quantthresh__44u7__p7_0[] = {
 };
 
 static long _vq_quantmap__44u7__p7_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u7__p7_0 = {
@@ -7288,8 +7288,8 @@ static float _vq_quantthresh__44u7__p7_1[] = {
 };
 
 static long _vq_quantmap__44u7__p7_1[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u7__p7_1 = {
@@ -7341,8 +7341,8 @@ static float _vq_quantthresh__44u7__p8_0[] = {
 };
 
 static long _vq_quantmap__44u7__p8_0[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u7__p8_0 = {
@@ -7394,8 +7394,8 @@ static float _vq_quantthresh__44u7__p8_1[] = {
 };
 
 static long _vq_quantmap__44u7__p8_1[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u7__p8_1 = {
@@ -7447,8 +7447,8 @@ static float _vq_quantthresh__44u7__p9_0[] = {
 };
 
 static long _vq_quantmap__44u7__p9_0[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u7__p9_0 = {
@@ -7505,8 +7505,8 @@ static float _vq_quantthresh__44u7__p9_1[] = {
 };
 
 static long _vq_quantmap__44u7__p9_1[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u7__p9_1 = {
@@ -7596,12 +7596,12 @@ static float _vq_quantthresh__44u7__p9_2[] = {
 };
 
 static long _vq_quantmap__44u7__p9_2[] = {
-	47,   45,   43,   41,   39,   37,   35,   33,
-	31,   29,   27,   25,   23,   21,   19,   17,
-	15,   13,   11,    9,    7,    5,    3,    1,
-	0,    2,    4,    6,    8,   10,   12,   14,
-	16,   18,   20,   22,   24,   26,   28,   30,
-	32,   34,   36,   38,   40,   42,   44,   46,
+	47, 45, 43, 41, 39, 37, 35, 33,
+	31, 29, 27, 25, 23, 21, 19, 17,
+	15, 13, 11, 9, 7, 5, 3, 1,
+	0, 2, 4, 6, 8, 10, 12, 14,
+	16, 18, 20, 22, 24, 26, 28, 30,
+	32, 34, 36, 38, 40, 42, 44, 46,
 	48,
 };
 
@@ -7706,7 +7706,7 @@ static float _vq_quantthresh__44u8_p1_0[] = {
 };
 
 static long _vq_quantmap__44u8_p1_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u8_p1_0 = {
@@ -7783,7 +7783,7 @@ static float _vq_quantthresh__44u8_p2_0[] = {
 };
 
 static long _vq_quantmap__44u8_p2_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u8_p2_0 = {
@@ -7830,7 +7830,7 @@ static float _vq_quantthresh__44u8_p3_0[] = {
 };
 
 static long _vq_quantmap__44u8_p3_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -7900,8 +7900,8 @@ static float _vq_quantthresh__44u8_p4_0[] = {
 };
 
 static long _vq_quantmap__44u8_p4_0[] = {
-	15,   13,   11,    9,    7,    5,    3,    1,
-	0,    2,    4,    6,    8,   10,   12,   14,
+	15, 13, 11, 9, 7, 5, 3, 1,
+	0, 2, 4, 6, 8, 10, 12, 14,
 	16,
 };
 
@@ -7943,7 +7943,7 @@ static float _vq_quantthresh__44u8_p5_0[] = {
 };
 
 static long _vq_quantmap__44u8_p5_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u8_p5_0 = {
@@ -7995,8 +7995,8 @@ static float _vq_quantthresh__44u8_p5_1[] = {
 };
 
 static long _vq_quantmap__44u8_p5_1[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u8_p5_1 = {
@@ -8053,8 +8053,8 @@ static float _vq_quantthresh__44u8_p6_0[] = {
 };
 
 static long _vq_quantmap__44u8_p6_0[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u8_p6_0 = {
@@ -8093,7 +8093,7 @@ static float _vq_quantthresh__44u8_p6_1[] = {
 };
 
 static long _vq_quantmap__44u8_p6_1[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u8_p6_1 = {
@@ -8150,8 +8150,8 @@ static float _vq_quantthresh__44u8_p7_0[] = {
 };
 
 static long _vq_quantmap__44u8_p7_0[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u8_p7_0 = {
@@ -8203,8 +8203,8 @@ static float _vq_quantthresh__44u8_p7_1[] = {
 };
 
 static long _vq_quantmap__44u8_p7_1[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u8_p7_1 = {
@@ -8267,8 +8267,8 @@ static float _vq_quantthresh__44u8_p8_0[] = {
 };
 
 static long _vq_quantmap__44u8_p8_0[] = {
-	13,   11,    9,    7,    5,    3,    1,    0,
-	2,    4,    6,    8,   10,   12,   14,
+	13, 11, 9, 7, 5, 3, 1, 0,
+	2, 4, 6, 8, 10, 12, 14,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u8_p8_0 = {
@@ -8351,9 +8351,9 @@ static float _vq_quantthresh__44u8_p8_1[] = {
 };
 
 static long _vq_quantmap__44u8_p8_1[] = {
-	19,   17,   15,   13,   11,    9,    7,    5,
-	3,    1,    0,    2,    4,    6,    8,   10,
-	12,   14,   16,   18,   20,
+	19, 17, 15, 13, 11, 9, 7, 5,
+	3, 1, 0, 2, 4, 6, 8, 10,
+	12, 14, 16, 18, 20,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u8_p8_1 = {
@@ -8400,7 +8400,7 @@ static float _vq_quantthresh__44u8_p9_0[] = {
 };
 
 static long _vq_quantmap__44u8_p9_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -8477,9 +8477,9 @@ static float _vq_quantthresh__44u8_p9_1[] = {
 };
 
 static long _vq_quantmap__44u8_p9_1[] = {
-	17,   15,   13,   11,    9,    7,    5,    3,
-	1,    0,    2,    4,    6,    8,   10,   12,
-	14,   16,   18,
+	17, 15, 13, 11, 9, 7, 5, 3,
+	1, 0, 2, 4, 6, 8, 10, 12,
+	14, 16, 18,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u8_p9_1 = {
@@ -8569,12 +8569,12 @@ static float _vq_quantthresh__44u8_p9_2[] = {
 };
 
 static long _vq_quantmap__44u8_p9_2[] = {
-	47,   45,   43,   41,   39,   37,   35,   33,
-	31,   29,   27,   25,   23,   21,   19,   17,
-	15,   13,   11,    9,    7,    5,    3,    1,
-	0,    2,    4,    6,    8,   10,   12,   14,
-	16,   18,   20,   22,   24,   26,   28,   30,
-	32,   34,   36,   38,   40,   42,   44,   46,
+	47, 45, 43, 41, 39, 37, 35, 33,
+	31, 29, 27, 25, 23, 21, 19, 17,
+	15, 13, 11, 9, 7, 5, 3, 1,
+	0, 2, 4, 6, 8, 10, 12, 14,
+	16, 18, 20, 22, 24, 26, 28, 30,
+	32, 34, 36, 38, 40, 42, 44, 46,
 	48,
 };
 
@@ -8658,7 +8658,7 @@ static float _vq_quantthresh__44u9_p1_0[] = {
 };
 
 static long _vq_quantmap__44u9_p1_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u9_p1_0 = {
@@ -8735,7 +8735,7 @@ static float _vq_quantthresh__44u9_p2_0[] = {
 };
 
 static long _vq_quantmap__44u9_p2_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u9_p2_0 = {
@@ -8782,7 +8782,7 @@ static float _vq_quantthresh__44u9_p3_0[] = {
 };
 
 static long _vq_quantmap__44u9_p3_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -8852,8 +8852,8 @@ static float _vq_quantthresh__44u9_p4_0[] = {
 };
 
 static long _vq_quantmap__44u9_p4_0[] = {
-	15,   13,   11,    9,    7,    5,    3,    1,
-	0,    2,    4,    6,    8,   10,   12,   14,
+	15, 13, 11, 9, 7, 5, 3, 1,
+	0, 2, 4, 6, 8, 10, 12, 14,
 	16,
 };
 
@@ -8895,7 +8895,7 @@ static float _vq_quantthresh__44u9_p5_0[] = {
 };
 
 static long _vq_quantmap__44u9_p5_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u9_p5_0 = {
@@ -8947,8 +8947,8 @@ static float _vq_quantthresh__44u9_p5_1[] = {
 };
 
 static long _vq_quantmap__44u9_p5_1[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u9_p5_1 = {
@@ -9005,8 +9005,8 @@ static float _vq_quantthresh__44u9_p6_0[] = {
 };
 
 static long _vq_quantmap__44u9_p6_0[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u9_p6_0 = {
@@ -9045,7 +9045,7 @@ static float _vq_quantthresh__44u9_p6_1[] = {
 };
 
 static long _vq_quantmap__44u9_p6_1[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u9_p6_1 = {
@@ -9102,8 +9102,8 @@ static float _vq_quantthresh__44u9_p7_0[] = {
 };
 
 static long _vq_quantmap__44u9_p7_0[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u9_p7_0 = {
@@ -9155,8 +9155,8 @@ static float _vq_quantthresh__44u9_p7_1[] = {
 };
 
 static long _vq_quantmap__44u9_p7_1[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u9_p7_1 = {
@@ -9219,8 +9219,8 @@ static float _vq_quantthresh__44u9_p8_0[] = {
 };
 
 static long _vq_quantmap__44u9_p8_0[] = {
-	13,   11,    9,    7,    5,    3,    1,    0,
-	2,    4,    6,    8,   10,   12,   14,
+	13, 11, 9, 7, 5, 3, 1, 0,
+	2, 4, 6, 8, 10, 12, 14,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u9_p8_0 = {
@@ -9303,9 +9303,9 @@ static float _vq_quantthresh__44u9_p8_1[] = {
 };
 
 static long _vq_quantmap__44u9_p8_1[] = {
-	19,   17,   15,   13,   11,    9,    7,    5,
-	3,    1,    0,    2,    4,    6,    8,   10,
-	12,   14,   16,   18,   20,
+	19, 17, 15, 13, 11, 9, 7, 5,
+	3, 1, 0, 2, 4, 6, 8, 10,
+	12, 14, 16, 18, 20,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u9_p8_1 = {
@@ -9368,8 +9368,8 @@ static float _vq_quantthresh__44u9_p9_0[] = {
 };
 
 static long _vq_quantmap__44u9_p9_0[] = {
-	13,   11,    9,    7,    5,    3,    1,    0,
-	2,    4,    6,    8,   10,   12,   14,
+	13, 11, 9, 7, 5, 3, 1, 0,
+	2, 4, 6, 8, 10, 12, 14,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u9_p9_0 = {
@@ -9445,9 +9445,9 @@ static float _vq_quantthresh__44u9_p9_1[] = {
 };
 
 static long _vq_quantmap__44u9_p9_1[] = {
-	17,   15,   13,   11,    9,    7,    5,    3,
-	1,    0,    2,    4,    6,    8,   10,   12,
-	14,   16,   18,
+	17, 15, 13, 11, 9, 7, 5, 3,
+	1, 0, 2, 4, 6, 8, 10, 12,
+	14, 16, 18,
 };
 
 static encode_aux_threshmatch _vq_auxt__44u9_p9_1 = {
@@ -9537,12 +9537,12 @@ static float _vq_quantthresh__44u9_p9_2[] = {
 };
 
 static long _vq_quantmap__44u9_p9_2[] = {
-	47,   45,   43,   41,   39,   37,   35,   33,
-	31,   29,   27,   25,   23,   21,   19,   17,
-	15,   13,   11,    9,    7,    5,    3,    1,
-	0,    2,    4,    6,    8,   10,   12,   14,
-	16,   18,   20,   22,   24,   26,   28,   30,
-	32,   34,   36,   38,   40,   42,   44,   46,
+	47, 45, 43, 41, 39, 37, 35, 33,
+	31, 29, 27, 25, 23, 21, 19, 17,
+	15, 13, 11, 9, 7, 5, 3, 1,
+	0, 2, 4, 6, 8, 10, 12, 14,
+	16, 18, 20, 22, 24, 26, 28, 30,
+	32, 34, 36, 38, 40, 42, 44, 46,
 	48,
 };
 
@@ -9584,7 +9584,7 @@ static float _vq_quantthresh__8u0__p1_0[] = {
 };
 
 static long _vq_quantmap__8u0__p1_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__8u0__p1_0 = {
@@ -9625,7 +9625,7 @@ static float _vq_quantthresh__8u0__p2_0[] = {
 };
 
 static long _vq_quantmap__8u0__p2_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__8u0__p2_0 = {
@@ -9702,7 +9702,7 @@ static float _vq_quantthresh__8u0__p3_0[] = {
 };
 
 static long _vq_quantmap__8u0__p3_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__8u0__p3_0 = {
@@ -9779,7 +9779,7 @@ static float _vq_quantthresh__8u0__p4_0[] = {
 };
 
 static long _vq_quantmap__8u0__p4_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__8u0__p4_0 = {
@@ -9826,7 +9826,7 @@ static float _vq_quantthresh__8u0__p5_0[] = {
 };
 
 static long _vq_quantmap__8u0__p5_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -9884,8 +9884,8 @@ static float _vq_quantthresh__8u0__p6_0[] = {
 };
 
 static long _vq_quantmap__8u0__p6_0[] = {
-	11,    9,    7,    5,    3,    1,    0,    2,
-	4,    6,    8,   10,   12,
+	11, 9, 7, 5, 3, 1, 0, 2,
+	4, 6, 8, 10, 12,
 };
 
 static encode_aux_threshmatch _vq_auxt__8u0__p6_0 = {
@@ -9924,7 +9924,7 @@ static float _vq_quantthresh__8u0__p6_1[] = {
 };
 
 static long _vq_quantmap__8u0__p6_1[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__8u0__p6_1 = {
@@ -9965,7 +9965,7 @@ static float _vq_quantthresh__8u0__p7_0[] = {
 };
 
 static long _vq_quantmap__8u0__p7_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__8u0__p7_0 = {
@@ -10028,8 +10028,8 @@ static float _vq_quantthresh__8u0__p7_1[] = {
 };
 
 static long _vq_quantmap__8u0__p7_1[] = {
-	13,   11,    9,    7,    5,    3,    1,    0,
-	2,    4,    6,    8,   10,   12,   14,
+	13, 11, 9, 7, 5, 3, 1, 0,
+	2, 4, 6, 8, 10, 12, 14,
 };
 
 static encode_aux_threshmatch _vq_auxt__8u0__p7_1 = {
@@ -10112,9 +10112,9 @@ static float _vq_quantthresh__8u0__p7_2[] = {
 };
 
 static long _vq_quantmap__8u0__p7_2[] = {
-	19,   17,   15,   13,   11,    9,    7,    5,
-	3,    1,    0,    2,    4,    6,    8,   10,
-	12,   14,   16,   18,   20,
+	19, 17, 15, 13, 11, 9, 7, 5,
+	3, 1, 0, 2, 4, 6, 8, 10,
+	12, 14, 16, 18, 20,
 };
 
 static encode_aux_threshmatch _vq_auxt__8u0__p7_2 = {
@@ -10173,7 +10173,7 @@ static float _vq_quantthresh__8u1__p1_0[] = {
 };
 
 static long _vq_quantmap__8u1__p1_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__8u1__p1_0 = {
@@ -10214,7 +10214,7 @@ static float _vq_quantthresh__8u1__p2_0[] = {
 };
 
 static long _vq_quantmap__8u1__p2_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__8u1__p2_0 = {
@@ -10291,7 +10291,7 @@ static float _vq_quantthresh__8u1__p3_0[] = {
 };
 
 static long _vq_quantmap__8u1__p3_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__8u1__p3_0 = {
@@ -10368,7 +10368,7 @@ static float _vq_quantthresh__8u1__p4_0[] = {
 };
 
 static long _vq_quantmap__8u1__p4_0[] = {
-	3,    1,    0,    2,    4,
+	3, 1, 0, 2, 4,
 };
 
 static encode_aux_threshmatch _vq_auxt__8u1__p4_0 = {
@@ -10415,7 +10415,7 @@ static float _vq_quantthresh__8u1__p5_0[] = {
 };
 
 static long _vq_quantmap__8u1__p5_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -10463,7 +10463,7 @@ static float _vq_quantthresh__8u1__p6_0[] = {
 };
 
 static long _vq_quantmap__8u1__p6_0[] = {
-	7,    5,    3,    1,    0,    2,    4,    6,
+	7, 5, 3, 1, 0, 2, 4, 6,
 	8,
 };
 
@@ -10505,7 +10505,7 @@ static float _vq_quantthresh__8u1__p7_0[] = {
 };
 
 static long _vq_quantmap__8u1__p7_0[] = {
-	1,    0,    2,
+	1, 0, 2,
 };
 
 static encode_aux_threshmatch _vq_auxt__8u1__p7_0 = {
@@ -10557,8 +10557,8 @@ static float _vq_quantthresh__8u1__p7_1[] = {
 };
 
 static long _vq_quantmap__8u1__p7_1[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__8u1__p7_1 = {
@@ -10610,8 +10610,8 @@ static float _vq_quantthresh__8u1__p8_0[] = {
 };
 
 static long _vq_quantmap__8u1__p8_0[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__8u1__p8_0 = {
@@ -10663,8 +10663,8 @@ static float _vq_quantthresh__8u1__p8_1[] = {
 };
 
 static long _vq_quantmap__8u1__p8_1[] = {
-	9,    7,    5,    3,    1,    0,    2,    4,
-	6,    8,   10,
+	9, 7, 5, 3, 1, 0, 2, 4,
+	6, 8, 10,
 };
 
 static encode_aux_threshmatch _vq_auxt__8u1__p8_1 = {
@@ -10727,8 +10727,8 @@ static float _vq_quantthresh__8u1__p9_0[] = {
 };
 
 static long _vq_quantmap__8u1__p9_0[] = {
-	13,   11,    9,    7,    5,    3,    1,    0,
-	2,    4,    6,    8,   10,   12,   14,
+	13, 11, 9, 7, 5, 3, 1, 0,
+	2, 4, 6, 8, 10, 12, 14,
 };
 
 static encode_aux_threshmatch _vq_auxt__8u1__p9_0 = {
@@ -10791,8 +10791,8 @@ static float _vq_quantthresh__8u1__p9_1[] = {
 };
 
 static long _vq_quantmap__8u1__p9_1[] = {
-	13,   11,    9,    7,    5,    3,    1,    0,
-	2,    4,    6,    8,   10,   12,   14,
+	13, 11, 9, 7, 5, 3, 1, 0,
+	2, 4, 6, 8, 10, 12, 14,
 };
 
 static encode_aux_threshmatch _vq_auxt__8u1__p9_1 = {
@@ -10861,8 +10861,8 @@ static float _vq_quantthresh__8u1__p9_2[] = {
 };
 
 static long _vq_quantmap__8u1__p9_2[] = {
-	15,   13,   11,    9,    7,    5,    3,    1,
-	0,    2,    4,    6,    8,   10,   12,   14,
+	15, 13, 11, 9, 7, 5, 3, 1,
+	0, 2, 4, 6, 8, 10, 12, 14,
 	16,
 };
 

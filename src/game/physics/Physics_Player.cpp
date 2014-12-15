@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #include "precompiled_game.h"
 #pragma hdrstop
 
@@ -32,23 +32,23 @@ CLASS_DECLARATION( idPhysics_Actor, idPhysics_Player )
 END_CLASS
 
 // movement parameters
-const float PM_STOPSPEED		= 100.0f;
-const float PM_SWIMSCALE		= 1.0f;
-const float PM_ROPESPEED		= 100.0f;
-const float PM_LADDERSPEED		= 100.0f;
-const float PM_STEPSCALE		= 1.0f;
+const float PM_STOPSPEED = 100.0f;
+const float PM_SWIMSCALE = 1.0f;
+const float PM_ROPESPEED = 100.0f;
+const float PM_LADDERSPEED = 100.0f;
+const float PM_STEPSCALE = 1.0f;
 
-const float PM_ACCELERATE		= 10.0f;
-const float PM_AIRACCELERATE	= 1.0f;
-const float PM_WATERACCELERATE	= 4.0f;
-const float PM_FLYACCELERATE	= 8.0f;
+const float PM_ACCELERATE = 10.0f;
+const float PM_AIRACCELERATE = 1.0f;
+const float PM_WATERACCELERATE = 4.0f;
+const float PM_FLYACCELERATE = 8.0f;
 
-const float PM_FRICTION			= 6.0f;
-const float PM_AIRFRICTION		= 0.0f;
-const float PM_WATERFRICTION	= 1.0f;
-const float PM_FLYFRICTION		= 3.0f;
-const float PM_NOCLIPFRICTION	= 12.0f;
-const float PM_SLICK			= 0.1f; // grayman - #2409 - for slippery surfaces
+const float PM_FRICTION = 6.0f;
+const float PM_AIRFRICTION = 0.0f;
+const float PM_WATERFRICTION = 1.0f;
+const float PM_FLYFRICTION = 3.0f;
+const float PM_NOCLIPFRICTION = 12.0f;
+const float PM_SLICK = 0.1f; // grayman - #2409 - for slippery surfaces
 
 /**
 *  Height unit increment for mantle test
@@ -65,23 +65,23 @@ const float MANTLE_TEST_INCREMENT = 1.0;
 * This was determined for PM_FRICTION = 6.0 and should change if
 *	PM_FRICTION changes from 6.0.
 **/
-const float PM_NOFRICTION_SPEED   = 71.0f;
+const float PM_NOFRICTION_SPEED = 71.0f;
 
-const float MIN_WALK_NORMAL		  = 0.7f;  // can't walk on very steep slopes (run = 1, rise = 1)
+const float MIN_WALK_NORMAL = 0.7f;  // can't walk on very steep slopes (run = 1, rise = 1)
 const float MIN_WALK_SLICK_NORMAL = 0.89f; // grayman #2409 - higher value for slippery slopes (run = 1, rise = 0.5)
-const float OVERCLIP			  = 1.001f;
+const float OVERCLIP = 1.001f;
 
 // TODO (ishtvan): Move the following to INI file or player def file:
 
 /**
 * Defines the spot above the player's origin where they are attached to the rope
 **/
-const float ROPE_GRABHEIGHT		= 50.0f;
+const float ROPE_GRABHEIGHT = 50.0f;
 
 /**
 * Distance the player is set back from the rope
 **/
-const float ROPE_DISTANCE		= 20.0f;
+const float ROPE_DISTANCE = 20.0f;
 
 /**
 * Angular tolarance for looking at a rope and grabbing it [deg]
@@ -125,15 +125,15 @@ const float LADDER_WALKDETACH_ANGLE = 45.0f;
 const float LADDER_WALKDETACH_DOT = idMath::Cos( DEG2RAD( LADDER_WALKDETACH_ANGLE ) );
 
 // movementFlags
-const int PMF_DUCKED			= 1;		// set when ducking
-const int PMF_JUMPED			= 2;		// set when the player jumped this frame
-const int PMF_STEPPED_UP		= 4;		// set when the player stepped up this frame
-const int PMF_STEPPED_DOWN		= 8;		// set when the player stepped down this frame
-const int PMF_JUMP_HELD			= 16;		// set when jump button is held down
-const int PMF_TIME_LAND			= 32;		// movementTime is time before rejump
-const int PMF_TIME_KNOCKBACK	= 64;		// movementTime is an air-accelerate only time
-const int PMF_TIME_WATERJUMP	= 128;		// movementTime is waterjump
-const int PMF_ALL_TIMES			= ( PMF_TIME_WATERJUMP | PMF_TIME_LAND | PMF_TIME_KNOCKBACK );
+const int PMF_DUCKED = 1;		// set when ducking
+const int PMF_JUMPED = 2;		// set when the player jumped this frame
+const int PMF_STEPPED_UP = 4;		// set when the player stepped up this frame
+const int PMF_STEPPED_DOWN = 8;		// set when the player stepped down this frame
+const int PMF_JUMP_HELD = 16;		// set when jump button is held down
+const int PMF_TIME_LAND = 32;		// movementTime is time before rejump
+const int PMF_TIME_KNOCKBACK = 64;		// movementTime is an air-accelerate only time
+const int PMF_TIME_WATERJUMP = 128;		// movementTime is waterjump
+const int PMF_ALL_TIMES = ( PMF_TIME_WATERJUMP | PMF_TIME_LAND | PMF_TIME_KNOCKBACK );
 
 int c_pmove = 0;
 
@@ -177,8 +177,8 @@ float idPhysics_Player::CmdScale( const usercmd_t &cmd ) const {
 	if( !max ) {
 		return 0.0f;
 	}
-	total = idMath::Sqrt( ( float ) forwardmove * forwardmove + rightmove * rightmove + upmove * upmove );
-	scale = ( float ) playerSpeed * max / ( 127.0f * total );
+	total = idMath::Sqrt( ( float )forwardmove * forwardmove + rightmove * rightmove + upmove * upmove );
+	scale = ( float )playerSpeed * max / ( 127.0f * total );
 	return scale;
 }
 
@@ -338,7 +338,7 @@ bool idPhysics_Player::SlideMove( bool gravity, bool stepUp, bool stepDown, bool
 						current.velocity -= gravityVector * frametime * 3;
 					}
 				}
-				DM_LOG( LC_MOVEMENT, LT_DEBUG )LOGSTRING( "performing step up, velocity now %.4f %.4f %.4f\r",  current.velocity.x, current.velocity.y, current.velocity.z );
+				DM_LOG( LC_MOVEMENT, LT_DEBUG )LOGSTRING( "performing step up, velocity now %.4f %.4f %.4f\r", current.velocity.x, current.velocity.y, current.velocity.z );
 			}
 		}
 		// if we can push other entities and not blocked by the world
@@ -466,7 +466,7 @@ bool idPhysics_Player::SlideMove( bool gravity, bool stepUp, bool stepDown, bool
 			current.origin = downTrace.endpos;
 			current.movementFlags |= PMF_STEPPED_DOWN;
 			current.velocity *= PM_STEPSCALE;
-			DM_LOG( LC_MOVEMENT, LT_DEBUG )LOGSTRING( "performing step down, velocity now %.4f %.4f %.4f\r",  current.velocity.x, current.velocity.y, current.velocity.z );
+			DM_LOG( LC_MOVEMENT, LT_DEBUG )LOGSTRING( "performing step down, velocity now %.4f %.4f %.4f\r", current.velocity.x, current.velocity.y, current.velocity.z );
 		}
 	}
 	if( gravity ) {
@@ -1016,10 +1016,10 @@ void idPhysics_Player::RopeMove( void ) {
 	   is no longer there so command.upmove is only non-zero during jumping,
 	   which we can ignore here.
 
-	if ( command.upmove )
-	{
-		wishvel += 0.5f * climbDir * scale * (float) command.upmove;
-	}*/
+	   if ( command.upmove )
+	   {
+	   wishvel += 0.5f * climbDir * scale * (float) command.upmove;
+	   }*/
 	// detach the player from the rope if they jump
 	if( idPhysics_Player::CheckRopeJump() ) {
 		RopeDetach();
@@ -1262,7 +1262,7 @@ void idPhysics_Player::LadderMove( void ) {
 		// project right vector into ladder plane
 		right = right - ( ClimbNormXY * right ) * ClimbNormXY;
 		right.Normalize();
-		wishvel += m_ClimbMaxVelHoriz * right * scale * ( float ) command.rightmove;
+		wishvel += m_ClimbMaxVelHoriz * right * scale * ( float )command.rightmove;
 	}
 	// ========================== Surface Extent Test ======================
 	// This now just checks distance from the last valid climbing point
@@ -1405,7 +1405,7 @@ void idPhysics_Player::CheckGround( void ) {
 	}
 	groundMaterial = groundTrace.c.material;
 	// Store the ground entity
-	idEntity *groundEnt = gameLocal.entities[ groundTrace.c.entityNum ];
+	idEntity *groundEnt = gameLocal.entities[groundTrace.c.entityNum];
 	groundEntityPtr = groundEnt;
 	// check if getting thrown off the ground
 	if( ( current.velocity * -gravityNormal ) > 0.0f && ( current.velocity * groundTrace.c.normal ) > 10.0f ) {
@@ -1622,8 +1622,8 @@ void idPhysics_Player::CheckClimbable( void ) {
 	/*
 		// Don't attach if we are holding an object in our hands
 		if( gameLocal.m_Grabber->GetSelected() != NULL )
-			goto Quit;
-	*/
+		goto Quit;
+		*/
 	// forward vector orthogonal to gravity
 	idVec3 forward = viewForward - ( gravityNormal * viewForward ) * gravityNormal;
 	forward.Normalize();
@@ -1676,7 +1676,7 @@ void idPhysics_Player::CheckClimbable( void ) {
 		// grayman #2787 - add a test for a climbable vine.
 		bool isVine = ( testEnt && testEnt->IsType( tdmVine::Type ) );
 		if( ( ( trace.c.material && ( trace.c.material->IsLadder() ) ) || isVine )
-				&&	( gameLocal.time > m_NextAttachTime ) ) {
+				&& ( gameLocal.time > m_NextAttachTime ) ) {
 			idVec3 vStickPoint = trace.endpos;
 			// check a step height higher
 			end = current.origin - gravityNormal * ( maxStepHeight * 0.75f );
@@ -2065,9 +2065,9 @@ void idPhysics_Player::MovePlayer( int msec ) {
 	/*
 	gameRenderWorld->DebugBounds
 	(
-		idVec4 (1.0, 0.0, 1.0, 1.0),
-		clipModel->GetAbsBounds(),
-		idVec3 (0.0, 0.0, 0.0)
+	idVec4 (1.0, 0.0, 1.0, 1.0),
+	clipModel->GetAbsBounds(),
+	idVec3 (0.0, 0.0, 0.0)
 	);
 	*/
 	m_lastCommandViewYaw = command.angles[1];
@@ -2796,7 +2796,7 @@ void idPhysics_Player::ClearPushedVelocity( void ) {
 ================
 idPhysics_Player::SetMaster
 
-  the binding is never orientated
+the binding is never orientated
 ================
 */
 void idPhysics_Player::SetMaster( idEntity *master, const bool orientated ) {
@@ -2818,12 +2818,12 @@ void idPhysics_Player::SetMaster( idEntity *master, const bool orientated ) {
 	}
 }
 
-const float	PLAYER_VELOCITY_MAX				= 4000;
-const int	PLAYER_VELOCITY_TOTAL_BITS		= 16;
-const int	PLAYER_VELOCITY_EXPONENT_BITS	= idMath::BitsForInteger( idMath::BitsForFloat( PLAYER_VELOCITY_MAX ) ) + 1;
-const int	PLAYER_VELOCITY_MANTISSA_BITS	= PLAYER_VELOCITY_TOTAL_BITS - 1 - PLAYER_VELOCITY_EXPONENT_BITS;
-const int	PLAYER_MOVEMENT_TYPE_BITS		= 3;
-const int	PLAYER_MOVEMENT_FLAGS_BITS		= 8;
+const float	PLAYER_VELOCITY_MAX = 4000;
+const int	PLAYER_VELOCITY_TOTAL_BITS = 16;
+const int	PLAYER_VELOCITY_EXPONENT_BITS = idMath::BitsForInteger( idMath::BitsForFloat( PLAYER_VELOCITY_MAX ) ) + 1;
+const int	PLAYER_VELOCITY_MANTISSA_BITS = PLAYER_VELOCITY_TOTAL_BITS - 1 - PLAYER_VELOCITY_EXPONENT_BITS;
+const int	PLAYER_MOVEMENT_TYPE_BITS = 3;
+const int	PLAYER_MOVEMENT_FLAGS_BITS = 8;
 
 /*
 ================
@@ -2905,7 +2905,7 @@ void idPhysics_Player::MantleMove() {
 	// Compute proportion into the current movement phase which we are
 	float timeRatio = 0.0f;
 	if( timeForMantlePhase != 0 ) {
-		timeRatio = ( timeForMantlePhase - m_mantleTime ) /  timeForMantlePhase;
+		timeRatio = ( timeForMantlePhase - m_mantleTime ) / timeForMantlePhase;
 	}
 	// Branch based on phase
 	if( m_mantlePhase == hang_DarkModMantlePhase ) {
@@ -3165,10 +3165,10 @@ void idPhysics_Player::GetCurrentMantlingReachDistances
 	}
 	/*else if (OnRope() || OnLadder())
 	{
-		// angua: need larger reach when on rope
-		out_maxVerticalReachDistance = pm_normalheight.GetFloat() + armVerticalReach;
-		out_maxHorizontalReachDistance = 2* armReach;
-		out_maxMantleTraceDistance *= 2;
+	// angua: need larger reach when on rope
+	out_maxVerticalReachDistance = pm_normalheight.GetFloat() + armVerticalReach;
+	out_maxHorizontalReachDistance = 2* armReach;
+	out_maxMantleTraceDistance *= 2;
 	}*/
 	else {
 		// This vertical distance is up from the players feet
@@ -3313,7 +3313,7 @@ bool idPhysics_Player::DetermineIfMantleTargetHasMantleableSurface
 				b_mantlePossible = true;
 			}
 		} else {
-			idEntity *ent = gameLocal.entities[ worldMantleTrace.c.entityNum ];
+			idEntity *ent = gameLocal.entities[worldMantleTrace.c.entityNum];
 			if( ent && !ent->IsMantleable() ) {
 				// If we collided with a non-mantleable entity, then flag that.
 				// This is to prevent situations where we start out mantling on a low ledge
@@ -3796,7 +3796,7 @@ void idPhysics_Player::LeanMove() {
 			m_b_leanFinished = true;
 		}
 		// Try sinusoidal movement
-		float timeRatio = ( cv_pm_lean_time.GetFloat() - m_leanTime ) /  cv_pm_lean_time.GetFloat();
+		float timeRatio = ( cv_pm_lean_time.GetFloat() - m_leanTime ) / cv_pm_lean_time.GetFloat();
 		float timeRadians = ( idMath::PI / 2.0f ) * timeRatio;
 		if( m_leanMoveEndTilt > m_leanMoveStartTilt ) {
 			newLeanTiltDegrees = ( idMath::Sin( timeRadians ) * ( m_leanMoveEndTilt - m_leanMoveStartTilt ) )
@@ -3840,7 +3840,7 @@ bool idPhysics_Player::TestLeanClip() {
 	if( trTest.fraction != 1.0f
 			&& ( TrEnt = gameLocal.GetTraceEntity( trTest ) ) != NULL
 			&& TrEnt->IsType( idAI::Type ) ) {
-		static_cast<idAI *>( TrEnt )->HadTactile( ( idActor * ) self );
+		static_cast<idAI *>( TrEnt )->HadTactile( ( idActor * )self );
 	}
 	// Uncomment for debug bounds display
 	//gameRenderWorld->DebugBounds( colorGreen, m_LeanViewBounds, vTest );
@@ -3968,19 +3968,19 @@ void idPhysics_Player::UpdateLeanedInputYaw( idAngles &InputAngles ) {
 	// debug draw the test clip model
 	/*
 	collisionModelManager->DrawModel( ViewClip.Handle(), ViewClip.GetOrigin(),
-									ViewClip.GetAxis(), vec3_origin, 0.0f );
+	ViewClip.GetAxis(), vec3_origin, 0.0f );
 	*/
 }
 
 void idPhysics_Player::UnleanToValidPosition( void ) {
 	trace_t trTest;
 	idVec3 vTest( vec3_zero );
-	idPlayer *p_player = ( idPlayer * ) self;
+	idPlayer *p_player = ( idPlayer * )self;
 	idVec3 vEyeOffset = -GetGravityNormal() * p_player->EyeHeight();
 	float TestLeanDegrees = m_CurrentLeanTiltDegrees;
 	float TestLeanStretch = m_CurrentLeanStretch;
-	float DeltaDeg = TestLeanDegrees / ( float ) cv_pm_lean_to_valid_increments.GetInteger();
-	float DeltaStretch = TestLeanStretch / ( float ) cv_pm_lean_to_valid_increments.GetInteger();
+	float DeltaDeg = TestLeanDegrees / ( float )cv_pm_lean_to_valid_increments.GetInteger();
+	float DeltaStretch = TestLeanStretch / ( float )cv_pm_lean_to_valid_increments.GetInteger();
 	// Must temporarily set these to get proper behavior from max angle
 	m_leanMoveMaxAngle = m_CurrentLeanTiltDegrees;
 	m_leanMoveMaxStretch = m_CurrentLeanStretch;
@@ -4018,7 +4018,7 @@ bool idPhysics_Player::FindLeanDoorListenPos( const idVec3 &incidencePoint, CFro
 	vDirTest.Normalize();
 	int MaxCount = cv_pm_lean_door_increments.GetInteger();
 	for( int count = 1; count < MaxCount; count++ ) {
-		vTest += vDirTest * ( ( float ) count / ( float ) MaxCount ) * cv_pm_lean_door_max.GetFloat();
+		vTest += vDirTest * ( ( float )count / ( float )MaxCount ) * cv_pm_lean_door_max.GetFloat();
 		contents = gameLocal.clip.Contents( vTest, NULL, mat3_identity, CONTENTS_SOLID, self );
 		// found empty space on other side of door
 		if( !( ( contents & MASK_SOLID ) > 0 ) ) {
@@ -4054,19 +4054,19 @@ void idPhysics_Player::UpdateLeanDoor( void ) {
 				numEnts = gameLocal.clip.EntitiesTouchingBounds( TestBounds, CONTENTS_SOLID, ents, MAX_GENTITIES);
 				for( int i=0; i < numEnts; i++ )
 				{
-					if( ents[i] == (idEntity *) door )
-					{
-						bMatchedDoor = true;
-						break;
-					}
+				if( ents[i] == (idEntity *) door )
+				{
+				bMatchedDoor = true;
+				break;
+				}
 				}
 
 				if( !bMatchedDoor )
 				{
-					m_LeanDoorEnt = NULL;
-					goto Quit;
+				m_LeanDoorEnt = NULL;
+				goto Quit;
 				}
-		**/
+				**/
 		if( !TestBounds.IntersectsBounds( door->GetPhysics()->GetAbsBounds() ) ) {
 			m_LeanDoorEnt = NULL;
 			return;

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -909,7 +909,7 @@ void idCameraDef::getActiveSegmentInfo( int segment, idVec3 &origin, idVec3 &dir
 #endif
 	/*
 		if (!cameraSpline.validTime()) {
-			buildCamera();
+		buildCamera();
 		}
 		origin = *cameraSpline.getSegmentPoint(segment);
 
@@ -918,20 +918,20 @@ void idCameraDef::getActiveSegmentInfo( int segment, idVec3 &origin, idVec3 &dir
 		int numTargets = getTargetSpline()->controlPoints.Num();
 		int count = cameraSpline.splineTime.Num();
 		if (numTargets == 0) {
-			// follow the path
-			if (cameraSpline.getActiveSegment() < count - 1) {
-				temp = *cameraSpline.splinePoints[cameraSpline.getActiveSegment()+1];
-			}
+		// follow the path
+		if (cameraSpline.getActiveSegment() < count - 1) {
+		temp = *cameraSpline.splinePoints[cameraSpline.getActiveSegment()+1];
+		}
 		} else if (numTargets == 1) {
-			temp = *getTargetSpline()->controlPoints[0];
+		temp = *getTargetSpline()->controlPoints[0];
 		} else {
-			temp = *getTargetSpline()->getSegmentPoint(segment);
+		temp = *getTargetSpline()->getSegmentPoint(segment);
 		}
 
 		temp -= origin;
 		temp.Normalize();
 		direction = temp;
-	*/
+		*/
 }
 
 /*
@@ -940,7 +940,7 @@ idCameraDef::getCameraInfo
 ================
 */
 bool idCameraDef::getCameraInfo( long time, idVec3 &origin, idVec3 &direction, float *fv ) {
-	char	buff[ 1024 ];
+	char	buff[1024];
 	int		i;
 	if( ( time - startTime ) / 1000 <= totalTime ) {
 		for( i = 0; i < events.Num(); i++ ) {
@@ -983,15 +983,15 @@ bool idCameraDef::getCameraInfo( long time, idVec3 &origin, idVec3 &direction, f
 		/*
 				// follow the path
 				if (cameraSpline.getActiveSegment() < count - 1) {
-					temp = *cameraSpline.splinePoints[cameraSpline.getActiveSegment()+1];
-					if (temp == origin) {
-						int index = cameraSpline.getActiveSegment() + 2;
-						while (temp == origin && index < count - 1) {
-							temp = *cameraSpline.splinePoints[index++];
-						}
-					}
+				temp = *cameraSpline.splinePoints[cameraSpline.getActiveSegment()+1];
+				if (temp == origin) {
+				int index = cameraSpline.getActiveSegment() + 2;
+				while (temp == origin && index < count - 1) {
+				temp = *cameraSpline.splinePoints[index++];
 				}
-		*/
+				}
+				}
+				*/
 	} else {
 		temp = *getActiveTarget()->getPosition( time );
 	}
@@ -1036,11 +1036,11 @@ void idCameraDef::buildCamera() {
 		idCameraEvent *ev = events[i];
 		events[i]->setTriggered( false );
 		switch( events[i]->getType() ) {
-		case idCameraEvent::EVENT_TARGET : {
+		case idCameraEvent::EVENT_TARGET: {
 			targets.Append( i );
 			break;
 		}
-		case idCameraEvent::EVENT_FEATHER : {
+		case idCameraEvent::EVENT_FEATHER: {
 			long startTime = 0;
 			float speed = 0;
 			long loopTime = 10;
@@ -1066,7 +1066,7 @@ void idCameraDef::buildCamera() {
 			}
 			break;
 		}
-		case idCameraEvent::EVENT_WAIT : {
+		case idCameraEvent::EVENT_WAIT: {
 			waits.Append( atof( events[i]->getParam() ) );
 			//FIXME: this is quite hacky for Wolf E3, accel and decel needs
 			// do be parameter based etc..
@@ -1093,11 +1093,11 @@ void idCameraDef::buildCamera() {
 			}
 			break;
 		}
-		case idCameraEvent::EVENT_TARGETWAIT : {
+		case idCameraEvent::EVENT_TARGETWAIT: {
 			//targetWaits.Append(i);
 			break;
 		}
-		case idCameraEvent::EVENT_SPEED : {
+		case idCameraEvent::EVENT_SPEED: {
 			/*
 							// take the average delay between up to the next five segments
 							float adjust = atof(events[i]->getParam());
@@ -1107,8 +1107,8 @@ void idCameraDef::buildCamera() {
 
 							// get total amount of time over the remainder of the segment
 							for (j = index; j < cameraSpline.numSegments() - 1; j++) {
-								total += cameraSpline.getSegmentTime(j + 1) - cameraSpline.getSegmentTime(j);
-								count++;
+							total += cameraSpline.getSegmentTime(j + 1) - cameraSpline.getSegmentTime(j);
+							count++;
 							}
 
 							// multiply that by the adjustment
@@ -1123,11 +1123,11 @@ void idCameraDef::buildCamera() {
 
 							// now propogate that difference out to each segment
 							for (j = index; j < cameraSpline.numSegments(); j++) {
-								cameraSpline.addSegmentTime(j, additive);
-								additive += newTotal;
+							cameraSpline.addSegmentTime(j, additive);
+							additive += newTotal;
 							}
 							break;
-			*/
+							*/
 		}
 		}
 	}
@@ -1309,11 +1309,11 @@ idCameraDef::newFromType
 */
 idCameraPosition *idCameraDef::newFromType( idCameraPosition::positionType t ) {
 	switch( t ) {
-	case idCameraPosition::FIXED :
+	case idCameraPosition::FIXED:
 		return new idFixedPosition();
-	case idCameraPosition::INTERPOLATED :
+	case idCameraPosition::INTERPOLATED:
 		return new idInterpolatedPosition();
-	case idCameraPosition::SPLINE :
+	case idCameraPosition::SPLINE:
 		return new idSplinePosition();
 	};
 	return NULL;

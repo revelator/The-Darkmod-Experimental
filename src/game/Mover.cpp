@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -105,51 +105,51 @@ const idEventDef EV_RemoveInitialSplineAngles( "removeInitialSplineAngles", Even
 const idEventDef EV_StartSpline( "startSpline", EventArgs( 'e', "spline", "" ), EV_RETURNS_VOID,
 								 "Starts moving along a spline stored on the given entity." );
 const idEventDef EV_StopSpline( "stopSpline", EventArgs(), EV_RETURNS_VOID, "Stops moving along a spline." );
-const idEventDef EV_IsMoving( "isMoving", EventArgs(), 'd',  "Returns true if a mover is moving" );
+const idEventDef EV_IsMoving( "isMoving", EventArgs(), 'd', "Returns true if a mover is moving" );
 const idEventDef EV_IsRotating( "isRotating", EventArgs(), 'd', "Returns true if a mover is rotating" );
 
 CLASS_DECLARATION( idEntity, idMover )
-EVENT( EV_FindGuiTargets,		idMover::Event_FindGuiTargets )
-EVENT( EV_Thread_SetCallback,	idMover::Event_SetCallback )
-EVENT( EV_TeamBlocked,			idMover::Event_TeamBlocked )
-EVENT( EV_PartBlocked,			idMover::Event_PartBlocked )
-EVENT( EV_ReachedPos,			idMover::Event_UpdateMove )
-EVENT( EV_ReachedAng,			idMover::Event_UpdateRotation )
-EVENT( EV_PostRestore,			idMover::Event_PostRestore )
-EVENT( EV_StopMoving,			idMover::Event_StopMoving )
-EVENT( EV_StopRotating,			idMover::Event_StopRotating )
-EVENT( EV_Speed,				idMover::Event_SetMoveSpeed )
-EVENT( EV_Time,					idMover::Event_SetMoveTime )
-EVENT( EV_GetMoveSpeed,				idMover::Event_GetMoveSpeed )
-EVENT( EV_GetMoveTime,				idMover::Event_GetMoveTime )
-EVENT( EV_AccelTime,			idMover::Event_SetAccellerationTime )
-EVENT( EV_DecelTime,			idMover::Event_SetDecelerationTime )
-EVENT( EV_MoveTo,				idMover::Event_MoveTo )
-EVENT( EV_MoveToPos,			idMover::Event_MoveToPos )
-EVENT( EV_Move,					idMover::Event_MoveDir )
-EVENT( EV_MoveAccelerateTo,		idMover::Event_MoveAccelerateTo )
-EVENT( EV_MoveDecelerateTo,		idMover::Event_MoveDecelerateTo )
-EVENT( EV_RotateDownTo,			idMover::Event_RotateDownTo )
-EVENT( EV_RotateUpTo,			idMover::Event_RotateUpTo )
-EVENT( EV_RotateTo,				idMover::Event_RotateTo )
-EVENT( EV_Rotate,				idMover::Event_Rotate )
-EVENT( EV_RotateOnce,			idMover::Event_RotateOnce )
-EVENT( EV_Bob,					idMover::Event_Bob )
-EVENT( EV_Sway,					idMover::Event_Sway )
-EVENT( EV_Mover_OpenPortal,		idMover::Event_OpenPortal )
-EVENT( EV_Mover_ClosePortal,	idMover::Event_ClosePortal )
-EVENT( EV_AccelSound,			idMover::Event_SetAccelSound )
-EVENT( EV_DecelSound,			idMover::Event_SetDecelSound )
-EVENT( EV_MoveSound,			idMover::Event_SetMoveSound )
-EVENT( EV_Mover_InitGuiTargets,	idMover::Event_InitGuiTargets )
-EVENT( EV_EnableSplineAngles,	idMover::Event_EnableSplineAngles )
-EVENT( EV_DisableSplineAngles,	idMover::Event_DisableSplineAngles )
+EVENT( EV_FindGuiTargets, idMover::Event_FindGuiTargets )
+EVENT( EV_Thread_SetCallback, idMover::Event_SetCallback )
+EVENT( EV_TeamBlocked, idMover::Event_TeamBlocked )
+EVENT( EV_PartBlocked, idMover::Event_PartBlocked )
+EVENT( EV_ReachedPos, idMover::Event_UpdateMove )
+EVENT( EV_ReachedAng, idMover::Event_UpdateRotation )
+EVENT( EV_PostRestore, idMover::Event_PostRestore )
+EVENT( EV_StopMoving, idMover::Event_StopMoving )
+EVENT( EV_StopRotating, idMover::Event_StopRotating )
+EVENT( EV_Speed, idMover::Event_SetMoveSpeed )
+EVENT( EV_Time, idMover::Event_SetMoveTime )
+EVENT( EV_GetMoveSpeed, idMover::Event_GetMoveSpeed )
+EVENT( EV_GetMoveTime, idMover::Event_GetMoveTime )
+EVENT( EV_AccelTime, idMover::Event_SetAccellerationTime )
+EVENT( EV_DecelTime, idMover::Event_SetDecelerationTime )
+EVENT( EV_MoveTo, idMover::Event_MoveTo )
+EVENT( EV_MoveToPos, idMover::Event_MoveToPos )
+EVENT( EV_Move, idMover::Event_MoveDir )
+EVENT( EV_MoveAccelerateTo, idMover::Event_MoveAccelerateTo )
+EVENT( EV_MoveDecelerateTo, idMover::Event_MoveDecelerateTo )
+EVENT( EV_RotateDownTo, idMover::Event_RotateDownTo )
+EVENT( EV_RotateUpTo, idMover::Event_RotateUpTo )
+EVENT( EV_RotateTo, idMover::Event_RotateTo )
+EVENT( EV_Rotate, idMover::Event_Rotate )
+EVENT( EV_RotateOnce, idMover::Event_RotateOnce )
+EVENT( EV_Bob, idMover::Event_Bob )
+EVENT( EV_Sway, idMover::Event_Sway )
+EVENT( EV_Mover_OpenPortal, idMover::Event_OpenPortal )
+EVENT( EV_Mover_ClosePortal, idMover::Event_ClosePortal )
+EVENT( EV_AccelSound, idMover::Event_SetAccelSound )
+EVENT( EV_DecelSound, idMover::Event_SetDecelSound )
+EVENT( EV_MoveSound, idMover::Event_SetMoveSound )
+EVENT( EV_Mover_InitGuiTargets, idMover::Event_InitGuiTargets )
+EVENT( EV_EnableSplineAngles, idMover::Event_EnableSplineAngles )
+EVENT( EV_DisableSplineAngles, idMover::Event_DisableSplineAngles )
 EVENT( EV_RemoveInitialSplineAngles, idMover::Event_RemoveInitialSplineAngles )
-EVENT( EV_StartSpline,			idMover::Event_StartSpline )
-EVENT( EV_StopSpline,			idMover::Event_StopSpline )
-EVENT( EV_Activate,				idMover::Event_Activate )
-EVENT( EV_IsMoving,				idMover::Event_IsMoving )
-EVENT( EV_IsRotating,			idMover::Event_IsRotating )
+EVENT( EV_StartSpline, idMover::Event_StartSpline )
+EVENT( EV_StopSpline, idMover::Event_StopSpline )
+EVENT( EV_Activate, idMover::Event_Activate )
+EVENT( EV_IsMoving, idMover::Event_IsMoving )
+EVENT( EV_IsRotating, idMover::Event_IsRotating )
 END_CLASS
 
 /*
@@ -220,7 +220,7 @@ void idMover::Save( idSaveGame *savefile ) const {
 	}
 	savefile->WriteInt( guiTargets.Num() );
 	for( i = 0; i < guiTargets.Num(); i++ ) {
-		guiTargets[ i ].Save( savefile );
+		guiTargets[i].Save( savefile );
 	}
 	if( splineEnt.GetEntity() && splineEnt.GetEntity()->GetSpline() ) {
 		idCurve_Spline<idVec3> *spline = physicsObj.GetSpline();
@@ -282,7 +282,7 @@ void idMover::Restore( idRestoreGame *savefile ) {
 	savefile->ReadInt( num );
 	guiTargets.SetNum( num );
 	for( i = 0; i < num; i++ ) {
-		guiTargets[ i ].Restore( savefile );
+		guiTargets[i].Restore( savefile );
 	}
 	savefile->ReadBool( hasSpline );
 	if( hasSpline ) {
@@ -327,16 +327,16 @@ idMover::Spawn
 ================
 */
 void idMover::Spawn( void ) {
-	move_thread		= 0;
-	rotate_thread	= 0;
-	stopRotation	= false;
-	lastCommand		= MOVER_NONE;
-	acceltime		= static_cast<int>( 1000.0f * spawnArgs.GetFloat( "accel_time", "0" ) );
-	deceltime		= static_cast<int>( 1000.0f * spawnArgs.GetFloat( "decel_time", "0" ) );
-	move_time		= static_cast<int>( 1000.0f * spawnArgs.GetFloat( "move_time", "1" ) );	// safe default value
-	move_speed		= spawnArgs.GetFloat( "move_speed", "0" );
-	prevMoveTime	= move_time; // grayman #3755
-	spawnArgs.GetFloat( "damage" , "0", damage );
+	move_thread = 0;
+	rotate_thread = 0;
+	stopRotation = false;
+	lastCommand = MOVER_NONE;
+	acceltime = static_cast<int>( 1000.0f * spawnArgs.GetFloat( "accel_time", "0" ) );
+	deceltime = static_cast<int>( 1000.0f * spawnArgs.GetFloat( "decel_time", "0" ) );
+	move_time = static_cast<int>( 1000.0f * spawnArgs.GetFloat( "move_time", "1" ) );	// safe default value
+	move_speed = spawnArgs.GetFloat( "move_speed", "0" );
+	prevMoveTime = move_time; // grayman #3755
+	spawnArgs.GetFloat( "damage", "0", damage );
 	dest_position = GetPhysics()->GetOrigin();
 	dest_angles = GetPhysics()->GetAxis().ToAngles();
 	physicsObj.SetSelf( this );
@@ -419,11 +419,11 @@ idMover::Event_SetCallback
 */
 void idMover::Event_SetCallback( void ) {
 	if( ( lastCommand == MOVER_ROTATING ) && !rotate_thread ) {
-		lastCommand	= MOVER_NONE;
+		lastCommand = MOVER_NONE;
 		rotate_thread = idThread::CurrentThreadNum();
 		idThread::ReturnInt( true );
 	} else if( ( lastCommand == MOVER_MOVING || lastCommand == MOVER_SPLINE ) && !move_thread ) {
-		lastCommand	= MOVER_NONE;
+		lastCommand = MOVER_NONE;
 		move_thread = idThread::CurrentThreadNum();
 		idThread::ReturnInt( true );
 	} else {
@@ -439,59 +439,59 @@ idMover::VectorForDir
 void idMover::VectorForDir( float angle, idVec3 &vec ) {
 	idAngles ang;
 	switch( ( int )angle ) {
-	case DIR_UP :
+	case DIR_UP:
 		vec.Set( 0, 0, 1 );
 		break;
-	case DIR_DOWN :
+	case DIR_DOWN:
 		vec.Set( 0, 0, -1 );
 		break;
-	case DIR_LEFT :
+	case DIR_LEFT:
 		physicsObj.GetLocalAngles( ang );
-		ang.pitch	= 0;
-		ang.roll	= 0;
-		ang.yaw		+= 90;
-		vec			= ang.ToForward();
+		ang.pitch = 0;
+		ang.roll = 0;
+		ang.yaw += 90;
+		vec = ang.ToForward();
 		break;
-	case DIR_RIGHT :
+	case DIR_RIGHT:
 		physicsObj.GetLocalAngles( ang );
-		ang.pitch	= 0;
-		ang.roll	= 0;
-		ang.yaw		-= 90;
-		vec			= ang.ToForward();
+		ang.pitch = 0;
+		ang.roll = 0;
+		ang.yaw -= 90;
+		vec = ang.ToForward();
 		break;
-	case DIR_FORWARD :
+	case DIR_FORWARD:
 		physicsObj.GetLocalAngles( ang );
-		ang.pitch	= 0;
-		ang.roll	= 0;
-		vec			= ang.ToForward();
+		ang.pitch = 0;
+		ang.roll = 0;
+		vec = ang.ToForward();
 		break;
-	case DIR_BACK :
+	case DIR_BACK:
 		physicsObj.GetLocalAngles( ang );
-		ang.pitch	= 0;
-		ang.roll	= 0;
-		ang.yaw		+= 180;
-		vec			= ang.ToForward();
+		ang.pitch = 0;
+		ang.roll = 0;
+		ang.yaw += 180;
+		vec = ang.ToForward();
 		break;
-	case DIR_REL_UP :
+	case DIR_REL_UP:
 		vec.Set( 0, 0, 1 );
 		break;
-	case DIR_REL_DOWN :
+	case DIR_REL_DOWN:
 		vec.Set( 0, 0, -1 );
 		break;
-	case DIR_REL_LEFT :
+	case DIR_REL_LEFT:
 		physicsObj.GetLocalAngles( ang );
 		ang.ToVectors( NULL, &vec );
 		vec *= -1;
 		break;
-	case DIR_REL_RIGHT :
+	case DIR_REL_RIGHT:
 		physicsObj.GetLocalAngles( ang );
 		ang.ToVectors( NULL, &vec );
 		break;
-	case DIR_REL_FORWARD :
+	case DIR_REL_FORWARD:
 		physicsObj.GetLocalAngles( ang );
 		vec = ang.ToForward();
 		break;
-	case DIR_REL_BACK :
+	case DIR_REL_BACK:
 		physicsObj.GetLocalAngles( ang );
 		vec = ang.ToForward() * -1;
 		break;
@@ -521,12 +521,12 @@ key/val will be set to any renderEntity->gui's on the list
 void idMover::SetGuiState( const char *key, const char *val ) const {
 	gameLocal.Printf( "Setting %s to %s\n", key, val );
 	for( int i = 0; i < guiTargets.Num(); i++ ) {
-		idEntity *ent = guiTargets[ i ].GetEntity();
+		idEntity *ent = guiTargets[i].GetEntity();
 		if( ent ) {
 			for( int j = 0; j < MAX_RENDERENTITY_GUI; j++ ) {
-				if( ent->GetRenderEntity() && ent->GetRenderEntity()->gui[ j ] ) {
-					ent->GetRenderEntity()->gui[ j ]->SetStateString( key, val );
-					ent->GetRenderEntity()->gui[ j ]->StateChanged( gameLocal.time, true );
+				if( ent->GetRenderEntity() && ent->GetRenderEntity()->gui[j] ) {
+					ent->GetRenderEntity()->gui[j]->SetStateString( key, val );
+					ent->GetRenderEntity()->gui[j]->StateChanged( gameLocal.time, true );
 				}
 			}
 			ent->UpdateVisuals();
@@ -554,9 +554,9 @@ void idMover::SetGuiStates( const char *state ) {
 		SetGuiState( "movestate", state );
 	}
 	for( i = 0; i < MAX_RENDERENTITY_GUI; i++ ) {
-		if( renderEntity.gui[ i ] ) {
-			renderEntity.gui[ i ]->SetStateString( "movestate", state );
-			renderEntity.gui[ i ]->StateChanged( gameLocal.time, true );
+		if( renderEntity.gui[i] ) {
+			renderEntity.gui[i]->SetStateString( "movestate", state );
+			renderEntity.gui[i]->StateChanged( gameLocal.time, true );
 		}
 	}
 }
@@ -574,7 +574,7 @@ void idMover::Event_InitGuiTargets( void ) {
 
 	Translation control functions
 
-***********************************************************************/
+	***********************************************************************/
 
 /*
 ================
@@ -596,7 +596,7 @@ void idMover::DoneMoving( void ) {
 		// set our final position so that we get rid of any numerical inaccuracy
 		physicsObj.SetLinearExtrapolation( EXTRAPOLATION_NONE, 0, 0, dest_position, vec3_origin, vec3_origin );
 	}
-	lastCommand	= MOVER_NONE;
+	lastCommand = MOVER_NONE;
 	idThread::ObjectMoveDone( move_thread, this );
 	move_thread = 0;
 	StopSound( SND_CHANNEL_BODY, false );
@@ -692,7 +692,7 @@ void idMover::BeginMove( idThread *thread ) {
 	int			totalacceltime;
 	int			at;
 	int			dt;
-	lastCommand	= MOVER_MOVING;
+	lastCommand = MOVER_MOVING;
 	move_thread = 0;
 	physicsObj.GetLocalOrigin( org );
 	move_delta = dest_position - org;
@@ -742,12 +742,12 @@ void idMover::BeginMove( idThread *thread ) {
 		at = idPhysics::SnapTimeToPhysicsFrame( at * moveTime / ( at + dt ) );
 		dt = moveTime - at;
 	}
-	move_delta = move_delta * ( 1000.0f / ( ( float ) moveTime - ( at + dt ) * 0.5f ) );
-	move.stage			= stage;
-	move.acceleration	= at;
-	move.movetime		= moveTime - at - dt;
-	move.deceleration	= dt;
-	move.dir			= move_delta;
+	move_delta = move_delta * ( 1000.0f / ( ( float )moveTime - ( at + dt ) * 0.5f ) );
+	move.stage = stage;
+	move.acceleration = at;
+	move.movetime = moveTime - at - dt;
+	move.deceleration = dt;
+	move.dir = move_delta;
 	ProcessEvent( &EV_ReachedPos );
 }
 
@@ -755,7 +755,7 @@ void idMover::BeginMove( idThread *thread ) {
 
 	Rotation control functions
 
-***********************************************************************/
+	***********************************************************************/
 
 /*
 ================
@@ -774,7 +774,7 @@ idMover::DoneRotating
 ================
 */
 void idMover::DoneRotating( void ) {
-	lastCommand	= MOVER_NONE;
+	lastCommand = MOVER_NONE;
 	idThread::ObjectMoveDone( rotate_thread, this );
 	rotate_thread = 0;
 	StopSound( SND_CHANNEL_BODY, false );
@@ -848,7 +848,7 @@ void idMover::Event_UpdateRotation( void ) {
 		break;
 	}
 	case FINISHED_STAGE: {
-		lastCommand	= MOVER_NONE;
+		lastCommand = MOVER_NONE;
 		if( stopRotation ) {
 			// set our final angles so that we get rid of any numerical inaccuracy
 			dest_angles.Normalize360();
@@ -885,7 +885,7 @@ void idMover::BeginRotation( idThread *thread, bool stopwhendone ) {
 	idAngles	ang;
 	int			at;
 	int			dt;
-	lastCommand	= MOVER_ROTATING;
+	lastCommand = MOVER_ROTATING;
 	rotate_thread = 0;
 	int moveTime = move_time;
 	// rotation always uses moveTime so that if a move was started before the rotation,
@@ -931,13 +931,13 @@ void idMover::BeginRotation( idThread *thread, bool stopwhendone ) {
 		at = idPhysics::SnapTimeToPhysicsFrame( at * moveTime / ( at + dt ) );
 		dt = moveTime - at;
 	}
-	angle_delta = angle_delta * ( 1000.0f / ( ( float ) moveTime - ( at + dt ) * 0.5f ) );
+	angle_delta = angle_delta * ( 1000.0f / ( ( float )moveTime - ( at + dt ) * 0.5f ) );
 	stopRotation = stopwhendone || ( dt != 0 );
-	rot.stage			= stage;
-	rot.acceleration	= at;
-	rot.movetime		= moveTime - at - dt;
-	rot.deceleration	= dt;
-	rot.rot				= angle_delta;
+	rot.stage = stage;
+	rot.acceleration = at;
+	rot.movetime = moveTime - at - dt;
+	rot.deceleration = dt;
+	rot.rot = angle_delta;
 	ProcessEvent( &EV_ReachedAng );
 }
 
@@ -949,7 +949,7 @@ void idMover::OnTeamBlocked( idEntity *blockedEntity, idEntity *blockingEntity )
 
 	Script callable routines
 
-***********************************************************************/
+	***********************************************************************/
 
 /*
 ===============
@@ -1136,12 +1136,12 @@ void idMover::Event_MoveAccelerateTo( float speed, float time ) {
 		return;
 	}
 	at = idPhysics::SnapTimeToPhysicsFrame( SEC2MS( time ) );
-	lastCommand	= MOVER_MOVING;
+	lastCommand = MOVER_MOVING;
 	physicsObj.GetLocalOrigin( org );
-	move.stage			= ACCELERATION_STAGE;
-	move.acceleration	= at;
-	move.movetime		= 0;
-	move.deceleration	= 0;
+	move.stage = ACCELERATION_STAGE;
+	move.acceleration = at;
+	move.movetime = 0;
+	move.deceleration = 0;
 	StartSound( "snd_accel", SND_CHANNEL_BODY2, 0, false, NULL );
 	StartSound( "snd_move", SND_CHANNEL_BODY, 0, false, NULL );
 	physicsObj.SetLinearExtrapolation( EXTRAPOLATION_ACCELLINEAR, gameLocal.time, move.acceleration, org, dir * ( speed - v ), dir * v );
@@ -1170,12 +1170,12 @@ void idMover::Event_MoveDecelerateTo( float speed, float time ) {
 		return;
 	}
 	dt = idPhysics::SnapTimeToPhysicsFrame( SEC2MS( time ) );
-	lastCommand	= MOVER_MOVING;
+	lastCommand = MOVER_MOVING;
 	physicsObj.GetLocalOrigin( org );
-	move.stage			= DECELERATION_STAGE;
-	move.acceleration	= 0;
-	move.movetime		= 0;
-	move.deceleration	= dt;
+	move.stage = DECELERATION_STAGE;
+	move.acceleration = 0;
+	move.movetime = 0;
+	move.deceleration = dt;
 	StartSound( "snd_decel", SND_CHANNEL_BODY2, 0, false, NULL );
 	StartSound( "snd_move", SND_CHANNEL_BODY, 0, false, NULL );
 	physicsObj.SetLinearExtrapolation( EXTRAPOLATION_DECELLINEAR, gameLocal.time, move.deceleration, org, dir * ( v - speed ), dir * speed );
@@ -1192,9 +1192,9 @@ void idMover::Event_RotateDownTo( int axis, float angle ) {
 		gameLocal.Error( "Invalid axis" );
 	}
 	physicsObj.GetLocalAngles( ang );
-	dest_angles[ axis ] = angle;
-	if( dest_angles[ axis ] > ang[ axis ] ) {
-		dest_angles[ axis ] -= 360;
+	dest_angles[axis] = angle;
+	if( dest_angles[axis] > ang[axis] ) {
+		dest_angles[axis] -= 360;
 	}
 	BeginRotation( idThread::CurrentThread(), true );
 }
@@ -1210,9 +1210,9 @@ void idMover::Event_RotateUpTo( int axis, float angle ) {
 		gameLocal.Error( "Invalid axis" );
 	}
 	physicsObj.GetLocalAngles( ang );
-	dest_angles[ axis ] = angle;
-	if( dest_angles[ axis ] < ang[ axis ] ) {
-		dest_angles[ axis ] += 360;
+	dest_angles[axis] = angle;
+	if( dest_angles[axis] < ang[axis] ) {
+		dest_angles[axis] += 360;
 	}
 	BeginRotation( idThread::CurrentThread(), true );
 }
@@ -1412,10 +1412,10 @@ void idMover::Event_StartSpline( idEntity *splineEntity ) {
 		acceltime = move_time / 2;
 		deceltime = move_time - acceltime;
 	}
-	move.stage			= FINISHED_STAGE;
-	move.acceleration	= acceltime;
-	move.movetime		= move_time;
-	move.deceleration	= deceltime;
+	move.stage = FINISHED_STAGE;
+	move.acceleration = acceltime;
+	move.movetime = move_time;
+	move.deceleration = deceltime;
 	spline->MakeUniform( move_time );
 	spline->ShiftTime( gameLocal.time - spline->GetTime( 0 ) );
 	physicsObj.SetSpline( spline, move.acceleration, move.deceleration, useSplineAngles );
@@ -1490,8 +1490,8 @@ void idMover::ReadFromSnapshot( const idBitMsgDelta &msg ) {
 	moveStage_t oldMoveStage = move.stage;
 	moveStage_t oldRotStage = rot.stage;
 	physicsObj.ReadFromSnapshot( msg );
-	move.stage = ( moveStage_t ) msg.ReadBits( 3 );
-	rot.stage = ( moveStage_t ) msg.ReadBits( 3 );
+	move.stage = ( moveStage_t )msg.ReadBits( 3 );
+	rot.stage = ( moveStage_t )msg.ReadBits( 3 );
 	ReadBindFromSnapshot( msg );
 	ReadGUIFromSnapshot( msg );
 	if( msg.HasChanged() ) {
@@ -1538,7 +1538,7 @@ bool idMover::SetCanPushPlayer( bool newSetting ) {
 /*
 ===============================================================================
 
-	idSplinePath, holds a spline path to be used by an idMover
+idSplinePath, holds a spline path to be used by an idMover
 
 ===============================================================================
 */
@@ -1579,17 +1579,17 @@ const idEventDef EV_Mover_Enable( "enable", EventArgs(), EV_RETURNS_VOID, "Enabl
 const idEventDef EV_Mover_Disable( "disable", EventArgs(), EV_RETURNS_VOID, "Disables the mover/trigger" );
 
 CLASS_DECLARATION( idEntity, idMover_Binary )
-EVENT( EV_FindGuiTargets,			idMover_Binary::Event_FindGuiTargets )
-EVENT( EV_Thread_SetCallback,		idMover_Binary::Event_SetCallback )
-EVENT( EV_Mover_ReturnToPos1,		idMover_Binary::Event_ReturnToPos1 )
-EVENT( EV_Activate,					idMover_Binary::Event_Use_BinaryMover )
-EVENT( EV_ReachedPos,				idMover_Binary::Event_Reached_BinaryMover )
-EVENT( EV_Mover_MatchTeam,			idMover_Binary::Event_MatchActivateTeam )
-EVENT( EV_Mover_Enable,				idMover_Binary::Event_Enable )
-EVENT( EV_Mover_Disable,			idMover_Binary::Event_Disable )
-EVENT( EV_Mover_OpenPortal,			idMover_Binary::Event_OpenPortal )
-EVENT( EV_Mover_ClosePortal,		idMover_Binary::Event_ClosePortal )
-EVENT( EV_Mover_InitGuiTargets,		idMover_Binary::Event_InitGuiTargets )
+EVENT( EV_FindGuiTargets, idMover_Binary::Event_FindGuiTargets )
+EVENT( EV_Thread_SetCallback, idMover_Binary::Event_SetCallback )
+EVENT( EV_Mover_ReturnToPos1, idMover_Binary::Event_ReturnToPos1 )
+EVENT( EV_Activate, idMover_Binary::Event_Use_BinaryMover )
+EVENT( EV_ReachedPos, idMover_Binary::Event_Reached_BinaryMover )
+EVENT( EV_Mover_MatchTeam, idMover_Binary::Event_MatchActivateTeam )
+EVENT( EV_Mover_Enable, idMover_Binary::Event_Enable )
+EVENT( EV_Mover_Disable, idMover_Binary::Event_Disable )
+EVENT( EV_Mover_OpenPortal, idMover_Binary::Event_OpenPortal )
+EVENT( EV_Mover_ClosePortal, idMover_Binary::Event_ClosePortal )
+EVENT( EV_Mover_InitGuiTargets, idMover_Binary::Event_InitGuiTargets )
 END_CLASS
 
 /*
@@ -1680,7 +1680,7 @@ void idMover_Binary::Save( idSaveGame *savefile ) const {
 	savefile->WriteInt( updateStatus );
 	savefile->WriteInt( buddies.Num() );
 	for( i = 0; i < buddies.Num(); i++ ) {
-		savefile->WriteString( buddies[ i ] );
+		savefile->WriteString( buddies[i] );
 	}
 	savefile->WriteStaticObject( physicsObj );
 	savefile->WriteInt( areaPortal );
@@ -1690,7 +1690,7 @@ void idMover_Binary::Save( idSaveGame *savefile ) const {
 	savefile->WriteBool( blocked );
 	savefile->WriteInt( guiTargets.Num() );
 	for( i = 0; i < guiTargets.Num(); i++ ) {
-		guiTargets[ i ].Save( savefile );
+		guiTargets[i].Save( savefile );
 	}
 }
 
@@ -1740,7 +1740,7 @@ void idMover_Binary::Restore( idRestoreGame *savefile ) {
 	savefile->ReadInt( num );
 	guiTargets.SetNum( num );
 	for( i = 0; i < num; i++ ) {
-		guiTargets[ i ].Restore( savefile );
+		guiTargets[i].Restore( savefile );
 	}
 }
 
@@ -1757,9 +1757,9 @@ Base class for all movers.
 void idMover_Binary::Spawn( void ) {
 	idEntity	*ent;
 	const char	*temp;
-	move_thread		= 0;
-	enabled			= true;
-	areaPortal		= 0;
+	move_thread = 0;
+	enabled = true;
+	areaPortal = 0;
 	activateChain = NULL;
 	spawnArgs.GetFloat( "wait", "0", wait );
 	spawnArgs.GetInt( "updateStatus", "0", updateStatus );
@@ -2312,12 +2312,12 @@ key/val will be set to any renderEntity->gui's on the list
 void idMover_Binary::SetGuiState( const char *key, const char *val ) const {
 	int i;
 	for( i = 0; i < guiTargets.Num(); i++ ) {
-		idEntity *ent = guiTargets[ i ].GetEntity();
+		idEntity *ent = guiTargets[i].GetEntity();
 		if( ent ) {
 			for( int j = 0; j < MAX_RENDERENTITY_GUI; j++ ) {
-				if( ent->GetRenderEntity() && ent->GetRenderEntity()->gui[ j ] ) {
-					ent->GetRenderEntity()->gui[ j ]->SetStateString( key, val );
-					ent->GetRenderEntity()->gui[ j ]->StateChanged( gameLocal.time, true );
+				if( ent->GetRenderEntity() && ent->GetRenderEntity()->gui[j] ) {
+					ent->GetRenderEntity()->gui[j]->SetStateString( key, val );
+					ent->GetRenderEntity()->gui[j]->StateChanged( gameLocal.time, true );
 				}
 			}
 			ent->UpdateVisuals();
@@ -2356,11 +2356,11 @@ void idMover_Binary::InitSpeed( idVec3 &mpos1, idVec3 &mpos2, float mspeed, floa
 	idVec3		move;
 	float		distance;
 	float		speed;
-	pos1		= mpos1;
-	pos2		= mpos2;
-	accelTime	= idPhysics::SnapTimeToPhysicsFrame( SEC2MS( maccelTime ) );
-	decelTime	= idPhysics::SnapTimeToPhysicsFrame( SEC2MS( mdecelTime ) );
-	speed		= mspeed ? mspeed : 100;
+	pos1 = mpos1;
+	pos2 = mpos2;
+	accelTime = idPhysics::SnapTimeToPhysicsFrame( SEC2MS( maccelTime ) );
+	decelTime = idPhysics::SnapTimeToPhysicsFrame( SEC2MS( mdecelTime ) );
+	speed = mspeed ? mspeed : 100;
 	// calculate time to reach second position from speed
 	move = pos2 - pos1;
 	distance = move.Length();
@@ -2383,11 +2383,11 @@ pos1, pos2, and time are passed in so the movement delta can be calculated
 ================
 */
 void idMover_Binary::InitTime( idVec3 &mpos1, idVec3 &mpos2, float mtime, float maccelTime, float mdecelTime ) {
-	pos1		= mpos1;
-	pos2		= mpos2;
-	accelTime	= idPhysics::SnapTimeToPhysicsFrame( SEC2MS( maccelTime ) );
-	decelTime	= idPhysics::SnapTimeToPhysicsFrame( SEC2MS( mdecelTime ) );
-	duration	= idPhysics::SnapTimeToPhysicsFrame( SEC2MS( mtime ) );
+	pos1 = mpos1;
+	pos2 = mpos2;
+	accelTime = idPhysics::SnapTimeToPhysicsFrame( SEC2MS( maccelTime ) );
+	decelTime = idPhysics::SnapTimeToPhysicsFrame( SEC2MS( mdecelTime ) );
+	duration = idPhysics::SnapTimeToPhysicsFrame( SEC2MS( mtime ) );
 	if( duration <= 0 ) {
 		duration = 1;
 	}
@@ -2456,7 +2456,7 @@ idMover_Binary::ReadFromSnapshot
 void idMover_Binary::ReadFromSnapshot( const idBitMsgDelta &msg ) {
 	moverState_t oldMoverState = moverState;
 	physicsObj.ReadFromSnapshot( msg );
-	moverState = ( moverState_t ) msg.ReadBits( 3 );
+	moverState = ( moverState_t )msg.ReadBits( 3 );
 	ReadBindFromSnapshot( msg );
 	if( msg.HasChanged() ) {
 		if( moverState != oldMoverState ) {
@@ -2485,9 +2485,9 @@ idPlat
 */
 
 CLASS_DECLARATION( idMover_Binary, idPlat )
-EVENT( EV_Touch,			idPlat::Event_Touch )
-EVENT( EV_TeamBlocked,		idPlat::Event_TeamBlocked )
-EVENT( EV_PartBlocked,		idPlat::Event_PartBlocked )
+EVENT( EV_Touch, idPlat::Event_Touch )
+EVENT( EV_TeamBlocked, idPlat::Event_TeamBlocked )
+EVENT( EV_PartBlocked, idPlat::Event_PartBlocked )
 END_CLASS
 
 /*
@@ -2705,8 +2705,8 @@ idMover_Periodic
 */
 
 CLASS_DECLARATION( idEntity, idMover_Periodic )
-EVENT( EV_TeamBlocked,		idMover_Periodic::Event_TeamBlocked )
-EVENT( EV_PartBlocked,		idMover_Periodic::Event_PartBlocked )
+EVENT( EV_TeamBlocked, idMover_Periodic::Event_TeamBlocked )
+EVENT( EV_PartBlocked, idMover_Periodic::Event_PartBlocked )
 END_CLASS
 
 /*
@@ -2716,7 +2716,7 @@ idMover_Periodic::idMover_Periodic
 */
 idMover_Periodic::idMover_Periodic( void ) {
 	damage = 0.0f;
-	fl.neverDormant	= false;
+	fl.neverDormant = false;
 }
 
 /*
@@ -2817,7 +2817,7 @@ idRotater
 */
 
 CLASS_DECLARATION( idMover_Periodic, idRotater )
-EVENT( EV_Activate,			idRotater::Event_Activate )
+EVENT( EV_Activate, idRotater::Event_Activate )
 END_CLASS
 
 /*
@@ -2974,11 +2974,11 @@ void idBobber::Spawn( void ) {
 	// set the axis of bobbing
 	delta = vec3_origin;
 	if( x_axis ) {
-		delta[ 0 ] = height;
+		delta[0] = height;
 	} else if( y_axis ) {
-		delta[ 1 ] = height;
+		delta[1] = height;
 	} else {
-		delta[ 2 ] = height;
+		delta[2] = height;
 	}
 	physicsObj.SetSelf( this );
 	physicsObj.SetClipModel( new idClipModel( GetPhysics()->GetClipModel() ), 1.0f );
@@ -3057,7 +3057,7 @@ idBobber
 */
 
 CLASS_DECLARATION( idMover_Periodic, idRiser )
-EVENT( EV_Activate,				idRiser::Event_Activate )
+EVENT( EV_Activate, idRiser::Event_Activate )
 END_CLASS
 
 /*
@@ -3105,7 +3105,7 @@ void idRiser::Event_Activate( idEntity *activator ) {
 		spawnArgs.GetFloat( "time", "4", time );
 		spawnArgs.GetFloat( "height", "32", height );
 		delta = vec3_origin;
-		delta[ 2 ] = height;
+		delta[2] = height;
 		physicsObj.SetLinearExtrapolation( EXTRAPOLATION_LINEAR, gameLocal.time, static_cast<int>( time * 1000 ), physicsObj.GetOrigin(), delta, vec3_origin );
 	}
 }

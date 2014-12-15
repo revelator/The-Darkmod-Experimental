@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __ASYNCSERVER_H__
 #define __ASYNCSERVER_H__
@@ -23,17 +23,17 @@
 /*
 ===============================================================================
 
-  Network Server for asynchronous networking.
+Network Server for asynchronous networking.
 
 ===============================================================================
 */
 
 // MAX_CHALLENGES is made large to prevent a denial of service attack that could cycle
 // all of them out before legitimate users connected
-const int MAX_CHALLENGES				= 1024;
+const int MAX_CHALLENGES = 1024;
 
 // if we don't hear from authorize server, assume it is down
-const int AUTHORIZE_TIMEOUT				= 5000;
+const int AUTHORIZE_TIMEOUT = 5000;
 
 // states for the server's authorization process
 typedef enum {
@@ -203,7 +203,7 @@ private:
 	// track the max outgoing rate over the last few secs to watch for spikes
 	// dependent on net_serverSnapshotDelay. 50ms, for a 3 seconds backlog -> 60 samples
 	static const int	stats_numsamples = 60;
-	int					stats_outrate[ stats_numsamples ];
+	int					stats_outrate[stats_numsamples];
 	int					stats_current;
 	int					stats_average_sum;
 	int					stats_max;

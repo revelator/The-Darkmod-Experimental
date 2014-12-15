@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -63,8 +63,8 @@ idRoutingCache::~idRoutingCache
 ============
 */
 idRoutingCache::~idRoutingCache( void ) {
-	delete [] reachabilities;
-	delete [] travelTimes;
+	delete[] reachabilities;
+	delete[] travelTimes;
 }
 
 /*
@@ -94,7 +94,7 @@ unsigned short idAASLocal::AreaTravelTime( int areaNum, const idVec3 &start, con
 	if( dist < 1.0f ) {
 		return 1;
 	}
-	return ( unsigned short ) idMath::FtoiFast( dist );
+	return ( unsigned short )idMath::FtoiFast( dist );
 }
 
 /*
@@ -122,8 +122,8 @@ void idAASLocal::CalculateAreaTravelTimes( void ) {
 		}
 		numAreaTravelTimes += numReach * numRevReach;
 	}
-	areaTravelTimes = ( unsigned short * ) Mem_Alloc( numAreaTravelTimes * sizeof( unsigned short ) );
-	bytePtr = ( byte * ) areaTravelTimes;
+	areaTravelTimes = ( unsigned short * )Mem_Alloc( numAreaTravelTimes * sizeof( unsigned short ) );
+	bytePtr = ( byte * )areaTravelTimes;
 	for( n = 0; n < file->GetNumAreas(); n++ ) {
 		if( !( file->GetArea( n ).flags & ( AREA_REACHABLE_WALK | AREA_REACHABLE_FLY ) ) ) {
 			continue;
@@ -137,7 +137,7 @@ void idAASLocal::CalculateAreaTravelTimes( void ) {
 			}
 			reach->number = i;
 			reach->disableCount = 0;
-			reach->areaTravelTimes = ( unsigned short * ) bytePtr;
+			reach->areaTravelTimes = ( unsigned short * )bytePtr;
 			for( j = 0, rev_reach = file->GetArea( n ).rev_reach; rev_reach; rev_reach = rev_reach->rev_next, j++ ) {
 				t = AreaTravelTime( n, reach->start, rev_reach->end );
 				reach->areaTravelTimes[j] = t;
@@ -153,7 +153,7 @@ void idAASLocal::CalculateAreaTravelTimes( void ) {
 			file->SetPortalMaxTravelTime( -file->GetArea( n ).cluster, maxt );
 		}
 	}
-	assert( ( ( unsigned int ) bytePtr - ( unsigned int ) areaTravelTimes ) <= numAreaTravelTimes * sizeof( unsigned short ) );
+	assert( ( ( unsigned int )bytePtr - ( unsigned int )areaTravelTimes ) <= numAreaTravelTimes * sizeof( unsigned short ) );
 }
 
 /*
@@ -204,7 +204,7 @@ void idAASLocal::SetupRoutingCache( void ) {
 	 *
 	 * This whole pointer structure is stored in a dynamically allocated area, hence the type idRoutingCache***
 	 */
-	areaCacheIndex = ( idRoutingCache ** * ) Mem_ClearedAlloc( file->GetNumClusters() * sizeof( idRoutingCache ** ) +
+	areaCacheIndex = ( idRoutingCache ** * )Mem_ClearedAlloc( file->GetNumClusters() * sizeof( idRoutingCache ** ) +
 					 areaCacheIndexSize * sizeof( idRoutingCache * ) );
 	// Now initialise the areaCacheIndex pointers
 	// skip the index part, i.e. the first <numClusters> pointers
@@ -212,20 +212,20 @@ void idAASLocal::SetupRoutingCache( void ) {
 	// Initialise the first pointer section (the clusterN pointers), which point to the second (area) section
 	for( int i = 0; i < file->GetNumClusters(); i++ ) {
 		// Set the i-th cluster pointer to the first area pointer (corresponding to this cluster)
-		areaCacheIndex[i] = ( idRoutingCache ** ) bytePtr;
+		areaCacheIndex[i] = ( idRoutingCache ** )bytePtr;
 		// Set the pointer to the next array
 		bytePtr += file->GetCluster( i ).numReachableAreas * sizeof( idRoutingCache * );
 	}
 	// At this point, all the area idRoutingCache* pointers are NULL and the index pointers are initialised
 	// greebo: Allocate an idRoutingCache pointer for each area in the world and set the pointers to 0
 	portalCacheIndexSize = file->GetNumAreas();
-	portalCacheIndex = ( idRoutingCache ** ) Mem_ClearedAlloc( portalCacheIndexSize * sizeof( idRoutingCache * ) );
+	portalCacheIndex = ( idRoutingCache ** )Mem_ClearedAlloc( portalCacheIndexSize * sizeof( idRoutingCache * ) );
 	// greebo: Allocate as many idRoutingUpdate structures as there are AREAS in the map, and set everything to 0
-	areaUpdate = ( idRoutingUpdate * ) Mem_ClearedAlloc( file->GetNumAreas() * sizeof( idRoutingUpdate ) );
+	areaUpdate = ( idRoutingUpdate * )Mem_ClearedAlloc( file->GetNumAreas() * sizeof( idRoutingUpdate ) );
 	// greebo: Allocate as many idRoutingUpdate structures as there are PORTALS+1 in the map, and set everything to 0
-	portalUpdate = ( idRoutingUpdate * ) Mem_ClearedAlloc( ( file->GetNumPortals() + 1 ) * sizeof( idRoutingUpdate ) );
+	portalUpdate = ( idRoutingUpdate * )Mem_ClearedAlloc( ( file->GetNumPortals() + 1 ) * sizeof( idRoutingUpdate ) );
 	// greebo: For each area in the map, allocate a traveltime integer and initialise them to 0
-	goalAreaTravelTimes = ( unsigned short * ) Mem_ClearedAlloc( file->GetNumAreas() * sizeof( unsigned short ) );
+	goalAreaTravelTimes = ( unsigned short * )Mem_ClearedAlloc( file->GetNumAreas() * sizeof( unsigned short ) );
 	cacheListStart = cacheListEnd = NULL;
 	totalCacheMemory = 0;
 }
@@ -484,7 +484,7 @@ void idAASLocal::SetObstacleState( const idRoutingObstacle *obstacle, bool enabl
 			*/
 			/*
 			if ( rev_reach->travelType & TFL_INVALID ) {
-				continue;
+			continue;
 			}
 			*/
 			inside = false;
@@ -576,7 +576,7 @@ void idAASLocal::RemoveAllObstacles( void ) {
 ============
 idAASLocal::LinkCache
 
-  link the cache in the cache list sorted from oldest to newest cache
+link the cache in the cache list sorted from oldest to newest cache
 ============
 */
 void idAASLocal::LinkCache( idRoutingCache *cache ) const {
@@ -819,7 +819,7 @@ void idAASLocal::UpdatePortalRoutingCache( idRoutingCache *portalCache ) const {
 	const aasCluster_t *cluster;
 	idRoutingCache *cache;
 	idRoutingUpdate *updateListStart, *updateListEnd, *curUpdate, *nextUpdate;
-	curUpdate = &portalUpdate[ file->GetNumPortals() ];
+	curUpdate = &portalUpdate[file->GetNumPortals()];
 	curUpdate->cluster = portalCache->cluster;
 	curUpdate->areaNum = portalCache->areaNum;
 	curUpdate->tmpTravelTime = portalCache->startTravelTime;
@@ -1024,7 +1024,7 @@ bool idAASLocal::RouteToGoalArea( int areaNum, const idVec3 origin, int goalArea
 	}
 	int bestPortalAreaNum = 0;
 	// find the portal of the source area cluster leading towards the goal area
-	for( int i = 0 ; i < cluster->numPortals ; i++ ) {
+	for( int i = 0; i < cluster->numPortals; i++ ) {
 		int portalNum = file->GetPortalIndex( cluster->firstPortal + i );
 		// if the goal area isn't reachable from the portal
 		if( !portalCache->travelTimes[portalNum] ) {
@@ -1286,9 +1286,9 @@ bool idAASLocal::FindGoalClosestToTarget( aasGoal_t &goal, int areaNum, const id
 	// if the first area is valid goal, just return the origin
 	if ( callback.TestArea( this, areaNum ) )
 	{
-		goal.areaNum = areaNum;
-		goal.origin = origin;
-		return true;
+	goal.areaNum = areaNum;
+	goal.origin = origin;
+	return true;
 	}
 	*/
 	// setup obstacles
@@ -1301,7 +1301,7 @@ bool idAASLocal::FindGoalClosestToTarget( aasGoal_t &goal, int areaNum, const id
 	targetDist = ( target - origin ).Length();
 	// Clear the area update tmpTravelTime members, as we use those as breadcrumbs
 	int numAreas = file->GetNumAreas();
-	for( int ai = 0; ai < numAreas; ai ++ ) {
+	for( int ai = 0; ai < numAreas; ai++ ) {
 		areaUpdate[ai].tmpTravelTime = 0;
 	}
 	// initialize first update
@@ -1349,11 +1349,11 @@ bool idAASLocal::FindGoalClosestToTarget( aasGoal_t &goal, int areaNum, const id
 		/*
 		if
 		(
-			( b_haveClosestDistance) &&
-			((closestDistanceToTarget * 2.0) <= distanceToTarget)
+		( b_haveClosestDistance) &&
+		((closestDistanceToTarget * 2.0) <= distanceToTarget)
 		)
 		{
-			continue;
+		continue;
 		}
 		*/
 		for( i = 0, reach = file->GetArea( curUpdate->areaNum ).reach; reach; reach = reach->next, i++ ) {
@@ -1404,17 +1404,17 @@ bool idAASLocal::FindGoalClosestToTarget( aasGoal_t &goal, int areaNum, const id
 			distanceToTarget = (file->AreaCenter(reach->toAreaNum) - target).Length();
 			if ( !( nextArea->flags & AREA_LEDGE ) )
 			{
-				// If is closest so far
-				if ( !b_haveClosestDistance || distanceToTarget < closestDistanceToTarget)
-				{
-					// if the area is not visible to the target
-					if ( callback.TestArea( this, reach->toAreaNum ) )
-					{
-						closestDistanceToTarget = distanceToTarget;
-						b_haveClosestDistance = true;
-						bestAreaNum = reach->toAreaNum;
-					}
-				}
+			// If is closest so far
+			if ( !b_haveClosestDistance || distanceToTarget < closestDistanceToTarget)
+			{
+			// if the area is not visible to the target
+			if ( callback.TestArea( this, reach->toAreaNum ) )
+			{
+			closestDistanceToTarget = distanceToTarget;
+			b_haveClosestDistance = true;
+			bestAreaNum = reach->toAreaNum;
+			}
+			}
 			}
 			*/
 		}

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __SCRIPT_PROGRAM_H__
 #define __SCRIPT_PROGRAM_H__
@@ -65,7 +65,7 @@ public:
 typedef union eval_s {
 	const char			*stringPtr;
 	float				_float;
-	float				vector[ 3 ];
+	float				vector[3];
 	function_t			*function;
 	int 				_int;
 	int 				entity;
@@ -352,7 +352,7 @@ private:
 
   idVarDefName
 
-***********************************************************************/
+  ***********************************************************************/
 
 class idVarDefName {
 public:
@@ -383,7 +383,7 @@ private:
 
   Variable and type defintions
 
-***********************************************************************/
+  ***********************************************************************/
 
 extern	idTypeDef	type_void;
 extern	idTypeDef	type_scriptevent;
@@ -444,7 +444,7 @@ private:
 	int											filenum;
 
 	unsigned int									numVariables;
-	byte										variables[ MAX_GLOBALS ];
+	byte										variables[MAX_GLOBALS];
 	idStaticList<byte, MAX_GLOBALS>				variableDefaults;
 	idStaticList<function_t, MAX_FUNCS>			functions;
 	idStaticList<statement_t, MAX_STATEMENTS>	statements;
@@ -535,7 +535,7 @@ public:
 	void										ReturnEntity( idEntity *ent );
 
 	int											NumFilenames( void ) {
-		return fileList.Num( );
+		return fileList.Num();
 	}
 
 private:
@@ -549,7 +549,7 @@ idProgram::GetStatement
 ================
 */
 ID_INLINE statement_t &idProgram::GetStatement( int index ) {
-	return statements[ index ];
+	return statements[index];
 }
 
 /*
@@ -558,7 +558,7 @@ idProgram::GetFunction
 ================
 */
 ID_INLINE function_t *idProgram::GetFunction( int index ) {
-	return &functions[ index ];
+	return &functions[index];
 }
 
 /*
@@ -621,7 +621,7 @@ idProgram::GetFilename
 ================
 */
 ID_INLINE const char *idProgram::GetFilename( int num ) {
-	return fileList[ num ];
+	return fileList[num];
 }
 
 /*
@@ -630,7 +630,7 @@ idProgram::GetLineNumberForStatement
 ================
 */
 ID_INLINE int idProgram::GetLineNumberForStatement( int index ) {
-	return statements[ index ].linenumber;
+	return statements[index].linenumber;
 }
 
 /*
@@ -639,7 +639,7 @@ idProgram::GetFilenameForStatement
 ================
 */
 ID_INLINE const char *idProgram::GetFilenameForStatement( int index ) {
-	return GetFilename( statements[ index ].file );
+	return GetFilename( statements[index].file );
 }
 
 #endif /* !__SCRIPT_PROGRAM_H__ */

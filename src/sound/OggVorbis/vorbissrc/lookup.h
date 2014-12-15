@@ -10,8 +10,8 @@
  *                                                                  *
  ********************************************************************
 
-  function: lookup based functions
-  last mod: $Id$
+ function: lookup based functions
+ last mod: $Id$
 
  ********************************************************************/
 

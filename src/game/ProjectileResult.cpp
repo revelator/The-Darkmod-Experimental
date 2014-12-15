@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 // Copyright (C) 2006 Chris Sarantos <csarantos@gmail.com>
 
@@ -58,16 +58,16 @@ const idEventDef EV_TDM_GetActualStruckEnt( "getActualStruckEnt", EventArgs(), '
 const idEventDef EV_TDM_IsVineFriendly( "isVineFriendly", EventArgs(), 'f', "Vine-arrow event" ); // grayman #2787
 
 CLASS_DECLARATION( idEntity, CProjectileResult )
-EVENT( EV_TDM_GetFinalVel,				CProjectileResult::Event_GetFinalVel )
-EVENT( EV_TDM_GetFinalAngVel,			CProjectileResult::Event_GetFinalAngVel )
-EVENT( EV_TDM_GetAxialDir,				CProjectileResult::Event_GetAxialDir )
-EVENT( EV_TDM_GetProjMass,				CProjectileResult::Event_GetProjMass )
-EVENT( EV_TDM_GetSurfType,				CProjectileResult::Event_GetSurfType )
-EVENT( EV_TDM_GetSurfNormal,			CProjectileResult::Event_GetSurfNormal )
-EVENT( EV_TDM_GetStruckEnt,				CProjectileResult::Event_GetStruckEnt )
-EVENT( EV_TDM_GetIncidenceAngle,		CProjectileResult::Event_GetIncidenceAngle )
-EVENT( EV_TDM_GetActualStruckEnt,		CProjectileResult::Event_GetActualStruckEnt ) // grayman #837
-EVENT( EV_TDM_IsVineFriendly,			CProjectileResult::Event_IsVineFriendly )	// grayman #2787
+EVENT( EV_TDM_GetFinalVel, CProjectileResult::Event_GetFinalVel )
+EVENT( EV_TDM_GetFinalAngVel, CProjectileResult::Event_GetFinalAngVel )
+EVENT( EV_TDM_GetAxialDir, CProjectileResult::Event_GetAxialDir )
+EVENT( EV_TDM_GetProjMass, CProjectileResult::Event_GetProjMass )
+EVENT( EV_TDM_GetSurfType, CProjectileResult::Event_GetSurfType )
+EVENT( EV_TDM_GetSurfNormal, CProjectileResult::Event_GetSurfNormal )
+EVENT( EV_TDM_GetStruckEnt, CProjectileResult::Event_GetStruckEnt )
+EVENT( EV_TDM_GetIncidenceAngle, CProjectileResult::Event_GetIncidenceAngle )
+EVENT( EV_TDM_GetActualStruckEnt, CProjectileResult::Event_GetActualStruckEnt ) // grayman #837
+EVENT( EV_TDM_IsVineFriendly, CProjectileResult::Event_IsVineFriendly )	// grayman #2787
 END_CLASS
 
 CProjectileResult::CProjectileResult( void ) {
@@ -278,7 +278,7 @@ void CProjectileResult::Event_IsVineFriendly( void ) {
 }
 
 void CProjectileResult::Event_GetStruckEnt( void ) {
-	idThread::ReturnEntity( gameLocal.entities[ m_Collision.c.entityNum ] );
+	idThread::ReturnEntity( gameLocal.entities[m_Collision.c.entityNum] );
 }
 
 void CProjectileResult::Event_GetIncidenceAngle( void ) {
@@ -290,7 +290,7 @@ void CProjectileResult::Event_GetIncidenceAngle( void ) {
 // that comes back from the trace is the AI itself.
 
 void CProjectileResult::Event_GetActualStruckEnt( void ) {
-	idEntity *struckEnt = gameLocal.entities[ m_Collision.c.entityNum ];
+	idEntity *struckEnt = gameLocal.entities[m_Collision.c.entityNum];
 	idEntity *returnEnt = NULL;
 	if( struckEnt && struckEnt->IsType( idActor::Type ) ) {
 		idActor *actor = static_cast<idActor *>( struckEnt );

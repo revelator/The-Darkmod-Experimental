@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -168,9 +168,9 @@ void CMissionData::MissionEvent
 				goto Quit;
 			}
 			// index in this array is determined by alert value
-			pStat = &m_Stats.AIAlerts[ EntDat1->value ];
+			pStat = &m_Stats.AIAlerts[EntDat1->value];
 		} else {
-			pStat = &m_Stats.AIStats[ CompType ];
+			pStat = &m_Stats.AIStats[CompType];
 		}
 		if( CompType > MAX_AICOMP || !pStat ) {
 			DM_LOG( LC_OBJECTIVES, LT_ERROR )LOGSTRING( "Objectives: No AI stat found for comptype %d\r", CompType );
@@ -178,9 +178,9 @@ void CMissionData::MissionEvent
 		}
 		// Add to all appropriate stats
 		pStat->Overall++;
-		pStat->ByTeam[ EntDat1->team ]++;
-		pStat->ByType[ EntDat1->type ]++;
-		pStat->ByInnocence[ EntDat1->innocence ]++;
+		pStat->ByTeam[EntDat1->team]++;
+		pStat->ByType[EntDat1->type]++;
+		pStat->ByInnocence[EntDat1->innocence]++;
 		if( EntDat1->bWhileAirborne ) {
 			pStat->WhileAirborne++;
 		}
@@ -212,7 +212,7 @@ void CMissionData::MissionEvent
 			}
 			DM_LOG( LC_OBJECTIVES, LT_DEBUG )LOGSTRING( "Objectives: Second specification check matched or absent: %d, %d\r", i + 1, j + 1 );
 			bCompState = EvaluateObjective( &comp, EntDat1, EntDat2, bBoolArg );
-			DM_LOG( LC_OBJECTIVES, LT_DEBUG )LOGSTRING( "Objective component evaluation result: %d \r", ( int ) bCompState );
+			DM_LOG( LC_OBJECTIVES, LT_DEBUG )LOGSTRING( "Objective component evaluation result: %d \r", ( int )bCompState );
 			// notify the component of the current state. If the state changed,
 			// this will return true and we must mark this objective for update.
 			if( comp.SetState( bCompState ) ) {
@@ -264,7 +264,7 @@ bool	CMissionData::MatchSpec
 	if( !pComp || !EntDat || ind > 1 ) {
 		return false;
 	}
-	ESpecificationMethod SpecMethod = pComp->m_SpecMethod[ ind ];
+	ESpecificationMethod SpecMethod = pComp->m_SpecMethod[ind];
 	switch( SpecMethod ) {
 	case SPEC_NONE:
 		bReturnVal = true;
@@ -397,7 +397,7 @@ void CMissionData::UpdateObjectives( void ) {
 		}
 		// if parent objective is invalid or the timer hasn't fired or it's latched, don't do anything
 		// greebo: Beware the the m_Index is 1-based, not 0-based
-		if( m_Objectives[ pComp->m_Index[0] - 1 ].m_state == STATE_INVALID
+		if( m_Objectives[pComp->m_Index[0] - 1].m_state == STATE_INVALID
 				|| ( gameLocal.time - pComp->m_TimeStamp < pComp->m_ClockInterval )
 				|| pComp->m_bLatched ) {
 			continue;
@@ -666,7 +666,7 @@ void CMissionData::Event_MissionFailed( void ) {
 void CMissionData::Event_MissionEnd() {
 	// grayman #2887 - make a final check if any AI have the player in sight.
 	// Wrap up calculation of how long a player has been seen.
-	for( int i = 0 ; i < gameLocal.num_entities ; i++ ) {
+	for( int i = 0; i < gameLocal.num_entities; i++ ) {
 		idEntity *ent = gameLocal.entities[i];
 		if( !ent ) {
 			continue;
@@ -694,9 +694,9 @@ SStat *CMissionData::GetStat( EComponentType CompType, int AlertLevel ) {
 		return NULL;
 	}
 	if( CompType == COMP_ALERT ) {
-		return &m_Stats.AIAlerts[ AlertLevel ];
+		return &m_Stats.AIAlerts[AlertLevel];
 	}
-	return &m_Stats.AIStats[ CompType ];
+	return &m_Stats.AIStats[CompType];
 }
 
 int CMissionData::GetStatOverall( EComponentType CompType, int AlertLevel ) {
@@ -826,7 +826,7 @@ void CMissionData::FillParmsData( idEntity *ent, SObjEntParms *parms ) {
 		idActor *actor = static_cast<idActor *>( ent );
 		parms->team = actor->team;
 		parms->type = actor->m_AItype;
-		parms->innocence = ( int ) actor->m_Innocent;
+		parms->innocence = ( int )actor->m_Innocent;
 		parms->bIsAI = true;
 	}
 }
@@ -834,29 +834,29 @@ void CMissionData::FillParmsData( idEntity *ent, SObjEntParms *parms ) {
 /* SteveL #3741: Eliminate SetComponentState_Ext to align SetComponentState with all other
 				 objective-related functions. Bounds check moved to CMissionData::SetComponentState.
 
-void CMissionData::SetComponentState_Ext( int ObjIndex, int CompIndex, bool bState )
-{
-	DM_LOG(LC_OBJECTIVES,LT_DEBUG)LOGSTRING("SetComponentState: Called for obj %d, comp %d, state %d. \r", ObjIndex, CompIndex, (int) bState );
+				 void CMissionData::SetComponentState_Ext( int ObjIndex, int CompIndex, bool bState )
+				 {
+				 DM_LOG(LC_OBJECTIVES,LT_DEBUG)LOGSTRING("SetComponentState: Called for obj %d, comp %d, state %d. \r", ObjIndex, CompIndex, (int) bState );
 
-	// Offset the indices into "internal" values (start at 0)
-	ObjIndex--;
-	CompIndex--;
+				 // Offset the indices into "internal" values (start at 0)
+				 ObjIndex--;
+				 CompIndex--;
 
-	if( ObjIndex >= m_Objectives.Num() || ObjIndex < 0  )
-	{
-		DM_LOG(LC_OBJECTIVES,LT_WARNING)LOGSTRING("SetComponentState: Objective num %d out of bounds. \r", (ObjIndex+1) );
-		return;
-	}
-	if( CompIndex >= m_Objectives[ObjIndex].m_Components.Num() || CompIndex < 0 )
-	{
-		DM_LOG(LC_OBJECTIVES,LT_WARNING)LOGSTRING("SetComponentState: Component num %d out of bounds for objective %d. \r", (CompIndex+1), (ObjIndex+1) );
-		return;
-	}
+				 if( ObjIndex >= m_Objectives.Num() || ObjIndex < 0  )
+				 {
+				 DM_LOG(LC_OBJECTIVES,LT_WARNING)LOGSTRING("SetComponentState: Objective num %d out of bounds. \r", (ObjIndex+1) );
+				 return;
+				 }
+				 if( CompIndex >= m_Objectives[ObjIndex].m_Components.Num() || CompIndex < 0 )
+				 {
+				 DM_LOG(LC_OBJECTIVES,LT_WARNING)LOGSTRING("SetComponentState: Component num %d out of bounds for objective %d. \r", (CompIndex+1), (ObjIndex+1) );
+				 return;
+				 }
 
-	// call internal SetComponentState
-	SetComponentState( ObjIndex, CompIndex, bState );
-}
-*/
+				 // call internal SetComponentState
+				 SetComponentState( ObjIndex, CompIndex, bState );
+				 }
+				 */
 
 void CMissionData::SetComponentState( int ObjIndex, int CompIndex, bool bState ) {
 	if( ObjIndex >= m_Objectives.Num() || ObjIndex < 0 ) {
@@ -1061,7 +1061,7 @@ int CMissionData::AddObjsFromDict( const idDict &dict ) {
 		ObjTemp.m_Components.Clear();
 		ObjTemp.m_ObjNum = Counter - 1;
 		StrTemp = va( "obj%d_", Counter );
-		ObjTemp.m_state = ( EObjCompletionState ) dict.GetInt( StrTemp + "state", "0" );
+		ObjTemp.m_state = ( EObjCompletionState )dict.GetInt( StrTemp + "state", "0" );
 		ObjTemp.m_text = dict.GetString( StrTemp + "desc", "" );
 		ObjTemp.m_bMandatory = dict.GetBool( StrTemp + "mandatory", "1" );
 		ObjTemp.m_bReversible = !dict.GetBool( StrTemp + "irreversible", "0" );
@@ -1122,7 +1122,7 @@ int CMissionData::AddObjsFromDict( const idDict &dict ) {
 				gameLocal.Printf( "Objective System Error: Unknown objective component type '%s' when adding objective %d, component %d.  Objective component ignored. \n", TypeString.c_str(), Counter, Counter2 );
 				continue;
 			}
-			CompTemp.m_Type = ( EComponentType ) TypeNum;
+			CompTemp.m_Type = ( EComponentType )TypeNum;
 			for( int ind = 0; ind < 2; ind++ ) {
 				// Use spec. type hash to convert text specifier to ESpecificationMethod enum
 				idStr SpecString = dict.GetString( va( StrTemp2 + "spec%d", ind + 1 ), "none" );
@@ -1132,7 +1132,7 @@ int CMissionData::AddObjsFromDict( const idDict &dict ) {
 					gameLocal.Printf( "Objective System Error: Unknown objective component specification type '%s' when adding objective %d, component %d.  Setting default specifier type 'none' \n", TypeString.c_str(), Counter, Counter2 );
 					SpecNum = 0;
 				}
-				CompTemp.m_SpecMethod[ind] = ( ESpecificationMethod ) SpecNum;
+				CompTemp.m_SpecMethod[ind] = ( ESpecificationMethod )SpecNum;
 			}
 			for( int ind = 0; ind < 2; ind++ ) {
 				CompTemp.m_SpecVal[ind] = dict.GetString( va( StrTemp2 + "spec_val%d", ind + 1 ), "" );
@@ -1158,7 +1158,7 @@ int CMissionData::AddObjsFromDict( const idDict &dict ) {
 			m_Objectives.Append( ObjTemp );
 			// Parse success/failure logic
 			gameLocal.Printf( "Objective %d: Parsing success and failure logic\n", Counter );
-			m_Objectives[ m_Objectives.Num() - 1 ].ParseLogicStrs();
+			m_Objectives[m_Objectives.Num() - 1].ParseLogicStrs();
 			ObjTemp.Clear();
 		}
 		Counter++;
@@ -1231,9 +1231,9 @@ bool    CMissionData::MatchLocationObjectives( idEntity *entity ) {
 	//  iterate over all components of the objectives and test the COMP_LOCATION components against the entity.
 	//  returns on the first match.
 	for( int i = 0; i < m_Objectives.Num(); i++ ) {
-		CObjective   &currentObjective = m_Objectives[ i ];
+		CObjective   &currentObjective = m_Objectives[i];
 		for( int j = 0; j < currentObjective.m_Components.Num(); j++ ) {
-			CObjectiveComponent &currentComponent = currentObjective.m_Components[ j ];
+			CObjectiveComponent &currentComponent = currentObjective.m_Components[j];
 			if( currentComponent.m_Type != COMP_LOCATION ) {
 				continue;
 			}
@@ -1484,7 +1484,7 @@ bool CMissionData::ParseLogicStr( idStr *input, SBoolParseNode *output ) {
 				NewCol.Append( NewNode );
 				CurrentNode->Cols.Append( NewCol );
 			} else if( bRowAdvanced ) {
-				CurrentNode->Cols[ col ].Append( NewNode );
+				CurrentNode->Cols[col].Append( NewNode );
 			}
 			// If neither row nor column advanced, we have a problem, such as two leaves in a row
 			else {
@@ -1496,7 +1496,7 @@ bool CMissionData::ParseLogicStr( idStr *input, SBoolParseNode *output ) {
 			if( token.Cmp( "(" ) == 0 ) {
 				level++;
 				bOperatorOK = false;
-				CurrentNode = &CurrentNode->Cols[ col ].operator[]( row );
+				CurrentNode = &CurrentNode->Cols[col].operator[]( row );
 				row = 0;
 				col = 0;
 				// new level expects these to be true
@@ -1604,20 +1604,20 @@ bool CMissionData::EvalBoolLogic( SBoolParseNode *StartNode, bool bObjComp, int 
 	3. Advance the matrix and go down a level because the matrix is not yet done
 
 	Going down one level can only happen because we finished an evaluation in
-		the previous step, and we now want to advance to the next matrix spot and
-		go down a level at the node at that next matrix spot
+	the previous step, and we now want to advance to the next matrix spot and
+	go down a level at the node at that next matrix spot
 
 	When we advance to the next matrix spot, it can happen in two ways:
 	1. We have evaluated TRUE in the previous step
 
-		If there is a next column, go to the first row of that next column and go down a level
+	If there is a next column, go to the first row of that next column and go down a level
 
-		If there is no next column, we are done with this level, eval it as TRUE and go up
+	If there is no next column, we are done with this level, eval it as TRUE and go up
 
 	2. We have evaluated FALSE in the previous step
-		If there is another row, go to that next column and go down a level
+	If there is another row, go to that next column and go down a level
 
-		If there is no next row, we are done with this level, eval it as FALSE and go up
+	If there is no next row, we are done with this level, eval it as FALSE and go up
 	*/
 	while( level >= 0 && ( CurrentNode != NULL ) ) {
 		DM_LOG( LC_OBJECTIVES, LT_DEBUG )LOGSTRING( "[Objective Logic] Evaluating: level %d, row %d, column %d\r", level, CurrentRow, CurrentCol );
@@ -1717,9 +1717,9 @@ void CMissionData::UpdateGUIState( idUserInterface *ui ) {
 
 	for (int i = 0; i < state.GetNumKeyVals(); ++i)
 	{
-		const idKeyValue* kv = state.GetKeyVal(i);
+	const idKeyValue* kv = state.GetKeyVal(i);
 
-		gameLocal.Printf("%s: %s\n", kv->GetKey().c_str(), kv->GetValue().c_str());
+	gameLocal.Printf("%s: %s\n", kv->GetKey().c_str(), kv->GetValue().c_str());
 	}*/
 	ui->SetStateInt( "NumVisibleObjectives", objIndices.Num() );
 	ui->SetStateInt( "ObjectiveBoxIsVisible", 1 );
@@ -2011,7 +2011,7 @@ void CMissionData::SetPlayerTeam( int team ) {
 // for the mission statistics screen
 
 void CMissionData::SetDifficultyNames( idStr _difficultyNames[] ) {
-	for( int i = 0 ; i < DIFFICULTY_COUNT ; i++ ) {
+	for( int i = 0; i < DIFFICULTY_COUNT; i++ ) {
 		m_Stats._difficultyNames[i] = _difficultyNames[i];
 	}
 }

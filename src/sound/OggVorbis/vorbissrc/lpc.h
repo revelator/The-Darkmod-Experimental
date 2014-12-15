@@ -10,8 +10,8 @@
  *                                                                  *
  ********************************************************************
 
-  function: LPC low level routines
-  last mod: $Id$
+ function: LPC low level routines
+ last mod: $Id$
 
  ********************************************************************/
 

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -77,13 +77,13 @@ Sys_Createthread
 ==================
 */
 void Sys_CreateThread( xthread_t function, void *parms, xthreadPriority priority, xthreadInfo &info, const char *name, xthreadInfo *threads[MAX_THREADS], int *thread_count ) {
-	HANDLE temp = CreateThread(	NULL,	// LPSECURITY_ATTRIBUTES lpsa,
+	HANDLE temp = CreateThread( NULL,	// LPSECURITY_ATTRIBUTES lpsa,
 								0,		// DWORD cbStack,
 								( LPTHREAD_START_ROUTINE )function,	// LPTHREAD_START_ROUTINE lpStartAddr,
 								parms,	// LPVOID lpvThreadParm,
 								0,		//   DWORD fdwCreate,
 								&info.threadId );
-	info.threadHandle = ( int ) temp;
+	info.threadHandle = ( int )temp;
 	if( priority == THREAD_HIGHEST ) {
 		SetThreadPriority( ( HANDLE )info.threadHandle, THREAD_PRIORITY_HIGHEST );		//  we better sleep enough to do this
 	} else if( priority == THREAD_ABOVE_NORMAL ) {
@@ -217,7 +217,7 @@ typedef struct CrtMemBlockHeader {
 ==================
 Sys_AllocHook
 
-	called for every malloc/new/free/delete
+called for every malloc/new/free/delete
 ==================
 */
 int Sys_AllocHook( int nAllocType, void *pvData, size_t nSize, int nBlockUse, long lRequest, const unsigned char *szFileName, int nLine ) {
@@ -373,7 +373,7 @@ void Sys_DebugPrintf( const char *fmt, ... ) {
 	va_list argptr;
 	va_start( argptr, fmt );
 	idStr::vsnPrintf( msg, MAXPRINTMSG - 1, fmt, argptr );
-	msg[ sizeof( msg ) - 1 ] = '\0';
+	msg[sizeof( msg ) - 1] = '\0';
 	va_end( argptr );
 	OutputDebugString( msg );
 }
@@ -386,7 +386,7 @@ Sys_DebugVPrintf
 void Sys_DebugVPrintf( const char *fmt, va_list arg ) {
 	char msg[MAXPRINTMSG];
 	idStr::vsnPrintf( msg, MAXPRINTMSG - 1, fmt, arg );
-	msg[ sizeof( msg ) - 1 ] = '\0';
+	msg[sizeof( msg ) - 1] = '\0';
 	OutputDebugString( msg );
 }
 
@@ -434,7 +434,7 @@ Sys_FileTimeStamp
 ID_TIME_T Sys_FileTimeStamp( FILE *fp ) {
 	struct _stat st;
 	_fstat( _fileno( fp ), &st );
-	return ( long ) st.st_mtime;
+	return ( long )st.st_mtime;
 }
 
 /*
@@ -449,7 +449,7 @@ ID_TIME_T Sys_DosToUnixTime( unsigned long dostime ) {
 	// break dos time down into its sec, min, hour components
 	sec = ( dostime & 0x1F ) * 2;
 	min = ( dostime & 0x7E0 ) >> 5;
-	hour = ( dostime & 0xF800 )  >> 11;
+	hour = ( dostime & 0xF800 ) >> 11;
 	// temporarily remove time component
 	year = dostime >> 16;
 	// break dos date down into its day, month, year components
@@ -465,7 +465,7 @@ ID_TIME_T Sys_DosToUnixTime( unsigned long dostime ) {
 		dostm.tm_year = year - 1900;
 		unix_time = mktime( &dostm );
 	}
-	return ( long ) unix_time;
+	return ( long )unix_time;
 }
 
 /*
@@ -535,7 +535,7 @@ Sys_EXEPath
 ==============
 */
 const char *Sys_EXEPath( void ) {
-	static char exe[ MAX_OSPATH ];
+	static char exe[MAX_OSPATH];
 	GetModuleFileName( NULL, exe, sizeof( exe ) - 1 );
 	return exe;
 }
@@ -675,7 +675,7 @@ int Sys_DLL_Load( const char *dllName ) {
 	libHandle = LoadLibrary( dllName );
 	if( libHandle ) {
 		// since we can't have LoadLibrary load only from the specified path, check it did the right thing
-		char loadedPath[ MAX_OSPATH ];
+		char loadedPath[MAX_OSPATH];
 		GetModuleFileName( libHandle, loadedPath, sizeof( loadedPath ) - 1 );
 		// greebo: Make sure to normalise the path before checking, there might be ".." in them
 		idStr dllPath = NormalisePath( dllName );
@@ -714,7 +714,7 @@ void Sys_DLL_Unload( int dllHandle ) {
 			NULL,
 			lastError,
 			MAKELANGID( LANG_NEUTRAL, SUBLANG_DEFAULT ), // Default language
-			( LPTSTR ) &lpMsgBuf,
+			( LPTSTR )&lpMsgBuf,
 			0,
 			NULL
 		);
@@ -747,7 +747,7 @@ be freed by the game later.
 */
 void Sys_QueEvent( int time, sysEventType_t type, int value, int value2, int ptrLength, void *ptr ) {
 	sysEvent_t	*ev;
-	ev = &eventQue[ eventHead & MASK_QUED_EVENTS ];
+	ev = &eventQue[eventHead & MASK_QUED_EVENTS];
 	if( eventHead - eventTail >= MAX_QUED_EVENTS ) {
 		common->Printf( "Sys_QueEvent: overflow\n" );
 		// we are discarding an event, but don't leak memory
@@ -843,7 +843,7 @@ sysEvent_t Sys_GetEvent( void ) {
 	// return if we have data
 	if( eventHead > eventTail ) {
 		eventTail++;
-		return eventQue[( eventTail - 1 ) & MASK_QUED_EVENTS ];
+		return eventQue[( eventTail - 1 ) & MASK_QUED_EVENTS];
 	}
 	// return the empty event
 	memset( &ev, 0, sizeof( ev ) );
@@ -911,7 +911,7 @@ void Sys_StartAsyncThread( void ) {
 	LARGE_INTEGER	t;
 	t.HighPart = t.LowPart = 0;
 	SetWaitableTimer( hTimer, &t, USERCMD_MSEC, NULL, NULL, TRUE );
-	Sys_CreateThread( ( xthread_t )Sys_AsyncThread, NULL, THREAD_ABOVE_NORMAL, threadInfo, "Async", g_threads,  &g_thread_count );
+	Sys_CreateThread( ( xthread_t )Sys_AsyncThread, NULL, THREAD_ABOVE_NORMAL, threadInfo, "Async", g_threads, &g_thread_count );
 #ifdef SET_THREAD_AFFINITY
 	// give the async thread an affinity for the second cpu
 	SetThreadAffinityMask( ( HANDLE )threadInfo.threadHandle, 2 );
@@ -1086,7 +1086,7 @@ void Sys_Init( void ) {
 			common->Printf( "WARNING: unknown sys_cpustring '%s'\n", win32.sys_cpustring.GetString() );
 			id = CPUID_GENERIC;
 		}
-		win32.cpuid = ( cpuid_t ) id;
+		win32.cpuid = ( cpuid_t )id;
 	}
 	common->Printf( "%s\n", win32.sys_cpustring.GetString() );
 	common->Printf( "%d MB System Memory\n", Sys_GetSystemRam() );
@@ -1228,7 +1228,7 @@ _except_handler
 */
 EXCEPTION_DISPOSITION __cdecl _except_handler( struct _EXCEPTION_RECORD *ExceptionRecord, void *EstablisherFrame,
 		struct _CONTEXT *ContextRecord, void *DispatcherContext ) {
-	static char msg[ 8192 ];
+	static char msg[8192];
 	char FPUFlags[2048];
 	Sys_FPU_PrintStateFlags( FPUFlags, ContextRecord->FloatSave.ControlWord,
 							 ContextRecord->FloatSave.StatusWord,
@@ -1306,8 +1306,8 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 	__asm {
 		// Build EXCEPTION_REGISTRATION record:
 		push    handler         // Address of handler function
-		push    FS:[0]          // Address of previous handler
-		mov     FS:[0], ESP     // Install new EXECEPTION_REGISTRATION
+		push    FS : [0]          // Address of previous handler
+		mov     FS : [0], ESP     // Install new EXECEPTION_REGISTRATION
 	}
 #endif
 	win32.hInstance = hInstance;
@@ -1414,12 +1414,12 @@ static int	parmBytes;
 __declspec( naked ) void clrstk( void ) {
 	// eax = bytes to add to stack
 	__asm {
-		mov		[parmBytes], eax
-		neg     eax                     ; compute new stack pointer in eax
+		mov[parmBytes], eax
+		neg     eax; compute new stack pointer in eax
 		add     eax, esp
 		add     eax, 4
 		xchg    eax, esp
-		mov     eax, dword ptr [eax]		; copy the return address
+		mov     eax, dword ptr[eax]; copy the return address
 		push    eax
 
 		; clear to zero

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __WINDOW_H__
 #define __WINDOW_H__
@@ -27,33 +27,33 @@
 #include "GuiScript.h"
 #include "SimpleWindow.h"
 
-const int WIN_CHILD			= 0x00000001;
-const int WIN_CAPTION		= 0x00000002;
-const int WIN_BORDER		= 0x00000004;
-const int WIN_SIZABLE		= 0x00000008;
-const int WIN_MOVABLE		= 0x00000010;
-const int WIN_FOCUS			= 0x00000020;
-const int WIN_CAPTURE		= 0x00000040;
-const int WIN_HCENTER		= 0x00000080;
-const int WIN_VCENTER		= 0x00000100;
-const int WIN_MODAL			= 0x00000200;
-const int WIN_INTRANSITION	= 0x00000400;
-const int WIN_CANFOCUS		= 0x00000800;
-const int WIN_SELECTED		= 0x00001000;
-const int WIN_TRANSFORM		= 0x00002000;
-const int WIN_HOLDCAPTURE	= 0x00004000;
-const int WIN_NOWRAP		= 0x00008000;
-const int WIN_NOCLIP		= 0x00010000;
-const int WIN_INVERTRECT	= 0x00020000;
-const int WIN_NATURALMAT	= 0x00040000;
-const int WIN_NOCURSOR		= 0x00080000;
-const int WIN_MENUGUI		= 0x00100000;
-const int WIN_ACTIVE		= 0x00200000;
-const int WIN_SHOWCOORDS	= 0x00400000;
-const int WIN_SHOWTIME		= 0x00800000;
-const int WIN_WANTENTER		= 0x01000000;
+const int WIN_CHILD = 0x00000001;
+const int WIN_CAPTION = 0x00000002;
+const int WIN_BORDER = 0x00000004;
+const int WIN_SIZABLE = 0x00000008;
+const int WIN_MOVABLE = 0x00000010;
+const int WIN_FOCUS = 0x00000020;
+const int WIN_CAPTURE = 0x00000040;
+const int WIN_HCENTER = 0x00000080;
+const int WIN_VCENTER = 0x00000100;
+const int WIN_MODAL = 0x00000200;
+const int WIN_INTRANSITION = 0x00000400;
+const int WIN_CANFOCUS = 0x00000800;
+const int WIN_SELECTED = 0x00001000;
+const int WIN_TRANSFORM = 0x00002000;
+const int WIN_HOLDCAPTURE = 0x00004000;
+const int WIN_NOWRAP = 0x00008000;
+const int WIN_NOCLIP = 0x00010000;
+const int WIN_INVERTRECT = 0x00020000;
+const int WIN_NATURALMAT = 0x00040000;
+const int WIN_NOCURSOR = 0x00080000;
+const int WIN_MENUGUI = 0x00100000;
+const int WIN_ACTIVE = 0x00200000;
+const int WIN_SHOWCOORDS = 0x00400000;
+const int WIN_SHOWTIME = 0x00800000;
+const int WIN_WANTENTER = 0x01000000;
 
-const int WIN_DESKTOP		= 0x10000000;
+const int WIN_DESKTOP = 0x10000000;
 
 const char CAPTION_HEIGHT[] = "16.0";
 const char SCROLLER_SIZE[] = "16.0";
@@ -129,7 +129,7 @@ public:
 
 	rvNamedEvent( const char *name ) {
 		mEvent = new idGuiScriptList;
-		mName  = name;
+		mName = name;
 	}
 	~rvNamedEvent( void ) {
 		delete mEvent;

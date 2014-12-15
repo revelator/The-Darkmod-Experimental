@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -33,7 +33,7 @@ CGetString::CGetString( LPCSTR pPrompt, CString *pFeedback, CWnd *pParent /*=NUL
 	: CDialog( CGetString::IDD, pParent ) {
 	m_strEditBox = _T( "" );
 	m_pFeedback = pFeedback;
-	m_pPrompt	= pPrompt;
+	m_pPrompt = pPrompt;
 }
 
 CGetString::~CGetString() {
@@ -90,11 +90,11 @@ void ErrorBox( const char *sString ) {
 			PlaySound( "k:\\util\\overlay.bin", NULL, SND_FILENAME | SND_ASYNC );
 		}
 	}
-	MessageBox( g_pParentWnd->GetSafeHwnd(), sString, "Error",		MB_OK | MB_ICONERROR | MB_TASKMODAL );
+	MessageBox( g_pParentWnd->GetSafeHwnd(), sString, "Error", MB_OK | MB_ICONERROR | MB_TASKMODAL );
 }
 void InfoBox( const char *sString ) {
-	MessageBox( g_pParentWnd->GetSafeHwnd(), sString, "Info",		MB_OK | MB_ICONINFORMATION | MB_TASKMODAL );
+	MessageBox( g_pParentWnd->GetSafeHwnd(), sString, "Info", MB_OK | MB_ICONINFORMATION | MB_TASKMODAL );
 }
 void WarningBox( const char *sString ) {
-	MessageBox( g_pParentWnd->GetSafeHwnd(), sString, "Warning",	MB_OK | MB_ICONWARNING | MB_TASKMODAL );
+	MessageBox( g_pParentWnd->GetSafeHwnd(), sString, "Warning", MB_OK | MB_ICONWARNING | MB_TASKMODAL );
 }

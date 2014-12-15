@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -27,12 +27,12 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "GEApp.h"
 #include "../common/MaskEdit.h"
 
-HHOOK	gTransHook	 = NULL;
-HWND	gTransDlg	 = NULL;
+HHOOK	gTransHook = NULL;
+HWND	gTransDlg = NULL;
 
-rvGETransformer::rvGETransformer( ) {
-	mWnd		= NULL;
-	mWorkspace	= NULL;
+rvGETransformer::rvGETransformer() {
+	mWnd = NULL;
+	mWorkspace = NULL;
 }
 
 bool rvGETransformer::Create( HWND parent, bool visible ) {
@@ -42,9 +42,9 @@ bool rvGETransformer::Create( HWND parent, bool visible ) {
 	wndClass.lpszClassName = "GUIEDITOR_TRANSFORMER_CLASS";
 	wndClass.lpfnWndProc = rvGETransformer::WndProc;
 	wndClass.hbrBackground = ( HBRUSH )GetStockObject( LTGRAY_BRUSH );;
-	wndClass.hCursor       = LoadCursor( ( HINSTANCE ) NULL, IDC_ARROW );
-	wndClass.lpszMenuName  = NULL;
-	wndClass.hInstance     = win32.hInstance;
+	wndClass.hCursor = LoadCursor( ( HINSTANCE )NULL, IDC_ARROW );
+	wndClass.lpszMenuName = NULL;
+	wndClass.hInstance = win32.hInstance;
 	RegisterClassEx( &wndClass );
 	mWnd = CreateWindowEx( WS_EX_TOOLWINDOW,
 						   "GUIEDITOR_TRANSFORMER_CLASS",
@@ -74,7 +74,7 @@ bool rvGETransformer::Create( HWND parent, bool visible ) {
 }
 
 LRESULT CALLBACK rvGETransformer::WndProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam ) {
-	rvGETransformer *trans = ( rvGETransformer * ) GetWindowLong( hWnd, GWL_USERDATA );
+	rvGETransformer *trans = ( rvGETransformer * )GetWindowLong( hWnd, GWL_USERDATA );
 	switch( msg ) {
 	case WM_NCACTIVATE:
 		return gApp.ToolWindowActivate( hWnd, msg, wParam, lParam );
@@ -89,8 +89,8 @@ LRESULT CALLBACK rvGETransformer::WndProc( HWND hWnd, UINT msg, WPARAM wParam, L
 	case WM_CREATE: {
 		LPCREATESTRUCT	cs;
 		// Attach the class to the window first
-		cs = ( LPCREATESTRUCT ) lParam;
-		trans = ( rvGETransformer * ) cs->lpCreateParams;
+		cs = ( LPCREATESTRUCT )lParam;
+		trans = ( rvGETransformer * )cs->lpCreateParams;
 		SetWindowLong( hWnd, GWL_USERDATA, ( LONG )trans );
 		trans->mWnd = hWnd;
 		trans->mDlg = CreateDialogParam( gApp.GetInstance(), MAKEINTRESOURCE( IDD_GUIED_TRANSFORMER ),
@@ -114,7 +114,7 @@ LRESULT CALLBACK rvGETransformer::WndProc( HWND hWnd, UINT msg, WPARAM wParam, L
 }
 
 INT_PTR CALLBACK rvGETransformer::DlgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam ) {
-	rvGETransformer *trans = ( rvGETransformer * ) GetWindowLong( hWnd, GWL_USERDATA );
+	rvGETransformer *trans = ( rvGETransformer * )GetWindowLong( hWnd, GWL_USERDATA );
 	switch( msg ) {
 	case WM_DESTROY:
 		if( gTransHook ) {
@@ -123,7 +123,7 @@ INT_PTR CALLBACK rvGETransformer::DlgProc( HWND hWnd, UINT msg, WPARAM wParam, L
 		gTransDlg = NULL;
 		break;
 	case WM_INITDIALOG:
-		trans = ( rvGETransformer * ) lParam;
+		trans = ( rvGETransformer * )lParam;
 		trans->mDlg = hWnd;
 		SetWindowLong( hWnd, GWL_USERDATA, lParam );
 		NumberEdit_Attach( GetDlgItem( hWnd, IDC_GUIED_ITEMRECTX ) );
@@ -141,12 +141,12 @@ INT_PTR CALLBACK rvGETransformer::DlgProc( HWND hWnd, UINT msg, WPARAM wParam, L
 			int  value;
 			GetWindowText( GetDlgItem( hWnd, LOWORD( wParam ) ), temp, 64 );
 			value = atoi( temp );
-			idRectangle rect = trans->mWorkspace->GetSelectionMgr().GetRect( );
+			idRectangle rect = trans->mWorkspace->GetSelectionMgr().GetRect();
 			trans->mWorkspace->WindowToWorkspace( rect );
 			// The transformer coords are relative to the botto most selected window's parent so
 			// adjust the rect accordingly
 			if( trans->mRelative ) {
-				idRectangle &screenRect = rvGEWindowWrapper::GetWrapper( trans->mRelative )->GetScreenRect( );
+				idRectangle &screenRect = rvGEWindowWrapper::GetWrapper( trans->mRelative )->GetScreenRect();
 				rect.x -= screenRect.x;
 				rect.y -= screenRect.y;
 			}
@@ -188,7 +188,7 @@ Shows and hides the transformer window
 void rvGETransformer::Show( bool visible ) {
 	gApp.GetOptions().SetTransformerVisible( visible );
 	ShowWindow( mWnd, visible ? SW_SHOW : SW_HIDE );
-	Update( );
+	Update();
 }
 
 /*
@@ -200,7 +200,7 @@ Sets a new workspace for the transformer window
 */
 void rvGETransformer::SetWorkspace( rvGEWorkspace *workspace ) {
 	mWorkspace = workspace;
-	Update( );
+	Update();
 }
 
 /*
@@ -214,15 +214,15 @@ the rectangle coordinates
 void rvGETransformer::Update( void ) {
 	bool state = false;
 	mRelative = NULL;
-	if( mWorkspace && mWorkspace->GetSelectionMgr( ).Num( ) ) {
+	if( mWorkspace && mWorkspace->GetSelectionMgr().Num() ) {
 		state = true;
-		mRelative = mWorkspace->GetSelectionMgr().GetBottomMost( );
-		mRelative = mRelative->GetParent( );
-		idRectangle rect = mWorkspace->GetSelectionMgr( ).GetRect( );
+		mRelative = mWorkspace->GetSelectionMgr().GetBottomMost();
+		mRelative = mRelative->GetParent();
+		idRectangle rect = mWorkspace->GetSelectionMgr().GetRect();
 		mWorkspace->WindowToWorkspace( rect );
 		// Make the rectangle relative to the given parent
 		if( mRelative ) {
-			idRectangle &screenRect = rvGEWindowWrapper::GetWrapper( mRelative )->GetScreenRect( );
+			idRectangle &screenRect = rvGEWindowWrapper::GetWrapper( mRelative )->GetScreenRect();
 			rect.x -= screenRect.x;
 			rect.y -= screenRect.y;
 		}
@@ -251,7 +251,7 @@ Ensures normal dialog functions work in the transformer dialog
 ================
 */
 LRESULT FAR PASCAL rvGETransformer::GetMsgProc( int nCode, WPARAM wParam, LPARAM lParam ) {
-	LPMSG lpMsg = ( LPMSG ) lParam;
+	LPMSG lpMsg = ( LPMSG )lParam;
 	if( nCode >= 0 && PM_REMOVE == wParam ) {
 		// Don't translate non-input events.
 		if( lpMsg->message != WM_SYSCHAR && ( lpMsg->message >= WM_KEYFIRST && lpMsg->message <= WM_KEYLAST ) ) {
@@ -261,8 +261,8 @@ LRESULT FAR PASCAL rvGETransformer::GetMsgProc( int nCode, WPARAM wParam, LPARAM
 				// To avoid further processing, convert the message to WM_NULL
 				// before returning.
 				lpMsg->message = WM_NULL;
-				lpMsg->lParam  = 0;
-				lpMsg->wParam  = 0;
+				lpMsg->lParam = 0;
+				lpMsg->wParam = 0;
 			}
 		}
 	}

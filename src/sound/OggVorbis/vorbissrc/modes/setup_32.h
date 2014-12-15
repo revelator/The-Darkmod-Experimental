@@ -70,8 +70,8 @@ ve_setup_data_template ve_setup_32_stereo = {
 	_psy_compand_short_mapping,
 	_psy_compand_long_mapping,
 
-	{_noise_start_short_44, _noise_start_long_44},
-	{_noise_part_short_44, _noise_part_long_44},
+	{ _noise_start_short_44, _noise_start_long_44 },
+	{ _noise_part_short_44, _noise_part_long_44 },
 	_noise_thresh_44,
 
 	_psy_ath_floater,
@@ -121,8 +121,8 @@ ve_setup_data_template ve_setup_32_uncoupled = {
 	_psy_compand_short_mapping,
 	_psy_compand_long_mapping,
 
-	{_noise_start_short_44, _noise_start_long_44},
-	{_noise_part_short_44, _noise_part_long_44},
+	{ _noise_start_short_44, _noise_start_long_44 },
+	{ _noise_part_short_44, _noise_part_long_44 },
 	_noise_thresh_44_2,
 
 	_psy_ath_floater,
@@ -172,8 +172,8 @@ ve_setup_data_template ve_setup_32_stereo_low = {
 	_psy_compand_short_mapping,
 	_psy_compand_long_mapping,
 
-	{_noise_start_short_44_low, _noise_start_long_44_low},
-	{_noise_part_short_44, _noise_part_long_44},
+	{ _noise_start_short_44_low, _noise_start_long_44_low },
+	{ _noise_part_short_44, _noise_part_long_44 },
 	_noise_thresh_44,
 
 	_psy_ath_floater,
@@ -223,8 +223,8 @@ ve_setup_data_template ve_setup_32_uncoupled_low = {
 	_psy_compand_short_mapping,
 	_psy_compand_long_mapping,
 
-	{_noise_start_short_44_low, _noise_start_long_44_low},
-	{_noise_part_short_44, _noise_part_long_44},
+	{ _noise_start_short_44_low, _noise_start_long_44_low },
+	{ _noise_part_short_44, _noise_part_long_44 },
 	_noise_thresh_44_2,
 
 	_psy_ath_floater,

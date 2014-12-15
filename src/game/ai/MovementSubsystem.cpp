@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -386,7 +386,7 @@ bool MovementSubsystem::AttemptToExtricate() {
 	idAngles angles = owner->viewAxis.ToAngles();
 	float forward = angles.yaw;
 	//float moveFraction = 0;		 // fractional distance from your origin to moveTo
-	for( int i = 0 ; i < 3 ; i++ ) {
+	for( int i = 0; i < 3; i++ ) {
 		float tryAngle = forward + 90.0 + 180.0 * gameLocal.random.RandomFloat();
 		idAngles tryAngles = idAngles( 0, tryAngle, 0 );
 		tryAngles.Normalize180();
@@ -486,7 +486,7 @@ void MovementSubsystem::CheckBlocked( idAI *owner ) {
 				// just have been starting to move
 				_state = EPossiblyBlocked;
 				// Changed state to possibly blocked, record time
-				_lastTimeNotBlocked =  gameLocal.time - gameLocal.msec;
+				_lastTimeNotBlocked = gameLocal.time - gameLocal.msec;
 			}
 			break;
 		case EPossiblyBlocked:
@@ -496,7 +496,7 @@ void MovementSubsystem::CheckBlocked( idAI *owner ) {
 					_state = EBlocked;
 					// Send a signal to the current State
 					owner->GetMind()->GetState()->OnMovementBlocked( owner );
-					_timeBlockStarted =  gameLocal.time - gameLocal.msec;
+					_timeBlockStarted = gameLocal.time - gameLocal.msec;
 				}
 			} else if( !torsoCustomIdleAnim && !legsCustomIdleAnim ) { // Bounds might not be safe yet if you're doing an idle animation
 				// grayman #2669 - go backwards after a small wait
@@ -516,7 +516,7 @@ void MovementSubsystem::CheckBlocked( idAI *owner ) {
 				// grayman #2669 - go backwards after a small wait
 				if( gameLocal.time >= _timeBlockStarted + _blockTimeShouldEnd * 2 ) {
 					_state = EPossiblyBlocked;
-					_lastTimeNotBlocked =  gameLocal.time - gameLocal.msec;
+					_lastTimeNotBlocked = gameLocal.time - gameLocal.msec;
 				}
 			}
 			break;

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -28,7 +28,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 ===============================================================================
 
-	Ingame cursor.
+Ingame cursor.
 
 ===============================================================================
 */
@@ -93,7 +93,7 @@ void idCursor3D::Think( void ) {
 /*
 ===============================================================================
 
-	Allows entities to be dragged through the world with physics.
+Allows entities to be dragged through the world with physics.
 
 ===============================================================================
 */
@@ -128,13 +128,13 @@ idDragEntity::Clear
 ==============
 */
 void idDragEntity::Clear() {
-	dragEnt			= NULL;
-	joint			= INVALID_JOINT;
-	id				= 0;
+	dragEnt = NULL;
+	joint = INVALID_JOINT;
+	id = 0;
 	localEntityPoint.Zero();
 	localPlayerPoint.Zero();
 	bodyName.Clear();
-	selected		= NULL;
+	selected = NULL;
 }
 
 /*
@@ -168,17 +168,17 @@ void idDragEntity::Update( idPlayer *player ) {
 		if( player->usercmd.buttons & BUTTON_ATTACK ) {
 			gameLocal.clip.TracePoint( trace, viewPoint, viewPoint + viewAxis[0] * MAX_DRAG_TRACE_DISTANCE, ( CONTENTS_SOLID | CONTENTS_RENDERMODEL | CONTENTS_BODY ), player );
 			if( trace.fraction < 1.0f ) {
-				newEnt = gameLocal.entities[ trace.c.entityNum ];
+				newEnt = gameLocal.entities[trace.c.entityNum];
 				if( newEnt ) {
 					// Ish: We sometimes want to select things that are bound
 					/*
 					if ( newEnt->GetBindMaster() ) {
-						if ( newEnt->GetBindJoint() ) {
-							trace.c.id = JOINT_HANDLE_TO_CLIPMODEL_ID( newEnt->GetBindJoint() );
-						} else {
-							trace.c.id = newEnt->GetBindBody();
-						}
-						newEnt = newEnt->GetBindMaster();
+					if ( newEnt->GetBindJoint() ) {
+					trace.c.id = JOINT_HANDLE_TO_CLIPMODEL_ID( newEnt->GetBindJoint() );
+					} else {
+					trace.c.id = newEnt->GetBindBody();
+					}
+					newEnt = newEnt->GetBindMaster();
 					}
 					*/
 					if( newEnt->IsType( idAFEntity_Base::Type ) && static_cast<idAFEntity_Base *>( newEnt )->IsActiveAF() ) {
@@ -355,7 +355,7 @@ void idDragEntity::UnbindSelected( void ) {
 /*
 ===============================================================================
 
-	Handles ingame entity editing.
+Handles ingame entity editing.
 
 ===============================================================================
 */
@@ -456,10 +456,10 @@ bool idEditEntities::EntityIsSelectable( idEntity *ent, idVec4 *color, idStr *te
 					*color = colorRed;
 				} else {
 					switch( i ) {
-					case 1 :
+					case 1:
 						*color = colorYellow;
 						break;
-					case 2 :
+					case 2:
 						*color = colorBlue;
 						break;
 					default:
@@ -594,7 +594,7 @@ void idEditEntities::DisplayEntities( void ) {
 /*
 ===============================================================================
 
-	idGameEdit
+idGameEdit
 
 ===============================================================================
 */
@@ -804,10 +804,10 @@ idGameEdit::EntityChangeSpawnArgs
 */
 void idGameEdit::EntityChangeSpawnArgs( idEntity *ent, const idDict *newArgs ) {
 	if( ent ) {
-		for( int i = 0 ; i < newArgs->GetNumKeyVals() ; i ++ ) {
+		for( int i = 0; i < newArgs->GetNumKeyVals(); i++ ) {
 			const idKeyValue *kv = newArgs->GetKeyVal( i );
 			if( kv->GetValue().Length() > 0 ) {
-				ent->spawnArgs.Set( kv->GetKey() , kv->GetValue() );
+				ent->spawnArgs.Set( kv->GetKey(), kv->GetValue() );
 			} else {
 				ent->spawnArgs.Delete( kv->GetKey() );
 			}
@@ -1027,7 +1027,7 @@ int idGameEdit::MapGetEntitiesMatchingClassWithString( const char *classname, co
 	int count = 0;
 	if( mapFile ) {
 		int entCount = mapFile->GetNumEntities();
-		for( int i = 0 ; i < entCount; i++ ) {
+		for( int i = 0; i < entCount; i++ ) {
 			idMapEntity *ent = mapFile->GetEntity( i );
 			if( ent ) {
 				idStr work = ent->epairs.GetString( "classname" );

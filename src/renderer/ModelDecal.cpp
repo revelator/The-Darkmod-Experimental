@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -209,7 +209,7 @@ void idRenderModelDecal::AddWinding( const idWinding &w, const idMaterial *decal
 			tri.verts[tri.numVerts + i].xyz = w[i].ToVec3();
 			tri.verts[tri.numVerts + i].st[0] = w[i].s;
 			tri.verts[tri.numVerts + i].st[1] = w[i].t;
-			for( int k = 0 ; k < 4 ; k++ ) {
+			for( int k = 0; k < 4; k++ ) {
 				int icolor = idMath::FtoiFast( decalInfo.start[k] * fade * 255.0f );
 				if( icolor < 0 ) {
 					icolor = 0;
@@ -414,7 +414,7 @@ void idRenderModelDecal::AddDecalDrawSurf( viewEntity_t *space ) {
 	decalInfo = material->GetDecalInfo();
 	maxTime = decalInfo.stayTime + decalInfo.fadeTime;
 	// set vertex colors and remove faded triangles
-	for( i = 0 ; i < tri.numIndexes ; i += 3 ) {
+	for( i = 0; i < tri.numIndexes; i += 3 ) {
 		int	deltaTime = tr.viewDef->renderView.time - indexStartTime[i];
 		if( deltaTime > maxTime ) {
 			continue;

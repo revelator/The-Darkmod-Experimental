@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -342,41 +342,41 @@ void Drag_Begin( int x, int y, int buttons,
 		if( t.brush && !t.brush->owner->eclass->fixedsize ) {
 			/*
 						if (t.brush->brush_faces->texdef.name[0] == '(') {
-							if (t.brush->owner->eclass->nShowFlags & ECLASS_LIGHT) {
-								CString		strBuff;
-								idMaterial	*pTex = declManager->FindMaterial(g_qeglobals.d_texturewin.texdef.name);
-								if (pTex) {
-									idVec3	vColor = pTex->getColor();
+						if (t.brush->owner->eclass->nShowFlags & ECLASS_LIGHT) {
+						CString		strBuff;
+						idMaterial	*pTex = declManager->FindMaterial(g_qeglobals.d_texturewin.texdef.name);
+						if (pTex) {
+						idVec3	vColor = pTex->getColor();
 
-									float	fLargest = 0.0f;
-									for (int i = 0; i < 3; i++) {
-										if (vColor[i] > fLargest) {
-											fLargest = vColor[i];
-										}
-									}
+						float	fLargest = 0.0f;
+						for (int i = 0; i < 3; i++) {
+						if (vColor[i] > fLargest) {
+						fLargest = vColor[i];
+						}
+						}
 
-									if (fLargest == 0.0f) {
-										vColor[0] = vColor[1] = vColor[2] = 1.0f;
-									}
-									else {
-										float	fScale = 1.0f / fLargest;
-										for (int i = 0; i < 3; i++) {
-											vColor[i] *= fScale;
-										}
-									}
+						if (fLargest == 0.0f) {
+						vColor[0] = vColor[1] = vColor[2] = 1.0f;
+						}
+						else {
+						float	fScale = 1.0f / fLargest;
+						for (int i = 0; i < 3; i++) {
+						vColor[i] *= fScale;
+						}
+						}
 
-									strBuff.Format("%f %f %f", pTex->getColor().x, pTex->getColor().y, pTex->getColor().z);
-									SetKeyValue(t.brush->owner, "_color", strBuff.GetBuffer(0));
-									Sys_UpdateWindows(W_ALL);
-								}
-							}
-							else {
-								Sys_Status("Can't select an entity brush face\n");
-							}
+						strBuff.Format("%f %f %f", pTex->getColor().x, pTex->getColor().y, pTex->getColor().z);
+						SetKeyValue(t.brush->owner, "_color", strBuff.GetBuffer(0));
+						Sys_UpdateWindows(W_ALL);
+						}
+						}
+						else {
+						Sys_Status("Can't select an entity brush face\n");
+						}
 						}
 
 						else {
-			*/
+						*/
 			// strcpy(t.face->texdef.name,g_qeglobals.d_texturewin.texdef.name);
 			t.face->texdef.SetName( g_qeglobals.d_texturewin.texdef.name );
 			Brush_Build( t.brush );
@@ -627,9 +627,9 @@ void Drag_MouseUp( int nButtons ) {
 	g_pParentWnd->SetStatusText( 3, "" );
 	/*
 		if (g_pParentWnd->GetCamera()->UpdateRenderEntities()) {
-			Sys_UpdateWindows(W_CAMERA);
+		Sys_UpdateWindows(W_CAMERA);
 		}
-	*/
+		*/
 	Undo_EndBrushList( &selected_brushes );
 	Undo_End();
 }

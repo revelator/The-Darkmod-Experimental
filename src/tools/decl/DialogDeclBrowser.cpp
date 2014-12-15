@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -37,10 +37,10 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #define DEBUG_NEW new
 #endif
 
-const int DECLTYPE_SHIFT			= 24;
-const int DECLINDEX_MASK			= ( 1 << DECLTYPE_SHIFT ) - 1;
-const int DECLTYPE_SCRIPT			= 126;
-const int DECLTYPE_GUI				= 127;
+const int DECLTYPE_SHIFT = 24;
+const int DECLINDEX_MASK = ( 1 << DECLTYPE_SHIFT ) - 1;
+const int DECLTYPE_SCRIPT = 126;
+const int DECLTYPE_GUI = 127;
 
 #define GetIdFromTypeAndIndex( type, index )		( ( (int)type << DECLTYPE_SHIFT ) | index )
 #define GetTypeFromId( id )							( (declType_t) ( (int)id >> DECLTYPE_SHIFT ) )
@@ -332,7 +332,7 @@ bool DialogDeclBrowser::CompareDecl( HTREEITEM item, const char *name ) const {
 			if( fileSystem->ReadFile( idStr( name ) + ( ( type == DECLTYPE_SCRIPT ) ? ".script" : ".gui" ), &buffer ) == -1 ) {
 				return false;
 			}
-			text = ( char * ) buffer;
+			text = ( char * )buffer;
 			fileSystem->FreeFile( buffer );
 			if( text.Find( findTextString, false ) == -1 ) {
 				return false;
@@ -394,7 +394,7 @@ void DeclBrowserInit( const idDict *spawnArgs ) {
 				// FIXME: restore position
 				CRect rct;
 				g_DeclDialog->SetWindowPos( NULL, rct.left, rct.top, 0, 0, SWP_NOSIZE );
-		*/
+				*/
 	}
 	idKeyInput::ClearStates();
 	g_DeclDialog->ShowWindow( SW_SHOW );
@@ -493,7 +493,7 @@ BOOL DialogDeclBrowser::OnToolTipNotify( UINT id, NMHDR *pNMHDR, LRESULT *pResul
 	TOOLTIPTEXTW *pTTTW = ( TOOLTIPTEXTW * )pNMHDR;
 	if( pNMHDR->hwndFrom == declTree.GetSafeHwnd() ) {
 		CString toolTip;
-		const idDecl *decl = GetDeclFromTreeItem( ( HTREEITEM ) pNMHDR->idFrom );
+		const idDecl *decl = GetDeclFromTreeItem( ( HTREEITEM )pNMHDR->idFrom );
 		if( !decl ) {
 			return FALSE;
 		}
@@ -520,7 +520,7 @@ BOOL DialogDeclBrowser::OnToolTipNotify( UINT id, NMHDR *pNMHDR, LRESULT *pResul
 			delete m_pwchTip;
 			m_pwchTip = new WCHAR[toolTip.GetLength() + 2];
 			lstrcpyn( m_pwchTip, toolTip, toolTip.GetLength() + 1 );
-			pTTTA->lpszText = ( LPTSTR ) m_pwchTip;
+			pTTTA->lpszText = ( LPTSTR )m_pwchTip;
 		}
 #endif
 		return TRUE;
@@ -685,7 +685,7 @@ void DialogDeclBrowser::OnSizing( UINT nSide, LPRECT lpRect ) {
 		6 = bottom
 		7 = left - bottom
 		8 = right - bottom
-	*/
+		*/
 	CDialog::OnSizing( nSide, lpRect );
 	if( ( nSide - 1 ) % 3 == 0 ) {
 		if( lpRect->right - lpRect->left < initialRect.Width() ) {

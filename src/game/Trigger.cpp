@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -28,7 +28,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 ===============================================================================
 
-  idTrigger
+idTrigger
 
 ===============================================================================
 */
@@ -37,8 +37,8 @@ const idEventDef EV_Enable( "enable", EventArgs(), EV_RETURNS_VOID, "Enables the
 const idEventDef EV_Disable( "disable", EventArgs(), EV_RETURNS_VOID, "Disables the mover/trigger" );
 
 CLASS_DECLARATION( idEntity, idTrigger )
-EVENT( EV_Enable,	idTrigger::Event_Enable )
-EVENT( EV_Disable,	idTrigger::Event_Disable )
+EVENT( EV_Enable, idTrigger::Event_Enable )
+EVENT( EV_Disable, idTrigger::Event_Disable )
 END_CLASS
 
 /*
@@ -48,7 +48,7 @@ idTrigger::DrawDebugInfo
 */
 void idTrigger::DrawDebugInfo( void ) {
 	idMat3		axis = gameLocal.GetLocalPlayer()->viewAngles.ToMat3();
-	idVec3		up = axis[ 2 ] * 5.0f;
+	idVec3		up = axis[2] * 5.0f;
 	idBounds	viewTextBounds( gameLocal.GetLocalPlayer()->GetPhysics()->GetOrigin() );
 	idBounds	viewBounds( gameLocal.GetLocalPlayer()->GetPhysics()->GetOrigin() );
 	idBounds	box( idVec3( -4.0f, -4.0f, -4.0f ), idVec3( 4.0f, 4.0f, 4.0f ) );
@@ -64,7 +64,7 @@ void idTrigger::DrawDebugInfo( void ) {
 			show = viewBounds.IntersectsBounds( ent->GetPhysics()->GetAbsBounds() );
 			if( !show ) {
 				for( i = 0; i < ent->targets.Num(); i++ ) {
-					target = ent->targets[ i ].GetEntity();
+					target = ent->targets[i].GetEntity();
 					if( target && viewBounds.IntersectsBounds( target->GetPhysics()->GetAbsBounds() ) ) {
 						show = true;
 						break;
@@ -88,7 +88,7 @@ void idTrigger::DrawDebugInfo( void ) {
 				}
 			}
 			for( i = 0; i < ent->targets.Num(); i++ ) {
-				target = ent->targets[ i ].GetEntity();
+				target = ent->targets[i].GetEntity();
 				if( target ) {
 					gameRenderWorld->DebugArrow( colorYellow, ent->GetPhysics()->GetAbsBounds().GetCenter(), target->GetPhysics()->GetOrigin(), 10, 0 );
 					gameRenderWorld->DebugBounds( colorGreen, box, target->GetPhysics()->GetOrigin() );
@@ -231,7 +231,7 @@ void idTrigger::Spawn( void ) {
 /*
 ===============================================================================
 
-  idTrigger_Multi
+idTrigger_Multi
 
 ===============================================================================
 */
@@ -239,9 +239,9 @@ void idTrigger::Spawn( void ) {
 const idEventDef EV_TriggerAction( "<triggerAction>", EventArgs( 'e', "", "" ), EV_RETURNS_VOID, "internal" );
 
 CLASS_DECLARATION( idTrigger, idTrigger_Multi )
-EVENT( EV_Touch,			idTrigger_Multi::Event_Touch )
-EVENT( EV_Activate,			idTrigger_Multi::Event_Trigger )
-EVENT( EV_TriggerAction,	idTrigger_Multi::Event_TriggerAction )
+EVENT( EV_Touch, idTrigger_Multi::Event_Touch )
+EVENT( EV_Activate, idTrigger_Multi::Event_Trigger )
+EVENT( EV_TriggerAction, idTrigger_Multi::Event_TriggerAction )
 END_CLASS
 
 /*
@@ -364,10 +364,10 @@ bool idTrigger_Multi::CheckFacing( idEntity *activator ) {
 		if( !activator->IsType( idPlayer::Type ) ) {
 			return true;
 		}
-		idPlayer *player = static_cast< idPlayer * >( activator );
+		idPlayer *player = static_cast<idPlayer *>( activator );
 		float dot = player->viewAngles.ToForward() * GetPhysics()->GetAxis()[0];
 		float angle = RAD2DEG( idMath::ACos( dot ) );
-		if( angle  > spawnArgs.GetFloat( "angleLimit", "30" ) ) {
+		if( angle > spawnArgs.GetFloat( "angleLimit", "30" ) ) {
 			return false;
 		}
 	}
@@ -452,7 +452,7 @@ void idTrigger_Multi::Event_Touch( idEntity *other, trace_t *trace ) {
 		if( !touchClient ) {
 			return;
 		}
-		if( static_cast< idPlayer * >( other )->spectating ) {
+		if( static_cast<idPlayer *>( other )->spectating ) {
 			return;
 		}
 	} else if( !touchOther ) {
@@ -485,15 +485,15 @@ void idTrigger_Multi::Event_Touch( idEntity *other, trace_t *trace ) {
 /*
 ===============================================================================
 
-  idTrigger_EntityName
+idTrigger_EntityName
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idTrigger, idTrigger_EntityName )
-EVENT( EV_Touch,			idTrigger_EntityName::Event_Touch )
-EVENT( EV_Activate,			idTrigger_EntityName::Event_Trigger )
-EVENT( EV_TriggerAction,	idTrigger_EntityName::Event_TriggerAction )
+EVENT( EV_Touch, idTrigger_EntityName::Event_Touch )
+EVENT( EV_Activate, idTrigger_EntityName::Event_Trigger )
+EVENT( EV_TriggerAction, idTrigger_EntityName::Event_TriggerAction )
 END_CLASS
 
 /*
@@ -673,7 +673,7 @@ void idTrigger_EntityName::Event_Touch( idEntity *other, trace_t *trace ) {
 /*
 ===============================================================================
 
-  idTrigger_Timer
+idTrigger_Timer
 
 ===============================================================================
 */
@@ -681,8 +681,8 @@ void idTrigger_EntityName::Event_Touch( idEntity *other, trace_t *trace ) {
 const idEventDef EV_Timer( "<timer>", EventArgs(), EV_RETURNS_VOID, "internal" );
 
 CLASS_DECLARATION( idTrigger, idTrigger_Timer )
-EVENT( EV_Timer,		idTrigger_Timer::Event_Timer )
-EVENT( EV_Activate,		idTrigger_Timer::Event_Use )
+EVENT( EV_Timer, idTrigger_Timer::Event_Timer )
+EVENT( EV_Activate, idTrigger_Timer::Event_Use )
 END_CLASS
 
 /*
@@ -814,14 +814,14 @@ void idTrigger_Timer::Event_Use( idEntity *activator ) {
 /*
 ===============================================================================
 
-  idTrigger_Count
+idTrigger_Count
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idTrigger, idTrigger_Count )
-EVENT( EV_Activate,	idTrigger_Count::Event_Trigger )
-EVENT( EV_TriggerAction,	idTrigger_Count::Event_TriggerAction )
+EVENT( EV_Activate, idTrigger_Count::Event_Trigger )
+EVENT( EV_TriggerAction, idTrigger_Count::Event_TriggerAction )
 END_CLASS
 
 /*
@@ -904,14 +904,14 @@ void idTrigger_Count::Event_TriggerAction( idEntity *activator ) {
 /*
 ===============================================================================
 
-  idTrigger_Hurt
+idTrigger_Hurt
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idTrigger, idTrigger_Hurt )
-EVENT( EV_Touch,		idTrigger_Hurt::Event_Touch )
-EVENT( EV_Activate,		idTrigger_Hurt::Event_Toggle )
+EVENT( EV_Touch, idTrigger_Hurt::Event_Touch )
+EVENT( EV_Activate, idTrigger_Hurt::Event_Toggle )
 END_CLASS
 
 /*
@@ -951,8 +951,8 @@ void idTrigger_Hurt::Restore( idRestoreGame *savefile ) {
 ================
 idTrigger_Hurt::Spawn
 
-	Damages activator
-	Can be turned on or off by using.
+Damages activator
+Can be turned on or off by using.
 ================
 */
 void idTrigger_Hurt::Spawn( void ) {
@@ -990,13 +990,13 @@ void idTrigger_Hurt::Event_Toggle( idEntity *activator ) {
 /*
 ===============================================================================
 
-  idTrigger_Fade
+idTrigger_Fade
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idTrigger, idTrigger_Fade )
-EVENT( EV_Activate,		idTrigger_Fade::Event_Trigger )
+EVENT( EV_Activate, idTrigger_Fade::Event_Trigger )
 END_CLASS
 
 /*
@@ -1020,13 +1020,13 @@ void idTrigger_Fade::Event_Trigger( idEntity *activator ) {
 /*
 ===============================================================================
 
-  idTrigger_Touch
+idTrigger_Touch
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idTrigger, idTrigger_Touch )
-EVENT( EV_Activate,		idTrigger_Touch::Event_Trigger )
+EVENT( EV_Activate, idTrigger_Touch::Event_Trigger )
 END_CLASS
 
 /*
@@ -1079,14 +1079,14 @@ idTrigger_Touch::TouchEntities
 void idTrigger_Touch::TouchEntities( void ) {
 	int numClipModels, i;
 	idBounds bounds;
-	idClipModel *cm, *clipModelList[ MAX_GENTITIES ];
+	idClipModel *cm, *clipModelList[MAX_GENTITIES];
 	if( clipModel == NULL ) {
 		return;
 	}
 	bounds.FromTransformedBounds( clipModel->GetBounds(), clipModel->GetOrigin(), clipModel->GetAxis() );
 	numClipModels = gameLocal.clip.ClipModelsTouchingBounds( bounds, -1, clipModelList, MAX_GENTITIES );
 	for( i = 0; i < numClipModels; i++ ) {
-		cm = clipModelList[ i ];
+		cm = clipModelList[i];
 		if( !cm->IsTraceModel() ) {
 			continue;
 		}

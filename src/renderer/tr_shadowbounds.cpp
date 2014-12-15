@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #include "precompiled_engine.h"
 #pragma hdrstop
 
@@ -131,7 +131,7 @@ idVec4 compute_homogeneous_plane( idVec4 a, idVec4 b, idVec4 c ) {
 	v.x = n.x;
 	v.y = n.y;
 	v.z = n.z;
-	v.w = - ( n * idVec3( a.x, a.y, a.z ) ) / a.w ;
+	v.w = -( n * idVec3( a.x, a.y, a.z ) ) / a.w;
 	return v;
 }
 
@@ -236,14 +236,14 @@ polyhedron PolyhedronFromBounds( const idBounds &b ) {
 	//
 	static polyhedron p;
 	if( p.e.size() == 0 ) {
-		p.v.push_back( idVec4( -1, -1,  1, 1 ) );
-		p.v.push_back( idVec4( 1, -1,  1, 1 ) );
-		p.v.push_back( idVec4( 1,  1,  1, 1 ) );
-		p.v.push_back( idVec4( -1,  1,  1, 1 ) );
+		p.v.push_back( idVec4( -1, -1, 1, 1 ) );
+		p.v.push_back( idVec4( 1, -1, 1, 1 ) );
+		p.v.push_back( idVec4( 1, 1, 1, 1 ) );
+		p.v.push_back( idVec4( -1, 1, 1, 1 ) );
 		p.v.push_back( idVec4( -1, -1, -1, 1 ) );
 		p.v.push_back( idVec4( 1, -1, -1, 1 ) );
-		p.v.push_back( idVec4( 1,  1, -1, 1 ) );
-		p.v.push_back( idVec4( -1,  1, -1, 1 ) );
+		p.v.push_back( idVec4( 1, 1, -1, 1 ) );
+		p.v.push_back( idVec4( -1, 1, -1, 1 ) );
 		p.add_quad( 0, 1, 2, 3 );
 		p.add_quad( 7, 6, 5, 4 );
 		p.add_quad( 1, 0, 4, 5 );
@@ -350,7 +350,7 @@ void polyhedron_edges( polyhedron &a, MySegments &e ) {
 void clip_segments( const polyhedron &ph, MySegments &is, MySegments &os ) {
 	const MyArrayPoly &p = ph.p;
 	for( unsigned int i = 0; i < is.size(); i += 2 ) {
-		idVec4 a = is[i  ];
+		idVec4 a = is[i];
 		idVec4 b = is[i + 1];
 		idVec4 c;
 		bool discard = false;
@@ -387,7 +387,7 @@ void clip_segments( const polyhedron &ph, MySegments &is, MySegments &os ) {
 				break;
 			}
 		}
-		if( ! discard ) {
+		if( !discard ) {
 			os.push_back( a );
 			os.push_back( b );
 		}
@@ -395,10 +395,10 @@ void clip_segments( const polyhedron &ph, MySegments &is, MySegments &os ) {
 }
 
 idMat4 make_idMat4( const float *m ) {
-	return idMat4( m[ 0], m[ 4], m[ 8], m[12],
-				   m[ 1], m[ 5], m[ 9], m[13],
-				   m[ 2], m[ 6], m[10], m[14],
-				   m[ 3], m[ 7], m[11], m[15] );
+	return idMat4( m[0], m[4], m[8], m[12],
+				   m[1], m[5], m[9], m[13],
+				   m[2], m[6], m[10], m[14],
+				   m[3], m[7], m[11], m[15] );
 }
 
 idVec3 v4to3( const idVec4 &v ) {
@@ -420,19 +420,19 @@ void draw_segments( const viewDef_t *viewDef, const MySegments &s, idVec4 color 
 void world_to_hclip( const viewDef_t *viewDef, const idVec4 &global, idVec4 &clip ) {
 	int		i;
 	idVec4	view;
-	for( i = 0 ; i < 4 ; i ++ ) {
+	for( i = 0; i < 4; i++ ) {
 		view[i] =
-			global[0] * viewDef->worldSpace.modelViewMatrix[ i + 0 * 4 ] +
-			global[1] * viewDef->worldSpace.modelViewMatrix[ i + 1 * 4 ] +
-			global[2] * viewDef->worldSpace.modelViewMatrix[ i + 2 * 4 ] +
-			global[3] *	viewDef->worldSpace.modelViewMatrix[ i + 3 * 4 ];
+			global[0] * viewDef->worldSpace.modelViewMatrix[i + 0 * 4] +
+			global[1] * viewDef->worldSpace.modelViewMatrix[i + 1 * 4] +
+			global[2] * viewDef->worldSpace.modelViewMatrix[i + 2 * 4] +
+			global[3] * viewDef->worldSpace.modelViewMatrix[i + 3 * 4];
 	}
-	for( i = 0 ; i < 4 ; i ++ ) {
+	for( i = 0; i < 4; i++ ) {
 		clip[i] =
-			view[0] * viewDef->projectionMatrix[ i + 0 * 4 ] +
-			view[1] * viewDef->projectionMatrix[ i + 1 * 4 ] +
-			view[2] * viewDef->projectionMatrix[ i + 2 * 4 ] +
-			view[3] * viewDef->projectionMatrix[ i + 3 * 4 ];
+			view[0] * viewDef->projectionMatrix[i + 0 * 4] +
+			view[1] * viewDef->projectionMatrix[i + 1 * 4] +
+			view[2] * viewDef->projectionMatrix[i + 2 * 4] +
+			view[3] * viewDef->projectionMatrix[i + 3 * 4];
 	}
 }
 

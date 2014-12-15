@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -49,7 +49,7 @@ static INT_PTR CALLBACK GEOptionsDlg_GeneralProc( HWND hwnd, UINT msg, WPARAM wP
 			CHOOSECOLOR col;
 			ZeroMemory( &col, sizeof( col ) );
 			col.lStructSize = sizeof( col );
-			col.lpCustColors = gApp.GetOptions().GetCustomColors( );
+			col.lpCustColors = gApp.GetOptions().GetCustomColors();
 			col.hwndOwner = hwnd;
 			col.hInstance = NULL;
 			col.Flags = CC_RGBINIT;
@@ -89,8 +89,8 @@ static INT_PTR CALLBACK GEOptionsDlg_GridProc( HWND hwnd, UINT msg, WPARAM wPara
 	case WM_INITDIALOG:
 		// Copy the options information to the dialog controls
 		ColorButton_SetColor( GetDlgItem( hwnd, IDC_GUIED_GRIDCOLOR ), RGB( gApp.GetOptions().GetGridColor()[0] * 255, gApp.GetOptions().GetGridColor()[1] * 255, gApp.GetOptions().GetGridColor()[2] * 255 ) );
-		SetWindowText( GetDlgItem( hwnd, IDC_GUIED_SPACINGWIDTH ), va( "%d", gApp.GetOptions().GetGridWidth( ) ) );
-		SetWindowText( GetDlgItem( hwnd, IDC_GUIED_SPACINGHEIGHT ), va( "%d", gApp.GetOptions().GetGridHeight( ) ) );
+		SetWindowText( GetDlgItem( hwnd, IDC_GUIED_SPACINGWIDTH ), va( "%d", gApp.GetOptions().GetGridWidth() ) );
+		SetWindowText( GetDlgItem( hwnd, IDC_GUIED_SPACINGHEIGHT ), va( "%d", gApp.GetOptions().GetGridHeight() ) );
 		CheckDlgButton( hwnd, IDC_GUIED_GRIDVISIBLE, gApp.GetOptions().GetGridVisible() ? BST_CHECKED : BST_UNCHECKED );
 		CheckDlgButton( hwnd, IDC_GUIED_GRIDSNAP, gApp.GetOptions().GetGridSnap() ? BST_CHECKED : BST_UNCHECKED );
 		return TRUE;
@@ -119,7 +119,7 @@ static INT_PTR CALLBACK GEOptionsDlg_GridProc( HWND hwnd, UINT msg, WPARAM wPara
 			CHOOSECOLOR col;
 			ZeroMemory( &col, sizeof( col ) );
 			col.lStructSize = sizeof( col );
-			col.lpCustColors = gApp.GetOptions().GetCustomColors( );
+			col.lpCustColors = gApp.GetOptions().GetCustomColors();
 			col.hwndOwner = hwnd;
 			col.hInstance = NULL;
 			col.Flags = CC_RGBINIT;
@@ -145,29 +145,29 @@ Starts the options dialog and updates the global options if ok is pressed
 bool GEOptionsDlg_DoModal( HWND parent ) {
 	PROPSHEETHEADER propsh;
 	PROPSHEETPAGE	propsp[2];
-	propsp[0].dwSize		= sizeof( PROPSHEETPAGE );
-	propsp[0].dwFlags		= PSP_USETITLE;
-	propsp[0].hInstance		= win32.hInstance;
-	propsp[0].pszTemplate	= MAKEINTRESOURCE( IDD_GUIED_OPTIONS_GENERAL );
-	propsp[0].pfnDlgProc	= GEOptionsDlg_GeneralProc;
-	propsp[0].pszTitle		= "General";
-	propsp[0].lParam		= 0;
-	propsp[1].dwSize		= sizeof( PROPSHEETPAGE );
-	propsp[1].dwFlags		= PSP_USETITLE;
-	propsp[1].hInstance		= win32.hInstance;
-	propsp[1].pszTemplate	= MAKEINTRESOURCE( IDD_GUIED_OPTIONS_GRID );
-	propsp[1].pfnDlgProc	= GEOptionsDlg_GridProc;
-	propsp[1].pszTitle		= "Grid";
-	propsp[1].lParam		= 0;
-	propsh.dwSize			= sizeof( PROPSHEETHEADER );
-	propsh.nStartPage		= gApp.GetOptions().GetLastOptionsPage( );
-	propsh.dwFlags			= PSH_PROPSHEETPAGE | PSH_NOAPPLYNOW | PSH_NOCONTEXTHELP;
-	propsh.hwndParent		= parent;
-	propsh.pszCaption		= "Options";
-	propsh.nPages			= 2;
-	propsh.ppsp				= ( LPCPROPSHEETPAGE )&propsp;
+	propsp[0].dwSize = sizeof( PROPSHEETPAGE );
+	propsp[0].dwFlags = PSP_USETITLE;
+	propsp[0].hInstance = win32.hInstance;
+	propsp[0].pszTemplate = MAKEINTRESOURCE( IDD_GUIED_OPTIONS_GENERAL );
+	propsp[0].pfnDlgProc = GEOptionsDlg_GeneralProc;
+	propsp[0].pszTitle = "General";
+	propsp[0].lParam = 0;
+	propsp[1].dwSize = sizeof( PROPSHEETPAGE );
+	propsp[1].dwFlags = PSP_USETITLE;
+	propsp[1].hInstance = win32.hInstance;
+	propsp[1].pszTemplate = MAKEINTRESOURCE( IDD_GUIED_OPTIONS_GRID );
+	propsp[1].pfnDlgProc = GEOptionsDlg_GridProc;
+	propsp[1].pszTitle = "Grid";
+	propsp[1].lParam = 0;
+	propsh.dwSize = sizeof( PROPSHEETHEADER );
+	propsh.nStartPage = gApp.GetOptions().GetLastOptionsPage();
+	propsh.dwFlags = PSH_PROPSHEETPAGE | PSH_NOAPPLYNOW | PSH_NOCONTEXTHELP;
+	propsh.hwndParent = parent;
+	propsh.pszCaption = "Options";
+	propsh.nPages = 2;
+	propsh.ppsp = ( LPCPROPSHEETPAGE )&propsp;
 	if( PropertySheet( &propsh ) ) {
-		gApp.GetOptions().Save( );
+		gApp.GetOptions().Save();
 		return true;
 	}
 	return false;

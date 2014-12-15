@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -27,10 +27,10 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 ======================================================================
 
-	Parses 3D Studio Max ASCII export files.
-	The goal is to parse the information into memory exactly as it is
-	represented in the file.  Users of the data will then move it
-	into a form that is more convenient for them.
+Parses 3D Studio Max ASCII export files.
+The goal is to parse the information into memory exactly as it is
+represented in the file.  Users of the data will then move it
+into a form that is more convenient for them.
 
 ======================================================================
 */
@@ -85,7 +85,7 @@ static int ASE_GetToken( bool restOfLine ) {
 		ase.curpos++;
 		i++;
 		if( ( CharIsTokenDelimiter( ase.token[i - 1] ) && !restOfLine ) ||
-		  ( ( ase.token[i - 1] == '\n' ) || ( ase.token[i - 1] == '\r' ) ) ) {
+				( ( ase.token[i - 1] == '\n' ) || ( ase.token[i - 1] == '\r' ) ) ) {
 			ase.token[i - 1] = 0;
 			break;
 		}
@@ -94,7 +94,7 @@ static int ASE_GetToken( bool restOfLine ) {
 	return 1;
 }
 
-static void ASE_ParseBracedBlock( void ( *parser )( const char *token ) ) {
+static void ASE_ParseBracedBlock( void( *parser )( const char *token ) ) {
 	int indent = 0;
 	while( ASE_GetToken( false ) ) {
 		if( !strcmp( ase.token, "{" ) ) {
@@ -199,22 +199,22 @@ static void ASE_KeyMATERIAL_LIST( const char *token ) {
 static void ASE_KeyNODE_TM( const char *token ) {
 	int		i;
 	if( !strcmp( token, "*TM_ROW0" ) ) {
-		for( i = 0 ; i < 3 ; i++ ) {
+		for( i = 0; i < 3; i++ ) {
 			ASE_GetToken( false );
 			ase.currentObject->mesh.transform[0][i] = atof( ase.token );
 		}
 	} else if( !strcmp( token, "*TM_ROW1" ) ) {
-		for( i = 0 ; i < 3 ; i++ ) {
+		for( i = 0; i < 3; i++ ) {
 			ASE_GetToken( false );
 			ase.currentObject->mesh.transform[1][i] = atof( ase.token );
 		}
 	} else if( !strcmp( token, "*TM_ROW2" ) ) {
-		for( i = 0 ; i < 3 ; i++ ) {
+		for( i = 0; i < 3; i++ ) {
 			ASE_GetToken( false );
 			ase.currentObject->mesh.transform[2][i] = atof( ase.token );
 		}
 	} else if( !strcmp( token, "*TM_ROW3" ) ) {
-		for( i = 0 ; i < 3 ; i++ ) {
+		for( i = 0; i < 3; i++ ) {
 			ASE_GetToken( false );
 			ase.currentObject->mesh.transform[3][i] = atof( ase.token );
 		}
@@ -287,7 +287,7 @@ static void ASE_KeyCFACE_LIST( const char *token ) {
 	aseMesh_t *pMesh = ASE_GetCurrentMesh();
 	if( !strcmp( token, "*MESH_CFACE" ) ) {
 		ASE_GetToken( false );
-		for( int i = 0 ; i < 3 ; i++ ) {
+		for( int i = 0; i < 3; i++ ) {
 			ASE_GetToken( false );
 			int a = atoi( ase.token );
 			// we flip the vertex order to change the face direction to our style
@@ -380,9 +380,9 @@ static void ASE_KeyMESH_NORMALS( const char *token ) {
 		if( num >= pMesh->numVertexes || num < 0 ) {
 			common->Error( "MESH_NORMALS vertex index out of range: %i", num );
 		}
-		f = &pMesh->faces[ ase.currentFace - 1 ];
-		for( v = 0 ; v < 3 ; v++ ) {
-			if( num == f->vertexNum[ v ] ) {
+		f = &pMesh->faces[ase.currentFace - 1];
+		for( v = 0; v < 3; v++ ) {
+			if( num == f->vertexNum[v] ) {
 				break;
 			}
 		}
@@ -395,9 +395,9 @@ static void ASE_KeyMESH_NORMALS( const char *token ) {
 		n[1] = atof( ase.token );
 		ASE_GetToken( false );
 		n[2] = atof( ase.token );
-		f->vertexNormals[ v ][0] = n[0] * pMesh->transform[0][0] + n[1] * pMesh->transform[1][0] + n[2] * pMesh->transform[2][0];
-		f->vertexNormals[ v ][1] = n[0] * pMesh->transform[0][1] + n[1] * pMesh->transform[1][1] + n[2] * pMesh->transform[2][1];
-		f->vertexNormals[ v ][2] = n[0] * pMesh->transform[0][2] + n[1] * pMesh->transform[1][2] + n[2] * pMesh->transform[2][2];
+		f->vertexNormals[v][0] = n[0] * pMesh->transform[0][0] + n[1] * pMesh->transform[1][0] + n[2] * pMesh->transform[2][0];
+		f->vertexNormals[v][1] = n[0] * pMesh->transform[0][1] + n[1] * pMesh->transform[1][1] + n[2] * pMesh->transform[2][1];
+		f->vertexNormals[v][2] = n[0] * pMesh->transform[0][2] + n[1] * pMesh->transform[1][2] + n[2] * pMesh->transform[2][2];
 		f->vertexNormals[v].Normalize();
 	}
 }

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -52,15 +52,15 @@ bool AgitatedSearchingState::CheckAlertLevel( idAI *owner ) {
 	// grayman #3009 - can't enter this state if sitting, sleeping,
 	// sitting down, lying down, or getting up from sitting or sleeping
 	moveType_t moveType = owner->GetMoveType();
-	if( moveType == MOVETYPE_SIT      ||
-			moveType == MOVETYPE_SLEEP    ||
+	if( moveType == MOVETYPE_SIT ||
+			moveType == MOVETYPE_SLEEP ||
 			moveType == MOVETYPE_SIT_DOWN ||
 			moveType == MOVETYPE_LAY_DOWN ) {
 		owner->GetUp(); // it's okay to call this multiple times
 		owner->GetMind()->EndState();
 		return false;
 	}
-	if( ( moveType == MOVETYPE_GET_UP ) ||	( moveType == MOVETYPE_GET_UP_FROM_LYING ) ) {
+	if( ( moveType == MOVETYPE_GET_UP ) || ( moveType == MOVETYPE_GET_UP_FROM_LYING ) ) {
 		owner->GetMind()->EndState();
 		return false;
 	}

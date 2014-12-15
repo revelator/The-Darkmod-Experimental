@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #include "precompiled_engine.h"
 #pragma hdrstop
 
@@ -61,7 +61,7 @@ void RB_SetDefaultGLState( void ) {
 	if( r_useScissor.GetBool() ) {
 		GL_Scissor( 0, 0, glConfig.vidWidth, glConfig.vidHeight );
 	}
-	for( int i = glConfig.maxTextureUnits - 1 ; i >= 0 ; i-- ) {
+	for( int i = glConfig.maxTextureUnits - 1; i >= 0; i-- ) {
 		GL_SelectTexture( i );
 		// object linear texgen is our default
 		glTexGenf( GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR );
@@ -156,8 +156,8 @@ void GL_Cull( const int cullType ) {
 GL_Scissor
 ====================
 */
-void GL_Scissor(int x /* left*/, int y /* bottom */, int w, int h) {
-	glScissor(x, y, w, h);
+void GL_Scissor( int x /* left*/, int y /* bottom */, int w, int h ) {
+	glScissor( x, y, w, h );
 }
 
 /*
@@ -165,8 +165,8 @@ void GL_Scissor(int x /* left*/, int y /* bottom */, int w, int h) {
 GL_Viewport
 ====================
 */
-void GL_Viewport(int x /* left */, int y /* bottom */, int w, int h) {
-	glViewport(x, y, w, h);
+void GL_Viewport( int x /* left */, int y /* bottom */, int w, int h ) {
+	glViewport( x, y, w, h );
 }
 
 /*
@@ -373,12 +373,12 @@ RENDER BACK END COLOR WRAPPERS
 GL_Color
 ====================
 */
-void GL_Color(const idVec3 &color) {
+void GL_Color( const idVec3 &color ) {
 	GLfloat parm[4];
-	parm[0] = idMath::ClampFloat(0.0f, 1.0f, color[0]);
-	parm[1] = idMath::ClampFloat(0.0f, 1.0f, color[1]);
-	parm[2] = idMath::ClampFloat(0.0f, 1.0f, color[2]);
-	GL_Color(parm[0], parm[1], parm[2]);
+	parm[0] = idMath::ClampFloat( 0.0f, 1.0f, color[0] );
+	parm[1] = idMath::ClampFloat( 0.0f, 1.0f, color[1] );
+	parm[2] = idMath::ClampFloat( 0.0f, 1.0f, color[2] );
+	GL_Color( parm[0], parm[1], parm[2] );
 }
 
 /*
@@ -386,13 +386,13 @@ void GL_Color(const idVec3 &color) {
 GL_Color
 ====================
 */
-void GL_Color(const idVec4 &color) {
+void GL_Color( const idVec4 &color ) {
 	GLfloat parm[4];
-	parm[0] = idMath::ClampFloat(0.0f, 1.0f, color[0]);
-	parm[1] = idMath::ClampFloat(0.0f, 1.0f, color[1]);
-	parm[2] = idMath::ClampFloat(0.0f, 1.0f, color[2]);
-	parm[3] = idMath::ClampFloat(0.0f, 1.0f, color[3]);
-	glColor4f(parm[0], parm[1], parm[2], parm[3]);
+	parm[0] = idMath::ClampFloat( 0.0f, 1.0f, color[0] );
+	parm[1] = idMath::ClampFloat( 0.0f, 1.0f, color[1] );
+	parm[2] = idMath::ClampFloat( 0.0f, 1.0f, color[2] );
+	parm[3] = idMath::ClampFloat( 0.0f, 1.0f, color[3] );
+	glColor4f( parm[0], parm[1], parm[2], parm[3] );
 }
 
 /*
@@ -400,12 +400,12 @@ void GL_Color(const idVec4 &color) {
 GL_Color
 ====================
 */
-void GL_Color(float r, float g, float b) {
+void GL_Color( float r, float g, float b ) {
 	GLfloat parm[3];
-	parm[0] = idMath::ClampFloat(0.0f, 1.0f, r);
-	parm[1] = idMath::ClampFloat(0.0f, 1.0f, g);
-	parm[2] = idMath::ClampFloat(0.0f, 1.0f, b);
-	glColor3f(parm[0], parm[1], parm[2]);
+	parm[0] = idMath::ClampFloat( 0.0f, 1.0f, r );
+	parm[1] = idMath::ClampFloat( 0.0f, 1.0f, g );
+	parm[2] = idMath::ClampFloat( 0.0f, 1.0f, b );
+	glColor3f( parm[0], parm[1], parm[2] );
 }
 
 /*
@@ -413,13 +413,13 @@ void GL_Color(float r, float g, float b) {
 GL_Color
 ====================
 */
-void GL_Color(float r, float g, float b, float a) {
+void GL_Color( float r, float g, float b, float a ) {
 	GLfloat parm[4];
-	parm[0] = idMath::ClampFloat(0.0f, 1.0f, r);
-	parm[1] = idMath::ClampFloat(0.0f, 1.0f, g);
-	parm[2] = idMath::ClampFloat(0.0f, 1.0f, b);
-	parm[3] = idMath::ClampFloat(0.0f, 1.0f, a);
-	glColor4f(parm[0], parm[1], parm[2], parm[3]);
+	parm[0] = idMath::ClampFloat( 0.0f, 1.0f, r );
+	parm[1] = idMath::ClampFloat( 0.0f, 1.0f, g );
+	parm[2] = idMath::ClampFloat( 0.0f, 1.0f, b );
+	parm[3] = idMath::ClampFloat( 0.0f, 1.0f, a );
+	glColor4f( parm[0], parm[1], parm[2], parm[3] );
 }
 
 /*
@@ -427,12 +427,12 @@ void GL_Color(float r, float g, float b, float a) {
 GL_Color
 ====================
 */
-void GL_Color(byte r, byte g, byte b) {
+void GL_Color( byte r, byte g, byte b ) {
 	GLubyte parm[3];
-	parm[0] = idMath::ClampByte(0, 255, r);
-	parm[1] = idMath::ClampByte(0, 255, g);
-	parm[2] = idMath::ClampByte(0, 255, b);
-	glColor3ub(parm[0], parm[1], parm[2]);
+	parm[0] = idMath::ClampByte( 0, 255, r );
+	parm[1] = idMath::ClampByte( 0, 255, g );
+	parm[2] = idMath::ClampByte( 0, 255, b );
+	glColor3ub( parm[0], parm[1], parm[2] );
 }
 
 /*
@@ -440,13 +440,13 @@ void GL_Color(byte r, byte g, byte b) {
 GL_Color
 ====================
 */
-void GL_Color(byte r, byte g, byte b, byte a) {
+void GL_Color( byte r, byte g, byte b, byte a ) {
 	GLubyte parm[4];
-	parm[0] = idMath::ClampByte(0, 255, r);
-	parm[1] = idMath::ClampByte(0, 255, g);
-	parm[2] = idMath::ClampByte(0, 255, b);
-	parm[3] = idMath::ClampByte(0, 255, a);
-	glColor4ub(parm[0], parm[1], parm[2], parm[3]);
+	parm[0] = idMath::ClampByte( 0, 255, r );
+	parm[1] = idMath::ClampByte( 0, 255, g );
+	parm[2] = idMath::ClampByte( 0, 255, b );
+	parm[3] = idMath::ClampByte( 0, 255, a );
+	glColor4ub( parm[0], parm[1], parm[2], parm[3] );
 }
 
 /*
@@ -503,7 +503,7 @@ static void	RB_SetBuffer( const void *data ) {
 		if( sscanf( r_clear.GetString(), "%f %f %f", &c[0], &c[1], &c[2] ) == 3 ) {
 			glClearColor( c[0], c[1], c[2], 1 );
 		} else if( r_clear.GetInteger() == 2 ) {
-			glClearColor( 0.0f, 0.0f,  0.0f, 1.0f );
+			glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
 		} else if( r_showOverDraw.GetBool() ) {
 			glClearColor( 1.0f, 1.0f, 1.0f, 1.0f );
 		} else {
@@ -531,7 +531,7 @@ void RB_ShowImages( void ) {
 	//glClear( GL_COLOR_BUFFER_BIT );
 	//glFinish();
 	//start = Sys_Milliseconds();
-	for( int i = 0 ; i < globalImages->images.Num() ; i++ ) {
+	for( int i = 0; i < globalImages->images.Num(); i++ ) {
 		image = globalImages->images[i];
 		if( image->texnum == idImage::TEXTURE_NOT_LOADED && image->partialImage == NULL ) {
 			continue;

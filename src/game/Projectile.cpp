@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 // Copyright (C) 2004 Id Software, Inc.
 //
@@ -33,13 +33,13 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 ===============================================================================
 
-	idProjectile
+idProjectile
 
 ===============================================================================
 */
 
-static const float BOUNCE_SOUND_MIN_VELOCITY	= 200.0f;
-static const float BOUNCE_SOUND_MAX_VELOCITY	= 400.0f;
+static const float BOUNCE_SOUND_MIN_VELOCITY = 200.0f;
+static const float BOUNCE_SOUND_MAX_VELOCITY = 400.0f;
 
 const idEventDef EV_Explode( "<explode>", EventArgs(), EV_RETURNS_VOID, "internal" );
 const idEventDef EV_Fizzle( "<fizzle>", EventArgs(), EV_RETURNS_VOID, "internal" );
@@ -56,16 +56,16 @@ const idEventDef EV_TDM_Mine_ClearPlayerImmobilization( "_EV_TDM_Mine_ClearPlaye
 const idEventDef EV_Mine_Replace( "<mine_Replace>", EventArgs(), EV_RETURNS_VOID, "internal" ); // grayman #2478
 
 CLASS_DECLARATION( idEntity, idProjectile )
-EVENT( EV_Explode,				idProjectile::Event_Explode )
-EVENT( EV_Fizzle,				idProjectile::Event_Fizzle )
-EVENT( EV_Touch,				idProjectile::Event_Touch )
-EVENT( EV_RadiusDamage,			idProjectile::Event_RadiusDamage )
-EVENT( EV_GetProjectileState,	idProjectile::Event_GetProjectileState )
-EVENT( EV_Launch,				idProjectile::Event_Launch )
-EVENT( EV_ActivateProjectile,	idProjectile::Event_ActivateProjectile )
+EVENT( EV_Explode, idProjectile::Event_Explode )
+EVENT( EV_Fizzle, idProjectile::Event_Fizzle )
+EVENT( EV_Touch, idProjectile::Event_Touch )
+EVENT( EV_RadiusDamage, idProjectile::Event_RadiusDamage )
+EVENT( EV_GetProjectileState, idProjectile::Event_GetProjectileState )
+EVENT( EV_Launch, idProjectile::Event_Launch )
+EVENT( EV_ActivateProjectile, idProjectile::Event_ActivateProjectile )
 EVENT( EV_TDM_Mine_ClearPlayerImmobilization, idProjectile::Event_ClearPlayerImmobilization ) // grayman #2478
 EVENT( EV_TDM_Lock_OnLockPicked, idProjectile::Event_Lock_OnLockPicked ) // grayman #2478
-EVENT( EV_Mine_Replace,	idProjectile::Event_Mine_Replace ) // grayman #2478
+EVENT( EV_Mine_Replace, idProjectile::Event_Mine_Replace ) // grayman #2478
 END_CLASS
 
 /*
@@ -74,26 +74,26 @@ idProjectile::idProjectile
 ================
 */
 idProjectile::idProjectile( void ) {
-	owner				= NULL;
-	lightDefHandle		= -1;
-	thrust				= 0.0f;
-	thrust_end			= 0;
-	smokeFly			= NULL;
-	smokeFlyTime		= 0;
-	state				= SPAWNED;
-	lightOffset			= vec3_zero;
-	lightStartTime		= 0;
-	lightEndTime		= 0;
-	lightColor			= vec3_zero;
-	damagePower			= 1.0f;
+	owner = NULL;
+	lightDefHandle = -1;
+	thrust = 0.0f;
+	thrust_end = 0;
+	smokeFly = NULL;
+	smokeFlyTime = 0;
+	state = SPAWNED;
+	lightOffset = vec3_zero;
+	lightStartTime = 0;
+	lightEndTime = 0;
+	lightColor = vec3_zero;
+	damagePower = 1.0f;
 	memset( &projectileFlags, 0, sizeof( projectileFlags ) );
 	memset( &renderLight, 0, sizeof( renderLight ) );
 	// note: for net_instanthit projectiles, we will force this back to false at spawn time
-	fl.networkSync		= true;
-	netSyncPhysics		= false;
-	m_Lock				= NULL;  // grayman #2478
-	isMine				= false; // grayman #2478
-	replaced			= false; // grayman #2908
+	fl.networkSync = true;
+	netSyncPhysics = false;
+	m_Lock = NULL;  // grayman #2478
+	isMine = false; // grayman #2478
+	replaced = false; // grayman #2908
 }
 
 /*
@@ -315,28 +315,28 @@ void idProjectile::Launch( const idVec3 &start, const idVec3 &dir, const idVec3 
 	} else {
 		cinematic = false;
 	}
-	thrust				= spawnArgs.GetFloat( "thrust" );
-	startthrust			= spawnArgs.GetFloat( "thrust_start" );
-	endthrust			= spawnArgs.GetFloat( "thrust_end" );
+	thrust = spawnArgs.GetFloat( "thrust" );
+	startthrust = spawnArgs.GetFloat( "thrust_start" );
+	endthrust = spawnArgs.GetFloat( "thrust_end" );
 	spawnArgs.GetVector( "velocity", "0 0 0", velocity );
 	speed = velocity.Length() * launchPower;
 	damagePower = dmgPower;
 	spawnArgs.GetAngles( "angular_velocity", "0 0 0", angular_velocity );
-	linear_friction		= spawnArgs.GetFloat( "linear_friction" );
-	angular_friction	= spawnArgs.GetFloat( "angular_friction" );
-	contact_friction	= spawnArgs.GetFloat( "contact_friction" );
-	bounce				= spawnArgs.GetFloat( "bounce" );
-	mass				= spawnArgs.GetFloat( "mass" );
+	linear_friction = spawnArgs.GetFloat( "linear_friction" );
+	angular_friction = spawnArgs.GetFloat( "angular_friction" );
+	contact_friction = spawnArgs.GetFloat( "contact_friction" );
+	bounce = spawnArgs.GetFloat( "bounce" );
+	mass = spawnArgs.GetFloat( "mass" );
 	// greebo: Fall back to default gravity if the spawnarg is missing completely (still allows "0" gravity being set)
 	if( !spawnArgs.GetFloat( "gravity", "0", gravity ) ) {
 		gravity = gameLocal.GetGravity().Length();
 	}
-	fuse				= spawnArgs.GetFloat( "fuse" );
-	delay				= spawnArgs.GetFloat( "delay" );
-	projectileFlags.detonate_on_world	= spawnArgs.GetBool( "detonate_on_world" );
-	projectileFlags.detonate_on_actor	= spawnArgs.GetBool( "detonate_on_actor" );
-	projectileFlags.detonate_on_water	= spawnArgs.GetBool( "detonate_on_water" ); // grayman #1104
-	projectileFlags.randomShaderSpin	= spawnArgs.GetBool( "random_shader_spin" );
+	fuse = spawnArgs.GetFloat( "fuse" );
+	delay = spawnArgs.GetFloat( "delay" );
+	projectileFlags.detonate_on_world = spawnArgs.GetBool( "detonate_on_world" );
+	projectileFlags.detonate_on_actor = spawnArgs.GetBool( "detonate_on_actor" );
+	projectileFlags.detonate_on_water = spawnArgs.GetBool( "detonate_on_water" ); // grayman #1104
+	projectileFlags.randomShaderSpin = spawnArgs.GetBool( "random_shader_spin" );
 	if( mass <= 0 ) {
 		gameLocal.Error( "Invalid mass on '%s'\n", GetEntityDefName() );
 	}
@@ -379,7 +379,7 @@ void idProjectile::Launch( const idVec3 &start, const idVec3 &dir, const idVec3 
 	physicsObj.SetGravity( gravVec * gravity );
 	physicsObj.SetContents( contents );
 	physicsObj.SetClipMask( clipMask );
-	physicsObj.SetLinearVelocity( axis[ 2 ] * speed + pushVelocity );
+	physicsObj.SetLinearVelocity( axis[2] * speed + pushVelocity );
 	physicsObj.SetAngularVelocity( angular_velocity.ToAngularVelocity() * axis );
 	physicsObj.SetOrigin( start );
 	// greebo: Allow overriding of the projectile orientation via "angles" spawnarg
@@ -389,8 +389,8 @@ void idProjectile::Launch( const idVec3 &start, const idVec3 &dir, const idVec3 
 	}
 	physicsObj.SetAxis( axis );
 	// grayman #2478 - is this a mine?
-	isMine =  spawnArgs.GetBool( "is_mine", "0" );
-	thruster.SetPosition( &physicsObj, 0, idVec3( GetPhysics()->GetBounds()[ 0 ].x, 0, 0 ) );
+	isMine = spawnArgs.GetBool( "is_mine", "0" );
+	thruster.SetPosition( &physicsObj, 0, idVec3( GetPhysics()->GetBounds()[0].x, 0, 0 ) );
 	if( !gameLocal.isClient ) {
 		if( fuse <= 0 ) {
 			// run physics for 1 second
@@ -500,7 +500,7 @@ void idProjectile::Think( void ) {
 	if( thinkFlags & TH_THINK ) {
 		if( thrust && ( gameLocal.time < thrust_end ) ) {
 			// evaluate force
-			thruster.SetForce( GetPhysics()->GetAxis()[ 0 ] * thrust );
+			thruster.SetForce( GetPhysics()->GetAxis()[0] * thrust );
 			thruster.Evaluate( gameLocal.time );
 		}
 	}
@@ -515,14 +515,14 @@ void idProjectile::Think( void ) {
 		}
 		if( thinkFlags & TH_ARMED ) { // grayman #2478 - if armed, this is a ticking mine
 			// Any AI around? For AI who manage to avoid a collision with the mine, catch them here if they're close enough and moving/rotating.
-			idEntity *entityList[ MAX_GENTITIES ];
+			idEntity *entityList[MAX_GENTITIES];
 			idVec3 org = GetPhysics()->GetOrigin();
 			idBounds bounds = GetPhysics()->GetAbsBounds();
 			float closeEnough = Square( 23 );
 			// get all entities touching the bounds
 			int numListedEntities = gameLocal.clip.EntitiesTouchingBounds( bounds, -1, entityList, MAX_GENTITIES );
-			for( int i = 0 ; i < numListedEntities ; i++ ) {
-				idEntity *ent = entityList[ i ];
+			for( int i = 0; i < numListedEntities; i++ ) {
+				idEntity *ent = entityList[i];
 				if( ent && ent->IsType( idAI::Type ) ) {
 					idAI *entAI = static_cast<idAI *>( ent );
 					if( entAI->AI_FORWARD || ( entAI->GetPhysics()->GetAngularVelocity().LengthSqr() > 0 ) ) {
@@ -615,7 +615,7 @@ bool idProjectile::Collide( const trace_t &collision, const idVec3 &velocity ) {
 		return true;
 	}
 	// get the entity the projectile collided with
-	ent = gameLocal.entities[ collision.c.entityNum ];
+	ent = gameLocal.entities[collision.c.entityNum];
 	bool hitWater = ent->GetPhysics()->IsType( idPhysics_Liquid::Type ); // grayman #1104
 	if( ent ) {
 		ProcCollisionStims( ent, collision.c.id );
@@ -760,7 +760,7 @@ void idProjectile::DefaultDamageEffect( idEntity *soundEnt, const idDict &projec
 	if( collision.c.material != NULL ) {
 		g_Global.GetSurfName( collision.c.material, typeName );
 	} else {
-		typeName = gameLocal.surfaceTypeNames[ SURFTYPE_METAL ];
+		typeName = gameLocal.surfaceTypeNames[SURFTYPE_METAL];
 	}
 	// play impact sound
 	sound = projectileDef.GetString( va( "snd_%s", typeName.c_str() ) );
@@ -947,7 +947,7 @@ void idProjectile::Explode( const trace_t &collision, idEntity *ignore ) {
 	bActivated = TestActivated( SurfTypeName.c_str() );
 	// TODO: Add spawnarg option to only play explode sound and explode light on activate
 	// play explode sound
-	switch( ( int ) damagePower ) {
+	switch( ( int )damagePower ) {
 	case 2:
 		sndExplode = "snd_explode2";
 		break;
@@ -1040,7 +1040,7 @@ void idProjectile::Explode( const trace_t &collision, idEntity *ignore ) {
 	// Lloyd: Fixed binding objects to bodies: this doesn't work for animated objects,
 	//		need to bind to joints instead
 	if( gameLocal.entities[collision.c.entityNum] && spawnArgs.GetBool( "bindOnImpact" ) ) {
-		idEntity *e = gameLocal.entities[ collision.c.entityNum ];
+		idEntity *e = gameLocal.entities[collision.c.entityNum];
 		if( e->IsType( idAFEntity_Base::Type ) ) {
 			//			idAFEntity_Base *af = static_cast< idAFEntity_Base * >( e );
 			this->BindToJoint( e, CLIPMODEL_ID_TO_JOINT_HANDLE( collision.c.id ), true );
@@ -1278,7 +1278,7 @@ bool idProjectile::ClientPredictionCollide( idEntity *soundEnt, const idDict &pr
 		return false;
 	}
 	// get the entity the projectile collided with
-	ent = gameLocal.entities[ collision.c.entityNum ];
+	ent = gameLocal.entities[collision.c.entityNum];
 	if( ent == NULL ) {
 		return false;
 	}
@@ -1336,8 +1336,8 @@ void idProjectile::WriteToSnapshot( idBitMsgDelta &msg ) const {
 		physicsObj.WriteToSnapshot( msg );
 	} else {
 		msg.WriteBits( 0, 1 );
-		const idVec3 &origin	= physicsObj.GetOrigin();
-		const idVec3 &velocity	= physicsObj.GetLinearVelocity();
+		const idVec3 &origin = physicsObj.GetOrigin();
+		const idVec3 &velocity = physicsObj.GetLinearVelocity();
 		msg.WriteFloat( origin.x );
 		msg.WriteFloat( origin.y );
 		msg.WriteFloat( origin.z );
@@ -1355,7 +1355,7 @@ idProjectile::ReadFromSnapshot
 void idProjectile::ReadFromSnapshot( const idBitMsgDelta &msg ) {
 	projectileState_t newState;
 	owner.SetSpawnId( msg.ReadBits( 32 ) );
-	newState = ( projectileState_t ) msg.ReadBits( 3 );
+	newState = ( projectileState_t )msg.ReadBits( 3 );
 	if( msg.ReadBits( 1 ) ) {
 		Hide();
 	} else {
@@ -1649,7 +1649,7 @@ void idProjectile::Event_Mine_Replace() {
 /*
 ===============================================================================
 
-	idGuidedProjectile
+idGuidedProjectile
 
 ===============================================================================
 */
@@ -1663,18 +1663,18 @@ idGuidedProjectile::idGuidedProjectile
 ================
 */
 idGuidedProjectile::idGuidedProjectile( void ) {
-	enemy			= NULL;
-	speed			= 0.0f;
-	turn_max		= 0.0f;
-	clamp_dist		= 0.0f;
-	rndScale		= ang_zero;
-	rndAng			= ang_zero;
-	rndUpdateTime	= 0;
-	angles			= ang_zero;
-	burstMode		= false;
-	burstDist		= 0;
-	burstVelocity	= 0.0f;
-	unGuided		= false;
+	enemy = NULL;
+	speed = 0.0f;
+	turn_max = 0.0f;
+	clamp_dist = 0.0f;
+	rndScale = ang_zero;
+	rndAng = ang_zero;
+	rndUpdateTime = 0;
+	angles = ang_zero;
+	burstMode = false;
+	burstDist = 0;
+	burstVelocity = 0.0f;
+	unGuided = false;
 }
 
 /*
@@ -1773,9 +1773,9 @@ void idGuidedProjectile::Think( void ) {
 	if( state == LAUNCHED && !unGuided ) {
 		GetSeekPos( seekPos );
 		if( rndUpdateTime < gameLocal.time ) {
-			rndAng[ 0 ] = rndScale[ 0 ] * gameLocal.random.CRandomFloat();
-			rndAng[ 1 ] = rndScale[ 1 ] * gameLocal.random.CRandomFloat();
-			rndAng[ 2 ] = rndScale[ 2 ] * gameLocal.random.CRandomFloat();
+			rndAng[0] = rndScale[0] * gameLocal.random.CRandomFloat();
+			rndAng[1] = rndScale[1] * gameLocal.random.CRandomFloat();
+			rndAng[2] = rndScale[2] * gameLocal.random.CRandomFloat();
 			rndUpdateTime = gameLocal.time + 200;
 		}
 		nose = physicsObj.GetOrigin() + 10.0f * physicsObj.GetAxis()[0];
@@ -1791,10 +1791,10 @@ void idGuidedProjectile::Think( void ) {
 		// clamp the to the max turn rate
 		diff.Normalize180();
 		for( i = 0; i < 3; i++ ) {
-			if( diff[ i ] > turn_max ) {
-				diff[ i ] = turn_max;
-			} else if( diff[ i ] < -turn_max ) {
-				diff[ i ] = -turn_max;
+			if( diff[i] > turn_max ) {
+				diff[i] = turn_max;
+			} else if( diff[i] < -turn_max ) {
+				diff[i] = -turn_max;
 			}
 		}
 		angles += diff;
@@ -1857,14 +1857,14 @@ void idGuidedProjectile::Launch( const idVec3 &start, const idVec3 &dir, const i
 /*
 ===============================================================================
 
-	idDebris
+idDebris
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idEntity, idDebris )
-EVENT( EV_Explode,			idDebris::Event_Explode )
-EVENT( EV_Fizzle,			idDebris::Event_Fizzle )
+EVENT( EV_Explode, idDebris::Event_Explode )
+EVENT( EV_Fizzle, idDebris::Event_Fizzle )
 END_CLASS
 
 /*
@@ -1960,17 +1960,17 @@ void idDebris::Launch( void ) {
 	idVec3		gravVec;
 	bool		randomVelocity;
 	idMat3		axis;
-	renderEntity.shaderParms[ SHADERPARM_TIMEOFFSET ] = -MS2SEC( gameLocal.time );
+	renderEntity.shaderParms[SHADERPARM_TIMEOFFSET] = -MS2SEC( gameLocal.time );
 	spawnArgs.GetVector( "velocity", "0 0 0", velocity );
 	spawnArgs.GetAngles( "angular_velocity", "0 0 0", angular_velocity );
-	linear_friction		= spawnArgs.GetFloat( "linear_friction" );
-	angular_friction	= spawnArgs.GetFloat( "angular_friction" );
-	contact_friction	= spawnArgs.GetFloat( "contact_friction" );
-	bounce				= spawnArgs.GetFloat( "bounce" );
-	mass				= spawnArgs.GetFloat( "mass" );
-	gravity				= spawnArgs.GetFloat( "gravity" );
-	fuse				= spawnArgs.GetFloat( "fuse" );
-	randomVelocity		= spawnArgs.GetBool( "random_velocity" );
+	linear_friction = spawnArgs.GetFloat( "linear_friction" );
+	angular_friction = spawnArgs.GetFloat( "angular_friction" );
+	contact_friction = spawnArgs.GetFloat( "contact_friction" );
+	bounce = spawnArgs.GetFloat( "bounce" );
+	mass = spawnArgs.GetFloat( "mass" );
+	gravity = spawnArgs.GetFloat( "gravity" );
+	fuse = spawnArgs.GetFloat( "fuse" );
+	randomVelocity = spawnArgs.GetBool( "random_velocity" );
 	if( mass <= 0 ) {
 		gameLocal.Error( "Invalid mass on '%s'\n", GetEntityDefName() );
 	}
@@ -2011,7 +2011,7 @@ void idDebris::Launch( void ) {
 	physicsObj.SetGravity( gravVec * gravity );
 	physicsObj.SetContents( 0 );
 	physicsObj.SetClipMask( MASK_SOLID | CONTENTS_MOVEABLECLIP );
-	physicsObj.SetLinearVelocity( axis[ 0 ] * velocity[ 0 ] + axis[ 1 ] * velocity[ 1 ] + axis[ 2 ] * velocity[ 2 ] );
+	physicsObj.SetLinearVelocity( axis[0] * velocity[0] + axis[1] * velocity[1] + axis[2] * velocity[2] );
 	physicsObj.SetAngularVelocity( angular_velocity.ToAngularVelocity() * axis );
 	physicsObj.SetOrigin( GetPhysics()->GetOrigin() );
 	physicsObj.SetAxis( axis );

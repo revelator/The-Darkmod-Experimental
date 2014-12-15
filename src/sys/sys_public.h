@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __SYS_PUBLIC__
 #define __SYS_PUBLIC__
@@ -23,7 +23,7 @@
 /*
 ===============================================================================
 
-	Non-portable system services.
+Non-portable system services.
 
 ===============================================================================
 */
@@ -176,43 +176,43 @@
 #endif
 
 typedef enum {
-	CPUID_NONE							= 0x00000,
-	CPUID_UNSUPPORTED					= 0x00001,	// unsupported (386/486)
-	CPUID_GENERIC						= 0x00002,	// unrecognized processor
-	CPUID_INTEL							= 0x00004,	// Intel
-	CPUID_AMD							= 0x00008,	// AMD
-	CPUID_MMX							= 0x00010,	// Multi Media Extensions
-	CPUID_3DNOW							= 0x00020,	// 3DNow!
-	CPUID_SSE							= 0x00040,	// Streaming SIMD Extensions
-	CPUID_SSE2							= 0x00080,	// Streaming SIMD Extensions 2
-	CPUID_SSE3							= 0x00100,	// Streaming SIMD Extentions 3 aka Prescott's New Instructions
-	CPUID_ALTIVEC						= 0x00200,	// AltiVec
-	CPUID_HTT							= 0x01000,	// Hyper-Threading Technology
-	CPUID_CMOV							= 0x02000,	// Conditional Move (CMOV) and fast floating point comparison (FCOMI) instructions
-	CPUID_FTZ							= 0x04000,	// Flush-To-Zero mode (denormal results are flushed to zero)
-	CPUID_DAZ							= 0x08000	// Denormals-Are-Zero mode (denormal source operands are set to zero)
+	CPUID_NONE = 0x00000,
+	CPUID_UNSUPPORTED = 0x00001,	// unsupported (386/486)
+	CPUID_GENERIC = 0x00002,	// unrecognized processor
+	CPUID_INTEL = 0x00004,	// Intel
+	CPUID_AMD = 0x00008,	// AMD
+	CPUID_MMX = 0x00010,	// Multi Media Extensions
+	CPUID_3DNOW = 0x00020,	// 3DNow!
+	CPUID_SSE = 0x00040,	// Streaming SIMD Extensions
+	CPUID_SSE2 = 0x00080,	// Streaming SIMD Extensions 2
+	CPUID_SSE3 = 0x00100,	// Streaming SIMD Extentions 3 aka Prescott's New Instructions
+	CPUID_ALTIVEC = 0x00200,	// AltiVec
+	CPUID_HTT = 0x01000,	// Hyper-Threading Technology
+	CPUID_CMOV = 0x02000,	// Conditional Move (CMOV) and fast floating point comparison (FCOMI) instructions
+	CPUID_FTZ = 0x04000,	// Flush-To-Zero mode (denormal results are flushed to zero)
+	CPUID_DAZ = 0x08000	// Denormals-Are-Zero mode (denormal source operands are set to zero)
 } cpuid_t;
 
 typedef enum {
-	FPU_EXCEPTION_INVALID_OPERATION		= 1,
-	FPU_EXCEPTION_DENORMALIZED_OPERAND	= 2,
-	FPU_EXCEPTION_DIVIDE_BY_ZERO		= 4,
-	FPU_EXCEPTION_NUMERIC_OVERFLOW		= 8,
-	FPU_EXCEPTION_NUMERIC_UNDERFLOW		= 16,
-	FPU_EXCEPTION_INEXACT_RESULT		= 32
+	FPU_EXCEPTION_INVALID_OPERATION = 1,
+	FPU_EXCEPTION_DENORMALIZED_OPERAND = 2,
+	FPU_EXCEPTION_DIVIDE_BY_ZERO = 4,
+	FPU_EXCEPTION_NUMERIC_OVERFLOW = 8,
+	FPU_EXCEPTION_NUMERIC_UNDERFLOW = 16,
+	FPU_EXCEPTION_INEXACT_RESULT = 32
 } fpuExceptions_t;
 
 typedef enum {
-	FPU_PRECISION_SINGLE				= 0,
-	FPU_PRECISION_DOUBLE				= 1,
-	FPU_PRECISION_DOUBLE_EXTENDED		= 2
+	FPU_PRECISION_SINGLE = 0,
+	FPU_PRECISION_DOUBLE = 1,
+	FPU_PRECISION_DOUBLE_EXTENDED = 2
 } fpuPrecision_t;
 
 typedef enum {
-	FPU_ROUNDING_TO_NEAREST				= 0,
-	FPU_ROUNDING_DOWN					= 1,
-	FPU_ROUNDING_UP						= 2,
-	FPU_ROUNDING_TO_ZERO				= 3
+	FPU_ROUNDING_TO_NEAREST = 0,
+	FPU_ROUNDING_DOWN = 1,
+	FPU_ROUNDING_UP = 2,
+	FPU_ROUNDING_TO_ZERO = 3
 } fpuRounding_t;
 
 typedef enum {
@@ -410,7 +410,7 @@ void			Sys_DoPreferences( void );
 /*
 ==============================================================
 
-	Networking
+Networking
 
 ==============================================================
 */
@@ -496,12 +496,12 @@ void			Sys_ShutdownNetworking( void );
 /*
 ==============================================================
 
-	Multi-threading
+Multi-threading
 
 ==============================================================
 */
 
-typedef unsigned int ( *xthread_t )( void * );
+typedef unsigned int( *xthread_t )( void * );
 
 typedef enum {
 	THREAD_NORMAL,
@@ -515,7 +515,7 @@ typedef struct {
 	unsigned long	threadId;
 } xthreadInfo;
 
-const int MAX_THREADS				= 10;
+const int MAX_THREADS = 10;
 extern xthreadInfo *g_threads[MAX_THREADS];
 extern int			g_thread_count;
 
@@ -526,7 +526,7 @@ void				Sys_DestroyThread( xthreadInfo &info ); // sets threadHandle back to 0
 // if index != NULL, set the index in g_threads array (use -1 for "main" thread)
 const char 		*Sys_GetThreadName( int *index = 0 );
 
-const int MAX_CRITICAL_SECTIONS		= 4;
+const int MAX_CRITICAL_SECTIONS = 4;
 
 enum {
 	CRITICAL_SECTION_ZERO = 0,
@@ -538,7 +538,7 @@ enum {
 void				Sys_EnterCriticalSection( int index = CRITICAL_SECTION_ZERO );
 void				Sys_LeaveCriticalSection( int index = CRITICAL_SECTION_ZERO );
 
-const int MAX_TRIGGER_EVENTS		= 4;
+const int MAX_TRIGGER_EVENTS = 4;
 
 enum {
 	TRIGGER_EVENT_ZERO = 0,
@@ -553,7 +553,7 @@ void				Sys_TriggerEvent( int index = TRIGGER_EVENT_ZERO );
 /*
 ==============================================================
 
-	idSys
+idSys
 
 ==============================================================
 */

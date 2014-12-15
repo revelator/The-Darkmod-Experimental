@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 /*
 ** WIN_GLIMP.C
 **
@@ -282,7 +282,7 @@ static bool GLW_InitDriver( glimpParms_t parms ) {
 	// the multisample path uses the wgl
 	if( wglChoosePixelFormatARB && parms.multiSamples > 1 ) {
 		int		iAttributes[20];
-		FLOAT	fAttributes[] = {0, 0};
+		FLOAT	fAttributes[] = { 0, 0 };
 		UINT	numFormats;
 		// FIXME: specify all the other stuff
 		iAttributes[0] = WGL_SAMPLE_BUFFERS_ARB;
@@ -367,15 +367,15 @@ static void GLW_CreateWindowClasses( void ) {
 		return;
 	}
 	memset( &wc, 0, sizeof( wc ) );
-	wc.style         = 0;
-	wc.lpfnWndProc   = ( WNDPROC ) MainWndProc;
-	wc.cbClsExtra    = 0;
-	wc.cbWndExtra    = 0;
-	wc.hInstance     = win32.hInstance;
-	wc.hIcon         = LoadIcon( win32.hInstance, MAKEINTRESOURCE( IDI_ICON1 ) );
-	wc.hCursor       = LoadCursor( NULL, IDC_ARROW );
+	wc.style = 0;
+	wc.lpfnWndProc = ( WNDPROC )MainWndProc;
+	wc.cbClsExtra = 0;
+	wc.cbWndExtra = 0;
+	wc.hInstance = win32.hInstance;
+	wc.hIcon = LoadIcon( win32.hInstance, MAKEINTRESOURCE( IDI_ICON1 ) );
+	wc.hCursor = LoadCursor( NULL, IDC_ARROW );
 	wc.hbrBackground = ( struct HBRUSH__ * )COLOR_GRAYTEXT;
-	wc.lpszMenuName  = 0;
+	wc.lpszMenuName = 0;
 	wc.lpszClassName = WIN32_WINDOW_CLASS_NAME;
 	if( !RegisterClass( &wc ) ) {
 		common->FatalError( "GLW_CreateWindow: could not register window class" );
@@ -383,15 +383,15 @@ static void GLW_CreateWindowClasses( void ) {
 	common->Printf( "...registered window class\n" );
 	// now register the fake window class that is only used
 	// to get wgl extensions
-	wc.style         = 0;
-	wc.lpfnWndProc   = ( WNDPROC ) FakeWndProc;
-	wc.cbClsExtra    = 0;
-	wc.cbWndExtra    = 0;
-	wc.hInstance     = win32.hInstance;
-	wc.hIcon         = LoadIcon( win32.hInstance, MAKEINTRESOURCE( IDI_ICON1 ) );
-	wc.hCursor       = LoadCursor( NULL, IDC_ARROW );
+	wc.style = 0;
+	wc.lpfnWndProc = ( WNDPROC )FakeWndProc;
+	wc.cbClsExtra = 0;
+	wc.cbWndExtra = 0;
+	wc.hInstance = win32.hInstance;
+	wc.hIcon = LoadIcon( win32.hInstance, MAKEINTRESOURCE( IDI_ICON1 ) );
+	wc.hCursor = LoadCursor( NULL, IDC_ARROW );
 	wc.hbrBackground = ( struct HBRUSH__ * )COLOR_GRAYTEXT;
-	wc.lpszMenuName  = 0;
+	wc.lpszMenuName = 0;
 	wc.lpszClassName = WIN32_FAKE_WINDOW_CLASS_NAME;
 	if( !RegisterClass( &wc ) ) {
 		common->FatalError( "GLW_CreateWindow: could not register window class" );
@@ -527,7 +527,7 @@ static bool GLW_SetFullScreen( glimpParms_t parms ) {
 	bool		matched;
 	// first make sure the user is not trying to select a mode that his card/monitor can't handle
 	matched = false;
-	for( modeNum = 0 ; ; modeNum++ ) {
+	for( modeNum = 0;; modeNum++ ) {
 		if( !EnumDisplaySettings( NULL, modeNum, &devmode ) ) {
 			if( matched ) {
 				// we got a resolution match, but not a frequency match
@@ -539,7 +539,7 @@ static bool GLW_SetFullScreen( glimpParms_t parms ) {
 			common->Printf( "..." S_COLOR_YELLOW "%dx%d is unsupported in 32 bit\n" S_COLOR_DEFAULT, parms.width, parms.height );
 			return false;
 		}
-		if( ( int )devmode.dmPelsWidth  >= parms.width
+		if( ( int )devmode.dmPelsWidth >= parms.width
 				&& ( int )devmode.dmPelsHeight >= parms.height
 				&& ( int )devmode.dmBitsPerPel == 32 ) {
 			matched = true;
@@ -550,10 +550,10 @@ static bool GLW_SetFullScreen( glimpParms_t parms ) {
 	}
 	memset( &dm, 0, sizeof( dm ) );
 	dm.dmSize = sizeof( dm );
-	dm.dmPelsWidth  = parms.width;
+	dm.dmPelsWidth = parms.width;
 	dm.dmPelsHeight = parms.height;
 	dm.dmBitsPerPel = 32;
-	dm.dmFields     = DM_PELSWIDTH | DM_PELSHEIGHT | DM_BITSPERPEL;
+	dm.dmFields = DM_PELSWIDTH | DM_PELSHEIGHT | DM_BITSPERPEL;
 	if( parms.displayHz != 0 ) {
 		dm.dmDisplayFrequency = parms.displayHz;
 		dm.dmFields |= DM_DISPLAYFREQUENCY;
@@ -571,11 +571,11 @@ static bool GLW_SetFullScreen( glimpParms_t parms ) {
 	PrintCDSError( cdsRet );
 	common->Printf( "...trying next higher resolution:" );
 	// we could do a better matching job here...
-	for( modeNum = 0 ; ; modeNum++ ) {
+	for( modeNum = 0;; modeNum++ ) {
 		if( !EnumDisplaySettings( NULL, modeNum, &devmode ) ) {
 			break;
 		}
-		if( ( int )devmode.dmPelsWidth  >= parms.width
+		if( ( int )devmode.dmPelsWidth >= parms.width
 				&& ( int )devmode.dmPelsHeight >= parms.height
 				&& ( int )devmode.dmBitsPerPel == 32 ) {
 			if( ( cdsRet = ChangeDisplaySettings( &devmode, CDS_FULLSCREEN ) ) == DISP_CHANGE_SUCCESSFUL ) {
@@ -688,7 +688,7 @@ bool GLimp_SetScreenParms( glimpParms_t parms ) {
 		stylebits = WS_POPUP | WS_VISIBLE | WS_SYSMENU;
 		SetWindowLong( win32.hWnd, GWL_STYLE, stylebits );
 		SetWindowLong( win32.hWnd, GWL_EXSTYLE, exstyle );
-		dm.dmPelsWidth  = parms.width;
+		dm.dmPelsWidth = parms.width;
 		dm.dmPelsHeight = parms.height;
 		dm.dmBitsPerPel = 32;
 		x = y = w = h = 0;
@@ -717,7 +717,7 @@ bool GLimp_SetScreenParms( glimpParms_t parms ) {
 		if( y < 0 ) {
 			y = 0;
 		}
-		dm.dmPelsWidth  = win32.desktopWidth;
+		dm.dmPelsWidth = win32.desktopWidth;
 		dm.dmPelsHeight = win32.desktopHeight;
 		dm.dmBitsPerPel = win32.desktopBitsPixel;
 		exstyle = 0;
@@ -796,7 +796,7 @@ void GLimp_SwapBuffers( void ) {
 	// so we must check for it here instead of portably
 	if( r_swapInterval.IsModified() ) {
 		r_swapInterval.ClearModified();
-		if( glewIsSupported("WGL_EXT_swap_control") ) {
+		if( glewIsSupported( "WGL_EXT_swap_control" ) ) {
 			wglSwapIntervalEXT( r_swapInterval.GetInteger() );
 		}
 	}
@@ -866,7 +866,7 @@ GLimp_SpawnRenderThread
 Returns false if the system only has a single processor
 =======================
 */
-bool GLimp_SpawnRenderThread( void ( *function )( void ) ) {
+bool GLimp_SpawnRenderThread( void( *function )( void ) ) {
 	SYSTEM_INFO info;
 	// check number of processors
 	GetSystemInfo( &info );

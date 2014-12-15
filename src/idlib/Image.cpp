@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled.h"
 #pragma hdrstop
@@ -26,18 +26,18 @@
 #define IL_IMAGE_NONE ((ILuint)-1)
 
 Image::Image() :
-	m_ImageId(IL_IMAGE_NONE),
-	m_Width(0),
-	m_Height(0),
-	m_Bpp(0)
+m_ImageId(IL_IMAGE_NONE),
+m_Width(0),
+m_Height(0),
+m_Bpp(0)
 {}
 
 Image::Image(const idStr& name) :
-	m_ImageId(IL_IMAGE_NONE),
-	m_Name(name),
-	m_Width(0),
-	m_Height(0),
-	m_Bpp(0)
+m_ImageId(IL_IMAGE_NONE),
+m_Name(name),
+m_Width(0),
+m_Height(0),
+m_Bpp(0)
 {}
 
 Image::~Image(void)
@@ -71,7 +71,7 @@ Image::Format Image::GetFormatFromString(const char *format) {
 
 void Image::Unload()
 {
-	if(m_ImageId != IL_IMAGE_NONE) {
+	if (m_ImageId != IL_IMAGE_NONE) {
 		ilDeleteImages(1, &m_ImageId);
 		m_ImageId = IL_IMAGE_NONE;
 	}
@@ -180,7 +180,7 @@ bool Image::LoadImageFromMemory(const unsigned char *imageBuffer, unsigned int i
 {
 	//unload previous image
 	Unload();
-	if ( !imageBuffer ) {
+	if (!imageBuffer) {
 		return false;
 	}
 
@@ -195,7 +195,7 @@ bool Image::LoadImageFromVfs(const char* filename)
 {
 	//unload previous image
 	Unload();
-	if ( !filename ) {
+	if (!filename) {
 		return false;
 	}
 
@@ -204,7 +204,7 @@ bool Image::LoadImageFromVfs(const char* filename)
 
 	//try to open file
 	idFile *file = fileSystem->OpenFileRead(m_Name);
-	if ( !file )
+	if (!file)
 	{
 		common->Warning("Unable to load imagefile [%s]", m_Name.c_str());
 		return false;
@@ -231,7 +231,7 @@ bool Image::LoadImageFromFile(const fs::path& path)
 
 	//try to open file
 	FILE* file = fopen(path.string().c_str(), "rb");
-	if ( !file || !fs::exists(path) )
+	if (!file || !fs::exists(path))
 	{
 		common->Warning("Unable to load imagefile [%s]", m_Name.c_str());
 		return false;

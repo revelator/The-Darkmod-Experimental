@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -51,7 +51,7 @@ void ClearBounds( idVec3 &mins, idVec3 &maxs ) {
 void AddPointToBounds( const idVec3 &v, idVec3 &mins, idVec3 &maxs ) {
 	int		i;
 	float	val;
-	for( i = 0 ; i < 3 ; i++ ) {
+	for( i = 0; i < 3; i++ ) {
 		val = v[i];
 		if( val < mins[i] ) {
 			mins[i] = val;
@@ -63,7 +63,7 @@ void AddPointToBounds( const idVec3 &v, idVec3 &mins, idVec3 &maxs ) {
 }
 
 static void FloorBounds( idVec3 &mins, idVec3 &maxs ) {
-	for( int i = 0 ; i < 3 ; i++ ) {
+	for( int i = 0; i < 3; i++ ) {
 		mins[i] = floor( mins[i] + 0.5 );
 		maxs[i] = floor( maxs[i] + 0.5 );
 	}
@@ -83,7 +83,7 @@ void Select_AutoCaulk() {
 	int iSystemBrushesSkipped = 0;
 	face_t *pSelectedFace;
 	brush_t *next;
-	for( brush_t *pSelectedBrush = selected_brushes.next ; pSelectedBrush != &selected_brushes ; pSelectedBrush = next ) {
+	for( brush_t *pSelectedBrush = selected_brushes.next; pSelectedBrush != &selected_brushes; pSelectedBrush = next ) {
 		next = pSelectedBrush->next;
 		if( pSelectedBrush->owner->eclass->fixedsize ) {
 			continue;    // apparently this means it's a model, so skip it...
@@ -103,7 +103,7 @@ void Select_AutoCaulk() {
 		}
 		for( int iBrushListToScan = 0; iBrushListToScan < 2; iBrushListToScan++ ) {
 			brush_t	*snext;
-			for( brush_t *pScannedBrush = ( iBrushListToScan ? active_brushes.next : selected_brushes.next ); pScannedBrush != ( iBrushListToScan ? &active_brushes : &selected_brushes ) ; pScannedBrush = snext ) {
+			for( brush_t *pScannedBrush = ( iBrushListToScan ? active_brushes.next : selected_brushes.next ); pScannedBrush != ( iBrushListToScan ? &active_brushes : &selected_brushes ); pScannedBrush = snext ) {
 				snext = pScannedBrush->next;
 				if( pScannedBrush == pSelectedBrush ) {
 					continue;
@@ -122,7 +122,7 @@ void Select_AutoCaulk() {
 				// basic-reject first to see if brushes can even possibly touch (coplanar counts as touching)
 				//
 				int i;
-				for( i = 0 ; i < 3 ; i++ ) {
+				for( i = 0; i < 3; i++ ) {
 					if( pSelectedBrush->mins[i] > pScannedBrush->maxs[i] ||
 							pSelectedBrush->maxs[i] < pScannedBrush->mins[i] ) {
 						break;
@@ -162,7 +162,7 @@ void Select_AutoCaulk() {
 												&&
 												VectorCompare(ScannedSquaredFace.v3NormalisedElevationVector, SelectedSquaredFace.v3NormalisedElevationVector)
 												)
-						*/
+												*/
 						{
 							// brush faces are in parallel planes to each other, so check that their normals
 							//	are opposite, by adding them together and testing for zero...
@@ -179,7 +179,7 @@ void Select_AutoCaulk() {
 								//
 								float fTotalDist = 0;
 								for( int _i = 0; _i < 3; _i++ ) {
-									fTotalDist += fabs(	DotProduct( pSelectedFace->plane.Normal(), ( *pSelectedWinding )[0] )
+									fTotalDist += fabs( DotProduct( pSelectedFace->plane.Normal(), ( *pSelectedWinding )[0] )
 														-
 														DotProduct( pSelectedFace->plane.Normal(), ( *pScannedWinding )[i] )
 													  );

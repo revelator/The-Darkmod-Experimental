@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -94,9 +94,9 @@ void ObjectiveCondition::ParseFromSpawnargs( const idDict &dict, int index ) {
 		obj_condition_1_target_obj		<objectiveNumber> (0-based)
 		obj_condition_1_type			changestate|changevisibility|changemandatory
 		obj_condition_1_value			changestate: 0|1|2
-										changevisibility: 0|1
-										changemandatory: 0|1
-	*/
+		changevisibility: 0|1
+		changemandatory: 0|1
+		*/
 	idStr prefix = va( "obj_condition_%d_", index );
 	const char *type = dict.GetString( prefix + "type" );
 	if( idStr::Cmp( type, "changestate" ) == 0 ) {
@@ -109,14 +109,14 @@ void ObjectiveCondition::ParseFromSpawnargs( const idDict &dict, int index ) {
 		_type = INVALID_TYPE;
 	}
 	// Parse the rest of the integer-based members
-	_value =		dict.GetInt( prefix + "value", "-1" );
-	_srcMission =	dict.GetInt( prefix + "src_mission", "-1" );
-	int srcState =	dict.GetInt( prefix + "src_state", "-1" );
+	_value = dict.GetInt( prefix + "value", "-1" );
+	_srcMission = dict.GetInt( prefix + "src_mission", "-1" );
+	int srcState = dict.GetInt( prefix + "src_state", "-1" );
 	if( srcState >= STATE_INCOMPLETE && srcState <= STATE_FAILED ) {
 		_srcState = static_cast<EObjCompletionState>( srcState );
 	} else {
 		_srcState = STATE_INVALID;
 	}
-	_srcObj =		dict.GetInt( prefix + "src_obj", "-1" );
-	_targetObj =	dict.GetInt( prefix + "target_obj", "-1" );
+	_srcObj = dict.GetInt( prefix + "src_obj", "-1" );
+	_targetObj = dict.GetInt( prefix + "target_obj", "-1" );
 }

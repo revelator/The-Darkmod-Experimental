@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -60,7 +60,7 @@ Handle translator messages
 ================
 */
 bool GUIEditorHandleMessage( void *msg ) {
-	if( !gApp.IsActive( ) ) {
+	if( !gApp.IsActive() ) {
 		return false;
 	}
 	return gApp.TranslateAccelerator( reinterpret_cast<LPMSG>( msg ) );
@@ -91,7 +91,7 @@ void GUIEditorRun() {
 		TranslateMessage( &msg );
 		DispatchMessage( &msg );
 	}
-	gApp.RunFrame( );
+	gApp.RunFrame();
 	// The GUI editor runs too hot so we need to slow it down a bit.
 	Sleep( 1 );
 }
@@ -120,9 +120,9 @@ Returns true if the given string is an expression
 */
 bool IsExpression( const char *s ) {
 	idParser src( s, strlen( s ), "",
-				  LEXFL_ALLOWMULTICHARLITERALS		|
-				  LEXFL_NOSTRINGCONCAT				|
-				  LEXFL_ALLOWBACKSLASHSTRINGCONCAT	|
+				  LEXFL_ALLOWMULTICHARLITERALS |
+				  LEXFL_NOSTRINGCONCAT |
+				  LEXFL_ALLOWBACKSLASHSTRINGCONCAT |
 				  LEXFL_NOFATALERRORS );
 	idToken token;
 	bool	needComma = false;

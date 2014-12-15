@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -87,7 +87,7 @@ LPMRUMENU CreateMruMenu( WORD wNbLruShowInit,
 					   lpMruMenu->wNbLruMenu * ( UINT )lpMruMenu->wMaxSizeLruItem );
 	if( lpMruMenu->lpMRU == NULL ) {
 		GlobalFreePtr( lpMruMenu );
-		lpMruMenu =  NULL;
+		lpMruMenu = NULL;
 	}
 	return lpMruMenu;
 }
@@ -291,7 +291,7 @@ void AddNewItem( LPMRUMENU lpMruMenu, LPSTR lpItem ) {
 				lstrcpy( ( lpMruMenu->lpMRU ) + ( lpMruMenu->wMaxSizeLruItem * ( UINT )j ),
 						 ( lpMruMenu->lpMRU ) + ( lpMruMenu->wMaxSizeLruItem * ( UINT )( j - 1 ) ) );
 			_fstrncpy( lpMruMenu->lpMRU, lpItem, lpMruMenu->wMaxSizeLruItem - 1 );
-			return ;
+			return;
 		}
 	lpMruMenu->wNbItemFill = min( lpMruMenu->wNbItemFill + 1, lpMruMenu->wNbLruMenu );
 	for( i = lpMruMenu->wNbItemFill - 1; i > 0; i-- )
@@ -492,7 +492,7 @@ BOOL IsWin395OrHigher( void ) {
 	WORD wVer;
 	wVer = LOWORD( GetVersion() );
 	wVer = ( ( ( WORD )LOBYTE( wVer ) ) << 8 ) | ( WORD )HIBYTE( wVer );
-	return ( wVer >= 0x035F );            // 5F = 95 dec
+	return ( wVer >= 0x035F );          // 5F = 95 dec
 }
 
 //*************************************************************

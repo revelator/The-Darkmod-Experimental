@@ -31,7 +31,7 @@
    tree.  This is true of both VQ and huffman, but is mostly useful
    with VQ.
 
-*/
+   */
 
 typedef struct static_codebook {
 	long   dim;            /* codebook dimensions (elements per vector) */
@@ -40,8 +40,8 @@ typedef struct static_codebook {
 
 	/* mapping ***************************************************************/
 	int    maptype;        /* 0=none
-			    1=implicitly populated values from map column
-			    2=listed arbitrary values */
+				1=implicitly populated values from map column
+				2=listed arbitrary values */
 
 	/* The below does a linear, single monotonic sequence mapping. */
 	long     q_min;       /* packed 32 bit float; quant value 0 maps to minval */
@@ -51,7 +51,7 @@ typedef struct static_codebook {
 
 	long     *quantlist;  /* map == 1: (int)(entries^(1/dim)) element column map
 			   map == 2: list of dim*entries quantized entry vals
-			*/
+			   */
 
 	/* encode helpers ********************************************************/
 	struct encode_aux_nearestmatch *nearest_tree;

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 /*!
 * Implementation file for the darkModLAS class
 * SophisticatedZombie, using SparHawk's lightgem code
@@ -62,7 +62,7 @@ void darkModLAS::Save( idSaveGame *savefile ) const {
 	DM_LOG( LC_LIGHT, LT_DEBUG )LOGSTRING( "Saving LAS.\r" );
 	savefile->WriteUnsignedInt( m_updateFrameIndex );
 	int counter;
-	for( int i = 0; i < m_numAreas + 1; i ++ ) {
+	for( int i = 0; i < m_numAreas + 1; i++ ) {
 		// number of entries in this area
 		if( m_pp_areaLightLists[i] != NULL ) {
 			// angua: usually, the head of the list doesn't contain any data and works as a fixed starting point of the list
@@ -96,10 +96,10 @@ void darkModLAS::Restore( idRestoreGame *savefile ) {
 	DM_LOG( LC_LIGHT, LT_ERROR )LOGSTRING( "Restoring LAS.\r" );
 	savefile->ReadUnsignedInt( m_updateFrameIndex );
 	int counter;
-	for( int i = 0; i < m_numAreas + 1; i ++ ) {
+	for( int i = 0; i < m_numAreas + 1; i++ ) {
 		savefile->ReadInt( counter );
 		DM_LOG( LC_LIGHT, LT_DEBUG )LOGSTRING( "Area %d has %d lights.\r", i, counter );
-		for( int j = 0; j < counter; j ++ ) {
+		for( int j = 0; j < counter; j++ ) {
 			darkModLightRecord_t *p_record = new darkModLightRecord_t;
 			savefile->ReadObject( reinterpret_cast<idClass *&>( p_record->p_idLight ) );
 			savefile->ReadInt( p_record->areaIndex );
@@ -107,13 +107,13 @@ void darkModLAS::Restore( idRestoreGame *savefile ) {
 			savefile->ReadUnsignedInt( p_record->lastFrameUpdated );
 			if( m_pp_areaLightLists[i] != NULL ) {
 				// list already has entries
-				idLinkList<darkModLightRecord_t> *p_node = new idLinkList<darkModLightRecord_t>;
+				idLinkList<darkModLightRecord_t> *p_node = new idLinkList < darkModLightRecord_t > ;
 				p_node->SetOwner( p_record );
 				p_node->AddToEnd( *( m_pp_areaLightLists[i] ) );
 				DM_LOG( LC_LIGHT, LT_DEBUG )LOGSTRING( "Light was added to area %d at end of list, area now has %d lights.\r", i, m_pp_areaLightLists[i]->Num() + 1 );
 			} else {
 				// First in area
-				idLinkList<darkModLightRecord_t> *p_first = new idLinkList<darkModLightRecord_t>;
+				idLinkList<darkModLightRecord_t> *p_first = new idLinkList < darkModLightRecord_t > ;
 				p_first->SetOwner( p_record );
 				if( p_first == NULL ) {
 					DM_LOG( LC_LIGHT, LT_ERROR )LOGSTRING( "Failed to create node for LASLight record.\r" );
@@ -210,7 +210,7 @@ bool darkModLAS::traceLightPath( idVec3 from, idVec3 to, idEntity *ignore, idLig
 		if( entHit->CastsShadows() ) {
 			// grayman #3584 - continue the trace if we hit the light or an entity that is part of the light's lightholder
 			bool hitLightHolder = false;
-			for( idEntity *bindMaster = light ; bindMaster ; bindMaster = bindMaster->GetBindMaster() ) {
+			for( idEntity *bindMaster = light; bindMaster; bindMaster = bindMaster->GetBindMaster() ) {
 				if( entHit == bindMaster ) {
 					hitLightHolder = true;
 					break;
@@ -312,7 +312,7 @@ void darkModLAS::accumulateEffectOfLightsInArea
 			// grayman #3584 - IntersectLineEllipsoid() provides no information on whether
 			// the line segment ends are inside or outside the ellipsoid. Let's use
 			// IntersectLinesegmentLightEllipsoid() to get that information.
-			inter = IntersectLinesegmentLightEllipsoid(	vTargetSeg, vLightCone, vResult, inside	);
+			inter = IntersectLinesegmentLightEllipsoid( vTargetSeg, vLightCone, vResult, inside );
 			//inter = IntersectLineEllipsoid(	vTargetSeg, vLightCone, vResult	);
 			DM_LOG( LC_LIGHT, LT_DEBUG )LOGSTRING( "IntersectLinesegmentLightEllipsoid() returned %u\r", inter );
 		} else { // projected light
@@ -325,7 +325,7 @@ void darkModLAS::accumulateEffectOfLightsInArea
 		// the light cone (inter = INTERSECT_NONE), it's passing through the lightcone (inter = INTERSECT_FULL), the line
 		// is not passing through which means that the test line is fully outside (inter = INTERSECT_OUTSIDE), or the line
 		// is touching the cone in exactly one point (inter = INTERSECT_PARTIAL).
-		if( inter == INTERSECT_OUTSIDE )  // grayman #3584 - exclude the uninteresting case
+		if( inter == INTERSECT_OUTSIDE ) // grayman #3584 - exclude the uninteresting case
 			//if ( ( inter == INTERSECT_PARTIAL ) || ( inter == INTERSECT_OUTSIDE) ) // grayman #2853 - exclude the two uninteresting cases
 		{
 			b_excludeLight = true;
@@ -430,28 +430,28 @@ void darkModLAS::accumulateEffectOfLightsInArea
 				gameLocal.clip.TracePoint(trace, testPoint1, p_LASLight->lastWorldPos, CONTENTS_OPAQUE, p_ignoredEntity);
 				if ( cv_las_showtraces.GetBool() )
 				{
-					gameRenderWorld->DebugArrow(
-							trace.fraction == 1 ? colorGreen : colorRed,
-							trace.fraction == 1 ? testPoint1 : trace.endpos,
-							p_LASLight->lastWorldPos, 1, 1000);
+				gameRenderWorld->DebugArrow(
+				trace.fraction == 1 ? colorGreen : colorRed,
+				trace.fraction == 1 ? testPoint1 : trace.endpos,
+				p_LASLight->lastWorldPos, 1, 1000);
 				}
 				DM_LOG(LC_LIGHT, LT_DEBUG)LOGSTRING("TraceFraction: %f\r", trace.fraction);
 				if ( trace.fraction < 1.0f )
 				{
-					gameLocal.clip.TracePoint (trace, testPoint2, p_LASLight->lastWorldPos, CONTENTS_OPAQUE, p_ignoredEntity);
-					if (cv_las_showtraces.GetBool())
-					{
-						gameRenderWorld->DebugArrow(
-							trace.fraction == 1 ? colorGreen : colorRed,
-							trace.fraction == 1 ? testPoint2 : trace.endpos,
-							p_LASLight->lastWorldPos, 1, 1000);
-					}
-					DM_LOG(LC_LIGHT, LT_DEBUG)LOGSTRING("TraceFraction: %f\r", trace.fraction);
-					if ( trace.fraction < 1.0f )
-					{
-						DM_LOG(LC_LIGHT, LT_DEBUG)LOGSTRING("Light [%s]: test point is in a shadow of the light\r", light->name.c_str());
-						b_excludeLight = true;
-					}
+				gameLocal.clip.TracePoint (trace, testPoint2, p_LASLight->lastWorldPos, CONTENTS_OPAQUE, p_ignoredEntity);
+				if (cv_las_showtraces.GetBool())
+				{
+				gameRenderWorld->DebugArrow(
+				trace.fraction == 1 ? colorGreen : colorRed,
+				trace.fraction == 1 ? testPoint2 : trace.endpos,
+				p_LASLight->lastWorldPos, 1, 1000);
+				}
+				DM_LOG(LC_LIGHT, LT_DEBUG)LOGSTRING("TraceFraction: %f\r", trace.fraction);
+				if ( trace.fraction < 1.0f )
+				{
+				DM_LOG(LC_LIGHT, LT_DEBUG)LOGSTRING("Light [%s]: test point is in a shadow of the light\r", light->name.c_str());
+				b_excludeLight = true;
+				}
 				}
 				*/
 			} else { // no shadows, so assume visibility between the light origin and the point of illumination
@@ -513,9 +513,9 @@ void darkModLAS::accumulateEffectOfLightsInArea
 					float e = target.z / c;
 					float f = d / c;
 					idMat4 T2( idVec4( e, 0, -f, 0 ),
-							   idVec4( 0, 1,  0, 0 ),
-							   idVec4( f, 0,  e, 0 ),
-							   idVec4( 0, 0,  0, 1 ) );
+							   idVec4( 0, 1, 0, 0 ),
+							   idVec4( f, 0, e, 0 ),
+							   idVec4( 0, 0, 0, 1 ) );
 					idVec3 target_z = -( T2 * target_xy );
 					// apply T1 and T2 to p
 					idVec3 p_z = -( T2 * ( T1 * p ) );
@@ -526,25 +526,25 @@ void darkModLAS::accumulateEffectOfLightsInArea
 			/*			int index;
 						if (vResult[0].z < vResult[1].z)
 						{
-							index = 0;
+						index = 0;
 						}
 						else
 						{
-							index = 1;
+						index = 1;
 						}
 
 						if (vResult[index].z < testPoint1.z)
 						{
-							fx = testPoint1.x;
-							fy = testPoint1.y;
+						fx = testPoint1.x;
+						fy = testPoint1.y;
 						}
 						else
 						{
-							fx = vResult[index].x;
-							fy = vResult[index].y;
+						fx = vResult[index].x;
+						fy = vResult[index].y;
 						}
-			*/
-			inout_totalIllumination += light->GetDistanceColor(	( p_illumination - vLight ).LengthFast(), fx, fy );
+						*/
+			inout_totalIllumination += light->GetDistanceColor( ( p_illumination - vLight ).LengthFast(), fx, fy );
 			DM_LOG( LC_LIGHT, LT_DEBUG )LOGSTRING
 			(
 				"%s in x/y: %f/%f   Distance: %f/%f   Brightness: %f\r",
@@ -646,7 +646,7 @@ void darkModLAS::accumulateEffectOfLightsInArea2
 		float shortestDistanceSqr( idMath::INFINITY );
 		float nextShortestDistanceSqr( idMath::INFINITY );
 		float d1, d2;
-		for( int i = 0 ; i < 8 ; i++ ) {
+		for( int i = 0; i < 8; i++ ) {
 			p = verts[i];
 			d1 = ( p - vLight ).LengthSqr();
 			if( d1 < shortestDistanceSqr ) {
@@ -681,7 +681,7 @@ void darkModLAS::accumulateEffectOfLightsInArea2
 			// grayman #3584 - IntersectLineEllipsoid() provides no information on whether
 			// the line segment ends are inside or outside the ellipsoid. Let's use
 			// IntersectLinesegmentLightEllipsoid() to get that information.
-			inter = IntersectLinesegmentLightEllipsoid(	vTargetSeg, vLightCone, vResult, inside	);
+			inter = IntersectLinesegmentLightEllipsoid( vTargetSeg, vLightCone, vResult, inside );
 			DM_LOG( LC_LIGHT, LT_DEBUG )LOGSTRING( "IntersectLinesegmentLightEllipsoid() returned %u\r", inter );
 		} else { // projected light
 			inter = IntersectLineLightCone( vTargetSeg, vLightCone, vResult, inside );
@@ -846,9 +846,9 @@ void darkModLAS::accumulateEffectOfLightsInArea2
 					float e = target.z / c;
 					float f = d / c;
 					idMat4 T2( idVec4( e, 0, -f, 0 ),
-							   idVec4( 0, 1,  0, 0 ),
-							   idVec4( f, 0,  e, 0 ),
-							   idVec4( 0, 0,  0, 1 ) );
+							   idVec4( 0, 1, 0, 0 ),
+							   idVec4( f, 0, e, 0 ),
+							   idVec4( 0, 0, 0, 1 ) );
 					idVec3 target_z = -( T2 * target_xy );
 					// apply T1 and T2 to p
 					idVec3 p_z = -( T2 * ( T1 * p ) );
@@ -856,7 +856,7 @@ void darkModLAS::accumulateEffectOfLightsInArea2
 					fy = p_z.y;
 				}
 			}
-			inout_totalIllumination += light->GetDistanceColor(	( p_illumination - vLight ).LengthFast(), fx, fy );
+			inout_totalIllumination += light->GetDistanceColor( ( p_illumination - vLight ).LengthFast(), fx, fy );
 			DM_LOG( LC_LIGHT, LT_DEBUG )LOGSTRING
 			(
 				"%s in x/y: %f/%f   Distance: %f/%f   Brightness: %f\r",
@@ -906,7 +906,7 @@ void darkModLAS::initialize() {
 		}
 	}
 	// Lists all begin empty
-	for( int i = 0; i < m_numAreas + 1; i ++ ) {
+	for( int i = 0; i < m_numAreas + 1; i++ ) {
 		m_pp_areaLightLists[i] = NULL;
 	}
 	// Frame index starts at 0
@@ -955,13 +955,13 @@ void darkModLAS::addLight( idLight *p_idLight ) {
 	p_record->p_idLight = p_idLight;
 	p_record->areaIndex = containingAreaIndex;
 	if( m_pp_areaLightLists[containingAreaIndex] != NULL ) {
-		idLinkList<darkModLightRecord_t> *p_node = new idLinkList<darkModLightRecord_t>;
+		idLinkList<darkModLightRecord_t> *p_node = new idLinkList < darkModLightRecord_t > ;
 		p_node->SetOwner( p_record );
 		p_node->AddToEnd( *( m_pp_areaLightLists[containingAreaIndex] ) );
 		DM_LOG( LC_LIGHT, LT_DEBUG )LOGSTRING( "Light '%s' was added to area %d at end of list\r", p_idLight->name.c_str(), containingAreaIndex );
 	} else {
 		// First in area
-		idLinkList<darkModLightRecord_t> *p_first = new idLinkList<darkModLightRecord_t>;
+		idLinkList<darkModLightRecord_t> *p_first = new idLinkList < darkModLightRecord_t > ;
 		p_first->SetOwner( p_record );
 		if( p_first == NULL ) {
 			DM_LOG( LC_LIGHT, LT_ERROR )LOGSTRING( "Failed to create node for LASLight record\r" );
@@ -1044,7 +1044,7 @@ void darkModLAS::shutDown() {
 	if( m_pp_areaLightLists != NULL ) {
 		// Delete all records in each list
 		// angua: also remove lights in the void
-		for( int areaIndex = 0; areaIndex < m_numAreas + 1; areaIndex ++ ) {
+		for( int areaIndex = 0; areaIndex < m_numAreas + 1; areaIndex++ ) {
 			DM_LOG( LC_LIGHT, LT_DEBUG )LOGSTRING( "LAS shutdown clearing light records for areaIndex %d...\r", areaIndex );
 			// Destroy each light record
 			idLinkList<darkModLightRecord_t> *p_cursor = m_pp_areaLightLists[areaIndex];
@@ -1088,12 +1088,12 @@ void darkModLAS::shutDown() {
 
 void darkModLAS::updateLASState() {
 	// Doing a new update frame
-	m_updateFrameIndex ++;
+	m_updateFrameIndex++;
 	DM_LOG( LC_LIGHT, LT_DEBUG )LOGSTRING( "Updating LAS state, new LAS frame index is %d\r", m_updateFrameIndex );
 	// Go through each of the areas and for any light that has moved, see
 	// if it has changed areas.
 	// angua: also check for lights in the void
-	for( int areaIndex = 0; areaIndex < m_numAreas + 1; areaIndex ++ ) {
+	for( int areaIndex = 0; areaIndex < m_numAreas + 1; areaIndex++ ) {
 		idLinkList<darkModLightRecord_t> *p_cursor = m_pp_areaLightLists[areaIndex];
 		while( p_cursor != NULL ) {
 			// Get the darkMod light record
@@ -1217,7 +1217,7 @@ float darkModLAS::queryLightingAlongLine
 	// grayman #3843 - start with the ambient light, if any
 	totalIllumination = gameLocal.GetAmbientIllumination( testPoint1 );
 	// Check all the lights in the PVS areas and factor them in
-	for( int pvsTestResultIndex = 0 ; pvsTestResultIndex < numPVSTestAreas ; pvsTestResultIndex++ ) {
+	for( int pvsTestResultIndex = 0; pvsTestResultIndex < numPVSTestAreas; pvsTestResultIndex++ ) {
 		// Add the effect of lights in this visible area to the effect at the point
 		accumulateEffectOfLightsInArea
 		(
@@ -1298,7 +1298,7 @@ float darkModLAS::queryLightingAlongBestLine
 	// grayman #3843 - start with the ambient light, if any
 	totalIllumination += gameLocal.GetAmbientIllumination( box.GetCenter() );
 	// Check all the lights in the PVS areas and factor them in
-	for( int pvsTestResultIndex = 0 ; pvsTestResultIndex < numPVSTestAreas ; pvsTestResultIndex++ ) {
+	for( int pvsTestResultIndex = 0; pvsTestResultIndex < numPVSTestAreas; pvsTestResultIndex++ ) {
 		// Add the effect of lights in this visible area to the effect at the point
 		accumulateEffectOfLightsInArea2
 		(

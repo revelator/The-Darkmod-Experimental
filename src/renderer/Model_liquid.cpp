@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -34,19 +34,19 @@ idRenderModelLiquid::idRenderModelLiquid
 ====================
 */
 idRenderModelLiquid::idRenderModelLiquid() {
-	verts_x		= 32;
-	verts_y		= 32;
-	scale_x		= 256.0f;
-	scale_y		= 256.0f;
+	verts_x = 32;
+	verts_y = 32;
+	scale_x = 256.0f;
+	scale_y = 256.0f;
 	liquid_type = 0;
-	density		= 0.97f;
+	density = 0.97f;
 	drop_height = 4;
 	drop_radius = 4;
-	drop_delay	= 1000;
-	shader		= declManager->FindMaterial( NULL );
-	update_tics	= 33;  // ~30 hz
-	time		= 0;
-	seed		= 0;
+	drop_delay = 1000;
+	shader = declManager->FindMaterial( NULL );
+	update_tics = 33;  // ~30 hz
+	time = 0;
+	seed = 0;
 	random.SetSeed( 0 );
 }
 
@@ -64,7 +64,7 @@ modelSurface_t idRenderModelLiquid::GenerateSurface( float lerp ) {
 	inv_lerp = 1.0f - lerp;
 	vert = verts.Ptr();
 	for( i = 0; i < verts.Num(); i++, vert++ ) {
-		vert->xyz.z = page1[ i ] * lerp + page2[ i ] * inv_lerp;
+		vert->xyz.z = page1[i] * lerp + page2[i] * inv_lerp;
 	}
 	tr.pc.c_deformedSurfaces++;
 	tr.pc.c_deformedVerts += deformInfo->numOutputVerts;
@@ -87,7 +87,7 @@ modelSurface_t idRenderModelLiquid::GenerateSurface( float lerp ) {
 	SIMDProcessor->Memcpy( tri->verts, verts.Ptr(), deformInfo->numSourceVerts * sizeof( tri->verts[0] ) );
 	// replicate the mirror seam vertexes
 	base = deformInfo->numOutputVerts - deformInfo->numMirroredVerts;
-	for( i = 0 ; i < deformInfo->numMirroredVerts ; i++ ) {
+	for( i = 0; i < deformInfo->numMirroredVerts; i++ ) {
 		tri->verts[base + i] = tri->verts[deformInfo->mirroredVerts[i]];
 	}
 	R_BoundTriSurf( tri );
@@ -99,8 +99,8 @@ modelSurface_t idRenderModelLiquid::GenerateSurface( float lerp ) {
 		// set face planes, vertex normals, tangents
 		R_DeriveTangents( tri );
 	}
-	surf.geometry	= tri;
-	surf.shader		= shader;
+	surf.geometry = tri;
+	surf.shader = shader;
 	return surf;
 }
 
@@ -160,12 +160,12 @@ void idRenderModelLiquid::IntersectBounds( const idBounds &bounds, float displac
 	int		left, top, right, bottom;
 	float	up, down;
 	float	*pos;
-	left	= ( int )( bounds[ 0 ].x / scale_x );
-	right	= ( int )( bounds[ 1 ].x / scale_x );
-	top		= ( int )( bounds[ 0 ].y / scale_y );
-	bottom	= ( int )( bounds[ 1 ].y / scale_y );
-	down	= bounds[ 0 ].z;
-	up		= bounds[ 1 ].z;
+	left = ( int )( bounds[0].x / scale_x );
+	right = ( int )( bounds[1].x / scale_x );
+	top = ( int )( bounds[0].y / scale_y );
+	bottom = ( int )( bounds[1].y / scale_y );
+	down = bounds[0].z;
+	up = bounds[1].z;
 	if( ( right < 1 ) || ( left >= verts_x ) || ( bottom < 1 ) || ( top >= verts_x ) ) {
 		return;
 	}
@@ -184,7 +184,7 @@ void idRenderModelLiquid::IntersectBounds( const idBounds &bounds, float displac
 	}
 	for( cy = top; cy < bottom; cy++ ) {
 		for( cx = left; cx < right; cx++ ) {
-			pos = &page1[ verts_x * cy + cx ];
+			pos = &page1[verts_x * cy + cx];
 			if( *pos > down ) { //&& ( *pos < up ) ) {
 				*pos = down;
 			}
@@ -213,61 +213,61 @@ void idRenderModelLiquid::Update( void ) {
 	p1 = page1;
 	p2 = page2;
 	switch( liquid_type ) {
-	case 0 :
+	case 0:
 		for( y = 1; y < verts_y - 1; y++ ) {
 			p2 += verts_x;
 			p1 += verts_x;
 			for( x = 1; x < verts_x - 1; x++ ) {
 				value =
-					( p2[ x + verts_x ] +
-					  p2[ x - verts_x ] +
-					  p2[ x + 1 ] +
-					  p2[ x - 1 ] +
-					  p2[ x - verts_x - 1 ] +
-					  p2[ x - verts_x + 1 ] +
-					  p2[ x + verts_x - 1 ] +
-					  p2[ x + verts_x + 1 ] +
-					  p2[ x ] ) * ( 2.0f / 9.0f ) -
-					p1[ x ];
-				p1[ x ] = value * density;
+					( p2[x + verts_x] +
+					  p2[x - verts_x] +
+					  p2[x + 1] +
+					  p2[x - 1] +
+					  p2[x - verts_x - 1] +
+					  p2[x - verts_x + 1] +
+					  p2[x + verts_x - 1] +
+					  p2[x + verts_x + 1] +
+					  p2[x] ) * ( 2.0f / 9.0f ) -
+					p1[x];
+				p1[x] = value * density;
 			}
 		}
 		break;
-	case 1 :
+	case 1:
 		for( y = 1; y < verts_y - 1; y++ ) {
 			p2 += verts_x;
 			p1 += verts_x;
 			for( x = 1; x < verts_x - 1; x++ ) {
 				value =
-					( p2[ x + verts_x ] +
-					  p2[ x - verts_x ] +
-					  p2[ x + 1 ] +
-					  p2[ x - 1 ] +
-					  p2[ x - verts_x - 1 ] +
-					  p2[ x - verts_x + 1 ] +
-					  p2[ x + verts_x - 1 ] +
-					  p2[ x + verts_x + 1 ] ) * 0.25f -
-					p1[ x ];
-				p1[ x ] = value * density;
+					( p2[x + verts_x] +
+					  p2[x - verts_x] +
+					  p2[x + 1] +
+					  p2[x - 1] +
+					  p2[x - verts_x - 1] +
+					  p2[x - verts_x + 1] +
+					  p2[x + verts_x - 1] +
+					  p2[x + verts_x + 1] ) * 0.25f -
+					p1[x];
+				p1[x] = value * density;
 			}
 		}
 		break;
-	case 2 :
+	case 2:
 		for( y = 1; y < verts_y - 1; y++ ) {
 			p2 += verts_x;
 			p1 += verts_x;
 			for( x = 1; x < verts_x - 1; x++ ) {
 				value =
-					( p2[ x + verts_x ] +
-					  p2[ x - verts_x ] +
-					  p2[ x + 1 ] +
-					  p2[ x - 1 ] +
-					  p2[ x - verts_x - 1 ] +
-					  p2[ x - verts_x + 1 ] +
-					  p2[ x + verts_x - 1 ] +
-					  p2[ x + verts_x + 1 ] +
-					  p2[ x ] ) * ( 1.0f / 9.0f );
-				p1[ x ] = value * density;
+					( p2[x + verts_x] +
+					  p2[x - verts_x] +
+					  p2[x + 1] +
+					  p2[x - 1] +
+					  p2[x - verts_x - 1] +
+					  p2[x - verts_x + 1] +
+					  p2[x + verts_x - 1] +
+					  p2[x + verts_x + 1] +
+					  p2[x] ) * ( 1.0f / 9.0f );
+				p1[x] = value * density;
 			}
 		}
 		break;
@@ -291,9 +291,9 @@ void idRenderModelLiquid::Reset() {
 	page2 = page1 + verts_x * verts_y;
 	for( i = 0, y = 0; y < verts_y; y++ ) {
 		for( x = 0; x < verts_x; x++, i++ ) {
-			page1[ i ] = 0.0f;
-			page2[ i ] = 0.0f;
-			verts[ i ].xyz.z = 0.0f;
+			page1[i] = 0.0f;
+			page2[i] = 0.0f;
+			verts[i].xyz.z = 0.0f;
 		}
 	}
 }
@@ -378,22 +378,22 @@ void idRenderModelLiquid::InitFromFile( const char *fileName ) {
 	verts.SetNum( verts_x * verts_y );
 	for( i = 0, y = 0; y < verts_y; y++ ) {
 		for( x = 0; x < verts_x; x++, i++ ) {
-			page1[ i ] = 0.0f;
-			page2[ i ] = 0.0f;
-			verts[ i ].Clear();
-			verts[ i ].xyz.Set( x * scale_x, y * scale_y, 0.0f );
-			verts[ i ].st.Set( ( float ) x / ( float )( verts_x - 1 ), ( float ) - y / ( float )( verts_y - 1 ) );
+			page1[i] = 0.0f;
+			page2[i] = 0.0f;
+			verts[i].Clear();
+			verts[i].xyz.Set( x * scale_x, y * scale_y, 0.0f );
+			verts[i].st.Set( ( float )x / ( float )( verts_x - 1 ), ( float ) - y / ( float )( verts_y - 1 ) );
 		}
 	}
 	tris.SetNum( ( verts_x - 1 ) * ( verts_y - 1 ) * 6 );
 	for( i = 0, y = 0; y < verts_y - 1; y++ ) {
 		for( x = 1; x < verts_x; x++, i += 6 ) {
-			tris[ i + 0 ] = y * verts_x + x;
-			tris[ i + 1 ] = y * verts_x + x - 1;
-			tris[ i + 2 ] = ( y + 1 ) * verts_x + x - 1;
-			tris[ i + 3 ] = ( y + 1 ) * verts_x + x - 1;
-			tris[ i + 4 ] = ( y + 1 ) * verts_x + x;
-			tris[ i + 5 ] = y * verts_x + x;
+			tris[i + 0] = y * verts_x + x;
+			tris[i + 1] = y * verts_x + x - 1;
+			tris[i + 2] = ( y + 1 ) * verts_x + x - 1;
+			tris[i + 3] = ( y + 1 ) * verts_x + x - 1;
+			tris[i + 4] = ( y + 1 ) * verts_x + x;
+			tris[i + 5] = y * verts_x + x;
 		}
 	}
 	// build the information that will be common to all animations of this mesh:

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -563,8 +563,8 @@ int idBrush::Split( const idPlane &plane, int planeNum, idBrush **front, idBrush
 		}
 		return res;
 	}
-	maxBackWinding = ( float * ) _alloca16( sides.Num() * sizeof( float ) );
-	maxFrontWinding = ( float * ) _alloca16( sides.Num() * sizeof( float ) );
+	maxBackWinding = ( float * )_alloca16( sides.Num() * sizeof( float ) );
+	maxFrontWinding = ( float * )_alloca16( sides.Num() * sizeof( float ) );
 	maxFront = maxBack = 0.0f;
 	for( i = 0; i < sides.Num(); i++ ) {
 		side = sides[i];
@@ -621,7 +621,7 @@ int idBrush::Split( const idPlane &plane, int planeNum, idBrush **front, idBrush
 		}
 	}
 	if( !mid ) {
-		if( maxFront > - maxBack ) {
+		if( maxFront > -maxBack ) {
 			if( front ) {
 				*front = Copy();
 			}
@@ -844,12 +844,12 @@ void idBrush::ExpandForAxialBox( const idBounds &bounds ) {
 	/*
 	// after expansion at least all non bevel sides should have a winding
 	for ( i = 0; i < sides.Num(); i++ ) {
-		side = sides[i];
-		if ( !side->winding ) {
-			if ( !( side->flags & SFL_BEVEL ) ) {
-				int shit = 1;
-			}
-		}
+	side = sides[i];
+	if ( !side->winding ) {
+	if ( !( side->flags & SFL_BEVEL ) ) {
+	int shit = 1;
+	}
+	}
 	}
 	*/
 }
@@ -1117,7 +1117,7 @@ void idBrushList::Split( const idPlane &plane, int planeNum, idBrushList &frontL
 idBrushList::Chop
 ============
 */
-void idBrushList::Chop( bool ( *ChopAllowed )( idBrush *b1, idBrush *b2 ) ) {
+void idBrushList::Chop( bool( *ChopAllowed )( idBrush *b1, idBrush *b2 ) ) {
 	idBrush	*b1, *b2, *next;
 	idBrushList sub1, sub2, keep;
 	int i, j, c1, c2;
@@ -1160,7 +1160,7 @@ void idBrushList::Chop( bool ( *ChopAllowed )( idBrush *b1, idBrush *b2 ) ) {
 			c1 = 999999;
 			c2 = 999999;
 			// if b2 may chop up b1
-			if( !ChopAllowed || ChopAllowed( b2,  b1 ) ) {
+			if( !ChopAllowed || ChopAllowed( b2, b1 ) ) {
 				if( !b1->Subtract( b2, sub1 ) ) {
 					// didn't really intersect
 					continue;
@@ -1173,7 +1173,7 @@ void idBrushList::Chop( bool ( *ChopAllowed )( idBrush *b1, idBrush *b2 ) ) {
 				c1 = sub1.Num();
 			}
 			// if b1 may chop up b2
-			if( !ChopAllowed || ChopAllowed( b1,  b2 ) ) {
+			if( !ChopAllowed || ChopAllowed( b1, b2 ) ) {
 				if( !b2->Subtract( b1, sub2 ) ) {
 					// didn't really intersect
 					continue;
@@ -1227,7 +1227,7 @@ void idBrushList::Chop( bool ( *ChopAllowed )( idBrush *b1, idBrush *b2 ) ) {
 idBrushList::Merge
 ============
 */
-void idBrushList::Merge( bool ( *MergeAllowed )( idBrush *b1, idBrush *b2 ) ) {
+void idBrushList::Merge( bool( *MergeAllowed )( idBrush *b1, idBrush *b2 ) ) {
 	idPlaneSet planeList;
 	idBrush *b1, *b2, *nextb2;
 	int numMerges;
@@ -1336,7 +1336,7 @@ idBrushMap::idBrushMap( const idStr &fileName, const idStr &ext ) {
 		return;
 	}
 	texture = "textures/washroom/btile01";
-	fp->WriteFloatString( "Version %1.2f\n", ( float ) CURRENT_MAP_VERSION );
+	fp->WriteFloatString( "Version %1.2f\n", ( float )CURRENT_MAP_VERSION );
 	fp->WriteFloatString( "{\n" );
 	fp->WriteFloatString( "\"classname\" \"worldspawn\"\n" );
 	brushCount = 0;

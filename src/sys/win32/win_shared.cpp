@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -61,7 +61,7 @@ int Sys_Milliseconds( void ) {
 ================
 Sys_GetSystemRam
 
-	returns amount of physical memory in MB
+returns amount of physical memory in MB
 ================
 */
 int Sys_GetSystemRam( void ) {
@@ -101,72 +101,68 @@ This function works but returned negative sizes.
 Fixed now.
 ================
 */
-int Sys_GetVideoRam(void) {
+int Sys_GetVideoRam( void ) {
 #ifdef	ID_DEDICATED
 	return 0;
 #else
 	int retSize = 64;
 	CComPtr<IWbemLocator> spLoc = NULL;
-	HRESULT hr = CoCreateInstance(CLSID_WbemLocator, 0, CLSCTX_SERVER, IID_IWbemLocator, (LPVOID *)&spLoc);
-	if (hr != S_OK || spLoc == NULL) {
-		if (retSize < 0)	{
+	HRESULT hr = CoCreateInstance( CLSID_WbemLocator, 0, CLSCTX_SERVER, IID_IWbemLocator, ( LPVOID * )&spLoc );
+	if( hr != S_OK || spLoc == NULL ) {
+		if( retSize < 0 )	{
 			return retSize = -retSize;
-		}
-		else {
-			return abs(retSize);
+		} else {
+			return abs( retSize );
 		}
 	}
-	CComBSTR bstrNamespace(_T("\\\\.\\root\\CIMV2"));
+	CComBSTR bstrNamespace( _T( "\\\\.\\root\\CIMV2" ) );
 	CComPtr<IWbemServices> spServices;
 	// Connect to CIM
-	hr = spLoc->ConnectServer(bstrNamespace, NULL, NULL, 0, NULL, 0, 0, &spServices);
-	if (hr != WBEM_S_NO_ERROR) {
-		if (retSize < 0)	{
+	hr = spLoc->ConnectServer( bstrNamespace, NULL, NULL, 0, NULL, 0, 0, &spServices );
+	if( hr != WBEM_S_NO_ERROR ) {
+		if( retSize < 0 )	{
 			return retSize = -retSize;
-		}
-		else {
-			return abs(retSize);
+		} else {
+			return abs( retSize );
 		}
 	}
 	// Switch the security level to IMPERSONATE so that provider will grant access to system-level objects.
-	hr = CoSetProxyBlanket(spServices, RPC_C_AUTHN_WINNT, RPC_C_AUTHZ_NONE, NULL, RPC_C_AUTHN_LEVEL_CALL, RPC_C_IMP_LEVEL_IMPERSONATE, NULL, EOAC_NONE);
-	if (hr != S_OK) {
-		if (retSize < 0)	{
+	hr = CoSetProxyBlanket( spServices, RPC_C_AUTHN_WINNT, RPC_C_AUTHZ_NONE, NULL, RPC_C_AUTHN_LEVEL_CALL, RPC_C_IMP_LEVEL_IMPERSONATE, NULL, EOAC_NONE );
+	if( hr != S_OK ) {
+		if( retSize < 0 )	{
 			return retSize = -retSize;
-		}
-		else {
-			return abs(retSize);
+		} else {
+			return abs( retSize );
 		}
 	}
 	// Get the vid controller
 	CComPtr<IEnumWbemClassObject> spEnumInst = NULL;
-	hr = spServices->CreateInstanceEnum(CComBSTR("Win32_VideoController"), WBEM_FLAG_SHALLOW, NULL, &spEnumInst);
-	if (hr != WBEM_S_NO_ERROR || spEnumInst == NULL) {
-		if (retSize < 0)	{
+	hr = spServices->CreateInstanceEnum( CComBSTR( "Win32_VideoController" ), WBEM_FLAG_SHALLOW, NULL, &spEnumInst );
+	if( hr != WBEM_S_NO_ERROR || spEnumInst == NULL ) {
+		if( retSize < 0 )	{
 			return retSize = -retSize;
-		}
-		else {
-			return abs(retSize);
+		} else {
+			return abs( retSize );
 		}
 	}
 	ULONG uNumOfInstances = 0;
 	CComPtr<IWbemClassObject> spInstance = NULL;
-	hr = spEnumInst->Next(10000, 1, &spInstance, &uNumOfInstances);
-	if (hr == S_OK && spInstance) {
+	hr = spEnumInst->Next( 10000, 1, &spInstance, &uNumOfInstances );
+	if( hr == S_OK && spInstance ) {
 		// Get properties from the object
 		CComVariant varSize;
-		hr = spInstance->Get(CComBSTR(_T("AdapterRAM")), 0, &varSize, 0, 0);
-		if (hr == S_OK) {
-			retSize = varSize.intVal / (1024 * 1024);
-			if (retSize == 0) {
+		hr = spInstance->Get( CComBSTR( _T( "AdapterRAM" ) ), 0, &varSize, 0, 0 );
+		if( hr == S_OK ) {
+			retSize = varSize.intVal / ( 1024 * 1024 );
+			if( retSize == 0 ) {
 				retSize = 64;
 			}
 		}
 	}
-	if (retSize < 0)	{
+	if( retSize < 0 )	{
 		return retSize = -retSize;
 	}
-	return abs(retSize);
+	return abs( retSize );
 #endif
 }
 
@@ -217,7 +213,7 @@ char *Sys_GetCurrentUser( void ) {
 /*
 ===============================================================================
 
-	Call stack
+Call stack
 
 ===============================================================================
 */
@@ -226,12 +222,12 @@ char *Sys_GetCurrentUser( void ) {
 
 #include <dbghelp.h>
 
-const int UNDECORATE_FLAGS =	UNDNAME_NO_MS_KEYWORDS |
-								UNDNAME_NO_ACCESS_SPECIFIERS |
-								UNDNAME_NO_FUNCTION_RETURNS |
-								UNDNAME_NO_ALLOCATION_MODEL |
-								UNDNAME_NO_ALLOCATION_LANGUAGE |
-								UNDNAME_NO_MEMBER_TYPE;
+const int UNDECORATE_FLAGS = UNDNAME_NO_MS_KEYWORDS |
+							 UNDNAME_NO_ACCESS_SPECIFIERS |
+							 UNDNAME_NO_FUNCTION_RETURNS |
+							 UNDNAME_NO_ALLOCATION_MODEL |
+							 UNDNAME_NO_ALLOCATION_LANGUAGE |
+							 UNDNAME_NO_MEMBER_TYPE;
 
 #if defined(_DEBUG) && 1
 
@@ -313,8 +309,8 @@ void Sym_Init( long addr ) {
 	} else {
 		strcpy( ext, ".map" );
 	}
-	module_t *module = ( module_t * ) malloc( sizeof( module_t ) );
-	module->name = ( char * ) malloc( strlen( moduleName ) + 1 );
+	module_t *module = ( module_t * )malloc( sizeof( module_t ) );
+	module->name = ( char * )malloc( strlen( moduleName ) + 1 );
 	strcpy( module->name, moduleName );
 	module->address = ( int )mbi.AllocationBase;
 	module->symbols = NULL;
@@ -328,7 +324,7 @@ void Sym_Init( long addr ) {
 	fseek( fp, 0, SEEK_END );
 	int length = ftell( fp );
 	fseek( fp, pos, SEEK_SET );
-	char *text = ( char * ) malloc( length + 1 );
+	char *text = ( char * )malloc( length + 1 );
 	fread( text, 1, length, fp );
 	text[length] = '\0';
 	fclose( fp );
@@ -370,8 +366,8 @@ void Sym_Init( long addr ) {
 		// parse symbol address
 		symbolAddress = ParseHexNumber( &ptr );
 		SkipRestOfLine( &ptr );
-		symbol = ( symbol_t * ) malloc( sizeof( symbol_t ) );
-		symbol->name = ( char * ) malloc( symbolLength );
+		symbol = ( symbol_t * )malloc( sizeof( symbol_t ) );
+		symbol->name = ( char * )malloc( symbolLength );
 		strcpy( symbol->name, symbolName );
 		symbol->address = symbolAddress;
 		symbol->next = module->symbols;
@@ -412,7 +408,7 @@ void Sym_GetFuncInfo( long addr, idStr &module, idStr &funcName ) {
 	symbol_t *s;
 	VirtualQuery( ( void * )addr, &mbi, sizeof( mbi ) );
 	for( m = modules; m != NULL; m = m->next ) {
-		if( m->address == ( int ) mbi.AllocationBase ) {
+		if( m->address == ( int )mbi.AllocationBase ) {
 			break;
 		}
 	}
@@ -473,7 +469,7 @@ void Sym_Init( long addr ) {
 		return;
 	}
 	SymSetOptions( SymGetOptions() & ~SYMOPT_UNDNAME );
-	lastAllocationBase = ( DWORD ) mbi.AllocationBase;
+	lastAllocationBase = ( DWORD )mbi.AllocationBase;
 }
 
 /*
@@ -495,10 +491,10 @@ Sym_GetFuncInfo
 void Sym_GetFuncInfo( long addr, idStr &module, idStr &funcName ) {
 	MEMORY_BASIC_INFORMATION mbi;
 	VirtualQuery( ( void * )addr, &mbi, sizeof( mbi ) );
-	if( ( DWORD ) mbi.AllocationBase != lastAllocationBase ) {
+	if( ( DWORD )mbi.AllocationBase != lastAllocationBase ) {
 		Sym_Init( addr );
 	}
-	BYTE symbolBuffer[ sizeof( IMAGEHLP_SYMBOL ) + MAX_STRING_CHARS ];
+	BYTE symbolBuffer[sizeof( IMAGEHLP_SYMBOL ) + MAX_STRING_CHARS];
 	PIMAGEHLP_SYMBOL pSymbol = ( PIMAGEHLP_SYMBOL )&symbolBuffer[0];
 	pSymbol->SizeOfStruct = sizeof( symbolBuffer );
 	pSymbol->MaxNameLength = 1023;
@@ -521,7 +517,7 @@ void Sym_GetFuncInfo( long addr, idStr &module, idStr &funcName ) {
 					   NULL,
 					   GetLastError(),
 					   MAKELANGID( LANG_NEUTRAL, SUBLANG_DEFAULT ), // Default language
-					   ( LPTSTR ) &lpMsgBuf,
+					   ( LPTSTR )&lpMsgBuf,
 					   0,
 					   NULL
 					 );
@@ -592,7 +588,7 @@ address_t GetCallerAddr( long _ebp ) {
 		mov		ecx, [eax]		// check for end of stack frames list
 		test	ecx, ecx		// check for zero stack frame
 		jz		label
-		mov		eax, [eax+4]	// get the ret address
+		mov		eax, [eax + 4]	// get the ret address
 		test	eax, eax		// check for zero return address
 		jz		label
 		mov		midPtPtr, eax
@@ -606,7 +602,7 @@ address_t GetCallerAddr( long _ebp ) {
 ==================
 Sys_GetCallStack
 
- use /Oy option
+use /Oy option
 ==================
 */
 void Sys_GetCallStack( address_t *callStack, const int callStackSize ) {
@@ -660,7 +656,7 @@ Sys_GetCallStackCurStr
 */
 const char *Sys_GetCallStackCurStr( int depth ) {
 	address_t *callStack;
-	callStack = ( address_t * ) _alloca( depth * sizeof( address_t ) );
+	callStack = ( address_t * )_alloca( depth * sizeof( address_t ) );
 	Sys_GetCallStack( callStack, depth );
 	return Sys_GetCallStackStr( callStack, depth );
 }
@@ -674,7 +670,7 @@ const char *Sys_GetCallStackCurAddressStr( int depth ) {
 	static char string[MAX_STRING_CHARS * 2];
 	address_t *callStack;
 	int index, i;
-	callStack = ( address_t * ) _alloca( depth * sizeof( address_t ) );
+	callStack = ( address_t * )_alloca( depth * sizeof( address_t ) );
 	Sys_GetCallStack( callStack, depth );
 	index = 0;
 	for( i = depth - 1; i >= 0; i-- ) {

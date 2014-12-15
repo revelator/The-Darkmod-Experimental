@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -44,7 +44,7 @@ static idServerScan *l_serverScan = NULL;
 idServerScan::idServerScan
 ================
 */
-idServerScan::idServerScan( ) {
+idServerScan::idServerScan() {
 	m_pGUI = NULL;
 	m_sort = SORT_PING;
 	m_sortAscending = true;
@@ -57,7 +57,7 @@ idServerScan::idServerScan( ) {
 idServerScan::LocalClear
 ================
 */
-void idServerScan::LocalClear( ) {
+void idServerScan::LocalClear() {
 	scan_state = IDLE;
 	incoming_net = false;
 	lan_pingtime = -1;
@@ -76,7 +76,7 @@ void idServerScan::LocalClear( ) {
 idServerScan::Clear
 ================
 */
-void idServerScan::Clear( ) {
+void idServerScan::Clear() {
 	LocalClear();
 	idList<networkServer_t>::Clear();
 }
@@ -86,7 +86,7 @@ void idServerScan::Clear( ) {
 idServerScan::Shutdown
 ================
 */
-void idServerScan::Shutdown( ) {
+void idServerScan::Shutdown() {
 	m_pGUI = NULL;
 	if( listGUI ) {
 		listGUI->Config( NULL, NULL );
@@ -101,7 +101,7 @@ void idServerScan::Shutdown( ) {
 idServerScan::SetupLANScan
 ================
 */
-void idServerScan::SetupLANScan( ) {
+void idServerScan::SetupLANScan() {
 	Clear();
 	GUIUpdateSelected();
 	scan_state = LAN_SCAN;
@@ -132,15 +132,15 @@ int idServerScan::InfoResponse( networkServer_t &server ) {
 		}
 		int id = atoi( info->GetValue() );
 		net_info.Delete( serv.c_str() );
-		inServer_t iserv = net_servers[ id ];
+		inServer_t iserv = net_servers[id];
 		server.ping = Sys_Milliseconds() - iserv.time;
 		server.id = iserv.id;
 	} else {
 		server.ping = Sys_Milliseconds() - lan_pingtime;
 		server.id = 0;
 		// check for duplicate servers
-		for( int i = 0; i < Num() ; i++ ) {
-			if( memcmp( &( *this )[ i ].adr, &server.adr, sizeof( netadr_t ) ) == 0 ) {
+		for( int i = 0; i < Num(); i++ ) {
+			if( memcmp( &( *this )[i].adr, &server.adr, sizeof( netadr_t ) ) == 0 ) {
 				common->DPrintf( "idServerScan::InfoResponse LAN_SCAN: duplicate server %s\n", serv.c_str() );
 				return true;
 			}
@@ -148,7 +148,7 @@ int idServerScan::InfoResponse( networkServer_t &server ) {
 	}
 	const char *si_map = server.serverInfo.GetString( "si_map" );
 	const idDecl *mapDecl = declManager->FindType( DECL_MAPDEF, si_map, false );
-	const idDeclEntityDef *mapDef = static_cast< const idDeclEntityDef * >( mapDecl );
+	const idDeclEntityDef *mapDef = static_cast<const idDeclEntityDef *>( mapDecl );
 	if( mapDef ) {
 		const char *mapName = common->Translate( mapDef->dict.GetString( "name", si_map ) );
 		server.serverInfo.Set( "si_mapName", mapName );
@@ -158,7 +158,7 @@ int idServerScan::InfoResponse( networkServer_t &server ) {
 	int index = Append( server );
 	// for now, don't maintain sorting when adding new info response servers
 	m_sortedServers.Append( Num() - 1 );
-	if( listGUI->IsConfigured( ) && !IsFiltered( server ) ) {
+	if( listGUI->IsConfigured() && !IsFiltered( server ) ) {
 		GUIAdd( Num() - 1, server );
 	}
 	if( listGUI->GetSelection( NULL, 0 ) == ( Num() - 1 ) ) {
@@ -193,7 +193,7 @@ void idServerScan::AddServer( int id, const char *srv ) {
 idServerScan::EndServers
 ================
 */
-void idServerScan::EndServers( ) {
+void idServerScan::EndServers() {
 	incoming_net = false;
 	l_serverScan = this;
 	m_sortedServers.Sort( idServerScan::Cmp );
@@ -225,7 +225,7 @@ void idServerScan::EmitGetInfo( netadr_t &serv ) {
 idServerScan::GetChallenge
 ===============
 */
-int idServerScan::GetChallenge( ) {
+int idServerScan::GetChallenge() {
 	return challenge;
 }
 
@@ -234,7 +234,7 @@ int idServerScan::GetChallenge( ) {
 idServerScan::NetScan
 ================
 */
-void idServerScan::NetScan( ) {
+void idServerScan::NetScan() {
 	if( !idAsyncNetwork::client.IsPortInitialized() ) {
 		// if the port isn't open, initialize it, but wait for a short
 		// time to let the OS do whatever magic things it needs to do...
@@ -256,9 +256,9 @@ void idServerScan::NetScan( ) {
 	GUIUpdateSelected();
 	common->DPrintf( "NetScan with challenge %d\n", challenge );
 	while( cur_info < Min( net_servers.Num(), MAX_PINGREQUESTS ) ) {
-		netadr_t serv = net_servers[ cur_info ].adr;
+		netadr_t serv = net_servers[cur_info].adr;
 		EmitGetInfo( serv );
-		net_servers[ cur_info ].time = Sys_Milliseconds();
+		net_servers[cur_info].time = Sys_Milliseconds();
 		net_info.SetInt( Sys_NetAdrToString( serv ), cur_info );
 		cur_info++;
 	}
@@ -269,7 +269,7 @@ void idServerScan::NetScan( ) {
 idServerScan::ServerScanFrame
 ===============
 */
-void idServerScan::RunFrame( ) {
+void idServerScan::RunFrame() {
 	if( scan_state == IDLE ) {
 		return;
 	}
@@ -292,7 +292,7 @@ void idServerScan::RunFrame( ) {
 	// check for timeouts
 	int i = 0;
 	while( i < net_info.GetNumKeyVals() ) {
-		if( timeout_limit > net_servers[ atoi( net_info.GetKeyVal( i )->GetValue().c_str() ) ].time ) {
+		if( timeout_limit > net_servers[atoi( net_info.GetKeyVal( i )->GetValue().c_str() )].time ) {
 			common->DPrintf( "timeout %s\n", net_info.GetKeyVal( i )->GetKey().c_str() );
 			net_info.Delete( net_info.GetKeyVal( i )->GetKey().c_str() );
 		} else {
@@ -301,9 +301,9 @@ void idServerScan::RunFrame( ) {
 	}
 	// possibly send more queries
 	while( cur_info < net_servers.Num() && net_info.GetNumKeyVals() < MAX_PINGREQUESTS ) {
-		netadr_t serv = net_servers[ cur_info ].adr;
+		netadr_t serv = net_servers[cur_info].adr;
 		EmitGetInfo( serv );
-		net_servers[ cur_info ].time = Sys_Milliseconds();
+		net_servers[cur_info].time = Sys_Milliseconds();
 		net_info.SetInt( Sys_NetAdrToString( serv ), cur_info );
 		cur_info++;
 	}
@@ -327,10 +327,10 @@ bool idServerScan::GetBestPing( networkServer_t &serv ) {
 	if( !ic ) {
 		return false;
 	}
-	serv = ( *this )[ 0 ];
-	for( i = 0 ; i < ic ; i++ ) {
-		if( ( *this )[ i ].ping < serv.ping ) {
-			serv = ( *this )[ i ];
+	serv = ( *this )[0];
+	for( i = 0; i < ic; i++ ) {
+		if( ( *this )[i].ping < serv.ping ) {
+			serv = ( *this )[i];
 		}
 	}
 	return true;
@@ -355,7 +355,7 @@ idServerScan::GUIUpdateSelected
 ================
 */
 void idServerScan::GUIUpdateSelected( void ) {
-	char screenshot[ MAX_STRING_CHARS ];
+	char screenshot[MAX_STRING_CHARS];
 	if( !m_pGUI ) {
 		return;
 	}
@@ -376,20 +376,20 @@ void idServerScan::GUIUpdateSelected( void ) {
 		m_pGUI->SetStateString( "server_IP", "" );
 		m_pGUI->SetStateString( "server_passworded", "" );
 	} else {
-		m_pGUI->SetStateString( "server_name", ( *this )[ i ].serverInfo.GetString( "si_name" ) );
+		m_pGUI->SetStateString( "server_name", ( *this )[i].serverInfo.GetString( "si_name" ) );
 		for( int j = 0; j < 8; j++ ) {
 			if( ( *this )[i].clients > j ) {
-				m_pGUI->SetStateString( va( "player%i", j + 1 ) , ( *this )[ i ].nickname[ j ] );
+				m_pGUI->SetStateString( va( "player%i", j + 1 ), ( *this )[i].nickname[j] );
 			} else {
-				m_pGUI->SetStateString( va( "player%i", j + 1 ) , "" );
+				m_pGUI->SetStateString( va( "player%i", j + 1 ), "" );
 			}
 		}
-		m_pGUI->SetStateString( "server_map", ( *this )[ i ].serverInfo.GetString( "si_mapName" ) );
-		fileSystem->FindMapScreenshot( ( *this )[ i ].serverInfo.GetString( "si_map" ), screenshot, MAX_STRING_CHARS );
+		m_pGUI->SetStateString( "server_map", ( *this )[i].serverInfo.GetString( "si_mapName" ) );
+		fileSystem->FindMapScreenshot( ( *this )[i].serverInfo.GetString( "si_map" ), screenshot, MAX_STRING_CHARS );
 		m_pGUI->SetStateString( "browser_levelshot", screenshot );
-		m_pGUI->SetStateString( "server_gameType", ( *this )[ i ].serverInfo.GetString( "si_gameType" ) );
-		m_pGUI->SetStateString( "server_IP", Sys_NetAdrToString( ( *this )[ i ].adr ) );
-		if( ( *this )[ i ].serverInfo.GetBool( "si_usePass" ) ) {
+		m_pGUI->SetStateString( "server_gameType", ( *this )[i].serverInfo.GetString( "si_gameType" ) );
+		m_pGUI->SetStateString( "server_IP", Sys_NetAdrToString( ( *this )[i].adr ) );
+		if( ( *this )[i].serverInfo.GetBool( "si_usePass" ) ) {
 			m_pGUI->SetStateString( "server_passworded", "PASSWORD REQUIRED" );
 		} else {
 			m_pGUI->SetStateString( "server_passworded", "" );
@@ -405,7 +405,7 @@ idServerScan::GUIAdd
 void idServerScan::GUIAdd( int id, const networkServer_t server ) {
 	idStr name = server.serverInfo.GetString( "si_name", GAME_NAME " Server" );
 	bool mod = false;
-	if( server.serverInfo.GetString( "fs_mod" )[ 0 ] != '\0' ) {
+	if( server.serverInfo.GetString( "fs_mod" )[0] != '\0' ) {
 		mod = true;
 	}
 	name += "\t";
@@ -430,7 +430,7 @@ void idServerScan::GUIAdd( int id, const networkServer_t server ) {
 idServerScan::ApplyFilter
 ================
 */
-void idServerScan::ApplyFilter( ) {
+void idServerScan::ApplyFilter() {
 	int i;
 	networkServer_t serv;
 	idStr s;
@@ -439,9 +439,9 @@ void idServerScan::ApplyFilter( ) {
 	for( i = m_sortAscending ? 0 : m_sortedServers.Num() - 1;
 			m_sortAscending ? i < m_sortedServers.Num() : i >= 0;
 			m_sortAscending ? i++ : i-- ) {
-		serv = ( *this )[ m_sortedServers[ i ] ];
+		serv = ( *this )[m_sortedServers[i]];
 		if( !IsFiltered( serv ) ) {
-			GUIAdd( m_sortedServers[ i ], serv );
+			GUIAdd( m_sortedServers[i], serv );
 		}
 	}
 	GUIUpdateSelected();
@@ -463,12 +463,12 @@ bool idServerScan::IsFiltered( const networkServer_t server ) {
 	keyval = server.serverInfo.FindKey( "si_usePass" );
 	if( keyval && gui_filter_password.GetInteger() == 1 ) {
 		// show passworded only
-		if( keyval->GetValue()[ 0 ] == '0' ) {
+		if( keyval->GetValue()[0] == '0' ) {
 			return true;
 		}
 	} else if( keyval && gui_filter_password.GetInteger() == 2 ) {
 		// show no password only
-		if( keyval->GetValue()[ 0 ] != '0' ) {
+		if( keyval->GetValue()[0] != '0' ) {
 			return true;
 		}
 	}
@@ -485,13 +485,13 @@ bool idServerScan::IsFiltered( const networkServer_t server ) {
 	keyval = server.serverInfo.FindKey( "si_gameType" );
 	if( keyval && gui_filter_gameType.GetInteger() ) {
 		i = 0;
-		while( l_gameTypes[ i ] ) {
-			if( !keyval->GetValue().Icmp( l_gameTypes[ i ] ) ) {
+		while( l_gameTypes[i] ) {
+			if( !keyval->GetValue().Icmp( l_gameTypes[i] ) ) {
 				break;
 			}
 			i++;
 		}
-		if( l_gameTypes[ i ] && i != gui_filter_gameType.GetInteger() - 1 ) {
+		if( l_gameTypes[i] && i != gui_filter_gameType.GetInteger() - 1 ) {
 			return true;
 		}
 	}
@@ -521,8 +521,8 @@ int idServerScan::Cmp( const int *a, const int *b ) {
 	networkServer_t serv1, serv2;
 	idStr s1, s2;
 	int ret;
-	serv1 = ( *l_serverScan )[ *a ];
-	serv2 = ( *l_serverScan )[ *b ];
+	serv1 = ( *l_serverScan )[*a];
+	serv2 = ( *l_serverScan )[*b];
 	switch( l_serverScan->m_sort ) {
 	case SORT_PING:
 		ret = serv1.ping < serv2.ping ? -1 : ( serv1.ping > serv2.ping ? 1 : 0 );

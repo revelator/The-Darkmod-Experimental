@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -28,20 +28,20 @@ static bool versioned = RegisterVersionedFile( "$Source$  $Revision$   $Date$" )
 #define SUBSAMPLE_WALK_PATH		1
 #define SUBSAMPLE_FLY_PATH		0
 
-const int		maxWalkPathIterations		= 10;
-const float		maxWalkPathDistance			= 500.0f;
-const float		walkPathSampleDistance		= 8.0f;
+const int		maxWalkPathIterations = 10;
+const float		maxWalkPathDistance = 500.0f;
+const float		walkPathSampleDistance = 8.0f;
 
-const int		maxFlyPathIterations		= 10;
-const float		maxFlyPathDistance			= 500.0f;
-const float		flyPathSampleDistance		= 8.0f;
+const int		maxFlyPathIterations = 10;
+const float		maxFlyPathDistance = 500.0f;
+const float		flyPathSampleDistance = 8.0f;
 
 /*
 ============
 idAASLocal::EdgeSplitPoint
 
-  calculates split point of the edge with the plane
-  returns true if the split point is between the edge vertices
+calculates split point of the edge with the plane
+returns true if the split point is between the edge vertices
 ============
 */
 bool idAASLocal::EdgeSplitPoint( idVec3 &split, int edgeNum, const idPlane &plane ) const {
@@ -65,8 +65,8 @@ bool idAASLocal::EdgeSplitPoint( idVec3 &split, int edgeNum, const idPlane &plan
 ============
 idAASLocal::FloorEdgeSplitPoint
 
-  calculates either the closest or furthest point on the floor of the area which also lies on the pathPlane
-  the point has to be on the front side of the frontPlane to be valid
+calculates either the closest or furthest point on the floor of the area which also lies on the pathPlane
+the point has to be on the front side of the frontPlane to be valid
 ============
 */
 bool idAASLocal::FloorEdgeSplitPoint( idVec3 &bestSplit, int areaNum, const idPlane &pathPlane, const idPlane &frontPlane, bool closest ) const {
@@ -117,7 +117,7 @@ bool idAASLocal::FloorEdgeSplitPoint( idVec3 &bestSplit, int areaNum, const idPl
 ============
 idAASLocal::WalkPathValid
 
-  returns true if one can walk in a straight line between origin and goalOrigin
+returns true if one can walk in a straight line between origin and goalOrigin
 ============
 */
 bool idAASLocal::WalkPathValid( int areaNum, const idVec3 &origin, int goalAreaNum, const idVec3 &goalOrigin, int travelFlags, idVec3 &endPos, int &endAreaNum, idActor *actor ) const {
@@ -195,9 +195,9 @@ bool idAASLocal::WalkPathValid( int areaNum, const idVec3 &origin, int goalAreaN
 						// angua: area is forbidden (e.g. locked door)
 						if (actor != NULL && gameLocal.m_AreaManager.AreaIsForbidden(reach->toAreaNum, actor))
 						{
-							continue;
+						continue;
 						}
-			*/
+						*/
 			break;
 		}
 		if( !reach ) {
@@ -224,7 +224,7 @@ idVec3 idAASLocal::SubSampleWalkPath( int areaNum, const idVec3 &origin, const i
 	numSamples = ( int )( dir.Length() / walkPathSampleDistance ) + 1;
 	point = start;
 	for( i = 1; i < numSamples; i++ ) {
-		nextPoint = start + dir * ( ( float ) i / numSamples );
+		nextPoint = start + dir * ( ( float )i / numSamples );
 		if( ( point - nextPoint ).LengthSqr() > Square( maxWalkPathDistance ) ) {
 			return point;
 		}
@@ -243,7 +243,7 @@ idVec3 idAASLocal::SubSampleWalkPath( int areaNum, const idVec3 &origin, const i
 ============
 idAASLocal::WalkPathToGoal
 
-  FIXME: don't stop optimizing on first failure ?
+FIXME: don't stop optimizing on first failure ?
 ============
 */
 bool idAASLocal::WalkPathToGoal( aasPath_t &path, int areaNum, const idVec3 &origin, int goalAreaNum, const idVec3 &goalOrigin, int travelFlags, int &travelTime, idActor *actor ) { // grayman #3548
@@ -293,7 +293,7 @@ bool idAASLocal::WalkPathToGoal( aasPath_t &path, int areaNum, const idVec3 &ori
 	idVec3 endPos;
 	//int travelTime; // grayman #3548
 	int endAreaNum;
-	for( int i = 0 ; i < maxWalkPathIterations ; i++ ) {
+	for( int i = 0; i < maxWalkPathIterations; i++ ) {
 		// RouteToGoalArea() only considers a walking route. It ignores elevators by design.
 		if( !idAASLocal::RouteToGoalArea( curAreaNum, path.moveGoal, goalAreaNum, travelFlags, travelTime, &reach, &door, actor ) ) {
 			break;
@@ -383,7 +383,7 @@ bool idAASLocal::WalkPathToGoal( aasPath_t &path, int areaNum, const idVec3 &ori
 ============
 idAASLocal::FlyPathValid
 
-  returns true if one can fly in a straight line between origin and goalOrigin
+returns true if one can fly in a straight line between origin and goalOrigin
 ============
 */
 bool idAASLocal::FlyPathValid( int areaNum, const idVec3 &origin, int goalAreaNum, const idVec3 &goalOrigin, int travelFlags, idVec3 &endPos, int &endAreaNum ) const {
@@ -414,7 +414,7 @@ idVec3 idAASLocal::SubSampleFlyPath( int areaNum, const idVec3 &origin, const id
 	numSamples = ( int )( dir.Length() / flyPathSampleDistance ) + 1;
 	point = start;
 	for( i = 1; i < numSamples; i++ ) {
-		nextPoint = start + dir * ( ( float ) i / numSamples );
+		nextPoint = start + dir * ( ( float )i / numSamples );
 		if( ( point - nextPoint ).LengthSqr() > Square( maxFlyPathDistance ) ) {
 			return point;
 		}
@@ -431,7 +431,7 @@ idVec3 idAASLocal::SubSampleFlyPath( int areaNum, const idVec3 &origin, const id
 ============
 idAASLocal::FlyPathToGoal
 
-  FIXME: don't stop optimizing on first failure ?
+FIXME: don't stop optimizing on first failure ?
 ============
 */
 bool idAASLocal::FlyPathToGoal( aasPath_t &path, int areaNum, const idVec3 &origin, int goalAreaNum, const idVec3 &goalOrigin, int travelFlags ) const {
@@ -521,7 +521,7 @@ idAASLocal::SortWallEdges
 void idAASLocal::SortWallEdges( int *edges, int numEdges ) const {
 	int i, j, k, numSequences;
 	wallEdge_t **sequenceFirst, **sequenceLast, *wallEdges, *wallEdge;
-	wallEdges = ( wallEdge_t * ) _alloca16( numEdges * sizeof( wallEdge_t ) );
+	wallEdges = ( wallEdge_t * )_alloca16( numEdges * sizeof( wallEdge_t ) );
 	sequenceFirst = ( wallEdge_t ** )_alloca16( numEdges * sizeof( wallEdge_t * ) );
 	sequenceLast = ( wallEdge_t ** )_alloca16( numEdges * sizeof( wallEdge_t * ) );
 	for( i = 0; i < numEdges; i++ ) {
@@ -572,9 +572,9 @@ int idAASLocal::GetWallEdges( int areaNum, const idBounds &bounds, int travelFla
 	}
 	int numEdges = 0;
 	int numAreas = file->GetNumAreas();
-	byte *areasVisited = ( byte * ) _alloca16( numAreas );
+	byte *areasVisited = ( byte * )_alloca16( numAreas );
 	memset( areasVisited, 0, numAreas * sizeof( byte ) );
-	int *areaQueue = ( int * ) _alloca16( numAreas * sizeof( int ) );
+	int *areaQueue = ( int * )_alloca16( numAreas * sizeof( int ) );
 	int queueStart = -1;
 	int queueEnd = 0;
 	areaQueue[0] = areaNum;

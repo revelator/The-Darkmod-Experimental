@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 /*****************************************************************************
 *                                                                            *
 *   Vector control                                                           *
@@ -44,7 +44,7 @@
 #define _VECTOR_CTL_H
 
 // Callback pointer prototype:
-typedef void ( *VectorCtlCallbackProc )( idQuat rotation );
+typedef void( *VectorCtlCallbackProc )( idQuat rotation );
 
 // The callback should look like:
 //      void CALLBACK MyCallBack (double dVecX, double dVecY, double dVecZ);
@@ -186,7 +186,7 @@ private:
 	afx_msg void OnMouseMove( UINT nFlags, CPoint point );
 
 	// Mouse is being dragged
-	void OnMouseDrag( int , int );
+	void OnMouseDrag( int, int );
 	// Create and measure off-screen buffer
 	void InitBitmap( LPDRAWITEMSTRUCT lpDrawItemStruct, CDC *pDC );
 	// Build image to BitBlt

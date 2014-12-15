@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __CVARSYSTEM_H__
 #define __CVARSYSTEM_H__
@@ -25,80 +25,80 @@
 /*
 ===============================================================================
 
-	Console Variables (CVars) are used to hold scalar or string variables
-	that can be changed or displayed at the console as well as accessed
-	directly in code.
+Console Variables (CVars) are used to hold scalar or string variables
+that can be changed or displayed at the console as well as accessed
+directly in code.
 
-	CVars are mostly used to hold settings that can be changed from the
-	console or saved to and loaded from configuration files. CVars are also
-	occasionally used to communicate information between different modules
-	of the program.
+CVars are mostly used to hold settings that can be changed from the
+console or saved to and loaded from configuration files. CVars are also
+occasionally used to communicate information between different modules
+of the program.
 
-	CVars are restricted from having the same names as console commands to
-	keep the console interface from being ambiguous.
+CVars are restricted from having the same names as console commands to
+keep the console interface from being ambiguous.
 
-	CVars can be accessed from the console in three ways:
-	cvarName			prints the current value
-	cvarName X			sets the value to X if the variable exists
-	set cvarName X		as above, but creates the CVar if not present
+CVars can be accessed from the console in three ways:
+cvarName			prints the current value
+cvarName X			sets the value to X if the variable exists
+set cvarName X		as above, but creates the CVar if not present
 
-	CVars may be declared in the global namespace, in classes and in functions.
-	However declarations in classes and functions should always be static to
-	save space and time. Making CVars static does not change their
-	functionality due to their global nature.
+CVars may be declared in the global namespace, in classes and in functions.
+However declarations in classes and functions should always be static to
+save space and time. Making CVars static does not change their
+functionality due to their global nature.
 
-	CVars should be contructed only through one of the constructors with name,
-	value, flags and description. The name, value and description parameters
-	to the constructor have to be static strings, do not use va() or the like
-	functions returning a string.
+CVars should be contructed only through one of the constructors with name,
+value, flags and description. The name, value and description parameters
+to the constructor have to be static strings, do not use va() or the like
+functions returning a string.
 
-	CVars may be declared multiple times using the same name string. However,
-	they will all reference the same value and changing the value of one CVar
-	changes the value of all CVars with the same name.
+CVars may be declared multiple times using the same name string. However,
+they will all reference the same value and changing the value of one CVar
+changes the value of all CVars with the same name.
 
-	CVars should always be declared with the correct type flag: CVAR_BOOL,
-	CVAR_INTEGER or CVAR_FLOAT. If no such flag is specified the CVar
-	defaults to type string. If the CVAR_BOOL flag is used there is no need
-	to specify an argument auto-completion function because the CVar gets
-	one assigned automatically.
+CVars should always be declared with the correct type flag: CVAR_BOOL,
+CVAR_INTEGER or CVAR_FLOAT. If no such flag is specified the CVar
+defaults to type string. If the CVAR_BOOL flag is used there is no need
+to specify an argument auto-completion function because the CVar gets
+one assigned automatically.
 
-	CVars are automatically range checked based on their type and any min/max
-	or valid string set specified in the constructor.
+CVars are automatically range checked based on their type and any min/max
+or valid string set specified in the constructor.
 
-	CVars are always considered cheats except when CVAR_NOCHEAT, CVAR_INIT,
-	CVAR_ROM, CVAR_ARCHIVE, CVAR_USERINFO, CVAR_SERVERINFO, CVAR_NETWORKSYNC
-	is set.
+CVars are always considered cheats except when CVAR_NOCHEAT, CVAR_INIT,
+CVAR_ROM, CVAR_ARCHIVE, CVAR_USERINFO, CVAR_SERVERINFO, CVAR_NETWORKSYNC
+is set.
 
 ===============================================================================
 */
 
 typedef enum {
-	CVAR_ALL				= -1,		// all flags
-	CVAR_BOOL				= BIT( 0 ),	// variable is a boolean
-	CVAR_INTEGER			= BIT( 1 ),	// variable is an integer
-	CVAR_FLOAT				= BIT( 2 ),	// variable is a float
-	CVAR_SYSTEM				= BIT( 3 ),	// system variable
-	CVAR_RENDERER			= BIT( 4 ),	// renderer variable
-	CVAR_SOUND				= BIT( 5 ),	// sound variable
-	CVAR_GUI				= BIT( 6 ),	// gui variable
-	CVAR_GAME				= BIT( 7 ),	// game variable
-	CVAR_TOOL				= BIT( 8 ),	// tool variable
-	CVAR_USERINFO			= BIT( 9 ),	// sent to servers, available to menu
-	CVAR_SERVERINFO			= BIT( 10 ),	// sent from servers, available to menu
-	CVAR_NETWORKSYNC		= BIT( 11 ),	// cvar is synced from the server to clients
-	CVAR_STATIC				= BIT( 12 ),	// statically declared, not user created
-	CVAR_CHEAT				= BIT( 13 ),	// variable is considered a cheat
-	CVAR_NOCHEAT			= BIT( 14 ),	// variable is not considered a cheat
-	CVAR_INIT				= BIT( 15 ),	// can only be set from the command-line
-	CVAR_ROM				= BIT( 16 ),	// display only, cannot be set by user at all
-	CVAR_ARCHIVE			= BIT( 17 ),	// set to cause it to be saved to a config file
-	CVAR_MODIFIED			= BIT( 18 )	// set when the variable is modified
+	CVAR_ALL = -1,		// all flags
+	CVAR_BOOL = BIT( 0 ),	// variable is a boolean
+	CVAR_INTEGER = BIT( 1 ),	// variable is an integer
+	CVAR_FLOAT = BIT( 2 ),	// variable is a float
+	CVAR_SYSTEM = BIT( 3 ),	// system variable
+	CVAR_RENDERER = BIT( 4 ),	// renderer variable
+	CVAR_SOUND = BIT( 5 ),	// sound variable
+	CVAR_GUI = BIT( 6 ),	// gui variable
+	CVAR_GAME = BIT( 7 ),	// game variable
+	CVAR_TOOL = BIT( 8 ),	// tool variable
+	CVAR_USERINFO = BIT( 9 ),	// sent to servers, available to menu
+	CVAR_SERVERINFO = BIT( 10 ),	// sent from servers, available to menu
+	CVAR_NETWORKSYNC = BIT( 11 ),	// cvar is synced from the server to clients
+	CVAR_STATIC = BIT( 12 ),	// statically declared, not user created
+	CVAR_CHEAT = BIT( 13 ),	// variable is considered a cheat
+	CVAR_NOCHEAT = BIT( 14 ),	// variable is not considered a cheat
+	CVAR_INIT = BIT( 15 ),	// can only be set from the command-line
+	CVAR_ROM = BIT( 16 ),	// display only, cannot be set by user at all
+	CVAR_ARCHIVE = BIT( 17 ),	// set to cause it to be saved to a config file
+	CVAR_MODIFIED = BIT( 18 )	// set when the variable is modified
 } cvarFlags_t;
 
 /*
 ===============================================================================
 
-	idCVar
+idCVar
 
 ===============================================================================
 */
@@ -185,7 +185,7 @@ public:
 	static void				RegisterStaticVars( void );
 
 	// Function signature for modification signals, e.g. void OnCVarModified()
-	typedef boost::function<void ()> OnModifiedFunc;
+	typedef boost::function<void()> OnModifiedFunc;
 
 	// greebo: Registers a function to get notified on modifications. Is called on all subsequent CVAR modifications.
 	// Callbacks are called in the order they've been registered. A non-negative integer is returned which can be used
@@ -228,7 +228,7 @@ private:
 };
 
 ID_INLINE idCVar::idCVar( const char *name, const char *value, int flags, const char *description,
-								argCompletion_t valueCompletion ) {
+						  argCompletion_t valueCompletion ) {
 	if( !valueCompletion && ( flags & CVAR_BOOL ) ) {
 		valueCompletion = idCmdSystem::ArgCompletion_Boolean;
 	}
@@ -236,19 +236,19 @@ ID_INLINE idCVar::idCVar( const char *name, const char *value, int flags, const 
 }
 
 ID_INLINE idCVar::idCVar( const char *name, const char *value, int flags, const char *description,
-								float valueMin, float valueMax, argCompletion_t valueCompletion ) {
+						  float valueMin, float valueMax, argCompletion_t valueCompletion ) {
 	Init( name, value, flags, description, valueMin, valueMax, NULL, valueCompletion );
 }
 
 ID_INLINE idCVar::idCVar( const char *name, const char *value, int flags, const char *description,
-								const char **valueStrings, argCompletion_t valueCompletion ) {
+						  const char **valueStrings, argCompletion_t valueCompletion ) {
 	Init( name, value, flags, description, 1, -1, valueStrings, valueCompletion );
 }
 
 /*
 ===============================================================================
 
-	idCVarSystem
+idCVarSystem
 
 ===============================================================================
 */
@@ -312,18 +312,18 @@ extern idCVarSystem 		*cvarSystem;
 /*
 ===============================================================================
 
-	CVar Registration
+CVar Registration
 
-	Each DLL using CVars has to declare a private copy of the static variable
-	idCVar::staticVars like this: idCVar * idCVar::staticVars = NULL;
-	Furthermore idCVar::RegisterStaticVars() has to be called after the
-	cvarSystem pointer is set when the DLL is first initialized.
+Each DLL using CVars has to declare a private copy of the static variable
+idCVar::staticVars like this: idCVar * idCVar::staticVars = NULL;
+Furthermore idCVar::RegisterStaticVars() has to be called after the
+cvarSystem pointer is set when the DLL is first initialized.
 
 ===============================================================================
 */
 
 ID_INLINE void idCVar::Init( const char *name, const char *value, int flags, const char *description,
-								   float valueMin, float valueMax, const char **valueStrings, argCompletion_t valueCompletion ) {
+							 float valueMin, float valueMax, const char **valueStrings, argCompletion_t valueCompletion ) {
 	this->name = name;
 	this->value = value;
 	this->flags = flags;

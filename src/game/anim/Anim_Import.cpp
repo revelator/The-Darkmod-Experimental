@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -29,7 +29,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 	Maya conversion functions
 
-***********************************************************************/
+	***********************************************************************/
 
 static idStr				Maya_Error;
 
@@ -134,9 +134,9 @@ Checks to see if we can load the Maya export dll
 */
 void idModelExport::LoadMayaDll( void ) {
 	exporterDLLEntry_t	dllEntry;
-	char				dllPath[ MAX_OSPATH ];
+	char				dllPath[MAX_OSPATH];
 	fileSystem->FindDLL( "MayaImport", dllPath, false );
-	if( !dllPath[ 0 ] ) {
+	if( !dllPath[0] ) {
 		return;
 	}
 	importDLL = sys->DLL_Load( dllPath );
@@ -262,10 +262,10 @@ idModelExport::Reset
 ====================
 */
 void idModelExport::Reset( void ) {
-	force		= false;
+	force = false;
 	commandLine = "";
-	src			= "";
-	dest		= "";
+	src = "";
+	dest = "";
 }
 
 /*
@@ -279,7 +279,7 @@ bool idModelExport::ExportModel( const char *model ) {
 		game = BASE_TDM;
 	}
 	Reset();
-	src  = model;
+	src = model;
 	dest = model;
 	dest.SetFileExtension( MD5_MESH_EXT );
 	sprintf( commandLine, "mesh %s -dest %s -game %s", src.c_str(), dest.c_str(), game );
@@ -301,7 +301,7 @@ bool idModelExport::ExportAnim( const char *anim ) {
 		game = BASE_TDM;
 	}
 	Reset();
-	src  = anim;
+	src = anim;
 	dest = anim;
 	dest.SetFileExtension( MD5_ANIM_EXT );
 	sprintf( commandLine, "anim %s -dest %s -game %s", src.c_str(), dest.c_str(), game );
@@ -385,7 +385,7 @@ int idModelExport::ParseExportSection( idParser &parser ) {
 	idStr	parms;
 	int		count;
 	// only export sections that match our export mask
-	if( g_exportMask.GetString()[ 0 ] ) {
+	if( g_exportMask.GetString()[0] ) {
 		if( parser.CheckTokenString( "{" ) ) {
 			parser.SkipBracedSection( false );
 			return 0;
@@ -505,7 +505,7 @@ int idModelExport::ExportModels( const char *pathname, const char *extension ) {
 		return 0;
 	}
 	gameLocal.Printf( "--------- Exporting models --------\n" );
-	if( !g_exportMask.GetString()[ 0 ] ) {
+	if( !g_exportMask.GetString()[0] ) {
 		gameLocal.Printf( "  Export mask: '%s'\n", g_exportMask.GetString() );
 	}
 	count = 0;

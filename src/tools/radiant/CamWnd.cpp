@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -46,7 +46,7 @@ bool g_bAxialMode = false;
 void ValidateAxialPoints() {
 	int faceCount = g_ptrSelectedFaces.GetSize();
 	if( faceCount > 0 ) {
-		face_t	*selFace = reinterpret_cast < face_t * >( g_ptrSelectedFaces.GetAt( 0 ) );
+		face_t	*selFace = reinterpret_cast <face_t *>( g_ptrSelectedFaces.GetAt( 0 ) );
 		if( g_axialAnchor >= selFace->face_winding->GetNumPoints() ) {
 			g_axialAnchor = 0;
 		}
@@ -784,7 +784,7 @@ void DrawAxial( face_t *selFace ) {
 
 /*
  =======================================================================================================================
-    Cam_Draw
+ Cam_Draw
  =======================================================================================================================
  */
 void CCamWnd::SetProjectionMatrix() {
@@ -802,7 +802,7 @@ void CCamWnd::SetProjectionMatrix() {
 	//
 	// set up projection matrix
 	//
-	zNear	= r_znear.GetFloat();
+	zNear = r_znear.GetFloat();
 	ymax = zNear * tan( yfov * idMath::PI / 360.0f );
 	ymin = -ymax;
 	xmax = zNear * tan( xfov * idMath::PI / 360.0f );
@@ -917,7 +917,7 @@ void CCamWnd::Cam_Draw() {
 	int nCount = g_ptrSelectedFaces.GetSize();
 	if( !renderMode ) {
 		for( int i = 0; i < nCount; i++ ) {
-			face_t	*selFace = reinterpret_cast < face_t * >( g_ptrSelectedFaces.GetAt( i ) );
+			face_t	*selFace = reinterpret_cast <face_t *>( g_ptrSelectedFaces.GetAt( i ) );
 			Face_Draw( selFace );
 			DrawAxial( selFace );
 		}
@@ -929,7 +929,7 @@ void CCamWnd::Cam_Draw() {
 	if( renderMode ) {
 		GL_Color( 1.0f, 0.0f, 0.0f );
 		for( int i = 0; i < nCount; i++ ) {
-			face_t	*selFace = reinterpret_cast < face_t * >( g_ptrSelectedFaces.GetAt( i ) );
+			face_t	*selFace = reinterpret_cast <face_t *>( g_ptrSelectedFaces.GetAt( i ) );
 			Face_Draw( selFace );
 		}
 	}
@@ -1020,12 +1020,12 @@ void CCamWnd::ShiftTexture_BrushPrimit( face_t *f, int x, int y ) {
 		idVec3	viewX, viewY;
 		int		XS, XT, YS, YT;
 		int		outS, outT;
-	#ifdef _DEBUG
+		#ifdef _DEBUG
 		if (!g_qeglobals.m_bBrushPrimitMode) {
-			common->Printf("Warning : unexpected call to CCamWnd::ShiftTexture_BrushPrimit with brush primitive mode disbaled\n");
-			return;
+		common->Printf("Warning : unexpected call to CCamWnd::ShiftTexture_BrushPrimit with brush primitive mode disbaled\n");
+		return;
 		}
-	#endif
+		#endif
 		// compute face axis base
 		//ComputeAxisBase(f->plane.Normal(), texS, texT);
 
@@ -1040,12 +1040,12 @@ void CCamWnd::ShiftTexture_BrushPrimit( face_t *f, int x, int y ) {
 		// check this is not a degenerate case
 		if ((XS == YS) && (XT == YT))
 		{
-	#ifdef _DEBUG
-			common->Printf("Warning : degenerate best vectors axis base in CCamWnd::ShiftTexture_BrushPrimit\n");
-	#endif
-			// forget it
-			Select_ShiftTexture_BrushPrimit(f, x, y, false);
-			return;
+		#ifdef _DEBUG
+		common->Printf("Warning : degenerate best vectors axis base in CCamWnd::ShiftTexture_BrushPrimit\n");
+		#endif
+		// forget it
+		Select_ShiftTexture_BrushPrimit(f, x, y, false);
+		return;
 		}
 
 		// compute best fitted translation in face axis base
@@ -1054,7 +1054,7 @@ void CCamWnd::ShiftTexture_BrushPrimit( face_t *f, int x, int y ) {
 
 		// call actual texture shifting code
 		Select_ShiftTexture_BrushPrimit(f, outS, outT, false);
-	*/
+		*/
 }
 
 bool IsBModel( brush_t *b ) {
@@ -1129,7 +1129,7 @@ void CCamWnd::BuildEntityRenderState( entity_t *ent, bool update ) {
 			bmodel->InitEmpty( name );
 			// add the surfaces to the renderModel
 			modelSurface_t	surf;
-			for( int i = 0 ; i < tris.Num() ; i++ ) {
+			for( int i = 0; i < tris.Num(); i++ ) {
 				surf.geometry = tris[i];
 				surf.shader = mats[i];
 				bmodel->AddSurface( surf );
@@ -1268,7 +1268,7 @@ int Brush_TransformModel( brush_t *brush, idTriList *tris, idMatList *mats ) {
 			if( GetMatrixForKey( brush->owner, "rotation", mat ) ) {
 				matrix = true;
 			}
-			for( int i = 0; i < model->NumSurfaces() ; i++ ) {
+			for( int i = 0; i < model->NumSurfaces(); i++ ) {
 				const modelSurface_t	*surf = model->Surface( i );
 				srfTriangles_t	*tri = surf->geometry;
 				srfTriangles_t *tri2 = R_CopyStaticTriSurf( tri );
@@ -1328,7 +1328,7 @@ int Brush_ToTris( brush_t *brush, idTriList *tris, idMatList *mats, bool models,
 		cp->SetSize( pm->width, pm->height );
 		for( i = 0; i < pm->width; i++ ) {
 			for( j = 0; j < pm->height; j++ ) {
-				( *cp )[j * cp->GetWidth() + i].xyz =  pm->ctrl( i, j ).xyz;
+				( *cp )[j * cp->GetWidth() + i].xyz = pm->ctrl( i, j ).xyz;
 				( *cp )[j * cp->GetWidth() + i].st = pm->ctrl( i, j ).st;
 			}
 		}
@@ -1346,15 +1346,15 @@ int Brush_ToTris( brush_t *brush, idTriList *tris, idMatList *mats, bool models,
 		tri->numIndexes = 6 * ( width - 1 ) * ( height - 1 );
 		R_AllocStaticTriSurfVerts( tri, tri->numVerts );
 		R_AllocStaticTriSurfIndexes( tri, tri->numIndexes );
-		for( i = 0 ; i < tri->numVerts ; i++ ) {
+		for( i = 0; i < tri->numVerts; i++ ) {
 			tri->verts[i] = ( *cp )[i];
 			if( bmodel ) {
 				tri->verts[i].xyz -= brush->owner->origin;
 			}
 		}
 		tri->numIndexes = 0;
-		for( i = 1 ; i < width ; i++ ) {
-			for( j = 1 ; j < height ; j++ ) {
+		for( i = 1; i < width; i++ ) {
+			for( j = 1; j < height; j++ ) {
 				tri->indexes[tri->numIndexes++] = ( j - 1 ) * width + i;
 				tri->indexes[tri->numIndexes++] = ( j - 1 ) * width + i - 1;
 				tri->indexes[tri->numIndexes++] = j * width + i - 1;
@@ -1373,7 +1373,7 @@ int Brush_ToTris( brush_t *brush, idTriList *tris, idMatList *mats, bool models,
 	//
 	// normal brush
 	//
-	for( face_t *face = brush->brush_faces ; face; face = face->next ) {
+	for( face_t *face = brush->brush_faces; face; face = face->next ) {
 		idWinding *w;
 		w = face->face_winding;
 		if( !w ) {
@@ -1384,7 +1384,7 @@ int Brush_ToTris( brush_t *brush, idTriList *tris, idMatList *mats, bool models,
 		tri->numIndexes = ( w->GetNumPoints() - 2 ) * 3;
 		R_AllocStaticTriSurfVerts( tri, tri->numVerts );
 		R_AllocStaticTriSurfIndexes( tri, tri->numIndexes );
-		for( i = 0 ; i < tri->numVerts ; i++ ) {
+		for( i = 0; i < tri->numVerts; i++ ) {
 			tri->verts[i].Clear();
 			tri->verts[i].xyz[0] = ( *w )[i][0];
 			tri->verts[i].xyz[1] = ( *w )[i][1];
@@ -1397,7 +1397,7 @@ int Brush_ToTris( brush_t *brush, idTriList *tris, idMatList *mats, bool models,
 			tri->verts[i].normal = face->plane.Normal();
 		}
 		tri->numIndexes = 0;
-		for( i = 2 ; i < w->GetNumPoints() ; i++ ) {
+		for( i = 2; i < w->GetNumPoints(); i++ ) {
 			tri->indexes[tri->numIndexes++] = 0;
 			tri->indexes[tri->numIndexes++] = i - 1;
 			tri->indexes[tri->numIndexes++] = i;
@@ -1480,7 +1480,7 @@ void CCamWnd::BuildRendererState() {
 	// the renderModel for the world holds all the geometry that isn't in an entity
 	worldModel = renderModelManager->AllocModel();
 	worldModel->InitEmpty( "EditorWorldModel" );
-	for( brush_t *brushList = &active_brushes ; brushList ;
+	for( brush_t *brushList = &active_brushes; brushList;
 			brushList = ( brushList == &active_brushes ) ? &selected_brushes : NULL ) {
 		for( brush = brushList->next; brush != brushList; brush = brush->next ) {
 			if( brush->hiddenBrush ) {
@@ -1499,7 +1499,7 @@ void CCamWnd::BuildRendererState() {
 			}
 			// add the surfaces to the renderModel
 			modelSurface_t	surf;
-			for( int i = 0 ; i < tris.Num() ; i++ ) {
+			for( int i = 0; i < tris.Num(); i++ ) {
 				surf.geometry = tris[i];
 				surf.shader = mats[i];
 				worldModel->AddSurface( surf );
@@ -1519,7 +1519,7 @@ void CCamWnd::BuildRendererState() {
 	worldEntity.shaderParms[3] = 1;
 	worldModelDef = g_qeglobals.rw->AddEntityDef( &worldEntity );
 	// create the light and model entities exactly the way the game code would
-	for( ent = entities.next ; ent != &entities ; ent = ent->next ) {
+	for( ent = entities.next; ent != &entities; ent = ent->next ) {
 		if( ent->brushes.onext == &ent->brushes ) {
 			continue;
 		}
@@ -1540,8 +1540,8 @@ void CCamWnd::BuildRendererState() {
 ===============================
 CCamWnd::UpdateRenderEntities
 
-  Creates a new entity state list
-  returns true if a repaint is needed
+Creates a new entity state list
+returns true if a repaint is needed
 ===============================
 */
 bool CCamWnd::UpdateRenderEntities() {
@@ -1549,7 +1549,7 @@ bool CCamWnd::UpdateRenderEntities() {
 		return false;
 	}
 	bool ret = false;
-	for( entity_t *ent = entities.next ; ent != &entities ; ent = ent->next ) {
+	for( entity_t *ent = entities.next; ent != &entities; ent = ent->next ) {
 		BuildEntityRenderState( ent, ( ent->lightDef != -1 || ent->modelDef != -1 || ent->soundEmitter ) ? true : false );
 		if( ret == false && ent->modelDef || ent->lightDef ) {
 			ret = true;
@@ -1562,11 +1562,11 @@ bool CCamWnd::UpdateRenderEntities() {
 ============================
 CCamWnd::FreeRendererState
 
-  Frees the render state data
+Frees the render state data
 ============================
 */
 void CCamWnd::FreeRendererState() {
-	for( entity_t *ent = entities.next ; ent != &entities ; ent = ent->next ) {
+	for( entity_t *ent = entities.next; ent != &entities; ent = ent->next ) {
 		if( ent->lightDef >= 0 ) {
 			g_qeglobals.rw->FreeLightDef( ent->lightDef );
 			ent->lightDef = -1;
@@ -1597,7 +1597,7 @@ void CCamWnd::FreeRendererState() {
 ========================
 CCamWnd::UpdateCaption
 
-  updates the caption based on rendermode and whether the render mode needs updated
+updates the caption based on rendermode and whether the render mode needs updated
 ========================
 */
 void CCamWnd::UpdateCaption() {
@@ -1621,7 +1621,7 @@ void CCamWnd::UpdateCaption() {
 ===========================
 CCamWnd::ToggleRenderMode
 
-	Toggles the render mode
+Toggles the render mode
 ===========================
 */
 void CCamWnd::ToggleRenderMode() {
@@ -1633,7 +1633,7 @@ void CCamWnd::ToggleRenderMode() {
 ===========================
 CCamWnd::ToggleRebuildMode
 
-	Toggles the rebuild mode
+Toggles the rebuild mode
 ===========================
 */
 void CCamWnd::ToggleRebuildMode() {
@@ -1645,7 +1645,7 @@ void CCamWnd::ToggleRebuildMode() {
 ===========================
 CCamWnd::ToggleEntityMode
 
-	Toggles the entity mode
+Toggles the entity mode
 ===========================
 */
 void CCamWnd::ToggleEntityMode() {
@@ -1657,7 +1657,7 @@ void CCamWnd::ToggleEntityMode() {
 ===========================
 CCamWnd::ToggleRenderMode
 
-	Toggles the render mode
+Toggles the render mode
 ===========================
 */
 void CCamWnd::ToggleAnimationMode() {
@@ -1674,13 +1674,13 @@ void CCamWnd::ToggleAnimationMode() {
 ===========================
 CCamWnd::ToggleSoundMode
 
-	Toggles the sound mode
+Toggles the sound mode
 ===========================
 */
 void CCamWnd::ToggleSoundMode() {
 	soundMode ^= 1;
 	UpdateCaption();
-	for( entity_t *ent = entities.next ; ent != &entities ; ent = ent->next ) {
+	for( entity_t *ent = entities.next; ent != &entities; ent = ent->next ) {
 		Entity_UpdateSoundEmitter( ent );
 	}
 }
@@ -1689,7 +1689,7 @@ void CCamWnd::ToggleSoundMode() {
 ===========================
 CCamWnd::ToggleRenderMode
 
-	Toggles the render mode
+Toggles the render mode
 ===========================
 */
 void CCamWnd::ToggleSelectMode() {
@@ -1701,7 +1701,7 @@ void CCamWnd::ToggleSelectMode() {
 =========================
 CCamWnd::MarkWorldDirty
 
-  marks the render world as dirty
+marks the render world as dirty
 =========================
 */
 void CCamWnd::MarkWorldDirty() {
@@ -1713,7 +1713,7 @@ void CCamWnd::MarkWorldDirty() {
 =========================
 CCamWnd::DrawEntityData
 
-  Draws entity data ( experimental )
+Draws entity data ( experimental )
 =========================
 */
 extern void glBox( idVec4 &color, idVec3 &point, float size );
@@ -1763,9 +1763,9 @@ void CCamWnd::DrawEntityData() {
 
 /*
  =======================================================================================================================
-    Cam_Render
+ Cam_Render
 
-	This used the renderSystem to draw a fully lit view of the world
+ This used the renderSystem to draw a fully lit view of the world
  =======================================================================================================================
  */
 void CCamWnd::Cam_Render() {

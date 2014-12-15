@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -55,7 +55,7 @@ bool usercmd_t::operator==( const usercmd_t &rhs ) const {
 			 my == rhs.my );
 }
 
-const int KEY_MOVESPEED	= 127;
+const int KEY_MOVESPEED = 127;
 
 /*typedef enum {
 	UB_NONE,
@@ -153,7 +153,7 @@ const int KEY_MOVESPEED	= 127;
 	UB_IMPULSE63,
 
 	UB_MAX_BUTTONS
-} usercmdButton_t;*/
+	} usercmdButton_t;*/
 
 typedef struct {
 	const char *string;
@@ -161,99 +161,99 @@ typedef struct {
 } userCmdString_t;
 
 userCmdString_t	userCmdStrings[] = {
-	{ "_moveUp",		UB_UP },
-	{ "_moveDown",		UB_DOWN },
-	{ "_left",			UB_LEFT },
-	{ "_right",			UB_RIGHT },
-	{ "_forward",		UB_FORWARD },
-	{ "_back",			UB_BACK },
-	{ "_lookUp",		UB_LOOKUP },
-	{ "_lookDown",		UB_LOOKDOWN },
-	{ "_strafe",		UB_STRAFE },
-	{ "_moveLeft",		UB_MOVELEFT },
-	{ "_moveRight",		UB_MOVERIGHT },
+	{ "_moveUp", UB_UP },
+	{ "_moveDown", UB_DOWN },
+	{ "_left", UB_LEFT },
+	{ "_right", UB_RIGHT },
+	{ "_forward", UB_FORWARD },
+	{ "_back", UB_BACK },
+	{ "_lookUp", UB_LOOKUP },
+	{ "_lookDown", UB_LOOKDOWN },
+	{ "_strafe", UB_STRAFE },
+	{ "_moveLeft", UB_MOVELEFT },
+	{ "_moveRight", UB_MOVERIGHT },
 
-	{ "_attack",		UB_ATTACK },
-	{ "_speed",			UB_SPEED },
-	{ "_zoom",			UB_ZOOM },
-	{ "_showScores",	UB_SHOWSCORES },
-	{ "_mlook",			UB_MLOOK },
+	{ "_attack", UB_ATTACK },
+	{ "_speed", UB_SPEED },
+	{ "_zoom", UB_ZOOM },
+	{ "_showScores", UB_SHOWSCORES },
+	{ "_mlook", UB_MLOOK },
 
-	{ "_button0",		UB_BUTTON0 },
-	{ "_button1",		UB_BUTTON1 },
-	{ "_button2",		UB_BUTTON2 },
-	{ "_button3",		UB_BUTTON3 },
-	{ "_button4",		UB_BUTTON4 },
-	{ "_button5",		UB_BUTTON5 },
-	{ "_button6",		UB_BUTTON6 },
-	{ "_button7",		UB_BUTTON7 },
+	{ "_button0", UB_BUTTON0 },
+	{ "_button1", UB_BUTTON1 },
+	{ "_button2", UB_BUTTON2 },
+	{ "_button3", UB_BUTTON3 },
+	{ "_button4", UB_BUTTON4 },
+	{ "_button5", UB_BUTTON5 },
+	{ "_button6", UB_BUTTON6 },
+	{ "_button7", UB_BUTTON7 },
 
-	{ "_impulse0",		UB_IMPULSE0 },
-	{ "_impulse1",		UB_IMPULSE1 },
-	{ "_impulse2",		UB_IMPULSE2 },
-	{ "_impulse3",		UB_IMPULSE3 },
-	{ "_impulse4",		UB_IMPULSE4 },
-	{ "_impulse5",		UB_IMPULSE5 },
-	{ "_impulse6",		UB_IMPULSE6 },
-	{ "_impulse7",		UB_IMPULSE7 },
-	{ "_impulse8",		UB_IMPULSE8 },
-	{ "_impulse9",		UB_IMPULSE9 },
-	{ "_impulse10",		UB_IMPULSE10 },
-	{ "_impulse11",		UB_IMPULSE11 },
-	{ "_impulse12",		UB_IMPULSE12 },
-	{ "_impulse13",		UB_IMPULSE13 },
-	{ "_impulse14",		UB_IMPULSE14 },
-	{ "_impulse15",		UB_IMPULSE15 },
-	{ "_impulse16",		UB_IMPULSE16 },
-	{ "_impulse17",		UB_IMPULSE17 },
-	{ "_impulse18",		UB_IMPULSE18 },
-	{ "_impulse19",		UB_IMPULSE19 },
-	{ "_impulse20",		UB_IMPULSE20 },
-	{ "_impulse21",		UB_IMPULSE21 },
-	{ "_impulse22",		UB_IMPULSE22 },
-	{ "_impulse23",		UB_IMPULSE23 },
-	{ "_impulse24",		UB_IMPULSE24 },
-	{ "_impulse25",		UB_IMPULSE25 },
-	{ "_impulse26",		UB_IMPULSE26 },
-	{ "_impulse27",		UB_IMPULSE27 },
-	{ "_impulse28",		UB_IMPULSE28 },
-	{ "_impulse29",		UB_IMPULSE29 },
-	{ "_impulse30",		UB_IMPULSE30 },
-	{ "_impulse31",		UB_IMPULSE31 },
-	{ "_impulse32",		UB_IMPULSE32 },
-	{ "_impulse33",		UB_IMPULSE33 },
-	{ "_impulse34",		UB_IMPULSE34 },
-	{ "_impulse35",		UB_IMPULSE35 },
-	{ "_impulse36",		UB_IMPULSE36 },
-	{ "_impulse37",		UB_IMPULSE37 },
-	{ "_impulse38",		UB_IMPULSE38 },
-	{ "_impulse39",		UB_IMPULSE39 },
-	{ "_impulse40",		UB_IMPULSE40 },
-	{ "_impulse41",		UB_IMPULSE41 },
-	{ "_impulse42",		UB_IMPULSE42 },
-	{ "_impulse43",		UB_IMPULSE43 },
-	{ "_impulse44",		UB_IMPULSE44 },
-	{ "_impulse45",		UB_IMPULSE45 },
-	{ "_impulse46",		UB_IMPULSE46 },
-	{ "_impulse47",		UB_IMPULSE47 },
-	{ "_impulse48",		UB_IMPULSE48 },
-	{ "_impulse49",		UB_IMPULSE49 },
-	{ "_impulse50",		UB_IMPULSE50 },
-	{ "_impulse51",		UB_IMPULSE51 },
-	{ "_impulse52",		UB_IMPULSE52 },
-	{ "_impulse53",		UB_IMPULSE53 },
-	{ "_impulse54",		UB_IMPULSE54 },
-	{ "_impulse55",		UB_IMPULSE55 },
-	{ "_impulse56",		UB_IMPULSE56 },
-	{ "_impulse57",		UB_IMPULSE57 },
-	{ "_impulse58",		UB_IMPULSE58 },
-	{ "_impulse59",		UB_IMPULSE59 },
-	{ "_impulse60",		UB_IMPULSE60 },
-	{ "_impulse61",		UB_IMPULSE61 },
-	{ "_impulse62",		UB_IMPULSE62 },
-	{ "_impulse63",		UB_IMPULSE63 },
+	{ "_impulse0", UB_IMPULSE0 },
+	{ "_impulse1", UB_IMPULSE1 },
+	{ "_impulse2", UB_IMPULSE2 },
+	{ "_impulse3", UB_IMPULSE3 },
+	{ "_impulse4", UB_IMPULSE4 },
+	{ "_impulse5", UB_IMPULSE5 },
+	{ "_impulse6", UB_IMPULSE6 },
+	{ "_impulse7", UB_IMPULSE7 },
+	{ "_impulse8", UB_IMPULSE8 },
+	{ "_impulse9", UB_IMPULSE9 },
+	{ "_impulse10", UB_IMPULSE10 },
+	{ "_impulse11", UB_IMPULSE11 },
+	{ "_impulse12", UB_IMPULSE12 },
+	{ "_impulse13", UB_IMPULSE13 },
+	{ "_impulse14", UB_IMPULSE14 },
+	{ "_impulse15", UB_IMPULSE15 },
+	{ "_impulse16", UB_IMPULSE16 },
+	{ "_impulse17", UB_IMPULSE17 },
+	{ "_impulse18", UB_IMPULSE18 },
+	{ "_impulse19", UB_IMPULSE19 },
+	{ "_impulse20", UB_IMPULSE20 },
+	{ "_impulse21", UB_IMPULSE21 },
+	{ "_impulse22", UB_IMPULSE22 },
+	{ "_impulse23", UB_IMPULSE23 },
+	{ "_impulse24", UB_IMPULSE24 },
+	{ "_impulse25", UB_IMPULSE25 },
+	{ "_impulse26", UB_IMPULSE26 },
+	{ "_impulse27", UB_IMPULSE27 },
+	{ "_impulse28", UB_IMPULSE28 },
+	{ "_impulse29", UB_IMPULSE29 },
+	{ "_impulse30", UB_IMPULSE30 },
+	{ "_impulse31", UB_IMPULSE31 },
+	{ "_impulse32", UB_IMPULSE32 },
+	{ "_impulse33", UB_IMPULSE33 },
+	{ "_impulse34", UB_IMPULSE34 },
+	{ "_impulse35", UB_IMPULSE35 },
+	{ "_impulse36", UB_IMPULSE36 },
+	{ "_impulse37", UB_IMPULSE37 },
+	{ "_impulse38", UB_IMPULSE38 },
+	{ "_impulse39", UB_IMPULSE39 },
+	{ "_impulse40", UB_IMPULSE40 },
+	{ "_impulse41", UB_IMPULSE41 },
+	{ "_impulse42", UB_IMPULSE42 },
+	{ "_impulse43", UB_IMPULSE43 },
+	{ "_impulse44", UB_IMPULSE44 },
+	{ "_impulse45", UB_IMPULSE45 },
+	{ "_impulse46", UB_IMPULSE46 },
+	{ "_impulse47", UB_IMPULSE47 },
+	{ "_impulse48", UB_IMPULSE48 },
+	{ "_impulse49", UB_IMPULSE49 },
+	{ "_impulse50", UB_IMPULSE50 },
+	{ "_impulse51", UB_IMPULSE51 },
+	{ "_impulse52", UB_IMPULSE52 },
+	{ "_impulse53", UB_IMPULSE53 },
+	{ "_impulse54", UB_IMPULSE54 },
+	{ "_impulse55", UB_IMPULSE55 },
+	{ "_impulse56", UB_IMPULSE56 },
+	{ "_impulse57", UB_IMPULSE57 },
+	{ "_impulse58", UB_IMPULSE58 },
+	{ "_impulse59", UB_IMPULSE59 },
+	{ "_impulse60", UB_IMPULSE60 },
+	{ "_impulse61", UB_IMPULSE61 },
+	{ "_impulse62", UB_IMPULSE62 },
+	{ "_impulse63", UB_IMPULSE63 },
 
-	{ NULL,				UB_NONE },
+	{ NULL, UB_NONE },
 };
 
 class buttonState_t {
@@ -576,9 +576,9 @@ void idUsercmdGenLocal::MouseMove( void ) {
 	}
 	mx = 0;
 	my = 0;
-	for( i = 0 ; i < smooth ; i++ ) {
-		mx += history[( historyCounter - i + 8 ) & 7 ][0];
-		my += history[( historyCounter - i + 8 ) & 7 ][1];
+	for( i = 0; i < smooth; i++ ) {
+		mx += history[( historyCounter - i + 8 ) & 7][0];
+		my += history[( historyCounter - i + 8 ) & 7][1];
 	}
 	mx /= smooth;
 	my /= smooth;
@@ -592,9 +592,9 @@ void idUsercmdGenLocal::MouseMove( void ) {
 	}
 	strafeMx = 0;
 	strafeMy = 0;
-	for( i = 0 ; i < smooth ; i++ ) {
-		strafeMx += history[( historyCounter - i + 8 ) & 7 ][0];
-		strafeMy += history[( historyCounter - i + 8 ) & 7 ][1];
+	for( i = 0; i < smooth; i++ ) {
+		strafeMx += history[( historyCounter - i + 8 ) & 7][0];
+		strafeMy += history[( historyCounter - i + 8 ) & 7][1];
 	}
 	strafeMx /= smooth;
 	strafeMy /= smooth;
@@ -667,7 +667,7 @@ void idUsercmdGenLocal::CmdButtons( void ) {
 	int		i;
 	cmd.buttons = 0;
 	// figure button bits
-	for( i = 0 ; i <= 7 ; i++ ) {
+	for( i = 0; i <= 7; i++ ) {
 		if( ButtonState( ( UserCmdButton )( UB_BUTTON0 + i ) ) ) {
 			cmd.buttons |= 1 << i;
 		}
@@ -765,7 +765,7 @@ Returns the button if the command string is used by the async usercmd generator.
 ================
 */
 int	idUsercmdGenLocal::CommandStringUsercmdData( const char *cmdString ) {
-	for( userCmdString_t *ucs = userCmdStrings ; ucs->string ; ucs++ ) {
+	for( userCmdString_t *ucs = userCmdStrings; ucs->string; ucs++ ) {
 		if( idStr::Icmp( cmdString, ucs->string ) == 0 ) {
 			return ucs->button;
 		}
@@ -850,7 +850,7 @@ usercmd_t idUsercmdGenLocal::TicCmd( int ticNumber ) {
 		// async code to overflow the buffers
 		//common->Printf( "warning: idUsercmdGenLocal::TicCmd ticNumber <= com_ticNumber - MAX_BUFFERED_USERCMD\n" );
 	}
-	return buffered[ ticNumber & ( MAX_BUFFERED_USERCMD - 1 ) ];
+	return buffered[ticNumber & ( MAX_BUFFERED_USERCMD - 1 )];
 }
 
 //======================================================================
@@ -864,13 +864,13 @@ Handles async mouse/keyboard button actions
 */
 void idUsercmdGenLocal::Key( int keyNum, bool down ) {
 	// Sanity check, sometimes we get double message :(
-	if( keyState[ keyNum ] == down ) {
+	if( keyState[keyNum] == down ) {
 		return;
 	}
-	keyState[ keyNum ] = down;
+	keyState[keyNum] = down;
 	int action = idKeyInput::GetUsercmdAction( keyNum );
 	if( down ) {
-		buttonState[ action ]++;
+		buttonState[action]++;
 		if( !Inhibited() ) {
 			if( action >= UB_IMPULSE0 && action <= UB_IMPULSE61 ) {
 				cmd.impulse = action - UB_IMPULSE0;
@@ -878,10 +878,10 @@ void idUsercmdGenLocal::Key( int keyNum, bool down ) {
 			}
 		}
 	} else {
-		buttonState[ action ]--;
+		buttonState[action]--;
 		// we might have one held down across an app active transition
-		if( buttonState[ action ] < 0 ) {
-			buttonState[ action ] = 0;
+		if( buttonState[action] < 0 ) {
+			buttonState[action] = 0;
 		}
 	}
 }

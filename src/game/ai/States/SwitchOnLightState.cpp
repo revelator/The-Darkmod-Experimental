@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -109,7 +109,7 @@ bool SwitchOnLightState::CheckRelightPosition( idLight *light, idAI *owner, idVe
 	idList<idVec3> positions;
 	positions.Clear();
 	while( ( check4Position != NULL ) && !posFound ) {
-		for( int i = 0 ; i < check4Position->targets.Num() ; i++ ) {
+		for( int i = 0; i < check4Position->targets.Num(); i++ ) {
 			idEntity *ent = check4Position->targets[i].GetEntity();
 			if( ent == NULL ) {
 				continue;
@@ -134,13 +134,13 @@ bool SwitchOnLightState::CheckRelightPosition( idLight *light, idAI *owner, idVe
 		idList<int> distances1, distances2;
 		distances1.SetNum( num );
 		distances2.SetNum( num );
-		for( int i = 0 ; i < num ; i++ ) {
+		for( int i = 0; i < num; i++ ) {
 			distances1[i] = distances2[i] = ( int )( positions[i] - org ).LengthSqr(); // integer squared distance from AI to relight position
 		}
 		distances1.Sort();
 		int areaNum = owner->PointReachableAreaNum( org, 1.0f );
-		for( int i = 0 ; i < num ; i++ ) { // sorted index
-			for( int j = 0 ; j < num ; j++ ) { // unsorted index
+		for( int i = 0; i < num; i++ ) { // sorted index
+			for( int j = 0; j < num; j++ ) { // unsorted index
 				if( distances2[j] == distances1[i] ) { // is element j of the unsorted list equal to element i of the sorted list?
 					pos = positions[j]; // if so, use the unsorted index to retrieve the matching relight position
 					int targetAreaNum = owner->PointReachableAreaNum( pos, 1.0f );

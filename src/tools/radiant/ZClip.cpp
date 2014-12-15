@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -30,15 +30,15 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 CZClip::CZClip() {
 	LONG
 	lSize = sizeof( m_bEnabled );
-	if( !LoadRegistryInfo( "radiant_ZClipEnabled",	&m_bEnabled, &lSize ) ) {
+	if( !LoadRegistryInfo( "radiant_ZClipEnabled", &m_bEnabled, &lSize ) ) {
 		m_bEnabled = false;
 	}
 	lSize = sizeof( m_iZClipTop );
-	if( !LoadRegistryInfo( "radiant_ZClipTop",		&m_iZClipTop, &lSize ) ) {
+	if( !LoadRegistryInfo( "radiant_ZClipTop", &m_iZClipTop, &lSize ) ) {
 		m_iZClipTop = 64;
 	}
 	lSize = sizeof( m_iZClipBottom );
-	if( !LoadRegistryInfo( "radiant_ZClipBottom",	&m_iZClipBottom, &lSize ) ) {
+	if( !LoadRegistryInfo( "radiant_ZClipBottom", &m_iZClipBottom, &lSize ) ) {
 		m_iZClipBottom = -64;
 	}
 	Legalise();
@@ -46,15 +46,15 @@ CZClip::CZClip() {
 
 CZClip::~CZClip() {
 	// TODO: registry save
-	SaveRegistryInfo( "radiant_ZClipEnabled", &m_bEnabled,		sizeof( m_bEnabled ) );
-	SaveRegistryInfo( "radiant_ZClipTop",     &m_iZClipTop,		sizeof( m_iZClipTop ) );
-	SaveRegistryInfo( "radiant_ZClipBottom",  &m_iZClipBottom,	sizeof( m_iZClipBottom ) );
+	SaveRegistryInfo( "radiant_ZClipEnabled", &m_bEnabled, sizeof( m_bEnabled ) );
+	SaveRegistryInfo( "radiant_ZClipTop", &m_iZClipTop, sizeof( m_iZClipTop ) );
+	SaveRegistryInfo( "radiant_ZClipBottom", &m_iZClipBottom, sizeof( m_iZClipBottom ) );
 }
 
 void CZClip::Reset( void ) {
-	m_iZClipTop		= 64;		// arb. starting values, but must be at least 64 apart
-	m_iZClipBottom	= -64;
-	m_bEnabled		= false;
+	m_iZClipTop = 64;		// arb. starting values, but must be at least 64 apart
+	m_iZClipBottom = -64;
+	m_bEnabled = false;
 	Legalise();
 }
 

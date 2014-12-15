@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -156,7 +156,7 @@ CDragPoint *PointRay( const idVec3 &org, const idVec3 &dir, float *dist ) {
 	bestd = 12 / scale / 2;
 	int count = dragPoints.GetSize();
 	for( i = 0; i < count; i++ ) {
-		drag = reinterpret_cast < CDragPoint * >( dragPoints[i] );
+		drag = reinterpret_cast <CDragPoint *>( dragPoints[i] );
 		temp = drag->vec - org;
 		d = temp * dir;
 		temp = org + d * dir;
@@ -166,7 +166,7 @@ CDragPoint *PointRay( const idVec3 &org, const idVec3 &dir, float *dist ) {
 			bestd = d;
 			besti = i;
 			if( priority == NULL ) {
-				priority = reinterpret_cast < CDragPoint * >( dragPoints[besti] );
+				priority = reinterpret_cast <CDragPoint *>( dragPoints[besti] );
 				if( !priority->priority ) {
 					priority = NULL;
 				}
@@ -176,7 +176,7 @@ CDragPoint *PointRay( const idVec3 &org, const idVec3 &dir, float *dist ) {
 	if( besti == -1 ) {
 		return NULL;
 	}
-	drag = reinterpret_cast < CDragPoint * >( dragPoints[besti] );
+	drag = reinterpret_cast <CDragPoint *>( dragPoints[besti] );
 	if( priority && !drag->priority ) {
 		drag = priority;
 	}
@@ -196,7 +196,7 @@ void ClearSelectablePoints( brush_t *b ) {
 		dragPoints.RemoveAll();
 		int count = ptr.GetSize();
 		for( int i = 0; i < count; i++ ) {
-			if( b == reinterpret_cast < CDragPoint * >( ptr.GetAt( i ) )->pBrush ) {
+			if( b == reinterpret_cast <CDragPoint *>( ptr.GetAt( i ) )->pBrush ) {
 				continue;
 			} else {
 				dragPoints.Add( ptr.GetAt( i ) );
@@ -220,7 +220,7 @@ void AddSelectablePoint( brush_t *b, idVec3 v, int type, bool priority ) {
 void UpdateSelectablePoint( brush_t *b, idVec3 v, int type ) {
 	int count = dragPoints.GetSize();
 	for( int i = 0; i < count; i++ ) {
-		CDragPoint	*drag = reinterpret_cast < CDragPoint * >( dragPoints.GetAt( i ) );
+		CDragPoint	*drag = reinterpret_cast <CDragPoint *>( dragPoints.GetAt( i ) );
 		if( b == drag->pBrush && type == drag->nType ) {
 			VectorCopy( v, drag->vec );
 			return;
@@ -260,11 +260,11 @@ void VectorToAngles( idVec3 vec, idVec3 angles ) {
 
 /*
  =======================================================================================================================
-    RotateLight target is relative to the light origin up and right are relative to the target up and right are
-    perpendicular and are on a plane through the target with the target vector as normal delta is the movement of the
-    target relative to the light
+ RotateLight target is relative to the light origin up and right are relative to the target up and right are
+ perpendicular and are on a plane through the target with the target vector as normal delta is the movement of the
+ target relative to the light
  =======================================================================================================================
-*/
+ */
 void VectorSnapGrid( idVec3 &v ) {
 	v.x = floor( v.x / g_qeglobals.d_gridsize + 0.5 ) * g_qeglobals.d_gridsize;
 	v.y = floor( v.y / g_qeglobals.d_gridsize + 0.5 ) * g_qeglobals.d_gridsize;
@@ -274,7 +274,7 @@ void VectorSnapGrid( idVec3 &v ) {
 /*
  =======================================================================================================================
  =======================================================================================================================
-*/
+ */
 static void RotateLight( idVec3 &target, idVec3 &up, idVec3 &right, const idVec3 &delta ) {
 	idVec3	newtarget, cross, dst;
 	idVec3	normal;
@@ -333,7 +333,7 @@ static void RotateLight( idVec3 &target, idVec3 &up, idVec3 &right, const idVec3
 /*
  =======================================================================================================================
  =======================================================================================================================
-*/
+ */
 extern idVec3 Brush_TransformedPoint( brush_t *b, const idVec3 &in );
 extern idMat3 Brush_RotationMatrix( brush_t *b );
 bool UpdateActiveDragPoint( const idVec3 &move ) {
@@ -417,13 +417,13 @@ bool UpdateActiveDragPoint( const idVec3 &move ) {
 /*
  =======================================================================================================================
  =======================================================================================================================
-*/
+ */
 bool SetDragPointCursor( idVec3 p, int nView ) {
 	activeDrag = NULL;
 	int numDragPoints = dragPoints.GetSize();
 	for( int i = 0; i < numDragPoints; i++ ) {
-		if( reinterpret_cast < CDragPoint * >( dragPoints[i] )->PointWithin( p, nView ) ) {
-			activeDrag = reinterpret_cast < CDragPoint * >( dragPoints[i] );
+		if( reinterpret_cast <CDragPoint *>( dragPoints[i] )->PointWithin( p, nView ) ) {
+			activeDrag = reinterpret_cast <CDragPoint *>( dragPoints[i] );
 			return true;
 		}
 	}
@@ -483,7 +483,7 @@ CXYWnd::CXYWnd() {
 CXYWnd::~CXYWnd() {
 	int nSize = g_ptrMenus.GetSize();
 	while( nSize > 0 ) {
-		CMenu	*pMenu = reinterpret_cast < CMenu * >( g_ptrMenus.GetAt( nSize - 1 ) );
+		CMenu	*pMenu = reinterpret_cast <CMenu *>( g_ptrMenus.GetAt( nSize - 1 ) );
 		ASSERT( pMenu );
 		pMenu->DestroyMenu();
 		delete pMenu;
@@ -589,7 +589,7 @@ static unsigned s_stipple[32] = {
 
 /*
  =======================================================================================================================
-    WXY_WndProc
+ WXY_WndProc
  =======================================================================================================================
  */
 LONG WINAPI XYWndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam ) {
@@ -1654,13 +1654,13 @@ void CreateSmartEntity( CXYWnd *pWnd, int x, int y, const char *pName ) {
 		CPtrArray	array;
 		g_bScreenUpdates = false;
 		CreateRightClickEntity( g_pParentWnd->ActiveXY(), g_nSmartX, g_nSmartY, "func_rotating" );
-		array.Add( reinterpret_cast < void * >( selected_brushes.next ) );
+		array.Add( reinterpret_cast <void *>( selected_brushes.next ) );
 		Select_Deselect();
 		brush_t *pBrush = CreateSmartBrush( g_PathPoints[0] );
 		array.Add( pBrush );
 		Select_Deselect();
-		Select_Brush( reinterpret_cast < brush_t * >( array.GetAt( 0 ) ) );
-		Select_Brush( reinterpret_cast < brush_t * >( array.GetAt( 1 ) ) );
+		Select_Brush( reinterpret_cast <brush_t *>( array.GetAt( 0 ) ) );
+		Select_Brush( reinterpret_cast <brush_t *>( array.GetAt( 1 ) ) );
 		ConnectEntities();
 		g_bScreenUpdates = true;
 	}
@@ -1677,7 +1677,7 @@ void FinishSmartCreation() {
 	if( g_strSmartEntity.Find( "Smart_Train" ) >= 0 ) {
 		g_bScreenUpdates = false;
 		CreateRightClickEntity( g_pParentWnd->ActiveXY(), g_nSmartX, g_nSmartY, "func_train" );
-		array.Add( reinterpret_cast < void * >( selected_brushes.next ) );
+		array.Add( reinterpret_cast <void *>( selected_brushes.next ) );
 		int n;
 		for( n = 0; n < g_nPathCount; n++ ) {
 			Select_Deselect();
@@ -1688,12 +1688,12 @@ void FinishSmartCreation() {
 				g_PathPoints[n].m_ptScreen.y,
 				"path_corner"
 			);
-			array.Add( reinterpret_cast < void * >( selected_brushes.next ) );
+			array.Add( reinterpret_cast <void *>( selected_brushes.next ) );
 		}
 		for( n = 0; n < g_nPathCount; n++ ) {
 			Select_Deselect();
-			Select_Brush( reinterpret_cast < brush_t * >( array.GetAt( n ) ) );
-			Select_Brush( reinterpret_cast < brush_t * >( array.GetAt( n + 1 ) ) );
+			Select_Brush( reinterpret_cast <brush_t *>( array.GetAt( n ) ) );
+			Select_Brush( reinterpret_cast <brush_t *>( array.GetAt( n + 1 ) ) );
 			ConnectEntities();
 		}
 		g_bScreenUpdates = true;
@@ -1769,8 +1769,8 @@ BOOL CXYWnd::OnCmdMsg( UINT nID, int nCode, void *pExtra, AFX_CMDHANDLERINFO *pH
 
 bool MergeMenu( CMenu *pMenuDestination, const CMenu *pMenuAdd, bool bTopLevel /*=false*/ ) {
 	// get the number menu items in the menus
-	int iMenuAddItemCount	= pMenuAdd->GetMenuItemCount();
-	int iMenuDestItemCount	= pMenuDestination->GetMenuItemCount();
+	int iMenuAddItemCount = pMenuAdd->GetMenuItemCount();
+	int iMenuDestItemCount = pMenuDestination->GetMenuItemCount();
 	// if there are no items return
 	if( iMenuAddItemCount == 0 ) {
 		return true;
@@ -1791,7 +1791,7 @@ bool MergeMenu( CMenu *pMenuDestination, const CMenu *pMenuAdd, bool bTopLevel /
 		if( !pSubMenu ) {
 			// normal menu item
 			// read the source and append at the destination
-			UINT nState	 = pMenuAdd->GetMenuState( iLoop, MF_BYPOSITION );
+			UINT nState = pMenuAdd->GetMenuState( iLoop, MF_BYPOSITION );
 			UINT nItemID = pMenuAdd->GetMenuItemID( iLoop );
 			if( pMenuDestination->AppendMenu( nState, nItemID, sMenuAddString ) ) {
 				// menu item added, don't forget to correct the item count
@@ -1915,7 +1915,7 @@ void CXYWnd::HandleDrop() {
 					if( pChild ) {
 						pMakeEntityPop->AppendMenu(
 							MF_POPUP,
-							reinterpret_cast < unsigned int >( pChild->GetSafeHmenu() ),
+							reinterpret_cast <unsigned int>( pChild->GetSafeHmenu() ),
 							strActive
 						);
 						g_ptrMenus.Add( pChild );
@@ -1931,7 +1931,7 @@ void CXYWnd::HandleDrop() {
 				if( pChild ) {
 					pMakeEntityPop->AppendMenu(
 						MF_POPUP,
-						reinterpret_cast < unsigned int >( pChild->GetSafeHmenu() ),
+						reinterpret_cast <unsigned int>( pChild->GetSafeHmenu() ),
 						strActive
 					);
 					g_ptrMenus.Add( pChild );
@@ -1945,7 +1945,7 @@ void CXYWnd::HandleDrop() {
 		if( pMakeEntityPop != &m_mnuDrop ) {
 			m_mnuDrop.AppendMenu(
 				MF_POPUP,
-				reinterpret_cast < unsigned int >( pMakeEntityPop->GetSafeHmenu() ),
+				reinterpret_cast <unsigned int>( pMakeEntityPop->GetSafeHmenu() ),
 				"Make Entity"
 			);
 		}
@@ -2216,7 +2216,7 @@ bool CXYWnd::DragDelta( int x, int y, idVec3 &move ) {
 
 /*
  =======================================================================================================================
-    NewBrushDrag
+ NewBrushDrag
  =======================================================================================================================
  */
 void CXYWnd::NewBrushDrag( int x, int y ) {
@@ -2269,7 +2269,7 @@ void CXYWnd::NewBrushDrag( int x, int y ) {
 
 /*
  =======================================================================================================================
-    XY_MouseMoved
+ XY_MouseMoved
  =======================================================================================================================
  */
 bool CXYWnd::XY_MouseMoved( int x, int y, int buttons ) {
@@ -2393,15 +2393,15 @@ bool CXYWnd::XY_MouseMoved( int x, int y, int buttons ) {
 
 /*
  =======================================================================================================================
-    DRAWING £
-    XY_DrawGrid
+ DRAWING £
+ XY_DrawGrid
  =======================================================================================================================
  */
 void CXYWnd::XY_DrawGrid() {
 	float	x, y, xb, xe, yb, ye;
 	int		w, h;
 	char	text[32];
-	int startPos = max( 64 , g_qeglobals.d_gridsize );
+	int startPos = max( 64, g_qeglobals.d_gridsize );
 	w = m_nWidth / 2 / m_fScale;
 	h = m_nHeight / 2 / m_fScale;
 	int nDim1 = ( m_nViewType == YZ ) ? 1 : 0;
@@ -2431,7 +2431,7 @@ void CXYWnd::XY_DrawGrid() {
 	GL_Color( g_qeglobals.d_savedinfo.colors[COLOR_GRIDMAJOR] );
 	int stepSize = 64 * 0.1 / m_fScale;
 	if( stepSize < 64 ) {
-		stepSize = max( 64 , g_qeglobals.d_gridsize );
+		stepSize = max( 64, g_qeglobals.d_gridsize );
 	} else {
 		int i;
 		for( i = 1; i < stepSize; i <<= 1 ) {
@@ -2526,7 +2526,7 @@ void CXYWnd::XY_DrawGrid() {
 
 /*
  =======================================================================================================================
-    XY_DrawBlockGrid
+ XY_DrawBlockGrid
  =======================================================================================================================
  */
 void CXYWnd::XY_DrawBlockGrid() {
@@ -2734,7 +2734,7 @@ void CXYWnd::DrawZIcon( void ) {
 
 /*
  =======================================================================================================================
-    FilterBrush
+ FilterBrush
  =======================================================================================================================
  */
 bool FilterBrush( brush_t *pb ) {
@@ -2852,9 +2852,9 @@ bool FilterBrush( brush_t *pb ) {
 
 /*
  =======================================================================================================================
-    PATH LINES £
-    DrawPathLines Draws connections between entities. Needs to consider all entities, not just ones on screen, because
-    the lines can be visible when neither end is. Called for both camera view and xy view.
+ PATH LINES £
+ DrawPathLines Draws connections between entities. Needs to consider all entities, not just ones on screen, because
+ the lines can be visible when neither end is. Called for both camera view and xy view.
  =======================================================================================================================
  */
 void DrawPathLines( void ) {
@@ -3089,7 +3089,7 @@ void CXYWnd::XY_Draw() {
 	e = world_entity;
 	for( brush = active_brushes.next; brush != &active_brushes; brush = brush->next ) {
 		if( brush->forceVisibile || ( brush->owner->eclass->nShowFlags & ( ECLASS_LIGHT | ECLASS_PROJECTEDLIGHT ) ) ) {
-		} else if(	brush->mins[nDim1] > maxs[0] ||	brush->mins[nDim2] > maxs[1] ||	brush->maxs[nDim1] < mins[0] || brush->maxs[nDim2] < mins[1] ) {
+		} else if( brush->mins[nDim1] > maxs[0] || brush->mins[nDim2] > maxs[1] || brush->maxs[nDim1] < mins[0] || brush->maxs[nDim2] < mins[1] ) {
 			culled++;
 			continue;				// off screen
 		}
@@ -3236,7 +3236,7 @@ void CXYWnd::XY_Draw() {
 	// area selection hack
 	if( g_qeglobals.d_select_mode == sel_area ) {
 		glEnable( GL_BLEND );
-		glPolygonMode( GL_FRONT_AND_BACK , GL_FILL );
+		glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
 		glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 		glColor4f( 0.0, 0.0, 1.0, 0.25 );
 		glRectf
@@ -3247,7 +3247,7 @@ void CXYWnd::XY_Draw() {
 			g_qeglobals.d_vAreaBR[nDim2]
 		);
 		glDisable( GL_BLEND );
-		glPolygonMode( GL_FRONT_AND_BACK , GL_LINE );
+		glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 		GL_Color( 1.0f, 1.0f, 1.0f );
 		glRectf
 		(
@@ -3542,7 +3542,7 @@ entity_t *Entity_CopyClone( entity_t *e ) {
 bool OnList( entity_t *pFind, CPtrArray *pList ) {
 	int nSize = pList->GetSize();
 	while( nSize-- > 0 ) {
-		entity_t	*pEntity = reinterpret_cast < entity_t * >( pList->GetAt( nSize ) );
+		entity_t	*pEntity = reinterpret_cast <entity_t *>( pList->GetAt( nSize ) );
 		if( pEntity == pFind ) {
 			return true;
 		}
@@ -3568,7 +3568,7 @@ void CXYWnd::Copy() {
 			long	lSize = g_Clipboard.GetLength();
 			HANDLE	h = ::GlobalAlloc( GMEM_ZEROINIT | GMEM_MOVEABLE | GMEM_DDESHARE, lSize + sizeof( long ) );
 			if( h != NULL ) {
-				unsigned char	*cp = reinterpret_cast < unsigned char * >( ::GlobalLock( h ) );
+				unsigned char	*cp = reinterpret_cast <unsigned char *>( ::GlobalLock( h ) );
 				memcpy( cp, &lSize, sizeof( long ) );
 				cp += sizeof( long );
 				g_Clipboard.SeekToBegin();
@@ -3600,7 +3600,7 @@ void CXYWnd::Copy() {
 		} else {
 			if( !OnList( pBrush->owner, &holdArray ) ) {
 				entity_t	*e = pBrush->owner;
-				holdArray.Add( reinterpret_cast < void * >( e ) );
+				holdArray.Add( reinterpret_cast <void *>( e ) );
 				entity_t	*pEClone = Entity_CopyClone( e );
 				for( brush_t *pEB = e->brushes.onext; pEB != &e->brushes; pEB = pEB->onext ) {
 					brush_t *pClone = Brush_Clone( pEB );
@@ -3672,7 +3672,7 @@ void CXYWnd::Paste() {
 		HANDLE	h = ::GetClipboardData( nClipboard );
 		if( h ) {
 			g_Clipboard.SetLength( 0 );
-			unsigned char	*cp = reinterpret_cast < unsigned char * >( ::GlobalLock( h ) );
+			unsigned char	*cp = reinterpret_cast <unsigned char *>( ::GlobalLock( h ) );
 			long			lSize = 0;
 			memcpy( &lSize, cp, sizeof( long ) );
 			cp += sizeof( long );
@@ -3867,7 +3867,7 @@ BOOL CXYWnd::OnMouseWheel( UINT nFlags, short zDelta, CPoint pt ) {
 void CXYWnd::CyclePrecisionCrosshairMode( void ) {
 	common->Printf( "TODO: Make DrawPrecisionCrosshair work..." );
 	/// Cycle to next mode, wrap if necessary
-	m_precisionCrosshairMode ++;
+	m_precisionCrosshairMode++;
 	if( m_precisionCrosshairMode >= PRECISION_CROSSHAIR_MAX ) {
 		m_precisionCrosshairMode = PRECISION_CROSSHAIR_NONE;
 	}
@@ -3897,16 +3897,16 @@ void CXYWnd::DrawPrecisionCrosshair( void ) {
 	} else {
 		XY_ToPoint( m_mouseX, m_mouseY, mouse3dPos );
 	}
-	x = mouse3dPos[ m_axisHoriz ];
-	y = mouse3dPos[ m_axisVert ];
+	x = mouse3dPos[m_axisHoriz];
+	y = mouse3dPos[m_axisVert];
 	/// Use the color specified by the user
-	crossEndColor[0] = g_qeglobals.d_savedinfo.colors[ COLOR_PRECISION_CROSSHAIR ][0];
-	crossEndColor[1] = g_qeglobals.d_savedinfo.colors[ COLOR_PRECISION_CROSSHAIR ][1];
-	crossEndColor[2] = g_qeglobals.d_savedinfo.colors[ COLOR_PRECISION_CROSSHAIR ][2];
+	crossEndColor[0] = g_qeglobals.d_savedinfo.colors[COLOR_PRECISION_CROSSHAIR][0];
+	crossEndColor[1] = g_qeglobals.d_savedinfo.colors[COLOR_PRECISION_CROSSHAIR][1];
+	crossEndColor[2] = g_qeglobals.d_savedinfo.colors[COLOR_PRECISION_CROSSHAIR][2];
 	crossEndColor[3] = 1.0f;
 	crossMidColor = crossEndColor;
 	if( m_precisionCrosshairMode == PRECISION_CROSSHAIR_FREE ) {
-		crossMidColor[ 3 ] = 0.0f;    // intersection-color is 100% transparent (alpha = 0.0f)
+		crossMidColor[3] = 0.0f;    // intersection-color is 100% transparent (alpha = 0.0f)
 	}
 	/// Set up OpenGL states (for drawing smooth-shaded plain-colored lines)
 	glEnable( GL_BLEND );

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -321,7 +321,7 @@ bool idSessionLocal::HandleSaveGameMenuCommand( idCmdArgs &args, int &icmd ) {
 				}
 			}
 			sessLocal.SaveGame( saveGameName );
-			SetSaveGameGuiVars( );
+			SetSaveGameGuiVars();
 			guiActive->StateChanged( com_frameTime );
 		}
 		return true;
@@ -332,7 +332,7 @@ bool idSessionLocal::HandleSaveGameMenuCommand( idCmdArgs &args, int &icmd ) {
 			fileSystem->RemoveFile( va( "savegames/%s.save", loadGameList[choice].c_str() ) );
 			fileSystem->RemoveFile( va( "savegames/%s.tga", loadGameList[choice].c_str() ) );
 			fileSystem->RemoveFile( va( "savegames/%s.txt", loadGameList[choice].c_str() ) );
-			SetSaveGameGuiVars( );
+			SetSaveGameGuiVars();
 			guiActive->StateChanged( com_frameTime );
 		}
 		return true;
@@ -363,7 +363,7 @@ bool idSessionLocal::HandleSaveGameMenuCommand( idCmdArgs &args, int &icmd ) {
 			if( material ) {
 				material->ReloadImages( false );
 			}
-			guiActive->SetStateString( "loadgame_shot",  screenshot );
+			guiActive->SetStateString( "loadgame_shot", screenshot );
 			saveName.RemoveColors();
 			guiActive->SetStateString( "saveGameName", saveName );
 			guiActive->SetStateString( "saveGameDescription", description );
@@ -435,7 +435,7 @@ idSessionLocal::UpdateMPLevelShot
 ==============
 */
 void idSessionLocal::UpdateMPLevelShot( void ) {
-	char screenshot[ MAX_STRING_CHARS ];
+	char screenshot[MAX_STRING_CHARS];
 	fileSystem->FindMapScreenshot( cvarSystem->GetCVarString( "si_map" ), screenshot, MAX_STRING_CHARS );
 	guiMainMenu->SetStateString( "current_levelshot", screenshot );
 }
@@ -469,7 +469,7 @@ void idSessionLocal::HandleMainMenuCommands( const char *menuCommand ) {
 		if( !idStr::Icmp( cmd, "loadMod" ) ) {
 			int choice = guiActive->State().GetInt( "modsList_sel_0" );
 			if( choice >= 0 && choice < modsList.Num() ) {
-				cvarSystem->SetCVarString( "fs_mod", modsList[ choice ] );
+				cvarSystem->SetCVarString( "fs_mod", modsList[choice] );
 				cmdSystem->BufferCommandText( CMD_EXEC_APPEND, "reloadEngine menu\n" );
 			}
 		}
@@ -485,12 +485,12 @@ void idSessionLocal::HandleMainMenuCommands( const char *menuCommand ) {
 			if( guiActive->State().GetBool( "lanSet" ) ) {
 				cmdSystem->BufferCommandText( CMD_EXEC_NOW, "LANScan" );
 			} else {
-				idAsyncNetwork::client.serverList.NetScan( );
+				idAsyncNetwork::client.serverList.NetScan();
 			}
 			continue;
 		}
 		if( !idStr::Icmp( cmd, "FilterServers" ) ) {
-			idAsyncNetwork::client.serverList.ApplyFilter( );
+			idAsyncNetwork::client.serverList.ApplyFilter();
 			continue;
 		}
 		if( !idStr::Icmp( cmd, "sortServerName" ) ) {
@@ -541,7 +541,7 @@ void idSessionLocal::HandleMainMenuCommands( const char *menuCommand ) {
 				dict = fileSystem->GetMapDecl( i );
 				if( dict && dict->GetBool( gametype ) ) {
 					const char *mapName = dict->GetString( "name" );
-					if( mapName[ 0 ] == '\0' ) {
+					if( mapName[0] == '\0' ) {
 						mapName = dict->GetString( "path" );
 					}
 					mapName = common->Translate( mapName );
@@ -617,7 +617,7 @@ void idSessionLocal::HandleMainMenuCommands( const char *menuCommand ) {
 						break;
 					}
 					if( n_clients > maxclients ) {
-						if( MessageBox( MSG_OKCANCEL, va( common->Translate( "#str_04315" ), dedicated ? maxclients : Min( 8, maxclients + 1 ) ), common->Translate( "#str_04316" ), true, "OK" )[ 0 ] == '\0' ) {
+						if( MessageBox( MSG_OKCANCEL, va( common->Translate( "#str_04315" ), dedicated ? maxclients : Min( 8, maxclients + 1 ) ), common->Translate( "#str_04316" ), true, "OK" )[0] == '\0' ) {
 							continue;
 						}
 						cvarSystem->SetCVarInteger( "si_maxPlayers", dedicated ? maxclients : Min( 8, maxclients + 1 ) );
@@ -626,7 +626,7 @@ void idSessionLocal::HandleMainMenuCommands( const char *menuCommand ) {
 			}
 			if( !dedicated && !cvarSystem->GetCVarBool( "net_LANServer" ) && cvarSystem->GetCVarInteger( "si_maxPlayers" ) > 4 ) {
 				// "Dedicated server mode is recommended for internet servers with more than 4 players. Continue in listen mode?"
-				if( !MessageBox( MSG_YESNO, common->Translate( "#str_00100625" ), common->Translate( "#str_00100626" ), true, "yes" )[ 0 ] ) {
+				if( !MessageBox( MSG_YESNO, common->Translate( "#str_00100625" ), common->Translate( "#str_00100626" ), true, "yes" )[0] ) {
 					continue;
 				}
 			}
@@ -773,7 +773,7 @@ void idSessionLocal::HandleMainMenuCommands( const char *menuCommand ) {
 				guiActive->StateChanged( com_frameTime );
 				cmdSystem->BufferCommandText( CMD_EXEC_NOW, "execMachineSpec\n" );
 			}
-			if( idStr::Icmp( vcmd, "restart" )  == 0 ) {
+			if( idStr::Icmp( vcmd, "restart" ) == 0 ) {
 				guiActive->HandleNamedEvent( "cvar write render" );
 				cmdSystem->BufferCommandText( CMD_EXEC_NOW, "vid_restart\n" );
 			}
@@ -1073,8 +1073,8 @@ const char *idSessionLocal::MessageBox( msgBoxType_t type, const char *message, 
 	default:
 		common->Printf( "idSessionLocal::MessageBox: unknown msg box type\n" );
 	}
-	msgFireBack[ 0 ] = fire_yes ? fire_yes : "";
-	msgFireBack[ 1 ] = fire_no ? fire_no : "";
+	msgFireBack[0] = fire_yes ? fire_yes : "";
+	msgFireBack[1] = fire_no ? fire_no : "";
 	guiMsgRestore = guiActive;
 	guiActive = guiMsg;
 	guiMsg->SetCursor( 325, 290 );
@@ -1095,13 +1095,13 @@ const char *idSessionLocal::MessageBox( msgBoxType_t type, const char *message, 
 		}
 		if( type == MSG_PROMPT ) {
 			if( msgRetIndex == 0 ) {
-				guiMsg->State().GetString( "str_entry", "", msgFireBack[ 0 ] );
-				return msgFireBack[ 0 ].c_str();
+				guiMsg->State().GetString( "str_entry", "", msgFireBack[0] );
+				return msgFireBack[0].c_str();
 			} else {
 				return NULL;
 			}
 		} else {
-			return msgFireBack[ msgRetIndex ].c_str();
+			return msgFireBack[msgRetIndex].c_str();
 		}
 	}
 	return NULL;
@@ -1218,12 +1218,12 @@ void idSessionLocal::HandleMsgCommands( const char *menuCommand ) {
 		guiMsgRestore = NULL;
 		msgRunning = false;
 		msgRetIndex = 0;
-		DispatchCommand( guiActive, msgFireBack[ 0 ].c_str() );
+		DispatchCommand( guiActive, msgFireBack[0].c_str() );
 	} else if( idStr::Icmp( menuCommand, "right" ) == 0 ) {
 		guiActive = guiMsgRestore;
 		guiMsgRestore = NULL;
 		msgRunning = false;
 		msgRetIndex = 1;
-		DispatchCommand( guiActive, msgFireBack[ 1 ].c_str() );
+		DispatchCommand( guiActive, msgFireBack[1].c_str() );
 	}
 }

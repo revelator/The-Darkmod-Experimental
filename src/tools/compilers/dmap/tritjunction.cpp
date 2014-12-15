@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -45,28 +45,28 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
   A case that causes recursive overflow with point to triangle fixing:
 
-               A
-	C            D
-	           B
+  A
+  C            D
+  B
 
   Triangle ABC tests against point D and splits into triangles ADC and DBC
   Triangle DBC then tests against point A again and splits into ABC and ADB
   infinite recursive loop
 
   For a given source triangle
-	init the no-check list to hold the three triangle hashVerts
+  init the no-check list to hold the three triangle hashVerts
 
   recursiveFixTriAgainstHash
 
   recursiveFixTriAgainstHashVert_r
-	if hashVert is on the no-check list
-		exit
-	if the hashVert should split the triangle
-		add to the no-check list
-		recursiveFixTriAgainstHash(a)
-		recursiveFixTriAgainstHash(b)
+  if hashVert is on the no-check list
+  exit
+  if the hashVert should split the triangle
+  add to the no-check list
+  recursiveFixTriAgainstHash(a)
+  recursiveFixTriAgainstHash(b)
 
-*/
+  */
 
 #define	SNAP_FRACTIONS	32
 //#define	SNAP_FRACTIONS	8
@@ -104,7 +104,7 @@ struct hashVert_s	*GetHashVert( idVec3 &v ) {
 	hashVert_t	*hv;
 	numTotalVerts++;
 	// snap the vert to integral values
-	for( i = 0 ; i < 3 ; i++ ) {
+	for( i = 0; i < 3; i++ ) {
 		iv[i] = floor( ( v[i] + 0.5 / SNAP_FRACTIONS ) * SNAP_FRACTIONS );
 		block[i] = ( iv[i] - hashIntMins[i] ) / hashIntScale[i];
 		if( block[i] < 0 ) {
@@ -115,14 +115,14 @@ struct hashVert_s	*GetHashVert( idVec3 &v ) {
 	}
 	// see if a vertex near enough already exists
 	// this could still fail to find a near neighbor right at the hash block boundary
-	for( hv = hashVerts[block[0]][block[1]][block[2]] ; hv ; hv = hv->next ) {
+	for( hv = hashVerts[block[0]][block[1]][block[2]]; hv; hv = hv->next ) {
 #if 0
 		if( hv->iv[0] == iv[0] && hv->iv[1] == iv[1] && hv->iv[2] == iv[2] ) {
 			VectorCopy( hv->v, v );
 			return hv;
 		}
 #else
-		for( i = 0 ; i < 3 ; i++ ) {
+		for( i = 0; i < 3; i++ ) {
 			int	d;
 			d = hv->iv[i] - iv[i];
 			if( d < -1 || d > 1 ) {
@@ -166,7 +166,7 @@ static void HashBlocksForTri( const mapTri_t *tri, int blocks[2][3] ) {
 	bounds.AddPoint( tri->v[1].xyz );
 	bounds.AddPoint( tri->v[2].xyz );
 	// add a 1.0 slop margin on each side
-	for( i = 0 ; i < 3 ; i++ ) {
+	for( i = 0; i < 3; i++ ) {
 		blocks[0][i] = ( bounds[0][i] - 1.0 - hashBounds[0][i] ) / hashScale[i];
 		if( blocks[0][i] < 0 ) {
 			blocks[0][i] = 0;
@@ -200,15 +200,15 @@ void HashTriangles( optimizeGroup_t *groupList ) {
 	numTotalVerts = 0;
 	// bound all the triangles to determine the bucket size
 	hashBounds.Clear();
-	for( group = groupList ; group ; group = group->nextGroup ) {
-		for( a = group->triList ; a ; a = a->next ) {
+	for( group = groupList; group; group = group->nextGroup ) {
+		for( a = group->triList; a; a = a->next ) {
 			hashBounds.AddPoint( a->v[0].xyz );
 			hashBounds.AddPoint( a->v[1].xyz );
 			hashBounds.AddPoint( a->v[2].xyz );
 		}
 	}
 	// spread the bounds so it will never have a zero size
-	for( i = 0 ; i < 3 ; i++ ) {
+	for( i = 0; i < 3; i++ ) {
 		hashBounds[0][i] = floor( hashBounds[0][i] - 1 );
 		hashBounds[1][i] = ceil( hashBounds[1][i] + 1 );
 		hashIntMins[i] = hashBounds[0][i] * SNAP_FRACTIONS;
@@ -219,13 +219,13 @@ void HashTriangles( optimizeGroup_t *groupList ) {
 		}
 	}
 	// add all the points to the hash buckets
-	for( group = groupList ; group ; group = group->nextGroup ) {
+	for( group = groupList; group; group = group->nextGroup ) {
 		// don't create tjunctions against discrete surfaces (blood decals, etc)
 		if( group->material != NULL && group->material->IsDiscrete() ) {
 			continue;
 		}
-		for( a = group->triList ; a ; a = a->next ) {
-			for( vert = 0 ; vert < 3 ; vert++ ) {
+		for( a = group->triList; a; a = a->next ) {
+			for( vert = 0; vert < 3; vert++ ) {
 				a->hashVert[vert] = GetHashVert( a->v[vert].xyz );
 			}
 		}
@@ -243,10 +243,10 @@ after t junction processing
 void FreeTJunctionHash( void ) {
 	int			i, j, k;
 	hashVert_t	*hv, *next;
-	for( i = 0 ; i < HASH_BINS ; i++ ) {
-		for( j = 0 ; j < HASH_BINS ; j++ ) {
-			for( k = 0 ; k < HASH_BINS ; k++ ) {
-				for( hv = hashVerts[i][j][k] ; hv ; hv = next ) {
+	for( i = 0; i < HASH_BINS; i++ ) {
+		for( j = 0; j < HASH_BINS; j++ ) {
+			for( k = 0; k < HASH_BINS; k++ ) {
+				for( hv = hashVerts[i][j][k]; hv; hv = next ) {
 					next = hv->next;
 					Mem_Free( hv );
 				}
@@ -285,7 +285,7 @@ static mapTri_t *FixTriangleAgainstHashVert( const mapTri_t *a, const hashVert_t
 	// we probably should find the edge that the vertex is closest to.
 	// it is possible to be < 1 unit away from multiple
 	// edges, but we only want to split by one of them
-	for( i = 0 ; i < 3 ; i++ ) {
+	for( i = 0; i < 3; i++ ) {
 		v1 = &a->v[i];
 		v2 = &a->v[( i + 1 ) % 3];
 		v3 = &a->v[( i + 2 ) % 3];
@@ -362,14 +362,14 @@ static mapTri_t	*FixTriangleAgainstHash( const mapTri_t *tri ) {
 	fixed = CopyMapTri( tri );
 	fixed->next = NULL;
 	HashBlocksForTri( tri, blocks );
-	for( i = blocks[0][0] ; i <= blocks[1][0] ; i++ ) {
-		for( j = blocks[0][1] ; j <= blocks[1][1] ; j++ ) {
-			for( k = blocks[0][2] ; k <= blocks[1][2] ; k++ ) {
-				for( hv = hashVerts[i][j][k] ; hv ; hv = hv->next ) {
+	for( i = blocks[0][0]; i <= blocks[1][0]; i++ ) {
+		for( j = blocks[0][1]; j <= blocks[1][1]; j++ ) {
+			for( k = blocks[0][2]; k <= blocks[1][2]; k++ ) {
+				for( hv = hashVerts[i][j][k]; hv; hv = hv->next ) {
 					// fix all triangles in the list against this point
 					test = fixed;
 					fixed = NULL;
-					for( ; test ; test = next ) {
+					for( ; test; test = next ) {
 						next = test->next;
 						a = FixTriangleAgainstHashVert( test, hv );
 						if( a ) {
@@ -397,7 +397,7 @@ CountGroupListTris
 int CountGroupListTris( const optimizeGroup_t *groupList ) {
 	int		c;
 	c = 0;
-	for( ; groupList ; groupList = groupList->nextGroup ) {
+	for( ; groupList; groupList = groupList->nextGroup ) {
 		c += CountTriList( groupList->triList );
 	}
 	return c;
@@ -426,13 +426,13 @@ void	FixAreaGroupsTjunctions( optimizeGroup_t *groupList ) {
 		common->Printf( "%6i triangles in\n", startCount );
 	}
 	HashTriangles( groupList );
-	for( group = groupList ; group ; group = group->nextGroup ) {
+	for( group = groupList; group; group = group->nextGroup ) {
 		// don't touch discrete surfaces
 		if( group->material != NULL && group->material->IsDiscrete() ) {
 			continue;
 		}
 		newList = NULL;
-		for( tri = group->triList ; tri ; tri = tri->next ) {
+		for( tri = group->triList; tri; tri = tri->next ) {
 			fixed = FixTriangleAgainstHash( tri );
 			newList = MergeTriLists( newList, fixed );
 		}
@@ -452,7 +452,7 @@ FixEntityTjunctions
 */
 void	FixEntityTjunctions( uEntity_t *e ) {
 	int		i;
-	for( i = 0 ; i < e->numAreas ; i++ ) {
+	for( i = 0; i < e->numAreas; i++ ) {
 		FixAreaGroupsTjunctions( e->areas[i].groups );
 		FreeTJunctionHash();
 	}
@@ -476,9 +476,9 @@ void	FixGlobalTjunctions( uEntity_t *e ) {
 	numTotalVerts = 0;
 	// bound all the triangles to determine the bucket size
 	hashBounds.Clear();
-	for( areaNum = 0 ; areaNum < e->numAreas ; areaNum++ ) {
-		for( group = e->areas[areaNum].groups ; group ; group = group->nextGroup ) {
-			for( a = group->triList ; a ; a = a->next ) {
+	for( areaNum = 0; areaNum < e->numAreas; areaNum++ ) {
+		for( group = e->areas[areaNum].groups; group; group = group->nextGroup ) {
+			for( a = group->triList; a; a = a->next ) {
 				hashBounds.AddPoint( a->v[0].xyz );
 				hashBounds.AddPoint( a->v[1].xyz );
 				hashBounds.AddPoint( a->v[2].xyz );
@@ -486,7 +486,7 @@ void	FixGlobalTjunctions( uEntity_t *e ) {
 		}
 	}
 	// spread the bounds so it will never have a zero size
-	for( i = 0 ; i < 3 ; i++ ) {
+	for( i = 0; i < 3; i++ ) {
 		hashBounds[0][i] = floor( hashBounds[0][i] - 1 );
 		hashBounds[1][i] = ceil( hashBounds[1][i] + 1 );
 		hashIntMins[i] = hashBounds[0][i] * SNAP_FRACTIONS;
@@ -497,14 +497,14 @@ void	FixGlobalTjunctions( uEntity_t *e ) {
 		}
 	}
 	// add all the points to the hash buckets
-	for( areaNum = 0 ; areaNum < e->numAreas ; areaNum++ ) {
-		for( group = e->areas[areaNum].groups ; group ; group = group->nextGroup ) {
+	for( areaNum = 0; areaNum < e->numAreas; areaNum++ ) {
+		for( group = e->areas[areaNum].groups; group; group = group->nextGroup ) {
 			// don't touch discrete surfaces
 			if( group->material != NULL && group->material->IsDiscrete() ) {
 				continue;
 			}
-			for( a = group->triList ; a ; a = a->next ) {
-				for( vert = 0 ; vert < 3 ; vert++ ) {
+			for( a = group->triList; a; a = a->next ) {
+				for( vert = 0; vert < 3; vert++ ) {
 					a->hashVert[vert] = GetHashVert( a->v[vert].xyz );
 				}
 			}
@@ -513,7 +513,7 @@ void	FixGlobalTjunctions( uEntity_t *e ) {
 	// add all the func_static model vertexes to the hash buckets
 	// optionally inline some of the func_static models
 	if( dmapGlobals.entityNum == 0 ) {
-		for( int eNum = 1 ; eNum < dmapGlobals.num_entities ; eNum++ ) {
+		for( int eNum = 1; eNum < dmapGlobals.num_entities; eNum++ ) {
 			uEntity_t *entity = &dmapGlobals.uEntities[eNum];
 			const char *className = entity->mapEntity->epairs.GetString( "classname" );
 			if( idStr::Icmp( className, "func_static" ) ) {
@@ -539,7 +539,7 @@ void	FixGlobalTjunctions( uEntity_t *e ) {
 				}
 			}
 			idVec3	origin = entity->mapEntity->epairs.GetVector( "origin" );
-			for( i = 0 ; i < model->NumSurfaces() ; i++ ) {
+			for( i = 0; i < model->NumSurfaces(); i++ ) {
 				const modelSurface_t *surface = model->Surface( i );
 				const srfTriangles_t *tri = surface->geometry;
 				mapTri_t	mapTri;
@@ -549,7 +549,7 @@ void	FixGlobalTjunctions( uEntity_t *e ) {
 				if( mapTri.material->IsDiscrete() ) {
 					mapTri.mergeGroup = ( void * )surface;
 				}
-				for( int j = 0 ; j < tri->numVerts ; j += 3 ) {
+				for( int j = 0; j < tri->numVerts; j += 3 ) {
 					idVec3 v = tri->verts[j].xyz * axis + origin;
 					GetHashVert( v );
 				}
@@ -557,14 +557,14 @@ void	FixGlobalTjunctions( uEntity_t *e ) {
 		}
 	}
 	// now fix each area
-	for( areaNum = 0 ; areaNum < e->numAreas ; areaNum++ ) {
-		for( group = e->areas[areaNum].groups ; group ; group = group->nextGroup ) {
+	for( areaNum = 0; areaNum < e->numAreas; areaNum++ ) {
+		for( group = e->areas[areaNum].groups; group; group = group->nextGroup ) {
 			// don't touch discrete surfaces
 			if( group->material != NULL && group->material->IsDiscrete() ) {
 				continue;
 			}
 			mapTri_t *newList = NULL;
-			for( mapTri_t *tri = group->triList ; tri ; tri = tri->next ) {
+			for( mapTri_t *tri = group->triList; tri; tri = tri->next ) {
 				mapTri_t *fixed = FixTriangleAgainstHash( tri );
 				newList = MergeTriLists( newList, fixed );
 			}

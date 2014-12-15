@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #include "precompiled_engine.h"
 #pragma hdrstop
 
@@ -24,7 +24,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 =================================================================================
 
-	idCompressor_None
+idCompressor_None
 
 =================================================================================
 */
@@ -214,9 +214,9 @@ int idCompressor_None::Seek( long offset, fsOrigin_t origin ) {
 /*
 =================================================================================
 
-	idCompressor_BitStream
+idCompressor_BitStream
 
-	Base class for bit stream compression.
+Base class for bit stream compression.
 
 =================================================================================
 */
@@ -288,7 +288,7 @@ ID_INLINE void idCompressor_BitStream::InitCompress( const void *inData, const i
 	readLength = inLength;
 	readByte = 0;
 	readBit = 0;
-	readData = ( const byte * ) inData;
+	readData = ( const byte * )inData;
 	if( !writeLength ) {
 		writeLength = sizeof( buffer );
 		writeByte = 0;
@@ -312,7 +312,7 @@ ID_INLINE void idCompressor_BitStream::InitDecompress( void *outData, int outLen
 	writeLength = outLength;
 	writeByte = 0;
 	writeBit = 0;
-	writeData = ( byte * ) outData;
+	writeData = ( byte * )outData;
 }
 
 /*
@@ -559,10 +559,10 @@ float idCompressor_BitStream::GetCompressionRatio( void ) const {
 /*
 =================================================================================
 
-	idCompressor_RunLength
+idCompressor_RunLength
 
-	The following algorithm implements run length compression with an arbitrary
-	word size.
+The following algorithm implements run length compression with an arbitrary
+word size.
 
 =================================================================================
 */
@@ -663,10 +663,10 @@ int idCompressor_RunLength::Read( void *outData, int outLength ) {
 /*
 =================================================================================
 
-	idCompressor_RunLength_ZeroBased
+idCompressor_RunLength_ZeroBased
 
-	The following algorithm implements run length compression with an arbitrary
-	word size for data with a lot of zero bits.
+The following algorithm implements run length compression with an arbitrary
+word size for data with a lot of zero bits.
 
 =================================================================================
 */
@@ -736,18 +736,18 @@ int idCompressor_RunLength_ZeroBased::Read( void *outData, int outLength ) {
 /*
 =================================================================================
 
-	idCompressor_Huffman
+idCompressor_Huffman
 
-	The following algorithm is based on the adaptive Huffman algorithm described
-	in Sayood's Data Compression book. The ranks are not actually stored, but
-	implicitly defined by the location of a node within a doubly-linked list
+The following algorithm is based on the adaptive Huffman algorithm described
+in Sayood's Data Compression book. The ranks are not actually stored, but
+implicitly defined by the location of a node within a doubly-linked list
 
 =================================================================================
 */
 
-const int HMAX			= 256;				// Maximum symbol
-const int NYT			= HMAX;				// NYT = Not Yet Transmitted
-const int INTERNAL_NODE	= HMAX + 1;			// internal node
+const int HMAX = 256;				// Maximum symbol
+const int NYT = HMAX;				// NYT = Not Yet Transmitted
+const int INTERNAL_NODE = HMAX + 1;			// internal node
 
 typedef struct nodetype {
 	struct nodetype *left, *right, *parent; // tree structure
@@ -883,7 +883,7 @@ int idCompressor_Huffman::GetBit( byte *fin, int *offset ) {
 ================
 idCompressor_Huffman::Add_bit
 
-  Add a bit to the output file (buffered)
+Add a bit to the output file (buffered)
 ================
 */
 void idCompressor_Huffman::Add_bit( char bit, byte *fout ) {
@@ -898,7 +898,7 @@ void idCompressor_Huffman::Add_bit( char bit, byte *fout ) {
 ================
 idCompressor_Huffman::Get_bit
 
-  Get one bit from the input file (buffered)
+Get one bit from the input file (buffered)
 ================
 */
 int idCompressor_Huffman::Get_bit() {
@@ -945,7 +945,7 @@ void idCompressor_Huffman::Free_ppnode( huffmanNode_t **ppnode ) {
 ================
 idCompressor_Huffman::Swap
 
-  Swap the location of the given two nodes in the tree.
+Swap the location of the given two nodes in the tree.
 ================
 */
 void idCompressor_Huffman::Swap( huffmanNode_t *node1, huffmanNode_t *node2 ) {
@@ -978,7 +978,7 @@ void idCompressor_Huffman::Swap( huffmanNode_t *node1, huffmanNode_t *node2 ) {
 ================
 idCompressor_Huffman::Swaplist
 
-  Swap the given two nodes in the linked list (update ranks)
+Swap the given two nodes in the linked list (update ranks)
 ================
 */
 void idCompressor_Huffman::Swaplist( huffmanNode_t *node1, huffmanNode_t *node2 ) {
@@ -1057,7 +1057,7 @@ idCompressor_Huffman::AddRef
 */
 void idCompressor_Huffman::AddRef( byte ch ) {
 	huffmanNode_t *tnode, *tnode2;
-	if( loc[ch] == NULL ) {  /* if this is the first transmission of this node */
+	if( loc[ch] == NULL ) { /* if this is the first transmission of this node */
 		tnode = &nodeList[blocNode++];
 		tnode2 = &nodeList[blocNode++];
 		tnode2->symbol = INTERNAL_NODE;
@@ -1098,7 +1098,7 @@ void idCompressor_Huffman::AddRef( byte ch ) {
 		tnode->prev = lhead;
 		tnode->left = tnode->right = NULL;
 		if( lhead->parent ) {
-			if( lhead->parent->left == lhead ) {  /* lhead is guaranteed to by the NYT */
+			if( lhead->parent->left == lhead ) { /* lhead is guaranteed to by the NYT */
 				lhead->parent->left = tnode2;
 			} else {
 				lhead->parent->right = tnode2;
@@ -1121,7 +1121,7 @@ void idCompressor_Huffman::AddRef( byte ch ) {
 ================
 idCompressor_Huffman::Receive
 
-  Get a symbol.
+Get a symbol.
 ================
 */
 int idCompressor_Huffman::Receive( huffmanNode_t *node, int *ch ) {
@@ -1142,7 +1142,7 @@ int idCompressor_Huffman::Receive( huffmanNode_t *node, int *ch ) {
 ================
 idCompressor_Huffman::Send
 
-  Send the prefix code for this node.
+Send the prefix code for this node.
 ================
 */
 void idCompressor_Huffman::Send( huffmanNode_t *node, huffmanNode_t *child, byte *fout ) {
@@ -1162,7 +1162,7 @@ void idCompressor_Huffman::Send( huffmanNode_t *node, huffmanNode_t *child, byte
 ================
 idCompressor_Huffman::Transmit
 
-  Send a symbol.
+Send a symbol.
 ================
 */
 void idCompressor_Huffman::Transmit( int ch, byte *fout ) {
@@ -1249,7 +1249,7 @@ int idCompressor_Huffman::Read( void *outData, int outLength ) {
 			}
 		}
 		( ( byte * )outData )[i] = ch;			/* Write symbol */
-		AddRef( ( byte ) ch );				/* Increment node */
+		AddRef( ( byte )ch );				/* Increment node */
 	}
 	compressedSize = bloc >> 3;
 	unCompressedSize += i;
@@ -1268,22 +1268,22 @@ float idCompressor_Huffman::GetCompressionRatio( void ) const {
 /*
 =================================================================================
 
-	idCompressor_Arithmetic
+idCompressor_Arithmetic
 
-	The following algorithm is based on the Arithmetic Coding methods described
-	by Mark Nelson. The probability table is implicitly stored.
+The following algorithm is based on the Arithmetic Coding methods described
+by Mark Nelson. The probability table is implicitly stored.
 
 =================================================================================
 */
 
-const int AC_WORD_LENGTH	= 8;
-const int AC_NUM_BITS		= 16;
-const int AC_MSB_SHIFT		= 15;
-const int AC_MSB2_SHIFT		= 14;
-const int AC_MSB_MASK		= 0x8000;
-const int AC_MSB2_MASK		= 0x4000;
-const int AC_HIGH_INIT		= 0xffff;
-const int AC_LOW_INIT		= 0x0000;
+const int AC_WORD_LENGTH = 8;
+const int AC_NUM_BITS = 16;
+const int AC_MSB_SHIFT = 15;
+const int AC_MSB2_SHIFT = 14;
+const int AC_MSB_MASK = 0x8000;
+const int AC_MSB2_MASK = 0x4000;
+const int AC_HIGH_INIT = 0xffff;
+const int AC_LOW_INIT = 0x0000;
 
 class idCompressor_Arithmetic : public idCompressor_BitStream {
 public:
@@ -1343,8 +1343,8 @@ idCompressor_Arithmetic::Init
 */
 void idCompressor_Arithmetic::Init( idFile *f, bool compress, int wordLength ) {
 	idCompressor_BitStream::Init( f, compress, wordLength );
-	symbolBuffer	= 0;
-	symbolBit		= 0;
+	symbolBuffer = 0;
+	symbolBit = 0;
 }
 
 /*
@@ -1353,13 +1353,13 @@ idCompressor_Arithmetic::InitProbabilities
 ================
 */
 void idCompressor_Arithmetic::InitProbabilities( void ) {
-	high			= AC_HIGH_INIT;
-	low				= AC_LOW_INIT;
-	underflowBits	= 0;
-	code			= 0;
+	high = AC_HIGH_INIT;
+	low = AC_LOW_INIT;
+	underflowBits = 0;
+	code = 0;
 	for( int i = 0; i < ( 1 << AC_WORD_LENGTH ); i++ ) {
-		probabilities[ i ].low = i;
-		probabilities[ i ].high = i + 1;
+		probabilities[i].low = i;
+		probabilities[i].high = i + 1;
 	}
 	scale = ( 1 << AC_WORD_LENGTH );
 }
@@ -1372,10 +1372,10 @@ idCompressor_Arithmetic::UpdateProbabilities
 void idCompressor_Arithmetic::UpdateProbabilities( acSymbol_t *symbol ) {
 	int i, x;
 	x = symbol->position;
-	probabilities[ x ].high++;
+	probabilities[x].high++;
 	for( i = x + 1; i < ( 1 << AC_WORD_LENGTH ); i++ ) {
-		probabilities[ i ].low++;
-		probabilities[ i ].high++;
+		probabilities[i].low++;
+		probabilities[i].high++;
 	}
 	scale++;
 }
@@ -1386,7 +1386,7 @@ idCompressor_Arithmetic::GetCurrentCount
 ================
 */
 int idCompressor_Arithmetic::GetCurrentCount( void ) {
-	return ( unsigned int )( ( ( ( ( long ) code - low ) + 1 ) * scale - 1 ) / ( ( ( long ) high - low ) + 1 ) );
+	return ( unsigned int )( ( ( ( ( long )code - low ) + 1 ) * scale - 1 ) / ( ( ( long )high - low ) + 1 ) );
 }
 
 /*
@@ -1418,7 +1418,7 @@ int idCompressor_Arithmetic::ProbabilityForCount( unsigned int count ) {
 #else
 	int j;
 	for( j = 0; j < ( 1 << AC_WORD_LENGTH ); j++ ) {
-		if( count >= probabilities[ j ].low && count < probabilities[ j ].high ) {
+		if( count >= probabilities[j].low && count < probabilities[j].high ) {
 			return j;
 		}
 	}
@@ -1434,8 +1434,8 @@ idCompressor_Arithmetic::SymbolFromCount
 */
 int idCompressor_Arithmetic::SymbolFromCount( unsigned int count, acSymbol_t *symbol ) {
 	int p = ProbabilityForCount( count );
-	symbol->low = probabilities[ p ].low;
-	symbol->high = probabilities[ p ].high;
+	symbol->low = probabilities[p].low;
+	symbol->high = probabilities[p].high;
 	symbol->position = p;
 	return p;
 }
@@ -1447,15 +1447,15 @@ idCompressor_Arithmetic::RemoveSymbolFromStream
 */
 void idCompressor_Arithmetic::RemoveSymbolFromStream( acSymbol_t *symbol ) {
 	long range;
-	range	= ( long )( high - low ) + 1;
-	high	= low + ( unsigned short )( ( range * symbol->high ) / scale - 1 );
-	low		= low + ( unsigned short )( ( range * symbol->low ) / scale );
+	range = ( long )( high - low ) + 1;
+	high = low + ( unsigned short )( ( range * symbol->high ) / scale - 1 );
+	low = low + ( unsigned short )( ( range * symbol->low ) / scale );
 	while( true ) {
 		if( ( high & AC_MSB_MASK ) == ( low & AC_MSB_MASK ) ) {
 		} else if( ( low & AC_MSB2_MASK ) == AC_MSB2_MASK && ( high & AC_MSB2_MASK ) == 0 ) {
-			code	^= AC_MSB2_MASK;
-			low		&= AC_MSB2_MASK - 1;
-			high	|= AC_MSB2_MASK;
+			code ^= AC_MSB2_MASK;
+			low &= AC_MSB2_MASK - 1;
+			high |= AC_MSB2_MASK;
 		} else {
 			UpdateProbabilities( symbol );
 			return;
@@ -1495,9 +1495,9 @@ idCompressor_Arithmetic::EncodeSymbol
 void idCompressor_Arithmetic::EncodeSymbol( acSymbol_t *symbol ) {
 	unsigned int range;
 	// rescale high and low for the new symbol.
-	range	= ( high - low ) + 1;
-	high	= low + ( unsigned short )( ( range * symbol->high ) / scale - 1 );
-	low		= low + ( unsigned short )( ( range * symbol->low ) / scale );
+	range = ( high - low ) + 1;
+	high = low + ( unsigned short )( ( range * symbol->high ) / scale - 1 );
+	low = low + ( unsigned short )( ( range * symbol->low ) / scale );
 	while( true ) {
 		if( ( high & AC_MSB_MASK ) == ( low & AC_MSB_MASK ) ) {
 			// the high digits of low and high have converged, and can be written to the stream
@@ -1508,16 +1508,16 @@ void idCompressor_Arithmetic::EncodeSymbol( acSymbol_t *symbol ) {
 			}
 		} else if( ( low & AC_MSB2_MASK ) && !( high & AC_MSB2_MASK ) ) {
 			// underflow is in danger of happening, 2nd digits are converging but 1st digits don't match
-			underflowBits	+= 1;
-			low				&= AC_MSB2_MASK - 1;
-			high			|= AC_MSB2_MASK;
+			underflowBits += 1;
+			low &= AC_MSB2_MASK - 1;
+			high |= AC_MSB2_MASK;
 		} else {
 			UpdateProbabilities( symbol );
 			return;
 		}
 		low <<= 1;
 		high <<= 1;
-		high |=	1;
+		high |= 1;
 	}
 }
 
@@ -1527,9 +1527,9 @@ idCompressor_Arithmetic::CharToSymbol
 ================
 */
 void idCompressor_Arithmetic::CharToSymbol( byte c, acSymbol_t *symbol ) {
-	symbol->low			= probabilities[ c ].low;
-	symbol->high		= probabilities[ c ].high;
-	symbol->position	= c;
+	symbol->low = probabilities[c].low;
+	symbol->high = probabilities[c].high;
+	symbol->position = c;
 }
 
 /*
@@ -1641,31 +1641,31 @@ int idCompressor_Arithmetic::Read( void *outData, int outLength ) {
 /*
 =================================================================================
 
-	idCompressor_LZSS
+idCompressor_LZSS
 
-	In 1977 Abraham Lempel and Jacob Ziv presented a dictionary based scheme for
-	text compression called LZ77. For any new text LZ77 outputs an offset/length
-	pair to previously seen text and the next new byte after the previously seen
-	text.
+In 1977 Abraham Lempel and Jacob Ziv presented a dictionary based scheme for
+text compression called LZ77. For any new text LZ77 outputs an offset/length
+pair to previously seen text and the next new byte after the previously seen
+text.
 
-	In 1982 James Storer and Thomas Szymanski presented a modification on the work
-	of Lempel and Ziv called LZSS. LZ77 always outputs an offset/length pair, even
-	if a match is only one byte long. An offset/length pair usually takes more than
-	a single byte to store and the compression is not optimal for small match sizes.
-	LZSS uses a bit flag which tells whether the following data is a literal (byte)
-	or an offset/length pair.
+In 1982 James Storer and Thomas Szymanski presented a modification on the work
+of Lempel and Ziv called LZSS. LZ77 always outputs an offset/length pair, even
+if a match is only one byte long. An offset/length pair usually takes more than
+a single byte to store and the compression is not optimal for small match sizes.
+LZSS uses a bit flag which tells whether the following data is a literal (byte)
+or an offset/length pair.
 
-	The following algorithm is an implementation of LZSS with arbitrary word size.
+The following algorithm is an implementation of LZSS with arbitrary word size.
 
 =================================================================================
 */
 
-const int LZSS_BLOCK_SIZE		= 65535;
-const int LZSS_HASH_BITS		= 10;
-const int LZSS_HASH_SIZE		= ( 1 << LZSS_HASH_BITS );
-const int LZSS_HASH_MASK		= ( 1 << LZSS_HASH_BITS ) - 1;
-const int LZSS_OFFSET_BITS		= 11;
-const int LZSS_LENGTH_BITS		= 5;
+const int LZSS_BLOCK_SIZE = 65535;
+const int LZSS_HASH_BITS = 10;
+const int LZSS_HASH_SIZE = ( 1 << LZSS_HASH_BITS );
+const int LZSS_HASH_MASK = ( 1 << LZSS_HASH_BITS ) - 1;
+const int LZSS_OFFSET_BITS = 11;
+const int LZSS_LENGTH_BITS = 5;
 
 class idCompressor_LZSS : public idCompressor_BitStream {
 public:
@@ -1915,9 +1915,9 @@ int idCompressor_LZSS::Read( void *outData, int outLength ) {
 /*
 =================================================================================
 
-	idCompressor_LZSS_WordAligned
+idCompressor_LZSS_WordAligned
 
-	Outputs word aligned compressed data.
+Outputs word aligned compressed data.
 
 =================================================================================
 */
@@ -2007,47 +2007,47 @@ void idCompressor_LZSS_WordAligned::DecompressBlock( void ) {
 /*
 =================================================================================
 
-	idCompressor_LZW
+idCompressor_LZW
 
-	http://www.unisys.com/about__unisys/lzw
-	http://www.dogma.net/markn/articles/lzw/lzw.htm
-	http://www.cs.cf.ac.uk/Dave/Multimedia/node214.html
-	http://www.cs.duke.edu/csed/curious/compression/lzw.html
-	http://oldwww.rasip.fer.hr/research/compress/algorithms/fund/lz/lzw.html
+http://www.unisys.com/about__unisys/lzw
+http://www.dogma.net/markn/articles/lzw/lzw.htm
+http://www.cs.cf.ac.uk/Dave/Multimedia/node214.html
+http://www.cs.duke.edu/csed/curious/compression/lzw.html
+http://oldwww.rasip.fer.hr/research/compress/algorithms/fund/lz/lzw.html
 
-	This is the same compression scheme used by GIF with the exception that
-	the EOI and clear codes are not explicitly stored.  Instead EOI happens
-	when the input stream runs dry and CC happens when the table gets to big.
+This is the same compression scheme used by GIF with the exception that
+the EOI and clear codes are not explicitly stored.  Instead EOI happens
+when the input stream runs dry and CC happens when the table gets to big.
 
-	This is a derivation of LZ78, but the dictionary starts with all single
-	character values so only code words are output.  It is similar in theory
-	to LZ77, but instead of using the previous X bytes as a lookup table, a table
-	is built as the stream is read.  The	compressor and decompressor use the
-	same formula, so the tables should be exactly alike.  The only catch is the
-	decompressor is always one step behind the compressor and may get a code not
-	yet in the table.  In this case, it is easy to determine what the next code
-	is going to be (it will be the previous string plus the first byte of the
-	previous string).
+This is a derivation of LZ78, but the dictionary starts with all single
+character values so only code words are output.  It is similar in theory
+to LZ77, but instead of using the previous X bytes as a lookup table, a table
+is built as the stream is read.  The	compressor and decompressor use the
+same formula, so the tables should be exactly alike.  The only catch is the
+decompressor is always one step behind the compressor and may get a code not
+yet in the table.  In this case, it is easy to determine what the next code
+is going to be (it will be the previous string plus the first byte of the
+previous string).
 
-	The dictionary can be any size, but 12 bits seems to produce best results for
-	most sample data.  The code size is variable.  It starts with the minimum
-	number of bits required to store the dictionary and automatically increases
-	as the dictionary gets bigger (it starts at 9 bits and grows to 10 bits when
-	item 512 is added, 11 bits when 1024 is added, etc...) once the the dictionary
-	is filled (4096 items for a 12 bit dictionary), the whole thing is cleared and
-	the process starts over again.
+The dictionary can be any size, but 12 bits seems to produce best results for
+most sample data.  The code size is variable.  It starts with the minimum
+number of bits required to store the dictionary and automatically increases
+as the dictionary gets bigger (it starts at 9 bits and grows to 10 bits when
+item 512 is added, 11 bits when 1024 is added, etc...) once the the dictionary
+is filled (4096 items for a 12 bit dictionary), the whole thing is cleared and
+the process starts over again.
 
-	The compressor increases the bit size after it adds the item, while the
-	decompressor does before it adds the item.  The difference is subtle, but
-	it's because decompressor being one step behind.  Otherwise, the decompressor
-	would read 512 with only 9 bits.
+The compressor increases the bit size after it adds the item, while the
+decompressor does before it adds the item.  The difference is subtle, but
+it's because decompressor being one step behind.  Otherwise, the decompressor
+would read 512 with only 9 bits.
 
-	If "Hello" is in the dictionary, then "Hell", "Hel", "He" and "H" will be too.
-	We use this to our advantage by storing the index of the previous code, and
-	the value of the last character.  This means when we traverse through the
-	dictionary, we get the characters in reverse.
+If "Hello" is in the dictionary, then "Hell", "Hel", "He" and "H" will be too.
+We use this to our advantage by storing the index of the previous code, and
+the value of the last character.  This means when we traverse through the
+dictionary, we get the characters in reverse.
 
-	Dictionary entries 0-255 are always going to have the values 0-255
+Dictionary entries 0-255 are always going to have the values 0-255
 
 =================================================================================
 */
@@ -2160,8 +2160,8 @@ int idCompressor_LZW::Lookup( int w, int k ) {
 	if( w == -1 ) {
 		return k;
 	} else {
-		for( j = index.First( w ^ k ); j >= 0 ; j = index.Next( j ) ) {
-			if( dictionary[ j ].k == k && dictionary[ j ].w == w ) {
+		for( j = index.First( w ^ k ); j >= 0; j = index.Next( j ) ) {
+			if( dictionary[j].k == k && dictionary[j].w == w ) {
 				return j;
 			}
 		}
@@ -2175,8 +2175,8 @@ idCompressor_LZW::AddToDict
 ================
 */
 int idCompressor_LZW::AddToDict( int w, int k ) {
-	dictionary[ nextCode ].k = k;
-	dictionary[ nextCode ].w = w;
+	dictionary[nextCode].k = k;
+	dictionary[nextCode].w = w;
 	index.Add( w ^ k, nextCode );
 	return nextCode++;
 }
@@ -2191,7 +2191,7 @@ Returns true if the dictionary was cleared
 */
 bool idCompressor_LZW::BumpBits() {
 	if( nextCode == ( 1 << codeBits ) ) {
-		codeBits ++;
+		codeBits++;
 		if( codeBits > LZW_DICT_BITS ) {
 			nextCode = LZW_FIRST_CODE;
 			codeBits = LZW_START_BITS;
@@ -2299,7 +2299,7 @@ void idCompressor_LZW::DecompressBlock() {
 /*
 =================================================================================
 
-	idCompressor
+idCompressor
 
 =================================================================================
 */

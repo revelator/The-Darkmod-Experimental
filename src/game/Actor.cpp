@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -36,7 +36,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
 	idAnimState
 
-***********************************************************************/
+	***********************************************************************/
 
 /*
 =====================
@@ -44,12 +44,12 @@ idAnimState::idAnimState
 =====================
 */
 idAnimState::idAnimState() {
-	self			= NULL;
-	animator		= NULL;
-	thread			= NULL;
-	idleAnim		= true;
-	disabled		= true;
-	channel			= ANIMCHANNEL_ALL;
+	self = NULL;
+	animator = NULL;
+	thread = NULL;
+	idleAnim = true;
+	disabled = true;
+	channel = ANIMCHANNEL_ALL;
 	animBlendFrames = 0;
 	lastAnimBlendFrames = 0;
 }
@@ -357,9 +357,9 @@ const char *idAnimState::WaitState( void ) const {
 
 	idActor
 
-***********************************************************************/
+	***********************************************************************/
 
-const char *idActor::MeleeTypeNames[ NUM_MELEE_TYPES ] = {
+const char *idActor::MeleeTypeNames[NUM_MELEE_TYPES] = {
 	"Over", "LR", "RL", "Thrust", "General", "General"
 };
 
@@ -529,90 +529,90 @@ const idEventDef AI_RemoveReplacementAnim( "removeReplacementAnim", EventArgs( '
 		"Removes the replacement for the given \"anim\"" );
 
 CLASS_DECLARATION( idAFEntity_Gibbable, idActor )
-EVENT( AI_EnableEyeFocus,			idActor::Event_EnableEyeFocus )
-EVENT( AI_DisableEyeFocus,			idActor::Event_DisableEyeFocus )
-EVENT( EV_Footstep,					idActor::Event_Footstep )
-EVENT( EV_FootstepLeft,				idActor::Event_Footstep )
-EVENT( EV_FootstepRight,			idActor::Event_Footstep )
-EVENT( EV_EnableWalkIK,				idActor::Event_EnableWalkIK )
-EVENT( EV_DisableWalkIK,			idActor::Event_DisableWalkIK )
-EVENT( EV_EnableLegIK,				idActor::Event_EnableLegIK )
-EVENT( EV_DisableLegIK,				idActor::Event_DisableLegIK )
-EVENT( AI_PreventPain,				idActor::Event_PreventPain )
-EVENT( AI_DisablePain,				idActor::Event_DisablePain )
-EVENT( AI_EnablePain,				idActor::Event_EnablePain )
-EVENT( AI_GetPainAnim,				idActor::Event_GetPainAnim )
-EVENT( AI_SetAnimPrefix,			idActor::Event_SetAnimPrefix )
-EVENT( AI_StopAnim,					idActor::Event_StopAnim )
-EVENT( AI_PlayAnim,					idActor::Event_PlayAnim )
-EVENT( AI_PauseAnim,				idActor::Event_PauseAnim )
-EVENT( AI_AnimIsPaused,				idActor::Event_AnimIsPaused )
-EVENT( AI_PlayCycle,				idActor::Event_PlayCycle )
-EVENT( AI_IdleAnim,					idActor::Event_IdleAnim )
-EVENT( AI_SetSyncedAnimWeight,		idActor::Event_SetSyncedAnimWeight )
-EVENT( AI_SyncAnimChannels,			idActor::Event_SyncAnimChannels )
-EVENT( AI_SetBlendFrames,			idActor::Event_SetBlendFrames )
-EVENT( AI_GetBlendFrames,			idActor::Event_GetBlendFrames )
-EVENT( AI_AnimState,				idActor::Event_AnimState )
-EVENT( AI_GetAnimState,				idActor::Event_GetAnimState )
-EVENT( AI_InAnimState,				idActor::Event_InAnimState )
-EVENT( AI_FinishAction,				idActor::Event_FinishAction )
+EVENT( AI_EnableEyeFocus, idActor::Event_EnableEyeFocus )
+EVENT( AI_DisableEyeFocus, idActor::Event_DisableEyeFocus )
+EVENT( EV_Footstep, idActor::Event_Footstep )
+EVENT( EV_FootstepLeft, idActor::Event_Footstep )
+EVENT( EV_FootstepRight, idActor::Event_Footstep )
+EVENT( EV_EnableWalkIK, idActor::Event_EnableWalkIK )
+EVENT( EV_DisableWalkIK, idActor::Event_DisableWalkIK )
+EVENT( EV_EnableLegIK, idActor::Event_EnableLegIK )
+EVENT( EV_DisableLegIK, idActor::Event_DisableLegIK )
+EVENT( AI_PreventPain, idActor::Event_PreventPain )
+EVENT( AI_DisablePain, idActor::Event_DisablePain )
+EVENT( AI_EnablePain, idActor::Event_EnablePain )
+EVENT( AI_GetPainAnim, idActor::Event_GetPainAnim )
+EVENT( AI_SetAnimPrefix, idActor::Event_SetAnimPrefix )
+EVENT( AI_StopAnim, idActor::Event_StopAnim )
+EVENT( AI_PlayAnim, idActor::Event_PlayAnim )
+EVENT( AI_PauseAnim, idActor::Event_PauseAnim )
+EVENT( AI_AnimIsPaused, idActor::Event_AnimIsPaused )
+EVENT( AI_PlayCycle, idActor::Event_PlayCycle )
+EVENT( AI_IdleAnim, idActor::Event_IdleAnim )
+EVENT( AI_SetSyncedAnimWeight, idActor::Event_SetSyncedAnimWeight )
+EVENT( AI_SyncAnimChannels, idActor::Event_SyncAnimChannels )
+EVENT( AI_SetBlendFrames, idActor::Event_SetBlendFrames )
+EVENT( AI_GetBlendFrames, idActor::Event_GetBlendFrames )
+EVENT( AI_AnimState, idActor::Event_AnimState )
+EVENT( AI_GetAnimState, idActor::Event_GetAnimState )
+EVENT( AI_InAnimState, idActor::Event_InAnimState )
+EVENT( AI_FinishAction, idActor::Event_FinishAction )
 EVENT( AI_ReloadTorchReplacementAnims, idActor::Event_ReloadTorchReplacementAnims ) // grayman #3166
-EVENT( AI_FinishChannelAction,		idActor::Event_FinishChannelAction )
-EVENT( AI_AnimDone,					idActor::Event_AnimDone )
-EVENT( AI_OverrideAnim,				idActor::Event_OverrideAnim )
-EVENT( AI_EnableAnim,				idActor::Event_EnableAnim )
-EVENT( AI_DisableAnimchannel,		idActor::Event_DisableAnimchannel )
-EVENT( AI_HasAnim,					idActor::Event_HasAnim )
-EVENT( AI_CheckAnim,				idActor::Event_CheckAnim )
-EVENT( AI_ChooseAnim,				idActor::Event_ChooseAnim )
-EVENT( AI_AnimLength,				idActor::Event_AnimLength )
-EVENT( AI_AnimDistance,				idActor::Event_AnimDistance )
-EVENT( AI_HasEnemies,				idActor::Event_HasEnemies )
-EVENT( AI_NextEnemy,				idActor::Event_NextEnemy )
-EVENT( AI_ClosestEnemyToPoint,		idActor::Event_ClosestEnemyToPoint )
-EVENT( AI_MeleeAttackStarted,		idActor::Event_MeleeAttackStarted )
-EVENT( AI_MeleeParryStarted,		idActor::Event_MeleeParryStarted )
-EVENT( AI_MeleeActionHeld,			idActor::Event_MeleeActionHeld )
-EVENT( AI_MeleeActionReleased,		idActor::Event_MeleeActionReleased )
-EVENT( AI_MeleeActionFinished,		idActor::Event_MeleeActionFinished )
-EVENT( AI_GetMeleeActionState,		idActor::Event_GetMeleeActionState )
-EVENT( AI_GetMeleeActionPhase,		idActor::Event_GetMeleeActionPhase )
-EVENT( AI_GetMeleeActionType,		idActor::Event_GetMeleeActionType )
-EVENT( AI_GetMeleeLastActTime,		idActor::Event_GetMeleeLastActTime )
-EVENT( AI_GetMeleeResult,			idActor::Event_GetMeleeResult )
-EVENT( AI_GetMeleeLastHitByType,	idActor::Event_GetMeleeLastHitByType )
-EVENT( AI_MeleeBestParry,			idActor::Event_MeleeBestParry )
-EVENT( AI_MeleeNameForNum,			idActor::Event_MeleeNameForNum )
-EVENT( EV_StopSound,				idActor::Event_StopSound )
-EVENT( AI_SetNextState,				idActor::Event_SetNextState )
-EVENT( AI_SetState,					idActor::Event_SetState )
-EVENT( AI_GetState,					idActor::Event_GetState )
-EVENT( AI_GetHead,					idActor::Event_GetHead )
-EVENT( AI_GetEyePos,				idActor::Event_GetEyePos )
-EVENT( AI_SetHealth,				idActor::Event_SetHealth )
-EVENT( AI_GetHealth,				idActor::Event_GetHealth )
+EVENT( AI_FinishChannelAction, idActor::Event_FinishChannelAction )
+EVENT( AI_AnimDone, idActor::Event_AnimDone )
+EVENT( AI_OverrideAnim, idActor::Event_OverrideAnim )
+EVENT( AI_EnableAnim, idActor::Event_EnableAnim )
+EVENT( AI_DisableAnimchannel, idActor::Event_DisableAnimchannel )
+EVENT( AI_HasAnim, idActor::Event_HasAnim )
+EVENT( AI_CheckAnim, idActor::Event_CheckAnim )
+EVENT( AI_ChooseAnim, idActor::Event_ChooseAnim )
+EVENT( AI_AnimLength, idActor::Event_AnimLength )
+EVENT( AI_AnimDistance, idActor::Event_AnimDistance )
+EVENT( AI_HasEnemies, idActor::Event_HasEnemies )
+EVENT( AI_NextEnemy, idActor::Event_NextEnemy )
+EVENT( AI_ClosestEnemyToPoint, idActor::Event_ClosestEnemyToPoint )
+EVENT( AI_MeleeAttackStarted, idActor::Event_MeleeAttackStarted )
+EVENT( AI_MeleeParryStarted, idActor::Event_MeleeParryStarted )
+EVENT( AI_MeleeActionHeld, idActor::Event_MeleeActionHeld )
+EVENT( AI_MeleeActionReleased, idActor::Event_MeleeActionReleased )
+EVENT( AI_MeleeActionFinished, idActor::Event_MeleeActionFinished )
+EVENT( AI_GetMeleeActionState, idActor::Event_GetMeleeActionState )
+EVENT( AI_GetMeleeActionPhase, idActor::Event_GetMeleeActionPhase )
+EVENT( AI_GetMeleeActionType, idActor::Event_GetMeleeActionType )
+EVENT( AI_GetMeleeLastActTime, idActor::Event_GetMeleeLastActTime )
+EVENT( AI_GetMeleeResult, idActor::Event_GetMeleeResult )
+EVENT( AI_GetMeleeLastHitByType, idActor::Event_GetMeleeLastHitByType )
+EVENT( AI_MeleeBestParry, idActor::Event_MeleeBestParry )
+EVENT( AI_MeleeNameForNum, idActor::Event_MeleeNameForNum )
+EVENT( EV_StopSound, idActor::Event_StopSound )
+EVENT( AI_SetNextState, idActor::Event_SetNextState )
+EVENT( AI_SetState, idActor::Event_SetState )
+EVENT( AI_GetState, idActor::Event_GetState )
+EVENT( AI_GetHead, idActor::Event_GetHead )
+EVENT( AI_GetEyePos, idActor::Event_GetEyePos )
+EVENT( AI_SetHealth, idActor::Event_SetHealth )
+EVENT( AI_GetHealth, idActor::Event_GetHealth )
 
-EVENT( AI_Attach,					idActor::Event_Attach )
-EVENT( AI_AttachToPos,				idActor::Event_AttachToPos )
-EVENT( AI_ReAttachToPos,			idActor::ReAttachToPos )
-EVENT( AI_ReAttachToCoords,		idActor::ReAttachToCoords )
-EVENT( AI_DropAttachment,			idActor::Detach )
-EVENT( AI_ShowAttachment,			idActor::ShowAttachment )
-EVENT( AI_DropAttachmentInd,		idActor::DetachInd )
-EVENT( AI_ShowAttachmentInd,		idActor::ShowAttachmentInd )
-EVENT( AI_GetAttachment,			idActor::Event_GetAttachment )
-EVENT( AI_GetAttachmentInd,		idActor::Event_GetAttachmentInd )
-EVENT( AI_GetNumAttachments,		idActor::Event_GetNumAttachments )
-EVENT( AI_GetNumRangedWeapons,		idActor::Event_GetNumRangedWeapons )
-EVENT( AI_GetNumMeleeWeapons,		idActor::Event_GetNumMeleeWeapons )
+EVENT( AI_Attach, idActor::Event_Attach )
+EVENT( AI_AttachToPos, idActor::Event_AttachToPos )
+EVENT( AI_ReAttachToPos, idActor::ReAttachToPos )
+EVENT( AI_ReAttachToCoords, idActor::ReAttachToCoords )
+EVENT( AI_DropAttachment, idActor::Detach )
+EVENT( AI_ShowAttachment, idActor::ShowAttachment )
+EVENT( AI_DropAttachmentInd, idActor::DetachInd )
+EVENT( AI_ShowAttachmentInd, idActor::ShowAttachmentInd )
+EVENT( AI_GetAttachment, idActor::Event_GetAttachment )
+EVENT( AI_GetAttachmentInd, idActor::Event_GetAttachmentInd )
+EVENT( AI_GetNumAttachments, idActor::Event_GetNumAttachments )
+EVENT( AI_GetNumRangedWeapons, idActor::Event_GetNumRangedWeapons )
+EVENT( AI_GetNumMeleeWeapons, idActor::Event_GetNumMeleeWeapons )
 
-EVENT( AI_SetReplacementAnim,		idActor::Event_SetReplacementAnim )
-EVENT( AI_LookupReplacementAnim,	idActor::Event_LookupReplacementAnim )
-EVENT( AI_RemoveReplacementAnim,	idActor::Event_RemoveReplacementAnim )
+EVENT( AI_SetReplacementAnim, idActor::Event_SetReplacementAnim )
+EVENT( AI_LookupReplacementAnim, idActor::Event_LookupReplacementAnim )
+EVENT( AI_RemoveReplacementAnim, idActor::Event_RemoveReplacementAnim )
 
-EVENT( AI_GetAttackFlag,			idActor::Event_GetAttackFlag )
-EVENT( AI_SetAttackFlag,			idActor::Event_SetAttackFlag )
+EVENT( AI_GetAttackFlag, idActor::Event_GetAttackFlag )
+EVENT( AI_SetAttackFlag, idActor::Event_SetAttackFlag )
 
 END_CLASS
 
@@ -623,76 +623,76 @@ idActor::idActor
 */
 idActor::idActor( void ) {
 	viewAxis.Identity();
-	scriptThread		= NULL;		// initialized by ConstructScriptObject, which is called by idEntity::Spawn
-	use_combat_bbox		= false;
-	head				= NULL;
-	m_AItype			= 0;
-	m_Innocent			= false;
-	rank				= 0;
-	greetingState		= ECannotGreet;
-	m_fovDotHoriz		= 0.0f;
-	m_fovDotVert		= 0.0f;
-	m_SneakAttackMult	= 1.0f;
-	m_SneakAttackThresh	= idMath::INFINITY;
+	scriptThread = NULL;		// initialized by ConstructScriptObject, which is called by idEntity::Spawn
+	use_combat_bbox = false;
+	head = NULL;
+	m_AItype = 0;
+	m_Innocent = false;
+	rank = 0;
+	greetingState = ECannotGreet;
+	m_fovDotHoriz = 0.0f;
+	m_fovDotVert = 0.0f;
+	m_SneakAttackMult = 1.0f;
+	m_SneakAttackThresh = idMath::INFINITY;
 	eyeOffset.Zero();
-	pain_debounce_time	= 0;
-	pain_delay			= 0;
-	pain_threshold		= 0;
+	pain_debounce_time = 0;
+	pain_delay = 0;
+	pain_threshold = 0;
 	melee_range_unarmed = 0.0f;
-	melee_range			= 0.0f;
-	melee_range_vert	= 0.0f;	// grayman #2655
-	m_MeleePredictedAttTime				= 0.0f;
-	m_MeleePredictedAttTimeUnarmed		= 0.0f;
-	m_MeleeDamageMult					= 1.0f;
-	m_MeleeHoldTimeMin					= 0;
-	m_MeleeHoldTimeMax					= 0;
-	m_MeleeCurrentHoldTime				= 0;
-	m_MeleeAttackRecoveryMin			= 0;
-	m_MeleeAttackRecoveryMax			= 0;
-	m_MeleeCurrentAttackRecovery		= 0;
-	m_MeleeAttackLongRecoveryMin		= 0;
-	m_MeleeAttackLongRecoveryMax		= 0;
-	m_MeleeCurrentAttackLongRecovery	= 0;
-	m_MeleeParryRecoveryMin				= 0;
-	m_MeleeParryRecoveryMax				= 0;
-	m_MeleeCurrentParryRecovery			= 0;
-	m_MeleeRiposteRecoveryMin			= 0;
-	m_MeleeRiposteRecoveryMax			= 0;
-	m_MeleeCurrentRiposteRecovery		= 0;
-	m_MeleePreParryDelayMin				= 0;
-	m_MeleePreParryDelayMax				= 0;
-	m_MeleeCurrentPreParryDelay			= 0;
-	m_MeleeRepeatedPreParryDelayMin		= 0;
-	m_MeleeRepeatedPreParryDelayMax		= 0;
-	m_MeleeCurrentRepeatedPreParryDelay	= 0;
-	m_MeleeNumRepAttacks				= 0;
-	m_MeleeRepAttackTime				= 0;
-	m_MeleePostParryDelayMin			= 0;
-	m_MeleePostParryDelayMax			= 0;
-	m_MeleeCurrentPostParryDelay		= 0;
-	m_MeleeRepeatedPostParryDelayMin	= 0;
-	m_MeleeRepeatedPostParryDelayMax	= 0;
-	m_MeleeCurrentRepeatedPostParryDelay	= 0;
-	state				= NULL;
-	idealState			= NULL;
-	leftEyeJoint		= INVALID_JOINT;
-	rightEyeJoint		= INVALID_JOINT;
-	soundJoint			= INVALID_JOINT;
+	melee_range = 0.0f;
+	melee_range_vert = 0.0f;	// grayman #2655
+	m_MeleePredictedAttTime = 0.0f;
+	m_MeleePredictedAttTimeUnarmed = 0.0f;
+	m_MeleeDamageMult = 1.0f;
+	m_MeleeHoldTimeMin = 0;
+	m_MeleeHoldTimeMax = 0;
+	m_MeleeCurrentHoldTime = 0;
+	m_MeleeAttackRecoveryMin = 0;
+	m_MeleeAttackRecoveryMax = 0;
+	m_MeleeCurrentAttackRecovery = 0;
+	m_MeleeAttackLongRecoveryMin = 0;
+	m_MeleeAttackLongRecoveryMax = 0;
+	m_MeleeCurrentAttackLongRecovery = 0;
+	m_MeleeParryRecoveryMin = 0;
+	m_MeleeParryRecoveryMax = 0;
+	m_MeleeCurrentParryRecovery = 0;
+	m_MeleeRiposteRecoveryMin = 0;
+	m_MeleeRiposteRecoveryMax = 0;
+	m_MeleeCurrentRiposteRecovery = 0;
+	m_MeleePreParryDelayMin = 0;
+	m_MeleePreParryDelayMax = 0;
+	m_MeleeCurrentPreParryDelay = 0;
+	m_MeleeRepeatedPreParryDelayMin = 0;
+	m_MeleeRepeatedPreParryDelayMax = 0;
+	m_MeleeCurrentRepeatedPreParryDelay = 0;
+	m_MeleeNumRepAttacks = 0;
+	m_MeleeRepAttackTime = 0;
+	m_MeleePostParryDelayMin = 0;
+	m_MeleePostParryDelayMax = 0;
+	m_MeleeCurrentPostParryDelay = 0;
+	m_MeleeRepeatedPostParryDelayMin = 0;
+	m_MeleeRepeatedPostParryDelayMax = 0;
+	m_MeleeCurrentRepeatedPostParryDelay = 0;
+	state = NULL;
+	idealState = NULL;
+	leftEyeJoint = INVALID_JOINT;
+	rightEyeJoint = INVALID_JOINT;
+	soundJoint = INVALID_JOINT;
 	modelOffset.Zero();
 	deltaViewAngles.Zero();
-	painTime			= 0;
-	allowPain			= false;
-	allowEyeFocus		= false;
-	waitState			= "";
-	blink_anim			= 0;
-	blink_time			= 0;
-	blink_min			= 0;
-	blink_max			= 0;
-	finalBoss			= false;
-	m_timeFellDown		= 0;	 // grayman #3317
-	m_isMute			= false; // grayman #3202
-	m_MouthOffset		= vec3_zero; // grayman #1104
-	m_EyeOffset			= vec3_zero; // grayman #3525
+	painTime = 0;
+	allowPain = false;
+	allowEyeFocus = false;
+	waitState = "";
+	blink_anim = 0;
+	blink_time = 0;
+	blink_min = 0;
+	blink_max = 0;
+	finalBoss = false;
+	m_timeFellDown = 0;	 // grayman #3317
+	m_isMute = false; // grayman #3202
+	m_MouthOffset = vec3_zero; // grayman #1104
+	m_EyeOffset = vec3_zero; // grayman #3525
 	m_suspiciousEventIDs.Clear(); // grayman #3424
 	m_haveSearchedEventID.Clear(); // grayman #3424
 	m_warningEvents.Clear(); // grayman #3424
@@ -731,7 +731,7 @@ idActor::~idActor( void ) {
 	}
 	// remove any attached entities
 	for( i = 0; i < m_Attachments.Num(); i++ ) {
-		ent = m_Attachments[ i ].ent.GetEntity();
+		ent = m_Attachments[i].ent.GetEntity();
 		if( ent ) {
 			ent->PostEventMS( &EV_SafeRemove, 0 );
 		}
@@ -749,13 +749,13 @@ void idActor::Spawn( void ) {
 	float			fovDegHoriz, fovDegVert;
 	copyJoints_t	copyJoint;
 	const idKeyValue *kv = NULL;
-	animPrefix	= "";
-	state		= NULL;
-	idealState	= NULL;
+	animPrefix = "";
+	state = NULL;
+	idealState = NULL;
 	spawnArgs.GetFloat( "collision_damage_threshold_hard", "25", m_damage_thresh_hard ); // greebo: dealing 50+ hit points is considered "hard"
 	spawnArgs.GetFloat( "collision_damage_threshold_min", "5", m_damage_thresh_min ); // falling ~12 ft, g = 1066
 	m_savedVelocity = vec3_zero; // grayman #3699
-	spawnArgs.GetFloat( "collision_delta_scale",  "1.0", m_delta_scale );
+	spawnArgs.GetFloat( "collision_delta_scale", "1.0", m_delta_scale );
 	spawnArgs.GetInt( "rank", "0", rank );
 	spawnArgs.GetInt( "type", "0", m_AItype );
 	spawnArgs.GetBool( "innocent", "0", m_Innocent );
@@ -766,48 +766,48 @@ void idActor::Spawn( void ) {
 	// If fov_vert is -1, it will be set the same as horizontal
 	spawnArgs.GetFloat( "fov_vert", "-1", fovDegVert );
 	SetFOV( fovDegHoriz, fovDegVert );
-	pain_debounce_time	= 0;
-	pain_delay		= SEC2MS( spawnArgs.GetFloat( "pain_delay" ) );
-	pain_threshold	= spawnArgs.GetInt( "pain_threshold" );
+	pain_debounce_time = 0;
+	pain_delay = SEC2MS( spawnArgs.GetFloat( "pain_delay" ) );
+	pain_threshold = spawnArgs.GetInt( "pain_threshold" );
 	// load melee settings based on AI skill level + player difficulty
 	LoadMeleeSet();
 	// adjust health based on multiplier that may be in melee set
 	health += spawnArgs.GetFloat( "health_offset", "0.0" );
-	melee_range_unarmed					= spawnArgs.GetFloat( "melee_range", "64" );
-	melee_range							= melee_range_unarmed;
+	melee_range_unarmed = spawnArgs.GetFloat( "melee_range", "64" );
+	melee_range = melee_range_unarmed;
 	// grayman #2655 - if "melee_range_vert" has a value, use that,
 	// otherwise set it to melee_range
-	melee_range_vert					= spawnArgs.GetFloat( "melee_range_vert", "0" );
+	melee_range_vert = spawnArgs.GetFloat( "melee_range_vert", "0" );
 	if( melee_range_vert == 0 ) {
 		melee_range_vert = melee_range;
 	}
-	m_MeleePredictedAttTimeUnarmed		= 0.001f * spawnArgs.GetFloat( "melee_predicted_attack_time" );
-	m_MeleePredictedAttTime				= m_MeleePredictedAttTimeUnarmed;
-	m_MeleeDamageMult					= spawnArgs.GetFloat( "melee_damage_mod", "1.0f" );
-	m_MeleeHoldTimeMin					= spawnArgs.GetInt( "melee_hold_time_min" );
-	m_MeleeHoldTimeMax					= spawnArgs.GetInt( "melee_hold_time_max" );
-	m_MeleeParryHoldMax					= spawnArgs.GetInt( "melee_parry_hold_max" );
-	m_MeleeParryHoldMin					= spawnArgs.GetInt( "melee_parry_hold_min" );
-	m_MeleeAttackRecoveryMin			= spawnArgs.GetInt( "melee_attack_recovery_min" );
-	m_MeleeAttackRecoveryMax			= spawnArgs.GetInt( "melee_attack_recovery_max" );
-	m_MeleeAttackLongRecoveryMin		= spawnArgs.GetInt( "melee_attack_long_recovery_min" );
-	m_MeleeAttackLongRecoveryMax		= spawnArgs.GetInt( "melee_attack_long_recovery_max" );
-	m_MeleeParryRecoveryMin				= spawnArgs.GetInt( "melee_parry_recovery_min" );
-	m_MeleeParryRecoveryMax				= spawnArgs.GetInt( "melee_parry_recovery_max" );
-	m_MeleeRiposteRecoveryMin			= spawnArgs.GetInt( "melee_riposte_recovery_min" );
-	m_MeleeRiposteRecoveryMax			= spawnArgs.GetInt( "melee_riposte_recovery_max" );
-	m_MeleePreParryDelayMin				= spawnArgs.GetInt( "melee_pre_parry_delay_min" );
-	m_MeleePreParryDelayMax				= spawnArgs.GetInt( "melee_pre_parry_delay_max" );
-	m_MeleeRepeatedPreParryDelayMin		= spawnArgs.GetInt( "melee_repeated_pre_parry_delay_min" );
-	m_MeleeRepeatedPreParryDelayMax		= spawnArgs.GetInt( "melee_repeated_pre_parry_delay_max" );
-	m_MeleePostParryDelayMin			= spawnArgs.GetInt( "melee_post_parry_delay_min" );
-	m_MeleePostParryDelayMax			= spawnArgs.GetInt( "melee_post_parry_delay_max" );
-	m_MeleeRepeatedPostParryDelayMin	= spawnArgs.GetInt( "melee_repeated_post_parry_delay_min" );
-	m_MeleeRepeatedPostParryDelayMax	= spawnArgs.GetInt( "melee_repeated_post_parry_delay_max" );
-	m_MeleeNumRepAttacks				= spawnArgs.GetInt( "melee_num_rep_attacks" );
-	m_MeleeRepAttackTime				= spawnArgs.GetInt( "melee_rep_attack_time" );
-	m_MouthOffset						= spawnArgs.GetVector( "mouth_offset" ); // grayman #1104
-	m_EyeOffset							= spawnArgs.GetVector( "eye_offset" ); // grayman #3525
+	m_MeleePredictedAttTimeUnarmed = 0.001f * spawnArgs.GetFloat( "melee_predicted_attack_time" );
+	m_MeleePredictedAttTime = m_MeleePredictedAttTimeUnarmed;
+	m_MeleeDamageMult = spawnArgs.GetFloat( "melee_damage_mod", "1.0f" );
+	m_MeleeHoldTimeMin = spawnArgs.GetInt( "melee_hold_time_min" );
+	m_MeleeHoldTimeMax = spawnArgs.GetInt( "melee_hold_time_max" );
+	m_MeleeParryHoldMax = spawnArgs.GetInt( "melee_parry_hold_max" );
+	m_MeleeParryHoldMin = spawnArgs.GetInt( "melee_parry_hold_min" );
+	m_MeleeAttackRecoveryMin = spawnArgs.GetInt( "melee_attack_recovery_min" );
+	m_MeleeAttackRecoveryMax = spawnArgs.GetInt( "melee_attack_recovery_max" );
+	m_MeleeAttackLongRecoveryMin = spawnArgs.GetInt( "melee_attack_long_recovery_min" );
+	m_MeleeAttackLongRecoveryMax = spawnArgs.GetInt( "melee_attack_long_recovery_max" );
+	m_MeleeParryRecoveryMin = spawnArgs.GetInt( "melee_parry_recovery_min" );
+	m_MeleeParryRecoveryMax = spawnArgs.GetInt( "melee_parry_recovery_max" );
+	m_MeleeRiposteRecoveryMin = spawnArgs.GetInt( "melee_riposte_recovery_min" );
+	m_MeleeRiposteRecoveryMax = spawnArgs.GetInt( "melee_riposte_recovery_max" );
+	m_MeleePreParryDelayMin = spawnArgs.GetInt( "melee_pre_parry_delay_min" );
+	m_MeleePreParryDelayMax = spawnArgs.GetInt( "melee_pre_parry_delay_max" );
+	m_MeleeRepeatedPreParryDelayMin = spawnArgs.GetInt( "melee_repeated_pre_parry_delay_min" );
+	m_MeleeRepeatedPreParryDelayMax = spawnArgs.GetInt( "melee_repeated_pre_parry_delay_max" );
+	m_MeleePostParryDelayMin = spawnArgs.GetInt( "melee_post_parry_delay_min" );
+	m_MeleePostParryDelayMax = spawnArgs.GetInt( "melee_post_parry_delay_max" );
+	m_MeleeRepeatedPostParryDelayMin = spawnArgs.GetInt( "melee_repeated_post_parry_delay_min" );
+	m_MeleeRepeatedPostParryDelayMax = spawnArgs.GetInt( "melee_repeated_post_parry_delay_max" );
+	m_MeleeNumRepAttacks = spawnArgs.GetInt( "melee_num_rep_attacks" );
+	m_MeleeRepAttackTime = spawnArgs.GetInt( "melee_rep_attack_time" );
+	m_MouthOffset = spawnArgs.GetVector( "mouth_offset" ); // grayman #1104
+	m_EyeOffset = spawnArgs.GetVector( "eye_offset" ); // grayman #3525
 	LoadAF();
 	walkIK.Init( this, IK_ANIM, modelOffset );
 	// the animation used to be set to the IK_ANIM at this point, but that was fixed, resulting in
@@ -950,7 +950,7 @@ void idActor::SetupHead() {
 		// set the damage joint to be part of the head damage group (if possible)
 		jointHandle_t damageJoint = joint;
 		for( int i = 0; i < damageGroups.Num(); i++ ) {
-			if( damageGroups[ i ] == "head" ) {
+			if( damageGroups[i] == "head" ) {
 				damageJoint = static_cast<jointHandle_t>( i );
 				break;
 			}
@@ -986,7 +986,7 @@ void idActor::SetupHead() {
 		headEnt->SetCombatModel();
 		// Store the head locally
 		head = headEnt;
-		DM_LOG( LC_AI, LT_DEBUG )LOGSTRING( "SETBODY: Actor %s : damage joint %d for attached head is part of damage group %s\r", name.c_str(), ( int ) damageJoint, GetDamageGroup( damageJoint ) );
+		DM_LOG( LC_AI, LT_DEBUG )LOGSTRING( "SETBODY: Actor %s : damage joint %d for attached head is part of damage group %s\r", name.c_str(), ( int )damageJoint, GetDamageGroup( damageJoint ) );
 		// Add the head as attachment
 		idVec3 origin;
 		idMat3 axis;
@@ -1022,16 +1022,16 @@ void idActor::CopyJointsFromBodyToHead( void ) {
 	headAnimator = headEnt->GetAnimator();
 	// copy the animation from the body to the head
 	for( i = 0; i < copyJoints.Num(); i++ ) {
-		if( copyJoints[ i ].mod == JOINTMOD_WORLD_OVERRIDE ) {
+		if( copyJoints[i].mod == JOINTMOD_WORLD_OVERRIDE ) {
 			mat = headEnt->GetPhysics()->GetAxis().Transpose();
-			GetJointWorldTransform( copyJoints[ i ].from, gameLocal.time, pos, axis );
+			GetJointWorldTransform( copyJoints[i].from, gameLocal.time, pos, axis );
 			pos -= headEnt->GetPhysics()->GetOrigin();
-			headAnimator->SetJointPos( copyJoints[ i ].to, copyJoints[ i ].mod, pos * mat );
-			headAnimator->SetJointAxis( copyJoints[ i ].to, copyJoints[ i ].mod, axis * mat );
+			headAnimator->SetJointPos( copyJoints[i].to, copyJoints[i].mod, pos * mat );
+			headAnimator->SetJointAxis( copyJoints[i].to, copyJoints[i].mod, axis * mat );
 		} else {
-			animator.GetJointLocalTransform( copyJoints[ i ].from, gameLocal.time, pos, axis );
-			headAnimator->SetJointPos( copyJoints[ i ].to, copyJoints[ i ].mod, pos );
-			headAnimator->SetJointAxis( copyJoints[ i ].to, copyJoints[ i ].mod, axis );
+			animator.GetJointLocalTransform( copyJoints[i].from, gameLocal.time, pos, axis );
+			headAnimator->SetJointPos( copyJoints[i].to, copyJoints[i].mod, pos );
+			headAnimator->SetJointAxis( copyJoints[i].to, copyJoints[i].mod, axis );
 		}
 	}
 }
@@ -1109,17 +1109,17 @@ void idActor::Save( idSaveGame *savefile ) const {
 	savefile->WriteVec3( m_EyeOffset );	// grayman #3525
 	// grayman #3424
 	savefile->WriteInt( m_suspiciousEventIDs.Num() );
-	for( int i = 0 ; i < m_suspiciousEventIDs.Num() ; i++ ) {
+	for( int i = 0; i < m_suspiciousEventIDs.Num(); i++ ) {
 		savefile->WriteInt( m_suspiciousEventIDs[i] );
 	}
 	// grayman #3424
 	savefile->WriteInt( m_haveSearchedEventID.Num() );
-	for( int i = 0 ; i < m_haveSearchedEventID.Num() ; i++ ) {
+	for( int i = 0; i < m_haveSearchedEventID.Num(); i++ ) {
 		savefile->WriteBool( m_haveSearchedEventID[i] );
 	}
 	// grayman #3424
 	savefile->WriteInt( m_warningEvents.Num() );
-	for( int i = 0 ; i < m_warningEvents.Num() ; i++ ) {
+	for( int i = 0; i < m_warningEvents.Num(); i++ ) {
 		savefile->WriteInt( m_warningEvents[i].eventID );
 		m_warningEvents[i].entity.Save( savefile );
 	}
@@ -1136,11 +1136,11 @@ void idActor::Save( idSaveGame *savefile ) const {
 	savefile->WriteInt( pain_threshold );
 	savefile->WriteInt( damageGroups.Num() );
 	for( i = 0; i < damageGroups.Num(); i++ ) {
-		savefile->WriteString( damageGroups[ i ] );
+		savefile->WriteString( damageGroups[i] );
 	}
 	savefile->WriteInt( damageScale.Num() );
 	for( i = 0; i < damageScale.Num(); i++ ) {
-		savefile->WriteFloat( damageScale[ i ] );
+		savefile->WriteFloat( damageScale[i] );
 	}
 	savefile->WriteInt( lowHealthThreshold );
 	savefile->WriteString( lowHealthScript );
@@ -1207,7 +1207,7 @@ void idActor::Save( idSaveGame *savefile ) const {
 	savefile->WriteFloat( m_stepvol_crouch_run );
 	savefile->WriteDict( &m_replacementAnims );
 	savefile->WriteInt( static_cast<int>( m_AttackFlags.size() ) );
-	for( std::set<int>::const_iterator i = 	m_AttackFlags.begin(); i != m_AttackFlags.end(); ++i ) {
+	for( std::set<int>::const_iterator i = m_AttackFlags.begin(); i != m_AttackFlags.end(); ++i ) {
 		savefile->WriteInt( static_cast<int>( *i ) );
 	}
 	savefile->WriteInt( m_timeFellDown ); // grayman #3317
@@ -1294,21 +1294,21 @@ void idActor::Restore( idRestoreGame *savefile ) {
 	savefile->ReadInt( num );
 	m_suspiciousEventIDs.Clear();
 	m_suspiciousEventIDs.SetNum( num );
-	for( int i = 0 ; i < num ; i++ ) {
+	for( int i = 0; i < num; i++ ) {
 		savefile->ReadInt( m_suspiciousEventIDs[i] );
 	}
 	// grayman #3424
 	savefile->ReadInt( num );
 	m_haveSearchedEventID.Clear();
 	m_haveSearchedEventID.SetNum( num );
-	for( int i = 0 ; i < num ; i++ ) {
+	for( int i = 0; i < num; i++ ) {
 		savefile->ReadBool( m_haveSearchedEventID[i] );
 	}
 	// grayman #3424
 	savefile->ReadInt( num );
 	m_warningEvents.Clear();
 	m_warningEvents.SetNum( num );
-	for( int i = 0 ; i < num ; i++ ) {
+	for( int i = 0; i < num; i++ ) {
 		savefile->ReadInt( m_warningEvents[i].eventID );
 		m_warningEvents[i].entity.Restore( savefile );
 	}
@@ -1327,12 +1327,12 @@ void idActor::Restore( idRestoreGame *savefile ) {
 	damageGroups.SetGranularity( 1 );
 	damageGroups.SetNum( num );
 	for( i = 0; i < num; i++ ) {
-		savefile->ReadString( damageGroups[ i ] );
+		savefile->ReadString( damageGroups[i] );
 	}
 	savefile->ReadInt( num );
 	damageScale.SetNum( num );
 	for( i = 0; i < num; i++ ) {
-		savefile->ReadFloat( damageScale[ i ] );
+		savefile->ReadFloat( damageScale[i] );
 	}
 	savefile->ReadInt( lowHealthThreshold );
 	savefile->ReadString( lowHealthScript );
@@ -1477,7 +1477,7 @@ bool idActor::LoadAF( void ) {
 		goto Quit;
 	}
 	af.SetAnimator( GetAnimator() );
-	bReturnVal =  af.Load( this, fileName );
+	bReturnVal = af.Load( this, fileName );
 	SetUpGroundingVars();
 	if( m_bAFPushMoveables ) {
 		af.SetupPose( this, gameLocal.time );
@@ -1517,7 +1517,7 @@ void idActor::SetupBody( void ) {
 				eyeOffset = pos + modelOffset;
 			} else {
 				// just base it off the bounding box size
-				eyeOffset.z = GetPhysics()->GetBounds()[ 1 ].z - 6;
+				eyeOffset.z = GetPhysics()->GetBounds()[1].z - 6;
 			}
 		}
 		headAnim.Init( this, headEnt->GetAnimator(), ANIMCHANNEL_ALL );
@@ -1540,7 +1540,7 @@ void idActor::SetupBody( void ) {
 				eyeOffset = pos + modelOffset;
 			} else {
 				// just base it off the bounding box size
-				eyeOffset.z = GetPhysics()->GetBounds()[ 1 ].z - 6;
+				eyeOffset.z = GetPhysics()->GetBounds()[1].z - 6;
 			}
 		}
 		headAnim.Init( this, &animator, ANIMCHANNEL_HEAD );
@@ -1618,7 +1618,7 @@ bool idActor::GetPhysicsToSoundTransform( idVec3 &origin, idMat3 &axis ) {
 
 	script state management
 
-***********************************************************************/
+	***********************************************************************/
 
 /*
 ================
@@ -1762,7 +1762,7 @@ void idActor::UpdateScript( void ) {
 
 	vision
 
-***********************************************************************/
+	***********************************************************************/
 
 /*
 =====================
@@ -1770,12 +1770,12 @@ idActor::setFov
 =====================
 */
 void idActor::SetFOV( float fovHoriz, float fovVert ) {
-	m_fovDotHoriz = ( float ) cos( DEG2RAD( fovHoriz * 0.5f ) );
+	m_fovDotHoriz = ( float )cos( DEG2RAD( fovHoriz * 0.5f ) );
 	// if fovVert not specified (default val of -1), make same as horizontal
 	if( fovVert == -1 ) {
 		m_fovDotVert = m_fovDotHoriz;
 	} else {
-		m_fovDotVert = ( float ) cos( DEG2RAD( fovVert * 0.5f ) );
+		m_fovDotVert = ( float )cos( DEG2RAD( fovVert * 0.5f ) );
 	}
 }
 
@@ -1843,7 +1843,7 @@ bool idActor::CheckFOV( const idVec3 &pos ) const {
 	// infinite vertical vision, so project it onto our orientation plane
 	delta -= gravityDir * ( gravityDir * delta );
 	delta.Normalize();
-	dot = viewAxis[ 0 ] * delta;
+	dot = viewAxis[0] * delta;
 	return ( dot >= m_fovDotHoriz );
 }
 
@@ -1856,7 +1856,7 @@ bool idActor::CanSee( idEntity *ent, bool useFov ) const {
 	// TDM: We need to be able to see lights that are off and hence hidden
 	/*if ( ent->IsHidden() )
 	{
-		return false;
+	return false;
 	}*/
 	// The entity's origin
 	// grayman #2861 - in the case of doors, use the 'closed origin' and not the 'origin'
@@ -1999,7 +1999,7 @@ renderView_t *idActor::GetRenderView() {
 
 	Model/Ragdoll
 
-***********************************************************************/
+	***********************************************************************/
 
 /*
 ================
@@ -2152,7 +2152,7 @@ void idActor::RemoveAttachments( void ) {
 	idEntity *ent;
 	// remove any attached entities
 	for( i = 0; i < m_Attachments.Num(); i++ ) {
-		ent = m_Attachments[ i ].ent.GetEntity();
+		ent = m_Attachments[i].ent.GetEntity();
 		if( ent && ent->spawnArgs.GetBool( "remove" ) ) {
 			ent->PostEventMS( &EV_SafeRemove, 0 );
 		}
@@ -2197,7 +2197,7 @@ void idActor::Attach( idEntity *ent, const char *PosName, const char *AttName ) 
 idActor::BindNotify
 ================
 */
-void idActor::BindNotify( idEntity *ent , const char *jointName ) { // grayman #3074
+void idActor::BindNotify( idEntity *ent, const char *jointName ) { // grayman #3074
 	idAFEntity_Base::BindNotify( ent, jointName ); // grayman #3074
 	// Override our animations based on the bound entity's replace_anim_* spawnargs
 	LoadReplacementAnims( ent->spawnArgs, jointName ); // grayman #3074
@@ -2439,7 +2439,7 @@ void idActor::GetAASLocation( idAAS *aas, idVec3 &pos, int &areaNum ) const {
 
 	animation state
 
-***********************************************************************/
+	***********************************************************************/
 
 /*
 =====================
@@ -2455,17 +2455,17 @@ void idActor::SetAnimState( int channel, const char *statename, int blendFrames 
 		gameLocal.Error( "Can't find function '%s' in object '%s'", statename, scriptObject.GetTypeName() );
 	}
 	switch( channel ) {
-	case ANIMCHANNEL_HEAD :
+	case ANIMCHANNEL_HEAD:
 		headAnim.SetState( statename, blendFrames );
 		allowEyeFocus = true;
 		break;
-	case ANIMCHANNEL_TORSO :
+	case ANIMCHANNEL_TORSO:
 		torsoAnim.SetState( statename, blendFrames );
 		legsAnim.Enable( blendFrames );
 		allowPain = true;
 		allowEyeFocus = true;
 		break;
-	case ANIMCHANNEL_LEGS :
+	case ANIMCHANNEL_LEGS:
 		legsAnim.SetState( statename, blendFrames );
 		torsoAnim.Enable( blendFrames );
 		allowPain = true;
@@ -2484,13 +2484,13 @@ idActor::GetAnimState
 */
 const char *idActor::GetAnimState( int channel ) const {
 	switch( channel ) {
-	case ANIMCHANNEL_HEAD :
+	case ANIMCHANNEL_HEAD:
 		return headAnim.state;
 		break;
-	case ANIMCHANNEL_TORSO :
+	case ANIMCHANNEL_TORSO:
 		return torsoAnim.state;
 		break;
-	case ANIMCHANNEL_LEGS :
+	case ANIMCHANNEL_LEGS:
 		return legsAnim.state;
 		break;
 	default:
@@ -2507,17 +2507,17 @@ idActor::InAnimState
 */
 bool idActor::InAnimState( int channel, const char *statename ) const {
 	switch( channel ) {
-	case ANIMCHANNEL_HEAD :
+	case ANIMCHANNEL_HEAD:
 		if( headAnim.state == statename ) {
 			return true;
 		}
 		break;
-	case ANIMCHANNEL_TORSO :
+	case ANIMCHANNEL_TORSO:
 		if( torsoAnim.state == statename ) {
 			return true;
 		}
 		break;
-	case ANIMCHANNEL_LEGS :
+	case ANIMCHANNEL_LEGS:
 		if( legsAnim.state == statename ) {
 			return true;
 		}
@@ -2544,13 +2544,13 @@ const char *idActor::WaitState( void ) const {
 
 const char *idActor::WaitState( int channel ) const {
 	switch( channel ) {
-	case ANIMCHANNEL_HEAD :
+	case ANIMCHANNEL_HEAD:
 		return headAnim.WaitState();
 		break;
-	case ANIMCHANNEL_TORSO :
+	case ANIMCHANNEL_TORSO:
 		return torsoAnim.WaitState();
 		break;
-	case ANIMCHANNEL_LEGS :
+	case ANIMCHANNEL_LEGS:
 		return legsAnim.WaitState();
 		break;
 	default:
@@ -2571,13 +2571,13 @@ void idActor::SetWaitState( const char *_waitstate ) {
 
 void idActor::SetWaitState( int channel, const char *_waitstate ) {
 	switch( channel ) {
-	case ANIMCHANNEL_HEAD :
+	case ANIMCHANNEL_HEAD:
 		headAnim.SetWaitState( _waitstate );
 		break;
-	case ANIMCHANNEL_TORSO :
+	case ANIMCHANNEL_TORSO:
 		torsoAnim.SetWaitState( _waitstate );
 		break;
-	case ANIMCHANNEL_LEGS :
+	case ANIMCHANNEL_LEGS:
 		legsAnim.SetWaitState( _waitstate );
 		break;
 	default:
@@ -2643,16 +2643,16 @@ int idActor::GetAnim( int channel, const char *animname ) {
 
 idAnimator	*idActor::GetAnimatorForChannel( int channel ) {
 	switch( channel ) {
-	case ANIMCHANNEL_HEAD :
+	case ANIMCHANNEL_HEAD:
 		if( head.GetEntity() == NULL ) {
 			return headAnim.GetAnimator();
 		}
 		return head.GetEntity()->GetAnimator();
 		break;
-	case ANIMCHANNEL_TORSO :
+	case ANIMCHANNEL_TORSO:
 		return torsoAnim.GetAnimator();
 		break;
-	case ANIMCHANNEL_LEGS :
+	case ANIMCHANNEL_LEGS:
 		return legsAnim.GetAnimator();
 		break;
 	default:
@@ -2728,13 +2728,13 @@ void idActor::RemoveReplacementAnim( const idStr &replacedAnim ) {
 
 void idActor::StopAnim( int channel, int frames ) {
 	switch( channel ) {
-	case ANIMCHANNEL_HEAD :
+	case ANIMCHANNEL_HEAD:
 		headAnim.StopAnim( frames );
 		break;
-	case ANIMCHANNEL_TORSO :
+	case ANIMCHANNEL_TORSO:
 		torsoAnim.StopAnim( frames );
 		break;
-	case ANIMCHANNEL_LEGS :
+	case ANIMCHANNEL_LEGS:
 		legsAnim.StopAnim( frames );
 		break;
 	default:
@@ -2806,7 +2806,7 @@ void idActor::SyncAnimChannels( int channel, int syncToChannel, int blendFrames 
 
 	Damage
 
-***********************************************************************/
+	***********************************************************************/
 
 /*
 ============
@@ -2836,7 +2836,7 @@ idActor::Damage
 this		entity that is being damaged
 inflictor	entity that is causing the damage
 attacker	entity that caused the inflictor to damage targ
-	example: this=monster, inflictor=rocket, attacker=player
+example: this=monster, inflictor=rocket, attacker=player
 
 dir			direction of the attack for knockback in global space
 point		point at which the damage is being inflicted, used for headshots
@@ -3000,7 +3000,7 @@ void idActor::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &dir
 	if( damage > 0 ) {
 		// Apply the damage
 		health -= damage; // ouch!!
-		DM_LOG( LC_AI, LT_DEBUG )LOGSTRING( "Actor %s received damage %d at joint %d, corresponding to damage group %s\r", name.c_str(), damage, ( int ) location, GetDamageGroup( location ) );
+		DM_LOG( LC_AI, LT_DEBUG )LOGSTRING( "Actor %s received damage %d at joint %d, corresponding to damage group %s\r", name.c_str(), damage, ( int )location, GetDamageGroup( location ) );
 		if( ( lowHealthThreshold != -1 ) && ( health <= lowHealthThreshold ) ) {
 			DM_LOG( LC_AI, LT_DEBUG )LOGSTRING( "Actor %s's fell below health threshold %d, firing script %s\r", name.c_str(), lowHealthThreshold, lowHealthScript.c_str() );
 			if( !lowHealthScript.IsEmpty() ) {
@@ -3031,19 +3031,19 @@ void idActor::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &dir
 	/*
 		else
 		{
-			// Ishtvan: THIS IS WHAT'S CAUSING PLATE ARMOR HITS NOT TO MOVE AI... WHY DID ID DO THIS?
+		// Ishtvan: THIS IS WHAT'S CAUSING PLATE ARMOR HITS NOT TO MOVE AI... WHY DID ID DO THIS?
 
-			// don't accumulate knockback
-			if ( af.IsLoaded() )
-			{
-				// clear impacts
-				af.Rest();
+		// don't accumulate knockback
+		if ( af.IsLoaded() )
+		{
+		// clear impacts
+		af.Rest();
 
-				// physics is turned off by calling af.Rest()
-				BecomeActive( TH_PHYSICS );
-			}
+		// physics is turned off by calling af.Rest()
+		BecomeActive( TH_PHYSICS );
 		}
-	*/
+		}
+		*/
 }
 
 /*
@@ -3178,8 +3178,8 @@ void idActor::SetupDamageGroups( void ) {
 		groupname.Strip( "damage_zone " );
 		animator.GetJointList( arg->GetValue(), jointList );
 		for( i = 0; i < jointList.Num(); i++ ) {
-			jointnum = jointList[ i ];
-			damageGroups[ jointnum ] = groupname;
+			jointnum = jointList[i];
+			damageGroups[jointnum] = groupname;
 		}
 		jointList.Clear();
 		arg = spawnArgs.MatchPrefix( "damage_zone ", arg );
@@ -3187,7 +3187,7 @@ void idActor::SetupDamageGroups( void ) {
 	// initilize the damage zones to normal damage
 	damageScale.SetNum( animator.NumJoints() );
 	for( i = 0; i < damageScale.Num(); i++ ) {
-		damageScale[ i ] = 1.0f;
+		damageScale[i] = 1.0f;
 	}
 	// set the percentage on damage zones
 	arg = spawnArgs.MatchPrefix( "damage_scale ", NULL );
@@ -3196,8 +3196,8 @@ void idActor::SetupDamageGroups( void ) {
 		groupname = arg->GetKey();
 		groupname.Strip( "damage_scale " );
 		for( i = 0; i < damageScale.Num(); i++ ) {
-			if( damageGroups[ i ] == groupname ) {
-				damageScale[ i ] = scale;
+			if( damageGroups[i] == groupname ) {
+				damageScale[i] = scale;
 			}
 		}
 		arg = spawnArgs.MatchPrefix( "damage_scale ", arg );
@@ -3213,7 +3213,7 @@ int idActor::GetDamageForLocation( int damage, int location ) {
 	if( ( location < 0 ) || ( location >= damageScale.Num() ) ) {
 		return damage;
 	}
-	return ( int )ceil( damage * damageScale[ location ] );
+	return ( int )ceil( damage * damageScale[location] );
 }
 
 /*
@@ -3225,7 +3225,7 @@ const char *idActor::GetDamageGroup( int location ) {
 	if( ( location < 0 ) || ( location >= damageGroups.Num() ) ) {
 		return "";
 	}
-	return damageGroups[ location ];
+	return damageGroups[location];
 }
 
 /*
@@ -3302,7 +3302,7 @@ void idActor::LoadMeleeSet() {
 
 	Events
 
-***********************************************************************/
+	***********************************************************************/
 
 /*
 =====================
@@ -3456,7 +3456,7 @@ void idActor::Event_PlayAnim( int channel, const char *animname ) {
 		return;
 	}
 	switch( channel ) {
-	case ANIMCHANNEL_HEAD :
+	case ANIMCHANNEL_HEAD:
 		headEnt = head.GetEntity();
 		if( headEnt ) {
 			headAnim.idleAnim = false;
@@ -3474,7 +3474,7 @@ void idActor::Event_PlayAnim( int channel, const char *animname ) {
 			}
 		}
 		break;
-	case ANIMCHANNEL_TORSO :
+	case ANIMCHANNEL_TORSO:
 		torsoAnim.idleAnim = false;
 		torsoAnim.PlayAnim( anim );
 		flags = torsoAnim.GetAnimFlags();
@@ -3489,7 +3489,7 @@ void idActor::Event_PlayAnim( int channel, const char *animname ) {
 			}
 		}
 		break;
-	case ANIMCHANNEL_LEGS :
+	case ANIMCHANNEL_LEGS:
 		legsAnim.idleAnim = false;
 		legsAnim.PlayAnim( anim );
 		flags = legsAnim.GetAnimFlags();
@@ -3504,7 +3504,7 @@ void idActor::Event_PlayAnim( int channel, const char *animname ) {
 			}
 		}
 		break;
-	default :
+	default:
 		gameLocal.Error( "Unknown anim group" );
 		break;
 	}
@@ -3532,7 +3532,7 @@ void idActor::Event_PlayCycle( int channel, const char *animname ) {
 		return;
 	}
 	switch( channel ) {
-	case ANIMCHANNEL_HEAD :
+	case ANIMCHANNEL_HEAD:
 		headAnim.idleAnim = false;
 		headAnim.CycleAnim( anim );
 		flags = headAnim.GetAnimFlags();
@@ -3545,7 +3545,7 @@ void idActor::Event_PlayCycle( int channel, const char *animname ) {
 			}
 		}
 		break;
-	case ANIMCHANNEL_TORSO :
+	case ANIMCHANNEL_TORSO:
 		torsoAnim.idleAnim = false;
 		torsoAnim.CycleAnim( anim );
 		flags = torsoAnim.GetAnimFlags();
@@ -3560,7 +3560,7 @@ void idActor::Event_PlayCycle( int channel, const char *animname ) {
 			}
 		}
 		break;
-	case ANIMCHANNEL_LEGS :
+	case ANIMCHANNEL_LEGS:
 		legsAnim.idleAnim = false;
 		legsAnim.CycleAnim( anim );
 		flags = legsAnim.GetAnimFlags();
@@ -3616,13 +3616,13 @@ void idActor::Event_IdleAnim( int channel, const char *animname ) {
 		}
 #endif
 		switch( channel ) {
-		case ANIMCHANNEL_HEAD :
+		case ANIMCHANNEL_HEAD:
 			headAnim.BecomeIdle();
 			break;
-		case ANIMCHANNEL_TORSO :
+		case ANIMCHANNEL_TORSO:
 			torsoAnim.BecomeIdle();
 			break;
-		case ANIMCHANNEL_LEGS :
+		case ANIMCHANNEL_LEGS:
 			legsAnim.BecomeIdle();
 			break;
 		default:
@@ -3632,7 +3632,7 @@ void idActor::Event_IdleAnim( int channel, const char *animname ) {
 		return;
 	}
 	switch( channel ) {
-	case ANIMCHANNEL_HEAD :
+	case ANIMCHANNEL_HEAD:
 		headAnim.BecomeIdle();
 		if( torsoAnim.GetAnimFlags().prevent_idle_override ) {
 			// don't sync to torso body if it doesn't override idle anims
@@ -3654,7 +3654,7 @@ void idActor::Event_IdleAnim( int channel, const char *animname ) {
 			SyncAnimChannels( ANIMCHANNEL_HEAD, ANIMCHANNEL_TORSO, headAnim.animBlendFrames );
 		}
 		break;
-	case ANIMCHANNEL_TORSO :
+	case ANIMCHANNEL_TORSO:
 		torsoAnim.BecomeIdle();
 		if( legsAnim.GetAnimFlags().prevent_idle_override ) {
 			// don't sync to legs if legs anim doesn't override idle anims
@@ -3672,7 +3672,7 @@ void idActor::Event_IdleAnim( int channel, const char *animname ) {
 			SyncAnimChannels( ANIMCHANNEL_HEAD, ANIMCHANNEL_TORSO, torsoAnim.lastAnimBlendFrames );
 		}
 		break;
-	case ANIMCHANNEL_LEGS :
+	case ANIMCHANNEL_LEGS:
 		legsAnim.BecomeIdle();
 		if( torsoAnim.GetAnimFlags().prevent_idle_override ) {
 			// don't sync to torso if torso anim doesn't override idle anims
@@ -3705,7 +3705,7 @@ void idActor::Event_SetSyncedAnimWeight( int channel, int anim, float weight ) {
 	idEntity *headEnt;
 	headEnt = head.GetEntity();
 	switch( channel ) {
-	case ANIMCHANNEL_HEAD :
+	case ANIMCHANNEL_HEAD:
 		if( headEnt ) {
 			animator.CurrentAnim( ANIMCHANNEL_ALL )->SetSyncedAnimWeight( anim, weight );
 		} else {
@@ -3718,7 +3718,7 @@ void idActor::Event_SetSyncedAnimWeight( int channel, int anim, float weight ) {
 			}
 		}
 		break;
-	case ANIMCHANNEL_TORSO :
+	case ANIMCHANNEL_TORSO:
 		animator.CurrentAnim( ANIMCHANNEL_TORSO )->SetSyncedAnimWeight( anim, weight );
 		if( legsAnim.IsIdle() ) {
 			animator.CurrentAnim( ANIMCHANNEL_LEGS )->SetSyncedAnimWeight( anim, weight );
@@ -3727,7 +3727,7 @@ void idActor::Event_SetSyncedAnimWeight( int channel, int anim, float weight ) {
 			animator.CurrentAnim( ANIMCHANNEL_ALL )->SetSyncedAnimWeight( anim, weight );
 		}
 		break;
-	case ANIMCHANNEL_LEGS :
+	case ANIMCHANNEL_LEGS:
 		animator.CurrentAnim( ANIMCHANNEL_LEGS )->SetSyncedAnimWeight( anim, weight );
 		if( torsoAnim.IsIdle() ) {
 			animator.CurrentAnim( ANIMCHANNEL_TORSO )->SetSyncedAnimWeight( anim, weight );
@@ -3752,7 +3752,7 @@ idActor::Event_OverrideAnim
 */
 void idActor::Event_OverrideAnim( int channel ) {
 	switch( channel ) {
-	case ANIMCHANNEL_HEAD :
+	case ANIMCHANNEL_HEAD:
 		headAnim.Disable();
 		if( !torsoAnim.IsIdle() ) {
 			SyncAnimChannels( ANIMCHANNEL_HEAD, ANIMCHANNEL_TORSO, torsoAnim.lastAnimBlendFrames );
@@ -3760,14 +3760,14 @@ void idActor::Event_OverrideAnim( int channel ) {
 			SyncAnimChannels( ANIMCHANNEL_HEAD, ANIMCHANNEL_LEGS, legsAnim.lastAnimBlendFrames );
 		}
 		break;
-	case ANIMCHANNEL_TORSO :
+	case ANIMCHANNEL_TORSO:
 		torsoAnim.Disable();
 		SyncAnimChannels( ANIMCHANNEL_TORSO, ANIMCHANNEL_LEGS, legsAnim.lastAnimBlendFrames );
 		if( headAnim.IsIdle() ) {
 			SyncAnimChannels( ANIMCHANNEL_HEAD, ANIMCHANNEL_TORSO, torsoAnim.lastAnimBlendFrames );
 		}
 		break;
-	case ANIMCHANNEL_LEGS :
+	case ANIMCHANNEL_LEGS:
 		legsAnim.Disable();
 		SyncAnimChannels( ANIMCHANNEL_LEGS, ANIMCHANNEL_TORSO, torsoAnim.lastAnimBlendFrames );
 		break;
@@ -3784,13 +3784,13 @@ idActor::Event_EnableAnim
 */
 void idActor::Event_EnableAnim( int channel, int blendFrames ) {
 	switch( channel ) {
-	case ANIMCHANNEL_HEAD :
+	case ANIMCHANNEL_HEAD:
 		headAnim.Enable( blendFrames );
 		break;
-	case ANIMCHANNEL_TORSO :
+	case ANIMCHANNEL_TORSO:
 		torsoAnim.Enable( blendFrames );
 		break;
-	case ANIMCHANNEL_LEGS :
+	case ANIMCHANNEL_LEGS:
 		legsAnim.Enable( blendFrames );
 		break;
 	default:
@@ -3806,13 +3806,13 @@ idActor::Event_DisableAnimchannel
 */
 void idActor::Event_DisableAnimchannel( int channel ) {
 	switch( channel ) {
-	case ANIMCHANNEL_HEAD :
+	case ANIMCHANNEL_HEAD:
 		headAnim.Disable();
 		break;
-	case ANIMCHANNEL_TORSO :
+	case ANIMCHANNEL_TORSO:
 		torsoAnim.Disable();
 		break;
-	case ANIMCHANNEL_LEGS :
+	case ANIMCHANNEL_LEGS:
 		legsAnim.Disable();
 		break;
 	default:
@@ -3828,15 +3828,15 @@ idActor::Event_SetBlendFrames
 */
 void idActor::Event_SetBlendFrames( int channel, int blendFrames ) {
 	switch( channel ) {
-	case ANIMCHANNEL_HEAD :
+	case ANIMCHANNEL_HEAD:
 		headAnim.animBlendFrames = blendFrames;
 		headAnim.lastAnimBlendFrames = blendFrames;
 		break;
-	case ANIMCHANNEL_TORSO :
+	case ANIMCHANNEL_TORSO:
 		torsoAnim.animBlendFrames = blendFrames;
 		torsoAnim.lastAnimBlendFrames = blendFrames;
 		break;
-	case ANIMCHANNEL_LEGS :
+	case ANIMCHANNEL_LEGS:
 		legsAnim.animBlendFrames = blendFrames;
 		legsAnim.lastAnimBlendFrames = blendFrames;
 		break;
@@ -3853,13 +3853,13 @@ idActor::Event_GetBlendFrames
 */
 void idActor::Event_GetBlendFrames( int channel ) {
 	switch( channel ) {
-	case ANIMCHANNEL_HEAD :
+	case ANIMCHANNEL_HEAD:
 		idThread::ReturnInt( headAnim.animBlendFrames );
 		break;
-	case ANIMCHANNEL_TORSO :
+	case ANIMCHANNEL_TORSO:
 		idThread::ReturnInt( torsoAnim.animBlendFrames );
 		break;
-	case ANIMCHANNEL_LEGS :
+	case ANIMCHANNEL_LEGS:
 		idThread::ReturnInt( legsAnim.animBlendFrames );
 		break;
 	default:
@@ -3912,13 +3912,13 @@ void idActor::Event_FinishAction( const char *actionname ) {
 
 void idActor::Event_FinishChannelAction( int channel, const char *actionname ) {
 	switch( channel ) {
-	case ANIMCHANNEL_HEAD :
+	case ANIMCHANNEL_HEAD:
 		headAnim.FinishAction( actionname );
 		break;
-	case ANIMCHANNEL_TORSO :
+	case ANIMCHANNEL_TORSO:
 		torsoAnim.FinishAction( actionname );
 		break;
-	case ANIMCHANNEL_LEGS :
+	case ANIMCHANNEL_LEGS:
 		legsAnim.FinishAction( actionname );
 		break;
 	default:
@@ -3929,13 +3929,13 @@ void idActor::Event_FinishChannelAction( int channel, const char *actionname ) {
 bool idActor::AnimDone( int channel, int blendFrames ) const {
 	bool result = false;
 	switch( channel ) {
-	case ANIMCHANNEL_HEAD :
+	case ANIMCHANNEL_HEAD:
 		result = headAnim.AnimDone( blendFrames );
 		break;
-	case ANIMCHANNEL_TORSO :
+	case ANIMCHANNEL_TORSO:
 		result = torsoAnim.AnimDone( blendFrames );
 		break;
-	case ANIMCHANNEL_LEGS :
+	case ANIMCHANNEL_LEGS:
 		result = legsAnim.AnimDone( blendFrames );
 		break;
 	default:
@@ -4351,7 +4351,7 @@ idAFAttachment *idActor::GetHead() { // grayman #1104
 void idActor::MarkEventAsSearched( int eventID ) {
 	if( eventID >= 0 ) {
 		// Do I know about this event?
-		for( int i = 0 ; i < m_suspiciousEventIDs.Num() ; i++ ) {
+		for( int i = 0; i < m_suspiciousEventIDs.Num(); i++ ) {
 			if( m_suspiciousEventIDs[i] == eventID ) {
 				// I know about it. Mark it 'searched'.
 				m_haveSearchedEventID[i] = true;
@@ -4367,7 +4367,7 @@ bool idActor::HasSearchedEvent( int eventID ) {
 		return false;
 	}
 	// Do I know about this event?
-	for( int i = 0 ; i < m_suspiciousEventIDs.Num() ; i++ ) {
+	for( int i = 0; i < m_suspiciousEventIDs.Num(); i++ ) {
 		if( m_suspiciousEventIDs[i] == eventID ) {
 			// I know about it. Have I already searched it?
 			return m_haveSearchedEventID[i];
@@ -4378,7 +4378,7 @@ bool idActor::HasSearchedEvent( int eventID ) {
 
 bool idActor::HasBeenWarned( idActor *other, int eventID ) {
 	// Go through my list of warnings and see if I've already been warned.
-	for( int i = 0 ; i < m_warningEvents.Num() ; i++ ) {
+	for( int i = 0; i < m_warningEvents.Num(); i++ ) {
 		if( ( m_warningEvents[i].eventID == eventID ) && ( m_warningEvents[i].entity.GetEntity() == other ) ) {
 			return true;
 		}
@@ -4390,7 +4390,7 @@ bool idActor::FindSuspiciousEvent( int eventID ) { // grayman #3424
 	if( eventID < 0 ) {
 		return false;
 	}
-	for( int i = 0 ; i < m_suspiciousEventIDs.Num() ; i++ ) {
+	for( int i = 0; i < m_suspiciousEventIDs.Num(); i++ ) {
 		if( m_suspiciousEventIDs[i] == eventID ) {
 			return true;
 		}
@@ -4439,7 +4439,7 @@ int idActor::LogSuspiciousEvent( EventType type, idVec3 loc, idEntity *entity ) 
 	handle collision (Falling) damage to AI/Players
 	Added by Richard Day
 	=====================
-****************************************************************************************/
+	****************************************************************************************/
 CrashLandResult idActor::CrashLand( const idPhysics_Actor &physicsObj, const idVec3 &savedOrigin, const idVec3 &savedVelocity ) {
 	CrashLandResult result;
 	result.damageDealt = 0;
@@ -4505,7 +4505,7 @@ CrashLandResult idActor::CrashLand( const idPhysics_Actor &physicsObj, const idV
 	// We do this here since the sound won't be played otherwise
 	// as we do no damage if this is true.
 	int numContacts = physics.GetNumContacts();
-	for( int i = 0 ; i < numContacts ; i++ ) {
+	for( int i = 0; i < numContacts; i++ ) {
 		const contactInfo_t &contact = physics.GetContact( i );
 		if( contact.material->GetSurfaceFlags() & SURF_NODAMAGE ) {
 			StartSound( "snd_land_hard", SND_CHANNEL_ANY, 0, false, NULL );
@@ -4539,7 +4539,7 @@ CrashLandResult idActor::CrashLand( const idPhysics_Actor &physicsObj, const idV
 	//
 	idVec3 landedOnVelocity( 0, 0, 0 ); // the velocity of any object you're on
 	if( savedOrigin.z > physics.GetOrigin().z ) { // only consider the speed of the object you're landing on if you're falling
-		for( int i = 0 ; i < numContacts ; i++ ) {
+		for( int i = 0; i < numContacts; i++ ) {
 			const contactInfo_t &contact = physics.GetContact( i );
 			if( contact.entityNum == ENTITYNUM_WORLD ) {
 				// we assume the world does not move
@@ -4696,7 +4696,7 @@ CrashLandResult idActor::CrashLand( const idPhysics_Actor &physicsObj, const idV
 void idActor::Event_MeleeAttackStarted( int num ) {
 	m_MeleeStatus.m_ActionResult = MELEERESULT_IN_PROGRESS;
 	m_MeleeStatus.m_ActionState = MELEEACTION_ATTACK;
-	m_MeleeStatus.m_ActionType = ( EMeleeType ) num;
+	m_MeleeStatus.m_ActionType = ( EMeleeType )num;
 	m_MeleeStatus.m_ActionPhase = MELEEPHASE_PREPARING;
 	m_MeleeStatus.m_PhaseChangeTime = gameLocal.time;
 	// randomize minimum times to events after this one
@@ -4711,7 +4711,7 @@ void idActor::Event_MeleeAttackStarted( int num ) {
 void idActor::Event_MeleeParryStarted( int num ) {
 	m_MeleeStatus.m_ActionResult = MELEERESULT_IN_PROGRESS;
 	m_MeleeStatus.m_ActionState = MELEEACTION_PARRY;
-	m_MeleeStatus.m_ActionType = ( EMeleeType ) num;
+	m_MeleeStatus.m_ActionType = ( EMeleeType )num;
 	m_MeleeStatus.m_ActionPhase = MELEEPHASE_PREPARING;
 	m_MeleeStatus.m_PhaseChangeTime = gameLocal.time;
 	// randomize minimum times to events after this one
@@ -4803,16 +4803,16 @@ void idActor::Event_SetAttackFlag( int combatType, int enabled ) {
 
 // ========== CMeleeStatus implementation =========
 CMeleeStatus::CMeleeStatus( void ) {
-	m_ActionState	= MELEEACTION_READY;
-	m_ActionPhase	= MELEEPHASE_PREPARING;
-	m_ActionType	= MELEETYPE_OVER;
-	m_PhaseChangeTime	= 0;
-	m_LastActTime		= 0;
-	m_ActionResult	= MELEERESULT_IN_PROGRESS;
-	m_bWasHit		= false; // NYI
+	m_ActionState = MELEEACTION_READY;
+	m_ActionPhase = MELEEPHASE_PREPARING;
+	m_ActionType = MELEETYPE_OVER;
+	m_PhaseChangeTime = 0;
+	m_LastActTime = 0;
+	m_ActionResult = MELEERESULT_IN_PROGRESS;
+	m_bWasHit = false; // NYI
 	m_LastHitByType = MELEETYPE_UNBLOCKABLE;
-	m_bCanParry		= false;
-	m_bCanParryAll	= false;
+	m_bCanParry = false;
+	m_bCanParryAll = false;
 	m_attacks.Clear();
 }
 
@@ -4841,18 +4841,18 @@ void CMeleeStatus::Save( idSaveGame *savefile ) const {
 void CMeleeStatus::Restore( idRestoreGame *savefile ) {
 	int i = 0;
 	savefile->ReadInt( i );
-	m_ActionState = ( EMeleeActState ) i;
+	m_ActionState = ( EMeleeActState )i;
 	savefile->ReadInt( i );
-	m_ActionPhase = ( EMeleeActPhase ) i;
+	m_ActionPhase = ( EMeleeActPhase )i;
 	savefile->ReadInt( i );
-	m_ActionType = ( EMeleeType ) i;
+	m_ActionType = ( EMeleeType )i;
 	savefile->ReadInt( m_PhaseChangeTime );
 	savefile->ReadInt( m_LastActTime );
 	savefile->ReadInt( i );
-	m_ActionResult = ( EMeleeResult ) i;
+	m_ActionResult = ( EMeleeResult )i;
 	savefile->ReadBool( m_bWasHit );
 	savefile->ReadInt( i );
-	m_LastHitByType = ( EMeleeType ) i;
+	m_LastHitByType = ( EMeleeType )i;
 	savefile->ReadBool( m_bCanParry );
 	savefile->ReadBool( m_bCanParryAll );
 	int num;
@@ -4860,6 +4860,6 @@ void CMeleeStatus::Restore( idRestoreGame *savefile ) {
 	m_attacks.SetNum( num );
 	for( int j = 0; j < num; j++ ) {
 		savefile->ReadInt( i );
-		m_attacks[j] = ( EMeleeType ) i;
+		m_attacks[j] = ( EMeleeType )i;
 	}
 }

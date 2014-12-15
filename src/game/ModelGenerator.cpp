@@ -1,22 +1,22 @@
 // vim:ts=4:sw=4:cindent
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 /*
 	ModelGenerator
@@ -25,13 +25,13 @@
 
 	Copyright (C) 2010-2011 Tels (Donated to The Dark Mod Team)
 
-TODO: If a material casts a shadow (but is not textures/common/shadow*), but the model
-	  should not cast a shadow after combine, then clone the material (keep track of
-	  all clone materials, Save/Restore/Destroy them) and set noshadows on the clone,
-	  then use it in a new surface.
-TODO: Call FinishSurfaces() for all orginal models, then cache their shadow vertexes,
-	  and omit FinishSurfaces() on the combined model. Might speed it up a lot.
-*/
+	TODO: If a material casts a shadow (but is not textures/common/shadow*), but the model
+	should not cast a shadow after combine, then clone the material (keep track of
+	all clone materials, Save/Restore/Destroy them) and set noshadows on the clone,
+	then use it in a new surface.
+	TODO: Call FinishSurfaces() for all orginal models, then cache their shadow vertexes,
+	and omit FinishSurfaces() on the combined model. Might speed it up a lot.
+	*/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -211,21 +211,21 @@ bool CModelGenerator::CompareLODData( const lod_data_t *mLOD, const lod_data_t *
 	if( !mLOD || !mLOD2 ) {
 		return false;
 	}
-	if( ( mLOD->DistCheckInterval	!= mLOD2->DistCheckInterval ) ||
-			( mLOD->bDistCheckXYOnly	!= mLOD2->bDistCheckXYOnly ) ||
-			( mLOD->noshadowsLOD		!= mLOD2->noshadowsLOD ) ||
-			( mLOD->fLODFadeOutRange	!= mLOD2->fLODFadeOutRange ) ||
-			( mLOD->fLODFadeInRange		!= mLOD2->fLODFadeInRange ) ||
-			( mLOD->fLODNormalDistance	!= mLOD2->fLODNormalDistance )
+	if( ( mLOD->DistCheckInterval != mLOD2->DistCheckInterval ) ||
+			( mLOD->bDistCheckXYOnly != mLOD2->bDistCheckXYOnly ) ||
+			( mLOD->noshadowsLOD != mLOD2->noshadowsLOD ) ||
+			( mLOD->fLODFadeOutRange != mLOD2->fLODFadeOutRange ) ||
+			( mLOD->fLODFadeInRange != mLOD2->fLODFadeInRange ) ||
+			( mLOD->fLODNormalDistance != mLOD2->fLODNormalDistance )
 	  ) {
 		// something is not equal
 		return false;
 	}
 	for( int i = 0; i < LOD_LEVELS; i++ ) {
-		if( ( mLOD->ModelLOD[i]		!= mLOD2->ModelLOD[i] ) ||
-				( mLOD->SkinLOD[i]		!= mLOD2->SkinLOD[i] ) ||
-				( mLOD->OffsetLOD[i]	!= mLOD2->OffsetLOD[i] ) ||
-				( mLOD->DistLODSq[i]	!= mLOD2->DistLODSq[i] )
+		if( ( mLOD->ModelLOD[i] != mLOD2->ModelLOD[i] ) ||
+				( mLOD->SkinLOD[i] != mLOD2->SkinLOD[i] ) ||
+				( mLOD->OffsetLOD[i] != mLOD2->OffsetLOD[i] ) ||
+				( mLOD->DistLODSq[i] != mLOD2->DistLODSq[i] )
 		  ) {
 			// something is not equal
 			return false;
@@ -246,7 +246,7 @@ lod_handle	CModelGenerator::RegisterLODData( const lod_data_t *mLOD ) {
 		if( m_LODList[i].users > 0 && m_LODList[i].LODPtr ) {
 			if( CompareLODData( m_LODList[i].LODPtr, mLOD ) ) {
 				// found an equal entry
-				m_LODList[i].users ++;
+				m_LODList[i].users++;
 				// return the index as handle
 				return i + 1;
 			}
@@ -272,12 +272,12 @@ lod_handle	CModelGenerator::RegisterLODData( const lod_data_t *mLOD ) {
 #endif
 	// copy data
 	lod_data_t *l = m_LODList[smallestFree].LODPtr;
-	l->DistCheckInterval		= mLOD->DistCheckInterval;
-	l->bDistCheckXYOnly			= mLOD->bDistCheckXYOnly;
-	l->fLODFadeOutRange			= mLOD->fLODFadeOutRange;
-	l->fLODFadeInRange			= mLOD->fLODFadeInRange;
-	l->fLODNormalDistance		= mLOD->fLODNormalDistance;
-	l->noshadowsLOD				= mLOD->noshadowsLOD;
+	l->DistCheckInterval = mLOD->DistCheckInterval;
+	l->bDistCheckXYOnly = mLOD->bDistCheckXYOnly;
+	l->fLODFadeOutRange = mLOD->fLODFadeOutRange;
+	l->fLODFadeInRange = mLOD->fLODFadeInRange;
+	l->fLODNormalDistance = mLOD->fLODNormalDistance;
+	l->noshadowsLOD = mLOD->noshadowsLOD;
 	for( int i = 0; i < LOD_LEVELS; i++ ) {
 		l->ModelLOD[i] = mLOD->ModelLOD[i];
 		l->SkinLOD[i] = mLOD->SkinLOD[i];
@@ -310,7 +310,7 @@ lod_handle CModelGenerator::RegisterLODData( const lod_handle handle ) {
 		gameLocal.Error( "ModelGenerator::RegisterLODData: LOD data %i has no users.", handle );
 		return static_cast<lod_handle>( -1 );
 	}
-	m_LODList[h].users ++;
+	m_LODList[h].users++;
 	return handle;
 }
 
@@ -333,7 +333,7 @@ bool CModelGenerator::UnregisterLODData( const lod_handle handle ) {
 		return false;
 	}
 	// decrement user count
-	m_LODList[h].users --;
+	m_LODList[h].users--;
 	if( m_LODList[h].users == 0 ) {
 		// free memory
 #ifdef M_DEBUG
@@ -417,7 +417,7 @@ void CModelGenerator::Print( void ) const {
 /* Given a rendermodel and a surface index, checks if that surface is two-sided, and if, tries
    to find the backside for this surface, e.g. the surface which was copied and flipped. Returns
    either the surface index number, or -1 for "not twosided or not found":
-*/
+   */
 int CModelGenerator::GetBacksideForSurface( const idRenderModel *source, const int surfaceIdx ) const {
 	const modelSurface_t *firstSurf;
 	const idMaterial *firstShader;
@@ -455,7 +455,7 @@ int CModelGenerator::GetBacksideForSurface( const idRenderModel *source, const i
 			// same shader, but has it the same size?
 			if( surf->geometry && firstSurf->geometry &&
 					surf->geometry->numIndexes == firstSurf->geometry->numIndexes &&
-					surf->geometry->numVerts   == firstSurf->geometry->numVerts ) {
+					surf->geometry->numVerts == firstSurf->geometry->numVerts ) {
 				// TODO: more tests to see that this is the real flipped surface and not just a double material?
 				// found it
 				return s;
@@ -610,11 +610,11 @@ idRenderModel *CModelGenerator::DuplicateModel( const idRenderModel *source, con
 		assert( ( imax % 3 ) == 0 );
 		// unrolled 3 loops into one
 		for( int j = 0; j < imax; j++ ) {
-			dst[nI ++] = src[j];
+			dst[nI++] = src[j];
 			j++;
-			dst[nI ++] = src[j];
+			dst[nI++] = src[j];
 			j++;
-			dst[nI ++] = src[j];
+			dst[nI++] = src[j];
 		}
 		// set these so they don't get recalculated in FinishSurfaces():
 		newSurf.geometry->tangentsCalculated = true;
@@ -673,7 +673,7 @@ idRenderModel *CModelGenerator::DuplicateLODModels( const idList<const idRenderM
 	model_target_surf *newTargetSurfInfoPtr;
 #ifdef M_TIMINGS
 	timer_combinemodels.Start();
-	model_combines ++;
+	model_combines++;
 #endif
 	// allocate memory for the model
 	if( NULL == hModel ) {
@@ -792,11 +792,11 @@ idRenderModel *CModelGenerator::DuplicateLODModels( const idList<const idRenderM
 		// the stage is used with shadow only if
 		// BOTH the model could cast a shadow and the offset says it wants a shadow
 		if( modelStage->couldCastShadow && !( op->flags & SEED_MODEL_NOSHADOW ) ) {
-			modelStage->usedShadowing ++;
+			modelStage->usedShadowing++;
 			// can and could cast a shadow, so we need FinishSurface()
 			needFinish = true;
 		} else {
-			modelStage->usedShadowless ++;
+			modelStage->usedShadowless++;
 		}
 	}
 #ifdef M_DEBUG
@@ -1072,24 +1072,24 @@ idRenderModel *CModelGenerator::DuplicateLODModels( const idList<const idRenderM
 				//if tangents are normalized then bumpmapped surface will look different
 				/*				if (o == 1 || o == 2)
 								{
-									gameLocal.Printf ("Was Vert %d (%d): xyz (%s) st (%s) tangent (%s) (%s) normal (%s) color %d %d %d %d.\n",
-										j, nV, vs->xyz.ToString(), vs->st.ToString(),
-										vs->tangents[0].ToString(), vs->tangents[1].ToString(), vs->normal.ToString(),
-										int(vs->color[0]),
-										int(vs->color[1]),
-										int(vs->color[2]),
-										int(vs->color[3])
-									   	);
-									gameLocal.Printf ("Now Vert %d (%d): xyz (%s) st (%s) tangent (%s) (%s) normal (%s) color %d %d %d %d.\n",
-										j, nV, v->xyz.ToString(), v->st.ToString(),
-										v->tangents[0].ToString(), v->tangents[1].ToString(), v->normal.ToString(),
-										int(v->color[0]),
-										int(v->color[1]),
-										int(v->color[2]),
-										int(v->color[3])
-									   	);
+								gameLocal.Printf ("Was Vert %d (%d): xyz (%s) st (%s) tangent (%s) (%s) normal (%s) color %d %d %d %d.\n",
+								j, nV, vs->xyz.ToString(), vs->st.ToString(),
+								vs->tangents[0].ToString(), vs->tangents[1].ToString(), vs->normal.ToString(),
+								int(vs->color[0]),
+								int(vs->color[1]),
+								int(vs->color[2]),
+								int(vs->color[3])
+								);
+								gameLocal.Printf ("Now Vert %d (%d): xyz (%s) st (%s) tangent (%s) (%s) normal (%s) color %d %d %d %d.\n",
+								j, nV, v->xyz.ToString(), v->st.ToString(),
+								v->tangents[0].ToString(), v->tangents[1].ToString(), v->normal.ToString(),
+								int(v->color[0]),
+								int(v->color[1]),
+								int(v->color[2]),
+								int(v->color[3])
+								);
 								}*/
-				nV ++;
+				nV++;
 			}	// end of all verts
 #ifdef M_TIMINGS
 			timer_dupverts.Stop();

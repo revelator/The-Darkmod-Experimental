@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __GAME_MOVER_H__
 #define __GAME_MOVER_H__
@@ -28,7 +28,7 @@ extern const idEventDef EV_ReachedAng;
 /*
 ===============================================================================
 
-  General movers.
+General movers.
 
 ===============================================================================
 */
@@ -84,18 +84,18 @@ protected:
 	// mover directions.  make sure to change script/tdm_defs.script if you add any, or change their order
 	//
 	typedef enum {
-		DIR_UP				= -1,
-		DIR_DOWN			= -2,
-		DIR_LEFT			= -3,
-		DIR_RIGHT			= -4,
-		DIR_FORWARD			= -5,
-		DIR_BACK			= -6,
-		DIR_REL_UP			= -7,
-		DIR_REL_DOWN		= -8,
-		DIR_REL_LEFT		= -9,
-		DIR_REL_RIGHT		= -10,
-		DIR_REL_FORWARD		= -11,
-		DIR_REL_BACK		= -12
+		DIR_UP = -1,
+		DIR_DOWN = -2,
+		DIR_LEFT = -3,
+		DIR_RIGHT = -4,
+		DIR_FORWARD = -5,
+		DIR_BACK = -6,
+		DIR_REL_UP = -7,
+		DIR_REL_DOWN = -8,
+		DIR_REL_LEFT = -9,
+		DIR_REL_RIGHT = -10,
+		DIR_REL_FORWARD = -11,
+		DIR_REL_BACK = -12
 	} moverDir_t;
 
 	typedef struct {
@@ -241,7 +241,7 @@ struct floorInfo_s {
 /*
 ===============================================================================
 
-  Binary movers.
+Binary movers.
 
 ===============================================================================
 */
@@ -378,7 +378,7 @@ private:
 /*
 ===============================================================================
 
-  Special periodic movers.
+Special periodic movers.
 
 ===============================================================================
 */

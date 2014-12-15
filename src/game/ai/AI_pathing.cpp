@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -32,29 +32,29 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 ===============================================================================
 
-	Dynamic Obstacle Avoidance
+Dynamic Obstacle Avoidance
 
-	- assumes the AI lives inside a bounding box aligned with the gravity direction
-	- obstacles in proximity of the AI are gathered
-	- if obstacles are found the AAS walls are also considered as obstacles
-	- every obstacle is represented by an oriented bounding box (OBB)
-	- an OBB is projected onto a 2D plane orthogonal to AI's gravity direction
-	- the 2D windings of the projections are expanded for the AI bbox
-	- a path tree is build using clockwise and counter clockwise edge walks along the winding edges
-	- the path tree is pruned and optimized
-	- the shortest path is chosen for navigation
+- assumes the AI lives inside a bounding box aligned with the gravity direction
+- obstacles in proximity of the AI are gathered
+- if obstacles are found the AAS walls are also considered as obstacles
+- every obstacle is represented by an oriented bounding box (OBB)
+- an OBB is projected onto a 2D plane orthogonal to AI's gravity direction
+- the 2D windings of the projections are expanded for the AI bbox
+- a path tree is build using clockwise and counter clockwise edge walks along the winding edges
+- the path tree is pruned and optimized
+- the shortest path is chosen for navigation
 
 ===============================================================================
 */
 
-const float MAX_OBSTACLE_RADIUS			= 128.0f;
-const float OBSTACLE_HEIGHT_EXPANSION	= 10.0f;
-const float PUSH_OUTSIDE_OBSTACLES		= 0.5f;
-const float CLIP_BOUNDS_EPSILON			= 10.0f;
-const int 	MAX_AAS_WALL_EDGES			= 256;
-const int 	MAX_OBSTACLES				= 256;
-const int	MAX_PATH_NODES				= 256;
-const int 	MAX_OBSTACLE_PATH			= 64;
+const float MAX_OBSTACLE_RADIUS = 128.0f;
+const float OBSTACLE_HEIGHT_EXPANSION = 10.0f;
+const float PUSH_OUTSIDE_OBSTACLES = 0.5f;
+const float CLIP_BOUNDS_EPSILON = 10.0f;
+const int 	MAX_AAS_WALL_EDGES = 256;
+const int 	MAX_OBSTACLES = 256;
+const int	MAX_PATH_NODES = 256;
+const int 	MAX_OBSTACLE_PATH = 64;
 
 typedef struct obstacle_s {
 	idVec2				bounds[2];
@@ -92,7 +92,7 @@ idBlockAlloc<pathNode_t, 128>	pathNodeAllocator;
 // grayman - for debugging path tree nodes
 void PrintNode( pathNode_t *node, int level, obstacle_t obstacles[] ) {
 	idStr pad = "";
-	for( int i = 0 ; i < level ; i++ ) {
+	for( int i = 0; i < level; i++ ) {
 		pad += "   ";
 	}
 	DM_LOG( LC_AAS, LT_DEBUG )LOGSTRING( "%s ------ node -----\r", pad.c_str() );
@@ -222,8 +222,8 @@ void GetPointOutsideObstacles( const obstacle_t *obstacles, const int numObstacl
 		}
 		return;
 	}
-	queue = ( int * ) _alloca( numObstacles * sizeof( queue[0] ) );
-	obstacleVisited = ( bool * ) _alloca( numObstacles * sizeof( obstacleVisited[0] ) );
+	queue = ( int * )_alloca( numObstacles * sizeof( queue[0] ) );
+	obstacleVisited = ( bool * )_alloca( numObstacles * sizeof( obstacleVisited[0] ) );
 	queueStart = 0;
 	queueEnd = 1;
 	queue[0] = bestObstacle;
@@ -374,8 +374,8 @@ int GetObstacles( const idPhysics *physics, const idAAS *aas, const idEntity *ig
 	idVec3 center = 0.5 * ( startPos + seekPos );
 	idVec3 normal = dir.Cross( gameLocal.GetGravity() );
 	normal.NormalizeFast();
-	clipBounds.AddPoint( center +  MAX_OBSTACLE_RADIUS * normal );
-	clipBounds.AddPoint( center -  MAX_OBSTACLE_RADIUS * normal );
+	clipBounds.AddPoint( center + MAX_OBSTACLE_RADIUS * normal );
+	clipBounds.AddPoint( center - MAX_OBSTACLE_RADIUS * normal );
 	clipBounds.AddPoint( seekPos + 2 * bounds[1][0] * dir );
 	clipBounds.AddPoint( startPos - 2 * bounds[1][0] * dir );
 	clipBounds[0][2] -= bounds[0][2] + OBSTACLE_HEIGHT_EXPANSION;
@@ -387,7 +387,7 @@ int GetObstacles( const idPhysics *physics, const idAAS *aas, const idEntity *ig
 		gameRenderWorld->DebugBox( colorBlue, idBox( clipBounds ), gameLocal.msec );
 	}
 	// find all obstacles touching the clip bounds
-	static idClipModel *clipModelList[ MAX_GENTITIES ];
+	static idClipModel *clipModelList[MAX_GENTITIES];
 	int numListedClipModels = gameLocal.clip.ClipModelsTouchingBounds( clipBounds, clipMask, clipModelList, MAX_GENTITIES );
 	int numObstacles = 0; // no obstacles so far
 	CBinaryFrobMover *p_binaryFrobMover; // grayman #2345
@@ -410,7 +410,7 @@ int GetObstacles( const idPhysics *physics, const idAAS *aas, const idEntity *ig
 		*/
 		/*
 		if ( !clipModel->IsTraceModel() ) {
-			continue;
+		continue;
 		}
 		*/
 		if( obEnt->IsType( idActor::Type ) ) {
@@ -426,9 +426,9 @@ int GetObstacles( const idPhysics *physics, const idAAS *aas, const idEntity *ig
 			// TDM: Also ignore ALL enemies
 			// grayman #2728 - also ignore small AI
 			// grayman #3548 - don't ignore enemies if fleeing
-			if( ( obPhys == physics )	||
-					( obEnt == ignore )		||
-					( obEnt->health <= 0 )	||
+			if( ( obPhys == physics ) ||
+					( obEnt == ignore ) ||
+					( obEnt->health <= 0 ) ||
 					( self->IsEnemy( obEnt ) && !fleeing ) ||
 					( obPhys->GetMass() <= SMALL_AI_MASS ) ) {
 				continue;
@@ -452,7 +452,7 @@ int GetObstacles( const idPhysics *physics, const idAAS *aas, const idEntity *ig
 			bool slowerSpeed = false;
 			// technical note - you can't just compare one speed with the other. Due to floating point
 			// issues, they can effectively be the same speed, but represented by slightly different values
-			bool sameSpeed = ( abs( mySpeed - actorSpeed ) < 1 );  // am I roughly the same speed as the actor?
+			bool sameSpeed = ( abs( mySpeed - actorSpeed ) < 1 ); // am I roughly the same speed as the actor?
 			if( !sameSpeed ) {
 				slowerSpeed = ( mySpeed < actorSpeed ); // am I slower than the actor?
 			}
@@ -539,7 +539,7 @@ int GetObstacles( const idPhysics *physics, const idAAS *aas, const idEntity *ig
 		// create a 2D winding for the obstacle;
 		obstacle_t &obstacle = obstacles[numObstacles++];
 		obstacle.winding.Clear();
-		for( int j = 0 ; j < numVerts ; j++ ) {
+		for( int j = 0; j < numVerts; j++ ) {
 			obstacle.winding.AddPoint( silVerts[j].ToVec2() );
 		}
 		if( ai_showObstacleAvoidance.GetBool() ) {
@@ -547,7 +547,7 @@ int GetObstacles( const idPhysics *physics, const idAAS *aas, const idEntity *ig
 				silVerts[j].z = startPos.z;
 			}
 			for( int j = 0; j < numVerts; j++ ) {
-				gameRenderWorld->DebugArrow( colorWhite, silVerts[j], silVerts[( j + 1 ) % numVerts], 4 , gameLocal.msec );
+				gameRenderWorld->DebugArrow( colorWhite, silVerts[j], silVerts[( j + 1 ) % numVerts], 4, gameLocal.msec );
 			}
 		}
 		// expand the 2D winding for collision with a 2D box
@@ -562,7 +562,7 @@ int GetObstacles( const idPhysics *physics, const idAAS *aas, const idEntity *ig
 			// create a 2D winding for the obstacle;
 			obstacle_t &obstacle2 = obstacles[numObstacles++];
 			obstacle2.winding.Clear();
-			for( int j = 0 ; j < numVerts ; j++ ) {
+			for( int j = 0; j < numVerts; j++ ) {
 				obstacle2.winding.AddPoint( silVerts[j].ToVec2() );
 			}
 			// expand the 2D winding for collision with a 2D box
@@ -607,7 +607,7 @@ int GetObstacles( const idPhysics *physics, const idAAS *aas, const idEntity *ig
 	}
 	// create obstacles for AAS walls
 	if( aas != NULL ) {
-		float halfBoundsSize = ( expBounds[ 1 ].x - expBounds[ 0 ].x ) * 0.5f;
+		float halfBoundsSize = ( expBounds[1].x - expBounds[0].x ) * 0.5f;
 		int wallEdges[MAX_AAS_WALL_EDGES];
 		START_TIMING( self->actorGetWallEdgesTimer );
 		int numWallEdges = aas->GetWallEdges( areaNum, clipBounds, TFL_WALK, wallEdges, MAX_AAS_WALL_EDGES );
@@ -615,8 +615,8 @@ int GetObstacles( const idPhysics *physics, const idAAS *aas, const idEntity *ig
 		START_TIMING( self->actorSortWallEdgesTimer );
 		aas->SortWallEdges( wallEdges, numWallEdges );
 		STOP_TIMING( self->actorSortWallEdgesTimer );
-		int lastVerts[2] = {0, 0};
-		int nextVerts[2] = {0, 0};
+		int lastVerts[2] = { 0, 0 };
+		int nextVerts[2] = { 0, 0 };
 		idVec2 lastEdgeNormal( 0, 0 );
 		int verts[2]; // will hold edge vertex indices
 		idVec2 edgeNormal, nextEdgeDir, nextEdgeNormal( 0, 0 );
@@ -994,7 +994,7 @@ float PathLength( idVec2 optimizedPath[MAX_OBSTACLE_PATH], int numPathPoints, co
 ============
 FindOptimalPath
 
-  Returns true if there is a path all the way to the goal.
+Returns true if there is a path all the way to the goal.
 ============
 */
 bool FindOptimalPath( const pathNode_t *root, const obstacle_t *obstacles, int numObstacles, const float height, const idVec3 &curDir, idVec3 &seekPos ) {
@@ -1074,7 +1074,7 @@ bool FindOptimalPath( const pathNode_t *root, const obstacle_t *obstacles, int n
 ============
 idAI::FindPathAroundObstacles
 
-  Finds a path around dynamic obstacles using a path tree with clockwise and counter clockwise edge walks.
+Finds a path around dynamic obstacles using a path tree with clockwise and counter clockwise edge walks.
 ============
 */
 bool idAI::FindPathAroundObstacles( const idPhysics *physics, const idAAS *aas, const idEntity *ignore, const idVec3 &startPos, const idVec3 &seekPos, obstaclePath_t &path, idActor *owner ) {
@@ -1156,16 +1156,16 @@ void idAI::FreeObstacleAvoidanceNodes( void ) {
 /*
 ===============================================================================
 
-	Path Prediction
+Path Prediction
 
-	Uses the AAS to quickly and accurately predict a path for a certain
-	period of time based on an initial position and velocity.
+Uses the AAS to quickly and accurately predict a path for a certain
+period of time based on an initial position and velocity.
 
 ===============================================================================
 */
 
-const float OVERCLIP			= 1.001f;
-const int MAX_FRAME_SLIDE		= 5;
+const float OVERCLIP = 1.001f;
+const int MAX_FRAME_SLIDE = 5;
 
 typedef struct pathTrace_s {
 	float					fraction;
@@ -1178,7 +1178,7 @@ typedef struct pathTrace_s {
 ============
 PathTrace
 
-  Returns true if a stop event was triggered.
+Returns true if a stop event was triggered.
 ============
 */
 bool PathTrace( const idEntity *ent, const idAAS *aas, const idVec3 &start, const idVec3 &end, int stopEvent, struct pathTrace_s &trace, predictedPath_t &path ) {
@@ -1192,7 +1192,7 @@ bool PathTrace( const idEntity *ent, const idAAS *aas, const idVec3 &start, cons
 		trace.fraction = clipTrace.fraction;
 		trace.endPos = clipTrace.endpos;
 		trace.normal = clipTrace.c.normal;
-		trace.blockingEntity = gameLocal.entities[ clipTrace.c.entityNum ];
+		trace.blockingEntity = gameLocal.entities[clipTrace.c.entityNum];
 	} else {
 		aasTrace.getOutOfSolid = true;
 		if( stopEvent & SE_ENTER_LEDGE_AREA ) {
@@ -1239,7 +1239,7 @@ bool PathTrace( const idEntity *ent, const idAAS *aas, const idVec3 &start, cons
 			trace.fraction = clipTrace.fraction;
 			trace.endPos = clipTrace.endpos;
 			trace.normal = clipTrace.c.normal;
-			trace.blockingEntity = gameLocal.entities[ clipTrace.c.entityNum ];
+			trace.blockingEntity = gameLocal.entities[clipTrace.c.entityNum];
 		}
 	}
 	if( trace.fraction >= 1.0f ) {
@@ -1252,7 +1252,7 @@ bool PathTrace( const idEntity *ent, const idAAS *aas, const idVec3 &start, cons
 ============
 idAI::PredictPath
 
-  Can also be used when there is no AAS file available however ledges are not detected.
+Can also be used when there is no AAS file available however ledges are not detected.
 ============
 */
 bool idAI::PredictPath( const idEntity *ent, const idAAS *aas, const idVec3 &start, const idVec3 &velocity, int totalTime, int frameTime, int stopEvent, predictedPath_t &path ) {
@@ -1377,10 +1377,10 @@ bool idAI::PredictPath( const idEntity *ent, const idAAS *aas, const idVec3 &sta
 /*
 ===============================================================================
 
-	Trajectory Prediction
+Trajectory Prediction
 
-	Finds the best collision free trajectory for a clip model based on an
-	initial position, target position and speed.
+Finds the best collision free trajectory for a clip model based on an
+initial position, target position and speed.
 
 ===============================================================================
 */
@@ -1389,8 +1389,8 @@ bool idAI::PredictPath( const idEntity *ent, const idAAS *aas, const idVec3 &sta
 =====================
 Ballistics
 
-  get the ideal aim pitch angle in order to hit the target
-  also get the time it takes for the projectile to arrive at the target
+get the ideal aim pitch angle in order to hit the target
+also get the time it takes for the projectile to arrive at the target
 =====================
 */
 typedef struct ballistics_s {
@@ -1412,8 +1412,8 @@ static int Ballistics( const idVec3 &start, const idVec3 &end, float speed, floa
 	}
 	sqrtd = idMath::Sqrt( d );
 	inva = 0.5f / a;
-	p[0] = ( - b + sqrtd ) * inva;
-	p[1] = ( - b - sqrtd ) * inva;
+	p[0] = ( -b + sqrtd ) * inva;
+	p[1] = ( -b - sqrtd ) * inva;
 	n = 0;
 	for( i = 0; i < 2; i++ ) {
 		if( p[i] <= 0.0f ) {
@@ -1437,15 +1437,15 @@ Returns the maximum hieght of a given trajectory
 */
 /*
 static float HeightForTrajectory( const idVec3 &start, float zVel, float gravity ) {
-	float maxHeight, t;
+float maxHeight, t;
 
-	t = zVel / gravity;
-	// maximum height of projectile
-	maxHeight = start.z - 0.5f * gravity * ( t * t );
+t = zVel / gravity;
+// maximum height of projectile
+maxHeight = start.z - 0.5f * gravity * ( t * t );
 
-	return maxHeight;
+return maxHeight;
 }
- */
+*/
 
 /*
 =====================
@@ -1528,8 +1528,8 @@ bool idAI::TestTrajectory( const idVec3 &start, const idVec3 &end, float zVel, f
 =====================
 idAI::PredictTrajectory
 
-  returns true if there is a collision free trajectory for the clip model
-  aimDir is set to the ideal aim direction in order to hit the target
+returns true if there is a collision free trajectory for the clip model
+aimDir is set to the ideal aim direction in order to hit the target
 =====================
 */
 bool idAI::PredictTrajectory( const idVec3 &firePos, const idVec3 &target, float projectileSpeed, const idVec3 &projGravity, const idClipModel *clip, int clipmask, float max_height, const idEntity *ignore, const idEntity *targetEntity, int drawtime, idVec3 &aimDir ) {

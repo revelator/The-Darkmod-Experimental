@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #include "precompiled_engine.h"
 #pragma hdrstop
 
@@ -50,11 +50,11 @@ MaterialDoc::~MaterialDoc( void ) {
 */
 void MaterialDoc::SetRenderMaterial( idMaterial *material, bool parseMaterial, bool parseRenderMatierial ) {
 	renderMaterial = material;
-	if( !parseMaterial ||  !renderMaterial ) {
+	if( !parseMaterial || !renderMaterial ) {
 		return;
 	}
 	if( parseRenderMatierial ) {
-		char *declText = ( char * ) _alloca( material->GetTextLength() + 1 );
+		char *declText = ( char * )_alloca( material->GetTextLength() + 1 );
 		material->GetText( declText );
 		renderMaterial->GetText( declText );
 		ParseMaterialText( declText );
@@ -62,7 +62,7 @@ void MaterialDoc::SetRenderMaterial( idMaterial *material, bool parseMaterial, b
 	ClearEditMaterial();
 	name = material->GetName();
 	idLexer		src;
-	char *declText = ( char * ) _alloca( material->GetTextLength() + 1 );
+	char *declText = ( char * )_alloca( material->GetTextLength() + 1 );
 	material->GetText( declText );
 	renderMaterial->GetText( declText );
 	src.LoadMemory( declText, strlen( declText ), "Material" );
@@ -205,7 +205,7 @@ bool MaterialDoc::GetAttributeBool( int stage, const char *attribName, const cha
 */
 void MaterialDoc::SetAttribute( int stage, const char *attribName, const char *value, bool addUndo ) {
 	//Make sure we need to set the attribute
-	idStr orig  = GetAttribute( stage, attribName );
+	idStr orig = GetAttribute( stage, attribName );
 	if( orig.Icmp( value ) ) {
 		idDict *dict;
 		if( stage == -1 ) {
@@ -234,7 +234,7 @@ void MaterialDoc::SetAttribute( int stage, const char *attribName, const char *v
 */
 void MaterialDoc::SetAttributeInt( int stage, const char *attribName, int value, bool addUndo ) {
 	//Make sure we need to set the attribute
-	int orig  = GetAttributeInt( stage, attribName );
+	int orig = GetAttributeInt( stage, attribName );
 	if( orig != value ) {
 		idDict *dict;
 		if( stage == -1 ) {
@@ -258,7 +258,7 @@ void MaterialDoc::SetAttributeInt( int stage, const char *attribName, int value,
 */
 void MaterialDoc::SetAttributeFloat( int stage, const char *attribName, float value, bool addUndo ) {
 	//Make sure we need to set the attribute
-	float orig  = GetAttributeFloat( stage, attribName );
+	float orig = GetAttributeFloat( stage, attribName );
 	if( orig != value ) {
 		idDict *dict;
 		if( stage == -1 ) {
@@ -282,7 +282,7 @@ void MaterialDoc::SetAttributeFloat( int stage, const char *attribName, float va
 */
 void MaterialDoc::SetAttributeBool( int stage, const char *attribName, bool value, bool addUndo ) {
 	//Make sure we need to set the attribute
-	bool orig  = GetAttributeBool( stage, attribName );
+	bool orig = GetAttributeBool( stage, attribName );
 	if( orig != value ) {
 		idDict *dict;
 		if( stage == -1 ) {
@@ -504,7 +504,7 @@ void MaterialDoc::ApplyMaterialChanges( bool force ) {
 			ApplySourceModify( text );
 		}
 		ReplaceSourceText();
-		char *declText = ( char * ) _alloca( renderMaterial->GetTextLength() + 1 );
+		char *declText = ( char * )_alloca( renderMaterial->GetTextLength() + 1 );
 		renderMaterial->GetText( declText );
 		renderMaterial->GetText( declText );
 		ParseMaterialText( declText );
@@ -562,13 +562,13 @@ void MaterialDoc::ParseMaterialText( const char *source ) {
 	/*idLexer src;
 	src.LoadMemory(source, strlen(source), "material");
 	src.SetFlags(
-		LEXFL_NOSTRINGCONCAT |			// multiple strings seperated by whitespaces are not concatenated
-		LEXFL_NOSTRINGESCAPECHARS |		// no escape characters inside strings
-		LEXFL_ALLOWPATHNAMES |			// allow path seperators in names
-		LEXFL_ALLOWMULTICHARLITERALS |	// allow multi character literals
-		LEXFL_ALLOWBACKSLASHSTRINGCONCAT |	// allow multiple strings seperated by '\' to be concatenated
-		LEXFL_NOFATALERRORS				// just set a flag instead of fatal erroring
-		);
+	LEXFL_NOSTRINGCONCAT |			// multiple strings seperated by whitespaces are not concatenated
+	LEXFL_NOSTRINGESCAPECHARS |		// no escape characters inside strings
+	LEXFL_ALLOWPATHNAMES |			// allow path seperators in names
+	LEXFL_ALLOWMULTICHARLITERALS |	// allow multi character literals
+	LEXFL_ALLOWBACKSLASHSTRINGCONCAT |	// allow multiple strings seperated by '\' to be concatenated
+	LEXFL_NOFATALERRORS				// just set a flag instead of fatal erroring
+	);
 
 	//Skip the name becuase the material parsing code expects it
 	src.SkipUntilString("{");*/

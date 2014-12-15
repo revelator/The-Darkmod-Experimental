@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -31,7 +31,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 should we try and snap values very close to 0.5, 0.25, 0.125, etc ?
 
 	do we write out normals, or just a "smooth shade" flag ?
-		resolved : normals.  otherwise adjacent facet shaded surfaces get their
+		resolved : normals.otherwise adjacent facet shaded surfaces get their
 		vertexes merged, and they would have to be split apart before drawing
 
 		do we save out "wings" for shadow silhouette info ?
@@ -94,11 +94,11 @@ static int CountUniqueShaders( optimizeGroup_t *groups ) {
 	optimizeGroup_t		*a, *b;
 	int					count;
 	count = 0;
-	for( a = groups ; a ; a = a->nextGroup ) {
+	for( a = groups; a; a = a->nextGroup ) {
 		if( !a->triList ) {	// ignore groups with no tris
 			continue;
 		}
-		for( b = groups ; b != a ; b = b->nextGroup ) {
+		for( b = groups; b != a; b = b->nextGroup ) {
 			if( !b->triList ) {
 				continue;
 			}
@@ -175,12 +175,12 @@ srfTriangles_t	*ShareMapTriVerts( const mapTri_t *tris ) {
 	R_AllocStaticTriSurfIndexes( uTri, count * 3 );
 	numVerts = 0;
 	numIndexes = 0;
-	for( step = tris ; step ; step = step->next ) {
-		for( i = 0 ; i < 3 ; i++ ) {
+	for( step = tris; step; step = step->next ) {
+		for( i = 0; i < 3; i++ ) {
 			const idDrawVert	*dv;
 			dv = &step->v[i];
 			// search for a match
-			for( j = 0 ; j < numVerts ; j++ ) {
+			for( j = 0; j < numVerts; j++ ) {
 				if( MatchVert( &uTri->verts[j], dv ) ) {
 					break;
 				}
@@ -230,7 +230,7 @@ static void WriteUTriangles( const srfTriangles_t *uTris ) {
 								uTris->numVerts, uTris->numIndexes );
 	// verts
 	col = 0;
-	for( i = 0 ; i < uTris->numVerts ; i++ ) {
+	for( i = 0; i < uTris->numVerts; i++ ) {
 		float	vec[8];
 		const idDrawVert *dv;
 		dv = &uTris->verts[i];
@@ -253,7 +253,7 @@ static void WriteUTriangles( const srfTriangles_t *uTris ) {
 	}
 	// indexes
 	col = 0;
-	for( i = 0 ; i < uTris->numIndexes ; i++ ) {
+	for( i = 0; i < uTris->numIndexes; i++ ) {
 		procFile->WriteFloatString( "%i ", uTris->indexes[i] );
 		if( ++col == 18 ) {
 			col = 0;
@@ -280,7 +280,7 @@ static void WriteShadowTriangles( const srfTriangles_t *tri ) {
 								tri->numVerts, tri->numShadowIndexesNoCaps, tri->numShadowIndexesNoFrontCaps, tri->numIndexes, tri->shadowCapPlaneBits );
 	// verts
 	col = 0;
-	for( i = 0 ; i < tri->numVerts ; i++ ) {
+	for( i = 0; i < tri->numVerts; i++ ) {
 		Write1DMatrix( procFile, 3, &tri->shadowVertexes[i].xyz[0] );
 		if( ++col == 5 ) {
 			col = 0;
@@ -292,7 +292,7 @@ static void WriteShadowTriangles( const srfTriangles_t *tri ) {
 	}
 	// indexes
 	col = 0;
-	for( i = 0 ; i < tri->numIndexes ; i++ ) {
+	for( i = 0; i < tri->numIndexes; i++ ) {
 		procFile->WriteFloatString( "%i ", tri->indexes[i] );
 		if( ++col == 18 ) {
 			col = 0;
@@ -360,7 +360,7 @@ static void WriteOutputSurfaces( int entityNum, int areaNum ) {
 									name, numSurfaces );
 	}
 	surfaceNum = 0;
-	for( group = area->groups ; group ; group = group->nextGroup ) {
+	for( group = area->groups; group; group = group->nextGroup ) {
 		if( group->surfaceEmited ) {
 			continue;
 		}
@@ -373,7 +373,7 @@ static void WriteOutputSurfaces( int entityNum, int areaNum ) {
 		// each light that illuminates any of the groups in the surface will
 		// get its own list of indexes out of the original surface
 		interactions = NULL;
-		for( groupStep = group ; groupStep ; groupStep = groupStep->nextGroup ) {
+		for( groupStep = group; groupStep; groupStep = groupStep->nextGroup ) {
 			if( groupStep->surfaceEmited ) {
 				continue;
 			}
@@ -385,8 +385,8 @@ static void WriteOutputSurfaces( int entityNum, int areaNum ) {
 			ambient = MergeTriLists( ambient, copy );
 			groupStep->surfaceEmited = true;
 			// duplicate it into an interaction for each groupLight
-			for( i = 0 ; i < groupStep->numGroupLights ; i++ ) {
-				for( checkInter = interactions ; checkInter ; checkInter = checkInter->next ) {
+			for( i = 0; i < groupStep->numGroupLights; i++ ) {
+				for( checkInter = interactions; checkInter; checkInter = checkInter->next ) {
 					if( checkInter->light == groupStep->groupLights[i] ) {
 						break;
 					}
@@ -437,7 +437,7 @@ static void WriteNode_r( node_t *node ) {
 		procFile->WriteFloatString( "/* node 0 */ ( 0 0 0 0 ) -1 -1\n" );
 		return;
 	}
-	for( i = 0 ; i < 2 ; i++ ) {
+	for( i = 0; i < 2; i++ ) {
 		if( node->children[i]->planenum == PLANENUM_LEAF ) {
 			child[i] = -1 - node->children[i]->area;
 		} else {
@@ -498,11 +498,11 @@ static void WriteOutputPortals( uEntity_t *e ) {
 	procFile->WriteFloatString( "interAreaPortals { /* numAreas = */ %i /* numIAP = */ %i\n\n",
 								e->numAreas, numInterAreaPortals );
 	procFile->WriteFloatString( "/* interAreaPortal format is: numPoints positiveSideArea negativeSideArea ( point) ... */\n" );
-	for( i = 0 ; i < numInterAreaPortals ; i++ ) {
+	for( i = 0; i < numInterAreaPortals; i++ ) {
 		iap = &interAreaPortals[i];
 		w = iap->side->winding;
 		procFile->WriteFloatString( "/* iap %i */ %i %i %i ", i, w->GetNumPoints(), iap->area0, iap->area1 );
-		for( j = 0 ; j < w->GetNumPoints() ; j++ ) {
+		for( j = 0; j < w->GetNumPoints(); j++ ) {
 			Write1DMatrix( procFile, 3, ( *w )[j].ToFloatPtr() );
 		}
 		procFile->WriteFloatString( "\n" );
@@ -525,7 +525,7 @@ static void WriteOutputEntity( int entityNum ) {
 			e->numAreas = 1;
 		}
 	}
-	for( i = 0 ; i < e->numAreas ; i++ ) {
+	for( i = 0; i < e->numAreas; i++ ) {
 		WriteOutputSurfaces( entityNum, i );
 	}
 	// we will completely skip the portals and nodes if it is a single area
@@ -556,7 +556,7 @@ void WriteOutputFile( void ) {
 	}
 	procFile->WriteFloatString( "%s\n\n", PROC_FILE_ID );
 	// write the entity models and information, writing entities first
-	for( i = dmapGlobals.num_entities - 1 ; i >= 0 ; i-- ) {
+	for( i = dmapGlobals.num_entities - 1; i >= 0; i-- ) {
 		entity = &dmapGlobals.uEntities[i];
 		if( !entity->primitives ) {
 			continue;
@@ -564,7 +564,7 @@ void WriteOutputFile( void ) {
 		WriteOutputEntity( i );
 	}
 	// write the shadow volumes
-	for( i = 0 ; i < dmapGlobals.mapLights.Num() ; i++ ) {
+	for( i = 0; i < dmapGlobals.mapLights.Num(); i++ ) {
 		mapLight_t	*light = dmapGlobals.mapLights[i];
 		if( !light->shadowTris ) {
 			continue;

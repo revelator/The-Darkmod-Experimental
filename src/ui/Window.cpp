@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -74,7 +74,7 @@ const idRegEntry idWindow::RegisterVars[] = {
 	{ "lightOrigin", idRegister::VEC4 },
 	{ "lightColor", idRegister::VEC4 },
 	{ "viewOffset", idRegister::VEC4 },
-	{ "hideCursor", idRegister::BOOL}
+	{ "hideCursor", idRegister::BOOL }
 };
 
 const int idWindow::NumRegisterVars = sizeof( RegisterVars ) / sizeof( idRegEntry );
@@ -227,7 +227,7 @@ void idWindow::CleanUp() {
 		delete drawWindows[i].simp;
 	}
 	// ensure the register list gets cleaned up
-	regList.Reset( );
+	regList.Reset();
 	// Cleanup the named events
 	namedEvents.DeleteContents( true );
 	drawWindows.Clear();
@@ -442,10 +442,10 @@ const char *idWindow::RouteMouseCoords( float xd, float yd ) {
 idWindow::Activate
 ================
 */
-void idWindow::Activate( bool activate,	idStr &act ) {
+void idWindow::Activate( bool activate, idStr &act ) {
 	int n = ( activate ) ? ON_ACTIVATE : ON_DEACTIVATE;
 	//  make sure win vars are updated before activation
-	UpdateWinVars( );
+	UpdateWinVars();
 	RunScript( n );
 	int c = children.Num();
 	for( int i = 0; i < c; i++ ) {
@@ -579,8 +579,8 @@ void idWindow::RunNamedEvent( const char *eventName ) {
 	int i;
 	int c;
 	// Find and run the event
-	c = namedEvents.Num( );
-	for( i = 0; i < c; i ++ ) {
+	c = namedEvents.Num();
+	for( i = 0; i < c; i++ ) {
 		if( namedEvents[i]->mName.Icmp( eventName ) ) {
 			continue;
 		}
@@ -1159,13 +1159,13 @@ void idWindow::Redraw( float x, float y ) {
 	if( !( flags & WIN_NOCLIP ) ) {
 		dc->PopClipRect();
 	}
-	if( gui_edit.GetBool()  || ( flags & WIN_DESKTOP && !( flags & WIN_NOCURSOR )  && !hideCursor && ( gui->Active() || ( flags & WIN_MENUGUI ) ) ) ) {
+	if( gui_edit.GetBool() || ( flags & WIN_DESKTOP && !( flags & WIN_NOCURSOR ) && !hideCursor && ( gui->Active() || ( flags & WIN_MENUGUI ) ) ) ) {
 		dc->SetTransformInfo( vec3_origin, mat3_identity );
 		gui->DrawCursor();
 	}
 	if( gui_debug.GetInteger() && flags & WIN_DESKTOP ) {
 		dc->EnableClipping( false );
-		sprintf( str, "x: %1.f y: %1.f",  gui->CursorX(), gui->CursorY() );
+		sprintf( str, "x: %1.f y: %1.f", gui->CursorX(), gui->CursorY() );
 		dc->DrawText( str, 0.25, 0, dc->colorWhite, idRectangle( 0, 0, 100, 20 ), false );
 		dc->DrawText( gui->GetSourceFile(), 0.25, 0, dc->colorWhite, idRectangle( 0, 20, 300, 20 ), false );
 		dc->EnableClipping( true );
@@ -1290,7 +1290,7 @@ void idWindow::SetupFromState() {
 		flags |= WIN_TRANSFORM;
 	}
 	CalcClientRect( 0, 0 );
-	if( scripts[ ON_ACTION ] ) {
+	if( scripts[ON_ACTION] ) {
 		cursor = idDeviceContext::CURSOR_HAND;
 		flags |= WIN_CANFOCUS;
 	}
@@ -1563,28 +1563,28 @@ idWindow::GetWinVarOffset
 int idWindow::GetWinVarOffset( idWinVar *wv, drawWin_t *owner ) {
 	int ret = -1;
 	if( wv == &rect ) {
-		ret = ( int ) & ( ( idWindow * ) 0 )->rect;
+		ret = ( int ) & ( ( idWindow * )0 )->rect;
 	}
 	if( wv == &backColor ) {
-		ret = ( int ) & ( ( idWindow * ) 0 )->backColor;
+		ret = ( int ) & ( ( idWindow * )0 )->backColor;
 	}
 	if( wv == &matColor ) {
-		ret = ( int ) & ( ( idWindow * ) 0 )->matColor;
+		ret = ( int ) & ( ( idWindow * )0 )->matColor;
 	}
 	if( wv == &foreColor ) {
-		ret = ( int ) & ( ( idWindow * ) 0 )->foreColor;
+		ret = ( int ) & ( ( idWindow * )0 )->foreColor;
 	}
 	if( wv == &hoverColor ) {
-		ret = ( int ) & ( ( idWindow * ) 0 )->hoverColor;
+		ret = ( int ) & ( ( idWindow * )0 )->hoverColor;
 	}
 	if( wv == &borderColor ) {
-		ret = ( int ) & ( ( idWindow * ) 0 )->borderColor;
+		ret = ( int ) & ( ( idWindow * )0 )->borderColor;
 	}
 	if( wv == &textScale ) {
-		ret = ( int ) & ( ( idWindow * ) 0 )->textScale;
+		ret = ( int ) & ( ( idWindow * )0 )->textScale;
 	}
 	if( wv == &rotate ) {
-		ret = ( int ) & ( ( idWindow * ) 0 )->rotate;
+		ret = ( int ) & ( ( idWindow * )0 )->rotate;
 	}
 	if( ret != -1 ) {
 		owner->win = this;
@@ -1901,7 +1901,7 @@ bool idWindow::ParseRegEntry( const char *name, idParser *src ) {
 			return true;
 		}
 		switch( tok.type ) {
-		case TT_NUMBER :
+		case TT_NUMBER:
 			if( tok.subtype & TT_INTEGER ) {
 				vari = new idWinInt();
 				*vari = atoi( tok );
@@ -1919,7 +1919,7 @@ bool idWindow::ParseRegEntry( const char *name, idParser *src ) {
 				definedVars.Append( vars );
 			}
 			break;
-		default :
+		default:
 			vars = new idWinStr();
 			*vars = tok;
 			vars->SetName( work );
@@ -1974,7 +1974,7 @@ bool idWindow::Parse( idParser *src, bool rebuild ) {
 #endif
 	while( token != "}" ) {
 		// track what was parsed so we can maintain it for the guieditor
-		src->SetMarker( );
+		src->SetMarker();
 		if( token == "windowDef" || token == "animationDef" ) {
 			if( token == "animationDef" ) {
 				visible = false;
@@ -2098,7 +2098,7 @@ bool idWindow::Parse( idParser *src, bool rebuild ) {
 				return false;
 			}
 			rvNamedEvent *ev = new rvNamedEvent( token );
-			src->SetMarker( );
+			src->SetMarker();
 			if( !ParseScript( src, *ev->mEvent ) ) {
 				ret = false;
 				break;
@@ -2127,7 +2127,7 @@ bool idWindow::Parse( idParser *src, bool rebuild ) {
 			}
 			ev->time = atoi( token.c_str() );
 			// reset the mark since we dont want it to include the time
-			src->SetMarker( );
+			src->SetMarker();
 			if( !ParseScript( src, *ev->event, &ev->time ) ) {
 				ret = false;
 				break;
@@ -2160,7 +2160,7 @@ bool idWindow::Parse( idParser *src, bool rebuild ) {
 			definedVars.Append( varf );
 			// add the float to the editors wrapper dict
 			// Set the marker after the float name
-			src->SetMarker( );
+			src->SetMarker();
 			// Read in the float
 			regList.AddReg( work, idRegister::FLOAT, src, this, varf );
 			// If we are in the gui editor then add the float to the defines
@@ -2180,7 +2180,7 @@ bool idWindow::Parse( idParser *src, bool rebuild ) {
 			var->SetName( work );
 			// set the marker so we can determine what was parsed
 			// set the marker after the vec4 name
-			src->SetMarker( );
+			src->SetMarker();
 			// FIXME: how about we add the var to the desktop instead of this window so it won't get deleted
 			//        when this window is destoyed which even happens during parsing with simple windows ?
 			//definedVars.Append(var);
@@ -2205,7 +2205,7 @@ bool idWindow::Parse( idParser *src, bool rebuild ) {
 			definedVars.Append( varf );
 			// add the float to the editors wrapper dict
 			// set the marker to after the float name
-			src->SetMarker( );
+			src->SetMarker();
 			// Parse the float
 			regList.AddReg( work, idRegister::FLOAT, src, this, varf );
 			// If we are in the gui editor then add the float to the defines
@@ -2274,7 +2274,7 @@ bool idWindow::Parse( idParser *src, bool rebuild ) {
 	// the wrapper
 #ifdef ID_ALLOW_TOOLS
 	if( com_editors & EDITOR_GUI ) {
-		rvGEWindowWrapper::GetWrapper( this )->Finish( );
+		rvGEWindowWrapper::GetWrapper( this )->Finish();
 	}
 #endif
 	return ret;
@@ -2427,7 +2427,7 @@ idWindow::ExpressionConstant
 */
 int idWindow::ExpressionConstant( float f ) {
 	int		i;
-	for( i = WEXP_REG_NUM_PREDEFINED ; i < expressionRegisters.Num() ; i++ ) {
+	for( i = WEXP_REG_NUM_PREDEFINED; i < expressionRegisters.Num(); i++ ) {
 		if( !registerIsTemporary[i] && expressionRegisters[i] == f ) {
 			return i;
 		}
@@ -2491,34 +2491,34 @@ int idWindow::EmitOp( int a, int b, wexpOpType_t opType, wexpOp_t **opp ) {
 	/*
 		// optimize away identity operations
 		if ( opType == WOP_TYPE_ADD ) {
-			if ( !registerIsTemporary[a] && shaderRegisters[a] == 0 ) {
-				return b;
-			}
-			if ( !registerIsTemporary[b] && shaderRegisters[b] == 0 ) {
-				return a;
-			}
-			if ( !registerIsTemporary[a] && !registerIsTemporary[b] ) {
-				return ExpressionConstant( shaderRegisters[a] + shaderRegisters[b] );
-			}
+		if ( !registerIsTemporary[a] && shaderRegisters[a] == 0 ) {
+		return b;
+		}
+		if ( !registerIsTemporary[b] && shaderRegisters[b] == 0 ) {
+		return a;
+		}
+		if ( !registerIsTemporary[a] && !registerIsTemporary[b] ) {
+		return ExpressionConstant( shaderRegisters[a] + shaderRegisters[b] );
+		}
 		}
 		if ( opType == WOP_TYPE_MULTIPLY ) {
-			if ( !registerIsTemporary[a] && shaderRegisters[a] == 1 ) {
-				return b;
-			}
-			if ( !registerIsTemporary[a] && shaderRegisters[a] == 0 ) {
-				return a;
-			}
-			if ( !registerIsTemporary[b] && shaderRegisters[b] == 1 ) {
-				return a;
-			}
-			if ( !registerIsTemporary[b] && shaderRegisters[b] == 0 ) {
-				return b;
-			}
-			if ( !registerIsTemporary[a] && !registerIsTemporary[b] ) {
-				return ExpressionConstant( shaderRegisters[a] * shaderRegisters[b] );
-			}
+		if ( !registerIsTemporary[a] && shaderRegisters[a] == 1 ) {
+		return b;
 		}
-	*/
+		if ( !registerIsTemporary[a] && shaderRegisters[a] == 0 ) {
+		return a;
+		}
+		if ( !registerIsTemporary[b] && shaderRegisters[b] == 1 ) {
+		return a;
+		}
+		if ( !registerIsTemporary[b] && shaderRegisters[b] == 0 ) {
+		return b;
+		}
+		if ( !registerIsTemporary[a] && !registerIsTemporary[b] ) {
+		return ExpressionConstant( shaderRegisters[a] * shaderRegisters[b] );
+		}
+		}
+		*/
 	op = ExpressionOp();
 	op->opType = opType;
 	op->a = a;
@@ -2547,7 +2547,7 @@ idWindow::ParseTerm
 Returns a register index
 =================
 */
-int idWindow::ParseTerm( idParser *src,	idWinVar *var, int component ) {
+int idWindow::ParseTerm( idParser *src, idWinVar *var, int component ) {
 	idToken token;
 	int		a, b;
 	src->ReadToken( &token );
@@ -2563,13 +2563,13 @@ int idWindow::ParseTerm( idParser *src,	idWinVar *var, int component ) {
 	if( token == "-" ) {
 		src->ReadToken( &token );
 		if( token.type == TT_NUMBER || token == "." ) {
-			return ExpressionConstant( -( float ) token.GetFloatValue() );
+			return ExpressionConstant( -( float )token.GetFloatValue() );
 		}
 		src->Warning( "Bad negative number '%s'", token.c_str() );
 		return 0;
 	}
 	if( token.type == TT_NUMBER || token == "." || token == "-" ) {
-		return ExpressionConstant( ( float ) token.GetFloatValue() );
+		return ExpressionConstant( ( float )token.GetFloatValue() );
 	}
 	// see if it is a table name
 	const idDeclTable *table = static_cast<const idDeclTable *>( declManager->FindType( DECL_TABLE, token.c_str(), false ) );
@@ -2736,12 +2736,12 @@ void idWindow::EvaluateRegisters( float *registers ) {
 	int erc = expressionRegisters.Num();
 	int oc = ops.Num();
 	// copy the constants
-	for( i = WEXP_REG_NUM_PREDEFINED ; i < erc ; i++ ) {
+	for( i = WEXP_REG_NUM_PREDEFINED; i < erc; i++ ) {
 		registers[i] = expressionRegisters[i];
 	}
 	// copy the local and global parameters
 	registers[WEXP_REG_TIME] = gui->GetTime();
-	for( i = 0 ; i < oc ; i++ ) {
+	for( i = 0; i < oc; i++ ) {
 		op = &ops[i];
 		if( op->b == -2 ) {
 			continue;
@@ -2775,31 +2775,31 @@ void idWindow::EvaluateRegisters( float *registers ) {
 		}
 		break;
 		case WOP_TYPE_GT:
-			registers[op->c] = registers[ op->a ] > registers[op->b];
+			registers[op->c] = registers[op->a] > registers[op->b];
 			break;
 		case WOP_TYPE_GE:
-			registers[op->c] = registers[ op->a ] >= registers[op->b];
+			registers[op->c] = registers[op->a] >= registers[op->b];
 			break;
 		case WOP_TYPE_LT:
-			registers[op->c] = registers[ op->a ] < registers[op->b];
+			registers[op->c] = registers[op->a] < registers[op->b];
 			break;
 		case WOP_TYPE_LE:
-			registers[op->c] = registers[ op->a ] <= registers[op->b];
+			registers[op->c] = registers[op->a] <= registers[op->b];
 			break;
 		case WOP_TYPE_EQ:
-			registers[op->c] = registers[ op->a ] == registers[op->b];
+			registers[op->c] = registers[op->a] == registers[op->b];
 			break;
 		case WOP_TYPE_NE:
-			registers[op->c] = registers[ op->a ] != registers[op->b];
+			registers[op->c] = registers[op->a] != registers[op->b];
 			break;
 		case WOP_TYPE_COND:
-			registers[op->c] = ( registers[ op->a ] ) ? registers[op->b] : registers[op->d];
+			registers[op->c] = ( registers[op->a] ) ? registers[op->b] : registers[op->d];
 			break;
 		case WOP_TYPE_AND:
-			registers[op->c] = registers[ op->a ] && registers[op->b];
+			registers[op->c] = registers[op->a] && registers[op->b];
 			break;
 		case WOP_TYPE_OR:
-			registers[op->c] = registers[ op->a ] || registers[op->b];
+			registers[op->c] = registers[op->a] || registers[op->b];
 			break;
 		case WOP_TYPE_VAR:
 			if( !op->a ) {
@@ -3129,7 +3129,7 @@ void idWindow::ReadSaveGameTransition( idTransitionData &trans, idFile *savefile
 		if( winName.Length() ) {
 			idWinStr *strVar = new idWinStr();
 			strVar->Set( winName );
-			trans.data = dynamic_cast< idWinVar * >( strVar );
+			trans.data = dynamic_cast<idWinVar *>( strVar );
 		}
 	}
 }
@@ -3189,11 +3189,11 @@ void idWindow::WriteToSaveGame( idFile *savefile ) {
 	savefile->Write( &textRect, sizeof( textRect ) );
 	// Window pointers saved as the child ID of the window
 	int winID;
-	winID = focusedChild ? focusedChild->childID : -1 ;
+	winID = focusedChild ? focusedChild->childID : -1;
 	savefile->Write( &winID, sizeof( winID ) );
-	winID = captureChild ? captureChild->childID : -1 ;
+	winID = captureChild ? captureChild->childID : -1;
 	savefile->Write( &winID, sizeof( winID ) );
-	winID = overChild ? overChild->childID : -1 ;
+	winID = overChild ? overChild->childID : -1;
 	savefile->Write( &winID, sizeof( winID ) );
 	// Scripts
 	for( i = 0; i < SCRIPT_COUNT; i++ ) {
@@ -3215,7 +3215,7 @@ void idWindow::WriteToSaveGame( idFile *savefile ) {
 	int num = transitions.Num();
 	savefile->Write( &num, sizeof( num ) );
 	for( i = 0; i < transitions.Num(); i++ ) {
-		WriteSaveGameTransition( transitions[ i ], savefile );
+		WriteSaveGameTransition( transitions[i], savefile );
 	}
 	// Named Events
 	for( i = 0; i < namedEvents.Num(); i++ ) {
@@ -3410,35 +3410,35 @@ void idWindow::FixupTransitions() {
 		transitions[i].data = NULL;
 		if( dw && ( dw->win || dw->simp ) ) {
 			if( dw->win ) {
-				if( transitions[i].offset == ( int ) & ( ( idWindow * ) 0 )->rect ) {
+				if( transitions[i].offset == ( int ) & ( ( idWindow * )0 )->rect ) {
 					transitions[i].data = &dw->win->rect;
-				} else if( transitions[i].offset == ( int ) & ( ( idWindow * ) 0 )->backColor ) {
+				} else if( transitions[i].offset == ( int ) & ( ( idWindow * )0 )->backColor ) {
 					transitions[i].data = &dw->win->backColor;
-				} else if( transitions[i].offset == ( int ) & ( ( idWindow * ) 0 )->matColor ) {
+				} else if( transitions[i].offset == ( int ) & ( ( idWindow * )0 )->matColor ) {
 					transitions[i].data = &dw->win->matColor;
-				} else if( transitions[i].offset == ( int ) & ( ( idWindow * ) 0 )->foreColor ) {
+				} else if( transitions[i].offset == ( int ) & ( ( idWindow * )0 )->foreColor ) {
 					transitions[i].data = &dw->win->foreColor;
-				} else if( transitions[i].offset == ( int ) & ( ( idWindow * ) 0 )->borderColor ) {
+				} else if( transitions[i].offset == ( int ) & ( ( idWindow * )0 )->borderColor ) {
 					transitions[i].data = &dw->win->borderColor;
-				} else if( transitions[i].offset == ( int ) & ( ( idWindow * ) 0 )->textScale ) {
+				} else if( transitions[i].offset == ( int ) & ( ( idWindow * )0 )->textScale ) {
 					transitions[i].data = &dw->win->textScale;
-				} else if( transitions[i].offset == ( int ) & ( ( idWindow * ) 0 )->rotate ) {
+				} else if( transitions[i].offset == ( int ) & ( ( idWindow * )0 )->rotate ) {
 					transitions[i].data = &dw->win->rotate;
 				}
 			} else {
-				if( transitions[i].offset == ( int ) & ( ( idSimpleWindow * ) 0 )->rect ) {
+				if( transitions[i].offset == ( int ) & ( ( idSimpleWindow * )0 )->rect ) {
 					transitions[i].data = &dw->simp->rect;
-				} else if( transitions[i].offset == ( int ) & ( ( idSimpleWindow * ) 0 )->backColor ) {
+				} else if( transitions[i].offset == ( int ) & ( ( idSimpleWindow * )0 )->backColor ) {
 					transitions[i].data = &dw->simp->backColor;
-				} else if( transitions[i].offset == ( int ) & ( ( idSimpleWindow * ) 0 )->matColor ) {
+				} else if( transitions[i].offset == ( int ) & ( ( idSimpleWindow * )0 )->matColor ) {
 					transitions[i].data = &dw->simp->matColor;
-				} else if( transitions[i].offset == ( int ) & ( ( idSimpleWindow * ) 0 )->foreColor ) {
+				} else if( transitions[i].offset == ( int ) & ( ( idSimpleWindow * )0 )->foreColor ) {
 					transitions[i].data = &dw->simp->foreColor;
-				} else if( transitions[i].offset == ( int ) & ( ( idSimpleWindow * ) 0 )->borderColor ) {
+				} else if( transitions[i].offset == ( int ) & ( ( idSimpleWindow * )0 )->borderColor ) {
 					transitions[i].data = &dw->simp->borderColor;
-				} else if( transitions[i].offset == ( int ) & ( ( idSimpleWindow * ) 0 )->textScale ) {
+				} else if( transitions[i].offset == ( int ) & ( ( idSimpleWindow * )0 )->textScale ) {
 					transitions[i].data = &dw->simp->textScale;
-				} else if( transitions[i].offset == ( int ) & ( ( idSimpleWindow * ) 0 )->rotate ) {
+				} else if( transitions[i].offset == ( int ) & ( ( idSimpleWindow * )0 )->rotate ) {
 					transitions[i].data = &dw->simp->rotate;
 				}
 			}
@@ -3493,7 +3493,7 @@ void idWindow::FixupParms() {
 			// need to fix this up
 			const char *p = ( const char * )( ops[i].a );
 			idWinVar *var = GetWinVarByName( p, true );
-			delete []p;
+			delete[]p;
 			ops[i].a = ( int )var;
 			ops[i].b = -1;
 		}
@@ -3560,7 +3560,7 @@ idWindow::Interactive
 ================
 */
 bool idWindow::Interactive() {
-	if( scripts[ ON_ACTION ] ) {
+	if( scripts[ON_ACTION] ) {
 		return true;
 	}
 	int c = children.Num();
@@ -3609,7 +3609,7 @@ idWindow *idWindow::FindChildByPoint( float x, float y, idWindow **below ) {
 	if( !Contains( drawRect, x, y ) ) {
 		return NULL;
 	}
-	for( int i = c - 1; i >= 0 ; i-- ) {
+	for( int i = c - 1; i >= 0; i-- ) {
 		idWindow *found = children[i]->FindChildByPoint( x, y, below );
 		if( found ) {
 			if( *below ) {
@@ -3638,7 +3638,7 @@ Returns the number of children
 ================
 */
 int idWindow::GetChildCount( void ) {
-	return drawWindows.Num( );
+	return drawWindows.Num();
 }
 
 /*
@@ -3661,7 +3661,7 @@ Returns the index of the given child window
 */
 int idWindow::GetChildIndex( idWindow *window ) {
 	int find;
-	for( find = 0; find < drawWindows.Num(); find ++ ) {
+	for( find = 0; find < drawWindows.Num(); find++ ) {
 		if( drawWindows[find].win == window ) {
 			return find;
 		}
@@ -3681,7 +3681,7 @@ void idWindow::RemoveChild( idWindow *win ) {
 	int find;
 	// Remove the child window
 	children.Remove( win );
-	for( find = 0; find < drawWindows.Num(); find ++ ) {
+	for( find = 0; find < drawWindows.Num(); find++ ) {
 		if( drawWindows[find].win == win ) {
 			drawWindows.RemoveIndex( find );
 			break;
@@ -3794,12 +3794,12 @@ dictionary as if were a file being parsed.
 bool idWindow::UpdateFromDictionary( idDict &dict ) {
 	const idKeyValue	*kv;
 	int					i;
-	SetDefaults( );
+	SetDefaults();
 	// Clear all registers since they will get recreated
-	regList.Reset( );
-	expressionRegisters.Clear( );
-	ops.Clear( );
-	for( i = 0; i < dict.GetNumKeyVals(); i ++ ) {
+	regList.Reset();
+	expressionRegisters.Clear();
+	ops.Clear();
+	for( i = 0; i < dict.GetNumKeyVals(); i++ ) {
 		kv = dict.GetKeyVal( i );
 		// Special case name
 		if( !kv->GetKey().Icmp( "name" ) ) {

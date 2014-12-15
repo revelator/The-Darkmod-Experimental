@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -133,7 +133,7 @@ void DialogAFConstraintSpring::InitJointLists( void ) {
 	}
 	int numJoints = model->NumJoints();
 	for( int i = 0; i < numJoints; i++ ) {
-		const char *jointName = model->GetJointName( ( jointHandle_t ) i );
+		const char *jointName = model->GetJointName( ( jointHandle_t )i );
 		m_comboAnchorJoint.AddString( jointName );
 		m_comboAnchor2Joint.AddString( jointName );
 	}
@@ -337,26 +337,26 @@ void DialogAFConstraintSpring::OnCbnSelchangeComboAnchorJoint() {
 }
 
 void DialogAFConstraintSpring::OnEnChangeEditAnchorX() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_X ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_X ) ) ) {
 		UpdateFile();
 	} else {
-		EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_X ) );
+		EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_X ) );
 	}
 }
 
 void DialogAFConstraintSpring::OnEnChangeEditAnchorY() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_Y ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_Y ) ) ) {
 		UpdateFile();
 	} else {
-		EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_Y ) );
+		EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_Y ) );
 	}
 }
 
 void DialogAFConstraintSpring::OnEnChangeEditAnchorZ() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_Z ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_Z ) ) ) {
 		UpdateFile();
 	} else {
-		EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_Z ) );
+		EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_Z ) );
 	}
 }
 
@@ -419,26 +419,26 @@ void DialogAFConstraintSpring::OnCbnSelchangeComboAnchor2Joint() {
 }
 
 void DialogAFConstraintSpring::OnEnChangeEditAnchor2X() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR2_X ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR2_X ) ) ) {
 		UpdateFile();
 	} else {
-		EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR2_X ) );
+		EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR2_X ) );
 	}
 }
 
 void DialogAFConstraintSpring::OnEnChangeEditAnchor2Y() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR2_Y ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR2_Y ) ) ) {
 		UpdateFile();
 	} else {
-		EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR2_Y ) );
+		EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR2_Y ) );
 	}
 }
 
 void DialogAFConstraintSpring::OnEnChangeEditAnchor2Z() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR2_Z ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR2_Z ) ) ) {
 		UpdateFile();
 	} else {
-		EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR2_Z ) );
+		EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR2_Z ) );
 	}
 }
 
@@ -479,10 +479,10 @@ void DialogAFConstraintSpring::OnDeltaposSpinAnchor2Z( NMHDR *pNMHDR, LRESULT *p
 }
 
 void DialogAFConstraintSpring::OnEnChangeEditSpringStretch() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_SPRING_STRETCH ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_SPRING_STRETCH ) ) ) {
 		UpdateFile();
 	} else {
-		EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_SPRING_STRETCH ) );
+		EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_SPRING_STRETCH ) );
 	}
 }
 
@@ -494,10 +494,10 @@ void DialogAFConstraintSpring::OnDeltaposSpinSpringStretch( NMHDR *pNMHDR, LRESU
 }
 
 void DialogAFConstraintSpring::OnEnChangeEditSpringCompress() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_SPRING_COMPRESS ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_SPRING_COMPRESS ) ) ) {
 		UpdateFile();
 	} else {
-		EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_SPRING_COMPRESS ) );
+		EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_SPRING_COMPRESS ) );
 	}
 }
 
@@ -509,10 +509,10 @@ void DialogAFConstraintSpring::OnDeltaposSpinSpringCompress( NMHDR *pNMHDR, LRES
 }
 
 void DialogAFConstraintSpring::OnEnChangeEditSpringDamping() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_SPRING_DAMPING ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_SPRING_DAMPING ) ) ) {
 		UpdateFile();
 	} else {
-		EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_SPRING_DAMPING ) );
+		EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_SPRING_DAMPING ) );
 	}
 }
 
@@ -524,10 +524,10 @@ void DialogAFConstraintSpring::OnDeltaposSpinSpringDamping( NMHDR *pNMHDR, LRESU
 }
 
 void DialogAFConstraintSpring::OnEnChangeEditSpringRestLength() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_SPRING_REST_LENGTH ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_SPRING_REST_LENGTH ) ) ) {
 		UpdateFile();
 	} else {
-		EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_SPRING_REST_LENGTH ) );
+		EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_SPRING_REST_LENGTH ) );
 	}
 }
 
@@ -557,10 +557,10 @@ void DialogAFConstraintSpring::OnBnClickedRadioLimitMinLength() {
 }
 
 void DialogAFConstraintSpring::OnEnChangeEditLimitMinLength() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_SPRING_MIN_LENGTH ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_SPRING_MIN_LENGTH ) ) ) {
 		UpdateFile();
 	} else {
-		EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_SPRING_MIN_LENGTH ) );
+		EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_SPRING_MIN_LENGTH ) );
 	}
 }
 
@@ -590,10 +590,10 @@ void DialogAFConstraintSpring::OnBnClickedRadioLimitMaxLength() {
 }
 
 void DialogAFConstraintSpring::OnEnChangeEditLimitMaxLength() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_SPRING_MAX_LENGTH ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_SPRING_MAX_LENGTH ) ) ) {
 		UpdateFile();
 	} else {
-		EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_SPRING_MAX_LENGTH ) );
+		EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_SPRING_MAX_LENGTH ) );
 	}
 }
 

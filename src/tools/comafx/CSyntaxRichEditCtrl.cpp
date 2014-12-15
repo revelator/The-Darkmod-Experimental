@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -33,17 +33,17 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 // NOTE:	known bug, if you directly jump to a not yet highligted page with the first line starting
 //			inside a multi-line comment then the multi-line comment is not picked up and highlighted
 
-const int AUTOCOMPLETE_WIDTH			= 200;
-const int AUTOCOMPLETE_HEIGHT			= 180;
-const int AUTOCOMPLETE_OFFSET			= 16;
+const int AUTOCOMPLETE_WIDTH = 200;
+const int AUTOCOMPLETE_HEIGHT = 180;
+const int AUTOCOMPLETE_OFFSET = 16;
 
-const int FUNCPARMTOOLTIP_WIDTH			= 16;
-const int FUNCPARMTOOLTIP_HEIGHT		= 20;
-const int FUNCPARMTOOLTIP_OFFSET		= 16;
+const int FUNCPARMTOOLTIP_WIDTH = 16;
+const int FUNCPARMTOOLTIP_HEIGHT = 20;
+const int FUNCPARMTOOLTIP_OFFSET = 16;
 
-const COLORREF DEFAULT_BACK_COLOR				= SRE_COLOR_WHITE;
-const COLORREF INVALID_BACK_COLOR				= SRE_COLOR_WHITE - 2;
-const COLORREF MULTILINE_COMMENT_BACK_COLOR		= SRE_COLOR_WHITE - 1;
+const COLORREF DEFAULT_BACK_COLOR = SRE_COLOR_WHITE;
+const COLORREF INVALID_BACK_COLOR = SRE_COLOR_WHITE - 2;
+const COLORREF MULTILINE_COMMENT_BACK_COLOR = SRE_COLOR_WHITE - 1;
 
 #define IDC_LISTBOX_AUTOCOMPLETE		700
 #define IDC_EDITBOX_FUNCPARMS			701
@@ -209,7 +209,7 @@ void CSyntaxRichEditCtrl::Init( void ) {
 	// get the Rich Edit ITextDocument to use the wonky TOM interface
 	IRichEditOle *ire = GetIRichEditOle();
 	IUnknown *iu = ( IUnknown * )ire;
-	if( iu == NULL || iu->QueryInterface( tom::IID_ITextDocument, ( void ** ) &m_TextDoc ) != S_OK ) {
+	if( iu == NULL || iu->QueryInterface( tom::IID_ITextDocument, ( void ** )&m_TextDoc ) != S_OK ) {
 		m_TextDoc = NULL;
 	}
 	InitFont();
@@ -566,7 +566,7 @@ COLORREF CSyntaxRichEditCtrl::GetBackColor( int charIndex ) const {
 ================
 CSyntaxRichEditCtrl::HighlightSyntax
 
-  Update the syntax highlighting for the given character range.
+Update the syntax highlighting for the given character range.
 ================
 */
 void CSyntaxRichEditCtrl::HighlightSyntax( int startCharIndex, int endCharIndex ) {
@@ -744,7 +744,7 @@ void CSyntaxRichEditCtrl::HighlightSyntax( int startCharIndex, int endCharIndex 
 ================
 CSyntaxRichEditCtrl::UpdateVisibleRange
 
-  Updates the visible character range if it is not yet properly highlighted.
+Updates the visible character range if it is not yet properly highlighted.
 ================
 */
 void CSyntaxRichEditCtrl::UpdateVisibleRange( void ) {
@@ -868,7 +868,7 @@ bool CSyntaxRichEditCtrl::FindNext( const char *find, bool matchCase, bool match
 		range->get_Start( &start );
 		range->Release();
 		SetSel( start, start + length );
-		int line = Max( ( int ) LineFromChar( start ) - 5, 0 );
+		int line = Max( ( int )LineFromChar( start ) - 5, 0 );
 		LineScroll( line - GetFirstVisibleLine(), 0 );
 		UpdateVisibleRange();
 		m_TextDoc->Unfreeze( NULL );
@@ -1282,7 +1282,7 @@ BOOL CSyntaxRichEditCtrl::OnToolTipNotify( UINT id, NMHDR *pNMHDR, LRESULT *pRes
 			delete m_pwchTip;
 			m_pwchTip = new WCHAR[toolTip.GetLength() + 2];
 			lstrcpyn( m_pwchTip, toolTip, toolTip.GetLength() + 1 );
-			pTTTA->lpszText = ( LPTSTR ) m_pwchTip;
+			pTTTA->lpszText = ( LPTSTR )m_pwchTip;
 		}
 #endif
 		return TRUE;
@@ -1565,7 +1565,7 @@ BOOL CSyntaxRichEditCtrl::OnMouseWheel( UINT nFlags, short zDelta, CPoint pt ) {
 		return TRUE;
 	}
 	m_TextDoc->Freeze( NULL );
-	LineScroll( -3 * ( ( int ) zDelta ) / WHEEL_DELTA, 0 );
+	LineScroll( -3 * ( ( int )zDelta ) / WHEEL_DELTA, 0 );
 	UpdateVisibleRange();
 	m_TextDoc->Unfreeze( NULL );
 	return TRUE;
@@ -1628,7 +1628,7 @@ void CSyntaxRichEditCtrl::OnProtected( NMHDR *pNMHDR, LRESULT *pResult ) {
 	}
 	case WM_SETTEXT: {
 		updateRange.cpMin = pEP->chrg.cpMin;
-		updateRange.cpMax = pEP->chrg.cpMin + strlen( ( LPCTSTR ) pEP->lParam );
+		updateRange.cpMax = pEP->chrg.cpMin + strlen( ( LPCTSTR )pEP->lParam );
 		break;
 	}
 	case WM_CUT: {

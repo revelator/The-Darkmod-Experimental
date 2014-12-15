@@ -1,22 +1,22 @@
 // vim:ts=4:sw=4:cindent
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #ifndef __GAME_ENTITY_H__
 #define __GAME_ENTITY_H__
 
@@ -54,7 +54,7 @@ struct FlinderSpawn {
 /*
 ===============================================================================
 
-	Game entity base class.
+Game entity base class.
 
 ===============================================================================
 */
@@ -124,14 +124,14 @@ extern const idEventDef EV_DestroyOverlay;
 
 // Think flags
 enum {
-	TH_ALL					= -1,
-	TH_THINK				= 1,		// run think function each frame
-	TH_PHYSICS				= 2,		// run physics each frame
-	TH_ANIMATE				= 4,		// update animation each frame
-	TH_UPDATEVISUALS		= 8,		// update renderEntity
-	TH_UPDATEPARTICLES		= 16,
-	TH_DOUSING				= 32,		// grayman #2603 - run think function to process latched dousing
-	TH_ARMED				= 64		// grayman #2478 - run think function when mine is armed
+	TH_ALL = -1,
+	TH_THINK = 1,		// run think function each frame
+	TH_PHYSICS = 2,		// run physics each frame
+	TH_ANIMATE = 4,		// update animation each frame
+	TH_UPDATEVISUALS = 8,		// update renderEntity
+	TH_UPDATEPARTICLES = 16,
+	TH_DOUSING = 32,		// grayman #2603 - run think function to process latched dousing
+	TH_ARMED = 64		// grayman #2478 - run think function when mine is armed
 };
 
 // The impulse states a button can have
@@ -173,14 +173,14 @@ struct signal_t {
 
 class signalList_t {
 public:
-	idList<signal_t> signal[ NUM_SIGNALS ];
+	idList<signal_t> signal[NUM_SIGNALS];
 };
 
 // Inventory-related flags.
 enum {
-	EINV_GROUP	= 1, // Jump to the next/previous group.
-	EINV_PREV	= 2, // Iterate backwards.
-	EINV_FAST	= 4, // Don't use group histories.
+	EINV_GROUP = 1, // Jump to the next/previous group.
+	EINV_PREV = 2, // Iterate backwards.
+	EINV_FAST = 4, // Don't use group histories.
 };
 
 /**
@@ -273,18 +273,18 @@ public:
 	int						maxHealth;				// greebo: Moved this from idInventory to here
 
 	struct entityFlags_s {
-		bool				notarget			: 1;	// if true never attack or target this entity
-		bool				noknockback			: 1;	// if true no knockback from hits
-		bool				takedamage			: 1;	// if true this entity can be damaged
-		bool				hidden				: 1;	// if true this entity is not visible
-		bool				bindOrientated		: 1;	// if true both the master orientation is used for binding
-		bool				solidForTeam		: 1;	// if true this entity is considered solid when a physics team mate pushes entities
-		bool				forcePhysicsUpdate	: 1;	// if true always update from the physics whether the object moved or not
-		bool				selected			: 1;	// if true the entity is selected for editing
-		bool				neverDormant		: 1;	// if true the entity never goes dormant
-		bool				isDormant			: 1;	// if true the entity is dormant
-		bool				hasAwakened			: 1;	// before a monster has been awakened the first time, use full PVS for dormant instead of area-connected
-		bool				networkSync			: 1; // if true the entity is synchronized over the network
+		bool				notarget : 1;	// if true never attack or target this entity
+		bool				noknockback : 1;	// if true no knockback from hits
+		bool				takedamage : 1;	// if true this entity can be damaged
+		bool				hidden : 1;	// if true this entity is not visible
+		bool				bindOrientated : 1;	// if true both the master orientation is used for binding
+		bool				solidForTeam : 1;	// if true this entity is considered solid when a physics team mate pushes entities
+		bool				forcePhysicsUpdate : 1;	// if true always update from the physics whether the object moved or not
+		bool				selected : 1;	// if true the entity is selected for editing
+		bool				neverDormant : 1;	// if true the entity never goes dormant
+		bool				isDormant : 1;	// if true the entity is dormant
+		bool				hasAwakened : 1;	// before a monster has been awakened the first time, use full PVS for dormant instead of area-connected
+		bool				networkSync : 1; // if true the entity is synchronized over the network
 	} fl;
 
 	/**
@@ -493,7 +493,7 @@ public:
 
 	/**
 	 * Tels: Hide the entity if tdm_lod_bias is outside MinLODBias .. MaxLODBias.
-	*/
+	 */
 	void					Event_HideByLODBias( void );
 
 	/**
@@ -820,12 +820,12 @@ public:
 	 * to spawn, then spawn them. Called from Flinderize().
 	 * @return: Count of entities that where spawned or -1 for error.
 	 *
-	*/
+	 */
 	virtual int				SpawnFlinder( const FlinderSpawn &bs, idEntity *activator );
 
 	/**
 	 * Evaluate def_flinder spawnargs and call SpawnFlinder() for each found.
-	*/
+	 */
 	virtual void			Flinderize( idEntity *activator );
 
 	/**
@@ -1131,7 +1131,7 @@ public:
 	* Called when the given entity is about to attach (bind) to this entity.
 	* Does not actually bind it.
 	**/
-	virtual void BindNotify( idEntity *ent , const char *jointName ); // grayman #3074
+	virtual void BindNotify( idEntity *ent, const char *jointName ); // grayman #3074
 
 	/**
 	* Called when the given entity is about to detach (unbind) from this entity.
@@ -1819,7 +1819,7 @@ public:			// events that need to have an accessible counterpart
 /*
 ===============================================================================
 
-	Animated entity base class.
+Animated entity base class.
 
 ===============================================================================
 */

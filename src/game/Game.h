@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __GAME_H__
 #define __GAME_H__
@@ -30,7 +30,7 @@
 /*
 ===============================================================================
 
-	Public game interface with methods to run the game.
+Public game interface with methods to run the game.
 
 ===============================================================================
 */
@@ -195,7 +195,7 @@ public:
 	virtual void				SelectTimeGroup( int timeGroup ) = 0;
 	virtual int					GetTimeGroupTime( int timeGroup ) = 0;
 
-	virtual void				GetBestGameType( const char *map, const char *gametype, char buf[ MAX_STRING_CHARS ] ) = 0;
+	virtual void				GetBestGameType( const char *map, const char *gametype, char buf[MAX_STRING_CHARS] ) = 0;
 
 	// Returns a summary of stats for a given client
 	virtual void				GetClientStats( int clientNum, char *data, const int len ) = 0;
@@ -203,9 +203,9 @@ public:
 	// Switch a player to a particular team
 	virtual void				SwitchTeam( int clientNum, int team ) = 0;
 
-	virtual bool				DownloadRequest( const char *IP, const char *guid, const char *paks, char urls[ MAX_STRING_CHARS ] ) = 0;
+	virtual bool				DownloadRequest( const char *IP, const char *guid, const char *paks, char urls[MAX_STRING_CHARS] ) = 0;
 
-	virtual void				GetMapLoadingGUI( char gui[ MAX_STRING_CHARS ] ) = 0;
+	virtual void				GetMapLoadingGUI( char gui[MAX_STRING_CHARS] ) = 0;
 
 	// Lets the game know after a "reloadimages" command has been invoked
 	virtual void				OnReloadImages() = 0;
@@ -219,7 +219,7 @@ extern idGame 					*game;
 /*
 ===============================================================================
 
-	Public game interface with methods for in-game editing.
+Public game interface with methods for in-game editing.
 
 ===============================================================================
 */
@@ -323,7 +323,7 @@ public:
 	// In game map editing support.
 	virtual const idDict 		*MapGetEntityDict( const char *name ) const;
 	virtual void				MapSave( const char *path = NULL ) const;
-	virtual void				MapSetEntityKeyVal( const char *name, const char *key, const char *val ) const ;
+	virtual void				MapSetEntityKeyVal( const char *name, const char *key, const char *val ) const;
 	virtual void				MapCopyDictToEntity( const char *name, const idDict *dict ) const;
 	virtual int					MapGetUniqueMatchingKeyVals( const char *key, const char *list[], const int max ) const;
 	virtual void				MapAddEntity( const idDict *dict ) const;
@@ -337,7 +337,7 @@ extern idGameEdit 				*gameEdit;
 /*
 ===============================================================================
 
-	Game API.
+Game API.
 
 ===============================================================================
 */

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -94,7 +94,7 @@ void Script_ShowCursor( idWindow *window, idList<idGSWinVar> *src ) {
 =========================
 Script_RunScript
 
- run scripts must come after any set cmd set's in the script
+run scripts must come after any set cmd set's in the script
 =========================
 */
 void Script_RunScript( idWindow *window, idList<idGSWinVar> *src ) {
@@ -229,7 +229,7 @@ void Script_Transition( idWindow *window, idList<idGSWinVar> *src ) {
 
 typedef struct {
 	const char *name;
-	void ( *handler )( idWindow *window, idList<idGSWinVar> *src );
+	void( *handler )( idWindow *window, idList<idGSWinVar> *src );
 	int mMinParms;
 	int mMaxParms;
 } guiCommandDef_t;
@@ -335,8 +335,8 @@ bool idGuiScript::Parse( idParser *src ) {
 		src->Error( "Unexpected end of file" );
 		return false;
 	}
-	handler	= NULL;
-	for( i = 0; i < scriptCommandCount ; i++ ) {
+	handler = NULL;
+	for( i = 0; i < scriptCommandCount; i++ ) {
 		if( idStr::Icmp( token, commandList[i].name ) == 0 ) {
 			handler = commandList[i].handler;
 			break;
@@ -493,7 +493,7 @@ void idGuiScript::FixupParms( idWindow *win ) {
 		//
 		//  support variables as parameters
 		int c;
-		for( c = 1; c < 3; c ++ ) {
+		for( c = 1; c < 3; c++ ) {
 			str = dynamic_cast<idWinStr *>( parms[c].var );
 			idWinVec4 *v4 = new idWinVec4;
 			parms[c].var = v4;
@@ -509,7 +509,7 @@ void idGuiScript::FixupParms( idWindow *win ) {
 				idWindow *destparent;
 				if( owner ) {
 					ownerparent = owner->simp ? owner->simp->GetParent() : owner->win->GetParent();
-					destparent  = destowner->simp ? destowner->simp->GetParent() : destowner->win->GetParent();
+					destparent = destowner->simp ? destowner->simp->GetParent() : destowner->win->GetParent();
 					// If its the rectangle they are referencing then adjust it
 					if( ownerparent && destparent &&
 							( dest == ( owner->simp ? owner->simp->GetWinVarByName( "rect" ) : owner->win->GetWinVarByName( "rect" ) ) ) ) {
@@ -517,12 +517,12 @@ void idGuiScript::FixupParms( idWindow *win ) {
 						rect = *( dynamic_cast<idWinRectangle *>( dest ) );
 						ownerparent->ClientToScreen( &rect );
 						destparent->ScreenToClient( &rect );
-						*v4 = rect.ToVec4( );
+						*v4 = rect.ToVec4();
 					} else {
-						v4->Set( dest->c_str( ) );
+						v4->Set( dest->c_str() );
 					}
 				} else {
-					v4->Set( dest->c_str( ) );
+					v4->Set( dest->c_str() );
 				}
 			} else {
 				v4->Set( *str );

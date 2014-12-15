@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -28,22 +28,22 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "GEApp.h"
 #include "GEViewer.h"
 
-rvGEViewer::rvGEViewer( ) {
+rvGEViewer::rvGEViewer() {
 	mInterface = NULL;
-	mPaused    = true;
-	mTime	   = 0;
+	mPaused = true;
+	mTime = 0;
 }
 
 bool rvGEViewer::Create( HWND parent ) {
 	WNDCLASSEX	wndClass;
 	// Make sure the alpha slider window class is registered
 	memset( &wndClass, 0, sizeof( wndClass ) );
-	wndClass.cbSize			= sizeof( WNDCLASSEX );
-	wndClass.lpszClassName	= "GUIED_VIEWER";
-	wndClass.lpfnWndProc	= rvGEViewer::WndProc;
-	wndClass.hInstance		= gApp.GetInstance( );
-	wndClass.style			= CS_OWNDC | CS_BYTEALIGNWINDOW | CS_VREDRAW | CS_HREDRAW;
-	wndClass.hbrBackground	= ( HBRUSH )( COLOR_3DFACE + 1 );
+	wndClass.cbSize = sizeof( WNDCLASSEX );
+	wndClass.lpszClassName = "GUIED_VIEWER";
+	wndClass.lpfnWndProc = rvGEViewer::WndProc;
+	wndClass.hInstance = gApp.GetInstance();
+	wndClass.style = CS_OWNDC | CS_BYTEALIGNWINDOW | CS_VREDRAW | CS_HREDRAW;
+	wndClass.hbrBackground = ( HBRUSH )( COLOR_3DFACE + 1 );
 	RegisterClassEx( &wndClass );
 	mWnd = CreateWindowEx( WS_EX_TOOLWINDOW, "GUIED_VIEWER", "GUI Viewer",
 						   WS_SYSMENU | WS_THICKFRAME | WS_CAPTION | WS_POPUP | WS_OVERLAPPED | WS_BORDER | WS_CLIPSIBLINGS | WS_CHILD,
@@ -60,7 +60,7 @@ void rvGEViewer::Play( void ) {
 		return;
 	}
 	mLastTime = eventLoop->Milliseconds();
-	mPaused   = false;
+	mPaused = false;
 	TBBUTTONINFO tbinfo;
 	tbinfo.cbSize = sizeof( TBBUTTONINFO );
 	tbinfo.dwMask = TBIF_COMMAND | TBIF_IMAGE;
@@ -94,25 +94,25 @@ bool rvGEViewer::OpenFile( const char *filename ) {
 	delete mInterface;
 	tempfile = filename;
 	tempfile.StripPath();
-	tempfile.StripFileExtension( );
+	tempfile.StripFileExtension();
 	tempfile = va( "guis/temp.guied", tempfile.c_str() );
 	ospath = fileSystem->RelativePathToOSPath( tempfile, "fs_basepath" );
 	// Make sure the gui directory exists
 	idStr createDir = ospath;
-	createDir.StripFilename( );
+	createDir.StripFilename();
 	CreateDirectory( createDir, NULL );
 	SetFileAttributes( ospath, FILE_ATTRIBUTE_NORMAL );
 	DeleteFile( ospath );
 	CopyFile( filename, ospath, FALSE );
 	SetFileAttributes( ospath, FILE_ATTRIBUTE_NORMAL );
-	mInterface = reinterpret_cast< idUserInterfaceLocal * >( uiManager->FindGui( tempfile, true, true ) );
+	mInterface = reinterpret_cast<idUserInterfaceLocal *>( uiManager->FindGui( tempfile, true, true ) );
 	mInterface->SetStateString( "guied_item_0", "guied 1" );
 	mInterface->SetStateString( "guied_item_1", "guied 2" );
 	mInterface->SetStateString( "guied_item_2", "guied 3" );
 	mTime = 0;
 	mInterface->Activate( true, mTime );
 	DeleteFile( ospath );
-	Play( );
+	Play();
 	return true;
 }
 
@@ -178,15 +178,15 @@ static int MapKey( int key ) {
 }
 
 LRESULT CALLBACK rvGEViewer::WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam ) {
-	rvGEViewer *viewer = ( rvGEViewer * ) GetWindowLong( hwnd, GWL_USERDATA );
+	rvGEViewer *viewer = ( rvGEViewer * )GetWindowLong( hwnd, GWL_USERDATA );
 	switch( msg ) {
 	case WM_COMMAND:
 		switch( LOWORD( wParam ) ) {
 		case ID_GUIED_VIEWER_PLAY:
-			viewer->Play( );
+			viewer->Play();
 			break;
 		case ID_GUIED_VIEWER_PAUSE:
-			viewer->Pause( );
+			viewer->Pause();
 			break;
 		}
 		break;
@@ -210,7 +210,7 @@ LRESULT CALLBACK rvGEViewer::WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM
 		if( viewer->mInterface ) {
 			sysEvent_t event;
 			bool       visuals;
-			ZeroMemory( &event, sizeof( event ) ) ;
+			ZeroMemory( &event, sizeof( event ) );
 			event.evType = SE_KEY;
 			event.evValue = K_MOUSE1;
 			event.evValue2 = true;
@@ -221,7 +221,7 @@ LRESULT CALLBACK rvGEViewer::WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM
 		if( viewer->mInterface ) {
 			sysEvent_t event;
 			bool       visuals;
-			ZeroMemory( &event, sizeof( event ) ) ;
+			ZeroMemory( &event, sizeof( event ) );
 			event.evType = SE_KEY;
 			event.evValue = K_MOUSE1;
 			event.evValue2 = false;
@@ -232,7 +232,7 @@ LRESULT CALLBACK rvGEViewer::WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM
 		if( viewer->mInterface ) {
 			sysEvent_t event;
 			bool       visuals;
-			ZeroMemory( &event, sizeof( event ) ) ;
+			ZeroMemory( &event, sizeof( event ) );
 			event.evType = SE_KEY;
 			event.evValue = MapKey( lParam );
 			event.evValue2 = true;
@@ -244,7 +244,7 @@ LRESULT CALLBACK rvGEViewer::WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM
 		if( viewer->mInterface ) {
 			sysEvent_t event;
 			bool       visuals;
-			ZeroMemory( &event, sizeof( event ) ) ;
+			ZeroMemory( &event, sizeof( event ) );
 			event.evType = SE_KEY;
 			event.evValue = MapKey( lParam );
 			event.evValue2 = false;
@@ -259,7 +259,7 @@ LRESULT CALLBACK rvGEViewer::WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM
 		if( viewer->mInterface ) {
 			sysEvent_t event;
 			bool       visuals;
-			ZeroMemory( &event, sizeof( event ) ) ;
+			ZeroMemory( &event, sizeof( event ) );
 			event.evType = SE_CHAR;
 			event.evValue = wParam;
 			event.evValue2 = false;
@@ -272,7 +272,7 @@ LRESULT CALLBACK rvGEViewer::WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM
 			float y = ( float )( HIWORD( lParam ) ) / ( float )( viewer->mWindowHeight - viewer->mToolbarHeight ) * SCREEN_HEIGHT;
 			sysEvent_t event;
 			bool       visuals;
-			ZeroMemory( &event, sizeof( event ) ) ;
+			ZeroMemory( &event, sizeof( event ) );
 			event.evType = SE_MOUSE;
 			event.evValue = ( int )x - viewer->mInterface->CursorX();
 			event.evValue2 = ( int )y - viewer->mInterface->CursorY();
@@ -281,14 +281,14 @@ LRESULT CALLBACK rvGEViewer::WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM
 		break;
 	case WM_CLOSE:
 		viewer->mInterface = NULL;
-		gApp.CloseViewer( );
+		gApp.CloseViewer();
 		return 0;
 	case WM_CREATE: {
-		CREATESTRUCT *cs = ( CREATESTRUCT * ) lParam;
+		CREATESTRUCT *cs = ( CREATESTRUCT * )lParam;
 		SetWindowLong( hwnd, GWL_USERDATA, ( LONG )cs->lpCreateParams );
 		viewer = ( rvGEViewer * )cs->lpCreateParams;
 		viewer->mWnd = hwnd;
-		viewer->SetupPixelFormat( );
+		viewer->SetupPixelFormat();
 		viewer->mToolbar = CreateWindowEx( 0, TOOLBARCLASSNAME, "", CCS_BOTTOM | WS_CHILD | WS_VISIBLE, 0, 0, 0, 0, hwnd, ( HMENU )IDR_GUIED_VIEWERTOOLBAR, gApp.GetInstance(), NULL );
 		// Send the TB_BUTTONSTRUCTSIZE message, which is required for backward compatibility.
 		SendMessage( viewer->mToolbar, TB_BUTTONSTRUCTSIZE, ( WPARAM )sizeof( TBBUTTON ), 0 );
@@ -304,7 +304,7 @@ LRESULT CALLBACK rvGEViewer::WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM
 		TBADDBITMAP	tbab;
 		tbab.hInst = win32.hInstance;
 		tbab.nID = IDR_GUIED_VIEWERTOOLBAR;
-		SendMessage( viewer->mToolbar, TB_ADDBITMAP, ( WPARAM )4, ( LPARAM ) &tbab );
+		SendMessage( viewer->mToolbar, TB_ADDBITMAP, ( WPARAM )4, ( LPARAM )&tbab );
 		TBBUTTON tbb[4];
 		tbb[0].fsStyle = BTNS_SEP;
 		tbb[0].fsState = 0;
@@ -322,7 +322,7 @@ LRESULT CALLBACK rvGEViewer::WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM
 		tbb[2].iString = -1;
 		tbb[3].fsStyle = BTNS_SEP;
 		tbb[3].fsState = 0;
-		SendMessage( viewer->mToolbar, TB_ADDBUTTONS, ( WPARAM )4, ( LPARAM ) &tbb );
+		SendMessage( viewer->mToolbar, TB_ADDBUTTONS, ( WPARAM )4, ( LPARAM )&tbb );
 		break;
 	}
 	case WM_SETCURSOR:
@@ -349,7 +349,7 @@ Setup the pixel format for the opengl context
 ================
 */
 bool rvGEViewer::SetupPixelFormat( void ) {
-	HDC	 hDC    = GetDC( mWnd );
+	HDC	 hDC = GetDC( mWnd );
 	bool result = true;
 	int pixelFormat = ChoosePixelFormat( hDC, &win32.pfd );
 	if( pixelFormat > 0 ) {
@@ -414,7 +414,7 @@ void rvGEViewer::Render( HDC dc ) {
 		// We are done using the renderSystem now
 		renderSystem->EndFrame( &frontEnd, &backEnd );
 	}
-	glFinish( );
+	glFinish();
 	wglSwapBuffers( dc );
 }
 

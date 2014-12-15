@@ -34,16 +34,16 @@ typedef struct vorbis_info {
 	   Combinations of the three values carry the following implications:
 
 	   all three set to the same value:
-	     implies a fixed rate bitstream
+	   implies a fixed rate bitstream
 	   only nominal set:
-	     implies a VBR stream that averages the nominal bitrate.  No hard
-	     upper/lower limit
+	   implies a VBR stream that averages the nominal bitrate.  No hard
+	   upper/lower limit
 	   upper and or lower set:
-	     implies a VBR bitstream that obeys the bitrate limits. nominal
-	     may also be set to give a nominal rate.
+	   implies a VBR bitstream that obeys the bitrate limits. nominal
+	   may also be set to give a nominal rate.
 	   none set:
-	     the coder does not care to speculate.
-	*/
+	   the coder does not care to speculate.
+	   */
 
 	long bitrate_upper;
 	long bitrate_nominal;
@@ -132,7 +132,7 @@ struct alloc_chain {
    specific compression/decompression mode in progress (eg,
    psychoacoustic settings, channel setup, options, codebook
    etc). vorbis_info and substructures are in backends.h.
-*********************************************************************/
+   *********************************************************************/
 
 /* the comments are not part of vorbis_info so that vorbis_info can be
    static storage */

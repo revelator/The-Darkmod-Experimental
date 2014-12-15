@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -28,39 +28,39 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 CLASS_DECLARATION( idPhysics_Base, idPhysics_AF )
 END_CLASS
 
-const float ERROR_REDUCTION					= 0.5f;
-const float ERROR_REDUCTION_MAX				= 256.0f;
-const float LIMIT_ERROR_REDUCTION			= 0.3f;
-const float LCP_EPSILON						= 1e-7f;
-const float LIMIT_LCP_EPSILON				= 1e-4f;
-const float CONTACT_LCP_EPSILON				= 1e-6f;
-const float CENTER_OF_MASS_EPSILON			= 1e-2f;
+const float ERROR_REDUCTION = 0.5f;
+const float ERROR_REDUCTION_MAX = 256.0f;
+const float LIMIT_ERROR_REDUCTION = 0.3f;
+const float LCP_EPSILON = 1e-7f;
+const float LIMIT_LCP_EPSILON = 1e-4f;
+const float CONTACT_LCP_EPSILON = 1e-6f;
+const float CENTER_OF_MASS_EPSILON = 1e-2f;
 #ifdef MOD_WATERPHYSICS
-const float NO_MOVE_TIME					= 2.0f;
+const float NO_MOVE_TIME = 2.0f;
 // ishtvan test: move impulse threshold back to D3 default or below
 // const float IMPULSE_THRESHOLD				= 1500.0f;
-const float IMPULSE_THRESHOLD				= 250.0f;
-const float WATER_FRICTION                  = 0.0f;     // we need AF friction to be a little bigger than RB water friction, we add this value
-const float DEFAULT_LIQUID_SCALAR           = -0.28f;
-const float DEFAULT_LIQUID_DENSITY          = 0.005f;
-const float LIQUID_MASS_MUL                 = 3.0f;     // I'm not sure how to explain this, without it body bob way too quickly
+const float IMPULSE_THRESHOLD = 250.0f;
+const float WATER_FRICTION = 0.0f;     // we need AF friction to be a little bigger than RB water friction, we add this value
+const float DEFAULT_LIQUID_SCALAR = -0.28f;
+const float DEFAULT_LIQUID_DENSITY = 0.005f;
+const float LIQUID_MASS_MUL = 3.0f;     // I'm not sure how to explain this, without it body bob way too quickly
 #else
-const float NO_MOVE_TIME					= 1.0f;
-const float IMPULSE_THRESHOLD				= 500.0f;
+const float NO_MOVE_TIME = 1.0f;
+const float IMPULSE_THRESHOLD = 500.0f;
 #endif
-const float NO_MOVE_TRANSLATION_TOLERANCE	= 10.0f;
-const float NO_MOVE_ROTATION_TOLERANCE		= 10.0f;
-const float MIN_MOVE_TIME					= -1.0f;
-const float MAX_MOVE_TIME					= -1.0f;
-const float SUSPEND_LINEAR_VELOCITY			= 10.0f;
-const float SUSPEND_ANGULAR_VELOCITY		= 15.0f;
-const float SUSPEND_LINEAR_ACCELERATION		= 20.0f;
-const float SUSPEND_ANGULAR_ACCELERATION	= 30.0f;
-const idVec6 vec6_lcp_epsilon				= idVec6( LCP_EPSILON, LCP_EPSILON, LCP_EPSILON,
-		LCP_EPSILON, LCP_EPSILON, LCP_EPSILON );
+const float NO_MOVE_TRANSLATION_TOLERANCE = 10.0f;
+const float NO_MOVE_ROTATION_TOLERANCE = 10.0f;
+const float MIN_MOVE_TIME = -1.0f;
+const float MAX_MOVE_TIME = -1.0f;
+const float SUSPEND_LINEAR_VELOCITY = 10.0f;
+const float SUSPEND_ANGULAR_VELOCITY = 15.0f;
+const float SUSPEND_LINEAR_ACCELERATION = 20.0f;
+const float SUSPEND_ANGULAR_ACCELERATION = 30.0f;
+const idVec6 vec6_lcp_epsilon = idVec6( LCP_EPSILON, LCP_EPSILON, LCP_EPSILON,
+										LCP_EPSILON, LCP_EPSILON, LCP_EPSILON );
 
-static const float MAX_GRABBER_EXT_VELOCITY		= 120.0f;
-static const float MAX_GRABBER_EXT_ANGVEL		= 5.0f;
+static const float MAX_GRABBER_EXT_VELOCITY = 120.0f;
+static const float MAX_GRABBER_EXT_ANGVEL = 5.0f;
 
 #define AF_TIMINGS
 
@@ -82,25 +82,25 @@ idAFConstraint::idAFConstraint
 ================
 */
 idAFConstraint::idAFConstraint( void ) {
-	type				= CONSTRAINT_INVALID;
-	name				= "noname";
-	body1				= NULL;
-	body2				= NULL;
-	physics				= NULL;
+	type = CONSTRAINT_INVALID;
+	name = "noname";
+	body1 = NULL;
+	body2 = NULL;
+	physics = NULL;
 	lo.Zero( 6 );
-	lo.SubVec6( 0 )		= -vec6_infinity;
+	lo.SubVec6( 0 ) = -vec6_infinity;
 	hi.Zero( 6 );
-	hi.SubVec6( 0 )		= vec6_infinity;
+	hi.SubVec6( 0 ) = vec6_infinity;
 	e.SetSize( 6 );
-	e.SubVec6( 0 )		= vec6_lcp_epsilon;
-	boxConstraint		= NULL;
-	boxIndex[0]			= -1;
-	boxIndex[1]			= -1;
-	boxIndex[2]			= -1;
-	boxIndex[3]			= -1;
-	boxIndex[4]			= -1;
-	boxIndex[5]			= -1;
-	firstIndex			= 0;
+	e.SubVec6( 0 ) = vec6_lcp_epsilon;
+	boxConstraint = NULL;
+	boxIndex[0] = -1;
+	boxIndex[1] = -1;
+	boxIndex[2] = -1;
+	boxIndex[3] = -1;
+	boxIndex[4] = -1;
+	boxIndex[5] = -1;
+	firstIndex = 0;
 	memset( &fl, 0, sizeof( fl ) );
 }
 
@@ -346,17 +346,17 @@ void idAFConstraint_Fixed::Evaluate( float invTimeStep ) {
 		ofs = offset;
 		ax = relAxis;
 	}
-	J1.Set(	mat3_identity, mat3_zero,
+	J1.Set( mat3_identity, mat3_zero,
 			mat3_zero, mat3_identity );
 	if( body2 ) {
-		J2.Set(	-mat3_identity, SkewSymmetric( a2 ),
+		J2.Set( -mat3_identity, SkewSymmetric( a2 ),
 				mat3_zero, -mat3_identity );
 	} else {
 		J2.Zero( 6, 6 );
 	}
 	c1.SubVec3( 0 ) = -( invTimeStep * ERROR_REDUCTION ) * ( ofs - body1->GetWorldOrigin() );
 	r = ( body1->GetWorldAxis().Transpose() * ax ).ToRotation();
-	c1.SubVec3( 1 ) = -( invTimeStep * ERROR_REDUCTION ) * ( r.GetVec() * -( float ) DEG2RAD( r.GetAngle() ) );
+	c1.SubVec3( 1 ) = -( invTimeStep * ERROR_REDUCTION ) * ( r.GetVec() * -( float )DEG2RAD( r.GetAngle() ) );
 	c1.Clamp( -ERROR_REDUCTION_MAX, ERROR_REDUCTION_MAX );
 }
 
@@ -1063,7 +1063,7 @@ float idAFConstraint_UniversalJoint::GetFriction( void ) const {
 ================
 idAFConstraint_UniversalJoint::Evaluate
 
-  NOTE: this joint is homokinetic
+NOTE: this joint is homokinetic
 ================
 */
 void idAFConstraint_UniversalJoint::Evaluate( float invTimeStep ) {
@@ -1084,16 +1084,16 @@ void idAFConstraint_UniversalJoint::Evaluate( float invTimeStep ) {
 		d2 = axis2;
 		c1.SubVec3( 0 ) = -( invTimeStep * ERROR_REDUCTION ) * ( a2 - ( a1 + body1->GetWorldOrigin() ) );
 	}
-	J1.Set(	mat3_identity,	-SkewSymmetric( a1 ),
-			mat3_zero,		idMat3( s1[0], s1[1], s1[2],
-									0.0f, 0.0f, 0.0f,
-									0.0f, 0.0f, 0.0f ) );
+	J1.Set( mat3_identity, -SkewSymmetric( a1 ),
+			mat3_zero, idMat3( s1[0], s1[1], s1[2],
+							   0.0f, 0.0f, 0.0f,
+							   0.0f, 0.0f, 0.0f ) );
 	J1.SetSize( 4, 6 );
 	if( body2 ) {
-		J2.Set(	-mat3_identity,	SkewSymmetric( a2 ),
-				mat3_zero,		idMat3( s2[0], s2[1], s2[2],
-										0.0f, 0.0f, 0.0f,
-										0.0f, 0.0f, 0.0f ) );
+		J2.Set( -mat3_identity, SkewSymmetric( a2 ),
+				mat3_zero, idMat3( s2[0], s2[1], s2[2],
+								   0.0f, 0.0f, 0.0f,
+								   0.0f, 0.0f, 0.0f ) );
 		J2.SetSize( 4, 6 );
 	} else {
 		J2.Zero( 4, 6 );
@@ -1683,16 +1683,16 @@ void idAFConstraint_Hinge::Evaluate( float invTimeStep ) {
 		x2 = axis2;
 		c1.SubVec3( 0 ) = -( invTimeStep * ERROR_REDUCTION ) * ( a2 - ( a1 + body1->GetWorldOrigin() ) );
 	}
-	J1.Set(	mat3_identity,	-SkewSymmetric( a1 ),
-			mat3_zero,		idMat3(	vecX[0], vecX[1], vecX[2],
-									vecY[0], vecY[1], vecY[2],
-									0.0f, 0.0f, 0.0f ) );
+	J1.Set( mat3_identity, -SkewSymmetric( a1 ),
+			mat3_zero, idMat3( vecX[0], vecX[1], vecX[2],
+							   vecY[0], vecY[1], vecY[2],
+							   0.0f, 0.0f, 0.0f ) );
 	J1.SetSize( 5, 6 );
 	if( body2 ) {
-		J2.Set(	-mat3_identity,	SkewSymmetric( a2 ),
-				mat3_zero,		idMat3(	-vecX[0], -vecX[1], -vecX[2],
-										-vecY[0], -vecY[1], -vecY[2],
-										0.0f, 0.0f, 0.0f ) );
+		J2.Set( -mat3_identity, SkewSymmetric( a2 ),
+				mat3_zero, idMat3( -vecX[0], -vecX[1], -vecX[2],
+								   -vecY[0], -vecY[1], -vecY[2],
+								   0.0f, 0.0f, 0.0f ) );
 		J2.SetSize( 5, 6 );
 	} else {
 		J2.Zero( 5, 6 );
@@ -2165,17 +2165,17 @@ void idAFConstraint_Slider::Evaluate( float invTimeStep ) {
 		ofs = offset - body1->GetWorldOrigin();
 		r = ( body1->GetWorldAxis().Transpose() * relAxis ).ToRotation();
 	}
-	J1.Set(	mat3_zero, mat3_identity,
+	J1.Set( mat3_zero, mat3_identity,
 			idMat3( vecX, vecY, vec3_origin ), mat3_zero );
 	J1.SetSize( 5, 6 );
 	if( body2 ) {
-		J2.Set(	mat3_zero, -mat3_identity,
+		J2.Set( mat3_zero, -mat3_identity,
 				idMat3( -vecX, -vecY, vec3_origin ), mat3_zero );
 		J2.SetSize( 5, 6 );
 	} else {
 		J2.Zero( 5, 6 );
 	}
-	c1.SubVec3( 0 ) = -( invTimeStep * ERROR_REDUCTION ) * ( r.GetVec() * - ( float ) DEG2RAD( r.GetAngle() ) );
+	c1.SubVec3( 0 ) = -( invTimeStep * ERROR_REDUCTION ) * ( r.GetVec() * -( float )DEG2RAD( r.GetAngle() ) );
 	c1[3] = -( invTimeStep * ERROR_REDUCTION ) * ( vecX * ofs );
 	c1[4] = -( invTimeStep * ERROR_REDUCTION ) * ( vecY * ofs );
 	c1.Clamp( -ERROR_REDUCTION_MAX, ERROR_REDUCTION_MAX );
@@ -3099,10 +3099,10 @@ idAFConstraint_ConeLimit::idAFConstraint_ConeLimit( void ) {
 ================
 idAFConstraint_ConeLimit::Setup
 
-  the coneAnchor is the top of the cone in body2 space
-  the coneAxis is the axis of the cone in body2 space
-  the coneAngle is the angle the cone hull makes at the top
-  the body1Axis is the axis in body1 space that should stay within the cone
+the coneAnchor is the top of the cone in body2 space
+the coneAxis is the axis of the cone in body2 space
+the coneAngle is the angle the cone hull makes at the top
+the body1Axis is the axis in body1 space that should stay within the cone
 ================
 */
 void idAFConstraint_ConeLimit::Setup( idAFBody *b1, idAFBody *b2, const idVec3 &coneAnchor, const idVec3 &coneAxis, const float coneAngle, const idVec3 &body1Axis ) {
@@ -3113,9 +3113,9 @@ void idAFConstraint_ConeLimit::Setup( idAFBody *b1, idAFBody *b2, const idVec3 &
 	this->coneAnchor = coneAnchor;
 	this->body1Axis = body1Axis;
 	this->body1Axis.Normalize();
-	this->cosAngle = ( float ) cos( DEG2RAD( coneAngle * 0.5f ) );
-	this->sinHalfAngle = ( float ) sin( DEG2RAD( coneAngle * 0.25f ) );
-	this->cosHalfAngle = ( float ) cos( DEG2RAD( coneAngle * 0.25f ) );
+	this->cosAngle = ( float )cos( DEG2RAD( coneAngle * 0.5f ) );
+	this->sinHalfAngle = ( float )sin( DEG2RAD( coneAngle * 0.25f ) );
+	this->cosHalfAngle = ( float )cos( DEG2RAD( coneAngle * 0.25f ) );
 }
 
 /*
@@ -3262,7 +3262,7 @@ void idAFConstraint_ConeLimit::DebugDraw( void ) {
 	z = anchor + ax * size * cosAngle;
 	start = x + z;
 	for( a = 0.0f; a < 360.0f; a += 45.0f ) {
-		end = x * ( float ) cos( DEG2RAD( a + 45.0f ) ) + y * ( float ) sin( DEG2RAD( a + 45.0f ) ) + z;
+		end = x * ( float )cos( DEG2RAD( a + 45.0f ) ) + y * ( float )sin( DEG2RAD( a + 45.0f ) ) + z;
 		gameRenderWorld->DebugLine( colorMagenta, anchor, start );
 		gameRenderWorld->DebugLine( colorMagenta, start, end );
 		start = end;
@@ -3340,12 +3340,12 @@ void idAFConstraint_PyramidLimit::Setup( idAFBody *b1, idAFBody *b2, const idVec
 	// pyramid top
 	this->pyramidAnchor = pyramidAnchor;
 	// angles
-	cosAngle[0] = ( float ) cos( DEG2RAD( pyramidAngle1 * 0.5f ) );
-	cosAngle[1] = ( float ) cos( DEG2RAD( pyramidAngle2 * 0.5f ) );
-	sinHalfAngle[0] = ( float ) sin( DEG2RAD( pyramidAngle1 * 0.25f ) );
-	sinHalfAngle[1] = ( float ) sin( DEG2RAD( pyramidAngle2 * 0.25f ) );
-	cosHalfAngle[0] = ( float ) cos( DEG2RAD( pyramidAngle1 * 0.25f ) );
-	cosHalfAngle[1] = ( float ) cos( DEG2RAD( pyramidAngle2 * 0.25f ) );
+	cosAngle[0] = ( float )cos( DEG2RAD( pyramidAngle1 * 0.5f ) );
+	cosAngle[1] = ( float )cos( DEG2RAD( pyramidAngle2 * 0.5f ) );
+	sinHalfAngle[0] = ( float )sin( DEG2RAD( pyramidAngle1 * 0.25f ) );
+	sinHalfAngle[1] = ( float )sin( DEG2RAD( pyramidAngle2 * 0.25f ) );
+	cosHalfAngle[0] = ( float )cos( DEG2RAD( pyramidAngle1 * 0.25f ) );
+	cosHalfAngle[1] = ( float )cos( DEG2RAD( pyramidAngle2 * 0.25f ) );
 	this->body1Axis = body1Axis;
 }
 
@@ -3827,54 +3827,54 @@ idAFBody::Init
 ================
 */
 void idAFBody::Init( void ) {
-	name						= "noname";
-	parent						= NULL;
-	clipModel					= NULL;
-	primaryConstraint			= NULL;
-	tree						= NULL;
-	linearFriction				= -1.0f;
-	angularFriction				= -1.0f;
-	contactFriction				= -1.0f;
-	bouncyness					= -1.0f;
-	clipMask					= 0;
-	frictionDir					= vec3_zero;
-	contactMotorDir				= vec3_zero;
-	contactMotorVelocity		= 0.0f;
-	contactMotorForce			= 0.0f;
-	mass						= 1.0f;
-	invMass						= 1.0f;
-	centerOfMass				= vec3_zero;
-	inertiaTensor				= mat3_identity;
-	inverseInertiaTensor		= mat3_identity;
+	name = "noname";
+	parent = NULL;
+	clipModel = NULL;
+	primaryConstraint = NULL;
+	tree = NULL;
+	linearFriction = -1.0f;
+	angularFriction = -1.0f;
+	contactFriction = -1.0f;
+	bouncyness = -1.0f;
+	clipMask = 0;
+	frictionDir = vec3_zero;
+	contactMotorDir = vec3_zero;
+	contactMotorVelocity = 0.0f;
+	contactMotorForce = 0.0f;
+	mass = 1.0f;
+	invMass = 1.0f;
+	centerOfMass = vec3_zero;
+	inertiaTensor = mat3_identity;
+	inverseInertiaTensor = mat3_identity;
 #ifdef MOD_WATERPHYSICS
-	this->volume                = 1.0f;
-	this->liquidMass            = 1.0f;
-	this->invLiquidMass         = 1.0f;
-	this->waterLevel            = 0.0f;
+	this->volume = 1.0f;
+	this->liquidMass = 1.0f;
+	this->invLiquidMass = 1.0f;
+	this->waterLevel = 0.0f;
 #endif
-	current						= &state[0];
-	next						= &state[1];
-	current->worldOrigin		= vec3_zero;
-	current->worldAxis			= mat3_identity;
-	current->spatialVelocity	= vec6_zero;
-	current->externalForce		= vec6_zero;
-	*next						= *current;
-	saved						= *current;
-	atRestOrigin				= vec3_zero;
-	atRestAxis					= mat3_identity;
+	current = &state[0];
+	next = &state[1];
+	current->worldOrigin = vec3_zero;
+	current->worldAxis = mat3_identity;
+	current->spatialVelocity = vec6_zero;
+	current->externalForce = vec6_zero;
+	*next = *current;
+	saved = *current;
+	atRestOrigin = vec3_zero;
+	atRestAxis = mat3_identity;
 	s.Zero( 6 );
 	totalForce.Zero( 6 );
 	auxForce.Zero( 6 );
 	acceleration.Zero( 6 );
-	response					= NULL;
-	responseIndex				= NULL;
-	numResponses				= 0;
-	maxAuxiliaryIndex			= 0;
-	maxSubTreeAuxiliaryIndex	= 0;
+	response = NULL;
+	responseIndex = NULL;
+	numResponses = 0;
+	maxAuxiliaryIndex = 0;
+	maxSubTreeAuxiliaryIndex = 0;
 	memset( &fl, 0, sizeof( fl ) );
-	fl.selfCollision			= true;
-	fl.isZero					= true;
-	m_RerouteEnt				= NULL;
+	fl.selfCollision = true;
+	fl.isZero = true;
+	m_RerouteEnt = NULL;
 }
 
 /*
@@ -4034,7 +4034,7 @@ void idAFBody::AddForce( const idVec3 &point, const idVec3 &force ) {
 ================
 idAFBody::InverseWorldSpatialInertiaMultiply
 
-  dst = this->inverseWorldSpatialInertia * v;
+dst = this->inverseWorldSpatialInertia * v;
 ================
 */
 ID_INLINE void idAFBody::InverseWorldSpatialInertiaMultiply( idVecX &dst, const float *v ) const {
@@ -4133,7 +4133,7 @@ void idAFBody::SetRerouteEnt( idEntity *ent ) {
 /*
 ================
 idAFBody::GetWaterLevel
-	returns the percent of the body in water (set by SetWaterLevel)
+returns the percent of the body in water (set by SetWaterLevel)
 ================
 */
 float idAFBody::GetWaterLevel() const {
@@ -4143,12 +4143,12 @@ float idAFBody::GetWaterLevel() const {
 /*
 ================
 idAFBody::SetWaterLevel
-	returns the percent of the body in water
-	0.0f if out of water
+returns the percent of the body in water
+0.0f if out of water
 
-	Note we use the liquid's gravity normal for
-	floating because the idPhysics_AF gravity normal
-	is really hard to get a hold of!
+Note we use the liquid's gravity normal for
+floating because the idPhysics_AF gravity normal
+is really hard to get a hold of!
 ================
 */
 float idAFBody::SetWaterLevel( idPhysics_Liquid *l, const idVec3 &gravityNormal, bool fixedDensityBuoyancy ) {
@@ -4216,7 +4216,7 @@ float idAFBody::SetWaterLevel( idPhysics_Liquid *l, const idVec3 &gravityNormal,
 ================
 idAFTree::Factor
 
-  factor matrix for the primary constraints in the tree
+factor matrix for the primary constraints in the tree
 ================
 */
 void idAFTree::Factor( void ) const {
@@ -4261,7 +4261,7 @@ void idAFTree::Factor( void ) const {
 ================
 idAFTree::Solve
 
-  solve for primary constraints in the tree
+solve for primary constraints in the tree
 ================
 */
 void idAFTree::Solve( int auxiliaryIndex ) const {
@@ -4317,7 +4317,7 @@ void idAFTree::Solve( int auxiliaryIndex ) const {
 ================
 idAFTree::Response
 
-  calculate body forces in the tree in response to a constraint force
+calculate body forces in the tree in response to a constraint force
 ================
 */
 void idAFTree::Response( const idAFConstraint *constraint, int row, int auxiliaryIndex ) const {
@@ -4411,7 +4411,7 @@ void idAFTree::Response( const idAFConstraint *constraint, int row, int auxiliar
 ================
 idAFTree::CalculateForces
 
-  calculate forces on the bodies in the tree
+calculate forces on the bodies in the tree
 ================
 */
 void idAFTree::CalculateForces( float timeStep ) const {
@@ -4501,7 +4501,7 @@ void idAFTree::SortBodies_r( idList<idAFBody *> &sortedList, idAFBody *body ) {
 ================
 idAFTree::SortBodies
 
-  sort body list to make sure parents come first
+sort body list to make sure parents come first
 ================
 */
 void idAFTree::SortBodies( void ) {
@@ -4747,8 +4747,8 @@ void idPhysics_AF::AuxiliaryForces( float timeStep ) {
 		return;
 	}
 	// allocate memory to store the body response to auxiliary constraint forces
-	forcePtr = ( float * ) _alloca16( bodies.Num() * numAuxConstraints * 8 * sizeof( float ) );
-	index = ( int * ) _alloca16( bodies.Num() * numAuxConstraints * sizeof( int ) );
+	forcePtr = ( float * )_alloca16( bodies.Num() * numAuxConstraints * 8 * sizeof( float ) );
+	index = ( int * )_alloca16( bodies.Num() * numAuxConstraints * sizeof( int ) );
 	for( i = 0; i < bodies.Num(); i++ ) {
 		body = bodies[i];
 		body->response = forcePtr;
@@ -4847,7 +4847,7 @@ void idPhysics_AF::AuxiliaryForces( float timeStep ) {
 	lo.SetData( numAuxConstraints, VECX_ALLOCA( numAuxConstraints ) );
 	hi.SetData( numAuxConstraints, VECX_ALLOCA( numAuxConstraints ) );
 	lm.SetData( numAuxConstraints, VECX_ALLOCA( numAuxConstraints ) );
-	boxIndex = ( int * ) _alloca16( numAuxConstraints * sizeof( int ) );
+	boxIndex = ( int * )_alloca16( numAuxConstraints * sizeof( int ) );
 	// set first index for special box constrained variables
 	for( k = 0, i = 0; i < auxiliaryConstraints.Num(); i++ ) {
 		auxiliaryConstraints[i]->firstIndex = k;
@@ -5027,7 +5027,7 @@ void idPhysics_AF::Evolve( float timeStep ) {
 		body->next->worldOrigin = body->current->worldOrigin + timeStep * body->next->spatialVelocity.SubVec3( 0 );
 		// convert angular velocity to a rotation matrix
 		vec = body->next->spatialVelocity.SubVec3( 1 );
-		angle = -timeStep * ( float ) RAD2DEG( vec.Normalize() );
+		angle = -timeStep * ( float )RAD2DEG( vec.Normalize() );
 		rotation = idRotation( vec3_origin, vec, angle );
 		rotation.Normalize180();
 		// rotate world axis
@@ -5053,9 +5053,9 @@ void idPhysics_AF::Evolve( float timeStep ) {
 ================
 idPhysics_AF::CollisionImpulse
 
-  apply impulse to the colliding bodies
-  the current state of the body should be set to the moment of impact
-  this is silly as it doesn't take the AF structure into account
+apply impulse to the colliding bodies
+the current state of the body should be set to the moment of impact
+this is silly as it doesn't take the AF structure into account
 ================
 */
 bool idPhysics_AF::CollisionImpulse( float timeStep, idAFBody *body, trace_t &collision ) {
@@ -5090,14 +5090,14 @@ bool idPhysics_AF::CollisionImpulse( float timeStep, idAFBody *body, trace_t &co
 	if( ent->IsType( idActor::Type )
 			&& self->m_SetInMotionByActor.GetEntity() == NULL
 			&& !( static_cast<idActor *>( ent )->IsKnockedOut() || ent->health < 0 ) ) {
-		self->m_SetInMotionByActor = ( idActor * ) ent;
-		self->m_MovedByActor = ( idActor * ) ent;
+		self->m_SetInMotionByActor = ( idActor * )ent;
+		self->m_MovedByActor = ( idActor * )ent;
 	}
 	if( self->IsType( idActor::Type )
 			&& ent->m_SetInMotionByActor.GetEntity() == NULL
 			&& !( static_cast<idActor *>( self )->IsKnockedOut() || self->health < 0 ) ) {
-		ent->m_SetInMotionByActor = ( idActor * ) self;
-		ent->m_MovedByActor = ( idActor * ) self;
+		ent->m_SetInMotionByActor = ( idActor * )self;
+		ent->m_MovedByActor = ( idActor * )self;
 	}
 	// collision point relative to the body center of mass
 	r = collision.c.point - ( body->current->worldOrigin + body->centerOfMass * body->current->worldAxis );
@@ -5207,9 +5207,9 @@ idEntity *idPhysics_AF::SetupCollisionForBody( idAFBody *body ) const {
 ================
 idPhysics_AF::CheckForCollisions
 
-  check for collisions between the current and next state
-  if there is a collision the next state is set to the state at the moment of impact
-  assumes all bodies are linked for collision detection and relinks all bodies after moving them
+check for collisions between the current and next state
+if there is a collision the next state is set to the state at the moment of impact
+assumes all bodies are linked for collision detection and relinks all bodies after moving them
 ================
 */
 void idPhysics_AF::CheckForCollisions( float timeStep ) {
@@ -5365,7 +5365,7 @@ void idPhysics_AF::SetupContactConstraints( void ) {
 		// add contact constraint
 		contactConstraints[i]->physics = this;
 		if( contacts[i].entityNum == self->entityNumber ) {
-			contactConstraints[i]->Setup( bodies[contactBodies[i]], bodies[ contacts[i].id ], contacts[i] );
+			contactConstraints[i]->Setup( bodies[contactBodies[i]], bodies[contacts[i].id], contacts[i] );
 		} else {
 			contactConstraints[i]->Setup( bodies[contactBodies[i]], NULL, contacts[i] );
 		}
@@ -5740,7 +5740,7 @@ void idPhysics_AF::Activate( void ) {
 ================
 idPhysics_AF::PutToRest
 
-  put to rest untill something collides with this physics object
+put to rest untill something collides with this physics object
 ================
 */
 void idPhysics_AF::PutToRest( void ) {
@@ -5974,7 +5974,7 @@ bool idPhysics_AF::Evaluate( int timeStepMSec, int endTimeMSec ) {
 	idEntity *part = NULL;
 	idList<bool> InitClipStates;
 	bool PartClipState = false;
-	if( ( ( idAFEntity_Base * ) self )->CollidesWithTeam() ) {
+	if( ( ( idAFEntity_Base * )self )->CollidesWithTeam() ) {
 		for( part = self->GetTeamMaster(); part != NULL; part = part->GetNextTeamEntity() ) {
 			if( part != self && part->GetPhysics() ) {
 				PartClipState = part->GetPhysics()->GetClipModel()->IsEnabled();
@@ -6102,7 +6102,7 @@ bool idPhysics_AF::Evaluate( int timeStepMSec, int endTimeMSec ) {
 #endif
 	// TDM: Disable the clipmodels that we enabled above
 	int count = 0;
-	if( ( ( idAFEntity_Base * ) self )->CollidesWithTeam() ) {
+	if( ( ( idAFEntity_Base * )self )->CollidesWithTeam() ) {
 		for( part = self->GetTeamMaster(); part != NULL; part = part->GetNextTeamEntity() ) {
 			if( part != self && part->GetPhysics() ) {
 				if( !InitClipStates[count] ) {
@@ -6146,8 +6146,8 @@ void DrawTraceModelSilhouette( const idVec3 &projectionOrigin, const idClipModel
 	const idMat3 &axis = clipModel->GetAxis();
 	numSilEdges = trm->GetProjectionSilhouetteEdges( ( projectionOrigin - origin ) * axis.Transpose(), silEdges );
 	for( i = 0; i < numSilEdges; i++ ) {
-		v1 = trm->verts[ trm->edges[ abs( silEdges[i] ) ].v[ INTSIGNBITSET( silEdges[i] ) ] ];
-		v2 = trm->verts[ trm->edges[ abs( silEdges[i] ) ].v[ INTSIGNBITNOTSET( silEdges[i] ) ] ];
+		v1 = trm->verts[trm->edges[abs( silEdges[i] )].v[INTSIGNBITSET( silEdges[i] )]];
+		v2 = trm->verts[trm->edges[abs( silEdges[i] )].v[INTSIGNBITNOTSET( silEdges[i] )]];
 		gameRenderWorld->DebugArrow( colorRed, origin + v1 * axis, origin + v2 * axis, 1 );
 	}
 }
@@ -6675,8 +6675,8 @@ void idPhysics_AF::BuildTrees( void ) {
 ================
 idPhysics_AF::AddBody
 
-  bodies get an id in the order they are added starting at zero
-  as such the first body added will get id zero
+bodies get an id in the order they are added starting at zero
+as such the first body added will get id zero
 ================
 */
 int idPhysics_AF::AddBody( idAFBody *body ) {
@@ -7019,7 +7019,7 @@ idPhysics_AF::SetDefaultFriction
 ================
 */
 void idPhysics_AF::SetDefaultFriction( float linear, float angular, float contact ) {
-	if(	linear < 0.0f || linear > 1.0f ||
+	if( linear < 0.0f || linear > 1.0f ||
 			angular < 0.0f || angular > 1.0f ||
 			contact < 0.0f || contact > 1.0f ) {
 		return;
@@ -7481,7 +7481,7 @@ const idVec3 &idPhysics_AF::GetPushedAngularVelocity( const int id ) const {
 ================
 idPhysics_AF::SetMaster
 
-   the binding is orientated based on the constraints being used
+the binding is orientated based on the constraints being used
 ================
 */
 void idPhysics_AF::SetMaster( idEntity *master, const bool orientated ) {
@@ -7522,14 +7522,14 @@ void idPhysics_AF::SetMaster( idEntity *master, const bool orientated ) {
 	}
 }
 
-const float	AF_VELOCITY_MAX				= 16000;
-const int	AF_VELOCITY_TOTAL_BITS		= 16;
-const int	AF_VELOCITY_EXPONENT_BITS	= idMath::BitsForInteger( idMath::BitsForFloat( AF_VELOCITY_MAX ) ) + 1;
-const int	AF_VELOCITY_MANTISSA_BITS	= AF_VELOCITY_TOTAL_BITS - 1 - AF_VELOCITY_EXPONENT_BITS;
-const float	AF_FORCE_MAX				= 1e20f;
-const int	AF_FORCE_TOTAL_BITS			= 16;
-const int	AF_FORCE_EXPONENT_BITS		= idMath::BitsForInteger( idMath::BitsForFloat( AF_FORCE_MAX ) ) + 1;
-const int	AF_FORCE_MANTISSA_BITS		= AF_FORCE_TOTAL_BITS - 1 - AF_FORCE_EXPONENT_BITS;
+const float	AF_VELOCITY_MAX = 16000;
+const int	AF_VELOCITY_TOTAL_BITS = 16;
+const int	AF_VELOCITY_EXPONENT_BITS = idMath::BitsForInteger( idMath::BitsForFloat( AF_VELOCITY_MAX ) ) + 1;
+const int	AF_VELOCITY_MANTISSA_BITS = AF_VELOCITY_TOTAL_BITS - 1 - AF_VELOCITY_EXPONENT_BITS;
+const float	AF_FORCE_MAX = 1e20f;
+const int	AF_FORCE_TOTAL_BITS = 16;
+const int	AF_FORCE_EXPONENT_BITS = idMath::BitsForInteger( idMath::BitsForFloat( AF_FORCE_MAX ) ) + 1;
+const int	AF_FORCE_MANTISSA_BITS = AF_FORCE_TOTAL_BITS - 1 - AF_FORCE_EXPONENT_BITS;
 
 /*
 ================
@@ -7570,7 +7570,7 @@ void idPhysics_AF::WriteToSnapshot( idBitMsgDelta &msg ) const {
 				msg.WriteDeltaFloat( 0.0f, state->externalForce[3], AF_FORCE_EXPONENT_BITS, AF_FORCE_MANTISSA_BITS );
 				msg.WriteDeltaFloat( 0.0f, state->externalForce[4], AF_FORCE_EXPONENT_BITS, AF_FORCE_MANTISSA_BITS );
 				msg.WriteDeltaFloat( 0.0f, state->externalForce[5], AF_FORCE_EXPONENT_BITS, AF_FORCE_MANTISSA_BITS );
-		*/
+				*/
 	}
 }
 
@@ -7613,7 +7613,7 @@ void idPhysics_AF::ReadFromSnapshot( const idBitMsgDelta &msg ) {
 				state->externalForce[3] = msg.ReadDeltaFloat( 0.0f, AF_FORCE_EXPONENT_BITS, AF_FORCE_MANTISSA_BITS );
 				state->externalForce[4] = msg.ReadDeltaFloat( 0.0f, AF_FORCE_EXPONENT_BITS, AF_FORCE_MANTISSA_BITS );
 				state->externalForce[5] = msg.ReadDeltaFloat( 0.0f, AF_FORCE_EXPONENT_BITS, AF_FORCE_MANTISSA_BITS );
-		*/
+				*/
 		state->worldAxis = quat.ToMat3();
 	}
 	UpdateClipModels();
@@ -7658,7 +7658,7 @@ bool idPhysics_AF::HasGroundContacts( int id ) {
 	idEntity *contactEnt( NULL );
 	numContacts = GetBodyContactConstraints( id, contacts, 5 );
 	for( int i = 0; i < numContacts; i++ ) {
-		contactEnt = gameLocal.entities[ contacts[i]->GetContact().entityNum ];
+		contactEnt = gameLocal.entities[contacts[i]->GetContact().entityNum];
 		if( contacts[i]->GetContact().normal * -gravityNormal > 0.0f
 				&& contactEnt && contactEnt != self ) {
 			bReturnVal = true;
@@ -7691,7 +7691,7 @@ float idPhysics_AF::GetLiquidDensity() const {
 /*
 ================
 idPhysics_AF::SetFixedDensityBuoyancy
-	This will reset the liquid density to the default value depending on the mode.
+This will reset the liquid density to the default value depending on the mode.
 ================
 */
 void idPhysics_AF::SetFixedDensityBuoyancy( bool fixed ) {

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -30,7 +30,7 @@ z_t z;
 
 /*
  =======================================================================================================================
-    Z_Init
+ Z_Init
  =======================================================================================================================
  */
 void Z_Init( void ) {
@@ -45,7 +45,7 @@ static int	cursorx, cursory;
 
 /*
  =======================================================================================================================
-    Z_MouseDown
+ Z_MouseDown
  =======================================================================================================================
  */
 void Z_MouseDown( int x, int y, int buttons ) {
@@ -74,21 +74,21 @@ void Z_MouseDown( int x, int y, int buttons ) {
 		bool bToggle = false;
 		bool bSetTop = false;
 		bool bSetBot = false;
-		bool bReset  = false;
+		bool bReset = false;
 		if( g_PrefsDlg.m_nMouseButtons == 2 ) {
 			// 2 button mice...
 			//
 			bToggle = ( GetKeyState( VK_F1 ) & 0x8000 ) != 0;
 			bSetTop = ( GetKeyState( VK_F2 ) & 0x8000 ) != 0;
 			bSetBot = ( GetKeyState( VK_F3 ) & 0x8000 ) != 0;
-			bReset  = ( GetKeyState( VK_F4 ) & 0x8000 ) != 0;
+			bReset = ( GetKeyState( VK_F4 ) & 0x8000 ) != 0;
 		} else {
 			// 3 button mice...
 			//
 			bToggle = ( buttons == ( MK_RBUTTON | MK_SHIFT | MK_CONTROL ) );
 			bSetTop = ( buttons == ( MK_RBUTTON | MK_SHIFT ) );
 			bSetBot = ( buttons == ( MK_RBUTTON | MK_CONTROL ) );
-			bReset  = ( GetKeyState( VK_F4 ) & 0x8000 ) != 0;
+			bReset = ( GetKeyState( VK_F4 ) & 0x8000 ) != 0;
 		}
 		if( bToggle ) {
 			g_pParentWnd->GetZWnd()->m_pZClip->Enable( !( g_pParentWnd->GetZWnd()->m_pZClip->IsEnabled() ) );
@@ -142,7 +142,7 @@ void Z_MouseDown( int x, int y, int buttons ) {
 
 /*
  =======================================================================================================================
-    Z_MouseUp
+ Z_MouseUp
  =======================================================================================================================
  */
 void Z_MouseUp( int x, int y, int buttons ) {
@@ -151,7 +151,7 @@ void Z_MouseUp( int x, int y, int buttons ) {
 
 /*
  =======================================================================================================================
-    Z_MouseMoved
+ Z_MouseMoved
  =======================================================================================================================
  */
 void Z_MouseMoved( int x, int y, int buttons ) {
@@ -183,8 +183,8 @@ void Z_MouseMoved( int x, int y, int buttons ) {
 
 /*
  =======================================================================================================================
-    DRAWING £
-    Z_DrawGrid
+ DRAWING £
+ Z_DrawGrid
  =======================================================================================================================
  */
 void Z_DrawGrid( void ) {
@@ -276,7 +276,7 @@ GLbitfield	glbitClear = GL_COLOR_BUFFER_BIT;	// HACK
 
 /*
  =======================================================================================================================
-    Z_Draw
+ Z_Draw
  =======================================================================================================================
  */
 void Z_Draw( void ) {

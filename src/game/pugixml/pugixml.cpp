@@ -155,9 +155,9 @@ void widen_ascii( wchar_t *dest, const char *source ) {
 namespace {
 struct buffer_holder {
 	void *data;
-	void ( *deleter )( void * );
+	void( *deleter )( void * );
 
-	buffer_holder( void *data, void ( *deleter )( void * ) ): data( data ), deleter( deleter ) {
+	buffer_holder( void *data, void( *deleter )( void * ) ) : data( data ), deleter( deleter ) {
 	}
 
 	~buffer_holder() {
@@ -220,7 +220,7 @@ struct xml_memory_string_header {
 };
 
 struct xml_allocator {
-	xml_allocator( xml_memory_page *root ): _root( root ), _busy_size( root->busy_size ) {
+	xml_allocator( xml_memory_page *root ) : _root( root ), _busy_size( root->busy_size ) {
 	}
 
 	xml_memory_page *allocate_page( size_t data_size ) {
@@ -349,7 +349,7 @@ namespace pugi {
 /// A 'name=value' XML attribute structure.
 struct xml_attribute_struct {
 	/// Default ctor
-	xml_attribute_struct( xml_memory_page *page ): header( reinterpret_cast<uintptr_t>( page ) ), name( 0 ), value( 0 ), prev_attribute_c( 0 ), next_attribute( 0 ) {
+	xml_attribute_struct( xml_memory_page *page ) : header( reinterpret_cast<uintptr_t>( page ) ), name( 0 ), value( 0 ), prev_attribute_c( 0 ), next_attribute( 0 ) {
 	}
 
 	uintptr_t header;
@@ -365,7 +365,7 @@ struct xml_attribute_struct {
 struct xml_node_struct {
 	/// Default ctor
 	/// \param type - node type
-	xml_node_struct( xml_memory_page *page, xml_node_type type ): header( reinterpret_cast<uintptr_t>( page ) | ( type - 1 ) ), parent( 0 ), name( 0 ), value( 0 ), first_child( 0 ), prev_sibling_c( 0 ), next_sibling( 0 ), first_attribute( 0 ) {
+	xml_node_struct( xml_memory_page *page, xml_node_type type ) : header( reinterpret_cast<uintptr_t>( page ) | ( type - 1 ) ), parent( 0 ), name( 0 ), value( 0 ), first_child( 0 ), prev_sibling_c( 0 ), next_sibling( 0 ), first_attribute( 0 ) {
 	}
 
 	uintptr_t header;
@@ -385,8 +385,8 @@ struct xml_node_struct {
 }
 
 namespace {
-struct xml_document_struct: public xml_node_struct, public xml_allocator {
-	xml_document_struct( xml_memory_page *page ): xml_node_struct( page, node_document ), xml_allocator( page ), buffer( 0 ) {
+struct xml_document_struct : public xml_node_struct, public xml_allocator {
+	xml_document_struct( xml_memory_page *page ) : xml_node_struct( page, node_document ), xml_allocator( page ), buffer( 0 ) {
 	}
 
 	const char_t *buffer;
@@ -403,13 +403,13 @@ namespace {
 inline xml_attribute_struct *allocate_attribute( xml_allocator &alloc ) {
 	xml_memory_page *page;
 	void *memory = alloc.allocate_memory( sizeof( xml_attribute_struct ), page );
-	return new( memory ) xml_attribute_struct( page );
+	return new( memory )xml_attribute_struct( page );
 }
 
 inline xml_node_struct *allocate_node( xml_allocator &alloc, xml_node_type type ) {
 	xml_memory_page *page;
 	void *memory = alloc.allocate_memory( sizeof( xml_node_struct ), page );
-	return new( memory ) xml_node_struct( page, type );
+	return new( memory )xml_node_struct( page, type );
 }
 
 inline void destroy_attribute( xml_attribute_struct *a, xml_allocator &alloc ) {
@@ -631,13 +631,13 @@ struct utf32_writer {
 
 template <size_t size> struct wchar_selector;
 
-template <> struct wchar_selector<2> {
+template <> struct wchar_selector < 2 > {
 	typedef uint16_t type;
 	typedef utf16_counter counter;
 	typedef utf16_writer writer;
 };
 
-template <> struct wchar_selector<4> {
+template <> struct wchar_selector < 4 > {
 	typedef uint32_t type;
 	typedef utf32_counter counter;
 	typedef utf32_writer writer;
@@ -770,23 +770,23 @@ enum chartype_t {
 };
 
 const unsigned char chartype_table[256] = {
-	55,  0,   0,   0,   0,   0,   0,   0,      0,   12,  12,  0,   0,   63,  0,   0,   // 0-15
-	0,   0,   0,   0,   0,   0,   0,   0,      0,   0,   0,   0,   0,   0,   0,   0,   // 16-31
-	8,   0,   6,   0,   0,   0,   7,   6,      0,   0,   0,   0,   0,   96,  64,  0,   // 32-47
-	64,  64,  64,  64,  64,  64,  64,  64,     64,  64,  192, 0,   1,   0,   48,  0,   // 48-63
-	0,   192, 192, 192, 192, 192, 192, 192,    192, 192, 192, 192, 192, 192, 192, 192, // 64-79
-	192, 192, 192, 192, 192, 192, 192, 192,    192, 192, 192, 0,   0,   16,  0,   192, // 80-95
-	0,   192, 192, 192, 192, 192, 192, 192,    192, 192, 192, 192, 192, 192, 192, 192, // 96-111
-	192, 192, 192, 192, 192, 192, 192, 192,    192, 192, 192, 0, 0, 0, 0, 0,           // 112-127
+	55, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 0, 0, 63, 0, 0,   // 0-15
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,   // 16-31
+	8, 0, 6, 0, 0, 0, 7, 6, 0, 0, 0, 0, 0, 96, 64, 0,   // 32-47
+	64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 192, 0, 1, 0, 48, 0,   // 48-63
+	0, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, // 64-79
+	192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 0, 0, 16, 0, 192, // 80-95
+	0, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, // 96-111
+	192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 0, 0, 0, 0, 0,           // 112-127
 
-	192, 192, 192, 192, 192, 192, 192, 192,    192, 192, 192, 192, 192, 192, 192, 192, // 128+
-	192, 192, 192, 192, 192, 192, 192, 192,    192, 192, 192, 192, 192, 192, 192, 192,
-	192, 192, 192, 192, 192, 192, 192, 192,    192, 192, 192, 192, 192, 192, 192, 192,
-	192, 192, 192, 192, 192, 192, 192, 192,    192, 192, 192, 192, 192, 192, 192, 192,
-	192, 192, 192, 192, 192, 192, 192, 192,    192, 192, 192, 192, 192, 192, 192, 192,
-	192, 192, 192, 192, 192, 192, 192, 192,    192, 192, 192, 192, 192, 192, 192, 192,
-	192, 192, 192, 192, 192, 192, 192, 192,    192, 192, 192, 192, 192, 192, 192, 192,
-	192, 192, 192, 192, 192, 192, 192, 192,    192, 192, 192, 192, 192, 192, 192, 192
+	192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, // 128+
+	192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192,
+	192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192,
+	192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192,
+	192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192,
+	192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192,
+	192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192,
+	192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192
 };
 
 enum chartypex_t {
@@ -798,24 +798,24 @@ enum chartypex_t {
 };
 
 const unsigned char chartypex_table[256] = {
-	3,  3,  3,  3,  3,  3,  3,  3,     3,  0,  2,  3,  3,  2,  3,  3,     // 0-15
-	3,  3,  3,  3,  3,  3,  3,  3,     3,  3,  3,  3,  3,  3,  3,  3,     // 16-31
-	0,  0,  2,  0,  0,  0,  3,  0,     0,  0,  0,  0,  0, 16, 16,  0,     // 32-47
-	24, 24, 24, 24, 24, 24, 24, 24,    24, 24, 0,  0,  3,  0,  3,  0,     // 48-63
+	3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 2, 3, 3, 2, 3, 3,     // 0-15
+	3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,     // 16-31
+	0, 0, 2, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 16, 16, 0,     // 32-47
+	24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 0, 0, 3, 0, 3, 0,     // 48-63
 
-	0,  20, 20, 20, 20, 20, 20, 20,    20, 20, 20, 20, 20, 20, 20, 20,    // 64-79
-	20, 20, 20, 20, 20, 20, 20, 20,    20, 20, 20, 0,  0,  0,  0,  20,    // 80-95
-	0,  20, 20, 20, 20, 20, 20, 20,    20, 20, 20, 20, 20, 20, 20, 20,    // 96-111
-	20, 20, 20, 20, 20, 20, 20, 20,    20, 20, 20, 0,  0,  0,  0,  0,     // 112-127
+	0, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,    // 64-79
+	20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 0, 0, 0, 0, 20,    // 80-95
+	0, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,    // 96-111
+	20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 0, 0, 0, 0, 0,     // 112-127
 
-	20, 20, 20, 20, 20, 20, 20, 20,    20, 20, 20, 20, 20, 20, 20, 20,    // 128+
-	20, 20, 20, 20, 20, 20, 20, 20,    20, 20, 20, 20, 20, 20, 20, 20,
-	20, 20, 20, 20, 20, 20, 20, 20,    20, 20, 20, 20, 20, 20, 20, 20,
-	20, 20, 20, 20, 20, 20, 20, 20,    20, 20, 20, 20, 20, 20, 20, 20,
-	20, 20, 20, 20, 20, 20, 20, 20,    20, 20, 20, 20, 20, 20, 20, 20,
-	20, 20, 20, 20, 20, 20, 20, 20,    20, 20, 20, 20, 20, 20, 20, 20,
-	20, 20, 20, 20, 20, 20, 20, 20,    20, 20, 20, 20, 20, 20, 20, 20,
-	20, 20, 20, 20, 20, 20, 20, 20,    20, 20, 20, 20, 20, 20, 20, 20
+	20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,    // 128+
+	20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+	20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+	20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+	20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+	20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+	20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+	20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20
 };
 
 #ifdef PUGIXML_WCHAR_MODE
@@ -1199,7 +1199,7 @@ struct gap {
 	char_t *end;
 	size_t size;
 
-	gap(): end( 0 ), size( 0 ) {
+	gap() : end( 0 ), size( 0 ) {
 	}
 
 	// Push new gap, move s count bytes further (skipping the gap).
@@ -1596,7 +1596,7 @@ struct xml_parser {
 #define THROW_ERROR(err, m)	error_offset = m, longjmp(error_handler, err)
 #define CHECK_ERROR(err, m)	{ if (*s == 0) THROW_ERROR(err, m); }
 
-	xml_parser( const xml_allocator &alloc ): alloc( alloc ), error_offset( 0 ) {
+	xml_parser( const xml_allocator &alloc ) : alloc( alloc ), error_offset( 0 ) {
 	}
 
 	// DOCTYPE consists of nested sections of the following possible types:
@@ -2160,7 +2160,7 @@ class xml_buffered_writer {
 	xml_buffered_writer &operator=( const xml_buffered_writer & );
 
 public:
-	xml_buffered_writer( xml_writer &writer, xml_encoding user_encoding ): writer( writer ), bufsize( 0 ), encoding( get_write_encoding( user_encoding ) ) {
+	xml_buffered_writer( xml_writer &writer, xml_encoding user_encoding ) : writer( writer ), bufsize( 0 ), encoding( get_write_encoding( user_encoding ) ) {
 	}
 
 	~xml_buffered_writer() {
@@ -2681,7 +2681,7 @@ FILE *open_file_wide( const wchar_t *path, const wchar_t *mode ) {
 		return 0;
 	}
 	// convert mode to ASCII (we mirror _wfopen interface)
-	char mode_ascii[4] = {0};
+	char mode_ascii[4] = { 0 };
 	for( size_t i = 0; mode[i]; ++i ) {
 		mode_ascii[i] = static_cast<char>( mode[i] );
 	}
@@ -2695,7 +2695,7 @@ FILE *open_file_wide( const wchar_t *path, const wchar_t *mode ) {
 }
 
 namespace pugi {
-xml_writer_file::xml_writer_file( void *file ): file( file ) {
+xml_writer_file::xml_writer_file( void *file ) : file( file ) {
 }
 
 void xml_writer_file::write( const void *data, size_t size ) {
@@ -2703,10 +2703,10 @@ void xml_writer_file::write( const void *data, size_t size ) {
 }
 
 #ifndef PUGIXML_NO_STL
-xml_writer_stream::xml_writer_stream( std::basic_ostream<char, std::char_traits<char> > &stream ): narrow_stream( &stream ), wide_stream( 0 ) {
+xml_writer_stream::xml_writer_stream( std::basic_ostream<char, std::char_traits<char> > &stream ) : narrow_stream( &stream ), wide_stream( 0 ) {
 }
 
-xml_writer_stream::xml_writer_stream( std::basic_ostream<wchar_t, std::char_traits<wchar_t> > &stream ): narrow_stream( 0 ), wide_stream( &stream ) {
+xml_writer_stream::xml_writer_stream( std::basic_ostream<wchar_t, std::char_traits<wchar_t> > &stream ) : narrow_stream( 0 ), wide_stream( &stream ) {
 }
 
 void xml_writer_stream::write( const void *data, size_t size ) {
@@ -2721,7 +2721,7 @@ void xml_writer_stream::write( const void *data, size_t size ) {
 }
 #endif
 
-xml_tree_walker::xml_tree_walker(): _depth( 0 ) {
+xml_tree_walker::xml_tree_walker() : _depth( 0 ) {
 }
 
 xml_tree_walker::~xml_tree_walker() {
@@ -2739,10 +2739,10 @@ bool xml_tree_walker::end( xml_node & ) {
 	return true;
 }
 
-xml_attribute::xml_attribute(): _attr( 0 ) {
+xml_attribute::xml_attribute() : _attr( 0 ) {
 }
 
-xml_attribute::xml_attribute( xml_attribute_struct *attr ): _attr( attr ) {
+xml_attribute::xml_attribute( xml_attribute_struct *attr ) : _attr( attr ) {
 }
 
 xml_attribute::operator xml_attribute::unspecified_bool_type() const {
@@ -2948,10 +2948,10 @@ bool operator||( const xml_attribute &lhs, bool rhs ) {
 }
 #endif
 
-xml_node::xml_node(): _root( 0 ) {
+xml_node::xml_node() : _root( 0 ) {
 }
 
-xml_node::xml_node( xml_node_struct *p ): _root( p ) {
+xml_node::xml_node( xml_node_struct *p ) : _root( p ) {
 }
 
 xml_node::operator xml_node::unspecified_bool_type() const {
@@ -3657,10 +3657,10 @@ bool operator||( const xml_node &lhs, bool rhs ) {
 xml_node_iterator::xml_node_iterator() {
 }
 
-xml_node_iterator::xml_node_iterator( const xml_node &node ): _wrap( node ), _parent( node.parent() ) {
+xml_node_iterator::xml_node_iterator( const xml_node &node ) : _wrap( node ), _parent( node.parent() ) {
 }
 
-xml_node_iterator::xml_node_iterator( xml_node_struct *ref, xml_node_struct *parent ): _wrap( ref ), _parent( parent ) {
+xml_node_iterator::xml_node_iterator( xml_node_struct *ref, xml_node_struct *parent ) : _wrap( ref ), _parent( parent ) {
 }
 
 bool xml_node_iterator::operator==( const xml_node_iterator &rhs ) const {
@@ -3707,10 +3707,10 @@ xml_node_iterator xml_node_iterator::operator--( int ) {
 xml_attribute_iterator::xml_attribute_iterator() {
 }
 
-xml_attribute_iterator::xml_attribute_iterator( const xml_attribute &attr, const xml_node &parent ): _wrap( attr ), _parent( parent ) {
+xml_attribute_iterator::xml_attribute_iterator( const xml_attribute &attr, const xml_node &parent ) : _wrap( attr ), _parent( parent ) {
 }
 
-xml_attribute_iterator::xml_attribute_iterator( xml_attribute_struct *ref, xml_node_struct *parent ): _wrap( ref ), _parent( parent ) {
+xml_attribute_iterator::xml_attribute_iterator( xml_attribute_struct *ref, xml_node_struct *parent ) : _wrap( ref ), _parent( parent ) {
 }
 
 bool xml_attribute_iterator::operator==( const xml_attribute_iterator &rhs ) const {
@@ -3754,7 +3754,7 @@ xml_attribute_iterator xml_attribute_iterator::operator--( int ) {
 	return temp;
 }
 
-xml_parse_result::xml_parse_result(): status( status_internal_error ), offset( 0 ), encoding( encoding_auto ) {
+xml_parse_result::xml_parse_result() : status( status_internal_error ), offset( 0 ), encoding( encoding_auto ) {
 }
 
 xml_parse_result::operator bool() const {
@@ -3798,7 +3798,7 @@ const char *xml_parse_result::description() const {
 	}
 }
 
-xml_document::xml_document(): _buffer( 0 ) {
+xml_document::xml_document() : _buffer( 0 ) {
 	create();
 }
 
@@ -4267,7 +4267,7 @@ public:
 	jmp_buf *error_handler;
 #endif
 
-	xpath_allocator( xpath_memory_block *root, size_t root_size = 0 ): _root( root ), _root_size( root_size ) {
+	xpath_allocator( xpath_memory_block *root, size_t root_size = 0 ) : _root( root ), _root_size( root_size ) {
 #ifdef PUGIXML_NO_EXCEPTIONS
 		error_handler = 0;
 #endif
@@ -4367,7 +4367,7 @@ public:
 };
 
 struct xpath_allocator_capture {
-	xpath_allocator_capture( xpath_allocator *alloc ): _target( alloc ), _state( *alloc ) {
+	xpath_allocator_capture( xpath_allocator *alloc ) : _target( alloc ), _state( *alloc ) {
 	}
 
 	~xpath_allocator_capture() {
@@ -4393,7 +4393,7 @@ struct xpath_stack_data {
 	jmp_buf error_handler;
 #endif
 
-	xpath_stack_data(): result( blocks + 0 ), temp( blocks + 1 ) {
+	xpath_stack_data() : result( blocks + 0 ), temp( blocks + 1 ) {
 		blocks[0].next = blocks[1].next = 0;
 		stack.result = &result;
 		stack.temp = &temp;
@@ -4428,7 +4428,7 @@ class xpath_string {
 	}
 
 public:
-	xpath_string(): _buffer( PUGIXML_TEXT( "" ) ), _uses_heap( false ) {
+	xpath_string() : _buffer( PUGIXML_TEXT( "" ) ), _uses_heap( false ) {
 	}
 
 	explicit xpath_string( const char_t *str, xpath_allocator *alloc ) {
@@ -4437,7 +4437,7 @@ public:
 		_uses_heap = !empty;
 	}
 
-	explicit xpath_string( const char_t *str, bool use_heap ): _buffer( str ), _uses_heap( use_heap ) {
+	explicit xpath_string( const char_t *str, bool use_heap ) : _buffer( str ), _uses_heap( use_heap ) {
 	}
 
 	xpath_string( const char_t *begin, const char_t *end, xpath_allocator *alloc ) {
@@ -5054,24 +5054,24 @@ void translate( char_t *buffer, const char_t *from, const char_t *to ) {
 	*write = 0;
 }
 
-struct xpath_variable_boolean: xpath_variable {
-	xpath_variable_boolean(): value( false ) {
+struct xpath_variable_boolean : xpath_variable {
+	xpath_variable_boolean() : value( false ) {
 	}
 
 	bool value;
 	char_t name[1];
 };
 
-struct xpath_variable_number: xpath_variable {
-	xpath_variable_number(): value( 0 ) {
+struct xpath_variable_number : xpath_variable {
+	xpath_variable_number() : value( 0 ) {
 	}
 
 	double value;
 	char_t name[1];
 };
 
-struct xpath_variable_string: xpath_variable {
-	xpath_variable_string(): value( 0 ) {
+struct xpath_variable_string : xpath_variable {
+	xpath_variable_string() : value( 0 ) {
 	}
 
 	~xpath_variable_string() {
@@ -5084,7 +5084,7 @@ struct xpath_variable_string: xpath_variable {
 	char_t name[1];
 };
 
-struct xpath_variable_node_set: xpath_variable {
+struct xpath_variable_node_set : xpath_variable {
 	xpath_node_set value;
 	char_t name[1];
 };
@@ -5115,7 +5115,7 @@ template <typename T> T *new_xpath_variable( const char_t *name ) {
 	if( !memory ) {
 		return 0;
 	}
-	T *result = new( memory ) T();
+	T *result = new( memory )T();
 	memcpy( result->name, name, ( length + 1 ) * sizeof( char_t ) );
 	return result;
 }
@@ -5220,7 +5220,7 @@ class xpath_node_set_raw {
 	xpath_node *_eos;
 
 public:
-	xpath_node_set_raw(): _type( xpath_node_set::type_unsorted ), _begin( 0 ), _end( 0 ), _eos( 0 ) {
+	xpath_node_set_raw() : _type( xpath_node_set::type_unsorted ), _begin( 0 ), _end( 0 ), _eos( 0 ) {
 	}
 
 	xpath_node *begin() const {
@@ -5307,7 +5307,7 @@ struct xpath_context {
 	xpath_node n;
 	size_t position, size;
 
-	xpath_context( const xpath_node &n, size_t position, size_t size ): n( n ), position( position ), size( size ) {
+	xpath_context( const xpath_node &n, size_t position, size_t size ) : n( n ), position( position ), size( size ) {
 	}
 };
 
@@ -5345,7 +5345,7 @@ struct xpath_lexer_string {
 	const char_t *begin;
 	const char_t *end;
 
-	xpath_lexer_string(): begin( 0 ), end( 0 ) {
+	xpath_lexer_string() : begin( 0 ), end( 0 ) {
 	}
 
 	bool operator==( const char_t *other ) const {
@@ -5362,7 +5362,7 @@ class xpath_lexer {
 	lexeme_t _cur_lexeme;
 
 public:
-	explicit xpath_lexer( const char_t *query ): _cur( query ) {
+	explicit xpath_lexer( const char_t *query ) : _cur( query ) {
 		next();
 	}
 
@@ -6142,29 +6142,29 @@ private:
 	}
 
 public:
-	xpath_ast_node( ast_type_t type, xpath_value_type rettype, const char_t *value ):
+	xpath_ast_node( ast_type_t type, xpath_value_type rettype, const char_t *value ) :
 		_type( ( char )type ), _rettype( ( char )rettype ), _axis( 0 ), _test( 0 ), _left( 0 ), _right( 0 ), _next( 0 ) {
 		assert( type == ast_string_constant );
 		_data.string = value;
 	}
 
-	xpath_ast_node( ast_type_t type, xpath_value_type rettype, double value ):
+	xpath_ast_node( ast_type_t type, xpath_value_type rettype, double value ) :
 		_type( ( char )type ), _rettype( ( char )rettype ), _axis( 0 ), _test( 0 ), _left( 0 ), _right( 0 ), _next( 0 ) {
 		assert( type == ast_number_constant );
 		_data.number = value;
 	}
 
-	xpath_ast_node( ast_type_t type, xpath_value_type rettype, xpath_variable *value ):
+	xpath_ast_node( ast_type_t type, xpath_value_type rettype, xpath_variable *value ) :
 		_type( ( char )type ), _rettype( ( char )rettype ), _axis( 0 ), _test( 0 ), _left( 0 ), _right( 0 ), _next( 0 ) {
 		assert( type == ast_variable );
 		_data.variable = value;
 	}
 
-	xpath_ast_node( ast_type_t type, xpath_value_type rettype, xpath_ast_node *left = 0, xpath_ast_node *right = 0 ):
+	xpath_ast_node( ast_type_t type, xpath_value_type rettype, xpath_ast_node *left = 0, xpath_ast_node *right = 0 ) :
 		_type( ( char )type ), _rettype( ( char )rettype ), _axis( 0 ), _test( 0 ), _left( left ), _right( right ), _next( 0 ) {
 	}
 
-	xpath_ast_node( ast_type_t type, xpath_ast_node *left, axis_t axis, nodetest_t test, const char_t *contents ):
+	xpath_ast_node( ast_type_t type, xpath_ast_node *left, axis_t axis, nodetest_t test, const char_t *contents ) :
 		_type( ( char )type ), _rettype( xpath_type_node_set ), _axis( ( char )axis ), _test( ( char )test ), _left( left ), _right( 0 ), _next( 0 ) {
 		_data.nodetest = contents;
 	}
@@ -6366,7 +6366,7 @@ public:
 			assert( buffer );
 		}
 		// evaluate all strings to temporary stack
-		xpath_stack swapped_stack = {stack.temp, stack.result};
+		xpath_stack swapped_stack = { stack.temp, stack.result };
 		buffer[0] = _left->eval_string( c, swapped_stack );
 		size_t pos = 1;
 		for( xpath_ast_node *n = _right; n; n = n->_next, ++pos ) {
@@ -6432,7 +6432,7 @@ public:
 			return eval_string_concat( c, stack );
 		case ast_func_substring_before: {
 			xpath_allocator_capture cr( stack.temp );
-			xpath_stack swapped_stack = {stack.temp, stack.result};
+			xpath_stack swapped_stack = { stack.temp, stack.result };
 			xpath_string s = _left->eval_string( c, swapped_stack );
 			xpath_string p = _right->eval_string( c, swapped_stack );
 			const char_t *pos = find_substring( s.c_str(), p.c_str() );
@@ -6440,7 +6440,7 @@ public:
 		}
 		case ast_func_substring_after: {
 			xpath_allocator_capture cr( stack.temp );
-			xpath_stack swapped_stack = {stack.temp, stack.result};
+			xpath_stack swapped_stack = { stack.temp, stack.result };
 			xpath_string s = _left->eval_string( c, swapped_stack );
 			xpath_string p = _right->eval_string( c, swapped_stack );
 			const char_t *pos = find_substring( s.c_str(), p.c_str() );
@@ -6452,7 +6452,7 @@ public:
 		}
 		case ast_func_substring_2: {
 			xpath_allocator_capture cr( stack.temp );
-			xpath_stack swapped_stack = {stack.temp, stack.result};
+			xpath_stack swapped_stack = { stack.temp, stack.result };
 			xpath_string s = _left->eval_string( c, swapped_stack );
 			size_t s_length = s.length();
 			double first = round_nearest( _right->eval_number( c, stack ) );
@@ -6468,7 +6468,7 @@ public:
 		}
 		case ast_func_substring_3: {
 			xpath_allocator_capture cr( stack.temp );
-			xpath_stack swapped_stack = {stack.temp, stack.result};
+			xpath_stack swapped_stack = { stack.temp, stack.result };
 			xpath_string s = _left->eval_string( c, swapped_stack );
 			size_t s_length = s.length();
 			double first = round_nearest( _right->eval_number( c, stack ) );
@@ -6501,7 +6501,7 @@ public:
 		}
 		case ast_func_translate: {
 			xpath_allocator_capture cr( stack.temp );
-			xpath_stack swapped_stack = {stack.temp, stack.result};
+			xpath_stack swapped_stack = { stack.temp, stack.result };
 			xpath_string s = _left->eval_string( c, stack );
 			xpath_string from = _right->eval_string( c, swapped_stack );
 			xpath_string to = _right->_next->eval_string( c, swapped_stack );
@@ -6523,7 +6523,7 @@ public:
 				return convert_number_to_string( eval_number( c, stack ), stack.result );
 			case xpath_type_node_set: {
 				xpath_allocator_capture cr( stack.temp );
-				xpath_stack swapped_stack = {stack.temp, stack.result};
+				xpath_stack swapped_stack = { stack.temp, stack.result };
 				xpath_node_set_raw ns = eval_node_set( c, swapped_stack );
 				return ns.empty() ? xpath_string() : string_value( ns.first(), stack.result );
 			}
@@ -6539,7 +6539,7 @@ public:
 		switch( _type ) {
 		case ast_op_union: {
 			xpath_allocator_capture cr( stack.temp );
-			xpath_stack swapped_stack = {stack.temp, stack.result};
+			xpath_stack swapped_stack = { stack.temp, stack.result };
 			xpath_node_set_raw ls = _left->eval_node_set( c, swapped_stack );
 			xpath_node_set_raw rs = _right->eval_node_set( c, stack );
 			// we can optimize merging two sorted sets, but this is a very rare operation, so don't bother
@@ -6931,7 +6931,7 @@ struct xpath_parser {
 			return n;
 		}
 		case lex_string: {
-			xpath_ast_node *args[2] = {0};
+			xpath_ast_node *args[2] = { 0 };
 			size_t argc = 0;
 			xpath_lexer_string function = _lexer.contents();
 			_lexer.next();
@@ -7299,7 +7299,7 @@ struct xpath_parser {
 		return parse_or_expression();
 	}
 
-	xpath_parser( const char_t *query, xpath_variable_set *variables, xpath_allocator *alloc, xpath_parse_result *result ): _alloc( alloc ), _lexer( query ), _query( query ), _variables( variables ), _result( result ) {
+	xpath_parser( const char_t *query, xpath_variable_set *variables, xpath_allocator *alloc, xpath_parse_result *result ) : _alloc( alloc ), _lexer( query ), _query( query ), _variables( variables ), _result( result ) {
 	}
 
 	xpath_ast_node *parse() {
@@ -7325,7 +7325,7 @@ struct xpath_parser {
 struct xpath_query_impl {
 	static xpath_query_impl *create() {
 		void *memory = global_allocate( sizeof( xpath_query_impl ) );
-		return new( memory ) xpath_query_impl();
+		return new( memory )xpath_query_impl();
 	}
 
 	static void destroy( void *ptr ) {
@@ -7338,7 +7338,7 @@ struct xpath_query_impl {
 		global_deallocate( ptr );
 	}
 
-	xpath_query_impl(): root( 0 ), alloc( &block ) {
+	xpath_query_impl() : root( 0 ), alloc( &block ) {
 		block.next = 0;
 	}
 
@@ -7363,7 +7363,7 @@ xpath_string evaluate_string_impl( xpath_query_impl *impl, const xpath_node &n, 
 
 namespace pugi {
 #ifndef PUGIXML_NO_EXCEPTIONS
-xpath_exception::xpath_exception( const xpath_parse_result &result ): _result( result ) {
+xpath_exception::xpath_exception( const xpath_parse_result &result ) : _result( result ) {
 	assert( result.error );
 }
 
@@ -7379,10 +7379,10 @@ const xpath_parse_result &xpath_exception::result() const {
 xpath_node::xpath_node() {
 }
 
-xpath_node::xpath_node( const xml_node &node ): _node( node ) {
+xpath_node::xpath_node( const xml_node &node ) : _node( node ) {
 }
 
-xpath_node::xpath_node( const xml_attribute &attribute, const xml_node &parent ): _node( attribute ? parent : xml_node() ), _attribute( attribute ) {
+xpath_node::xpath_node( const xml_attribute &attribute, const xml_node &parent ) : _node( attribute ? parent : xml_node() ), _attribute( attribute ) {
 }
 
 xml_node xpath_node::node() const {
@@ -7458,10 +7458,10 @@ void xpath_node_set::_assign( const_iterator begin, const_iterator end ) {
 	}
 }
 
-xpath_node_set::xpath_node_set(): _type( type_unsorted ), _begin( &_storage ), _end( &_storage ) {
+xpath_node_set::xpath_node_set() : _type( type_unsorted ), _begin( &_storage ), _end( &_storage ) {
 }
 
-xpath_node_set::xpath_node_set( const_iterator begin, const_iterator end, type_t type ): _type( type ), _begin( &_storage ), _end( &_storage ) {
+xpath_node_set::xpath_node_set( const_iterator begin, const_iterator end, type_t type ) : _type( type ), _begin( &_storage ), _end( &_storage ) {
 	_assign( begin, end );
 }
 
@@ -7471,7 +7471,7 @@ xpath_node_set::~xpath_node_set() {
 	}
 }
 
-xpath_node_set::xpath_node_set( const xpath_node_set &ns ): _type( ns._type ), _begin( &_storage ), _end( &_storage ) {
+xpath_node_set::xpath_node_set( const xpath_node_set &ns ) : _type( ns._type ), _begin( &_storage ), _end( &_storage ) {
 	_assign( ns._begin, ns._end );
 }
 
@@ -7517,7 +7517,7 @@ xpath_node xpath_node_set::first() const {
 	return xpath_first( _begin, _end, _type );
 }
 
-xpath_parse_result::xpath_parse_result(): error( "Internal error" ), offset( 0 ) {
+xpath_parse_result::xpath_parse_result() : error( "Internal error" ), offset( 0 ) {
 }
 
 xpath_parse_result::operator bool() const {
@@ -7685,7 +7685,7 @@ const xpath_variable *xpath_variable_set::get( const char_t *name ) const {
 	return find( name );
 }
 
-xpath_query::xpath_query( const char_t *query, xpath_variable_set *variables ): _impl( 0 ) {
+xpath_query::xpath_query( const char_t *query, xpath_variable_set *variables ) : _impl( 0 ) {
 	xpath_query_impl *impl = xpath_query_impl::create();
 	if( !impl ) {
 #ifdef PUGIXML_NO_EXCEPTIONS

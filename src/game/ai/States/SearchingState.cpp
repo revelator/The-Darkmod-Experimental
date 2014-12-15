@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -55,15 +55,15 @@ bool SearchingState::CheckAlertLevel( idAI *owner ) {
 	// grayman #3009 - can't enter this state if sitting, sleeping,
 	// sitting down, lying down, or getting up from sitting or sleeping
 	moveType_t moveType = owner->GetMoveType();
-	if( moveType == MOVETYPE_SIT      ||
-			moveType == MOVETYPE_SLEEP    ||
+	if( moveType == MOVETYPE_SIT ||
+			moveType == MOVETYPE_SLEEP ||
 			moveType == MOVETYPE_SIT_DOWN ||
 			moveType == MOVETYPE_LAY_DOWN ) {
 		owner->GetUp(); // it's okay to call this multiple times
 		owner->GetMind()->EndState();
 		return false;
 	}
-	if( ( moveType == MOVETYPE_GET_UP ) ||	( moveType == MOVETYPE_GET_UP_FROM_LYING ) ) {
+	if( ( moveType == MOVETYPE_GET_UP ) || ( moveType == MOVETYPE_GET_UP_FROM_LYING ) ) {
 		owner->GetMind()->EndState();
 		return false;
 	}
@@ -106,9 +106,9 @@ void SearchingState::Init( idAI *owner ) {
 			if( ( memory.alertedDueToCommunication == false ) && ( ( memory.alertType == EAlertTypeSuspicious ) || ( memory.alertType == EAlertTypeEnemy ) ) ) {
 				bool friendsNear = ( ( MS2SEC( gameLocal.time - memory.lastTimeFriendlyAISeen ) ) <= MAX_FRIEND_SIGHTING_SECONDS_FOR_ACCOMPANIED_ALERT_BARK );
 				if( ( memory.alertClass == EAlertVisual_1 ) ||
-						( memory.alertClass == EAlertVisual_2 ) ||    // grayman #2603, #3424
+						( memory.alertClass == EAlertVisual_2 ) ||  // grayman #2603, #3424
 						// (memory.alertClass == EAlertVisual_3) ) || // grayman #3472 - no longer needed
-						( memory.alertClass == EAlertVisual_4 ) ) {   // grayman #3498
+						( memory.alertClass == EAlertVisual_4 ) ) { // grayman #3498
 					if( friendsNear ) {
 						bark = "snd_alert3sc";
 					} else {
@@ -172,15 +172,15 @@ void SearchingState::OnSubsystemTaskFinished( idAI *owner, SubsystemId subSystem
 	   for, and this code has been moved to a new OnFinish() for that task. No longer
 	   needed here.
 
-		Memory& memory = owner->GetMemory();
+	   Memory& memory = owner->GetMemory();
 
-		if (memory.hidingSpotInvestigationInProgress && subSystem == SubsysAction)
-		{
-			// The action subsystem has finished investigating the spot, set the
-			// boolean back to false, so that the next spot can be chosen
-			memory.hidingSpotInvestigationInProgress = false;
-		}
-	 */
+	   if (memory.hidingSpotInvestigationInProgress && subSystem == SubsysAction)
+	   {
+	   // The action subsystem has finished investigating the spot, set the
+	   // boolean back to false, so that the next spot can be chosen
+	   memory.hidingSpotInvestigationInProgress = false;
+	   }
+	   */
 }
 
 // Gets called each time the mind is thinking
@@ -233,16 +233,16 @@ void SearchingState::Think( idAI *owner ) {
 				idStr waitState(owner->WaitState());
 				if (waitState.IsEmpty())
 				{
-					// Waitstate is not matching, this means that the animation
-					// can be started.
-					owner->SetAnimState(ANIMCHANNEL_TORSO, "Torso_LookAround", 5);
-					//owner->SetAnimState(ANIMCHANNEL_LEGS, "Legs_LookAround", 5);
+				// Waitstate is not matching, this means that the animation
+				// can be started.
+				owner->SetAnimState(ANIMCHANNEL_TORSO, "Torso_LookAround", 5);
+				//owner->SetAnimState(ANIMCHANNEL_LEGS, "Legs_LookAround", 5);
 
-					// Set the waitstate, this gets cleared by
-					// the script function when the animation is done.
-					owner->SetWaitState("look_around");
+				// Set the waitstate, this gets cleared by
+				// the script function when the animation is done.
+				owner->SetWaitState("look_around");
 				}
-		*/
+				*/
 	}
 	// Is a hiding spot search in progress?
 	else if( !memory.hidingSpotInvestigationInProgress ) {
@@ -260,7 +260,7 @@ void SearchingState::Think( idAI *owner ) {
 				idVec3 searchCenter = owner->m_searchLimits.GetCenter();
 				//gameRenderWorld->DebugBox(colorWhite, idBox(owner->m_searchLimits), MS2SEC(memory.nextTime2GenRandomSpot - gameLocal.time));
 				bool validPoint = false;
-				for( int i = 0 ; i < 6 ; i++ ) {
+				for( int i = 0; i < 6; i++ ) {
 					p = searchCenter;
 					p.x += gameLocal.random.RandomFloat() * ( searchSize.x ) - searchSize.x / 2;
 					p.y += gameLocal.random.RandomFloat() * ( searchSize.y ) - searchSize.y / 2;
@@ -328,19 +328,19 @@ void SearchingState::Think( idAI *owner ) {
 	/* grayman #3200 - moved up
 		else if (memory.restartSearchForHidingSpots)
 		{
-			// We should restart the search (probably due to a new incoming stimulus)
-			// Setup a new hiding spot search
-			StartNewHidingSpotSearch(owner);
+		// We should restart the search (probably due to a new incoming stimulus)
+		// Setup a new hiding spot search
+		StartNewHidingSpotSearch(owner);
 		}
 
 		else // grayman #3063 - moved to front
 		{
-			// Move to Hiding spot is ongoing, do additional sensory tasks here
+		// Move to Hiding spot is ongoing, do additional sensory tasks here
 
-			// Let the AI check its senses
-			owner->PerformVisualScan();
+		// Let the AI check its senses
+		owner->PerformVisualScan();
 		}
-	 */
+		*/
 }
 
 void SearchingState::StartNewHidingSpotSearch( idAI *owner ) {
@@ -434,11 +434,11 @@ void SearchingState::RandomizeHidingSpotList( idAI *owner ) { // grayman #3424
 	int numSpots = owner->m_hidingSpots.getNumSpots();
 	owner->m_randomHidingSpotIndexes.clear(); // clear any existing array elements
 	// Fill the array with integers from 0 to numSpots-1.
-	for( int i = 0 ; i < numSpots ; i++ ) {
+	for( int i = 0; i < numSpots; i++ ) {
 		owner->m_randomHidingSpotIndexes.push_back( i );
 	}
 	// Shuffle elements by randomly exchanging pairs.
-	for( int i = 0 ; i < ( numSpots - 1 ) ; i++ ) {
+	for( int i = 0; i < ( numSpots - 1 ); i++ ) {
 		int r = i + gameLocal.random.RandomInt( numSpots - i ); // Random remaining position.
 		int temp = owner->m_randomHidingSpotIndexes[i];
 		owner->m_randomHidingSpotIndexes[i] = owner->m_randomHidingSpotIndexes[r];
@@ -463,7 +463,7 @@ bool SearchingState::ChooseNextHidingSpotToSearch( idAI *owner ) {
 			float bias = 1.0 - visAcuity;
 			if (bias < 0.0)
 			{
-				bias = 0.0;
+			bias = 0.0;
 			}
 			*/
 			// greebo: TODO? This isn't random choosing...
@@ -475,7 +475,7 @@ bool SearchingState::ChooseNextHidingSpotToSearch( idAI *owner ) {
 			// quit the search.
 			int spotIndex = -1;
 			idVec3 spot;
-			for( int i = 0 ; i < numSpots ; i++ ) {
+			for( int i = 0; i < numSpots; i++ ) {
 				// Get location
 				spot = owner->GetNthHidingSpotLocation( owner->m_randomHidingSpotIndexes[i] );
 				if( !spot.Compare( idVec3( idMath::INFINITY, idMath::INFINITY, idMath::INFINITY ) ) ) {
@@ -506,7 +506,7 @@ bool SearchingState::ChooseNextHidingSpotToSearch( idAI *owner ) {
 		} else {
 			// grayman #3424 - catch invalid spots early, rather than letting InvestigateSpotTask
 			// be queued to run, only to discover the spot is invalid.
-			for( int i = 0 ; i < numSpots ; i++ ) {
+			for( int i = 0; i < numSpots; i++ ) {
 				// Make sure we stay in bounds
 				memory.currentChosenHidingSpotIndex++;
 				if( memory.currentChosenHidingSpotIndex >= numSpots ) {

@@ -1,28 +1,28 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __UNZIP_H__
 #define __UNZIP_H__
 
 #if defined(STRICTUNZIP) || defined(STRICTZIPUNZIP)
 /* like the STRICT of WIN32, we define a pointer that cannot be converted
-    from (void*) without cast */
+	from (void*) without cast */
 typedef struct TagunzFile__ {
 	int unused;
 } unzFile__;
@@ -75,7 +75,7 @@ typedef struct unz_file_info_internal_s {
 } unz_file_info_internal;
 
 typedef void *( *alloc_func )( void *opaque, unsigned int items, unsigned int size );
-typedef void ( *free_func )( void *opaque, void *address );
+typedef void( *free_func )( void *opaque, void *address );
 
 struct internal_state;
 
@@ -103,7 +103,7 @@ typedef struct z_stream_s {
 typedef z_stream *z_streamp;
 
 /* file_in_zip_read_info_s contain internal information about a file in zipfile,
-    when reading and decompress it */
+	when reading and decompress it */
 typedef struct {
 	char  *read_buffer;						/* internal buffer for compressed data */
 	z_stream stream;						/* zLib stream structure for inflate */
@@ -162,30 +162,30 @@ extern int unzStringFileNameCompare( const char *fileName1, const char *fileName
    Compare two filename (fileName1,fileName2).
    If iCaseSenisivity = 1, comparision is case sensitivity (like strcmp)
    If iCaseSenisivity = 2, comparision is not case sensitivity (like strcmpi
-								or strcasecmp)
+   or strcasecmp)
    If iCaseSenisivity = 0, case sensitivity is defaut of your operating system
-	(like 1 on Unix, 2 on Windows)
-*/
+   (like 1 on Unix, 2 on Windows)
+   */
 
 extern unzFile unzOpen( const char *path );
 extern unzFile unzReOpen( const char *path, unzFile file );
 
 /*
   Open a Zip file. path contain the full pathname (by example,
-     on a Windows NT computer "c:\\zlib\\zlib111.zip" or on an Unix computer
-	 "zlib/zlib111.zip".
-	 If the zipfile cannot be opened (file don't exist or in not valid), the
-	   return value is NULL.
-     Else, the return value is a unzFile Handle, usable with other function
-	   of this unzip package.
-*/
+  on a Windows NT computer "c:\\zlib\\zlib111.zip" or on an Unix computer
+  "zlib/zlib111.zip".
+  If the zipfile cannot be opened (file don't exist or in not valid), the
+  return value is NULL.
+  Else, the return value is a unzFile Handle, usable with other function
+  of this unzip package.
+  */
 
 extern int unzClose( unzFile file );
 
 /*
   Close a ZipFile opened with unzipOpen.
   If there is files inside the .Zip opened with unzOpenCurrentFile (see later),
-    these files MUST be closed with unzipCloseCurrentFile before call unzipClose.
+  these files MUST be closed with unzipCloseCurrentFile before call unzipClose.
   return UNZ_OK if there is no problem. */
 
 extern int unzGetGlobalInfo( unzFile file, unz_global_info *pglobal_info );
@@ -201,7 +201,7 @@ extern int unzGetGlobalComment( unzFile file, char *szComment, unsigned long uSi
   Get the global comment string of the ZipFile, in the szComment buffer.
   uSizeBuf is the size of the szComment buffer.
   return the number of unsigned char copied or an error code <0
-*/
+  */
 
 /***************************************************************************/
 /* Unzip package allow you browse the directory of the zipfile */
@@ -211,7 +211,7 @@ extern int unzGoToFirstFile( unzFile file );
 /*
   Set the current file of the zipfile to the first file.
   return UNZ_OK if there is no problem
-*/
+  */
 
 extern int unzGoToNextFile( unzFile file );
 
@@ -219,21 +219,21 @@ extern int unzGoToNextFile( unzFile file );
   Set the current file of the zipfile to the next file.
   return UNZ_OK if there is no problem
   return UNZ_END_OF_LIST_OF_FILE if the actual file was the latest.
-*/
+  */
 
 extern int unzGetCurrentFileInfoPosition( unzFile file, unsigned long *pos );
 
 /*
   Get the position of the info of the current file in the zip.
   return UNZ_OK if there is no problem
-*/
+  */
 
 extern int unzSetCurrentFileInfoPosition( unzFile file, unsigned long pos );
 
 /*
   Set the position of the info of the current file in the zip.
   return UNZ_OK if there is no problem
-*/
+  */
 
 extern int unzLocateFile( unzFile file, const char *szFileName, int iCaseSensitivity );
 
@@ -244,22 +244,22 @@ extern int unzLocateFile( unzFile file, const char *szFileName, int iCaseSensiti
   return value :
   UNZ_OK if the file is found. It becomes the current file.
   UNZ_END_OF_LIST_OF_FILE if the file is not found
-*/
+  */
 
 extern int unzGetCurrentFileInfo( unzFile file, unz_file_info *pfile_info, char *szFileName, unsigned long fileNameBufferSize, void *extraField, unsigned long extraFieldBufferSize, char *szComment, unsigned long commentBufferSize );
 
 /*
   Get Info about the current file
   if pfile_info!=NULL, the *pfile_info structure will contain somes info about
-	    the current file
+  the current file
   if szFileName!=NULL, the filemane string will be copied in szFileName
-			(fileNameBufferSize is the size of the buffer)
+  (fileNameBufferSize is the size of the buffer)
   if extraField!=NULL, the extra field information will be copied in extraField
-			(extraFieldBufferSize is the size of the buffer).
-			This is the Central-header version of the extra field
+  (extraFieldBufferSize is the size of the buffer).
+  This is the Central-header version of the extra field
   if szComment!=NULL, the comment string of the file will be copied in szComment
-			(commentBufferSize is the size of the buffer)
-*/
+  (commentBufferSize is the size of the buffer)
+  */
 
 /***************************************************************************/
 /* for reading the content of the current zipfile, you can open it, read data
@@ -271,14 +271,14 @@ extern int unzOpenCurrentFile( unzFile file );
 /*
   Open for reading data the current file in the zipfile.
   If there is no error, the return value is UNZ_OK.
-*/
+  */
 
 extern int unzCloseCurrentFile( unzFile file );
 
 /*
   Close the file in zip opened with unzOpenCurrentFile
   Return UNZ_CRCERROR if all the file was read but the CRC is not good
-*/
+  */
 
 extern int unzReadCurrentFile( unzFile file, void *buf, unsigned len );
 
@@ -290,34 +290,34 @@ extern int unzReadCurrentFile( unzFile file, void *buf, unsigned len );
   return the number of unsigned char copied if somes unsigned chars are copied
   return 0 if the end of file was reached
   return <0 with error code if there is an error
-    (UNZ_ERRNO for IO error, or zLib error for uncompress error)
-*/
+  (UNZ_ERRNO for IO error, or zLib error for uncompress error)
+  */
 
 extern long unztell( unzFile file );
 
 /*
   Give the current position in uncompressed data
-*/
+  */
 
 extern int unzeof( unzFile file );
 
 /*
   return 1 if the end of file was reached, 0 elsewhere
-*/
+  */
 
 extern int unzGetLocalExtrafield( unzFile file, void *buf, unsigned len );
 
 /*
   Read extra field from the current file (opened by unzOpenCurrentFile)
   This is the local-header version of the extra field (sometimes, there is
-    more info in the local-header version than in the central-header)
+  more info in the local-header version than in the central-header)
 
   if buf==NULL, it return the size of the local extra field
 
   if buf!=NULL, len is the size of the buffer, the extra header is copied in
-	buf.
+  buf.
   the return value is the number of unsigned chars copied in buf, or (if <0)
-	the error code
-*/
+  the error code
+  */
 
 #endif /* __UNZIP_H__ */

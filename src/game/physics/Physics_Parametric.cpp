@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -430,7 +430,7 @@ const idAngles &idPhysics_Parametric::GetLocalAngles() const {
 	return current.localAngles;
 }
 
-void idPhysics_Parametric::	SetLocalAngles( idAngles curAngles ) {
+void idPhysics_Parametric::SetLocalAngles( idAngles curAngles ) {
 	current.localAngles = curAngles;
 	current.angularExtrapolation.SetStartValue( current.localAngles );
 	current.angularInterpolation.SetStartValue( current.localAngles );
@@ -813,7 +813,7 @@ void idPhysics_Parametric::SetAngularVelocity( const idVec3 &newAngularVelocity,
 	float angle;
 	vec = newAngularVelocity;
 	angle = vec.Normalize();
-	rotation.Set( vec3_origin, vec, ( float ) RAD2DEG( angle ) );
+	rotation.Set( vec3_origin, vec, ( float )RAD2DEG( angle ) );
 	SetAngularExtrapolation( extrapolation_t( EXTRAPOLATION_LINEAR | EXTRAPOLATION_NOSTOP ), gameLocal.time, 0, current.angles, rotation.ToAngles(), ang_zero );
 	current.angularInterpolation.Init( 0, 0, 0, 0, ang_zero, ang_zero );
 	Activate();
@@ -903,7 +903,7 @@ idPhysics_Parametric::GetBlockingEntity
 */
 idEntity *idPhysics_Parametric::GetBlockingEntity( void ) const {
 	if( isBlocked ) {
-		return gameLocal.entities[ pushResults.c.entityNum ];
+		return gameLocal.entities[pushResults.c.entityNum];
 	}
 	return NULL;
 }
@@ -1065,7 +1065,7 @@ void idPhysics_Parametric::ReadFromSnapshot( const idBitMsgDelta &msg ) {
 	current.localAngles[0] = msg.ReadDeltaFloat( current.angles[0] );
 	current.localAngles[1] = msg.ReadDeltaFloat( current.angles[1] );
 	current.localAngles[2] = msg.ReadDeltaFloat( current.angles[2] );
-	linearType = ( extrapolation_t ) msg.ReadBits( 8 );
+	linearType = ( extrapolation_t )msg.ReadBits( 8 );
 	startTime = msg.ReadDeltaFloat( 0.0f );
 	duration = msg.ReadDeltaFloat( 0.0f );
 	linearStartValue[0] = msg.ReadDeltaFloat( 0.0f );
@@ -1078,7 +1078,7 @@ void idPhysics_Parametric::ReadFromSnapshot( const idBitMsgDelta &msg ) {
 	linearBaseSpeed[1] = msg.ReadDeltaFloat( 0.0f );
 	linearBaseSpeed[2] = msg.ReadDeltaFloat( 0.0f );
 	current.linearExtrapolation.Init( startTime, duration, linearStartValue, linearBaseSpeed, linearSpeed, linearType );
-	angularType = ( extrapolation_t ) msg.ReadBits( 8 );
+	angularType = ( extrapolation_t )msg.ReadBits( 8 );
 	startTime = msg.ReadDeltaFloat( 0.0f );
 	duration = msg.ReadDeltaFloat( 0.0f );
 	angularStartValue[0] = msg.ReadDeltaFloat( 0.0f );

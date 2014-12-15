@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -154,7 +154,7 @@ void DialogAFConstraintUniversal::InitJointLists( void ) {
 	}
 	int numJoints = model->NumJoints();
 	for( int i = 0; i < numJoints; i++ ) {
-		const char *jointName = model->GetJointName( ( jointHandle_t ) i );
+		const char *jointName = model->GetJointName( ( jointHandle_t )i );
 		m_comboAnchorJoint.AddString( jointName );
 		m_comboJoint1Shaft1.AddString( jointName );
 		m_comboJoint2Shaft1.AddString( jointName );
@@ -417,26 +417,26 @@ void DialogAFConstraintUniversal::OnCbnSelchangeComboAnchorJoint() {
 }
 
 void DialogAFConstraintUniversal::OnEnChangeEditAnchorX() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_X ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_X ) ) ) {
 		UpdateFile();
 	} else {
-		m_anchor_x = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_X ) );
+		m_anchor_x = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_X ) );
 	}
 }
 
 void DialogAFConstraintUniversal::OnEnChangeEditAnchorY() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_Y ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_Y ) ) ) {
 		UpdateFile();
 	} else {
-		m_anchor_y = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_Y ) );
+		m_anchor_y = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_Y ) );
 	}
 }
 
 void DialogAFConstraintUniversal::OnEnChangeEditAnchorZ() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_Z ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_Z ) ) ) {
 		UpdateFile();
 	} else {
-		m_anchor_z = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_ANCHOR_Z ) );
+		m_anchor_z = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_ANCHOR_Z ) );
 	}
 }
 
@@ -509,10 +509,10 @@ void DialogAFConstraintUniversal::OnCbnSelchangeComboUniversalJoint2Shaft1() {
 }
 
 void DialogAFConstraintUniversal::OnEnChangeEditUniversalPitchShaft1() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_UNIVERSAL_PITCH_SHAFT1 ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_UNIVERSAL_PITCH_SHAFT1 ) ) ) {
 		UpdateFile();
 	} else {
-		m_pitchShaft1 = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_UNIVERSAL_PITCH_SHAFT1 ) );
+		m_pitchShaft1 = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_UNIVERSAL_PITCH_SHAFT1 ) );
 	}
 }
 
@@ -529,10 +529,10 @@ void DialogAFConstraintUniversal::OnDeltaposSpinUniversalPitchShaft1( NMHDR *pNM
 }
 
 void DialogAFConstraintUniversal::OnEnChangeEditUniversalYawShaft1() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_UNIVERSAL_YAW_SHAFT1 ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_UNIVERSAL_YAW_SHAFT1 ) ) ) {
 		UpdateFile();
 	} else {
-		m_yawShaft1 = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_UNIVERSAL_YAW_SHAFT1 ) );
+		m_yawShaft1 = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_UNIVERSAL_YAW_SHAFT1 ) );
 	}
 }
 
@@ -581,10 +581,10 @@ void DialogAFConstraintUniversal::OnCbnSelchangeComboUniversalJoint2Shaft2() {
 }
 
 void DialogAFConstraintUniversal::OnEnChangeEditUniversalPitchShaft2() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_UNIVERSAL_PITCH_SHAFT2 ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_UNIVERSAL_PITCH_SHAFT2 ) ) ) {
 		UpdateFile();
 	} else {
-		m_pitchShaft2 = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_UNIVERSAL_PITCH_SHAFT2 ) );
+		m_pitchShaft2 = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_UNIVERSAL_PITCH_SHAFT2 ) );
 	}
 }
 
@@ -601,10 +601,10 @@ void DialogAFConstraintUniversal::OnDeltaposSpinUniversalPitchShaft2( NMHDR *pNM
 }
 
 void DialogAFConstraintUniversal::OnEnChangeEditUniversalYawShaft2() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_UNIVERSAL_YAW_SHAFT2 ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_UNIVERSAL_YAW_SHAFT2 ) ) ) {
 		UpdateFile();
 	} else {
-		m_yawShaft2 = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_UNIVERSAL_YAW_SHAFT2 ) );
+		m_yawShaft2 = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_UNIVERSAL_YAW_SHAFT2 ) );
 	}
 }
 
@@ -648,10 +648,10 @@ void DialogAFConstraintUniversal::OnBnClickedRadioUniversalLimitPyramid() {
 }
 
 void DialogAFConstraintUniversal::OnEnChangeEditUniversalLimitConeAngle() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_CONE_ANGLE ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_CONE_ANGLE ) ) ) {
 		UpdateFile();
 	} else {
-		m_coneAngle = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_CONE_ANGLE ), false );
+		m_coneAngle = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_CONE_ANGLE ), false );
 	}
 }
 
@@ -668,10 +668,10 @@ void DialogAFConstraintUniversal::OnDeltaposSpinUniversalLimitConeAngle( NMHDR *
 }
 
 void DialogAFConstraintUniversal::OnEnChangeEditUniversalLimitPyramidAngle1() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_PYRAMID_ANGLE1 ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_PYRAMID_ANGLE1 ) ) ) {
 		UpdateFile();
 	} else {
-		m_pyramidAngle1 = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_PYRAMID_ANGLE1 ), false );
+		m_pyramidAngle1 = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_PYRAMID_ANGLE1 ), false );
 	}
 }
 
@@ -688,10 +688,10 @@ void DialogAFConstraintUniversal::OnDeltaposSpinUniversalLimitPyramidAngle1( NMH
 }
 
 void DialogAFConstraintUniversal::OnEnChangeEditUniversalLimitPyramidAngle2() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_PYRAMID_ANGLE2 ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_PYRAMID_ANGLE2 ) ) ) {
 		UpdateFile();
 	} else {
-		m_pyramidAngle2 = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_PYRAMID_ANGLE2 ), false );
+		m_pyramidAngle2 = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_PYRAMID_ANGLE2 ), false );
 	}
 }
 
@@ -708,10 +708,10 @@ void DialogAFConstraintUniversal::OnDeltaposSpinUniversalLimitPyramidAngle2( NMH
 }
 
 void DialogAFConstraintUniversal::OnEnChangeEditUniversalLimitRoll() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_ROLL ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_ROLL ) ) ) {
 		UpdateFile();
 	} else {
-		m_limitRoll = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_ROLL ) );
+		m_limitRoll = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_ROLL ) );
 	}
 }
 
@@ -760,10 +760,10 @@ void DialogAFConstraintUniversal::OnCbnSelchangeComboUniversalLimitJoint2() {
 }
 
 void DialogAFConstraintUniversal::OnEnChangeEditUniversalLimitPitch() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_PITCH ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_PITCH ) ) ) {
 		UpdateFile();
 	} else {
-		m_limitPitch = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_PITCH ) );
+		m_limitPitch = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_PITCH ) );
 	}
 }
 
@@ -780,10 +780,10 @@ void DialogAFConstraintUniversal::OnDeltaposSpinUniversalLimitPitch( NMHDR *pNMH
 }
 
 void DialogAFConstraintUniversal::OnEnChangeEditUniversalLimitYaw() {
-	if( EditControlEnterHit( ( CEdit * ) GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_YAW ) ) ) {
+	if( EditControlEnterHit( ( CEdit * )GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_YAW ) ) ) {
 		UpdateFile();
 	} else {
-		m_limitYaw = EditVerifyFloat( ( CEdit * ) GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_YAW ) );
+		m_limitYaw = EditVerifyFloat( ( CEdit * )GetDlgItem( IDC_EDIT_UNIVERSAL_LIMIT_YAW ) );
 	}
 }
 

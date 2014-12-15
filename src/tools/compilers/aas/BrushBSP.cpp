@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -803,7 +803,7 @@ void idBrushBSP::BuildGrid_r( idList<idBrushBSPNode *> &gridCells, idBrushBSPNod
 	normal = vec3_origin;
 	normal[axis] = 1.0f;
 	node->plane.SetNormal( normal );
-	node->plane.SetDist( ( int ) dist );
+	node->plane.SetDist( ( int )dist );
 	// allocate children
 	node->children[0] = new idBrushBSPNode();
 	node->children[1] = new idBrushBSPNode();
@@ -828,8 +828,8 @@ idBrushBSP::Build
 ============
 */
 void idBrushBSP::Build( idBrushList brushList, int skipContents,
-						bool ( *ChopAllowed )( idBrush *b1, idBrush *b2 ),
-						bool ( *MergeAllowed )( idBrush *b1, idBrush *b2 ) ) {
+						bool( *ChopAllowed )( idBrush *b1, idBrush *b2 ),
+						bool( *MergeAllowed )( idBrush *b1, idBrush *b2 ) ) {
 	int i;
 	idList<idBrushBSPNode *> gridCells;
 	common->Printf( "[Brush BSP]\n" );
@@ -954,8 +954,8 @@ idWinding *idBrushBSP::BaseWindingForNode( idBrushBSPNode *node ) {
 ============
 idBrushBSP::MakeNodePortal
 
-  create the new portal by taking the full plane winding for the cutting
-  plane and clipping it by all of parents of this node
+create the new portal by taking the full plane winding for the cutting
+plane and clipping it by all of parents of this node
 ============
 */
 void idBrushBSP::MakeNodePortal( idBrushBSPNode *node ) {
@@ -992,7 +992,7 @@ void idBrushBSP::MakeNodePortal( idBrushBSPNode *node ) {
 ============
 idBrushBSP::SplitNodePortals
 
-  Move or split the portals that bound the node so that the node's children have portals instead of node.
+Move or split the portals that bound the node so that the node's children have portals instead of node.
 ============
 */
 #define	SPLIT_WINDING_EPSILON		0.001f
@@ -1277,7 +1277,7 @@ bool idBrushBSP::FloodFromOrigin( const idVec3 &origin, int contents ) {
 ============
 idBrushBSP::FloodFromEntities
 
-  Marks all nodes that can be reached by entites.
+Marks all nodes that can be reached by entites.
 ============
 */
 bool idBrushBSP::FloodFromEntities( const idMapFile *mapFile, int contents, const idStrList &classNames ) {
@@ -1393,7 +1393,7 @@ void idBrushBSP::SetPortalPlanes_r( idBrushBSPNode *node, idPlaneSet &planeList 
 ============
 idBrushBSP::SetPortalPlanes
 
-  give all portals a plane number
+give all portals a plane number
 ============
 */
 void idBrushBSP::SetPortalPlanes( void ) {
@@ -1607,7 +1607,7 @@ void idBrushBSP::UpdateTreeAfterMerge_r( idBrushBSPNode *node, const idBounds &b
 ============
 idBrushBSP::TryMergeLeafNodes
 
-  NOTE: multiple brances of the BSP tree might point to the same leaf node after merging
+NOTE: multiple brances of the BSP tree might point to the same leaf node after merging
 ============
 */
 bool idBrushBSP::TryMergeLeafNodes( idBrushBSPPortal *portal, int side ) {
@@ -1683,7 +1683,7 @@ bool idBrushBSP::TryMergeLeafNodes( idBrushBSPPortal *portal, int side ) {
 ============
 idBrushBSP::MeltFloor_r
 
-  flood through portals touching the bounds to find all vertices that might be inside the bounds
+flood through portals touching the bounds to find all vertices that might be inside the bounds
 ============
 */
 void idBrushBSP::MeltFlood_r( idBrushBSPNode *node, int skipContents, idBounds &bounds, idVectorSet<idVec3, 3> &vertexList ) {

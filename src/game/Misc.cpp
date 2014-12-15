@@ -1,22 +1,22 @@
 // vim:ts=4:sw=4:cindent
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 // Copyright (C) 2004 Id Software, Inc.
 //
@@ -64,7 +64,7 @@ void idSpawnableEntity::Spawn() {
 /*
 ===============================================================================
 
-	idPlayerStart
+idPlayerStart
 
 ===============================================================================
 */
@@ -72,8 +72,8 @@ void idSpawnableEntity::Spawn() {
 const idEventDef EV_TeleportStage( "<TeleportStage>", EventArgs( 'e', "", "" ), EV_RETURNS_VOID, "internal" );
 
 CLASS_DECLARATION( idEntity, idPlayerStart )
-EVENT( EV_Activate,			idPlayerStart::Event_TeleportPlayer )
-EVENT( EV_TeleportStage,	idPlayerStart::Event_TeleportStage )
+EVENT( EV_Activate, idPlayerStart::Event_TeleportPlayer )
+EVENT( EV_TeleportStage, idPlayerStart::Event_TeleportStage )
 END_CLASS
 
 /*
@@ -240,13 +240,13 @@ void idPlayerStart::Event_TeleportPlayer( idEntity *activator ) {
 /*
 ===============================================================================
 
-	idActivator
+idActivator
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idEntity, idActivator )
-EVENT( EV_Activate,		idActivator::Event_Activate )
+EVENT( EV_Activate, idActivator::Event_Activate )
 END_CLASS
 
 /*
@@ -325,7 +325,7 @@ idPathCorner
 */
 
 CLASS_DECLARATION( idEntity, idPathCorner )
-EVENT( AI_RandomPath,		idPathCorner::Event_RandomPath )
+EVENT( AI_RandomPath, idPathCorner::Event_RandomPath )
 END_CLASS
 
 /*
@@ -362,14 +362,14 @@ idPathCorner *idPathCorner::RandomPath( const idEntity *source, const idEntity *
 	if( source == NULL ) { // grayman #3405
 		return NULL;
 	}
-	idPathCorner *path[ MAX_GENTITIES ];
+	idPathCorner *path[MAX_GENTITIES];
 	int num( 0 );
 	float rand( gameLocal.random.RandomFloat() );
 	float accumulatedChance( 0 );
 	float maxChance( 0 );
 	idEntity *candidate( NULL );
-	for( int i = 0 ; i < source->targets.Num() ; i++ ) {
-		idEntity *ent = source->targets[ i ].GetEntity();
+	for( int i = 0; i < source->targets.Num(); i++ ) {
+		idEntity *ent = source->targets[i].GetEntity();
 		if( ent && ( ent != ignore ) && ent->IsType( idPathCorner::Type ) ) {
 			if( owner ) {
 				if( owner->HasSeenEvidence() && ent->spawnArgs.GetBool( "idle_only", "0" ) ) {
@@ -396,7 +396,7 @@ idPathCorner *idPathCorner::RandomPath( const idEntity *source, const idEntity *
 			} else {
 				// path doesn't have chance spawn arg set
 				// add to list
-				path[ num++ ] = static_cast<idPathCorner *>( ent );
+				path[num++] = static_cast<idPathCorner *>( ent );
 				if( num >= MAX_GENTITIES ) {
 					break;
 				}
@@ -414,7 +414,7 @@ idPathCorner *idPathCorner::RandomPath( const idEntity *source, const idEntity *
 	}
 	// choose one from the list
 	int which = gameLocal.random.RandomInt( num );
-	return path[ which ];
+	return path[which];
 }
 
 /*
@@ -458,7 +458,7 @@ void tdmPathFlee::Spawn( void ) {
 /*
 ===============================================================================
 
-  idDamagable
+idDamagable
 
 ===============================================================================
 */
@@ -466,8 +466,8 @@ void tdmPathFlee::Spawn( void ) {
 const idEventDef EV_RestoreDamagable( "<RestoreDamagable>", EventArgs(), EV_RETURNS_VOID, "internal" );
 
 CLASS_DECLARATION( idEntity, idDamagable )
-EVENT( EV_Activate,			idDamagable::Event_BecomeBroken )
-EVENT( EV_RestoreDamagable,	idDamagable::Event_RestoreDamagable )
+EVENT( EV_Activate, idDamagable::Event_BecomeBroken )
+EVENT( EV_RestoreDamagable, idDamagable::Event_RestoreDamagable )
 END_CLASS
 
 /*
@@ -555,22 +555,22 @@ void idDamagable::BecomeBroken( idEntity *activator ) {
 		SetModel( broken );
 	}
 	// offset the start time of the shader to sync it to the gameLocal time
-	renderEntity.shaderParms[ SHADERPARM_TIMEOFFSET ] = -MS2SEC( gameLocal.time );
+	renderEntity.shaderParms[SHADERPARM_TIMEOFFSET] = -MS2SEC( gameLocal.time );
 	spawnArgs.GetInt( "numstates", "1", numStates );
 	spawnArgs.GetInt( "cycle", "0", cycle );
 	spawnArgs.GetFloat( "forcestate", "0", forceState );
 	// set the state parm
 	if( cycle ) {
-		renderEntity.shaderParms[ SHADERPARM_MODE ]++;
-		if( renderEntity.shaderParms[ SHADERPARM_MODE ] > numStates ) {
-			renderEntity.shaderParms[ SHADERPARM_MODE ] = 0;
+		renderEntity.shaderParms[SHADERPARM_MODE]++;
+		if( renderEntity.shaderParms[SHADERPARM_MODE] > numStates ) {
+			renderEntity.shaderParms[SHADERPARM_MODE] = 0;
 		}
 	} else if( forceState ) {
-		renderEntity.shaderParms[ SHADERPARM_MODE ] = forceState;
+		renderEntity.shaderParms[SHADERPARM_MODE] = forceState;
 	} else {
-		renderEntity.shaderParms[ SHADERPARM_MODE ] = gameLocal.random.RandomInt( numStates ) + 1;
+		renderEntity.shaderParms[SHADERPARM_MODE] = gameLocal.random.RandomInt( numStates ) + 1;
 	}
-	renderEntity.shaderParms[ SHADERPARM_TIMEOFFSET ] = -MS2SEC( gameLocal.time );
+	renderEntity.shaderParms[SHADERPARM_TIMEOFFSET] = -MS2SEC( gameLocal.time );
 	ActivateTargets( activator );
 	if( spawnArgs.GetBool( "hideWhenBroken" ) ) {
 		Hide();
@@ -621,13 +621,13 @@ void idDamagable::Event_RestoreDamagable( void ) {
 /*
 ===============================================================================
 
-  idExplodable
+idExplodable
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idEntity, idExplodable )
-EVENT( EV_Activate,	idExplodable::Event_Explode )
+EVENT( EV_Activate, idExplodable::Event_Explode )
 END_CLASS
 
 /*
@@ -651,12 +651,12 @@ void idExplodable::Event_Explode( idEntity *activator ) {
 	}
 	StartSound( "snd_explode", SND_CHANNEL_ANY, 0, false, NULL );
 	// Show() calls UpdateVisuals, so we don't need to call it ourselves after setting the shaderParms
-	renderEntity.shaderParms[SHADERPARM_RED]		= 1.0f;
-	renderEntity.shaderParms[SHADERPARM_GREEN]		= 1.0f;
-	renderEntity.shaderParms[SHADERPARM_BLUE]		= 1.0f;
-	renderEntity.shaderParms[SHADERPARM_ALPHA]		= 1.0f;
+	renderEntity.shaderParms[SHADERPARM_RED] = 1.0f;
+	renderEntity.shaderParms[SHADERPARM_GREEN] = 1.0f;
+	renderEntity.shaderParms[SHADERPARM_BLUE] = 1.0f;
+	renderEntity.shaderParms[SHADERPARM_ALPHA] = 1.0f;
 	renderEntity.shaderParms[SHADERPARM_TIMEOFFSET] = -MS2SEC( gameLocal.time );
-	renderEntity.shaderParms[SHADERPARM_DIVERSITY]	= 0.0f;
+	renderEntity.shaderParms[SHADERPARM_DIVERSITY] = 0.0f;
 	Show();
 	PostEventMS( &EV_Remove, 2000 );
 	ActivateTargets( activator );
@@ -665,13 +665,13 @@ void idExplodable::Event_Explode( idEntity *activator ) {
 /*
 ===============================================================================
 
-  idSpring
+idSpring
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idEntity, idSpring )
-EVENT( EV_PostSpawn,	idSpring::Event_LinkSpring )
+EVENT( EV_PostSpawn, idSpring::Event_LinkSpring )
 END_CLASS
 
 /*
@@ -755,7 +755,7 @@ void idSpring::Spawn( void ) {
 /*
 ===============================================================================
 
-  idForceField
+idForceField
 
 ===============================================================================
 */
@@ -763,9 +763,9 @@ void idSpring::Spawn( void ) {
 const idEventDef EV_Toggle( "Toggle", EventArgs(), EV_RETURNS_VOID, "Turns the forcefield on and off." );
 
 CLASS_DECLARATION( idEntity, idForceField )
-EVENT( EV_Activate,		idForceField::Event_Activate )
-EVENT( EV_Toggle,		idForceField::Event_Toggle )
-EVENT( EV_FindTargets,	idForceField::Event_FindTargets )
+EVENT( EV_Activate, idForceField::Event_Activate )
+EVENT( EV_Toggle, idForceField::Event_Toggle )
+EVENT( EV_FindTargets, idForceField::Event_FindTargets )
 END_CLASS
 
 /*
@@ -896,7 +896,7 @@ void idForceField::Event_FindTargets( void ) {
 /*
 ===============================================================================
 
-	idAnimated
+idAnimated
 
 ===============================================================================
 */
@@ -916,15 +916,15 @@ const idEventDef EV_AnimDone( "<AnimDone>", EventArgs( 'd', "", "" ), EV_RETURNS
 const idEventDef EV_StartRagdoll( "startRagdoll", EventArgs(), EV_RETURNS_VOID, "Switches to a ragdoll taking over the animation." );
 
 CLASS_DECLARATION( idAFEntity_Gibbable, idAnimated )
-EVENT( EV_Activate,				idAnimated::Event_Activate )
-EVENT( EV_Animated_Start,		idAnimated::Event_Start )
-EVENT( EV_StartRagdoll,			idAnimated::Event_StartRagdoll )
-EVENT( EV_AnimDone,				idAnimated::Event_AnimDone )
-EVENT( EV_Footstep,				idAnimated::Event_Footstep )
-EVENT( EV_FootstepLeft,			idAnimated::Event_Footstep )
-EVENT( EV_FootstepRight,		idAnimated::Event_Footstep )
-EVENT( EV_LaunchMissiles,		idAnimated::Event_LaunchMissiles )
-EVENT( EV_LaunchMissilesUpdate,	idAnimated::Event_LaunchMissilesUpdate )
+EVENT( EV_Activate, idAnimated::Event_Activate )
+EVENT( EV_Animated_Start, idAnimated::Event_Start )
+EVENT( EV_StartRagdoll, idAnimated::Event_StartRagdoll )
+EVENT( EV_AnimDone, idAnimated::Event_AnimDone )
+EVENT( EV_Footstep, idAnimated::Event_Footstep )
+EVENT( EV_FootstepLeft, idAnimated::Event_Footstep )
+EVENT( EV_FootstepRight, idAnimated::Event_Footstep )
+EVENT( EV_LaunchMissiles, idAnimated::Event_LaunchMissiles )
+EVENT( EV_LaunchMissilesUpdate, idAnimated::Event_LaunchMissilesUpdate )
 END_CLASS
 
 /*
@@ -1226,7 +1226,7 @@ void idAnimated::PlayNextAnim( void ) {
 		PostEventMS( &EV_AnimDone, len, current_anim_index );
 	}
 	// offset the start time of the shader to sync it to the game time
-	renderEntity.shaderParms[ SHADERPARM_TIMEOFFSET ] = -MS2SEC( gameLocal.time );
+	renderEntity.shaderParms[SHADERPARM_TIMEOFFSET] = -MS2SEC( gameLocal.time );
 	animator.ForceUpdate();
 	UpdateAnimation();
 	UpdateVisuals();
@@ -1310,7 +1310,7 @@ void idAnimated::Event_Start( void ) {
 		}
 	}
 	// offset the start time of the shader to sync it to the game time
-	renderEntity.shaderParms[ SHADERPARM_TIMEOFFSET ] = -MS2SEC( gameLocal.time );
+	renderEntity.shaderParms[SHADERPARM_TIMEOFFSET] = -MS2SEC( gameLocal.time );
 	animator.ForceUpdate();
 	UpdateAnimation();
 	UpdateVisuals();
@@ -1397,15 +1397,15 @@ void idAnimated::Event_LaunchMissiles( const char *projectilename, const char *s
 /*
 ===============================================================================
 
-	idStaticEntity
+idStaticEntity
 
-	Some static entities may be optimized into inline geometry by dmap
+Some static entities may be optimized into inline geometry by dmap
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idEntity, idStaticEntity )
-EVENT( EV_Activate,				idStaticEntity::Event_Activate )
+EVENT( EV_Activate, idStaticEntity::Event_Activate )
 END_CLASS
 
 /*
@@ -1419,7 +1419,7 @@ idStaticEntity::idStaticEntity( void ) {
 	fadeFrom.Set( 1, 1, 1, 1 );
 	fadeTo.Set( 1, 1, 1, 1 );
 	fadeStart = 0;
-	fadeEnd	= 0;
+	fadeEnd = 0;
 	runGui = false;
 	m_LODHandle = 0;
 }
@@ -1486,7 +1486,7 @@ void idStaticEntity::Spawn( void ) {
 	idStr model = spawnArgs.GetString( "model" );
 	if( model.Find( ".prt" ) >= 0 ) {
 		// we want the parametric particles out of sync with each other
-		renderEntity.shaderParms[ SHADERPARM_TIMEOFFSET ] = gameLocal.random.RandomInt( 32767 );
+		renderEntity.shaderParms[SHADERPARM_TIMEOFFSET] = gameLocal.random.RandomInt( 32767 );
 		// sikk---> Depth Render
 		renderEntity.suppressSurfaceInViewID = -8;
 		renderEntity.noShadow = 1;
@@ -1495,7 +1495,7 @@ void idStaticEntity::Spawn( void ) {
 	fadeFrom.Set( 1, 1, 1, 1 );
 	fadeTo.Set( 1, 1, 1, 1 );
 	fadeStart = 0;
-	fadeEnd	= 0;
+	fadeEnd = 0;
 	// NOTE: this should be used very rarely because it is expensive
 	runGui = spawnArgs.GetBool( "runGui" );
 	if( runGui ) {
@@ -1603,12 +1603,12 @@ void idStaticEntity::Event_Activate( idEntity *activator ) {
 			Hide();
 		}
 	}
-	renderEntity.shaderParms[ SHADERPARM_TIMEOFFSET ] = -MS2SEC( spawnTime );
+	renderEntity.shaderParms[SHADERPARM_TIMEOFFSET] = -MS2SEC( spawnTime );
 	renderEntity.shaderParms[5] = active;
 	// this change should be a good thing, it will automatically turn on
 	// lights etc.. when triggered so that does not have to be specifically done
 	// with trigger parms.. it MIGHT break things so need to keep an eye on it
-	renderEntity.shaderParms[ SHADERPARM_MODE ] = ( renderEntity.shaderParms[ SHADERPARM_MODE ] ) ?  0.0f : 1.0f;
+	renderEntity.shaderParms[SHADERPARM_MODE] = ( renderEntity.shaderParms[SHADERPARM_MODE] ) ? 0.0f : 1.0f;
 	BecomeActive( TH_UPDATEVISUALS );
 }
 
@@ -1658,7 +1658,7 @@ idFuncSmoke
 */
 
 CLASS_DECLARATION( idEntity, idFuncSmoke )
-EVENT( EV_Activate,				idFuncSmoke::Event_Activate )
+EVENT( EV_Activate, idFuncSmoke::Event_Activate )
 END_CLASS
 
 /*
@@ -1678,7 +1678,7 @@ idFuncSmoke::idFuncSmoke() {
 idFuncSmoke::Save
 ===============
 */
-void idFuncSmoke::Save(	idSaveGame *savefile ) const {
+void idFuncSmoke::Save( idSaveGame *savefile ) const {
 	savefile->WriteInt( smokeTime );
 	savefile->WriteParticle( smoke );
 	savefile->WriteBool( restart );
@@ -1762,7 +1762,7 @@ void idFuncSmoke::Think( void ) {
 /*
 ===============================================================================
 
-	idTextEntity
+idTextEntity
 
 ===============================================================================
 */
@@ -1816,7 +1816,7 @@ idTextEntity::Think
 void idTextEntity::Think( void ) {
 	if( force || developer.GetBool() ) { // grayman #3042
 		gameRenderWorld->DrawText( text, GetPhysics()->GetOrigin(), 0.25, colorWhite, playerOriented ? gameLocal.GetLocalPlayer()->viewAngles.ToMat3() : GetPhysics()->GetAxis().Transpose(), 1 );
-		for( int i = 0 ; i < targets.Num() ; i++ ) {
+		for( int i = 0; i < targets.Num(); i++ ) {
 			if( targets[i].GetEntity() ) {
 				gameRenderWorld->DebugArrow( colorBlue, GetPhysics()->GetOrigin(), targets[i].GetEntity()->GetPhysics()->GetOrigin(), 1 );
 			}
@@ -1827,15 +1827,15 @@ void idTextEntity::Think( void ) {
 /*
 ===============================================================================
 
-	idVacuumSeperatorEntity
+idVacuumSeperatorEntity
 
-	Can be triggered to let vacuum through a portal (blown out window)
+Can be triggered to let vacuum through a portal (blown out window)
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idEntity, idVacuumSeparatorEntity )
-EVENT( EV_Activate,		idVacuumSeparatorEntity::Event_Activate )
+EVENT( EV_Activate, idVacuumSeparatorEntity::Event_Activate )
 END_CLASS
 
 /*
@@ -1909,10 +1909,10 @@ const idEventDef EV_GetSoundLoss( "getSoundLoss", EventArgs(), 'f', "Returns the
 const idEventDef EV_SetSoundLoss( "setSoundLoss", EventArgs( 'f', "loss", "" ), EV_RETURNS_VOID, "Sets the sound loss value (dB)." ); // grayman #3042
 
 CLASS_DECLARATION( idEntity, idPortalEntity )
-EVENT( EV_GetPortalHandle,		idPortalEntity::Event_GetPortalHandle )
-EVENT( EV_GetSoundLoss,			idPortalEntity::Event_GetSoundLoss )	// grayman #3042
-EVENT( EV_SetSoundLoss,			idPortalEntity::Event_SetSoundLoss )	// grayman #3042
-EVENT( EV_PostSpawn,			idPortalEntity::Event_PostSpawn )		// grayman #3042
+EVENT( EV_GetPortalHandle, idPortalEntity::Event_GetPortalHandle )
+EVENT( EV_GetSoundLoss, idPortalEntity::Event_GetSoundLoss )	// grayman #3042
+EVENT( EV_SetSoundLoss, idPortalEntity::Event_SetSoundLoss )	// grayman #3042
+EVENT( EV_PostSpawn, idPortalEntity::Event_PostSpawn )		// grayman #3042
 END_CLASS
 
 /*
@@ -1961,7 +1961,7 @@ void idPortalEntity::Event_PostSpawn( void ) {
 		idBounds b = idBounds( spawnArgs.GetVector( "origin" ) ).Expand( 16 );
 		idClipModel *clipModelList[MAX_GENTITIES];
 		int numListedClipModels = gameLocal.clip.ClipModelsTouchingBounds( b, CONTENTS_SOLID, clipModelList, MAX_GENTITIES );
-		for( int i = 0 ; i < numListedClipModels ; i++ ) {
+		for( int i = 0; i < numListedClipModels; i++ ) {
 			idClipModel *clipModel = clipModelList[i];
 			idEntity *obEnt = clipModel->GetEntity();
 			if( obEnt == NULL ) {
@@ -2016,7 +2016,7 @@ void idPortalEntity::Event_PostSpawn( void ) {
 idPortalEntity::Save
 
 Tels: Each idPortalEntity contains the handle of the portal it
-	  is connected to, so we can let it return the handle.
+is connected to, so we can let it return the handle.
 ================
 */
 void idPortalEntity::Save( idSaveGame *savefile ) const {
@@ -2058,7 +2058,7 @@ void idPortalEntity::Event_GetPortalHandle( void ) {
 	if( !m_Portal ) {
 		return idThread::ReturnFloat( -1.0f );
 	}
-	idThread::ReturnFloat( ( float ) m_Portal );
+	idThread::ReturnFloat( ( float )m_Portal );
 }
 
 void idPortalEntity::Event_GetSoundLoss( void ) { // grayman #3042
@@ -2133,9 +2133,9 @@ void idPortalSettingsEntity::Spawn() {
 /*
 ===============================================================================
 
-	idVacuumEntity
+idVacuumEntity
 
-	Levels should only have a single vacuum entity.
+Levels should only have a single vacuum entity.
 
 ===============================================================================
 */
@@ -2230,14 +2230,14 @@ const char *idLocationEntity::GetLocation( void ) const {
 /*
 ===============================================================================
 
-	idBeam
+idBeam
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idEntity, idBeam )
-EVENT( EV_PostSpawn,			idBeam::Event_MatchTarget )
-EVENT( EV_Activate,				idBeam::Event_Activate )
+EVENT( EV_PostSpawn, idBeam::Event_MatchTarget )
+EVENT( EV_Activate, idBeam::Event_Activate )
 END_CLASS
 
 /*
@@ -2278,7 +2278,7 @@ idBeam::Spawn
 void idBeam::Spawn( void ) {
 	float width;
 	if( spawnArgs.GetFloat( "width", "0", width ) ) {
-		renderEntity.shaderParms[ SHADERPARM_BEAM_WIDTH ] = width;
+		renderEntity.shaderParms[SHADERPARM_BEAM_WIDTH] = width;
 	}
 	SetModel( "_BEAM" );
 	Hide();
@@ -2320,10 +2320,10 @@ idBeam::SetBeamTarget
 ================
 */
 void idBeam::SetBeamTarget( const idVec3 &origin ) {
-	if( ( renderEntity.shaderParms[ SHADERPARM_BEAM_END_X ] != origin.x ) || ( renderEntity.shaderParms[ SHADERPARM_BEAM_END_Y ] != origin.y ) || ( renderEntity.shaderParms[ SHADERPARM_BEAM_END_Z ] != origin.z ) ) {
-		renderEntity.shaderParms[ SHADERPARM_BEAM_END_X ] = origin.x;
-		renderEntity.shaderParms[ SHADERPARM_BEAM_END_Y ] = origin.y;
-		renderEntity.shaderParms[ SHADERPARM_BEAM_END_Z ] = origin.z;
+	if( ( renderEntity.shaderParms[SHADERPARM_BEAM_END_X] != origin.x ) || ( renderEntity.shaderParms[SHADERPARM_BEAM_END_Y] != origin.y ) || ( renderEntity.shaderParms[SHADERPARM_BEAM_END_Z] != origin.z ) ) {
+		renderEntity.shaderParms[SHADERPARM_BEAM_END_X] = origin.x;
+		renderEntity.shaderParms[SHADERPARM_BEAM_END_Y] = origin.y;
+		renderEntity.shaderParms[SHADERPARM_BEAM_END_Z] = origin.z;
 		UpdateVisuals();
 	}
 }
@@ -2357,7 +2357,7 @@ void idBeam::Event_MatchTarget( void ) {
 	}
 	targetBeam = NULL;
 	for( i = 0; i < targets.Num(); i++ ) {
-		targetEnt = targets[ i ].GetEntity();
+		targetEnt = targets[i].GetEntity();
 		if( targetEnt && targetEnt->IsType( idBeam::Type ) ) {
 			targetBeam = static_cast<idBeam *>( targetEnt );
 			break;
@@ -2420,14 +2420,14 @@ void idBeam::ReadFromSnapshot( const idBitMsgDelta &msg ) {
 /*
 ===============================================================================
 
-	idLiquid
+idLiquid
 
 ===============================================================================
 */
 
 #ifndef MOD_WATERPHYSICS
 CLASS_DECLARATION( idEntity, idLiquid )
-EVENT( EV_Touch,			idLiquid::Event_Touch )
+EVENT( EV_Touch, idLiquid::Event_Touch )
 END_CLASS
 
 /*
@@ -2458,11 +2458,11 @@ void idLiquid::Spawn() {
 	/*
 		model = dynamic_cast<idRenderModelLiquid *>( renderEntity.hModel );
 		if ( !model ) {
-			gameLocal.Error( "Entity '%s' must have liquid model", name.c_str() );
+		gameLocal.Error( "Entity '%s' must have liquid model", name.c_str() );
 		}
 		model->Reset();
 		GetPhysics()->SetContents( CONTENTS_TRIGGER );
-	*/
+		*/
 }
 
 /*
@@ -2477,20 +2477,20 @@ void idLiquid::Event_Touch( idEntity *other, trace_t *trace ) {
 
 		pos = other->GetPhysics()->GetOrigin() - GetPhysics()->GetOrigin();
 		model->IntersectBounds( other->GetPhysics()->GetBounds().Translate( pos ), -10.0f );
-	*/
+		*/
 }
 #endif
 
 /*
 ===============================================================================
 
-	idShaking
+idShaking
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idEntity, idShaking )
-EVENT( EV_Activate,				idShaking::Event_Activate )
+EVENT( EV_Activate, idShaking::Event_Activate )
 END_CLASS
 
 /*
@@ -2574,13 +2574,13 @@ void idShaking::Event_Activate( idEntity *activator ) {
 /*
 ===============================================================================
 
-	idEarthQuake
+idEarthQuake
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idEntity, idEarthQuake )
-EVENT( EV_Activate,				idEarthQuake::Event_Activate )
+EVENT( EV_Activate, idEarthQuake::Event_Activate )
 END_CLASS
 
 /*
@@ -2725,13 +2725,13 @@ void idEarthQuake::Think( void ) {
 /*
 ===============================================================================
 
-	idFuncPortal
+idFuncPortal
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idEntity, idFuncPortal )
-EVENT( EV_Activate,				idFuncPortal::Event_Activate )
+EVENT( EV_Activate, idFuncPortal::Event_Activate )
 END_CLASS
 
 /*
@@ -2896,13 +2896,13 @@ Quit:
 /*
 ===============================================================================
 
-	idFuncAASPortal
+idFuncAASPortal
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idEntity, idFuncAASPortal )
-EVENT( EV_Activate,				idFuncAASPortal::Event_Activate )
+EVENT( EV_Activate, idFuncAASPortal::Event_Activate )
 END_CLASS
 
 /*
@@ -2956,13 +2956,13 @@ void idFuncAASPortal::Event_Activate( idEntity *activator ) {
 /*
 ===============================================================================
 
-	idFuncAASObstacle
+idFuncAASObstacle
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idEntity, idFuncAASObstacle )
-EVENT( EV_Activate,				idFuncAASObstacle::Event_Activate )
+EVENT( EV_Activate, idFuncAASObstacle::Event_Activate )
 END_CLASS
 
 /*
@@ -3030,13 +3030,13 @@ void idFuncAASObstacle::SetAASState( bool newState ) {
 /*
 ===============================================================================
 
-	idPhantomObjects
+idPhantomObjects
 
 ===============================================================================
 */
 
 CLASS_DECLARATION( idEntity, idPhantomObjects )
-EVENT( EV_Activate,				idPhantomObjects::Event_Activate )
+EVENT( EV_Activate, idPhantomObjects::Event_Activate )
 END_CLASS
 
 /*
@@ -3045,15 +3045,15 @@ idPhantomObjects::idPhantomObjects
 ===============
 */
 idPhantomObjects::idPhantomObjects() {
-	target			= NULL;
-	end_time		= 0;
-	throw_time 		= 0.0f;
-	shake_time 		= 0.0f;
+	target = NULL;
+	end_time = 0;
+	throw_time = 0.0f;
+	shake_time = 0.0f;
 	shake_ang.Zero();
-	speed			= 0.0f;
-	min_wait		= 0;
-	max_wait		= 0;
-	fl.neverDormant	= false;
+	speed = 0.0f;
+	min_wait = 0;
+	max_wait = 0;
+	fl.neverDormant = false;
 }
 
 /*
@@ -3073,10 +3073,10 @@ void idPhantomObjects::Save( idSaveGame *savefile ) const {
 	target.Save( savefile );
 	savefile->WriteInt( targetTime.Num() );
 	for( i = 0; i < targetTime.Num(); i++ ) {
-		savefile->WriteInt( targetTime[ i ] );
+		savefile->WriteInt( targetTime[i] );
 	}
 	for( i = 0; i < lastTargetPos.Num(); i++ ) {
-		savefile->WriteVec3( lastTargetPos[ i ] );
+		savefile->WriteVec3( lastTargetPos[i] );
 	}
 }
 
@@ -3102,16 +3102,16 @@ void idPhantomObjects::Restore( idRestoreGame *savefile ) {
 	lastTargetPos.SetGranularity( 1 );
 	lastTargetPos.SetNum( num );
 	for( i = 0; i < num; i++ ) {
-		savefile->ReadInt( targetTime[ i ] );
+		savefile->ReadInt( targetTime[i] );
 	}
 	if( savefile->GetBuildNumber() == INITIAL_RELEASE_BUILD_NUMBER ) {
 		// these weren't saved out in the first release
 		for( i = 0; i < num; i++ ) {
-			lastTargetPos[ i ].Zero();
+			lastTargetPos[i].Zero();
 		}
 	} else {
 		for( i = 0; i < num; i++ ) {
-			savefile->ReadVec3( lastTargetPos[ i ] );
+			savefile->ReadVec3( lastTargetPos[i] );
 		}
 	}
 }
@@ -3166,15 +3166,15 @@ void idPhantomObjects::Event_Activate( idEntity *activator ) {
 	// calculate the relative times of all the objects
 	time = 0.0f;
 	for( i = 0; i < targetTime.Num(); i++ ) {
-		targetTime[ i ] = SEC2MS( time );
-		lastTargetPos[ i ] = toPos;
+		targetTime[i] = SEC2MS( time );
+		lastTargetPos[i] = toPos;
 		frac = 1.0f - ( float )i / ( float )targetTime.Num();
 		time += ( gameLocal.random.RandomFloat() + 1.0f ) * 0.5f * frac + 0.1f;
 	}
 	// scale up the times to fit within throw_time
 	scale = throw_time / time;
 	for( i = 0; i < targetTime.Num(); i++ ) {
-		targetTime[ i ] = static_cast<int>( gameLocal.time + SEC2MS( shake_time ) + targetTime[ i ] * scale );
+		targetTime[i] = static_cast<int>( gameLocal.time + SEC2MS( shake_time ) + targetTime[i] * scale );
 	}
 	BecomeActive( TH_THINK );
 }
@@ -3209,7 +3209,7 @@ void idPhantomObjects::Think( void ) {
 	const idVec3 &toPos = targetEnt->GetEyePosition();
 	num = 0;
 	for( i = 0; i < targets.Num(); i++ ) {
-		ent = targets[ i ].GetEntity();
+		ent = targets[i].GetEntity();
 		if( !ent ) {
 			continue;
 		}
@@ -3217,12 +3217,12 @@ void idPhantomObjects::Think( void ) {
 			// don't throw hidden objects
 			continue;
 		}
-		if( !targetTime[ i ] ) {
+		if( !targetTime[i] ) {
 			// already threw this object
 			continue;
 		}
 		num++;
-		time = MS2SEC( targetTime[ i ] - gameLocal.time );
+		time = MS2SEC( targetTime[i] - gameLocal.time );
 		if( time > shake_time ) {
 			continue;
 		}
@@ -3230,17 +3230,17 @@ void idPhantomObjects::Think( void ) {
 		const idVec3 &entOrg = entPhys->GetOrigin();
 		gameLocal.clip.TracePoint( tr, entOrg, toPos, MASK_OPAQUE, ent );
 		if( tr.fraction >= 1.0f || ( gameLocal.GetTraceEntity( tr ) == targetEnt ) ) {
-			lastTargetPos[ i ] = toPos;
+			lastTargetPos[i] = toPos;
 		}
 		if( time < 0.0f ) {
-			idAI::PredictTrajectory( entPhys->GetOrigin(), lastTargetPos[ i ], speed, entPhys->GetGravity(),
+			idAI::PredictTrajectory( entPhys->GetOrigin(), lastTargetPos[i], speed, entPhys->GetGravity(),
 									 entPhys->GetClipModel(), entPhys->GetClipMask(), 256.0f, ent, targetEnt, ai_debugTrajectory.GetBool() ? 1 : 0, vel );
 			vel *= speed;
 			entPhys->SetLinearVelocity( vel );
 			if( !end_time ) {
-				targetTime[ i ] = 0;
+				targetTime[i] = 0;
 			} else {
-				targetTime[ i ] = gameLocal.time + gameLocal.random.RandomInt( max_wait - min_wait ) + min_wait;
+				targetTime[i] = gameLocal.time + gameLocal.random.RandomInt( max_wait - min_wait ) + min_wait;
 			}
 			if( ent->IsType( idMoveable::Type ) ) {
 				idMoveable *ment = static_cast<idMoveable *>( ent );
@@ -3265,8 +3265,8 @@ idPortalSky
 */
 
 CLASS_DECLARATION( idEntity, idPortalSky )
-EVENT( EV_PostSpawn,			idPortalSky::Event_PostSpawn )
-EVENT( EV_Activate,				idPortalSky::Event_Activate )
+EVENT( EV_PostSpawn, idPortalSky::Event_PostSpawn )
+EVENT( EV_Activate, idPortalSky::Event_Activate )
 END_CLASS
 
 /*
@@ -3344,7 +3344,7 @@ void idPortalSky::Event_Activate( idEntity *activator ) {
 /*
 ===============================================================================
 
-  tdmVine - climbable vine piece (grayman #2787)
+tdmVine - climbable vine piece (grayman #2787)
 
 ===============================================================================
 */
@@ -3358,13 +3358,13 @@ const idEventDef EV_Vine_ClearWatered( "clearWatered", EventArgs(), EV_RETURNS_V
 const idEventDef EV_Vine_ScaleVine( "scaleVine", EventArgs( 'f', "factor", "" ), EV_RETURNS_VOID, "Event called using vine.*()" );
 
 CLASS_DECLARATION( idStaticEntity, tdmVine )
-EVENT( EV_Vine_SetPrime, 		tdmVine::Event_SetPrime )
-EVENT( EV_Vine_GetPrime, 		tdmVine::Event_GetPrime )
-EVENT( EV_Vine_AddDescendant, 	tdmVine::Event_AddDescendant )
-EVENT( EV_Vine_CanWater, 		tdmVine::Event_CanWater )
-EVENT( EV_Vine_SetWatered, 		tdmVine::Event_SetWatered )
-EVENT( EV_Vine_ClearWatered, 	tdmVine::Event_ClearWatered )
-EVENT( EV_Vine_ScaleVine,		tdmVine::Event_ScaleVine )
+EVENT( EV_Vine_SetPrime, tdmVine::Event_SetPrime )
+EVENT( EV_Vine_GetPrime, tdmVine::Event_GetPrime )
+EVENT( EV_Vine_AddDescendant, tdmVine::Event_AddDescendant )
+EVENT( EV_Vine_CanWater, tdmVine::Event_CanWater )
+EVENT( EV_Vine_SetWatered, tdmVine::Event_SetWatered )
+EVENT( EV_Vine_ClearWatered, tdmVine::Event_ClearWatered )
+EVENT( EV_Vine_ScaleVine, tdmVine::Event_ScaleVine )
 END_CLASS
 
 tdmVine::tdmVine( void ) {
@@ -3377,7 +3377,7 @@ void tdmVine::Save( idSaveGame *savefile ) const {
 	savefile->WriteBool( _watered );
 	savefile->WriteObject( _prime );
 	savefile->WriteInt( _descendants.Num() );
-	for( int i = 0 ; i < _descendants.Num() ; i++ ) {
+	for( int i = 0; i < _descendants.Num(); i++ ) {
 		_descendants[i].Save( savefile );
 	}
 }
@@ -3388,7 +3388,7 @@ void tdmVine::Restore( idRestoreGame *savefile ) {
 	int num;
 	savefile->ReadInt( num );
 	_descendants.SetNum( num );
-	for( int i = 0 ; i < num ; i++ ) {
+	for( int i = 0; i < num; i++ ) {
 		_descendants[i].Restore( savefile );
 	}
 }
@@ -3427,7 +3427,7 @@ void tdmVine::Event_CanWater() {
 	if( _watered ) { // the prime vine should check itself first
 		wateredCount++;
 	}
-	for( int i = 0 ; i < _descendants.Num() ; i++ ) {
+	for( int i = 0; i < _descendants.Num(); i++ ) {
 		idEntityPtr< tdmVine > tdmVinePtr = _descendants[i];
 		tdmVine *vine = tdmVinePtr.GetEntity();
 		if( vine && vine->_watered ) {

@@ -67,8 +67,8 @@ ve_setup_data_template ve_setup_11_stereo = {
 	_psy_compand_8_mapping,
 	NULL,
 
-	{_noise_start_8, _noise_start_8},
-	{_noise_part_8, _noise_part_8},
+	{ _noise_start_8, _noise_start_8 },
+	{ _noise_part_8, _noise_part_8 },
 	_noise_thresh_11,
 
 	_psy_ath_floater_8,
@@ -118,8 +118,8 @@ ve_setup_data_template ve_setup_11_uncoupled = {
 	_psy_compand_8_mapping,
 	NULL,
 
-	{_noise_start_8, _noise_start_8},
-	{_noise_part_8, _noise_part_8},
+	{ _noise_start_8, _noise_start_8 },
+	{ _noise_part_8, _noise_part_8 },
 	_noise_thresh_11,
 
 	_psy_ath_floater_8,

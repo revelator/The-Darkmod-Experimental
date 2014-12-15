@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #include "precompiled_game.h"
 #pragma hdrstop
 
@@ -34,7 +34,7 @@ PositionWithinRangeFinder::PositionWithinRangeFinder( const idAI *self,
 	// setup PVS
 	idBounds bounds( targetPos - idVec3( 16, 16, 0 ), targetPos + idVec3( 16, 16, 64 ) );
 	numPVSAreas = gameLocal.pvs.GetPVSAreas( bounds, PVSAreas, idEntity::MAX_PVS_AREAS );
-	targetPVS	= gameLocal.pvs.SetupCurrentPVS( PVSAreas, numPVSAreas );
+	targetPVS = gameLocal.pvs.SetupCurrentPVS( PVSAreas, numPVSAreas );
 }
 
 PositionWithinRangeFinder::~PositionWithinRangeFinder() {
@@ -43,7 +43,7 @@ PositionWithinRangeFinder::~PositionWithinRangeFinder() {
 
 bool PositionWithinRangeFinder::TestArea( const idAAS *aas, int areaNum ) {
 	idVec3 areaCenter = aas->AreaCenter( areaNum );
-	areaCenter[ 2 ] += 1.0f;
+	areaCenter[2] += 1.0f;
 	// calculate the world transform of the view position
 	idVec3 dir = _targetPos - areaCenter;
 	idVec3 local_dir;

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -147,7 +147,7 @@ void idEditWindow::Draw( int time, float x, float y ) {
 	rect.x -= paintOffset;
 	rect.w += paintOffset;
 	if( wrap && scroller->GetHigh() > 0.0f ) {
-		float lineHeight = GetMaxCharHeight( ) + 5;
+		float lineHeight = GetMaxCharHeight() + 5;
 		rect.y -= scroller->GetValue() * lineHeight;
 		rect.w -= sizeBias;
 		rect.h = ( breaks.Num() + 1 ) * lineHeight;
@@ -169,7 +169,7 @@ idEditWindow::HandleEvent
 =============
 */
 const char *idEditWindow::HandleEvent( const sysEvent_t *event, bool *updateVisuals ) {
-	static char buffer[ MAX_EDITFIELD ];
+	static char buffer[MAX_EDITFIELD];
 	const char *ret = "";
 	if( wrap ) {
 		// need to call this to allow proper focus and capturing on embedded children
@@ -212,7 +212,7 @@ const char *idEditWindow::HandleEvent( const sysEvent_t *event, bool *updateVisu
 					buffer[len - 1] = 0;
 					cursorPos = len - 1;
 				} else {
-					memmove( &buffer[ cursorPos - 1 ], &buffer[ cursorPos ], len + 1 - cursorPos );
+					memmove( &buffer[cursorPos - 1], &buffer[cursorPos], len + 1 - cursorPos );
 					cursorPos--;
 				}
 				text = buffer;
@@ -241,9 +241,9 @@ const char *idEditWindow::HandleEvent( const sysEvent_t *event, bool *updateVisu
 			if( ( len == MAX_EDITFIELD - 1 ) || ( maxChars && len >= maxChars ) ) {
 				return "";
 			}
-			memmove( &buffer[ cursorPos + 1 ], &buffer[ cursorPos ], len + 1 - cursorPos );
+			memmove( &buffer[cursorPos + 1], &buffer[cursorPos], len + 1 - cursorPos );
 		}
-		buffer[ cursorPos ] = key;
+		buffer[cursorPos] = key;
 		text = buffer;
 		UpdateCvar( false );
 		RunScript( ON_ACTION );
@@ -271,10 +271,10 @@ const char *idEditWindow::HandleEvent( const sysEvent_t *event, bool *updateVisu
 			if( cursorPos < len ) {
 				if( idKeyInput::IsDown( K_CTRL ) ) {
 					// skip to next word
-					while( ( cursorPos < len ) && ( buffer[ cursorPos ] != ' ' ) ) {
+					while( ( cursorPos < len ) && ( buffer[cursorPos] != ' ' ) ) {
 						cursorPos++;
 					}
-					while( ( cursorPos < len ) && ( buffer[ cursorPos ] == ' ' ) ) {
+					while( ( cursorPos < len ) && ( buffer[cursorPos] == ' ' ) ) {
 						cursorPos++;
 					}
 				} else {
@@ -289,10 +289,10 @@ const char *idEditWindow::HandleEvent( const sysEvent_t *event, bool *updateVisu
 		if( key == K_LEFTARROW ) {
 			if( idKeyInput::IsDown( K_CTRL ) ) {
 				// skip to previous word
-				while( ( cursorPos > 0 ) && ( buffer[ cursorPos - 1 ] == ' ' ) ) {
+				while( ( cursorPos > 0 ) && ( buffer[cursorPos - 1] == ' ' ) ) {
 					cursorPos--;
 				}
-				while( ( cursorPos > 0 ) && ( buffer[ cursorPos - 1 ] != ' ' ) ) {
+				while( ( cursorPos > 0 ) && ( buffer[cursorPos - 1] != ' ' ) ) {
 					cursorPos--;
 				}
 			} else {
@@ -377,7 +377,7 @@ void idEditWindow::PostParse() {
 	if( sourceFile.Length() ) {
 		void *buffer;
 		fileSystem->ReadFile( sourceFile, &buffer );
-		text = ( char * ) buffer;
+		text = ( char * )buffer;
 		fileSystem->FreeFile( buffer );
 	}
 	InitCvar();
@@ -450,14 +450,14 @@ void idEditWindow::EnsureCursorVisible() {
 				}
 			}
 		}
-		int maxWidth = GetMaxCharWidth( );
+		int maxWidth = GetMaxCharWidth();
 		int left = cursorX - maxWidth;
 		int right = ( cursorX - textRect.w ) + maxWidth;
 		if( paintOffset > left ) {
 			// When we go past the left side, we want the text to jump 6 characters
 			paintOffset = left - maxWidth * 6;
 		}
-		if( paintOffset <  right ) {
+		if( paintOffset < right ) {
 			paintOffset = right;
 		}
 		if( paintOffset < 0 ) {
@@ -512,7 +512,7 @@ void idEditWindow::Activate( bool activate, idStr &act ) {
 idEditWindow::InitCvar
 ============
 */
-void idEditWindow::InitCvar( ) {
+void idEditWindow::InitCvar() {
 	if( cvarStr[0] == '\0' ) {
 		if( text.GetName() == NULL ) {
 			common->Warning( "idEditWindow::InitCvar: gui '%s' window '%s' has an empty cvar string", gui->GetSourceFile(), name.c_str() );

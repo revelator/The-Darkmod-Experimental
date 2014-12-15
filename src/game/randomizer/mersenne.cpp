@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 /************************** MERSENNE.CPP ******************** AgF 2001-10-18 *
 *  Random Number generator 'Mersenne Twister'                                *
 *                                                                            *
@@ -99,9 +99,9 @@ uint32 TRandomMersenne::BRandom() {
 	uint32 y;
 	if( mti >= MERS_N ) {
 		// generate MERS_N words at one time
-		const uint32 LOWER_MASK = ( 1LU << MERS_R ) - 1;       // lower MERS_R bits
+		const uint32 LOWER_MASK = ( 1LU << MERS_R ) - 1;     // lower MERS_R bits
 		const uint32 UPPER_MASK = 0xFFFFFFFF << MERS_R;        // upper (32 - MERS_R) bits
-		static const uint32 mag01[2] = {0, MERS_A};
+		static const uint32 mag01[2] = { 0, MERS_A };
 		int kk;
 		for( kk = 0; kk < MERS_N - MERS_M; kk++ ) {
 			y = ( mt[kk] & UPPER_MASK ) | ( mt[kk + 1] & LOWER_MASK );
@@ -117,10 +117,10 @@ uint32 TRandomMersenne::BRandom() {
 	}
 	y = mt[mti++];
 	// Tempering (May be omitted):
-	y ^=  y >> MERS_U;
+	y ^= y >> MERS_U;
 	y ^= ( y << MERS_S ) & MERS_B;
 	y ^= ( y << MERS_T ) & MERS_C;
-	y ^=  y >> MERS_L;
+	y ^= y >> MERS_L;
 	return y;
 }
 
@@ -142,11 +142,11 @@ double TRandomMersenne::Random() {
 	// LITTLE_ENDIAN1 architecture):
 	switch( Architecture ) {
 	case LITTLE_ENDIAN1:
-		convert.i[0] =  r << 20;
+		convert.i[0] = r << 20;
 		convert.i[1] = ( r >> 12 ) | 0x3FF00000;
 		return convert.f - 1.0;
 	case BIG_ENDIAN1:
-		convert.i[1] =  r << 20;
+		convert.i[1] = r << 20;
 		convert.i[0] = ( r >> 12 ) | 0x3FF00000;
 		return convert.f - 1.0;
 	case NONIEEE:

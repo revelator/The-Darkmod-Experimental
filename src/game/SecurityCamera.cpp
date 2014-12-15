@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 // Copyright (C) 2004 Id Software, Inc.
 //
@@ -25,7 +25,7 @@
 
   Security camera that triggers targets when player is in view
 
-*/
+  */
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -39,7 +39,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
   idSecurityCamera
 
-***********************************************************************/
+  ***********************************************************************/
 
 const idEventDef EV_SecurityCam_ReverseSweep( "<reverseSweep>", EventArgs(), EV_RETURNS_VOID, "internal" );
 const idEventDef EV_SecurityCam_ContinueSweep( "<continueSweep>", EventArgs(), EV_RETURNS_VOID, "internal" );
@@ -48,11 +48,11 @@ const idEventDef EV_SecurityCam_Alert( "<alert>", EventArgs(), EV_RETURNS_VOID, 
 const idEventDef EV_SecurityCam_AddLight( "<addLight>", EventArgs(), EV_RETURNS_VOID, "internal" );
 
 CLASS_DECLARATION( idEntity, idSecurityCamera )
-EVENT( EV_SecurityCam_ReverseSweep,		idSecurityCamera::Event_ReverseSweep )
-EVENT( EV_SecurityCam_ContinueSweep,	idSecurityCamera::Event_ContinueSweep )
-EVENT( EV_SecurityCam_Pause,			idSecurityCamera::Event_Pause )
-EVENT( EV_SecurityCam_Alert,			idSecurityCamera::Event_Alert )
-EVENT( EV_SecurityCam_AddLight,			idSecurityCamera::Event_AddLight )
+EVENT( EV_SecurityCam_ReverseSweep, idSecurityCamera::Event_ReverseSweep )
+EVENT( EV_SecurityCam_ContinueSweep, idSecurityCamera::Event_ContinueSweep )
+EVENT( EV_SecurityCam_Pause, idSecurityCamera::Event_Pause )
+EVENT( EV_SecurityCam_Alert, idSecurityCamera::Event_Alert )
+EVENT( EV_SecurityCam_AddLight, idSecurityCamera::Event_AddLight )
 END_CLASS
 
 /*
@@ -112,12 +112,12 @@ idSecurityCamera::Spawn
 */
 void idSecurityCamera::Spawn( void ) {
 	idStr	str;
-	sweepAngle	= spawnArgs.GetFloat( "sweepAngle", "90" );
-	health		= spawnArgs.GetInt( "health", "100" );
-	scanFov		= spawnArgs.GetFloat( "scanFov", "90" );
-	scanDist	= spawnArgs.GetFloat( "scanDist", "200" );
-	flipAxis	= spawnArgs.GetBool( "flipAxis" );
-	modelAxis	= spawnArgs.GetInt( "modelAxis" );
+	sweepAngle = spawnArgs.GetFloat( "sweepAngle", "90" );
+	health = spawnArgs.GetInt( "health", "100" );
+	scanFov = spawnArgs.GetFloat( "scanFov", "90" );
+	scanDist = spawnArgs.GetFloat( "scanDist", "200" );
+	flipAxis = spawnArgs.GetBool( "flipAxis" );
+	modelAxis = spawnArgs.GetInt( "modelAxis" );
 	if( modelAxis < 0 || modelAxis > 2 ) {
 		modelAxis = 0;
 	}
@@ -264,7 +264,7 @@ bool idSecurityCamera::CanSeePlayer( void ) {
 	pvsHandle_t handle;
 	handle = gameLocal.pvs.SetupCurrentPVS( pvsArea );
 	for( i = 0; i < gameLocal.numClients; i++ ) {
-		ent = static_cast<idPlayer *>( gameLocal.entities[ i ] );
+		ent = static_cast<idPlayer *>( gameLocal.entities[i] );
 		if( !ent || ( ent->fl.notarget ) ) {
 			continue;
 		}
@@ -301,7 +301,7 @@ void idSecurityCamera::SetAlertMode( int alert ) {
 	if( alert >= SCANNING && alert <= ACTIVATED ) {
 		alertMode = alert;
 	}
-	renderEntity.shaderParms[ SHADERPARM_MODE ] = alertMode;
+	renderEntity.shaderParms[SHADERPARM_MODE] = alertMode;
 	UpdateVisuals();
 }
 

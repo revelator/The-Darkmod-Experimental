@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -253,7 +253,7 @@ bool GetMatrixForKey( entity_t *ent, const char *key, idMat3 &mat ) {
 
 /*
  =======================================================================================================================
-    Entity_FreeEpairs Frees the entity epairs.
+ Entity_FreeEpairs Frees the entity epairs.
  =======================================================================================================================
  */
 void Entity_FreeEpairs( entity_t *e ) {
@@ -262,7 +262,7 @@ void Entity_FreeEpairs( entity_t *e ) {
 
 /*
  =======================================================================================================================
-    Entity_AddToList
+ Entity_AddToList
  =======================================================================================================================
  */
 void Entity_AddToList( entity_t *e, entity_t *list ) {
@@ -277,7 +277,7 @@ void Entity_AddToList( entity_t *e, entity_t *list ) {
 
 /*
  =======================================================================================================================
-    Entity_RemoveFromList
+ Entity_RemoveFromList
  =======================================================================================================================
  */
 void Entity_RemoveFromList( entity_t *e ) {
@@ -291,7 +291,7 @@ void Entity_RemoveFromList( entity_t *e ) {
 
 /*
  =======================================================================================================================
-    Entity_Free Frees the entity and any brushes is has. The entity is removed from the global entities list.
+ Entity_Free Frees the entity and any brushes is has. The entity is removed from the global entities list.
  =======================================================================================================================
  */
 void Entity_Free( entity_t *e ) {
@@ -308,7 +308,7 @@ void Entity_Free( entity_t *e ) {
 
 /*
  =======================================================================================================================
-    Entity_MemorySize
+ Entity_MemorySize
  =======================================================================================================================
  */
 
@@ -324,7 +324,7 @@ int Entity_MemorySize( entity_t *e ) {
 
 /*
  =======================================================================================================================
-    ParseEpair
+ ParseEpair
  =======================================================================================================================
  */
 
@@ -364,7 +364,7 @@ void FixFloats( idDict *dict ) {
 					sprintf( val, "%g %g %g", v.x, v.y, v.z );
 				} else if( FloatFixups[j].type == 2 ) {
 					idMat3 mat;
-					sscanf( kv->GetValue().c_str(),	"%f %f %f %f %f %f %f %f %f ", &mat[0][0], &mat[0][1], &mat[0][2], &mat[1][0], &mat[1][1], &mat[1][2], &mat[2][0], &mat[2][1], &mat[2][2] );
+					sscanf( kv->GetValue().c_str(), "%f %f %f %f %f %f %f %f %f ", &mat[0][0], &mat[0][1], &mat[0][2], &mat[1][0], &mat[1][1], &mat[1][2], &mat[2][0], &mat[2][1], &mat[2][2] );
 					sprintf( val, "%g %g %g %g %g %g %g %g %g", mat[0][0], mat[0][1], mat[0][2], mat[1][0], mat[1][1], mat[1][2], mat[2][0], mat[2][1], mat[2][2] );
 				} else {
 					float f = atof( kv->GetValue().c_str() );
@@ -490,7 +490,7 @@ void Entity_SetCurveData( entity_t *ent ) {
 				ent->curve->AddValue( time, v );
 				time += 100;
 			}
-			delete []fp;
+			delete[]fp;
 		}
 	}
 }
@@ -699,8 +699,8 @@ entity_t *Entity_PostParse( entity_t *ent, brush_t *pList ) {
 
 /*
  =======================================================================================================================
-    Entity_Parse If onlypairs is set, the classname info will not be looked up, and the entity will not be added to the
-    global list. Used for parsing the project.
+ Entity_Parse If onlypairs is set, the classname info will not be looked up, and the entity will not be added to the
+ global list. Used for parsing the project.
  =======================================================================================================================
  */
 entity_t *Entity_Parse( bool onlypairs, brush_t *pList ) {
@@ -758,7 +758,7 @@ void VectorMidpoint( idVec3 va, idVec3 vb, idVec3 &out ) {
 
 /*
  =======================================================================================================================
-    Entity_Write
+ Entity_Write
  =======================================================================================================================
  */
 void Entity_Write( entity_t *e, FILE *f, bool use_region ) {
@@ -984,7 +984,7 @@ void Entity_Name( entity_t *e, bool force ) {
 			if( str.Length() ) {
 				SetKeyValue( e, "model", va( "%s_%s_%i", str.c_str(), eclass, id ) );
 			} else {
-				SetKeyValue( e, "model", va( "%s_%i",  eclass, id ) );
+				SetKeyValue( e, "model", va( "%s_%i", eclass, id ) );
 			}
 		}
 	}
@@ -992,8 +992,8 @@ void Entity_Name( entity_t *e, bool force ) {
 
 /*
  =======================================================================================================================
-    Entity_Create Creates a new entity out of the selected_brushes list. If the entity class is fixed size, the brushes
-    are only used to find a midpoint. Otherwise, the brushes have their ownership transfered to the new entity.
+ Entity_Create Creates a new entity out of the selected_brushes list. If the entity class is fixed size, the brushes
+ are only used to find a midpoint. Otherwise, the brushes have their ownership transfered to the new entity.
  =======================================================================================================================
  */
 entity_t *Entity_Create( eclass_t *c, bool forceFixed ) {
@@ -1079,7 +1079,7 @@ void Brush_MakeDirty( brush_t *b ) {
 }
 /*
  =======================================================================================================================
-    Entity_LinkBrush
+ Entity_LinkBrush
  =======================================================================================================================
  */
 void Entity_LinkBrush( entity_t *e, brush_t *b ) {
@@ -1096,7 +1096,7 @@ void Entity_LinkBrush( entity_t *e, brush_t *b ) {
 
 /*
  =======================================================================================================================
-    Entity_UnlinkBrush
+ Entity_UnlinkBrush
  =======================================================================================================================
  */
 void Entity_UnlinkBrush( brush_t *b ) {
@@ -1112,7 +1112,7 @@ void Entity_UnlinkBrush( brush_t *b ) {
 
 /*
  =======================================================================================================================
-    Entity_Clone
+ Entity_Clone
  =======================================================================================================================
  */
 entity_t *Entity_Clone( entity_t *e ) {
@@ -1124,7 +1124,7 @@ entity_t *Entity_Clone( entity_t *e ) {
 	n->origin = e->origin;
 	// add the entity to the entity list
 	Entity_AddToList( n, &entities );
-	n->epairs  = e->epairs;
+	n->epairs = e->epairs;
 	return n;
 }
 

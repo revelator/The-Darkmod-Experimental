@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -26,7 +26,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 #include "../../sys/win32/rc/common_resource.h"
 #include "OpenFileDialog.h"
 
-char rvOpenFileDialog::mLookin[ MAX_OSPATH ];
+char rvOpenFileDialog::mLookin[MAX_OSPATH];
 
 /*
 ================
@@ -36,11 +36,11 @@ constructor
 ================
 */
 rvOpenFileDialog::rvOpenFileDialog( void ) {
-	mWnd		= NULL;
-	mInstance	= NULL;
+	mWnd = NULL;
+	mInstance = NULL;
 	mBackBitmap = NULL;
-	mImageList	= NULL;
-	mFlags		= 0;
+	mImageList = NULL;
+	mFlags = 0;
 }
 
 /*
@@ -97,15 +97,15 @@ void rvOpenFileDialog::UpdateLookIn( void ) {
 	// Break the lookin path up into its individual components and add them
 	// to the combo box
 	path = mLookin;
-	while( path.Length( ) ) {
+	while( path.Length() ) {
 		int slash = path.Find( "/" );
 		// Parse out the next subfolder
 		if( slash != -1 ) {
 			file = path.Left( slash );
-			path = path.Right( path.Length( ) - slash - 1 );
+			path = path.Right( path.Length() - slash - 1 );
 		} else {
 			file = path;
-			path.Empty( );
+			path.Empty();
 		}
 		// Add the sub folder
 		item.pszText = ( LPSTR )file.c_str();
@@ -134,7 +134,7 @@ void rvOpenFileDialog::UpdateFileList( void ) {
 	ListView_DeleteAllItems( list );
 	// Add all the folders first
 	files = fileSystem->ListFiles( basepath, "/", true );
-	for( i = 0; i < files->GetNumFiles(); i ++ ) {
+	for( i = 0; i < files->GetNumFiles(); i++ ) {
 		if( files->GetFile( i )[0] == '.' ) {
 			continue;
 		}
@@ -148,9 +148,9 @@ void rvOpenFileDialog::UpdateFileList( void ) {
 	fileSystem->FreeFileList( files );
 	// Add all the files in the current lookin directory that match the
 	// current filters.
-	for( filter = 0; filter < mFilters.Num(); filter ++ ) {
+	for( filter = 0; filter < mFilters.Num(); filter++ ) {
 		files = fileSystem->ListFiles( basepath, mFilters[filter], true );
-		for( i = 0; i < files->GetNumFiles(); i ++ ) {
+		for( i = 0; i < files->GetNumFiles(); i++ ) {
 			if( files->GetFile( i )[0] == '.' ) {
 				continue;
 			}
@@ -202,13 +202,13 @@ void rvOpenFileDialog::HandleCommandOK( void ) {
 		} else {
 			idStr::Copynz( mLookin, temp, sizeof( mLookin ) );
 		}
-		UpdateLookIn( );
-		UpdateFileList( );
+		UpdateLookIn();
+		UpdateFileList();
 	}
 	// If the item is a file then build the filename and end the dialog
 	else if( item.iImage == 2 ) {
 		mFilename = mLookin;
-		if( mFilename.Length( ) ) {
+		if( mFilename.Length() ) {
 			mFilename.Append( "/" );
 		}
 		mFilename.Append( temp );
@@ -237,34 +237,34 @@ Handles the init dialog message
 void rvOpenFileDialog::HandleInitDialog( void ) {
 	// Cache the more used window handles
 	mWndFileList = GetDlgItem( mWnd, IDC_TOOLS_FILELIST );
-	mWndLookin   = GetDlgItem( mWnd, IDC_TOOLS_LOOKIN );
+	mWndLookin = GetDlgItem( mWnd, IDC_TOOLS_LOOKIN );
 	// Load the custom resources used by the controls
-	mImageList  = ImageList_LoadBitmap( mInstance, MAKEINTRESOURCE( IDB_TOOLS_OPEN ), 16, 1, RGB( 255, 255, 255 ) );
+	mImageList = ImageList_LoadBitmap( mInstance, MAKEINTRESOURCE( IDB_TOOLS_OPEN ), 16, 1, RGB( 255, 255, 255 ) );
 	mBackBitmap = ( HBITMAP )LoadImage( mInstance, MAKEINTRESOURCE( IDB_TOOLS_BACK ), IMAGE_BITMAP, 16, 16, LR_DEFAULTCOLOR | LR_LOADMAP3DCOLORS );
 	// Attach the image list to the file list and lookin controls
 	ListView_SetImageList( mWndFileList, mImageList, LVSIL_SMALL );
-	SendMessage( mWndLookin, CBEM_SETIMAGELIST, 0, ( LPARAM ) mImageList );
+	SendMessage( mWndLookin, CBEM_SETIMAGELIST, 0, ( LPARAM )mImageList );
 	// Back button is a bitmap button
-	SendMessage( GetDlgItem( mWnd, IDC_TOOLS_BACK ), BM_SETIMAGE, IMAGE_BITMAP, ( LONG ) mBackBitmap );
+	SendMessage( GetDlgItem( mWnd, IDC_TOOLS_BACK ), BM_SETIMAGE, IMAGE_BITMAP, ( LONG )mBackBitmap );
 	// Allow custom titles
 	SetWindowText( mWnd, mTitle );
 	// Custom ok button title
-	if( mOKTitle.Length( ) ) {
+	if( mOKTitle.Length() ) {
 		SetWindowText( GetDlgItem( mWnd, IDOK ), mOKTitle );
 	}
 	// See if there is a filename in the lookin
 	idStr temp;
 	idStr filename = mLookin;
 	filename.ExtractFileExtension( temp );
-	if( temp.Length( ) ) {
+	if( temp.Length() ) {
 		filename.ExtractFileName( temp );
 		SetWindowText( GetDlgItem( mWnd, IDC_TOOLS_FILENAME ), temp );
-		filename.StripFilename( );
+		filename.StripFilename();
 		idStr::snPrintf( mLookin, sizeof( mLookin ), "%s", filename.c_str() );
 	}
 	// Update our controls
-	UpdateLookIn( );
-	UpdateFileList( );
+	UpdateLookIn();
+	UpdateFileList();
 }
 
 /*
@@ -286,7 +286,7 @@ void rvOpenFileDialog::HandleLookInChange( void ) {
 	if( sel >= 1 ) {
 		SendMessage( mWndLookin, CB_GETLBTEXT, 1, ( LPARAM )temp );
 		idStr::snPrintf( mLookin, sizeof( mLookin ), "%s", temp );
-		for( i = 2; i <= sel; i ++ ) {
+		for( i = 2; i <= sel; i++ ) {
 			SendMessage( mWndLookin, CB_GETLBTEXT, i, ( LPARAM )temp );
 			idStr::snPrintf( mLookin, sizeof( mLookin ), "%s/%s", mLookin, temp );
 		}
@@ -294,8 +294,8 @@ void rvOpenFileDialog::HandleLookInChange( void ) {
 		mLookin[0] = 0;
 	}
 	// Update the controls with the new lookin path
-	UpdateLookIn( );
-	UpdateFileList( );
+	UpdateLookIn();
+	UpdateFileList();
 }
 
 /*
@@ -308,14 +308,14 @@ Set the extensions available in the dialog
 void rvOpenFileDialog::SetFilter( const char *s ) {
 	idStr filters = s;
 	idStr filter;
-	while( filters.Length( ) ) {
+	while( filters.Length() ) {
 		int semi = filters.Find( ';' );
 		if( semi != -1 ) {
-			filter  = filters.Left( semi );
-			filters = filters.Right( filters.Length( ) - semi );
+			filter = filters.Left( semi );
+			filters = filters.Right( filters.Length() - semi );
 		} else {
 			filter = filters;
-			filters.Empty( );
+			filters.Empty();
 		}
 		mFilters.Append( filter.c_str() + ( filter[0] == '*' ? 1 : 0 ) );
 	}
@@ -329,16 +329,16 @@ Dialog Procedure for the open file dialog
 ================
 */
 INT_PTR rvOpenFileDialog::DlgProc( HWND wnd, UINT msg, WPARAM wparam, LPARAM lparam ) {
-	rvOpenFileDialog *dlg = ( rvOpenFileDialog * ) GetWindowLong( wnd, GWL_USERDATA );
+	rvOpenFileDialog *dlg = ( rvOpenFileDialog * )GetWindowLong( wnd, GWL_USERDATA );
 	switch( msg ) {
 	case WM_INITDIALOG:
-		dlg = ( rvOpenFileDialog * ) lparam;
+		dlg = ( rvOpenFileDialog * )lparam;
 		SetWindowLong( wnd, GWL_USERDATA, lparam );
 		dlg->mWnd = wnd;
-		dlg->HandleInitDialog( );
+		dlg->HandleInitDialog();
 		return TRUE;
 	case WM_NOTIFY: {
-		NMHDR *nm = ( NMHDR * ) lparam;
+		NMHDR *nm = ( NMHDR * )lparam;
 		switch( nm->idFrom ) {
 		case IDC_TOOLS_FILELIST:
 			switch( nm->code ) {
@@ -361,7 +361,7 @@ INT_PTR rvOpenFileDialog::DlgProc( HWND wnd, UINT msg, WPARAM wparam, LPARAM lpa
 				break;
 			}
 			case NM_DBLCLK:
-				dlg->HandleCommandOK( );
+				dlg->HandleCommandOK();
 				break;
 			}
 			break;
@@ -371,7 +371,7 @@ INT_PTR rvOpenFileDialog::DlgProc( HWND wnd, UINT msg, WPARAM wparam, LPARAM lpa
 	case WM_COMMAND:
 		switch( LOWORD( wparam ) ) {
 		case IDOK: {
-			dlg->HandleCommandOK( );
+			dlg->HandleCommandOK();
 			break;
 		}
 		case IDCANCEL:
@@ -382,13 +382,13 @@ INT_PTR rvOpenFileDialog::DlgProc( HWND wnd, UINT msg, WPARAM wparam, LPARAM lpa
 			if( sel > 0 ) {
 				sel--;
 				SendMessage( GetDlgItem( wnd, IDC_TOOLS_LOOKIN ), CB_SETCURSEL, sel, 0 );
-				dlg->HandleLookInChange( );
+				dlg->HandleLookInChange();
 			}
 			break;
 		}
 		case IDC_TOOLS_LOOKIN:
 			if( HIWORD( wparam ) == CBN_SELCHANGE ) {
-				dlg->HandleLookInChange( );
+				dlg->HandleLookInChange();
 			}
 			break;
 		}

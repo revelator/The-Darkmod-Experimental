@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -25,7 +25,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 ===============================================================================
 
-	idDeclAF
+idDeclAF
 
 ===============================================================================
 */
@@ -551,7 +551,7 @@ bool idDeclAF::WriteSettings( idFile *f ) const {
 	idStr str;
 	f->WriteFloatString( "\nsettings {\n" );
 	f->WriteFloatString( "\tmodel \"%s\"\n", model.c_str() );
-	f->WriteFloatString( "\tskin \"%s\"\n",	skin.c_str() );
+	f->WriteFloatString( "\tskin \"%s\"\n", skin.c_str() );
 	f->WriteFloatString( "\tfriction %f, %f, %f, %f\n", defaultLinearFriction, defaultAngularFriction, defaultContactFriction, defaultConstraintFriction );
 	f->WriteFloatString( "\tsuspendSpeed %f, %f, %f, %f\n", suspendVelocity[0], suspendVelocity[1], suspendAcceleration[0], suspendAcceleration[1] );
 	f->WriteFloatString( "\tnoMoveTime %f\n", noMoveTime );
@@ -1533,8 +1533,8 @@ void idDeclAF::NewBody( const char *name ) {
 ================
 idDeclAF::RenameBody
 
-  rename the body with the given name and rename
-  all constraint body references
+rename the body with the given name and rename
+all constraint body references
 ================
 */
 void idDeclAF::RenameBody( const char *oldName, const char *newName ) {
@@ -1558,8 +1558,8 @@ void idDeclAF::RenameBody( const char *oldName, const char *newName ) {
 ================
 idDeclAF::DeleteBody
 
-  delete the body with the given name and delete
-  all constraints that reference the body
+delete the body with the given name and delete
+all constraints that reference the body
 ================
 */
 void idDeclAF::DeleteBody( const char *name ) {

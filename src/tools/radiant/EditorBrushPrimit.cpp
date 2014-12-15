@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -44,7 +44,7 @@ public:
 // =======================================================================================================================
 //
 double SarrusDet( idVec3D a, idVec3D b, idVec3D c ) {
-	return ( double )a[0] * ( double )b[1] * ( double )c[2] + ( double )b[0] * ( double )c[1] * ( double )a[2] + ( double )c[0] * ( double )a[1] * ( double )b[2] - ( double )c[0] * ( double )b[1] * ( double )a[2] - ( double )a[1] * ( double )b[0] * ( double )c[2] -	( double )a[0] * ( double )b[2] * ( double )c[1];
+	return ( double )a[0] * ( double )b[1] * ( double )c[2] + ( double )b[0] * ( double )c[1] * ( double )a[2] + ( double )c[0] * ( double )a[1] * ( double )b[2] - ( double )c[0] * ( double )b[1] * ( double )a[2] - ( double )a[1] * ( double )b[0] * ( double )c[2] - ( double )a[0] * ( double )b[2] * ( double )c[1];
 }
 
 //
@@ -150,7 +150,7 @@ void EmitBrushPrimitTextureCoordinates( face_t *f, idWinding *w, patchMesh_t *pa
 	// in case the texcoords matrix is empty, build a default one same behaviour as if
 	// scale[0]==0 && scale[1]==0 in old code
 	//
-	if(	f->brushprimit_texdef.coords[0][0] == 0 &&
+	if( f->brushprimit_texdef.coords[0][0] == 0 &&
 			f->brushprimit_texdef.coords[1][0] == 0 &&
 			f->brushprimit_texdef.coords[0][1] == 0 &&
 			f->brushprimit_texdef.coords[1][1] == 0 ) {
@@ -752,7 +752,7 @@ void TextureLockTransformation_BrushPrimit( face_t *f ) {
 
 				// compute normal of plane after rotation
 				VectorRotate3(f->plane.Normal(), vRotate, rNormal);
-		*/
+				*/
 	} else {
 		VectorSubtract( Orig, txl_origin, temp );
 		for( j = 0; j < 3; j++ ) {
@@ -1089,8 +1089,8 @@ void Face_SetAxialScale_BrushPrimit( face_t *face, bool y ) {
 		ComputeAxisBase(face->plane.normal, texS, texT);
 		float	Os = 0, Ot = 0;
 		for (int i = 0; i < face->face_winding->numpoints; i++) {
-			Os += DotProduct(face->face_winding->p[i], texS);
-			Ot += DotProduct(face->face_winding->p[i], texT);
+		Os += DotProduct(face->face_winding->p[i], texS);
+		Ot += DotProduct(face->face_winding->p[i], texT);
 		}
 
 		common->Printf("Face2 x: %f  y: %f  \n", Os, Ot);
@@ -1100,5 +1100,5 @@ void Face_SetAxialScale_BrushPrimit( face_t *face, bool y ) {
 		//Os /= face->face_winding->numpoints;
 		//Ot /= face->face_winding->numpoints;
 
-	*/
+		*/
 }

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -86,7 +86,7 @@ void R_WriteTGA( const char *filename, const byte *data, int width, int height, 
 		buffer[17] = ( 1 << 5 );	// flip bit, for normal top to bottom raster order
 	}
 	// swap rgb to bgr
-	for( i = imgStart ; i < bufferSize ; i += 4 ) {
+	for( i = imgStart; i < bufferSize; i += 4 ) {
 		buffer[i] = data[i - imgStart + 2];		// blue
 		buffer[i + 1] = data[i - imgStart + 1];		// green
 		buffer[i + 2] = data[i - imgStart + 0];		// red
@@ -123,13 +123,13 @@ void R_WritePalTGA( const char *filename, const byte *data, const byte *palette,
 		buffer[17] = ( 1 << 5 );	// flip bit, for normal top to bottom raster order
 	}
 	// store palette, swapping rgb to bgr
-	for( i = palStart ; i < imgStart ; i += 3 ) {
+	for( i = palStart; i < imgStart; i += 3 ) {
 		buffer[i] = palette[i - palStart + 2];		// blue
 		buffer[i + 1] = palette[i - palStart + 1];		// green
 		buffer[i + 2] = palette[i - palStart + 0];		// red
 	}
 	// store the image data
-	for( i = imgStart ; i < bufferSize ; i++ ) {
+	for( i = imgStart; i < bufferSize; i++ ) {
 		buffer[i] = data[i - imgStart];
 	}
 	fileSystem->WriteFile( filename, buffer, bufferSize );
@@ -235,33 +235,33 @@ static void LoadBMP( const char *name, byte **pic, int *width, int *height, ID_T
 	buf_p = buffer;
 	bmpHeader.id[0] = *buf_p++;
 	bmpHeader.id[1] = *buf_p++;
-	bmpHeader.fileSize = LittleLong( * ( long * ) buf_p );
+	bmpHeader.fileSize = LittleLong( *( long * )buf_p );
 	buf_p += 4;
-	bmpHeader.reserved0 = LittleLong( * ( long * ) buf_p );
+	bmpHeader.reserved0 = LittleLong( *( long * )buf_p );
 	buf_p += 4;
-	bmpHeader.bitmapDataOffset = LittleLong( * ( long * ) buf_p );
+	bmpHeader.bitmapDataOffset = LittleLong( *( long * )buf_p );
 	buf_p += 4;
-	bmpHeader.bitmapHeaderSize = LittleLong( * ( long * ) buf_p );
+	bmpHeader.bitmapHeaderSize = LittleLong( *( long * )buf_p );
 	buf_p += 4;
-	bmpHeader.width = LittleLong( * ( long * ) buf_p );
+	bmpHeader.width = LittleLong( *( long * )buf_p );
 	buf_p += 4;
-	bmpHeader.height = LittleLong( * ( long * ) buf_p );
+	bmpHeader.height = LittleLong( *( long * )buf_p );
 	buf_p += 4;
-	bmpHeader.planes = LittleShort( * ( short * ) buf_p );
+	bmpHeader.planes = LittleShort( *( short * )buf_p );
 	buf_p += 2;
-	bmpHeader.bitsPerPixel = LittleShort( * ( short * ) buf_p );
+	bmpHeader.bitsPerPixel = LittleShort( *( short * )buf_p );
 	buf_p += 2;
-	bmpHeader.compression = LittleLong( * ( long * ) buf_p );
+	bmpHeader.compression = LittleLong( *( long * )buf_p );
 	buf_p += 4;
-	bmpHeader.bitmapDataSize = LittleLong( * ( long * ) buf_p );
+	bmpHeader.bitmapDataSize = LittleLong( *( long * )buf_p );
 	buf_p += 4;
-	bmpHeader.hRes = LittleLong( * ( long * ) buf_p );
+	bmpHeader.hRes = LittleLong( *( long * )buf_p );
 	buf_p += 4;
-	bmpHeader.vRes = LittleLong( * ( long * ) buf_p );
+	bmpHeader.vRes = LittleLong( *( long * )buf_p );
 	buf_p += 4;
-	bmpHeader.colors = LittleLong( * ( long * ) buf_p );
+	bmpHeader.colors = LittleLong( *( long * )buf_p );
 	buf_p += 4;
-	bmpHeader.importantColors = LittleLong( * ( long * ) buf_p );
+	bmpHeader.importantColors = LittleLong( *( long * )buf_p );
 	buf_p += 4;
 	memcpy( bmpHeader.palette, buf_p, sizeof( bmpHeader.palette ) );
 	if( bmpHeader.bitsPerPixel == 8 ) {
@@ -308,7 +308,7 @@ static void LoadBMP( const char *name, byte **pic, int *width, int *height, ID_T
 				*pixbuf++ = 0xff;
 				break;
 			case 16:
-				shortPixel = * ( unsigned short * ) pixbuf;
+				shortPixel = *( unsigned short * )pixbuf;
 				pixbuf += 2;
 				*pixbuf++ = ( shortPixel & ( 31 << 10 ) ) >> 7;
 				*pixbuf++ = ( shortPixel & ( 31 << 5 ) ) >> 2;
@@ -408,8 +408,8 @@ static void LoadPCX( const char *filename, byte **pic, byte **palette, int *widt
 		*height = ymax + 1;
 	}
 	// FIXME: use bytes_per_line here?
-	for( y = 0 ; y <= ymax ; y++, pix += xmax + 1 ) {
-		for( x = 0 ; x <= xmax ; ) {
+	for( y = 0; y <= ymax; y++, pix += xmax + 1 ) {
+		for( x = 0; x <= xmax; ) {
 			dataByte = *raw++;
 			if( ( dataByte & 0xC0 ) == 0xC0 ) {
 				runLength = dataByte & 0x3F;
@@ -451,7 +451,7 @@ static void LoadPCX32( const char *filename, byte **pic, int *width, int *height
 	}
 	c = ( *width ) * ( *height );
 	pic32 = *pic = ( byte * )R_StaticAlloc( 4 * c );
-	for( i = 0 ; i < c ; i++ ) {
+	for( i = 0; i < c; i++ ) {
 		p = pic8[i];
 		pic32[0] = palette[p * 3];
 		pic32[1] = palette[p * 3 + 1];
@@ -585,7 +585,7 @@ static void LoadTGA( const char *name, byte **pic, int *width, int *height, ID_T
 				}
 			}
 		}
-	} else if( targa_header.image_type == 10 ) {  // Runlength encoded RGB images
+	} else if( targa_header.image_type == 10 ) { // Runlength encoded RGB images
 		unsigned char red, green, blue, alphabyte, packetHeader, packetSize, j;
 		red = 0;
 		green = 0;
@@ -596,7 +596,7 @@ static void LoadTGA( const char *name, byte **pic, int *width, int *height, ID_T
 			for( column = 0; column < columns; ) {
 				packetHeader = *buf_p++;
 				packetSize = 1 + ( packetHeader & 0x7f );
-				if( packetHeader & 0x80 ) {         // run-length packet
+				if( packetHeader & 0x80 ) {        // run-length packet
 					switch( targa_header.pixel_size ) {
 					case 24:
 						blue = *buf_p++;
@@ -620,7 +620,7 @@ static void LoadTGA( const char *name, byte **pic, int *width, int *height, ID_T
 						*pixbuf++ = blue;
 						*pixbuf++ = alphabyte;
 						column++;
-						if( column == columns ) {  // run spans across rows
+						if( column == columns ) { // run spans across rows
 							column = 0;
 							if( row > 0 ) {
 								row--;
@@ -630,7 +630,7 @@ static void LoadTGA( const char *name, byte **pic, int *width, int *height, ID_T
 							pixbuf = targa_rgba + row * columns * 4;
 						}
 					}
-				} else {                          // non run-length packet
+				} else {                        // non run-length packet
 					for( j = 0; j < packetSize; j++ ) {
 						switch( targa_header.pixel_size ) {
 						case 24:
@@ -657,7 +657,7 @@ static void LoadTGA( const char *name, byte **pic, int *width, int *height, ID_T
 							break;
 						}
 						column++;
-						if( column == columns ) {  // pixel packet run spans across rows
+						if( column == columns ) { // pixel packet run spans across rows
 							column = 0;
 							if( row > 0 ) {
 								row--;
@@ -701,16 +701,16 @@ static boolean fill_input_buffer( j_decompress_ptr cinfo ) {
 static void skip_input_data( j_decompress_ptr cinfo, long num_bytes ) {
 	struct jpeg_source_mgr *src = ( struct jpeg_source_mgr * ) cinfo->src;
 	if( num_bytes > 0 ) {
-		src->next_input_byte += ( size_t ) num_bytes;
-		src->bytes_in_buffer -= ( size_t ) num_bytes;
+		src->next_input_byte += ( size_t )num_bytes;
+		src->bytes_in_buffer -= ( size_t )num_bytes;
 	}
 }
 static void term_source( j_decompress_ptr cinfo ) {}
 static void jpeg_mem_src( j_decompress_ptr cinfo, void *buffer, long nbytes ) {
 	struct jpeg_source_mgr *src;
-	if( cinfo->src == NULL ) {  /* first time for this JPEG object? */
+	if( cinfo->src == NULL ) { /* first time for this JPEG object? */
 		cinfo->src = ( struct jpeg_source_mgr * )
-					 ( *cinfo->mem->alloc_small )( ( j_common_ptr ) cinfo, JPOOL_PERMANENT,
+					 ( *cinfo->mem->alloc_small )( ( j_common_ptr )cinfo, JPOOL_PERMANENT,
 							 sizeof( struct jpeg_source_mgr ) );
 	}
 	src = ( struct jpeg_source_mgr * ) cinfo->src;
@@ -799,7 +799,7 @@ static void LoadJPG( const char *filename, unsigned char **pic, int *width, int 
 	/* Step 2: specify data source (eg, a file) */
 	jpeg_mem_src( &cinfo, fbuffer, len );
 	/* Step 3: read file parameters with jpeg_read_header() */
-	( void ) jpeg_read_header( &cinfo, true );
+	( void )jpeg_read_header( &cinfo, true );
 	/* We can ignore the return value from jpeg_read_header since
 	 *   (a) suspension is not possible with the stdio data source, and
 	 *   (b) we passed TRUE to reject a tables-only JPEG file as an error.
@@ -810,7 +810,7 @@ static void LoadJPG( const char *filename, unsigned char **pic, int *width, int 
 	 * jpeg_read_header(), so we do nothing here.
 	 */
 	/* Step 5: Start decompressor */
-	( void ) jpeg_start_decompress( &cinfo );
+	( void )jpeg_start_decompress( &cinfo );
 	/* We can ignore the return value since suspension is not possible
 	 * with the stdio data source.
 	 */
@@ -842,7 +842,7 @@ static void LoadJPG( const char *filename, unsigned char **pic, int *width, int 
 		 */
 		bbuf = ( ( out + ( row_stride * cinfo.output_scanline ) ) );
 		buffer = &bbuf;
-		( void ) jpeg_read_scanlines( &cinfo, buffer, 1 );
+		( void )jpeg_read_scanlines( &cinfo, buffer, 1 );
 	}
 	// clear all the alphas to 255
 	{
@@ -850,12 +850,12 @@ static void LoadJPG( const char *filename, unsigned char **pic, int *width, int 
 		byte	*buf;
 		buf = *pic;
 		j = cinfo.output_width * cinfo.output_height * 4;
-		for( i = 3 ; i < j ; i += 4 ) {
+		for( i = 3; i < j; i += 4 ) {
 			buf[i] = 255;
 		}
 	}
 	/* Step 7: Finish decompression */
-	( void ) jpeg_finish_decompress( &cinfo );
+	( void )jpeg_finish_decompress( &cinfo );
 	/* We can ignore the return value since suspension is not possible
 	 * with the stdio data source.
 	 */
@@ -922,7 +922,7 @@ void R_LoadImage( const char *cname, byte **pic, int *width, int *height, ID_TIM
 	idStr ext;
 	name.ExtractFileExtension( ext );
 	if( ext == "tga" ) {
-		LoadTGA( name.c_str(), pic, width, height, timestamp );            // try tga first
+		LoadTGA( name.c_str(), pic, width, height, timestamp );          // try tga first
 		if( ( pic && *pic == 0 ) || ( timestamp && *timestamp == -1 ) ) {
 			name.StripFileExtension();
 			name.DefaultFileExtension( ".jpg" );
@@ -950,9 +950,9 @@ void R_LoadImage( const char *cname, byte **pic, int *width, int *height, ID_TIM
 		byte	*resampledBuffer;
 		w = *width;
 		h = *height;
-		for( scaled_width = 1 ; scaled_width < w ; scaled_width <<= 1 )
+		for( scaled_width = 1; scaled_width < w; scaled_width <<= 1 )
 			;
-		for( scaled_height = 1 ; scaled_height < h ; scaled_height <<= 1 )
+		for( scaled_height = 1; scaled_height < h; scaled_height <<= 1 )
 			;
 		if( scaled_width != w || scaled_height != h ) {
 			if( globalImages->image_roundDown.GetBool() && scaled_width > w ) {
@@ -998,7 +998,7 @@ bool R_LoadCubeImages( const char *imgName, cubeFiles_t extensions, byte *pics[6
 	if( timestamp ) {
 		*timestamp = 0;
 	}
-	for( i = 0 ; i < 6 ; i++ ) {
+	for( i = 0; i < 6; i++ ) {
 		idStr::snPrintf( fullName, sizeof( fullName ), "%s%s", imgName, sides[i] );
 		ID_TIME_T thisTime;
 		if( !pics ) {
@@ -1051,7 +1051,7 @@ bool R_LoadCubeImages( const char *imgName, cubeFiles_t extensions, byte *pics[6
 	if( i != 6 ) {
 		// we had an error, so free everything
 		if( pics ) {
-			for( j = 0 ; j < i ; j++ ) {
+			for( j = 0; j < i; j++ ) {
 				R_StaticFree( pics[j] );
 			}
 		}

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -115,17 +115,17 @@ Quit:
 void tdmDeclTDM_MatInfo::precacheMap( idMapFile *map ) {
 	int numEntities = map->GetNumEntities();
 	int e;
-	for( e = 0 ; e < numEntities ; e++ ) {
+	for( e = 0; e < numEntities; e++ ) {
 		idMapEntity *ent = map->GetEntity( e );
 		int numPrimitives = ent->GetNumPrimitives();
 		int p;
-		for( p = 0 ; p < numPrimitives ; p++ ) {
+		for( p = 0; p < numPrimitives; p++ ) {
 			idMapPrimitive *prim = ent->GetPrimitive( p );
 			if( prim->GetType() == idMapPrimitive::TYPE_BRUSH ) {
 				idMapBrush *brush = dynamic_cast<idMapBrush *>( prim );
 				int numSides = brush->GetNumSides();
 				int s;
-				for( s = 0 ; s < numSides ; s++ ) {
+				for( s = 0; s < numSides; s++ ) {
 					idMapBrushSide *side = brush->GetSide( s );
 					declManager->MediaPrint( "Precaching brush TDM_MatInfo %s\n", side->GetMaterial() );
 					declManager->FindType( DECL_TDM_MATINFO, side->GetMaterial() );
@@ -144,7 +144,7 @@ void tdmDeclTDM_MatInfo::precacheMap( idMapFile *map ) {
 void tdmDeclTDM_MatInfo::precacheModel( idRenderModel *model ) {
 	int numSurfaces = model->NumSurfaces();
 	int s;
-	for( s = 0 ; s < numSurfaces ; s++ ) {
+	for( s = 0; s < numSurfaces; s++ ) {
 		const modelSurface_t *surface = model->Surface( s );
 		declManager->MediaPrint( "Precaching TDM_MatInfo %s\n", surface->shader->GetName() );
 		declManager->FindType( DECL_TDM_MATINFO, surface->shader->GetName() );

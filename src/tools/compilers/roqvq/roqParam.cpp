@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #include "precompiled_engine.h"
 #pragma hdrstop
 
@@ -345,18 +345,18 @@ void roqParam::GetNthInputFileName( idStr &fileName, int n ) {
 		}
 		if( padding[myfield] == true ) {
 			if( useTimecodeForRange ) {
-				hrs = index / ( 30 * 60 * 60 ) ;
+				hrs = index / ( 30 * 60 * 60 );
 				mins = ( index / ( 30 * 60 ) ) % 60;
 				secs = ( index / ( 30 ) ) % 60;
 				frs = index % 30;
 				sprintf( fileName, "%s%.02d%.02d/%.02d%.02d%.02d%.02d%s", left, hrs, mins, hrs, mins, secs, frs, right );
 			} else  {
 				sprintf( tempfile, "%032d", index );
-				sprintf( fileName, "%s%s%s", left, &tempfile[ 32 - numpadding[myfield] ], right );
+				sprintf( fileName, "%s%s%s", left, &tempfile[32 - numpadding[myfield]], right );
 			}
 		} else {
 			if( useTimecodeForRange ) {
-				hrs = index / ( 30 * 60 * 60 ) ;
+				hrs = index / ( 30 * 60 * 60 );
 				mins = ( index / ( 30 * 60 ) ) % 60;
 				secs = ( index / ( 30 ) ) % 60;
 				frs = index % 30;
@@ -377,7 +377,7 @@ void roqParam::GetNthInputFileName( idStr &fileName, int n ) {
 		}
 		if( padding[myfield] == true ) {
 			sprintf( tempfile, "%032d", index );
-			sprintf( fileName, "%s%s%s", left, &tempfile[ 32 - numpadding[myfield] ], right );
+			sprintf( fileName, "%s%s%s", left, &tempfile[32 - numpadding[myfield]], right );
 		} else {
 			sprintf( fileName, "%s%d%s", left, index, right );
 		}
@@ -392,7 +392,7 @@ void roqParam::GetNthInputFileName( idStr &fileName, int n ) {
 		}
 		if( padding2[myfield] == true ) {
 			sprintf( tempfile, "%032d", index );
-			fileName += va( "\n%s%s%s", left, &tempfile[ 32 - numpadding2[myfield] ], right );
+			fileName += va( "\n%s%s%s", left, &tempfile[32 - numpadding2[myfield]], right );
 		} else {
 			fileName += va( "\n%s%d%s", left, index, right );
 		}

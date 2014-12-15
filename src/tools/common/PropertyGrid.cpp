@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -28,7 +28,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 class rvPropertyGridItem {
 public:
 
-	rvPropertyGridItem( ) {
+	rvPropertyGridItem() {
 	}
 
 	idStr						mName;
@@ -44,13 +44,13 @@ constructor
 ================
 */
 rvPropertyGrid::rvPropertyGrid( void ) {
-	mWindow			= NULL;
-	mEdit			= NULL;
-	mListWndProc	= NULL;
-	mSplitter		= 100;
-	mSelectedItem	= -1;
-	mEditItem		= -1;
-	mState			= STATE_NORMAL;
+	mWindow = NULL;
+	mEdit = NULL;
+	mListWndProc = NULL;
+	mSplitter = 100;
+	mSelectedItem = -1;
+	mEditItem = -1;
+	mState = STATE_NORMAL;
 }
 
 /*
@@ -68,7 +68,7 @@ bool rvPropertyGrid::Create( HWND parent, int id, int style ) {
 	SetWindowLong( mWindow, GWL_USERDATA, ( LONG )this );
 	SetWindowLong( mWindow, GWL_WNDPROC, ( LONG )WndProc );
 	LoadLibrary( "Riched20.dll" );
-	mEdit = CreateWindowEx( 0, "RichEdit20A", "", WS_CHILD, 0, 0, 0, 0, mWindow, ( HMENU ) 999, win32.hInstance, NULL );
+	mEdit = CreateWindowEx( 0, "RichEdit20A", "", WS_CHILD, 0, 0, 0, 0, mWindow, ( HMENU )999, win32.hInstance, NULL );
 	SendMessage( mEdit, EM_SETEVENTMASK, 0, ENM_KEYEVENTS );
 	// Set the font of the list box
 	HDC			dc;
@@ -80,7 +80,7 @@ bool rvPropertyGrid::Create( HWND parent, int id, int style ) {
 	SendMessage( mWindow, WM_SETFONT, ( WPARAM )CreateFontIndirect( &lf ), 0 );
 	SendMessage( mEdit, WM_SETFONT, ( WPARAM )CreateFontIndirect( &lf ), 0 );
 	ReleaseDC( mWindow, dc );
-	RemoveAllItems( );
+	RemoveAllItems();
 	return true;
 }
 
@@ -156,7 +156,7 @@ void rvPropertyGrid::FinishEdit( void ) {
 		nmpg.hdr.code = PGN_ITEMCHANGED;
 		nmpg.hdr.hwndFrom = mWindow;
 		nmpg.hdr.idFrom = GetWindowLong( mWindow, GWL_ID );
-		nmpg.mName  = item->mName;
+		nmpg.mName = item->mName;
 		nmpg.mValue = value;
 		if( !SendMessage( GetParent( mWindow ), WM_NOTIFY, 0, ( LONG )&nmpg ) ) {
 			mState = STATE_EDIT;
@@ -251,7 +251,7 @@ Remove all items from the property grid
 void rvPropertyGrid::RemoveAllItems( void ) {
 	int i;
 	// free the memory for all the items
-	for( i = SendMessage( mWindow, LB_GETCOUNT, 0, 0 ); i > 0; i -- ) {
+	for( i = SendMessage( mWindow, LB_GETCOUNT, 0, 0 ); i > 0; i-- ) {
 		delete( rvPropertyGridItem * )SendMessage( mWindow, LB_GETITEMDATA, i - 1, 0 );
 	}
 	// remove all items from the listbox itself
@@ -306,7 +306,7 @@ Window procedure for property grid
 ================
 */
 LRESULT CALLBACK rvPropertyGrid::WndProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam ) {
-	rvPropertyGrid *grid = ( rvPropertyGrid * ) GetWindowLong( hWnd, GWL_USERDATA );
+	rvPropertyGrid *grid = ( rvPropertyGrid * )GetWindowLong( hWnd, GWL_USERDATA );
 	switch( msg ) {
 	case WM_SETFOCUS:
 		//			grid->mEditItem = -1;
@@ -345,10 +345,10 @@ LRESULT CALLBACK rvPropertyGrid::WndProc( HWND hWnd, UINT msg, WPARAM wParam, LP
 					switch( filter->wParam ) {
 					case VK_RETURN:
 					case VK_TAB:
-						grid->FinishEdit( );
+						grid->FinishEdit();
 						return 1;
 					case VK_ESCAPE:
-						grid->CancelEdit( );
+						grid->CancelEdit();
 						return 1;
 					}
 				}
@@ -367,7 +367,7 @@ LRESULT CALLBACK rvPropertyGrid::WndProc( HWND hWnd, UINT msg, WPARAM wParam, LP
 	case WM_COMMAND:
 		if( lParam == ( long )grid->mEdit ) {
 			if( HIWORD( wParam ) == EN_KILLFOCUS ) {
-				grid->FinishEdit( );
+				grid->FinishEdit();
 				return true;
 			}
 		}
@@ -383,13 +383,13 @@ LRESULT CALLBACK rvPropertyGrid::WndProc( HWND hWnd, UINT msg, WPARAM wParam, LP
 		if( grid->mState == rvPropertyGrid::STATE_EDIT ) {
 			break;
 		}
-		item  = ( short )LOWORD( SendMessage( hWnd, LB_ITEMFROMPOINT, 0, lParam ) );
+		item = ( short )LOWORD( SendMessage( hWnd, LB_ITEMFROMPOINT, 0, lParam ) );
 		if( item == -1 ) {
 			break;
 		}
 		gitem = ( rvPropertyGridItem * )SendMessage( hWnd, LB_GETITEMDATA, item, 0 );
-		pt.x  = LOWORD( lParam );
-		pt.y  = HIWORD( lParam );
+		pt.x = LOWORD( lParam );
+		pt.y = HIWORD( lParam );
 		SendMessage( hWnd, LB_GETITEMRECT, item, ( LPARAM )&rItem );
 		if( !gitem->mName.Icmp( "" ) ) {
 			rItem.right = rItem.left + grid->mSplitter - 1;
@@ -454,7 +454,7 @@ bool rvPropertyGrid::ReflectMessage( HWND hWnd, UINT msg, WPARAM wParam, LPARAM 
 		HandleDrawItem( wParam, lParam );
 		return true;
 	case WM_MEASUREITEM: {
-		MEASUREITEMSTRUCT *mis = ( MEASUREITEMSTRUCT * ) lParam;
+		MEASUREITEMSTRUCT *mis = ( MEASUREITEMSTRUCT * )lParam;
 		mis->itemHeight = 18;
 		return true;
 	}
@@ -470,8 +470,8 @@ Handle the draw item message
 ================
 */
 int rvPropertyGrid::HandleDrawItem( WPARAM wParam, LPARAM lParam ) {
-	DRAWITEMSTRUCT		*dis  = ( DRAWITEMSTRUCT * ) lParam;
-	rvPropertyGridItem *item = ( rvPropertyGridItem * ) dis->itemData;
+	DRAWITEMSTRUCT		*dis = ( DRAWITEMSTRUCT * )lParam;
+	rvPropertyGridItem *item = ( rvPropertyGridItem * )dis->itemData;
 	RECT				rTemp;
 	HBRUSH				brush;
 	if( !item ) {

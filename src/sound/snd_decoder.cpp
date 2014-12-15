@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -29,16 +29,16 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 ===================================================================================
 
-  Thread safe decoder memory allocator.
+Thread safe decoder memory allocator.
 
-  Each OggVorbis decoder consumes about 150kB of memory.
+Each OggVorbis decoder consumes about 150kB of memory.
 
 ===================================================================================
 */
 
 idDynamicBlockAlloc < byte, 1 << 20, 128 >		decoderMemoryAllocator;
 
-const int MIN_OGGVORBIS_MEMORY				= 768 * 1024;
+const int MIN_OGGVORBIS_MEMORY = 768 * 1024;
 
 extern "C" {
 	void *_decoder_malloc( size_t size );
@@ -73,7 +73,7 @@ void _decoder_free( void *memblock ) {
 /*
 ===================================================================================
 
-  OggVorbis file loading/decoding.
+OggVorbis file loading/decoding.
 
 ===================================================================================
 */
@@ -197,7 +197,7 @@ idWaveFile::ReadOGG
 int idWaveFile::ReadOGG( byte *pBuffer, int dwSizeToRead, int *pdwSizeRead ) {
 	int total = dwSizeToRead;
 	char *bufferPtr = ( char * )pBuffer;
-	OggVorbis_File *ov = ( OggVorbis_File * ) ogg;
+	OggVorbis_File *ov = ( OggVorbis_File * )ogg;
 	do {
 		int ret = ov_read( ov, bufferPtr, total >= 4096 ? 4096 : total, Swap_IsBigEndian(), 2, 1, &ov->stream );
 		if( ret == 0 ) {
@@ -222,7 +222,7 @@ idWaveFile::CloseOGG
 ====================
 */
 int idWaveFile::CloseOGG( void ) {
-	OggVorbis_File *ov = ( OggVorbis_File * ) ogg;
+	OggVorbis_File *ov = ( OggVorbis_File * )ogg;
 	if( ov != NULL ) {
 		Sys_EnterCriticalSection( CRITICAL_SECTION_ONE );
 		ov_clear( ov );
@@ -239,7 +239,7 @@ int idWaveFile::CloseOGG( void ) {
 /*
 ===================================================================================
 
-  idSampleDecoderLocal
+idSampleDecoderLocal
 
 ===================================================================================
 */

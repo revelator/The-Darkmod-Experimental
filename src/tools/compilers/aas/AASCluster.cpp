@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -287,7 +287,7 @@ bool idAASCluster::TestPortals( void ) {
 		}
 		// may not removed this portal if it has a reachability to a removed portal
 		for( reach = area->reach; reach; reach = reach->next ) {
-			area2 = &file->areas[ reach->toAreaNum ];
+			area2 = &file->areas[reach->toAreaNum];
 			if( area2->contents & AREACONTENTS_CLUSTERPORTAL ) {
 				continue;
 			}
@@ -300,7 +300,7 @@ bool idAASCluster::TestPortals( void ) {
 		}
 		// may not removed this portal if it has a reversed reachability to a removed portal
 		for( reach = area->rev_reach; reach; reach = reach->rev_next ) {
-			area2 = &file->areas[ reach->toAreaNum ];
+			area2 = &file->areas[reach->toAreaNum];
 			if( area2->contents & AREACONTENTS_CLUSTERPORTAL ) {
 				continue;
 			}
@@ -324,7 +324,7 @@ bool idAASCluster::TestPortals( void ) {
 		}
 		// this portal may not have reachabilities to a portal that doesn't seperate the same clusters
 		for( reach = area->reach; reach; reach = reach->next ) {
-			area2 = &file->areas[ reach->toAreaNum ];
+			area2 = &file->areas[reach->toAreaNum];
 			if( !( area2->contents & AREACONTENTS_CLUSTERPORTAL ) ) {
 				continue;
 			}
@@ -333,7 +333,7 @@ bool idAASCluster::TestPortals( void ) {
 				ok = false;
 				continue;
 			}
-			portal2 = &file->portals[ -file->areas[ reach->toAreaNum ].cluster ];
+			portal2 = &file->portals[-file->areas[reach->toAreaNum].cluster];
 			if( ( portal2->clusters[0] != portal->clusters[0] && portal2->clusters[0] != portal->clusters[1] ) ||
 					( portal2->clusters[1] != portal->clusters[0] && portal2->clusters[1] != portal->clusters[1] ) ) {
 				area2->contents &= ~AREACONTENTS_CLUSTERPORTAL;
@@ -360,16 +360,16 @@ void idAASCluster::RemoveInvalidPortals( void ) {
 		}
 		numOpenAreas = 0;
 		for( j = 0; j < file->areas[i].numFaces; j++ ) {
-			face1Num = file->faceIndex[ file->areas[i].firstFace + j ];
-			face1 = &file->faces[ abs( face1Num ) ];
-			otherAreaNum = face1->areas[ face1Num < 0 ];
+			face1Num = file->faceIndex[file->areas[i].firstFace + j];
+			face1 = &file->faces[abs( face1Num )];
+			otherAreaNum = face1->areas[face1Num < 0];
 			if( !otherAreaNum ) {
 				continue;
 			}
 			for( k = 0; k < j; k++ ) {
-				face2Num = file->faceIndex[ file->areas[i].firstFace + k ];
-				face2 = &file->faces[ abs( face2Num ) ];
-				if( otherAreaNum == face2->areas[ face2Num < 0 ] ) {
+				face2Num = file->faceIndex[file->areas[i].firstFace + k];
+				face2 = &file->faces[abs( face2Num )];
+				if( otherAreaNum == face2->areas[face2Num < 0] ) {
 					break;
 				}
 			}

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __PHYSICS_H__
 #define __PHYSICS_H__
@@ -23,31 +23,31 @@
 /*
 ===============================================================================
 
-	Physics abstract class
+Physics abstract class
 
-	A physics object is a tool to manipulate the position and orientation of
-	an entity. The physics object is a container for idClipModels used for
-	collision detection. The physics deals with moving these collision models
-	through the world according to the laws of physics or other rules.
+A physics object is a tool to manipulate the position and orientation of
+an entity. The physics object is a container for idClipModels used for
+collision detection. The physics deals with moving these collision models
+through the world according to the laws of physics or other rules.
 
-	The mass of a clip model is the volume of the clip model times the density.
-	An arbitrary mass can however be set for specific clip models or the
-	whole physics object. The contents of a clip model is a set of bit flags
-	that define the contents. The clip mask defines the contents a clip model
-	collides with.
+The mass of a clip model is the volume of the clip model times the density.
+An arbitrary mass can however be set for specific clip models or the
+whole physics object. The contents of a clip model is a set of bit flags
+that define the contents. The clip mask defines the contents a clip model
+collides with.
 
-	The linear velocity of a physics object is a vector that defines the
-	translation of the center of mass in units per second. The angular velocity
-	of a physics object is a vector that passes through the center of mass. The
-	direction of this vector defines the axis of rotation and the magnitude
-	defines the rate of rotation about the axis in radians per second.
-	The gravity is the change in velocity per second due to gravitational force.
+The linear velocity of a physics object is a vector that defines the
+translation of the center of mass in units per second. The angular velocity
+of a physics object is a vector that passes through the center of mass. The
+direction of this vector defines the axis of rotation and the magnitude
+defines the rate of rotation about the axis in radians per second.
+The gravity is the change in velocity per second due to gravitational force.
 
-	Entities update their visual position and orientation from the physics
-	using GetOrigin() and GetAxis(). Direct origin and axis changes of
-	entities should go through the physics. In other words the physics origin
-	and axis are updated first and the entity updates its visual position
-	from the physics.
+Entities update their visual position and orientation from the physics
+using GetOrigin() and GetAxis(). Direct origin and axis changes of
+entities should go through the physics. In other words the physics origin
+and axis are updated first and the entity updates its visual position
+from the physics.
 
 ===============================================================================
 */

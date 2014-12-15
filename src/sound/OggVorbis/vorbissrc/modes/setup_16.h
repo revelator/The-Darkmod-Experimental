@@ -44,7 +44,7 @@ static double _global_mapping_16[4] = { 1., 2., 3., 4. };
 
 static double quality_mapping_16[4] = { -.1, .05, .5, 1. };
 
-static double _psy_compand_16_mapping[4] = { 0., .8, 1., 1.};
+static double _psy_compand_16_mapping[4] = { 0., .8, 1., 1. };
 
 ve_setup_data_template ve_setup_16_stereo = {
 	3,
@@ -76,8 +76,8 @@ ve_setup_data_template ve_setup_16_stereo = {
 	_psy_compand_16_mapping,
 	_psy_compand_16_mapping,
 
-	{_noise_start_16, _noise_start_16},
-	{ _noise_part_16, _noise_part_16},
+	{ _noise_start_16, _noise_start_16 },
+	{ _noise_part_16, _noise_part_16 },
 	_noise_thresh_16,
 
 	_psy_ath_floater_16,
@@ -127,8 +127,8 @@ ve_setup_data_template ve_setup_16_uncoupled = {
 	_psy_compand_16_mapping,
 	_psy_compand_16_mapping,
 
-	{_noise_start_16, _noise_start_16},
-	{ _noise_part_16, _noise_part_16},
+	{ _noise_start_16, _noise_start_16 },
+	{ _noise_part_16, _noise_part_16 },
 	_noise_thresh_16,
 
 	_psy_ath_floater_16,

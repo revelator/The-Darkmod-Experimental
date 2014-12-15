@@ -1,22 +1,22 @@
 // vim:ts=4:sw=4:cindent
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -147,76 +147,76 @@ void I18NLocal::Init() {
 	// build the reverse dictionary for TemplateFromEnglish
 	// TODO: Do this by looking them up in lang/english.lang?
 	// inventory categories
-	m_ReverseDict.Set( "Lockpicks",	"#str_02389" );
-	m_ReverseDict.Set( "Maps", 		"#str_02390" );
-	m_ReverseDict.Set( "Readables",	"#str_02391" );
-	m_ReverseDict.Set( "Keys",		"#str_02392" );
-	m_ReverseDict.Set( "Potions",	"#str_02393" );
-	m_ReverseDict.Set( "Tools",		"#str_02394" );
+	m_ReverseDict.Set( "Lockpicks", "#str_02389" );
+	m_ReverseDict.Set( "Maps", "#str_02390" );
+	m_ReverseDict.Set( "Readables", "#str_02391" );
+	m_ReverseDict.Set( "Keys", "#str_02392" );
+	m_ReverseDict.Set( "Potions", "#str_02393" );
+	m_ReverseDict.Set( "Tools", "#str_02394" );
 	// Do not add "Weapons", these do not have an inv_category (as it is invisible anyway). FIXME later?
 	// m_ReverseDict.Set( "Weapons",		"#str_02411" );
 	// inventory item names used in keybindings
-	m_ReverseDict.Set( "Mine",			"#str_02202" );
-	m_ReverseDict.Set( "Lantern",		"#str_02395" );
-	m_ReverseDict.Set( "Spyglass",		"#str_02396" );
-	m_ReverseDict.Set( "Compass",		"#str_02397" );
-	m_ReverseDict.Set( "Health Potion",	"#str_02398" );
-	m_ReverseDict.Set( "Breath Potion",	"#str_02399" );
-	m_ReverseDict.Set( "Holy Water",	"#str_02400" );
-	m_ReverseDict.Set( "Corpse",		"#str_02409" );
-	m_ReverseDict.Set( "Body",			"#str_02410" );
-	m_ReverseDict.Set( "Flashbomb",		"#str_02438" );
-	m_ReverseDict.Set( "Flashmine",		"#str_02439" );
+	m_ReverseDict.Set( "Mine", "#str_02202" );
+	m_ReverseDict.Set( "Lantern", "#str_02395" );
+	m_ReverseDict.Set( "Spyglass", "#str_02396" );
+	m_ReverseDict.Set( "Compass", "#str_02397" );
+	m_ReverseDict.Set( "Health Potion", "#str_02398" );
+	m_ReverseDict.Set( "Breath Potion", "#str_02399" );
+	m_ReverseDict.Set( "Holy Water", "#str_02400" );
+	m_ReverseDict.Set( "Corpse", "#str_02409" );
+	m_ReverseDict.Set( "Body", "#str_02410" );
+	m_ReverseDict.Set( "Flashbomb", "#str_02438" );
+	m_ReverseDict.Set( "Flashmine", "#str_02439" );
 	m_ReverseDict.Set( "Explosive Mine", "#str_02440" );
 	// difficulty names
-	m_ReverseDict.Set( "Easy",				"#str_03000" );
-	m_ReverseDict.Set( "Casual",			"#str_03001" );
-	m_ReverseDict.Set( "Novice",			"#str_03002" );
-	m_ReverseDict.Set( "Beginner",			"#str_03003" );
-	m_ReverseDict.Set( "Medium",			"#str_03004" );
-	m_ReverseDict.Set( "Normal",			"#str_03005" );
-	m_ReverseDict.Set( "Challenging",		"#str_03006" );
-	m_ReverseDict.Set( "Expert",			"#str_03007" );
-	m_ReverseDict.Set( "Master",			"#str_03008" );
-	m_ReverseDict.Set( "Veteran",			"#str_03009" );
-	m_ReverseDict.Set( "Hardcore",			"#str_03010" );
-	m_ReverseDict.Set( "Difficult",			"#str_03011" );
-	m_ReverseDict.Set( "Hard",				"#str_03012" );
-	m_ReverseDict.Set( "Apprentice",		"#str_03013" );
-	m_ReverseDict.Set( "Professional",		"#str_03014" );
-	m_ReverseDict.Set( "Braggard",			"#str_03015" );
+	m_ReverseDict.Set( "Easy", "#str_03000" );
+	m_ReverseDict.Set( "Casual", "#str_03001" );
+	m_ReverseDict.Set( "Novice", "#str_03002" );
+	m_ReverseDict.Set( "Beginner", "#str_03003" );
+	m_ReverseDict.Set( "Medium", "#str_03004" );
+	m_ReverseDict.Set( "Normal", "#str_03005" );
+	m_ReverseDict.Set( "Challenging", "#str_03006" );
+	m_ReverseDict.Set( "Expert", "#str_03007" );
+	m_ReverseDict.Set( "Master", "#str_03008" );
+	m_ReverseDict.Set( "Veteran", "#str_03009" );
+	m_ReverseDict.Set( "Hardcore", "#str_03010" );
+	m_ReverseDict.Set( "Difficult", "#str_03011" );
+	m_ReverseDict.Set( "Hard", "#str_03012" );
+	m_ReverseDict.Set( "Apprentice", "#str_03013" );
+	m_ReverseDict.Set( "Professional", "#str_03014" );
+	m_ReverseDict.Set( "Braggard", "#str_03015" );
 	// Monster names (also used as difficulty names)
-	m_ReverseDict.Set( "Ghost",				"#str_08003" );
-	m_ReverseDict.Set( "Spirit",			"#str_08009" );
-	m_ReverseDict.Set( "Zombie",			"#str_08015" );
-	m_ReverseDict.Set( "Ghoul",				"#str_08016" );
-	m_ReverseDict.Set( "Wraith",			"#str_08017" );
-	m_ReverseDict.Set( "Werebeast",			"#str_08018" );
+	m_ReverseDict.Set( "Ghost", "#str_08003" );
+	m_ReverseDict.Set( "Spirit", "#str_08009" );
+	m_ReverseDict.Set( "Zombie", "#str_08015" );
+	m_ReverseDict.Set( "Ghoul", "#str_08016" );
+	m_ReverseDict.Set( "Wraith", "#str_08017" );
+	m_ReverseDict.Set( "Werebeast", "#str_08018" );
 	// Other names (also used as difficulty names)
-	m_ReverseDict.Set( "Rogue",				"#str_08336" );
-	m_ReverseDict.Set( "Thief",				"#str_08340" );
-	m_ReverseDict.Set( "Thug",				"#str_08341" );
-	m_ReverseDict.Set( "Smuggler",			"#str_08352" );
-	m_ReverseDict.Set( "Shadow",			"#str_08353" );
-	m_ReverseDict.Set( "Swindler",			"#str_08354" );
-	m_ReverseDict.Set( "Taffer",			"#str_08355" );
+	m_ReverseDict.Set( "Rogue", "#str_08336" );
+	m_ReverseDict.Set( "Thief", "#str_08340" );
+	m_ReverseDict.Set( "Thug", "#str_08341" );
+	m_ReverseDict.Set( "Smuggler", "#str_08352" );
+	m_ReverseDict.Set( "Shadow", "#str_08353" );
+	m_ReverseDict.Set( "Swindler", "#str_08354" );
+	m_ReverseDict.Set( "Taffer", "#str_08355" );
 	// The article prefixes, with the suffix to use instead
-	m_ArticlesDict.Set( "A ",	", A" );	// English, Portuguese
-	m_ArticlesDict.Set( "An ",	", An" );	// English
-	m_ArticlesDict.Set( "Der ",	", Der" );	// German
-	m_ArticlesDict.Set( "Die ",	", Die" );	// German
-	m_ArticlesDict.Set( "Das ",	", Das" );	// German
-	m_ArticlesDict.Set( "De ",	", De" );	// Dutch, Danish
-	m_ArticlesDict.Set( "El ",	", El" );	// Spanish
-	m_ArticlesDict.Set( "Het ",	", Het" );	// Dutch
-	m_ArticlesDict.Set( "Il ",	", Il" );	// Italian
-	m_ArticlesDict.Set( "La ",	", La" );	// French, Italian
-	m_ArticlesDict.Set( "Las ",	", Las" );	// Spanish
-	m_ArticlesDict.Set( "Le ",	", Le" );	// French
-	m_ArticlesDict.Set( "Les ",	", Les" );	// French
-	m_ArticlesDict.Set( "Los ",	", Los" );	// Spanish
-	m_ArticlesDict.Set( "Os ",	", Os" );	// Portuguese
-	m_ArticlesDict.Set( "The ",	", The" );	// English
+	m_ArticlesDict.Set( "A ", ", A" );	// English, Portuguese
+	m_ArticlesDict.Set( "An ", ", An" );	// English
+	m_ArticlesDict.Set( "Der ", ", Der" );	// German
+	m_ArticlesDict.Set( "Die ", ", Die" );	// German
+	m_ArticlesDict.Set( "Das ", ", Das" );	// German
+	m_ArticlesDict.Set( "De ", ", De" );	// Dutch, Danish
+	m_ArticlesDict.Set( "El ", ", El" );	// Spanish
+	m_ArticlesDict.Set( "Het ", ", Het" );	// Dutch
+	m_ArticlesDict.Set( "Il ", ", Il" );	// Italian
+	m_ArticlesDict.Set( "La ", ", La" );	// French, Italian
+	m_ArticlesDict.Set( "Las ", ", Las" );	// Spanish
+	m_ArticlesDict.Set( "Le ", ", Le" );	// French
+	m_ArticlesDict.Set( "Les ", ", Les" );	// French
+	m_ArticlesDict.Set( "Los ", ", Los" );	// Spanish
+	m_ArticlesDict.Set( "Os ", ", Os" );	// Portuguese
+	m_ArticlesDict.Set( "The ", ", The" );	// English
 	m_Remap.Empty();						// by default, no remaps
 	// Create the correct dictionary and set fontLang
 	SetLanguage( cvarSystem->GetCVarString( "sys_lang" ), true );
@@ -348,7 +348,7 @@ int I18NLocal::LoadCharacterMapping( idStr &lang ) {
 	// format:
 	/*
 	{
-		"ff"	"b2"			// remap character 0xff to 0xb2
+	"ff"	"b2"			// remap character 0xff to 0xb2
 	}
 	*/
 	src.ExpectTokenString( "{" );
@@ -363,8 +363,8 @@ int I18NLocal::LoadCharacterMapping( idStr &lang ) {
 			}
 			// add the two numbers
 			//	common->Warning("got '%s' '%s'", tok.c_str(), tok2.c_str() );
-			m_Remap.Append( ( char ) tok.GetIntValue() );
-			m_Remap.Append( ( char ) tok2.GetIntValue() );
+			m_Remap.Append( ( char )tok.GetIntValue() );
+			m_Remap.Append( ( char )tok2.GetIntValue() );
 			//			common->Printf("I18N: Mapping %i (0x%02x) to %i (0x%02x)\n", tok.GetIntValue(), tok.GetIntValue(), tok2.GetIntValue(), tok2.GetIntValue() );
 		}
 	}
@@ -407,7 +407,7 @@ bool I18NLocal::SetLanguage( const char *lang, bool firstTime ) {
 		common->Printf( "I18N: '%s' not found.\n", file.c_str() );
 	} else {
 		// else fold the newly loaded strings into the system dict
-		int num = fmDict->GetNumKeyVals( );
+		int num = fmDict->GetNumKeyVals();
 		const idLangKeyValue  *kv;
 		for( int i = 0; i < num; i++ ) {
 			kv = fmDict->GetKeyVal( i );
@@ -427,7 +427,7 @@ bool I18NLocal::SetLanguage( const char *lang, bool firstTime ) {
 			common->Printf( "I18NLocal: '%s' not found, skipping it.\n", file.c_str() );
 		} else {
 			// else fold the newly loaded strings into the system dict unless they exist already
-			int num = fmDict->GetNumKeyVals( );
+			int num = fmDict->GetNumKeyVals();
 			const idLangKeyValue  *kv;
 			for( int i = 0; i < num; i++ ) {
 				kv = fmDict->GetKeyVal( i );

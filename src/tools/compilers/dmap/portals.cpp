@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -169,15 +169,15 @@ static void MakeHeadnodePortals( tree_t *tree ) {
 		return;
 	}
 	// pad with some space so there will never be null volume leafs
-	for( i = 0 ; i < 3 ; i++ ) {
+	for( i = 0; i < 3; i++ ) {
 		bounds[0][i] = tree->bounds[0][i] - SIDESPACE;
 		bounds[1][i] = tree->bounds[1][i] + SIDESPACE;
 		if( bounds[0][i] >= bounds[1][i] ) {
 			common->Error( "Backwards tree volume" );
 		}
 	}
-	for( i = 0 ; i < 3 ; i++ ) {
-		for( j = 0 ; j < 2 ; j++ ) {
+	for( i = 0; i < 3; i++ ) {
+		for( j = 0; j < 2; j++ ) {
 			n = j * 3 + i;
 			p = AllocPortal();
 			portals[n] = p;
@@ -196,8 +196,8 @@ static void MakeHeadnodePortals( tree_t *tree ) {
 		}
 	}
 	// clip the basewindings by all the other planes
-	for( i = 0 ; i < 6 ; i++ ) {
-		for( j = 0 ; j < 6 ; j++ ) {
+	for( i = 0; i < 6; i++ ) {
+		for( j = 0; j < 6; j++ ) {
 			if( j == i ) {
 				continue;
 			}
@@ -221,7 +221,7 @@ idWinding *BaseWindingForNode( node_t *node ) {
 	node_t		*n;
 	w = new idWinding( dmapGlobals.mapPlanes[node->planenum] );
 	// clip by all the parents
-	for( n = node->parent ; n && w ; ) {
+	for( n = node->parent; n && w; ) {
 		idPlane &plane = dmapGlobals.mapPlanes[n->planenum];
 		if( n->children[0] == node ) {
 			// take front
@@ -254,7 +254,7 @@ static void MakeNodePortal( node_t *node ) {
 	int			side;
 	w = BaseWindingForNode( node );
 	// clip the portal by all the other portals in the node
-	for( p = node->portals ; p && w; p = p->next[side] ) {
+	for( p = node->portals; p && w; p = p->next[side] ) {
 		idPlane	plane;
 		if( p->nodes[0] == node ) {
 			side = 0;
@@ -300,7 +300,7 @@ static void SplitNodePortals( node_t *node ) {
 	plane = &dmapGlobals.mapPlanes[node->planenum];
 	f = node->children[0];
 	b = node->children[1];
-	for( p = node->portals ; p ; p = next_portal ) {
+	for( p = node->portals; p; p = next_portal ) {
 		if( p->nodes[0] == node ) {
 			side = 0;
 		} else if( p->nodes[1] == node ) {
@@ -377,7 +377,7 @@ void CalcNodeBounds( node_t *node ) {
 	int			i;
 	// calc mins/maxs for both leafs and nodes
 	node->bounds.Clear();
-	for( p = node->portals ; p ; p = p->next[s] ) {
+	for( p = node->portals; p; p = p->next[s] ) {
 		s = ( p->nodes[1] == node );
 		for( i = 0; i < p->winding->GetNumPoints(); i++ ) {
 			node->bounds.AddPoint( ( *p->winding )[i].ToVec3() );
@@ -448,7 +448,7 @@ void FloodPortals_r( node_t *node, int dist ) {
 	}
 	c_floodedleafs++;
 	node->occupied = dist;
-	for( p = node->portals ; p ; p = p->next[s] ) {
+	for( p = node->portals; p; p = p->next[s] ) {
 		s = ( p->nodes[1] == node );
 		FloodPortals_r( p->nodes[!s], dist + 1 );
 	}
@@ -501,7 +501,7 @@ bool FloodEntities( tree_t *tree ) {
 	tree->outside_node.occupied = 0;
 	c_floodedleafs = 0;
 	bool errorShown = false;
-	for( i = 1 ; i < dmapGlobals.num_entities ; i++ ) {
+	for( i = 1; i < dmapGlobals.num_entities; i++ ) {
 		idMapEntity	*mapEnt;
 		mapEnt = dmapGlobals.uEntities[i].mapEntity;
 		if( !mapEnt->epairs.GetVector( "origin", "", origin ) ) {
@@ -579,14 +579,14 @@ static side_t	*FindSideForPortal( uPortal_t *p ) {
 	side_t	*s, *s2;
 	// scan both bordering nodes brush lists for a portal brush
 	// that shares the plane
-	for( i = 0 ; i < 2 ; i++ ) {
+	for( i = 0; i < 2; i++ ) {
 		node = p->nodes[i];
-		for( b = node->brushlist ; b ; b = b->next ) {
+		for( b = node->brushlist; b; b = b->next ) {
 			if( !( b->contents & CONTENTS_AREAPORTAL ) ) {
 				continue;
 			}
 			orig = b->original;
-			for( j = 0 ; j < orig->numsides ; j++ ) {
+			for( j = 0; j < orig->numsides; j++ ) {
 				s = orig->sides + j;
 				if( !s->visibleHull ) {
 					continue;
@@ -636,7 +636,7 @@ void FloodAreas_r( node_t *node ) {
 	}
 	c_areaFloods++;
 	node->area = c_areas;
-	for( p = node->portals ; p ; p = p->next[s] ) {
+	for( p = node->portals; p; p = p->next[s] ) {
 		node_t	*other;
 		s = ( p->nodes[1] == node );
 		other = p->nodes[!s];
@@ -732,7 +732,7 @@ static void FindInterAreaPortals_r( node_t *node ) {
 	if( node->opaque ) {
 		return;
 	}
-	for( p = node->portals ; p ; p = p->next[s] ) {
+	for( p = node->portals; p; p = p->next[s] ) {
 		node_t	*other;
 		s = ( p->nodes[1] == node );
 		other = p->nodes[!s];
@@ -755,7 +755,7 @@ static void FindInterAreaPortals_r( node_t *node ) {
 			continue;
 		}
 		// see if we have created this portal before
-		for( i = 0 ; i < numInterAreaPortals ; i++ ) {
+		for( i = 0; i < numInterAreaPortals; i++ ) {
 			iap = &interAreaPortals[i];
 			if( side == iap->side &&
 					( ( p->nodes[0]->area == iap->area0 && p->nodes[1]->area == iap->area1 )

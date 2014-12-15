@@ -1,38 +1,38 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 /*
 ===============================================================================
 
-	Physics object for a liquid.  This class contains physics properties for a
-	given liquid.  Note: Liquid does not necessarily imply water.
+Physics object for a liquid.  This class contains physics properties for a
+given liquid.  Note: Liquid does not necessarily imply water.
 
-	This class does very little functionally as it relies on the other physics
-	classes to do the bouoyancy calculations.  It simply holds information and
-	allows the other object to deal with that information however they please.
+This class does very little functionally as it relies on the other physics
+classes to do the bouoyancy calculations.  It simply holds information and
+allows the other object to deal with that information however they please.
 
-	As a side note, the difference between minSplashVelocity and
-	minWaveVelocity is that min splash is the minimum amount of velocity
-	before the liquid spawns a splash particle.  minWaveVelocity is to generate
-	a wave on the surface, not a splash.  It should be lower than min splash
-	velocity.  It's the reason some things won't splash but will still cause
-	ripples in the water (especially when surfacing)
+As a side note, the difference between minSplashVelocity and
+minWaveVelocity is that min splash is the minimum amount of velocity
+before the liquid spawns a splash particle.  minWaveVelocity is to generate
+a wave on the surface, not a splash.  It should be lower than min splash
+velocity.  It's the reason some things won't splash but will still cause
+ripples in the water (especially when surfacing)
 ===============================================================================
 */
 

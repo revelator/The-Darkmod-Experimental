@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -189,7 +189,7 @@ bool Entity_NameIsUnique( const char *name ) {
 
 /*
  =======================================================================================================================
-    Map_Free
+ Map_Free
  =======================================================================================================================
  */
 void Map_Free( void ) {
@@ -373,7 +373,7 @@ entity_t *EntityFromMapEntity( idMapEntity *mapent, CWaitDlg *dlg ) {
 extern entity_t *Entity_PostParse( entity_t *ent, brush_t *pList );
 /*
 =======================================================================================================================
-   Map_LoadFile
+Map_LoadFile
 =======================================================================================================================
 */
 void Map_LoadFile( const char *filename ) {
@@ -492,7 +492,7 @@ idMapPrimitive *BrushToMapPrimitive( const brush_t *b, const idVec3 &origin ) {
 		patch->SetSize( b->pPatch->width, b->pPatch->height );
 		for( int i = 0; i < b->pPatch->width; i++ ) {
 			for( int j = 0; j < b->pPatch->height; j++ ) {
-				( *patch )[j * patch->GetWidth() + i].xyz =  b->pPatch->ctrl( i, j ).xyz - origin;
+				( *patch )[j * patch->GetWidth() + i].xyz = b->pPatch->ctrl( i, j ).xyz - origin;
 				( *patch )[j * patch->GetWidth() + i].st = b->pPatch->ctrl( i, j ).st;
 			}
 		}
@@ -575,7 +575,7 @@ idMapEntity *EntityToMapEntity( entity_t *e, bool use_region, CWaitDlg *dlg ) {
 
 /*
  =======================================================================================================================
-    Map_SaveFile
+ Map_SaveFile
  =======================================================================================================================
  */
 bool Map_SaveFile( const char *filename, bool use_region, bool autosave ) {
@@ -704,7 +704,7 @@ bool Map_SaveFile( const char *filename, bool use_region, bool autosave ) {
 
 /*
  =======================================================================================================================
-    Map_New
+ Map_New
  =======================================================================================================================
  */
 void Map_New( void ) {
@@ -735,7 +735,7 @@ brush_t *region_sides[6];
 
 /*
  =======================================================================================================================
-    AddRegionBrushes a regioned map will have temp walls put up at the region boundary
+ AddRegionBrushes a regioned map will have temp walls put up at the region boundary
  =======================================================================================================================
  */
 void AddRegionBrushes( void ) {
@@ -819,7 +819,7 @@ bool Map_IsBrushFiltered( brush_t *b ) {
 
 /*
  =======================================================================================================================
-    Map_RegionOff Other filtering options may still be on
+ Map_RegionOff Other filtering options may still be on
  =======================================================================================================================
  */
 void Map_RegionOff( void ) {
@@ -865,7 +865,7 @@ void Map_ApplyRegion( void ) {
 
 /*
  =======================================================================================================================
-    Map_RegionSelectedBrushes
+ Map_RegionSelectedBrushes
  =======================================================================================================================
  */
 void Map_RegionSelectedBrushes( void ) {
@@ -894,7 +894,7 @@ void Map_RegionSelectedBrushes( void ) {
 
 /*
  =======================================================================================================================
-    Map_RegionXY
+ Map_RegionXY
  =======================================================================================================================
  */
 void Map_RegionXY( void ) {
@@ -922,7 +922,7 @@ void Map_RegionXY( void ) {
 
 /*
  =======================================================================================================================
-    Map_RegionTallBrush
+ Map_RegionTallBrush
  =======================================================================================================================
  */
 void Map_RegionTallBrush( void ) {
@@ -942,7 +942,7 @@ void Map_RegionTallBrush( void ) {
 
 /*
  =======================================================================================================================
-    Map_RegionBrush
+ Map_RegionBrush
  =======================================================================================================================
  */
 void Map_RegionBrush( void ) {
@@ -1123,8 +1123,8 @@ void Map_ImportBuffer( char *buf, bool renameEntities ) {
 	//
 	g_bScreenUpdates = false;
 	for( int i = 0; i < ptrs.GetSize(); i++ ) {
-		Brush_Build( reinterpret_cast < brush_t * >( ptrs[i] ), true, false );
-		Select_Brush( reinterpret_cast < brush_t * >( ptrs[i] ), true, false );
+		Brush_Build( reinterpret_cast <brush_t *>( ptrs[i] ), true, false );
+		Select_Brush( reinterpret_cast <brush_t *>( ptrs[i] ), true, false );
 	}
 	// ::LockWindowUpdate(NULL);
 	g_bScreenUpdates = true;
@@ -1151,7 +1151,7 @@ void Map_ImportFile( char *fileName ) {
 	Sys_BeginWait();
 	temp = fileName;
 	temp.BackSlashesToSlashes();
-	if( LoadFile( temp, ( void ** ) &buf ) != -1 ) {
+	if( LoadFile( temp, ( void ** )&buf ) != -1 ) {
 		Map_ImportBuffer( buf );
 		Mem_Free( buf );
 		Map_BuildBrushData();
@@ -1282,7 +1282,7 @@ bool WriteFileString( FILE *fp, char *string, ... ) {
 				break;
 			case 'c':
 				i = va_arg( argPtr, long );
-				fprintf( fp, "%c", ( char ) i );
+				fprintf( fp, "%c", ( char )i );
 				break;
 			case 's':
 				str = va_arg( argPtr, char * );
@@ -1379,7 +1379,7 @@ void MemFile_fprintf( CMemFile *pMemFile, const char *string, ... ) {
 				break;
 			case 'c':
 				i = va_arg( argPtr, long );
-				sprintf( buff, "%c", ( char ) i );
+				sprintf( buff, "%c", ( char )i );
 				break;
 			case 's':
 				str = va_arg( argPtr, char * );

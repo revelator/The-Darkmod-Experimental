@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #include "precompiled_engine.h"
 #pragma hdrstop
 
@@ -140,8 +140,8 @@ loading the actual data.
 */
 void idSoundCache::BeginLevelLoad() {
 	insideLevelLoad = true;
-	for( int i = 0 ; i < listCache.Num() ; i++ ) {
-		idSoundSample *sample = listCache[ i ];
+	for( int i = 0; i < listCache.Num(); i++ ) {
+		idSoundSample *sample = listCache[i];
 		if( !sample ) {
 			continue;
 		}
@@ -167,8 +167,8 @@ void idSoundCache::EndLevelLoad() {
 	// purge the ones we don't need
 	useCount = 0;
 	purgeCount = 0;
-	for( int i = 0 ; i < listCache.Num() ; i++ ) {
-		idSoundSample	*sample = listCache[ i ];
+	for( int i = 0; i < listCache.Num(); i++ ) {
+		idSoundSample	*sample = listCache[i];
 		if( !sample ) {
 			continue;
 		}
@@ -307,7 +307,7 @@ void idSoundSample::MakeDefault( void ) {
 	objectMemSize = objectSize * sizeof( short );
 	nonCacheData = ( byte * )soundCacheAllocator.Alloc( objectMemSize );
 	short *ncd = ( short * )nonCacheData;
-	for( i = 0; i < MIXBUFFER_SAMPLES; i ++ ) {
+	for( i = 0; i < MIXBUFFER_SAMPLES; i++ ) {
 		v = sin( idMath::PI * 2 * i / 64 );
 		sample = v * 0x4000;
 		ncd[i * 2 + 0] = sample;
@@ -446,7 +446,7 @@ void idSoundSample::Load( void ) {
 					common->Error( "idSoundCache Load: error %i loading data into OpenAL hardware buffer", alError );
 				} else {
 					// Compute amplitude block size
-					int blockSize = 512 * objectInfo.nSamplesPerSec / 44100 ;
+					int blockSize = 512 * objectInfo.nSamplesPerSec / 44100;
 					// Allocate amplitude data array
 					amplitudeData = ( byte * )soundCacheAllocator.Alloc( ( objectSize / blockSize + 1 ) * 2 * sizeof( short ) );
 					// Creating array of min/max amplitude pairs per blockSize samples
@@ -456,11 +456,11 @@ void idSoundSample::Load( void ) {
 						short max = -32768;
 						int j;
 						for( j = 0; j < Min( objectSize - i, blockSize ); j++ ) {
-							min = ( ( short * )nonCacheData )[ i + j ] < min ? ( ( short * )nonCacheData )[ i + j ] : min;
-							max = ( ( short * )nonCacheData )[ i + j ] > max ? ( ( short * )nonCacheData )[ i + j ] : max;
+							min = ( ( short * )nonCacheData )[i + j] < min ? ( ( short * )nonCacheData )[i + j] : min;
+							max = ( ( short * )nonCacheData )[i + j] > max ? ( ( short * )nonCacheData )[i + j] : max;
 						}
-						( ( short * )amplitudeData )[( i / blockSize ) * 2     ] = min;
-						( ( short * )amplitudeData )[( i / blockSize ) * 2 + 1 ] = max;
+						( ( short * )amplitudeData )[( i / blockSize ) * 2] = min;
+						( ( short * )amplitudeData )[( i / blockSize ) * 2 + 1] = max;
 					}
 					hardwareBuffer = true;
 				}
@@ -469,9 +469,9 @@ void idSoundSample::Load( void ) {
 		// OGG decompressed at load time (when smaller than s_decompressionLimit seconds, 6 seconds by default)
 		if( objectInfo.wFormatTag == WAVE_FORMAT_TAG_OGG ) {
 #if defined(MACOS_X)
-			if( ( objectSize < ( ( int ) objectInfo.nSamplesPerSec * idSoundSystemLocal::s_decompressionLimit.GetInteger() ) ) ) {
+			if( ( objectSize < ( ( int )objectInfo.nSamplesPerSec * idSoundSystemLocal::s_decompressionLimit.GetInteger() ) ) ) {
 #else
-			if( ( alIsExtensionPresent( ID_ALCHAR "EAX-RAM" ) == AL_TRUE ) && ( objectSize < ( ( int ) objectInfo.nSamplesPerSec * idSoundSystemLocal::s_decompressionLimit.GetInteger() ) ) ) {
+			if( ( alIsExtensionPresent( ID_ALCHAR "EAX-RAM" ) == AL_TRUE ) && ( objectSize < ( ( int )objectInfo.nSamplesPerSec * idSoundSystemLocal::s_decompressionLimit.GetInteger() ) ) ) {
 #endif
 				alGetError();
 				alGenBuffers( 1, &openalBuffer );
@@ -522,7 +522,7 @@ void idSoundSample::Load( void ) {
 						common->Error( "idSoundCache Load OGG: error %i loading data into OpenAL hardware buffer", alError );
 					} else {
 						// Compute amplitude block size
-						int blockSize = 512 * objectInfo.nSamplesPerSec / 44100 ;
+						int blockSize = 512 * objectInfo.nSamplesPerSec / 44100;
 						// Allocate amplitude data array
 						amplitudeData = ( byte * )soundCacheAllocator.Alloc( ( objectSize / blockSize + 1 ) * 2 * sizeof( short ) );
 						// Creating array of min/max amplitude pairs per blockSize samples
@@ -532,11 +532,11 @@ void idSoundSample::Load( void ) {
 							short max = -32768;
 							int j;
 							for( j = 0; j < Min( objectSize - i, blockSize ); j++ ) {
-								min = ( ( short * )destData )[ i + j ] < min ? ( ( short * )destData )[ i + j ] : min;
-								max = ( ( short * )destData )[ i + j ] > max ? ( ( short * )destData )[ i + j ] : max;
+								min = ( ( short * )destData )[i + j] < min ? ( ( short * )destData )[i + j] : min;
+								max = ( ( short * )destData )[i + j] > max ? ( ( short * )destData )[i + j] : max;
 							}
-							( ( short * )amplitudeData )[( i / blockSize ) * 2     ] = min;
-							( ( short * )amplitudeData )[( i / blockSize ) * 2 + 1 ] = max;
+							( ( short * )amplitudeData )[( i / blockSize ) * 2] = min;
+							( ( short * )amplitudeData )[( i / blockSize ) * 2 + 1] = max;
 						}
 						hardwareBuffer = true;
 					}

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -106,11 +106,11 @@ void CObjectiveLocation::Think() {
 	if( clipModel != NULL ) {
 		// angua: This is adapted from trigger_touch to allow more precise detection
 		idBounds bounds;
-		idClipModel *cm, *clipModelList[ MAX_GENTITIES ];
+		idClipModel *cm, *clipModelList[MAX_GENTITIES];
 		bounds.FromTransformedBounds( clipModel->GetBounds(), clipModel->GetOrigin(), clipModel->GetAxis() );
 		int numClipModels = gameLocal.clip.ClipModelsTouchingBounds( bounds, -1, clipModelList, MAX_GENTITIES );
 		for( int k = 0; k < numClipModels; k++ ) {
-			cm = clipModelList[ k ];
+			cm = clipModelList[k];
 			if( !cm->IsTraceModel() ) {
 				continue;
 			}
@@ -147,7 +147,7 @@ void CObjectiveLocation::Think() {
 	// compare current list to previous clock tick list to generate added list
 	for( int i = 0; i < current.Num(); i++ ) {
 		// Try to look up this entity in the existing list
-		if( m_EntsInBounds.FindIndex( current[i] ) == -1  && current[i].GetEntity() != NULL ) {
+		if( m_EntsInBounds.FindIndex( current[i] ) == -1 && current[i].GetEntity() != NULL ) {
 			// Not found, call objectives system for all missing or added ents
 			DM_LOG( LC_OBJECTIVES, LT_DEBUG )LOGSTRING( "Objective entity %s entered objective location %s \r", current[i].GetEntity()->name.c_str(), name.c_str() );
 			gameLocal.m_MissionData->MissionEvent( COMP_LOCATION, current[i].GetEntity(), this, true );

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -65,7 +65,7 @@ void RandomizeStack( void ) {
 	int		bytes = 4000000;
 	byte	*buf = ( byte * )_alloca( bytes );
 	int	fill = rand() & 255;
-	for( int i = 0 ; i < bytes ; i++ ) {
+	for( int i = 0; i < bytes; i++ ) {
 		buf[i] = fill;
 	}
 }
@@ -217,8 +217,8 @@ void idSessionLocal::Clear() {
 	savegameVersion = 0;
 	currentMapName.Clear();
 	aviDemoShortName.Clear();
-	msgFireBack[ 0 ].Clear();
-	msgFireBack[ 1 ].Clear();
+	msgFireBack[0].Clear();
+	msgFireBack[1].Clear();
 	timeHitch = 0;
 	rw = NULL;
 	sw = NULL;
@@ -438,7 +438,7 @@ FindUnusedFileName
 static idStr FindUnusedFileName( const char *format ) {
 	int i;
 	char	filename[1024];
-	for( i = 0 ; i < 999 ; i++ ) {
+	for( i = 0; i < 999; i++ ) {
 		sprintf( filename, format, i );
 		int len = fileSystem->ReadFile( filename, NULL, NULL );
 		if( len <= 0 ) {
@@ -850,7 +850,7 @@ void idSessionLocal::AVIRenderDemo( const char *_demoName ) {
 	if( !readDemo ) {
 		return;
 	}
-	BeginAVICapture( demoName.c_str() ) ;
+	BeginAVICapture( demoName.c_str() );
 	// I don't understand why I need to do this twice, something
 	// strange with the nvidia swapbuffers?
 	UpdateScreen();
@@ -863,7 +863,7 @@ idSessionLocal::AVICmdDemo
 */
 void idSessionLocal::AVICmdDemo( const char *demoName ) {
 	StartPlayingCmdDemo( demoName );
-	BeginAVICapture( demoName ) ;
+	BeginAVICapture( demoName );
 }
 
 /*
@@ -887,7 +887,7 @@ void idSessionLocal::AVIGame( const char *demoName ) {
 		// write a one byte stub .game file just so the FindUnusedFileName works,
 		fileSystem->WriteFile( demoName, demoName, 1 );
 	}
-	BeginAVICapture( demoName ) ;
+	BeginAVICapture( demoName );
 }
 
 /*
@@ -1006,7 +1006,7 @@ SaveCmdDemoFromFile
 */
 void idSessionLocal::SaveCmdDemoToFile( idFile *file ) {
 	mapSpawnData.serverInfo.WriteToFileHandle( file );
-	for( int i = 0 ; i < MAX_ASYNC_CLIENTS ; i++ ) {
+	for( int i = 0; i < MAX_ASYNC_CLIENTS; i++ ) {
 		mapSpawnData.userInfo[i].WriteToFileHandle( file );
 		mapSpawnData.persistentPlayerInfo[i].WriteToFileHandle( file );
 	}
@@ -1024,7 +1024,7 @@ idSessionLocal::LoadCmdDemoFromFile
 */
 void idSessionLocal::LoadCmdDemoFromFile( idFile *file ) {
 	mapSpawnData.serverInfo.ReadFromFileHandle( file );
-	for( int i = 0 ; i < MAX_ASYNC_CLIENTS ; i++ ) {
+	for( int i = 0; i < MAX_ASYNC_CLIENTS; i++ ) {
 		mapSpawnData.userInfo[i].ReadFromFileHandle( file );
 		mapSpawnData.persistentPlayerInfo[i].ReadFromFileHandle( file );
 	}
@@ -1173,7 +1173,7 @@ void idSessionLocal::LoadLoadingGui( const char *mapName ) {
 	idStr stripped = mapName;
 	stripped.StripFileExtension();
 	stripped.StripPath();
-	char guiMap[ MAX_STRING_CHARS ];
+	char guiMap[MAX_STRING_CHARS];
 	strncpy( guiMap, va( "guis/map/%s.gui", stripped.c_str() ), MAX_STRING_CHARS );
 	// give the gamecode a chance to override
 	game->GetMapLoadingGUI( guiMap );
@@ -1192,17 +1192,17 @@ idSessionLocal::GetBytesNeededForMapLoad
 */
 /* grayman #3763 - no longer used
 int idSessionLocal::GetBytesNeededForMapLoad( const char *mapName ) {
-	const idDecl *mapDecl = declManager->FindType( DECL_MAPDEF, mapName, false );
-	const idDeclEntityDef *mapDef = static_cast<const idDeclEntityDef *>( mapDecl );
-	if ( mapDef ) {
-		return mapDef->dict.GetInt( va("size%d", Max( 0, com_machineSpec.GetInteger() ) ) );
-	} else {
-		if ( com_machineSpec.GetInteger() < 2 ) {
-			return 200 * 1024 * 1024;
-		} else {
-			return 400 * 1024 * 1024;
-		}
-	}
+const idDecl *mapDecl = declManager->FindType( DECL_MAPDEF, mapName, false );
+const idDeclEntityDef *mapDef = static_cast<const idDeclEntityDef *>( mapDecl );
+if ( mapDef ) {
+return mapDef->dict.GetInt( va("size%d", Max( 0, com_machineSpec.GetInteger() ) ) );
+} else {
+if ( com_machineSpec.GetInteger() < 2 ) {
+return 200 * 1024 * 1024;
+} else {
+return 400 * 1024 * 1024;
+}
+}
 }
 */
 
@@ -1300,9 +1300,9 @@ void idSessionLocal::ExecuteMapChange( bool noFadeWipe ) {
 	// work for new maps etc. after the first load. we can also drop the sizes into the default.cfg
 	fileSystem->ResetReadCount();
 	if ( !reloadingSameMap  ) {
-		bytesNeededForMapLoad = GetBytesNeededForMapLoad( mapString.c_str() );
+	bytesNeededForMapLoad = GetBytesNeededForMapLoad( mapString.c_str() );
 	} else {
-		bytesNeededForMapLoad = 30 * 1024 * 1024;
+	bytesNeededForMapLoad = 30 * 1024 * 1024;
 	}
 	*/
 	ClearWipe();
@@ -1873,7 +1873,7 @@ void idSessionLocal::DrawCmdGraph() {
 	renderSystem->SetColor4( 0.1f, 0.1f, 0.1f, 1.0f );
 	renderSystem->DrawStretchPic( 0, 480 - ANGLE_GRAPH_HEIGHT, MAX_BUFFERED_USERCMD * ANGLE_GRAPH_STRETCH, ANGLE_GRAPH_HEIGHT, 0, 0, 1, 1, whiteMaterial );
 	renderSystem->SetColor4( 0.9f, 0.9f, 0.9f, 1.0f );
-	for( int i = 0 ; i < MAX_BUFFERED_USERCMD - 4 ; i++ ) {
+	for( int i = 0; i < MAX_BUFFERED_USERCMD - 4; i++ ) {
 		usercmd_t	cmd = usercmdGen->TicCmd( latchedTicNumber - ( MAX_BUFFERED_USERCMD - 4 ) + i );
 		int h = cmd.angles[1];
 		h >>= 8;
@@ -1891,13 +1891,13 @@ void idSessionLocal::PacifierUpdate( loadkey_t key, int count ) { // grayman #37
 	/* 'count' is used as follows:
 
 	   - for key points, it is either '0' (not used), or the
-	     total number of expected interim 'sub-key' points, which
-	     is used to determine the incremental amount to be added to
-	     the loading percentage as each 'sub-key' point is reported.
+	   total number of expected interim 'sub-key' points, which
+	   is used to determine the incremental amount to be added to
+	   the loading percentage as each 'sub-key' point is reported.
 
 	   - for 'sub-key' points, it is the number of objects processed,
-	     but it's not used
-	*/
+	   but it's not used
+	   */
 	if( !insideExecuteMapChange ) {
 		return;
 	}
@@ -2272,7 +2272,7 @@ void idSessionLocal::Frame() {
 		// this may cause commands run in a previous frame to
 		// be run again if we are going at above the real time rate
 		lastGameTic = latchedTicNumber - com_fixedTic.GetInteger();
-	} else if(	aviCaptureMode ) {
+	} else if( aviCaptureMode ) {
 		lastGameTic = latchedTicNumber - com_aviDemoTics.GetInteger();
 	}
 	// force only one game frame update this frame.  the game code requests this after skipping cinematics
@@ -2289,7 +2289,7 @@ void idSessionLocal::Frame() {
 	}
 	int	gameTicsToRun = latchedTicNumber - lastGameTic;
 	int i;
-	for( i = 0 ; i < gameTicsToRun ; i++ ) {
+	for( i = 0; i < gameTicsToRun; i++ ) {
 		RunGameTic();
 		if( !mapSpawned ) {
 			// exited game play
@@ -2388,7 +2388,7 @@ void idSessionLocal::RunGameTic() {
 		args.TokenizeString( ret.sessionCommand, false );
 		if( !idStr::Icmp( args.Argv( 0 ), "map" ) ) {
 			// get current player states
-			for( int i = 0 ; i < numClients ; i++ ) {
+			for( int i = 0; i < numClients; i++ ) {
 				mapSpawnData.persistentPlayerInfo[i] = game->GetPersistentPlayerInfo( i );
 			}
 			// clear the devmap key on serverinfo, so player spawns

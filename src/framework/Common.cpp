@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -139,7 +139,7 @@ public:
 	virtual void				ActivateTool( bool active );
 	virtual void				WriteConfigToFile( const char *filename, const char *basePath = "fs_savepath" );
 	virtual void				WriteFlaggedCVarsToFile( const char *filename, int flags, const char *setCmd );
-	virtual void				BeginRedirect( char *buffer, int buffersize, void ( *flush )( const char * ) );
+	virtual void				BeginRedirect( char *buffer, int buffersize, void( *flush )( const char * ) );
 	virtual void				EndRedirect( void );
 	virtual void				SetRefreshOnPrint( bool set );
 	virtual void				Printf( const char *fmt, ... ) id_attribute( ( format( printf, 2, 3 ) ) );
@@ -204,7 +204,7 @@ private:
 
 	char 						*rd_buffer;
 	int							rd_buffersize;
-	void	( *rd_flush )( const char *buffer );
+	void( *rd_flush )( const char *buffer );
 
 	idStr						warningCaption;
 	idStrList					warningList;
@@ -249,7 +249,7 @@ idCommonLocal::idCommonLocal( void ) {
 idCommonLocal::BeginRedirect
 ==================
 */
-void idCommonLocal::BeginRedirect( char *buffer, int buffersize, void ( *flush )( const char * ) ) {
+void idCommonLocal::BeginRedirect( char *buffer, int buffersize, void( *flush )( const char * ) ) {
 	if( !buffer || !buffersize || !flush ) {
 		return;
 	}
@@ -265,7 +265,7 @@ idCommonLocal::EndRedirect
 ==================
 */
 void idCommonLocal::EndRedirect( void ) {
-	if( rd_flush && rd_buffer[ 0 ] ) {
+	if( rd_flush && rd_buffer[0] ) {
 		rd_flush( rd_buffer );
 	}
 	rd_buffer = NULL;
@@ -763,14 +763,14 @@ void idCommonLocal::ParseCommandLine( int argc, const char **argv ) {
 	current_count = 0;
 	// API says no program path
 	for( int i = 0; i < argc; i++ ) {
-		if( argv[ i ][ 0 ] == '+' ) {
+		if( argv[i][0] == '+' ) {
 			com_numConsoleLines++;
-			com_consoleLines[ com_numConsoleLines - 1 ].AppendArg( argv[ i ] + 1 );
+			com_consoleLines[com_numConsoleLines - 1].AppendArg( argv[i] + 1 );
 		} else {
 			if( !com_numConsoleLines ) {
 				com_numConsoleLines++;
 			}
-			com_consoleLines[ com_numConsoleLines - 1 ].AppendArg( argv[ i ] );
+			com_consoleLines[com_numConsoleLines - 1].AppendArg( argv[i] );
 		}
 	}
 }
@@ -910,10 +910,10 @@ skip loading of config file (Darkmod.cfg)
 ==================
 */
 bool idCommonLocal::SafeMode( void ) {
-	for( int i = 0 ; i < com_numConsoleLines ; i++ ) {
-		if( !idStr::Icmp( com_consoleLines[ i ].Argv( 0 ), "safe" )
-				|| !idStr::Icmp( com_consoleLines[ i ].Argv( 0 ), "cvar_restart" ) ) {
-			com_consoleLines[ i ].Clear();
+	for( int i = 0; i < com_numConsoleLines; i++ ) {
+		if( !idStr::Icmp( com_consoleLines[i].Argv( 0 ), "safe" )
+				|| !idStr::Icmp( com_consoleLines[i].Argv( 0 ), "cvar_restart" ) ) {
+			com_consoleLines[i].Clear();
 			return true;
 		}
 	}
@@ -929,22 +929,22 @@ and force fullscreen off in those cases
 ==================
 */
 void idCommonLocal::CheckToolMode( void ) {
-	for( int i = 0 ; i < com_numConsoleLines ; i++ ) {
-		if( !idStr::Icmp( com_consoleLines[ i ].Argv( 0 ), "guieditor" ) ) {
+	for( int i = 0; i < com_numConsoleLines; i++ ) {
+		if( !idStr::Icmp( com_consoleLines[i].Argv( 0 ), "guieditor" ) ) {
 			com_editors |= EDITOR_GUI;
-		} else if( !idStr::Icmp( com_consoleLines[ i ].Argv( 0 ), "editor" ) ) {
+		} else if( !idStr::Icmp( com_consoleLines[i].Argv( 0 ), "editor" ) ) {
 			com_editors |= EDITOR_RADIANT;
 		}
 		// Nerve: Add support for the material editor
-		else if( !idStr::Icmp( com_consoleLines[ i ].Argv( 0 ), "materialEditor" ) ) {
+		else if( !idStr::Icmp( com_consoleLines[i].Argv( 0 ), "materialEditor" ) ) {
 			com_editors |= EDITOR_MATERIAL;
 		}
-		if( !idStr::Icmp( com_consoleLines[ i ].Argv( 0 ), "renderbump" )
-				|| !idStr::Icmp( com_consoleLines[ i ].Argv( 0 ), "editor" )
-				|| !idStr::Icmp( com_consoleLines[ i ].Argv( 0 ), "guieditor" )
-				|| !idStr::Icmp( com_consoleLines[ i ].Argv( 0 ), "debugger" )
-				|| !idStr::Icmp( com_consoleLines[ i ].Argv( 0 ), "dmap" )
-				|| !idStr::Icmp( com_consoleLines[ i ].Argv( 0 ), "materialEditor" )
+		if( !idStr::Icmp( com_consoleLines[i].Argv( 0 ), "renderbump" )
+				|| !idStr::Icmp( com_consoleLines[i].Argv( 0 ), "editor" )
+				|| !idStr::Icmp( com_consoleLines[i].Argv( 0 ), "guieditor" )
+				|| !idStr::Icmp( com_consoleLines[i].Argv( 0 ), "debugger" )
+				|| !idStr::Icmp( com_consoleLines[i].Argv( 0 ), "dmap" )
+				|| !idStr::Icmp( com_consoleLines[i].Argv( 0 ), "materialEditor" )
 		  ) {
 			cvarSystem->SetCVarBool( "r_fullscreen", false );
 			return;
@@ -966,16 +966,16 @@ be after execing the config and default.
 void idCommonLocal::StartupVariable( const char *match, bool once ) {
 	const char *s;
 	for( int i = 0; i < com_numConsoleLines; i++ ) {
-		if( strcmp( com_consoleLines[ i ].Argv( 0 ), "set" ) ) {
+		if( strcmp( com_consoleLines[i].Argv( 0 ), "set" ) ) {
 			continue;
 		}
-		s = com_consoleLines[ i ].Argv( 1 );
+		s = com_consoleLines[i].Argv( 1 );
 		if( !match || !idStr::Icmp( s, match ) ) {
-			cvarSystem->SetCVarString( s, com_consoleLines[ i ].Argv( 2 ) );
+			cvarSystem->SetCVarString( s, com_consoleLines[i].Argv( 2 ) );
 			if( once ) {
 				// kill the line
 				for( int j = i + 1; j < com_numConsoleLines; j++ ) {
-					com_consoleLines[ j - 1 ] = com_consoleLines[ j ];
+					com_consoleLines[j - 1] = com_consoleLines[j];
 				}
 				com_numConsoleLines--;
 			}
@@ -1085,7 +1085,7 @@ void idCommonLocal::WriteConfigToFile( const char *filename, const char *basePat
 	sprintf( runtag, "%s - %s", cvarSystem->GetCVarString( "si_version" ), curtime );
 	config_compressor->Init( &compressed, true, 8 );
 	config_compressor->Write( runtag.c_str(), runtag.Length() );
-	config_compressor->FinishCompress( );
+	config_compressor->FinishCompress();
 	out.Encode( ( const byte * )compressed.GetDataPtr(), compressed.Length() );
 	f->Printf( "// %s\n", out.c_str() );
 #endif
@@ -1166,7 +1166,7 @@ int	idCommonLocal::KeyState( int key ) {
 ==================
 Com_Editor_f
 
-  we can start the editor dynamically, but we won't ever get back
+we can start the editor dynamically, but we won't ever get back
 ==================
 */
 static void Com_Editor_f( const idCmdArgs &args ) {
@@ -1343,7 +1343,7 @@ static void Com_Crash_f( const idCmdArgs &args ) {
 		commonLocal.Printf( "crash may only be used in developer mode\n" );
 		return;
 	}
-	* ( int * ) 0 = 0x12345678;
+	*( int * )0 = 0x12345678;
 }
 
 /*
@@ -1454,7 +1454,7 @@ void Com_ReloadEngine_f( const idCmdArgs &args ) {
 	common->Printf( "============= ReloadEngine end ===============\n" );
 	if( !cmdSystem->PostReloadEngine() ) {
 		if( menu ) {
-			session->StartMenu( );
+			session->StartMenu();
 		}
 	}
 }
@@ -1851,7 +1851,7 @@ void Com_LocalizeMaps_f( const idCmdArgs &args ) {
 		idStrList files;
 		GetFileList( "z:/d3xp/d3xp/maps/game", "*.map", files );
 		for( int i = 0; i < files.Num(); i++ ) {
-			idStr file =  fileSystem->OSPathToRelativePath( files[i] );
+			idStr file = fileSystem->OSPathToRelativePath( files[i] );
 			strCount += LocalizeMap( file, strTable, listHash, excludeList, write );
 		}
 	}
@@ -1915,7 +1915,7 @@ void Com_LocalizeGuiParmsTest_f( const idCmdArgs &args ) {
 	for( int i = 0; i < files.Num(); i++ ) {
 		common->Printf( "Testing Map '%s'\n", files[i].c_str() );
 		idMapFile map;
-		idStr file =  fileSystem->OSPathToRelativePath( files[i] );
+		idStr file = fileSystem->OSPathToRelativePath( files[i] );
 		if( map.Parse( file, false, false ) ) {
 			int count = map.GetNumEntities();
 			for( int j = 0; j < count; j++ ) {
@@ -1951,7 +1951,7 @@ void Com_LocalizeMapsTest_f( const idCmdArgs &args ) {
 	for( int i = 0; i < files.Num(); i++ ) {
 		common->Printf( "Testing Map '%s'\n", files[i].c_str() );
 		idMapFile map;
-		idStr file =  fileSystem->OSPathToRelativePath( files[i] );
+		idStr file = fileSystem->OSPathToRelativePath( files[i] );
 		if( map.Parse( file, false, false ) ) {
 			int count = map.GetNumEntities();
 			for( int j = 0; j < count; j++ ) {
@@ -1960,12 +1960,12 @@ void Com_LocalizeMapsTest_f( const idCmdArgs &args ) {
 					//Temp code to get a list of all entity key value pairs
 					/*idStr classname = ent->epairs.GetString("classname");
 					if(classname == "worldspawn" || classname == "func_static" || classname == "light" || classname == "speaker" || classname.Left(8) == "trigger_") {
-						continue;
+					continue;
 					}
 					for( int i = 0; i < ent->epairs.GetNumKeyVals(); i++) {
-						const idKeyValue* kv = ent->epairs.GetKeyVal(i);
-						idStr out = va("%s,%s,%s,%s\r\n", classname.c_str(), kv->GetKey().c_str(), kv->GetValue().c_str(), file.c_str());
-						localizeFile->Write( out.c_str(), out.Length() );
+					const idKeyValue* kv = ent->epairs.GetKeyVal(i);
+					idStr out = va("%s,%s,%s,%s\r\n", classname.c_str(), kv->GetKey().c_str(), kv->GetValue().c_str(), file.c_str());
+					localizeFile->Write( out.c_str(), out.Length() );
 					}*/
 					idStr classname = ent->epairs.GetString( "classname" );
 					//Hack: for info_location
@@ -2321,7 +2321,7 @@ idCommonLocal::LoadGameDLL
 */
 void idCommonLocal::LoadGameDLL( void ) {
 #ifdef __DOOM_DLL__
-	char			dllPath[ MAX_OSPATH ];
+	char			dllPath[MAX_OSPATH];
 	gameImport_t	gameImport;
 	gameExport_t	gameExport;
 	GetGameAPI_t	GetGameAPI;
@@ -2337,28 +2337,28 @@ void idCommonLocal::LoadGameDLL( void ) {
 		common->FatalError( "couldn't load game dynamic library" );
 		return;
 	}
-	GetGameAPI = ( GetGameAPI_t ) Sys_DLL_GetProcAddress( gameDLL, "GetGameAPI" );
+	GetGameAPI = ( GetGameAPI_t )Sys_DLL_GetProcAddress( gameDLL, "GetGameAPI" );
 	if( !GetGameAPI ) {
 		Sys_DLL_Unload( gameDLL );
 		gameDLL = NULL;
 		common->FatalError( "couldn't find game DLL API" );
 		return;
 	}
-	gameImport.version					= GAME_API_VERSION;
-	gameImport.sys						= ::sys;
-	gameImport.common					= ::common;
-	gameImport.cmdSystem				= ::cmdSystem;
-	gameImport.cvarSystem				= ::cvarSystem;
-	gameImport.fileSystem				= ::fileSystem;
-	gameImport.networkSystem			= ::networkSystem;
-	gameImport.renderSystem				= ::renderSystem;
-	gameImport.soundSystem				= ::soundSystem;
-	gameImport.renderModelManager		= ::renderModelManager;
-	gameImport.uiManager				= ::uiManager;
-	gameImport.declManager				= ::declManager;
-	gameImport.AASFileManager			= ::AASFileManager;
-	gameImport.collisionModelManager	= ::collisionModelManager;
-	gameExport							= *GetGameAPI( &gameImport );
+	gameImport.version = GAME_API_VERSION;
+	gameImport.sys = ::sys;
+	gameImport.common = ::common;
+	gameImport.cmdSystem = ::cmdSystem;
+	gameImport.cvarSystem = ::cvarSystem;
+	gameImport.fileSystem = ::fileSystem;
+	gameImport.networkSystem = ::networkSystem;
+	gameImport.renderSystem = ::renderSystem;
+	gameImport.soundSystem = ::soundSystem;
+	gameImport.renderModelManager = ::renderModelManager;
+	gameImport.uiManager = ::uiManager;
+	gameImport.declManager = ::declManager;
+	gameImport.AASFileManager = ::AASFileManager;
+	gameImport.collisionModelManager = ::collisionModelManager;
+	gameExport = *GetGameAPI( &gameImport );
 	// Tels: The game DLL does its own check, and exits, so this check is probably never run.
 	if( gameExport.version != GAME_API_VERSION ) {
 		Sys_DLL_Unload( gameDLL );
@@ -2366,8 +2366,8 @@ void idCommonLocal::LoadGameDLL( void ) {
 		common->FatalError( "wrong game DLL API version" );
 		return;
 	}
-	game								= gameExport.game;
-	gameEdit							= gameExport.gameEdit;
+	game = gameExport.game;
+	gameEdit = gameExport.gameEdit;
 #endif
 	// initialize the game object
 	if( game != NULL ) {
@@ -2414,13 +2414,11 @@ void idCommonLocal::SetMachineSpec( void ) {
 	double ghz = Sys_ClockTicksPerSecond() * 0.000000001f;
 	int vidRam = Sys_GetVideoRam();
 	int sysRam = Sys_GetSystemRam();
-	bool oldCard = false;
-	renderSystem->GetCardCaps( oldCard );
-	Printf( "Detected\n \t%.2f GHz CPU\n\t%i MB of System memory\n\t%i MB of Video memory on %s\n\n", ghz, sysRam, vidRam, ( oldCard ) ? "a less than optimal video architecture" : "an optimal video architecture" );
-	if( ghz >= 2.75f && vidRam >= 512 && sysRam >= 1024 && !oldCard ) {
+	Printf( "Detected\n \t%.2f GHz CPU\n\t%i MB of System memory\n\t%i MB of Video memory on %s\n\n", ghz, sysRam, vidRam, "an optimal video architecture" );
+	if( ghz >= 2.75f && vidRam >= 512 && sysRam >= 1024 ) {
 		Printf( "This system qualifies for Ultra quality!\n" );
 		com_machineSpec.SetInteger( 3 );
-	} else if( ghz >= ( ( cpu & CPUID_AMD ) ? 1.9f : 2.19f ) && vidRam >= 256 && sysRam >= 512 && !oldCard ) {
+	} else if( ghz >= ( ( cpu & CPUID_AMD ) ? 1.9f : 2.19f ) && vidRam >= 256 && sysRam >= 512 ) {
 		Printf( "This system qualifies for High quality!\n" );
 		com_machineSpec.SetInteger( 2 );
 	} else if( ghz >= ( ( cpu & CPUID_AMD ) ? 1.1f : 1.25f ) && vidRam >= 128 && sysRam >= 384 ) {
@@ -2441,10 +2439,10 @@ idCommonLocal::Init
 void idCommonLocal::Init( int argc, const char **argv, const char *cmdline ) {
 	try {
 		// set interface pointers used by idLib
-		idLib::sys			= sys;
-		idLib::common		= common;
-		idLib::cvarSystem	= cvarSystem;
-		idLib::fileSystem	= fileSystem;
+		idLib::sys = sys;
+		idLib::common = common;
+		idLib::cvarSystem = cvarSystem;
+		idLib::fileSystem = fileSystem;
 		// initialize idLib
 		idLib::Init();
 		// clear warning buffer

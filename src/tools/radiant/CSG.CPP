@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -37,7 +37,7 @@ void CSG_MakeHollow( void ) {
 	face_t		split;
 	idVec3		move;
 	int			i;
-	for( b = selected_brushes.next ; b != &selected_brushes ; b = next ) {
+	for( b = selected_brushes.next; b != &selected_brushes; b = next ) {
 		next = b->next;
 		if( b->owner->eclass->fixedsize || b->pPatch || b->hiddenBrush || b->modelHandle > 0 ) {
 			continue;
@@ -45,7 +45,7 @@ void CSG_MakeHollow( void ) {
 		for( f = b->brush_faces; f; f = f->next ) {
 			split = *f;
 			VectorScale( f->plane, g_qeglobals.d_gridsize, move );
-			for( i = 0 ; i < 3 ; i++ ) {
+			for( i = 0; i < 3; i++ ) {
 				VectorSubtract( split.planepts[i], move, split.planepts[i] );
 			}
 			Brush_SplitBrushByFace( b, &split, &front, &back );
@@ -65,13 +65,13 @@ void CSG_MakeHollow( void ) {
 =============
 Brush_Merge
 
- Returns a new brush that is created by merging brush1 and brush2.
- May return NULL if brush1 and brush2 do not create a convex brush when merged.
- The input brushes brush1 and brush2 stay intact.
+Returns a new brush that is created by merging brush1 and brush2.
+May return NULL if brush1 and brush2 do not create a convex brush when merged.
+The input brushes brush1 and brush2 stay intact.
 
- if onlyshape is true then the merge is allowed based on the shape only
- otherwise the texture/shader references of faces in the same plane have to
- be the same as well.
+if onlyshape is true then the merge is allowed based on the shape only
+otherwise the texture/shader references of faces in the same plane have to
+be the same as well.
 =============
 */
 brush_t *Brush_Merge( brush_t *brush1, brush_t *brush2, int onlyshape ) {
@@ -207,10 +207,10 @@ brush_t *Brush_Merge( brush_t *brush1, brush_t *brush2, int onlyshape ) {
 =============
 Brush_MergeListPairs
 
-  Returns a list with merged brushes.
-  Tries to merge brushes pair wise.
-  The input list is destroyed.
-  Input and output should be a single linked list using .next
+Returns a list with merged brushes.
+Tries to merge brushes pair wise.
+The input list is destroyed.
+Input and output should be a single linked list using .next
 =============
 */
 brush_t *Brush_MergeListPairs( brush_t *brushlist, int onlyshape ) {
@@ -269,15 +269,15 @@ brush_t *Brush_MergeListPairs( brush_t *brushlist, int onlyshape ) {
 =============
 Brush_MergeList
 
- Tries to merge all brushes in the list into one new brush.
- The input brush list stays intact.
- Returns NULL if no merged brush can be created.
- To create a new brush the brushes in the list may not overlap and
- the outer faces of the brushes together should make a new convex brush.
+Tries to merge all brushes in the list into one new brush.
+The input brush list stays intact.
+Returns NULL if no merged brush can be created.
+To create a new brush the brushes in the list may not overlap and
+the outer faces of the brushes together should make a new convex brush.
 
- if onlyshape is true then the merge is allowed based on the shape only
- otherwise the texture/shader references of faces in the same plane have to
- be the same as well.
+if onlyshape is true then the merge is allowed based on the shape only
+otherwise the texture/shader references of faces in the same plane have to
+be the same as well.
 =============
 */
 brush_t *Brush_MergeList( brush_t *brushlist, int onlyshape ) {
@@ -401,9 +401,9 @@ brush_t *Brush_MergeList( brush_t *brushlist, int onlyshape ) {
 =============
 Brush_Subtract
 
- Returns a list of brushes that remain after B is subtracted from A.
- May by empty if A is contained inside B.
- The originals are undisturbed.
+Returns a list of brushes that remain after B is subtracted from A.
+May by empty if A is contained inside B.
+The originals are undisturbed.
 =============
 */
 brush_t *Brush_Subtract( brush_t *a, brush_t *b ) {
@@ -458,7 +458,7 @@ void CSG_Subtract( void ) {
 	fragmentlist.prev = &fragmentlist;
 	numfragments = 0;
 	numbrushes = 0;
-	for( b = selected_brushes.next ; b != &selected_brushes ; b = next ) {
+	for( b = selected_brushes.next; b != &selected_brushes; b = next ) {
 		next = b->next;
 		if( b->owner->eclass->fixedsize || b->modelHandle > 0 ) {
 			continue;    // can't use texture from a fixed entity, so don't subtract
@@ -466,7 +466,7 @@ void CSG_Subtract( void ) {
 		// chop all fragments further up
 		for( s = fragmentlist.next; s != &fragmentlist; s = snext ) {
 			snext = s->next;
-			for( i = 0 ; i < 3 ; i++ )
+			for( i = 0; i < 3; i++ )
 				if( b->mins[i] >= s->maxs[i] - ON_EPSILON
 						|| b->maxs[i] <= s->mins[i] + ON_EPSILON ) {
 					break;
@@ -501,7 +501,7 @@ void CSG_Subtract( void ) {
 			if( s->brush_faces->d_texture && ( s->brush_faces->d_texture->GetContentFlags()& CONTENTS_NOCSG ) ) {
 				continue;
 			}
-			for( i = 0 ; i < 3 ; i++ )
+			for( i = 0; i < 3; i++ )
 				if( b->mins[i] >= s->maxs[i] - ON_EPSILON
 						|| b->maxs[i] <= s->mins[i] + ON_EPSILON ) {
 					break;

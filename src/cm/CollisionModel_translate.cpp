@@ -1,26 +1,26 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 /*
 ===============================================================================
 
-	Trace model vs. polygonal model collision detection.
+Trace model vs. polygonal model collision detection.
 
 ===============================================================================
 */
@@ -44,7 +44,7 @@ Collision detection for translational motion
 ================
 idCollisionModelManagerLocal::TranslateEdgeThroughEdge
 
-  calculates fraction of the translation completed at which the edges collide
+calculates fraction of the translation completed at which the edges collide
 ================
 */
 ID_INLINE int idCollisionModelManagerLocal::TranslateEdgeThroughEdge( idVec3 &cross, idPluecker &l1, idPluecker &l2, float *fraction ) {
@@ -74,12 +74,12 @@ ID_INLINE int idCollisionModelManagerLocal::TranslateEdgeThroughEdge( idVec3 &cr
 
 	v[0] = (a[0]+t*dir[0]) * (b[1]+t*dir[1]) - (b[0]+t*dir[0]) * (a[1]+t*dir[1]);
 	v[0] = (a[0]*b[1]) + a[0]*t*dir[1] + b[1]*t*dir[0] + (t*t*dir[0]*dir[1]) -
-			((b[0]*a[1]) + b[0]*t*dir[1] + a[1]*t*dir[0] + (t*t*dir[0]*dir[1]));
+	((b[0]*a[1]) + b[0]*t*dir[1] + a[1]*t*dir[0] + (t*t*dir[0]*dir[1]));
 	v[0] = a[0]*b[1] + a[0]*t*dir[1] + b[1]*t*dir[0] - b[0]*a[1] - b[0]*t*dir[1] - a[1]*t*dir[0];
 
 	v[1] = (a[0]+t*dir[0]) * (b[2]+t*dir[2]) - (b[0]+t*dir[0]) * (a[2]+t*dir[2]);
 	v[1] = (a[0]*b[2]) + a[0]*t*dir[2] + b[2]*t*dir[0] + (t*t*dir[0]*dir[2]) -
-			((b[0]*a[2]) + b[0]*t*dir[2] + a[2]*t*dir[0] + (t*t*dir[0]*dir[2]));
+	((b[0]*a[2]) + b[0]*t*dir[2] + a[2]*t*dir[0] + (t*t*dir[0]*dir[2]));
 	v[1] = a[0]*b[2] + a[0]*t*dir[2] + b[2]*t*dir[0] - b[0]*a[2] - b[0]*t*dir[2] - a[2]*t*dir[0];
 
 	v[2] = (a[0]+t*dir[0]) - (b[0]+t*dir[0]);
@@ -87,7 +87,7 @@ ID_INLINE int idCollisionModelManagerLocal::TranslateEdgeThroughEdge( idVec3 &cr
 
 	v[3] = (a[1]+t*dir[1]) * (b[2]+t*dir[2]) - (b[1]+t*dir[1]) * (a[2]+t*dir[2]);
 	v[3] = (a[1]*b[2]) + a[1]*t*dir[2] + b[2]*t*dir[1] + (t*t*dir[1]*dir[2]) -
-			((b[1]*a[2]) + b[1]*t*dir[2] + a[2]*t*dir[1] + (t*t*dir[1]*dir[2]));
+	((b[1]*a[2]) + b[1]*t*dir[2] + a[2]*t*dir[1] + (t*t*dir[1]*dir[2]));
 	v[3] = a[1]*b[2] + a[1]*t*dir[2] + b[2]*t*dir[1] - b[1]*a[2] - b[1]*t*dir[2] - a[2]*t*dir[1];
 
 	v[4] = (a[2]+t*dir[2]) - (b[2]+t*dir[2]);
@@ -111,40 +111,40 @@ ID_INLINE int idCollisionModelManagerLocal::TranslateEdgeThroughEdge( idVec3 &cr
 	v[5] = b[1] - a[1];
 
 	l2[4] * (a[0]*dir[1] + b[1]*dir[0] - b[0]*dir[1] - a[1]*dir[0]) * t + l2[4] * (a[0]*b[1] - b[0]*a[1])
-		+ l2[5] * (a[0]*dir[2] + b[2]*dir[0] - b[0]*dir[2] - a[2]*dir[0]) * t + l2[5] * (a[0]*b[2] - b[0]*a[2])
-		+ l2[3] * (a[0] - b[0])
-		+ l2[2] * (a[1]*dir[2] + b[2]*dir[1] - b[1]*dir[2] - a[2]*dir[1]) * t + l2[2] * (a[1]*b[2] - b[1]*a[2])
-		+ l2[0] * (a[2] - b[2])
-		+ l2[1] * (b[1] - a[1]) = 0
+	+ l2[5] * (a[0]*dir[2] + b[2]*dir[0] - b[0]*dir[2] - a[2]*dir[0]) * t + l2[5] * (a[0]*b[2] - b[0]*a[2])
+	+ l2[3] * (a[0] - b[0])
+	+ l2[2] * (a[1]*dir[2] + b[2]*dir[1] - b[1]*dir[2] - a[2]*dir[1]) * t + l2[2] * (a[1]*b[2] - b[1]*a[2])
+	+ l2[0] * (a[2] - b[2])
+	+ l2[1] * (b[1] - a[1]) = 0
 
 	t = (- l2[4] * (a[0]*b[1] - b[0]*a[1]) -
-			l2[5] * (a[0]*b[2] - b[0]*a[2]) -
-			l2[3] * (a[0] - b[0]) -
-			l2[2] * (a[1]*b[2] - b[1]*a[2]) -
-			l2[0] * (a[2] - b[2]) -
-			l2[1] * (b[1] - a[1])) /
-				(l2[4] * (a[0]*dir[1] + b[1]*dir[0] - b[0]*dir[1] - a[1]*dir[0]) +
-				l2[5] * (a[0]*dir[2] + b[2]*dir[0] - b[0]*dir[2] - a[2]*dir[0]) +
-				l2[2] * (a[1]*dir[2] + b[2]*dir[1] - b[1]*dir[2] - a[2]*dir[1]));
+	l2[5] * (a[0]*b[2] - b[0]*a[2]) -
+	l2[3] * (a[0] - b[0]) -
+	l2[2] * (a[1]*b[2] - b[1]*a[2]) -
+	l2[0] * (a[2] - b[2]) -
+	l2[1] * (b[1] - a[1])) /
+	(l2[4] * (a[0]*dir[1] + b[1]*dir[0] - b[0]*dir[1] - a[1]*dir[0]) +
+	l2[5] * (a[0]*dir[2] + b[2]*dir[0] - b[0]*dir[2] - a[2]*dir[0]) +
+	l2[2] * (a[1]*dir[2] + b[2]*dir[1] - b[1]*dir[2] - a[2]*dir[1]));
 
 	d = l2[4] * (a[0]*dir[1] + b[1]*dir[0] - b[0]*dir[1] - a[1]*dir[0]) +
-		l2[5] * (a[0]*dir[2] + b[2]*dir[0] - b[0]*dir[2] - a[2]*dir[0]) +
-		l2[2] * (a[1]*dir[2] + b[2]*dir[1] - b[1]*dir[2] - a[2]*dir[1]);
+	l2[5] * (a[0]*dir[2] + b[2]*dir[0] - b[0]*dir[2] - a[2]*dir[0]) +
+	l2[2] * (a[1]*dir[2] + b[2]*dir[1] - b[1]*dir[2] - a[2]*dir[1]);
 
 	t = - ( l2[4] * (a[0]*b[1] - b[0]*a[1]) +
-			l2[5] * (a[0]*b[2] - b[0]*a[2]) +
-			l2[3] * (a[0] - b[0]) +
-			l2[2] * (a[1]*b[2] - b[1]*a[2]) +
-			l2[0] * (a[2] - b[2]) +
-			l2[1] * (b[1] - a[1]));
+	l2[5] * (a[0]*b[2] - b[0]*a[2]) +
+	l2[3] * (a[0] - b[0]) +
+	l2[2] * (a[1]*b[2] - b[1]*a[2]) +
+	l2[0] * (a[2] - b[2]) +
+	l2[1] * (b[1] - a[1]));
 	t /= d;
 
 	MrE pats Pluecker on the head.. good monkey
 
 	edgeDir = a - b;
 	d = l2[4] * (edgeDir[0]*dir[1] - edgeDir[1]*dir[0]) +
-		l2[5] * (edgeDir[0]*dir[2] - edgeDir[2]*dir[0]) +
-		l2[2] * (edgeDir[1]*dir[2] - edgeDir[2]*dir[1]);
+	l2[5] * (edgeDir[0]*dir[2] - edgeDir[2]*dir[0]) +
+	l2[2] * (edgeDir[1]*dir[2] - edgeDir[2]*dir[1]);
 	*/
 	d = l2[4] * cross[0] + l2[5] * cross[1] + l2[2] * cross[2];
 	if( d == 0.0f ) {
@@ -183,7 +183,7 @@ ID_INLINE void CM_AddContact( cm_traceWork_t *tw ) {
 ================
 CM_SetVertexSidedness
 
-  stores for the given model vertex at which side of one of the trm edges it passes
+stores for the given model vertex at which side of one of the trm edges it passes
 ================
 */
 ID_INLINE void CM_SetVertexSidedness( cm_vertex_t *v, const idPluecker &vpl, const idPluecker &epl, const int bitNum ) {
@@ -199,7 +199,7 @@ ID_INLINE void CM_SetVertexSidedness( cm_vertex_t *v, const idPluecker &vpl, con
 ================
 CM_SetEdgeSidedness
 
-  stores for the given model edge at which side one of the trm vertices
+stores for the given model edge at which side one of the trm vertices
 ================
 */
 ID_INLINE void CM_SetEdgeSidedness( cm_edge_t *edge, const idPluecker &vpl, const idPluecker &epl, const int bitNum ) {
@@ -505,7 +505,7 @@ void idCollisionModelManagerLocal::TranslateVertexThroughTrmPolygon( cm_traceWor
 ================
 idCollisionModelManagerLocal::TranslateTrmThroughPolygon
 
-  returns true if the polygon blocks the complete translation
+returns true if the polygon blocks the complete translation
 ================
 */
 bool idCollisionModelManagerLocal::TranslateTrmThroughPolygon( cm_traceWork_t *tw, cm_polygon_t *p ) {

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 /*
 
@@ -68,7 +68,7 @@ void idTarget_Remove::Event_Activate( idEntity *activator ) {
 	int			i;
 	idEntity	*ent;
 	for( i = 0; i < targets.Num(); i++ ) {
-		ent = targets[ i ].GetEntity();
+		ent = targets[i].GetEntity();
 		if( ent ) {
 			ent->PostEventMS( &EV_Remove, 0 );
 		}
@@ -98,7 +98,7 @@ void idTarget_Show::Event_Activate( idEntity *activator ) {
 	int			i;
 	idEntity	*ent;
 	for( i = 0; i < targets.Num(); i++ ) {
-		ent = targets[ i ].GetEntity();
+		ent = targets[i].GetEntity();
 		if( ent ) {
 			ent->Show();
 		}
@@ -130,7 +130,7 @@ void idTarget_Damage::Event_Activate( idEntity *activator ) {
 	idEntity 	*ent;
 	damage = spawnArgs.GetString( "def_damage", "damage_generic" );
 	for( i = 0; i < targets.Num(); i++ ) {
-		ent = targets[ i ].GetEntity();
+		ent = targets[i].GetEntity();
 		if( ent ) {
 			ent->Damage( this, this, vec3_origin, damage, 1.0f, INVALID_JOINT );
 		}
@@ -168,7 +168,7 @@ Just a modified form of idTarget_SessionCommand
 */
 
 CLASS_DECLARATION( idTarget, idTarget_EndLevel )
-EVENT( EV_Activate,		idTarget_EndLevel::Event_Activate )
+EVENT( EV_Activate, idTarget_EndLevel::Event_Activate )
 END_CLASS
 
 /*
@@ -249,7 +249,7 @@ idTarget_SetGlobalShaderParm
 */
 
 CLASS_DECLARATION( idTarget, idTarget_SetGlobalShaderTime )
-EVENT( EV_Activate,	idTarget_SetGlobalShaderTime::Event_Activate )
+EVENT( EV_Activate, idTarget_SetGlobalShaderTime::Event_Activate )
 END_CLASS
 
 /*
@@ -274,7 +274,7 @@ idTarget_SetShaderParm
 */
 
 CLASS_DECLARATION( idTarget, idTarget_SetShaderParm )
-EVENT( EV_Activate,	idTarget_SetShaderParm::Event_Activate )
+EVENT( EV_Activate, idTarget_SetShaderParm::Event_Activate )
 END_CLASS
 
 /*
@@ -291,9 +291,9 @@ void idTarget_SetShaderParm::Event_Activate( idEntity *activator ) {
 	// set the color on the targets
 	if( spawnArgs.GetVector( "_color", "1 1 1", color ) ) {
 		for( i = 0; i < targets.Num(); i++ ) {
-			ent = targets[ i ].GetEntity();
+			ent = targets[i].GetEntity();
 			if( ent ) {
-				ent->SetColor( color[ 0 ], color[ 1 ], color[ 2 ] );
+				ent->SetColor( color[0], color[1], color[2] );
 			}
 		}
 	}
@@ -301,7 +301,7 @@ void idTarget_SetShaderParm::Event_Activate( idEntity *activator ) {
 	for( parmnum = 0; parmnum < MAX_ENTITY_SHADER_PARMS; parmnum++ ) {
 		if( spawnArgs.GetFloat( va( "shaderParm%d", parmnum ), "0", value ) ) {
 			for( i = 0; i < targets.Num(); i++ ) {
-				ent = targets[ i ].GetEntity();
+				ent = targets[i].GetEntity();
 				if( ent ) {
 					ent->SetShaderParm( parmnum, value );
 				}
@@ -325,7 +325,7 @@ idTarget_SetShaderTime
 */
 
 CLASS_DECLARATION( idTarget, idTarget_SetShaderTime )
-EVENT( EV_Activate,	idTarget_SetShaderTime::Event_Activate )
+EVENT( EV_Activate, idTarget_SetShaderTime::Event_Activate )
 END_CLASS
 
 /*
@@ -339,7 +339,7 @@ void idTarget_SetShaderTime::Event_Activate( idEntity *activator ) {
 	float		time;
 	time = -MS2SEC( gameLocal.time );
 	for( i = 0; i < targets.Num(); i++ ) {
-		ent = targets[ i ].GetEntity();
+		ent = targets[i].GetEntity();
 		if( ent ) {
 			ent->SetShaderParm( SHADERPARM_TIMEOFFSET, time );
 			if( ent->IsType( idLight::Type ) ) {
@@ -358,7 +358,7 @@ idTarget_FadeEntity
 */
 
 CLASS_DECLARATION( idTarget, idTarget_FadeEntity )
-EVENT( EV_Activate,				idTarget_FadeEntity::Event_Activate )
+EVENT( EV_Activate, idTarget_FadeEntity::Event_Activate )
 END_CLASS
 
 /*
@@ -410,7 +410,7 @@ void idTarget_FadeEntity::Event_Activate( idEntity *activator ) {
 	BecomeActive( TH_THINK );
 	ent = this;
 	for( i = 0; i < targets.Num(); i++ ) {
-		ent = targets[ i ].GetEntity();
+		ent = targets[i].GetEntity();
 		if( ent ) {
 			ent->GetColor( fadeFrom );
 			break;
@@ -442,7 +442,7 @@ void idTarget_FadeEntity::Think( void ) {
 		}
 		// set the color on the targets
 		for( i = 0; i < targets.Num(); i++ ) {
-			ent = targets[ i ].GetEntity();
+			ent = targets[i].GetEntity();
 			if( ent ) {
 				ent->SetColor( color );
 			}
@@ -461,7 +461,7 @@ idTarget_LightFadeIn
 */
 
 CLASS_DECLARATION( idTarget, idTarget_LightFadeIn )
-EVENT( EV_Activate,				idTarget_LightFadeIn::Event_Activate )
+EVENT( EV_Activate, idTarget_LightFadeIn::Event_Activate )
 END_CLASS
 
 /*
@@ -480,7 +480,7 @@ void idTarget_LightFadeIn::Event_Activate( idEntity *activator ) {
 	time = spawnArgs.GetFloat( "fadetime" );
 	ent = this;
 	for( i = 0; i < targets.Num(); i++ ) {
-		ent = targets[ i ].GetEntity();
+		ent = targets[i].GetEntity();
 		if( !ent ) {
 			continue;
 		}
@@ -502,7 +502,7 @@ idTarget_LightFadeOut
 */
 
 CLASS_DECLARATION( idTarget, idTarget_LightFadeOut )
-EVENT( EV_Activate,				idTarget_LightFadeOut::Event_Activate )
+EVENT( EV_Activate, idTarget_LightFadeOut::Event_Activate )
 END_CLASS
 
 /*
@@ -521,7 +521,7 @@ void idTarget_LightFadeOut::Event_Activate( idEntity *activator ) {
 	time = spawnArgs.GetFloat( "fadetime" );
 	ent = this;
 	for( i = 0; i < targets.Num(); i++ ) {
-		ent = targets[ i ].GetEntity();
+		ent = targets[i].GetEntity();
 		if( !ent ) {
 			continue;
 		}
@@ -543,7 +543,7 @@ idTarget_Give
 */
 
 CLASS_DECLARATION( idTarget, idTarget_Give )
-EVENT( EV_Activate,				idTarget_Give::Event_Activate )
+EVENT( EV_Activate, idTarget_Give::Event_Activate )
 END_CLASS
 
 /*
@@ -596,7 +596,7 @@ idTarget_SetModel
 */
 
 CLASS_DECLARATION( idTarget, idTarget_SetModel )
-EVENT( EV_Activate,	idTarget_SetModel::Event_Activate )
+EVENT( EV_Activate, idTarget_SetModel::Event_Activate )
 END_CLASS
 
 /*
@@ -622,7 +622,7 @@ idTarget_SetModel::Event_Activate
 */
 void idTarget_SetModel::Event_Activate( idEntity *activator ) {
 	for( int i = 0; i < targets.Num(); i++ ) {
-		idEntity *ent = targets[ i ].GetEntity();
+		idEntity *ent = targets[i].GetEntity();
 		if( ent ) {
 			ent->SetModel( spawnArgs.GetString( "newmodel" ) );
 		}
@@ -643,8 +643,8 @@ const idEventDef EV_Flash( "<Flash>", EventArgs( 'f', "", "", 'd', "", "" ), EV_
 const idEventDef EV_ClearFlash( "<ClearFlash>", EventArgs( 'f', "", "" ), EV_RETURNS_VOID, "internal" );
 
 CLASS_DECLARATION( idTarget, idTarget_SetInfluence )
-EVENT( EV_Activate,	idTarget_SetInfluence::Event_Activate )
-EVENT( EV_RestoreInfluence,	idTarget_SetInfluence::Event_RestoreInfluence )
+EVENT( EV_Activate, idTarget_SetInfluence::Event_Activate )
+EVENT( EV_RestoreInfluence, idTarget_SetInfluence::Event_RestoreInfluence )
 EVENT( EV_GatherEntities, idTarget_SetInfluence::Event_GatherEntities )
 EVENT( EV_Flash, idTarget_SetInfluence::Event_Flash )
 EVENT( EV_ClearFlash, idTarget_SetInfluence::Event_ClearFlash )
@@ -673,19 +673,19 @@ void idTarget_SetInfluence::Save( idSaveGame *savefile ) const {
 	int i;
 	savefile->WriteInt( lightList.Num() );
 	for( i = 0; i < lightList.Num(); i++ ) {
-		savefile->WriteInt( lightList[ i ] );
+		savefile->WriteInt( lightList[i] );
 	}
 	savefile->WriteInt( guiList.Num() );
 	for( i = 0; i < guiList.Num(); i++ ) {
-		savefile->WriteInt( guiList[ i ] );
+		savefile->WriteInt( guiList[i] );
 	}
 	savefile->WriteInt( soundList.Num() );
 	for( i = 0; i < soundList.Num(); i++ ) {
-		savefile->WriteInt( soundList[ i ] );
+		savefile->WriteInt( soundList[i] );
 	}
 	savefile->WriteInt( genericList.Num() );
 	for( i = 0; i < genericList.Num(); i++ ) {
-		savefile->WriteInt( genericList[ i ] );
+		savefile->WriteInt( genericList[i] );
 	}
 	savefile->WriteFloat( flashIn );
 	savefile->WriteFloat( flashOut );
@@ -792,7 +792,7 @@ idTarget_SetInfluence::Event_ClearFlash
 */
 void idTarget_SetInfluence::Event_ClearFlash( float flash ) {
 	idPlayer *player = gameLocal.GetLocalPlayer();
-	player->playerView.Fade( vec4_zero , static_cast<int>( flash ) );
+	player->playerView.Fade( vec4_zero, static_cast<int>( flash ) );
 }
 /*
 ================
@@ -801,7 +801,7 @@ idTarget_SetInfluence::Event_GatherEntities
 */
 void idTarget_SetInfluence::Event_GatherEntities() {
 	int i, listedEntities;
-	idEntity *entityList[ MAX_GENTITIES ];
+	idEntity *entityList[MAX_GENTITIES];
 	//	bool demonicOnly = spawnArgs.GetBool( "effect_demonic" );
 	bool lights = spawnArgs.GetBool( "effect_lights" );
 	bool sounds = spawnArgs.GetBool( "effect_sounds" );
@@ -825,7 +825,7 @@ void idTarget_SetInfluence::Event_GatherEntities() {
 		listedEntities = gameLocal.EntitiesWithinRadius( GetPhysics()->GetOrigin(), radius, entityList, MAX_GENTITIES );
 	}
 	for( i = 0; i < listedEntities; i++ ) {
-		idEntity *ent = entityList[ i ];
+		idEntity *ent = entityList[i];
 		if( ent ) {
 			if( lights && ent->IsType( idLight::Type ) && ent->spawnArgs.FindKey( "color_demonic" ) ) {
 				lightList.Append( ent->entityNumber );
@@ -835,7 +835,7 @@ void idTarget_SetInfluence::Event_GatherEntities() {
 				soundList.Append( ent->entityNumber );
 				continue;
 			}
-			if( guis && ent->GetRenderEntity() && ent->GetRenderEntity()->gui[ 0 ] && ent->spawnArgs.FindKey( "gui_demonic" ) ) {
+			if( guis && ent->GetRenderEntity() && ent->GetRenderEntity()->gui[0] && ent->spawnArgs.FindKey( "gui_demonic" ) ) {
 				guiList.Append( ent->entityNumber );
 				continue;
 			}
@@ -956,8 +956,8 @@ void idTarget_SetInfluence::Event_Activate( idEntity *activator ) {
 		}
 		update = false;
 		for( j = 0; j < MAX_RENDERENTITY_GUI; j++ ) {
-			if( ent->GetRenderEntity()->gui[ j ] && ent->spawnArgs.FindKey( j == 0 ? "gui_demonic" : va( "gui_demonic%d", j + 1 ) ) ) {
-				ent->GetRenderEntity()->gui[ j ] = uiManager->FindGui( ent->spawnArgs.GetString( j == 0 ? "gui_demonic" : va( "gui_demonic%d", j + 1 ) ), true );
+			if( ent->GetRenderEntity()->gui[j] && ent->spawnArgs.FindKey( j == 0 ? "gui_demonic" : va( "gui_demonic%d", j + 1 ) ) ) {
+				ent->GetRenderEntity()->gui[j] = uiManager->FindGui( ent->spawnArgs.GetString( j == 0 ? "gui_demonic" : va( "gui_demonic%d", j + 1 ) ), true );
 				update = true;
 			}
 		}
@@ -1066,8 +1066,8 @@ void idTarget_SetInfluence::Event_RestoreInfluence() {
 		}
 		update = false;
 		for( j = 0; j < MAX_RENDERENTITY_GUI; j++ ) {
-			if( ent->GetRenderEntity()->gui[ j ] ) {
-				ent->GetRenderEntity()->gui[ j ] = uiManager->FindGui( ent->spawnArgs.GetString( j == 0 ? "gui" : va( "gui%d", j + 1 ) ) );
+			if( ent->GetRenderEntity()->gui[j] ) {
+				ent->GetRenderEntity()->gui[j] = uiManager->FindGui( ent->spawnArgs.GetString( j == 0 ? "gui" : va( "gui%d", j + 1 ) ) );
 				update = true;
 			}
 		}
@@ -1096,7 +1096,7 @@ idTarget_SetKeyVal
 */
 
 CLASS_DECLARATION( idTarget, idTarget_SetKeyVal )
-EVENT( EV_Activate,	idTarget_SetKeyVal::Event_Activate )
+EVENT( EV_Activate, idTarget_SetKeyVal::Event_Activate )
 END_CLASS
 
 /*
@@ -1111,7 +1111,7 @@ void idTarget_SetKeyVal::Event_Activate( idEntity *activator ) {
 	const idKeyValue *kv;
 	int n;
 	for( i = 0; i < targets.Num(); i++ ) {
-		ent = targets[ i ].GetEntity();
+		ent = targets[i].GetEntity();
 		if( ent ) {
 			kv = spawnArgs.MatchPrefix( "keyval" );
 			while( kv ) {
@@ -1121,10 +1121,10 @@ void idTarget_SetKeyVal::Event_Activate( idEntity *activator ) {
 					val = kv->GetValue().Right( kv->GetValue().Length() - n - 1 );
 					ent->spawnArgs.Set( key, val );
 					for( int j = 0; j < MAX_RENDERENTITY_GUI; j++ ) {
-						if( ent->GetRenderEntity()->gui[ j ] ) {
+						if( ent->GetRenderEntity()->gui[j] ) {
 							if( idStr::Icmpn( key, "gui_", 4 ) == 0 ) {
-								ent->GetRenderEntity()->gui[ j ]->SetStateString( key, val );
-								ent->GetRenderEntity()->gui[ j ]->StateChanged( gameLocal.time );
+								ent->GetRenderEntity()->gui[j]->SetStateString( key, val );
+								ent->GetRenderEntity()->gui[j]->StateChanged( gameLocal.time );
 							}
 						}
 					}
@@ -1147,7 +1147,7 @@ idTarget_SetFov
 */
 
 CLASS_DECLARATION( idTarget, idTarget_SetFov )
-EVENT( EV_Activate,	idTarget_SetFov::Event_Activate )
+EVENT( EV_Activate, idTarget_SetFov::Event_Activate )
 END_CLASS
 
 /*
@@ -1236,7 +1236,7 @@ or pass_activator true) or two (both are true).
 */
 
 CLASS_DECLARATION( idTarget, idTarget_CallObjectFunction )
-EVENT( EV_Activate,	idTarget_CallObjectFunction::Event_Activate )
+EVENT( EV_Activate, idTarget_CallObjectFunction::Event_Activate )
 END_CLASS
 
 /*
@@ -1250,14 +1250,14 @@ void idTarget_CallObjectFunction::Event_Activate( idEntity *activator ) {
 	const function_t	*func;
 	const char			*funcName;
 	idThread			*thread;
-	funcName  = spawnArgs.GetString( "call" );
+	funcName = spawnArgs.GetString( "call" );
 	// we delay each post by: delay +  (wait + (wait_add * numberOfTarget)) * numberOfTarget
-	float wait			= spawnArgs.GetFloat( "wait", "0" );
-	float wait_add		= spawnArgs.GetFloat( "wait_add", "0" );
-	float wait_mul		= spawnArgs.GetFloat( "wait_mul", "0" );
-	float delay			= spawnArgs.GetFloat( "delay", "0" );
-	bool pass_self		= spawnArgs.GetBool( "pass_self", "0" );
-	bool pass_activator	= spawnArgs.GetBool( "pass_activator", "0" );
+	float wait = spawnArgs.GetFloat( "wait", "0" );
+	float wait_add = spawnArgs.GetFloat( "wait_add", "0" );
+	float wait_mul = spawnArgs.GetFloat( "wait_mul", "0" );
+	float delay = spawnArgs.GetFloat( "delay", "0" );
+	bool pass_self = spawnArgs.GetBool( "pass_self", "0" );
+	bool pass_activator = spawnArgs.GetBool( "pass_activator", "0" );
 	// avoid a negative delay
 	if( wait < 0 ) {
 		wait = 0;
@@ -1269,7 +1269,7 @@ void idTarget_CallObjectFunction::Event_Activate( idEntity *activator ) {
 	//
 	DM_LOG( LC_MISC, LT_DEBUG )LOGSTRING( "%s: Calling object function %s on %i targets.\r", name.c_str(), funcName, targets.Num() );
 	for( i = 0; i < targets.Num(); i++ ) {
-		ent = targets[ i ].GetEntity();
+		ent = targets[i].GetEntity();
 		if( ent && ent->scriptObject.HasObject() ) {
 			func = ent->scriptObject.GetFunction( funcName );
 			if( !func ) {
@@ -1277,10 +1277,10 @@ void idTarget_CallObjectFunction::Event_Activate( idEntity *activator ) {
 			}
 			int numParams = 1;
 			if( pass_self ) {
-				numParams ++;
+				numParams++;
 			}
 			if( pass_activator ) {
-				numParams ++;
+				numParams++;
 			}
 			if( func->type->NumParameters() != numParams ) {
 				gameLocal.Error( "Function '%s' on entity '%s' has the wrong number of parameters for function call from '%s'", funcName, ent->name.c_str(), name.c_str() );
@@ -1343,7 +1343,7 @@ there exists (if not, an error is thrown).
 */
 
 CLASS_DECLARATION( idTarget, idTarget_PostScriptEvent )
-EVENT( EV_Activate,	idTarget_PostScriptEvent::Event_Activate )
+EVENT( EV_Activate, idTarget_PostScriptEvent::Event_Activate )
 END_CLASS
 
 void idTarget_PostScriptEvent::TryPostOrCall( idEntity *ent, idEntity *activator, const idEventDef *ev, const char *funcName, const bool pass_self, const bool pass_activator, const float delay ) {
@@ -1404,14 +1404,14 @@ void idTarget_PostScriptEvent::Event_Activate( idEntity *activator ) {
 	idEntity			*ent;
 	idEntity			*NextEnt;
 	// we delay each post by: delay +  (wait + (wait_add * numberOfTarget)) * numberOfTarget
-	float wait			= spawnArgs.GetFloat( "wait", "0" );
-	float wait_add		= spawnArgs.GetFloat( "wait_add", "0" );
-	float wait_mul		= spawnArgs.GetFloat( "wait_mul", "0" );
-	float delay			= spawnArgs.GetFloat( "delay", "0" );
-	const char *evName	= spawnArgs.GetString( "event" );
-	bool pass_self		= spawnArgs.GetBool( "pass_self", "0" );
-	bool pass_activator	= spawnArgs.GetBool( "pass_activator", "0" );
-	bool do_team		= spawnArgs.GetBool( "propagate_to_team", "0" );
+	float wait = spawnArgs.GetFloat( "wait", "0" );
+	float wait_add = spawnArgs.GetFloat( "wait_add", "0" );
+	float wait_mul = spawnArgs.GetFloat( "wait_mul", "0" );
+	float delay = spawnArgs.GetFloat( "delay", "0" );
+	const char *evName = spawnArgs.GetString( "event" );
+	bool pass_self = spawnArgs.GetBool( "pass_self", "0" );
+	bool pass_activator = spawnArgs.GetBool( "pass_activator", "0" );
+	bool do_team = spawnArgs.GetBool( "propagate_to_team", "0" );
 	// avoid a negative delay
 	if( wait < 0 ) {
 		wait = 0;
@@ -1426,7 +1426,7 @@ void idTarget_PostScriptEvent::Event_Activate( idEntity *activator ) {
 		gameLocal.Error( "Unknown event '%s' on entity '%s'", evName, name.c_str() );
 	}
 	for( i = 0; i < targets.Num(); i++ ) {
-		ent = targets[ i ].GetEntity();
+		ent = targets[i].GetEntity();
 		if( !ent ) {
 			continue;
 		}
@@ -1466,7 +1466,7 @@ idTarget_EnableLevelWeapons
 */
 
 CLASS_DECLARATION( idTarget, idTarget_EnableLevelWeapons )
-EVENT( EV_Activate,	idTarget_EnableLevelWeapons::Event_Activate )
+EVENT( EV_Activate, idTarget_EnableLevelWeapons::Event_Activate )
 END_CLASS
 
 /*
@@ -1480,17 +1480,17 @@ void idTarget_EnableLevelWeapons::Event_Activate( idEntity *activator ) {
 	gameLocal.world->spawnArgs.SetBool( "no_Weapons", spawnArgs.GetBool( "disable" ) );
 	if( spawnArgs.GetBool( "disable" ) ) {
 		for( i = 0; i < gameLocal.numClients; i++ ) {
-			if( gameLocal.entities[ i ] ) {
-				gameLocal.entities[ i ]->ProcessEvent( &EV_Player_DisableWeapon );
+			if( gameLocal.entities[i] ) {
+				gameLocal.entities[i]->ProcessEvent( &EV_Player_DisableWeapon );
 			}
 		}
 	} else {
 		weap = spawnArgs.GetString( "weapon" );
 		for( i = 0; i < gameLocal.numClients; i++ ) {
-			if( gameLocal.entities[ i ] ) {
-				gameLocal.entities[ i ]->ProcessEvent( &EV_Player_EnableWeapon );
-				if( weap && weap[ 0 ] ) {
-					gameLocal.entities[ i ]->PostEventSec( &EV_Player_SelectWeapon, 0.5f, weap );
+			if( gameLocal.entities[i] ) {
+				gameLocal.entities[i]->ProcessEvent( &EV_Player_EnableWeapon );
+				if( weap && weap[0] ) {
+					gameLocal.entities[i]->PostEventSec( &EV_Player_SelectWeapon, 0.5f, weap );
 				}
 			}
 		}
@@ -1506,7 +1506,7 @@ idTarget_RemoveWeapons
 */
 
 CLASS_DECLARATION( idTarget, idTarget_RemoveWeapons )
-EVENT( EV_Activate,	idTarget_RemoveWeapons::Event_Activate )
+EVENT( EV_Activate, idTarget_RemoveWeapons::Event_Activate )
 END_CLASS
 
 /*
@@ -1516,8 +1516,8 @@ idTarget_RemoveWeapons::Event_Activate
 */
 void idTarget_RemoveWeapons::Event_Activate( idEntity *activator ) {
 	for( int i = 0; i < gameLocal.numClients; i++ ) {
-		if( gameLocal.entities[ i ] ) {
-			idPlayer *player = static_cast< idPlayer * >( gameLocal.entities[i] );
+		if( gameLocal.entities[i] ) {
+			idPlayer *player = static_cast<idPlayer *>( gameLocal.entities[i] );
 			const idKeyValue *kv = spawnArgs.MatchPrefix( "weapon", NULL );
 			while( kv ) {
 				player->RemoveWeapon( kv->GetValue() );
@@ -1538,7 +1538,7 @@ idTarget_FadeSoundClass
 
 const idEventDef EV_RestoreVolume( "<RestoreVolume>", EventArgs(), EV_RETURNS_VOID, "internal" );
 CLASS_DECLARATION( idTarget, idTarget_FadeSoundClass )
-EVENT( EV_Activate,	idTarget_FadeSoundClass::Event_Activate )
+EVENT( EV_Activate, idTarget_FadeSoundClass::Event_Activate )
 EVENT( EV_RestoreVolume, idTarget_FadeSoundClass::Event_RestoreVolume )
 END_CLASS
 
@@ -1582,7 +1582,7 @@ CTarget_AddObjectives
 ===============================================================================
 */
 CLASS_DECLARATION( idTarget, CTarget_AddObjectives )
-EVENT( EV_Activate,	CTarget_AddObjectives::Event_Activate )
+EVENT( EV_Activate, CTarget_AddObjectives::Event_Activate )
 END_CLASS
 
 void CTarget_AddObjectives::Spawn( void ) {
@@ -1611,7 +1611,7 @@ CTarget_SetObjectiveState
 ===============================================================================
 */
 CLASS_DECLARATION( idTarget, CTarget_SetObjectiveState )
-EVENT( EV_Activate,	CTarget_SetObjectiveState::Event_Activate )
+EVENT( EV_Activate, CTarget_SetObjectiveState::Event_Activate )
 END_CLASS
 
 void CTarget_SetObjectiveState::Spawn( void ) {
@@ -1653,7 +1653,7 @@ CTarget_SetObjectiveVisibility
 ===============================================================================
 */
 CLASS_DECLARATION( idTarget, CTarget_SetObjectiveVisibility )
-EVENT( EV_Activate,	CTarget_SetObjectiveVisibility::Event_Activate )
+EVENT( EV_Activate, CTarget_SetObjectiveVisibility::Event_Activate )
 END_CLASS
 
 void CTarget_SetObjectiveVisibility::Spawn( void ) {
@@ -1688,7 +1688,7 @@ CTarget_SetObjectiveComponentState
 ===============================================================================
 */
 CLASS_DECLARATION( idTarget, CTarget_SetObjectiveComponentState )
-EVENT( EV_Activate,	CTarget_SetObjectiveComponentState::Event_Activate )
+EVENT( EV_Activate, CTarget_SetObjectiveComponentState::Event_Activate )
 END_CLASS
 
 void CTarget_SetObjectiveComponentState::Spawn( void ) {
@@ -1746,7 +1746,7 @@ CTarget_StartConversation
 ===============================================================================
 */
 CLASS_DECLARATION( idTarget, CTarget_StartConversation )
-EVENT( EV_Activate,	CTarget_StartConversation::Event_Activate )
+EVENT( EV_Activate, CTarget_StartConversation::Event_Activate )
 END_CLASS
 
 void CTarget_StartConversation::Spawn( void ) {
@@ -1780,7 +1780,7 @@ CTarget_SetFrobable
 ===============================================================================
 */
 CLASS_DECLARATION( idTarget, CTarget_SetFrobable )
-EVENT( EV_Activate,	CTarget_SetFrobable::Event_Activate )
+EVENT( EV_Activate, CTarget_SetFrobable::Event_Activate )
 END_CLASS
 
 CTarget_SetFrobable::CTarget_SetFrobable( void ) {
@@ -1882,7 +1882,7 @@ CTarget_CallScriptFunction
 ================
 */
 CLASS_DECLARATION( idTarget, CTarget_CallScriptFunction )
-EVENT( EV_Activate,	CTarget_CallScriptFunction::Event_Activate )
+EVENT( EV_Activate, CTarget_CallScriptFunction::Event_Activate )
 END_CLASS
 
 void CTarget_CallScriptFunction::Event_Activate( idEntity *activator ) {
@@ -1902,10 +1902,10 @@ void CTarget_CallScriptFunction::Event_Activate( idEntity *activator ) {
 	bool forEach = spawnArgs.GetBool( "foreach", "0" );
 	if( forEach ) {
 		// we delay each call by: delay +  (wait + (wait_add * numberOfTarget)) * numberOfTarget
-		float wait			= spawnArgs.GetFloat( "wait", "0" );
-		float wait_add		= spawnArgs.GetFloat( "wait_add", "0" );
-		float wait_mul		= spawnArgs.GetFloat( "wait_mul", "0" );
-		float delay			= spawnArgs.GetFloat( "delay", "0" );
+		float wait = spawnArgs.GetFloat( "wait", "0" );
+		float wait_add = spawnArgs.GetFloat( "wait_add", "0" );
+		float wait_mul = spawnArgs.GetFloat( "wait_mul", "0" );
+		float delay = spawnArgs.GetFloat( "delay", "0" );
 		// avoid a negative delay
 		if( wait < 0 ) {
 			wait = 0;
@@ -1915,7 +1915,7 @@ void CTarget_CallScriptFunction::Event_Activate( idEntity *activator ) {
 		}
 		// wait_add can be negative, we will later make sure that wait is never negative
 		for( int i = 0; i < targets.Num(); i++ ) {
-			idEntity *ent = targets[ i ].GetEntity();
+			idEntity *ent = targets[i].GetEntity();
 			if( !ent ) {
 				DM_LOG( LC_MISC, LT_DEBUG )LOGSTRING( "No entity for script call on target #%i.\r", i );
 				continue;
@@ -1946,7 +1946,7 @@ CTarget_ChangeLockState
 ================
 */
 CLASS_DECLARATION( idTarget, CTarget_ChangeLockState )
-EVENT( EV_Activate,	CTarget_ChangeLockState::Event_Activate )
+EVENT( EV_Activate, CTarget_ChangeLockState::Event_Activate )
 END_CLASS
 
 void CTarget_ChangeLockState::Event_Activate( idEntity *activator ) {
@@ -1978,7 +1978,7 @@ CTarget_ChangeTarget
 ================
 */
 CLASS_DECLARATION( idTarget, CTarget_ChangeTarget )
-EVENT( EV_Activate,	CTarget_ChangeTarget::Event_Activate )
+EVENT( EV_Activate, CTarget_ChangeTarget::Event_Activate )
 END_CLASS
 
 void CTarget_ChangeTarget::Event_Activate( idEntity *activator ) {
@@ -2004,7 +2004,7 @@ void CTarget_ChangeTarget::Event_Activate( idEntity *activator ) {
 }
 
 CLASS_DECLARATION( idTarget, CTarget_InterMissionTrigger )
-EVENT( EV_Activate,	CTarget_InterMissionTrigger::Event_Activate )
+EVENT( EV_Activate, CTarget_InterMissionTrigger::Event_Activate )
 END_CLASS
 
 void CTarget_InterMissionTrigger::Event_Activate( idEntity *activator ) {
@@ -2040,7 +2040,7 @@ void CTarget_InterMissionTrigger::Event_Activate( idEntity *activator ) {
 //		 enemy, or friend now):
 
 CLASS_DECLARATION( idEntity, CTarget_SetTeam )
-EVENT( EV_Activate,	CTarget_SetTeam::Event_Activate )
+EVENT( EV_Activate, CTarget_SetTeam::Event_Activate )
 END_CLASS
 
 void CTarget_SetTeam::Event_Activate( idEntity *activator ) {
@@ -2048,7 +2048,7 @@ void CTarget_SetTeam::Event_Activate( idEntity *activator ) {
 	// for all targets
 	int t = targets.Num();
 	for( int i = 0; i < t; i++ ) {
-		idEntity *ent = targets[ i ].GetEntity();
+		idEntity *ent = targets[i].GetEntity();
 		if( ent )
 			//if ( ent &&  ent->IsType(idActor::Type) )
 		{

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -169,8 +169,8 @@ idMsgQueue::WriteShort
 ===============
 */
 void idMsgQueue::WriteShort( int s ) {
-	WriteByte( ( s >>  0 ) & 255 );
-	WriteByte( ( s >>  8 ) & 255 );
+	WriteByte( ( s >> 0 ) & 255 );
+	WriteByte( ( s >> 8 ) & 255 );
 }
 
 /*
@@ -188,8 +188,8 @@ idMsgQueue::WriteLong
 ===============
 */
 void idMsgQueue::WriteLong( int l ) {
-	WriteByte( ( l >>  0 ) & 255 );
-	WriteByte( ( l >>  8 ) & 255 );
+	WriteByte( ( l >> 0 ) & 255 );
+	WriteByte( ( l >> 8 ) & 255 );
 	WriteByte( ( l >> 16 ) & 255 );
 	WriteByte( ( l >> 24 ) & 255 );
 }
@@ -244,7 +244,7 @@ idMsgChannel::idMsgChannel() {
 ==============
 idMsgChannel::Init
 
-  Opens a channel to a remote system.
+Opens a channel to a remote system.
 ==============
 */
 void idMsgChannel::Init( const netadr_t adr, const int id ) {
@@ -385,7 +385,7 @@ bool idMsgChannel::ReadMessageData( idBitMsg &out, const idBitMsg &msg ) {
 =================
 idMsgChannel::SendNextFragment
 
-  Sends one fragment of the current message.
+Sends one fragment of the current message.
 =================
 */
 void idMsgChannel::SendNextFragment( idPort &port, const int time ) {
@@ -431,8 +431,8 @@ void idMsgChannel::SendNextFragment( idPort &port, const int time ) {
 ===============
 idMsgChannel::SendMessage
 
-  Sends a message to a connection, fragmenting if necessary
-  A 0 length will still generate a packet.
+Sends a message to a connection, fragmenting if necessary
+A 0 length will still generate a packet.
 ================
 */
 int idMsgChannel::SendMessage( idPort &port, const int time, const idBitMsg &msg ) {
@@ -481,10 +481,10 @@ int idMsgChannel::SendMessage( idPort &port, const int time, const idBitMsg &msg
 =================
 idMsgChannel::Process
 
-  Returns false if the message should not be processed due to being out of order or a fragment.
+Returns false if the message should not be processed due to being out of order or a fragment.
 
-  msg must be large enough to hold MAX_MESSAGE_SIZE, because if this is the final
-  fragment of a multi-part message, the entire thing will be copied out.
+msg must be large enough to hold MAX_MESSAGE_SIZE, because if this is the final
+fragment of a multi-part message, the entire thing will be copied out.
 =================
 */
 bool idMsgChannel::Process( const netadr_t from, int time, idBitMsg &msg, int &sequence ) {
@@ -529,7 +529,7 @@ bool idMsgChannel::Process( const netadr_t from, int time, idBitMsg &msg, int &s
 	//
 	if( sequence <= incomingSequence ) {
 		if( net_channelShowDrop.GetBool() || net_channelShowPackets.GetBool() ) {
-			common->Printf( "%s: out of order packet %i at %i\n", Sys_NetAdrToString( remoteAddress ),  sequence, incomingSequence );
+			common->Printf( "%s: out of order packet %i at %i\n", Sys_NetAdrToString( remoteAddress ), sequence, incomingSequence );
 		}
 		return false;
 	}

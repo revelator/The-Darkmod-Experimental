@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 /******************************************************************************/
 /*                                                                            */
 /*         Dark Mod AI Relationships (C) by Chris Sarantos in USA 2005		  */
@@ -141,11 +141,11 @@ bool CRelations::CheckForHostileAI( idVec3 point, int team ) { // grayman #3548
 	// Determine if any AI are armed and hostile in
 	// point's neighborhood.
 	bool hostile = false;
-	idClipModel *clipModels[ MAX_GENTITIES ];
+	idClipModel *clipModels[MAX_GENTITIES];
 	idBounds neighborhood( idVec3( point.x - 256, point.y - 256, point.z ),
 						   idVec3( point.x + 256, point.y + 256, point.z + 128 ) );
 	int num = gameLocal.clip.ClipModelsTouchingBounds( neighborhood, MASK_MONSTERSOLID, clipModels, MAX_GENTITIES );
-	for( int i = 0 ; i < num ; i++ ) {
+	for( int i = 0; i < num; i++ ) {
 		idClipModel *cm = clipModels[i];
 		// don't check render entities
 		if( cm->IsRenderModel() ) {
@@ -287,7 +287,7 @@ void CRelationsEntity::Spawn() {
 }
 
 CLASS_DECLARATION( idEntity, CTarget_SetRelations )
-EVENT( EV_Activate,	CTarget_SetRelations::Event_Activate )
+EVENT( EV_Activate, CTarget_SetRelations::Event_Activate )
 END_CLASS
 
 void CTarget_SetRelations::Event_Activate( idEntity *activator ) {
@@ -296,7 +296,7 @@ void CTarget_SetRelations::Event_Activate( idEntity *activator ) {
 }
 
 CLASS_DECLARATION( idEntity, CTarget_SetEntityRelation )
-EVENT( EV_Activate,	CTarget_SetEntityRelation::Event_Activate )
+EVENT( EV_Activate, CTarget_SetEntityRelation::Event_Activate )
 END_CLASS
 
 void CTarget_SetEntityRelation::Event_Activate( idEntity *activator ) {
@@ -309,7 +309,7 @@ void CTarget_SetEntityRelation::Event_Activate( idEntity *activator ) {
 }
 
 CLASS_DECLARATION( idEntity, CTarget_ChangeEntityRelation )
-EVENT( EV_Activate,	CTarget_ChangeEntityRelation::Event_Activate )
+EVENT( EV_Activate, CTarget_ChangeEntityRelation::Event_Activate )
 END_CLASS
 
 void CTarget_ChangeEntityRelation::Event_Activate( idEntity *activator ) {

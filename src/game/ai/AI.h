@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __AI_H__
 #define __AI_H__
@@ -34,25 +34,25 @@
 /*
 ===============================================================================
 
-	idAI
+idAI
 
 ===============================================================================
 */
 
-const float	SQUARE_ROOT_OF_2			= 1.414213562f;
-const float	AI_TURN_PREDICTION			= 0.2f;
-const float	AI_TURN_SCALE				= 60.0f;
-const float	AI_SEEK_PREDICTION			= 0.3f;
-const float	AI_FLY_DAMPENING			= 0.15f;
-const float	AI_HEARING_RANGE			= 2048.0f;
-const int	DEFAULT_FLY_OFFSET			= 68;
+const float	SQUARE_ROOT_OF_2 = 1.414213562f;
+const float	AI_TURN_PREDICTION = 0.2f;
+const float	AI_TURN_SCALE = 60.0f;
+const float	AI_SEEK_PREDICTION = 0.3f;
+const float	AI_FLY_DAMPENING = 0.15f;
+const float	AI_HEARING_RANGE = 2048.0f;
+const int	DEFAULT_FLY_OFFSET = 68;
 
 // grayman #2414 - TEMP_THINK constants used with interleaved thinking
-const int	TEMP_THINK_INTERLEAVE		= 4;	// maximum interleave think frames when
+const int	TEMP_THINK_INTERLEAVE = 4;	// maximum interleave think frames when
 // more interleaved thinking is needed
-const int	TEMP_THINK_DISTANCE			= 200;	// increase interleave think frames
+const int	TEMP_THINK_DISTANCE = 200;	// increase interleave think frames
 // when door is closer than this
-const int	TEMP_THINK_FACTOR			= 8;	// used to determine when to increase thinking
+const int	TEMP_THINK_FACTOR = 8;	// used to determine when to increase thinking
 // when moving to a goal position
 
 // used to declare the Dark Mod Acuity values array.
@@ -95,11 +95,11 @@ typedef struct obstaclePath_s {
 
 // path prediction
 typedef enum {
-	SE_BLOCKED			= BIT( 0 ),
-	SE_ENTER_LEDGE_AREA	= BIT( 1 ),
-	SE_ENTER_OBSTACLE	= BIT( 2 ),
-	SE_FALL				= BIT( 3 ),
-	SE_LAND				= BIT( 4 )
+	SE_BLOCKED = BIT( 0 ),
+	SE_ENTER_LEDGE_AREA = BIT( 1 ),
+	SE_ENTER_OBSTACLE = BIT( 2 ),
+	SE_FALL = BIT( 3 ),
+	SE_LAND = BIT( 4 )
 } stopEvent_t;
 
 typedef struct predictedPath_s {
@@ -244,7 +244,7 @@ private:
 	idVec3				fireOffset;
 	idMat3				gravityAxis;
 	pvsHandle_t			targetPVS;
-	int					PVSAreas[ idEntity::MAX_PVS_AREAS ];
+	int					PVSAreas[idEntity::MAX_PVS_AREAS];
 };
 
 class idAASFindObservationPosition : public idAASCallback {
@@ -268,7 +268,7 @@ private:
 	idVec3				eyeOffset;
 	idMat3				gravityAxis;
 	pvsHandle_t			targetPVS;
-	int					PVSAreas[ idEntity::MAX_PVS_AREAS ];
+	int					PVSAreas[idEntity::MAX_PVS_AREAS];
 	float				maxObservationDistance;
 
 	// The best goal found, even if it was greater than the maxObservationDistance
@@ -1150,7 +1150,7 @@ public: // greebo: Made these public for now, I didn't want to write an accessor
 
 	/**
 	* grayman #2422 - search volume when searching
-	 **/
+	**/
 
 	idBounds				m_searchLimits;
 
@@ -1633,7 +1633,7 @@ public: // greebo: Made these public for now, I didn't want to write an accessor
 
 	bool					EntityCanSeePos( idActor *actor, const idVec3 &actorOrigin, const idVec3 &pos );
 
-	bool					CanSeeTargetPoint( idVec3 point, idEntity *target , bool checkLighting ) const; // grayman #2859 & #2959
+	bool					CanSeeTargetPoint( idVec3 point, idEntity *target, bool checkLighting ) const; // grayman #2859 & #2959
 
 	idVec3					CanSeeRope( idEntity *ent ) const; // grayman #2872
 
@@ -1848,7 +1848,7 @@ public: // greebo: Made these public for now, I didn't want to write an accessor
 	* This was because I needed to use FindEnemy in the visibility
 	* calculation.
 	**/
-	idActor *FindEnemy( bool useFOV ) ;
+	idActor *FindEnemy( bool useFOV );
 
 	idActor *FindEnemyAI( bool useFOV );
 

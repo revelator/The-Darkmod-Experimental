@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 // Copyright (C) 2007 The Dark Mod Authors
 //
@@ -43,22 +43,22 @@ const idEventDef EV_FrobRidable( "frobRidable", EventArgs( 'e', "playerControlle
 const idEventDef EV_GetMoveAnim( "getMoveAnim", EventArgs(), 's', "Returns the name of the player-requested movement anim for a player controlled AI vehicle" );
 
 CLASS_DECLARATION( idAI, CAIVehicle )
-EVENT( EV_SetController,	CAIVehicle::Event_SetController )
-EVENT( EV_ClearController,	CAIVehicle::Event_ClearController )
-EVENT( EV_FrobRidable,		CAIVehicle::Event_FrobRidable )
-EVENT( EV_GetMoveAnim,		CAIVehicle::Event_GetMoveAnim )
+EVENT( EV_SetController, CAIVehicle::Event_SetController )
+EVENT( EV_ClearController, CAIVehicle::Event_ClearController )
+EVENT( EV_FrobRidable, CAIVehicle::Event_FrobRidable )
+EVENT( EV_GetMoveAnim, CAIVehicle::Event_GetMoveAnim )
 
 END_CLASS
 
 CAIVehicle::CAIVehicle( void ) {
-	m_Controller			= NULL;
-	m_RideJoint		= INVALID_JOINT;
+	m_Controller = NULL;
+	m_RideJoint = INVALID_JOINT;
 	m_RideOffset.Zero();
 	m_RideAngles.Zero();
-	m_CurAngle		= 0.0f;
-	m_SteerSpeed		= 0.0f;
-	m_SpeedFrac			= 0.0f;
-	m_SpeedTimeToMax	= 0.0f;
+	m_CurAngle = 0.0f;
+	m_SteerSpeed = 0.0f;
+	m_SpeedFrac = 0.0f;
+	m_SpeedTimeToMax = 0.0f;
 	m_CurMoveAnim.Clear();
 	m_JumpAnim.Clear();
 	m_Speeds.Clear();
@@ -144,7 +144,7 @@ void CAIVehicle::PlayerFrob( idPlayer *player ) {
 		GetJointWorldTransform( m_RideJoint, gameLocal.time, origin, axis );
 		// put the player in a crouch, so their view is low to the animal
 		// without actually clipping into it
-		idPhysics_Player *playerPhys = ( idPhysics_Player * ) player->GetPhysics();
+		idPhysics_Player *playerPhys = ( idPhysics_Player * )player->GetPhysics();
 		// TODO: look up PMF_DUCKED somehow (make those flags statics in the idPhysics_Player class?)
 		// for now, using 1 since we know that is PMF_DUCKED
 		// Or, we could move mount and dismount to idPhysics_Player...

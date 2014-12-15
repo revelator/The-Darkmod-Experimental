@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #include "precompiled_engine.h"
 #pragma hdrstop
 
@@ -37,13 +37,13 @@ codec::codec() {
 	int i;
 	common->Printf( "init: initing.....\n" );
 	codebooksize = 256;
-	codebook2 = ( VQDATA ** ) Mem_ClearedAlloc( 256 * sizeof( VQDATA * ) );
+	codebook2 = ( VQDATA ** )Mem_ClearedAlloc( 256 * sizeof( VQDATA * ) );
 	for( i = 0; i < 256; i++ ) {
-		codebook2[i] = ( VQDATA * ) Mem_ClearedAlloc( 16 * sizeof( VQDATA ) );
+		codebook2[i] = ( VQDATA * )Mem_ClearedAlloc( 16 * sizeof( VQDATA ) );
 	}
-	codebook4 = ( VQDATA ** ) Mem_ClearedAlloc( 256 * sizeof( VQDATA * ) );
+	codebook4 = ( VQDATA ** )Mem_ClearedAlloc( 256 * sizeof( VQDATA * ) );
 	for( i = 0; i < 256; i++ ) {
-		codebook4[i] = ( VQDATA * ) Mem_ClearedAlloc( 64 * sizeof( VQDATA ) );
+		codebook4[i] = ( VQDATA * )Mem_ClearedAlloc( 64 * sizeof( VQDATA ) );
 	}
 	previousImage[0] = 0;
 	previousImage[1] = 0;
@@ -292,7 +292,7 @@ void codec::Segment( int *alist, float *flist, int numElements, float rmse ) {
 		y3 = ( float )lineout[x++];
 		cb = ( float )lineout[x++];
 		cb -= 128;
-		cr = ( float )lineout[x  ];
+		cr = ( float )lineout[x];
 		cr -= 128;
 		x = 0;
 		codebook2[y][x++] = glimit( y0 + 1.40200f * cr );
@@ -377,8 +377,8 @@ void codec::SetPreviousImage( const char *filename, NSBitmapImageRep *timage ) {
 		delete previousImage[1];
 	}
 	common->Printf( "setPreviousImage:%s\n", filename );
-	previousImage[0] = new NSBitmapImageRep( );
-	previousImage[1] = new NSBitmapImageRep( );
+	previousImage[0] = new NSBitmapImageRep();
+	previousImage[1] = new NSBitmapImageRep();
 	whichFrame = 1;
 	*previousImage[0] = *timage;
 	*previousImage[1] = *timage;
@@ -603,7 +603,7 @@ void codec::InitImages( void ) {
 	int x, y, index0, index1, temp;
 	float ftemp;
 	byte *lutimage;
-	numQuadCels  = ( ( pixelsWide & 0xfff0 ) * ( pixelsHigh & 0xfff0 ) ) / ( MINSIZE * MINSIZE );
+	numQuadCels = ( ( pixelsWide & 0xfff0 ) * ( pixelsHigh & 0xfff0 ) ) / ( MINSIZE * MINSIZE );
 	numQuadCels += numQuadCels / 4 + numQuadCels / 16;
 	if( qStatus ) {
 		Mem_Free( qStatus );
@@ -642,18 +642,18 @@ void codec::QuadX( int startX, int startY, int quadSize ) {
 	bigx = pixelsWide & 0xfff0;
 	bigy = pixelsHigh & 0xfff0;
 	if( ( startX >= lowx ) && ( startX + quadSize ) <= ( bigx ) && ( startY + quadSize ) <= ( bigy ) && ( startY >= lowy ) && quadSize <= MAXSIZE ) {
-		qStatus[onQuad].size 	= quadSize;
-		qStatus[onQuad].xat		= startX;
-		qStatus[onQuad].yat		= startY;
-		qStatus[onQuad].rsnr	= 999999;
+		qStatus[onQuad].size = quadSize;
+		qStatus[onQuad].xat = startX;
+		qStatus[onQuad].yat = startY;
+		qStatus[onQuad].rsnr = 999999;
 		onQuad++;
 	}
 	if( quadSize != MINSIZE ) {
 		startSize = quadSize >> 1;
-		QuadX( startX           , startY           , startSize );
-		QuadX( startX + startSize , startY           , startSize );
-		QuadX( startX           , startY + startSize , startSize );
-		QuadX( startX + startSize , startY + startSize , startSize );
+		QuadX( startX, startY, startSize );
+		QuadX( startX + startSize, startY, startSize );
+		QuadX( startX, startY + startSize, startSize );
+		QuadX( startX + startSize, startY + startSize, startSize );
 	}
 }
 
@@ -764,7 +764,7 @@ void codec::VqData2( byte *cel, quadcel *pquad ) {
 					tempOut[y * 16 + x * 4 + 1] = ( byte )codebook2[best][i++];
 					tempOut[y * 16 + x * 4 + 2] = ( byte )codebook2[best][i++];
 					if( dimension4 == 64 ) {
-						tempOut[y * 16 + x * 4 + 3]  = ( byte )codebook2[best][i++];
+						tempOut[y * 16 + x * 4 + 3] = ( byte )codebook2[best][i++];
 					} else {
 						tempOut[y * 16 + x * 4 + 3] = 255;
 					}
@@ -816,7 +816,7 @@ int codec::ComputeMotionBlock( byte *old, byte *bnew, int size ) {
 	return ( snr <= MOTION_MIN );
 }
 
-void codec::FvqData( byte *bitmap, int size, int realx, int realy,  quadcel *pquad, bool clamp ) {
+void codec::FvqData( byte *bitmap, int size, int realx, int realy, quadcel *pquad, bool clamp ) {
 	int x, y, xLen, yLen, mblur0, ripl, bpp, fabort, temp1;
 	int lowX, lowY, onx, ony, sX, sY, depthx, depthy, breakHigh;
 	float lowestSNR, fmblur0;
@@ -863,7 +863,7 @@ void codec::FvqData( byte *bitmap, int size, int realx, int realy,  quadcel *pqu
 		for( sY = ( ( ( realy - yyMean ) - searchY ) + depthy ); sY <= ( ( realy - yyMean ) + searchY ) && breakHigh; sY += depthy ) {
 			temp1 = xLen * sY + sX;
 			if( sX >= 0 && ( sX + size ) <= xLen && sY >= 0 && ( sY + size ) <= yLen ) {
-				bpp  = previousImage[0]->samplesPerPixel();
+				bpp = previousImage[0]->samplesPerPixel();
 				ripl = ( xLen - size ) * bpp;
 				mblur0 = 0;
 				bitma2 = bitmap;
@@ -891,7 +891,7 @@ void codec::FvqData( byte *bitmap, int size, int realx, int realy,  quadcel *pqu
 		}
 	}
 	if( lowX != -1 && lowY != -1 ) {
-		bpp  = previousImage[0]->samplesPerPixel();
+		bpp = previousImage[0]->samplesPerPixel();
 		ripl = ( xLen - size ) * bpp;
 		mblur0 = 0;
 		bitma2 = bitmap;
@@ -920,7 +920,7 @@ void codec::FvqData( byte *bitmap, int size, int realx, int realy,  quadcel *pqu
 	}
 }
 
-void codec::GetData( unsigned char *iData,  int qSize, int startX, int startY, NSBitmapImageRep *bitmap ) {
+void codec::GetData( unsigned char *iData, int qSize, int startX, int startY, NSBitmapImageRep *bitmap ) {
 	int x, y, yoff, bpp, yend, xend;
 	byte *iPlane[5];
 	int r, g, b, a;
@@ -979,16 +979,16 @@ void codec::LowestQuad( quadcel *qtemp, int *status, float *snr, int bweigh ) {
 	quickadd[PAT] = 1;
 	/*
 		if (slop > theRoQ->NormalFrameSize()) {
-			quickadd[CCC] = 0.5f;
-			quickadd[PAT] = 1.0f;
+		quickadd[CCC] = 0.5f;
+		quickadd[PAT] = 1.0f;
 		}
-	*/
+		*/
 	wtemp = 99999;
 	for( i = ( DEAD - 1 ); i > 0; i-- ) {
-		if( qtemp->snr[i]*quickadd[i] < wtemp ) {
+		if( qtemp->snr[i] * quickadd[i] < wtemp ) {
 			*status = i;
-			*snr 	= qtemp->snr[i];
-			wtemp 	= qtemp->snr[i] * quickadd[i];
+			*snr = qtemp->snr[i];
+			wtemp = qtemp->snr[i] * quickadd[i];
 		}
 	}
 	if( qtemp->mark ) {
@@ -1023,11 +1023,11 @@ float codec::GetCurrentRMSE( quadcel *pquad ) {
 	j = 0;
 	for( i = 0; i < numQuadCels; i++ ) {
 		if( pquad[i].size && pquad[i].status && pquad[i].status != DEAD ) {
-			if( pquad[i].size ==  8 ) {
+			if( pquad[i].size == 8 ) {
 				totalbits += pquad[i].rsnr * 4;
 				j += 4;
 			}
-			if( pquad[i].size ==  4 ) {
+			if( pquad[i].size == 4 ) {
 				totalbits += pquad[i].rsnr * 1;
 				j += 1;
 			}
@@ -1057,7 +1057,7 @@ int codec::AddQuad( quadcel *pquad, int lownum ) {
 		for( i = lownum + 1; i < lownum + ( nx * 4 ) + 1; i += nx ) {
 			pquad[i].size = nsize;
 			GetData( idataA, pquad[i].size, pquad[i].xat, pquad[i].yat, image );
-			VqData4( idataA , &pquad[i] );
+			VqData4( idataA, &pquad[i] );
 			VqData2( idataA, &pquad[i] );
 			if( previousImage[0] ) {
 				FvqData( idataA, pquad[i].size, pquad[i].xat, pquad[i].yat, &pquad[i], true );
@@ -1067,7 +1067,7 @@ int codec::AddQuad( quadcel *pquad, int lownum ) {
 					pquad[i].mark = true;
 				}
 			}
-			LowestQuad( &pquad[i] , &pquad[i].status, &pquad[i].rsnr, true );
+			LowestQuad( &pquad[i], &pquad[i].status, &pquad[i].rsnr, true );
 			newsnr += pquad[i].rsnr;
 		}
 		Mem_Free( idataA );
@@ -1082,7 +1082,7 @@ int codec::AddQuad( quadcel *pquad, int lownum ) {
 		}
 		if( pquad[lownum].rsnr > newsnr ) {
 			pquad[lownum].status = DEP;
-			pquad[lownum].rsnr   = 0;
+			pquad[lownum].rsnr = 0;
 			for( i = lownum + 1; i < lownum + ( nx * 4 ) + 1; i += nx ) {
 				theRoQ->MarkQuadx( pquad[i].xat, pquad[i].yat, nsize, pquad[i].rsnr, qStatus[i].status );
 			}
@@ -1182,10 +1182,10 @@ void codec::SparseEncode( void ) {
 		} else {
 			if( qStatus[i].size < osize ) {
 				qStatus[i].status = 0;
-				qStatus[i].size   = 0;
+				qStatus[i].size = 0;
 			} else {
 				qStatus[i].status = DEP;
-				qStatus[i].rsnr   = 0;
+				qStatus[i].rsnr = 0;
 			}
 		}
 	}
@@ -1212,11 +1212,11 @@ void codec::SparseEncode( void ) {
 	temp = dxMean = dyMean = 0;
 	/*
 	for( i=0; i<numQuadCels; i++ ) {
-		if (qStatus[i].size && qStatus[i].status == FCC) {
-			dxMean += (qStatus[i].domain >> 8  ) - 128;
-			dyMean += (qStatus[i].domain & 0xff) - 128;
-			temp++;
-		}
+	if (qStatus[i].size && qStatus[i].status == FCC) {
+	dxMean += (qStatus[i].domain >> 8  ) - 128;
+	dyMean += (qStatus[i].domain & 0xff) - 128;
+	temp++;
+	}
 	}
 	if (temp) { dxMean /= temp; dyMean /= temp; }
 	*/
@@ -1259,16 +1259,16 @@ void codec::SparseEncode( void ) {
 			theRoQ->MarkQuadx( qStatus[i].xat, qStatus[i].yat, qStatus[i].size, qStatus[i].rsnr, qStatus[i].status );
 			/*
 			if (qStatus[i].status==FCC && qStatus[i].snr[FCC]>qStatus[i].snr[SLD]) {
-						common->Printf("sparseEncode: something is wrong here\n");
-						common->Printf("xat:    %d\n", qStatus[i].xat);
-						common->Printf("yat:    %d\n", qStatus[i].yat);
-						common->Printf("size    %d\n", qStatus[i].size);
-						common->Printf("type:   %d\n", qStatus[i].status);
-						common->Printf("mot:    %04x\n", qStatus[i].domain);
-						common->Printf("motsnr: %0f\n", qStatus[i].snr[FCC]);
-						common->Printf("sldsnr: %0f\n", qStatus[i].snr[SLD]);
-						common->Printf("rmse:   %0f\n", qStatus[i].rsnr);
-						//common->Error("need to go away now\n");
+			common->Printf("sparseEncode: something is wrong here\n");
+			common->Printf("xat:    %d\n", qStatus[i].xat);
+			common->Printf("yat:    %d\n", qStatus[i].yat);
+			common->Printf("size    %d\n", qStatus[i].size);
+			common->Printf("type:   %d\n", qStatus[i].status);
+			common->Printf("mot:    %04x\n", qStatus[i].domain);
+			common->Printf("motsnr: %0f\n", qStatus[i].snr[FCC]);
+			common->Printf("sldsnr: %0f\n", qStatus[i].snr[SLD]);
+			common->Printf("rmse:   %0f\n", qStatus[i].rsnr);
+			//common->Error("need to go away now\n");
 			}
 			*/
 		}
@@ -1445,10 +1445,10 @@ void codec::EncodeNothing( void ) {
 		} else {
 			if( qStatus[i].size < osize ) {
 				qStatus[i].status = 0;
-				qStatus[i].size   = 0;
+				qStatus[i].size = 0;
 			} else {
 				qStatus[i].status = DEP;
-				qStatus[i].rsnr   = 0;
+				qStatus[i].rsnr = 0;
 			}
 		}
 	}

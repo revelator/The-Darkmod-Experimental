@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -28,7 +28,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 /*
 ===============================================================================
 
-	idReachability
+idReachability
 
 ===============================================================================
 */
@@ -40,8 +40,8 @@ Reachability_Write
 */
 bool Reachability_Write( idFile *fp, idReachability *reach ) {
 	fp->WriteFloatString( "\t\t%d %d (%f %f %f) (%f %f %f) %d %d",
-						  ( int ) reach->travelType, ( int ) reach->toAreaNum, reach->start.x, reach->start.y, reach->start.z,
-						  reach->end.x, reach->end.y, reach->end.z, reach->edgeNum, ( int ) reach->travelTime );
+						  ( int )reach->travelType, ( int )reach->toAreaNum, reach->start.x, reach->start.y, reach->start.z,
+						  reach->end.x, reach->end.y, reach->end.z, reach->edgeNum, ( int )reach->travelTime );
 	return true;
 }
 
@@ -77,7 +77,7 @@ void idReachability::CopyBase( idReachability &reach ) {
 /*
 ===============================================================================
 
-	idReachability_Special
+idReachability_Special
 
 ===============================================================================
 */
@@ -120,7 +120,7 @@ bool Reachability_Special_Read( idLexer &src, idReachability_Special *reach ) {
 /*
 ===============================================================================
 
-	idAASSettings
+idAASSettings
 
 ===============================================================================
 */
@@ -364,10 +364,10 @@ idAASSettings::FromDict
 */
 bool idAASSettings::FromDict( const char *name, const idDict *dict ) {
 	idBounds bounds;
-	if( !dict->GetVector( "mins", "0 0 0", bounds[ 0 ] ) ) {
+	if( !dict->GetVector( "mins", "0 0 0", bounds[0] ) ) {
 		common->Error( "Missing 'mins' in entityDef '%s'", name );
 	}
-	if( !dict->GetVector( "maxs", "0 0 0", bounds[ 1 ] ) ) {
+	if( !dict->GetVector( "maxs", "0 0 0", bounds[1] ) ) {
 		common->Error( "Missing 'maxs' in entityDef '%s'", name );
 	}
 	numBoundingBoxes = 1;
@@ -488,7 +488,7 @@ bool idAASSettings::ValidEntity( const char *classname ) const {
 	idVec3			size;
 	idBounds		bounds;
 	if( playerFlood ) {
-		if( !strcmp( classname, "info_player_start" ) || !strcmp( classname , "info_player_deathmatch" ) || !strcmp( classname, "func_teleporter" ) ) {
+		if( !strcmp( classname, "info_player_start" ) || !strcmp( classname, "info_player_deathmatch" ) || !strcmp( classname, "func_teleporter" ) ) {
 			return true;
 		}
 	}
@@ -497,8 +497,8 @@ bool idAASSettings::ValidEntity( const char *classname ) const {
 		if( decl->dict.GetVector( "mins", NULL, bounds[0] ) ) {
 			decl->dict.GetVector( "maxs", NULL, bounds[1] );
 		} else if( decl->dict.GetVector( "size", NULL, size ) ) {
-			bounds[ 0 ].Set( size.x * -0.5f, size.y * -0.5f, 0.0f );
-			bounds[ 1 ].Set( size.x * 0.5f, size.y * 0.5f, size.z );
+			bounds[0].Set( size.x * -0.5f, size.y * -0.5f, 0.0f );
+			bounds[1].Set( size.x * 0.5f, size.y * 0.5f, size.z );
 		}
 		if( !ValidForBounds( bounds ) ) {
 			common->Error( "%s cannot use %s\n", classname, fileExtension.c_str() );
@@ -511,7 +511,7 @@ bool idAASSettings::ValidEntity( const char *classname ) const {
 /*
 ===============================================================================
 
-	idAASFileLocal
+idAASFileLocal
 
 ===============================================================================
 */

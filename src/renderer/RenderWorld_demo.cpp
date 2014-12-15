@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 #include "precompiled_engine.h"
 #pragma hdrstop
 
@@ -42,18 +42,18 @@ void		idRenderWorldLocal::StartWritingDemo( idDemoFile *demo ) {
 	// FIXME: we should track the idDemoFile locally, instead of snooping into session for it
 	WriteLoadMap();
 	// write the door portal state
-	for( i = 0 ; i < numInterAreaPortals ; i++ ) {
+	for( i = 0; i < numInterAreaPortals; i++ ) {
 		if( doublePortals[i].blockingBits ) {
 			SetPortalState( i + 1, doublePortals[i].blockingBits );
 		}
 	}
 	// clear the archive counter on all defs
-	for( i = 0 ; i < lightDefs.Num() ; i++ ) {
+	for( i = 0; i < lightDefs.Num(); i++ ) {
 		if( lightDefs[i] ) {
 			lightDefs[i]->archived = false;
 		}
 	}
-	for( i = 0 ; i < entityDefs.Num() ; i++ ) {
+	for( i = 0; i < entityDefs.Num(); i++ ) {
 		if( entityDefs[i] ) {
 			entityDefs[i]->archived = false;
 		}
@@ -266,7 +266,7 @@ void	idRenderWorldLocal::WriteVisibleDefs( const viewDef_t *viewDef ) {
 		return;
 	}
 	// make sure all necessary entities and lights are updated
-	for( viewEntity_t *viewEnt = viewDef->viewEntitys ; viewEnt ; viewEnt = viewEnt->next ) {
+	for( viewEntity_t *viewEnt = viewDef->viewEntitys; viewEnt; viewEnt = viewEnt->next ) {
 		idRenderEntityLocal *ent = viewEnt->entityDef;
 		if( ent->archived ) {
 			// still up to date
@@ -276,7 +276,7 @@ void	idRenderWorldLocal::WriteVisibleDefs( const viewDef_t *viewDef ) {
 		WriteRenderEntity( ent->index, &ent->parms );
 		ent->archived = true;
 	}
-	for( viewLight_t *viewLight = viewDef->viewLights ; viewLight ; viewLight = viewLight->next ) {
+	for( viewLight_t *viewLight = viewDef->viewLights; viewLight; viewLight = viewLight->next ) {
 		idRenderLightLocal *light = viewLight->lightDef;
 		if( light->archived ) {
 			// still up to date
@@ -421,7 +421,7 @@ void	idRenderWorldLocal::WriteRenderLight( qhandle_t handle, const renderLight_t
 ReadRenderLight
 ================
 */
-void	idRenderWorldLocal::ReadRenderLight( ) {
+void	idRenderWorldLocal::ReadRenderLight() {
 	renderLight_t	light;
 	int				index;
 	session->readDemo->ReadInt( index );
@@ -539,10 +539,10 @@ void	idRenderWorldLocal::WriteRenderEntity( qhandle_t handle, const renderEntity
 	}
 	/*
 	if ( ent->decals ) {
-		ent->decals->WriteToDemoFile( session->readDemo );
+	ent->decals->WriteToDemoFile( session->readDemo );
 	}
 	if ( ent->overlay ) {
-		ent->overlay->WriteToDemoFile( session->writeDemo );
+	ent->overlay->WriteToDemoFile( session->writeDemo );
 	}
 	*/
 #ifdef WRITE_GUIS
@@ -638,19 +638,19 @@ void	idRenderWorldLocal::ReadRenderEntity() {
 	ent.callbackData = NULL;
 	/*
 	if ( ent.decals ) {
-		ent.decals = idRenderModelDecal::Alloc();
-		ent.decals->ReadFromDemoFile( session->readDemo );
+	ent.decals = idRenderModelDecal::Alloc();
+	ent.decals->ReadFromDemoFile( session->readDemo );
 	}
 	if ( ent.overlay ) {
-		ent.overlay = idRenderModelOverlay::Alloc();
-		ent.overlay->ReadFromDemoFile( session->readDemo );
+	ent.overlay = idRenderModelOverlay::Alloc();
+	ent.overlay->ReadFromDemoFile( session->readDemo );
 	}
 	*/
 	for( i = 0; i < MAX_RENDERENTITY_GUI; i++ ) {
-		if( ent.gui[ i ] ) {
-			ent.gui[ i ] = uiManager->Alloc();
+		if( ent.gui[i] ) {
+			ent.gui[i] = uiManager->Alloc();
 #ifdef WRITE_GUIS
-			ent.gui[ i ]->ReadFromDemoFile( session->readDemo );
+			ent.gui[i]->ReadFromDemoFile( session->readDemo );
 #endif
 		}
 	}

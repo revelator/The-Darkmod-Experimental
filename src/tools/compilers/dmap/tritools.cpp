@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -28,7 +28,7 @@ static bool versioned = RegisterVersionedFile( "$Id$" );
 
   All triangle list functions should behave reasonably with NULL lists.
 
-*/
+  */
 
 /*
 ===============
@@ -75,7 +75,7 @@ FreeTriList
 */
 void FreeTriList( mapTri_t *a ) {
 	mapTri_t	*next;
-	for( ; a ; a = next ) {
+	for( ; a; a = next ) {
 		next = a->next;
 		Mem_Free( a );
 	}
@@ -90,10 +90,10 @@ mapTri_t	*CopyTriList( const mapTri_t *a ) {
 	mapTri_t	*testList;
 	const mapTri_t	*tri;
 	testList = NULL;
-	for( tri = a ; tri ; tri = tri->next ) {
+	for( tri = a; tri; tri = tri->next ) {
 		mapTri_t	*copy;
 		copy = CopyMapTri( tri );
-		copy ->next = testList;
+		copy->next = testList;
 		testList = copy;
 	}
 	return testList;
@@ -147,7 +147,7 @@ mapTri_t	*RemoveBadTris( const mapTri_t *list ) {
 	mapTri_t	*copy;
 	const mapTri_t	*tri;
 	newList = NULL;
-	for( tri = list ; tri ; tri = tri->next ) {
+	for( tri = list; tri; tri = tri->next ) {
 		if( MapTriArea( tri ) > 0 ) {
 			copy = CopyMapTri( tri );
 			copy->next = newList;
@@ -164,7 +164,7 @@ BoundTriList
 */
 void BoundTriList( const mapTri_t *list, idBounds &b ) {
 	b.Clear();
-	for( ; list ; list = list->next ) {
+	for( ; list; list = list->next ) {
 		b.AddPoint( list->v[0].xyz );
 		b.AddPoint( list->v[1].xyz );
 		b.AddPoint( list->v[2].xyz );
@@ -194,7 +194,7 @@ Swaps the vertex order
 */
 void	FlipTriList( mapTri_t *tris ) {
 	mapTri_t	*tri;
-	for( tri = tris ; tri ; tri = tri->next ) {
+	for( tri = tris; tri; tri = tri->next ) {
 		idDrawVert	v;
 		const struct hashVert_s *hv;
 		struct optVertex_s	*ov;
@@ -239,7 +239,7 @@ void		TriVertsFromOriginal( mapTri_t *tri, const mapTri_t *original ) {
 	if( denom == 0 ) {
 		return;		// original was degenerate, so it doesn't matter
 	}
-	for( i = 0 ; i < 3 ; i++ ) {
+	for( i = 0; i < 3; i++ ) {
 		float	a, b, c;
 		// find the barycentric coordinates
 		a = idWinding::TriangleArea( tri->v[i].xyz, original->v[1].xyz, original->v[2].xyz ) / denom;
@@ -250,7 +250,7 @@ void		TriVertsFromOriginal( mapTri_t *tri, const mapTri_t *original ) {
 						  + b * original->v[1].st[0] + c * original->v[2].st[0];
 		tri->v[i].st[1] = a * original->v[0].st[1]
 						  + b * original->v[1].st[1] + c * original->v[2].st[1];
-		for( j = 0 ; j < 3 ; j++ ) {
+		for( j = 0; j < 3; j++ ) {
 			tri->v[i].normal[j] = a * original->v[0].normal[j]
 								  + b * original->v[1].normal[j] + c * original->v[2].normal[j];
 		}
@@ -277,7 +277,7 @@ mapTri_t *WindingToTriList( const idWinding *w, const mapTri_t *originalTri ) {
 		return NULL;
 	}
 	triList = NULL;
-	for( i = 2 ; i < w->GetNumPoints() ; i++ ) {
+	for( i = 2; i < w->GetNumPoints(); i++ ) {
 		tri = AllocTri();
 		if( !originalTri ) {
 			memset( tri, 0, sizeof( *tri ) );
@@ -286,7 +286,7 @@ mapTri_t *WindingToTriList( const idWinding *w, const mapTri_t *originalTri ) {
 		}
 		tri->next = triList;
 		triList = tri;
-		for( j = 0 ; j < 3 ; j++ ) {
+		for( j = 0; j < 3; j++ ) {
 			if( j == 0 ) {
 				vec = &( ( *w )[0] ).ToVec3();
 			} else if( j == 1 ) {
@@ -315,7 +315,7 @@ void	ClipTriList( const mapTri_t *list, const idPlane &plane, float epsilon,
 	idWinding		*w, *frontW, *backW;
 	*front = NULL;
 	*back = NULL;
-	for( tri = list ; tri ; tri = tri->next ) {
+	for( tri = list; tri; tri = tri->next ) {
 		w = WindingForTri( tri );
 		w->Split( plane, epsilon, &frontW, &backW );
 		newList = WindingToTriList( frontW, tri );

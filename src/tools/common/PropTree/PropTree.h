@@ -67,7 +67,7 @@
 
 class CPropTree;
 
-typedef BOOL ( CALLBACK *ENUMPROPITEMPROC )( CPropTree *, CPropTreeItem *, LPARAM );
+typedef BOOL( CALLBACK *ENUMPROPITEMPROC )( CPropTree *, CPropTreeItem *, LPARAM );
 
 void InitPropTree( HINSTANCE hInstance );
 

@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #ifndef __MULTIPLAYERGAME_H__
 #define	__MULTIPLAYERGAME_H__
@@ -27,7 +27,7 @@
 /*
 ===============================================================================
 
-	Basic DOOM multiplayer
+Basic DOOM multiplayer
 
 ===============================================================================
 */
@@ -59,14 +59,14 @@ typedef struct mpPlayerState_s {
 	bool			ingame;
 } mpPlayerState_t;
 
-const int NUM_CHAT_NOTIFY	= 5;
-const int CHAT_FADE_TIME	= 400;
-const int FRAGLIMIT_DELAY	= 2000;
+const int NUM_CHAT_NOTIFY = 5;
+const int CHAT_FADE_TIME = 400;
+const int FRAGLIMIT_DELAY = 2000;
 
 const int MP_PLAYER_MINFRAGS = -100;
 const int MP_PLAYER_MAXFRAGS = 100;
-const int MP_PLAYER_MAXWINS	= 100;
-const int MP_PLAYER_MAXPING	= 999;
+const int MP_PLAYER_MAXWINS = 100;
+const int MP_PLAYER_MAXPING = 999;
 
 typedef struct mpChatLine_s {
 	idStr			line;
@@ -133,10 +133,10 @@ public:
 		NEXTGAME,
 		STATE_COUNT
 	} gameState_t;
-	static const char *GameStateStrings[ STATE_COUNT ];
+	static const char *GameStateStrings[STATE_COUNT];
 	idMultiplayerGame::gameState_t		GetGameState( void ) const;
 
-	static const char *GlobalSoundStrings[ SND_COUNT ];
+	static const char *GlobalSoundStrings[SND_COUNT];
 	void			PlayGlobalSound( int to, snd_evt_t evt, const char *shader = NULL );
 
 	// more compact than a chat line
@@ -241,7 +241,7 @@ private:
 	gameState_t		nextState;				// state to switch to when nextStateSwitch is hit
 	int				pingUpdateTime;			// time to update ping
 
-	mpPlayerState_t	playerState[ MAX_CLIENTS ];
+	mpPlayerState_t	playerState[MAX_CLIENTS];
 
 	// keep track of clients which are willingly in spectator mode
 
@@ -254,7 +254,7 @@ private:
 	idStr			voteValue;				// the data voted upon ( server )
 	idStr			voteString;				// the vote string ( client )
 	bool			voted;					// hide vote box ( client )
-	int				kickVoteMap[ MAX_CLIENTS ];
+	int				kickVoteMap[MAX_CLIENTS];
 
 	// time related
 	int				nextStateSwitch;		// time next state switch
@@ -281,7 +281,7 @@ private:
 	bool			bCurrentMenuMsg;		// send menu state updates to server
 
 	// chat data
-	mpChatLine_t	chatHistory[ NUM_CHAT_NOTIFY ];
+	mpChatLine_t	chatHistory[NUM_CHAT_NOTIFY];
 	int				chatHistoryIndex;
 	int				chatHistorySize;		// 0 <= x < NUM_CHAT_NOTIFY
 	bool			chatDataUpdated;
@@ -293,7 +293,7 @@ private:
 
 	int				fragLimitTimeout;
 
-	int				switchThrottle[ 3 ];
+	int				switchThrottle[3];
 	int				voiceChatThrottle;
 
 	gameType_t		lastGameType;			// for restarts
@@ -349,11 +349,11 @@ ID_INLINE idMultiplayerGame::gameState_t idMultiplayerGame::GetGameState( void )
 }
 
 ID_INLINE void idMultiplayerGame::ClearFrags( int clientNum ) {
-	playerState[ clientNum ].fragCount = 0;
+	playerState[clientNum].fragCount = 0;
 }
 
 ID_INLINE bool idMultiplayerGame::IsInGame( int clientNum ) {
-	return playerState[ clientNum ].ingame;
+	return playerState[clientNum].ingame;
 }
 
 #endif	/* !__MULTIPLAYERGAME_H__ */

@@ -1,30 +1,30 @@
 // vim:ts=4:sw=4:cindent
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 /*
    Copyright (C) 2004 Id Software, Inc.
    Copyright (C) 2011 The Dark Mod
 
-func_emitters - have one or more particle models
+   func_emitters - have one or more particle models
 
-*/
+   */
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -39,9 +39,9 @@ const idEventDef EV_EmitterAddModel( "emitterAddModel", EventArgs( 's', "modelNa
 const idEventDef EV_EmitterGetNumModels( "emitterGetNumModels", EventArgs(), 'f', "Returns the number of models/particles this emitter has. Always >= 1." );
 
 CLASS_DECLARATION( idStaticEntity, idFuncEmitter )
-EVENT( EV_Activate,				idFuncEmitter::Event_Activate )
-EVENT( EV_EmitterAddModel,		idFuncEmitter::Event_EmitterAddModel )
-EVENT( EV_EmitterGetNumModels,	idFuncEmitter::Event_EmitterGetNumModels )
+EVENT( EV_Activate, idFuncEmitter::Event_Activate )
+EVENT( EV_EmitterAddModel, idFuncEmitter::Event_EmitterAddModel )
+EVENT( EV_EmitterGetNumModels, idFuncEmitter::Event_EmitterGetNumModels )
 END_CLASS
 
 /*
@@ -143,7 +143,7 @@ void idFuncEmitter::Present( void ) {
 	renderEntity.hModel = renderModelManager->FindModel( spawnArgs.GetString( "model" ) );
 	renderEntity.bodyId = 0;
 	// make each of them have a unique timeoffset, so they do not appear to be in sync
-	renderEntity.shaderParms[ SHADERPARM_TIMEOFFSET ] = -MS2SEC( gameLocal.time - gameLocal.random.RandomInt( 32767 ) );
+	renderEntity.shaderParms[SHADERPARM_TIMEOFFSET] = -MS2SEC( gameLocal.time - gameLocal.random.RandomInt( 32767 ) );
 	if( renderEntity.hModel ) {
 		renderEntity.bounds = renderEntity.hModel->Bounds( &renderEntity );
 		// add to refresh list
@@ -174,7 +174,7 @@ void idFuncEmitter::Present( void ) {
 		renderEntity.hModel = m_models[i].handle;
 		renderEntity.bodyId = i + 1;
 		// make each of them have a unique timeoffset, so they do not appear to be in sync
-		renderEntity.shaderParms[ SHADERPARM_TIMEOFFSET ] = -MS2SEC( gameLocal.time - gameLocal.random.RandomInt( 32767 ) );
+		renderEntity.shaderParms[SHADERPARM_TIMEOFFSET] = -MS2SEC( gameLocal.time - gameLocal.random.RandomInt( 32767 ) );
 		if( renderEntity.hModel ) {
 			renderEntity.bounds = renderEntity.hModel->Bounds( &renderEntity );
 			// add to refresh list
@@ -258,9 +258,9 @@ void idFuncEmitter::Think( void ) {
 	// start with 1
 	/*	for (int i = 1; i < num; i++)
 		{
-			// TODO:
+		// TODO:
 		}
-	*/
+		*/
 	// did our model(s) change?
 	Present();
 }
@@ -294,7 +294,7 @@ void idFuncEmitter::Restore( idRestoreGame *savefile ) {
 
 /*
   ****************   Events   ****************************************
-*/
+  */
 
 /*
 ================
@@ -338,8 +338,8 @@ idFuncEmitter::WriteToSnapshot
 */
 void idFuncEmitter::WriteToSnapshot( idBitMsgDelta &msg ) const {
 	msg.WriteBits( hidden ? 1 : 0, 1 );
-	msg.WriteFloat( renderEntity.shaderParms[ SHADERPARM_PARTICLE_STOPTIME ] );
-	msg.WriteFloat( renderEntity.shaderParms[ SHADERPARM_TIMEOFFSET ] );
+	msg.WriteFloat( renderEntity.shaderParms[SHADERPARM_PARTICLE_STOPTIME] );
+	msg.WriteFloat( renderEntity.shaderParms[SHADERPARM_TIMEOFFSET] );
 	// TODO: additinal models
 }
 
@@ -350,8 +350,8 @@ idFuncEmitter::ReadFromSnapshot
 */
 void idFuncEmitter::ReadFromSnapshot( const idBitMsgDelta &msg ) {
 	hidden = msg.ReadBits( 1 ) != 0;
-	renderEntity.shaderParms[ SHADERPARM_PARTICLE_STOPTIME ] = msg.ReadFloat();
-	renderEntity.shaderParms[ SHADERPARM_TIMEOFFSET ] = msg.ReadFloat();
+	renderEntity.shaderParms[SHADERPARM_PARTICLE_STOPTIME] = msg.ReadFloat();
+	renderEntity.shaderParms[SHADERPARM_TIMEOFFSET] = msg.ReadFloat();
 	// TODO: additinal models
 	if( msg.HasChanged() ) {
 		UpdateVisuals();
@@ -368,8 +368,8 @@ idFuncSplat
 
 const idEventDef EV_Splat( "<Splat>", EventArgs(), EV_RETURNS_VOID, "internal" );
 CLASS_DECLARATION( idFuncEmitter, idFuncSplat )
-EVENT( EV_Activate,		idFuncSplat::Event_Activate )
-EVENT( EV_Splat,		idFuncSplat::Event_Splat )
+EVENT( EV_Activate, idFuncSplat::Event_Activate )
+EVENT( EV_Splat, idFuncSplat::Event_Splat )
 END_CLASS
 
 /*

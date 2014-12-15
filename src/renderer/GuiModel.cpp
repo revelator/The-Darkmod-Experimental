@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -75,7 +75,7 @@ void idGuiModel::WriteToDemo( idDemoFile *demo ) {
 	}
 	i = surfaces.Num();
 	demo->WriteInt( i );
-	for( j = 0 ; j < i ; j++ ) {
+	for( j = 0; j < i; j++ ) {
 		guiModelSurface_t	*surf = &surfaces[j];
 		demo->WriteInt( ( int & )surf->material );
 		demo->WriteFloat( surf->color[0] );
@@ -120,7 +120,7 @@ void idGuiModel::ReadFromDemo( idDemoFile *demo ) {
 	i = surfaces.Num();
 	demo->ReadInt( i );
 	surfaces.SetNum( i, false );
-	for( j = 0 ; j < i ; j++ ) {
+	for( j = 0; j < i; j++ ) {
 		guiModelSurface_t	*surf = &surfaces[j];
 		demo->ReadInt( ( int & )surf->material );
 		demo->ReadFloat( surf->color[0] );
@@ -182,7 +182,7 @@ void idGuiModel::EmitToCurrentView( float modelMatrix[16], bool depthHack ) {
 	float	modelViewMatrix[16];
 	myGlMultMatrix( modelMatrix, tr.viewDef->worldSpace.modelViewMatrix,
 					modelViewMatrix );
-	for( int i = 0 ; i < surfaces.Num() ; i++ ) {
+	for( int i = 0; i < surfaces.Num(); i++ ) {
 		EmitSurface( &surfaces[i], modelMatrix, modelViewMatrix, depthHack );
 	}
 }
@@ -244,7 +244,7 @@ void idGuiModel::EmitFullScreen( void ) {
 	viewDef_t	*oldViewDef = tr.viewDef;
 	tr.viewDef = viewDef;
 	// add the surfaces to this view
-	for( int i = 0 ; i < surfaces.Num() ; i++ ) {
+	for( int i = 0; i < surfaces.Num(); i++ ) {
 		EmitSurface( &surfaces[i], viewDef->worldSpace.modelMatrix, viewDef->worldSpace.modelViewMatrix, false );
 	}
 	tr.viewDef = oldViewDef;
@@ -277,7 +277,7 @@ void idGuiModel::AdvanceSurf() {
 	s.numVerts = 0;
 	s.firstVert = verts.Num();
 	surfaces.Append( s );
-	surf = &surfaces[ surfaces.Num() - 1 ];
+	surf = &surfaces[surfaces.Num() - 1];
 }
 
 /*
@@ -362,7 +362,7 @@ void idGuiModel::DrawStretchPic( const idDrawVert *dverts, const glIndex_t *dind
 			}
 			int	numVerts = verts.Num();
 			verts.SetNum( numVerts + w.GetNumPoints(), false );
-			for( j = 0 ; j < w.GetNumPoints() ; j++ ) {
+			for( j = 0; j < w.GetNumPoints(); j++ ) {
 				idDrawVert *dv = &verts[numVerts + j];
 				dv->xyz.x = w[j].x;
 				dv->xyz.y = w[j].y;

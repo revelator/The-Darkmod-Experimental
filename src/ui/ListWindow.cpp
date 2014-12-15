@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_engine.h"
 #pragma hdrstop
@@ -440,7 +440,7 @@ void idListWindow::Draw( int time, float x, float y ) {
 				dc->DrawRect( rect.x, rect.y + pixelOffset, rect.w, rect.h, 1.0f, color );
 			}
 		}
-		rect.y ++;
+		rect.y++;
 		rect.h = lineHeight - 1;
 		if( hover && !noEvents && Contains( rect, gui->CursorX(), gui->CursorY() ) ) {
 			color = hoverColor;
@@ -448,7 +448,7 @@ void idListWindow::Draw( int time, float x, float y ) {
 			color = foreColor;
 		}
 		rect.h = lineHeight + pixelOffset;
-		rect.y --;
+		rect.y--;
 		if( tabInfo.Num() > 0 ) {
 			int start = 0;
 			int tab = 0;
@@ -482,7 +482,7 @@ void idListWindow::Draw( int time, float x, float y ) {
 						} else if( tabInfo[tab].align == idDeviceContext::ALIGN_CENTER ) {
 							iconRect.x = rect.x + rect.w / 2.0f - iconRect.w / 2.0f;
 						} else if( tabInfo[tab].align == idDeviceContext::ALIGN_RIGHT ) {
-							iconRect.x  = rect.x + rect.w - iconRect.w;
+							iconRect.x = rect.x + rect.w - iconRect.w;
 						}
 						if( tabInfo[tab].valign == 0 ) { //Top
 							iconRect.y = rect.y + tabInfo[tab].iconVOffset;

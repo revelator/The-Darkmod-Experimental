@@ -1,21 +1,21 @@
 /*****************************************************************************
-                    The Dark Mod GPL Source Code
+					The Dark Mod GPL Source Code
 
- This file is part of the The Dark Mod Source Code, originally based
- on the Doom 3 GPL Source Code as published in 2011.
+					This file is part of the The Dark Mod Source Code, originally based
+					on the Doom 3 GPL Source Code as published in 2011.
 
- The Dark Mod Source Code is free software: you can redistribute it
- and/or modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation, either version 3 of the License,
- or (at your option) any later version. For details, see LICENSE.TXT.
+					The Dark Mod Source Code is free software: you can redistribute it
+					and/or modify it under the terms of the GNU General Public License as
+					published by the Free Software Foundation, either version 3 of the License,
+					or (at your option) any later version. For details, see LICENSE.TXT.
 
- Project: The Dark Mod (http://www.thedarkmod.com/)
+					Project: The Dark Mod (http://www.thedarkmod.com/)
 
- $Revision$ (Revision of last commit)
- $Date$ (Date of last commit)
- $Author$ (Author of last commit)
+					$Revision$ (Revision of last commit)
+					$Date$ (Date of last commit)
+					$Author$ (Author of last commit)
 
-******************************************************************************/
+					******************************************************************************/
 
 #include "precompiled_game.h"
 #pragma hdrstop
@@ -530,7 +530,7 @@ void idPhysics_Base::ClearContacts( void ) {
 	int i;
 	idEntity *ent;
 	for( i = 0; i < contacts.Num(); i++ ) {
-		ent = gameLocal.entities[ contacts[i].entityNum ];
+		ent = gameLocal.entities[contacts[i].entityNum];
 		if( ent ) {
 			ent->RemoveContactEntity( self );
 		}
@@ -723,7 +723,7 @@ void idPhysics_Base::AddContactEntitiesForContacts( void ) {
 	int i;
 	idEntity *ent;
 	for( i = 0; i < contacts.Num(); i++ ) {
-		ent = gameLocal.entities[ contacts[i].entityNum ];
+		ent = gameLocal.entities[contacts[i].entityNum];
 		if( ent && ent != self ) {
 			ent->AddContactEntity( self );
 		}
@@ -830,16 +830,16 @@ void idPhysics_Base::SetWater( idPhysics_Liquid *e, const float m ) {
 	/*
 		if (e != this->water)
 		{
-			if (NULL != e)
-			{
-				gameLocal.Printf("Entered water with murkiness %f.\n", m );
-			}
-			else
-			{
-				gameLocal.Printf("Leaving water.\n");
-			}
+		if (NULL != e)
+		{
+		gameLocal.Printf("Entered water with murkiness %f.\n", m );
 		}
-	*/
+		else
+		{
+		gameLocal.Printf("Leaving water.\n");
+		}
+		}
+		*/
 	this->water = e;
 	this->m_fWaterMurkiness = m;
 }
@@ -866,16 +866,16 @@ float idPhysics_Base::GetWaterMurkiness() const {
 ================
 idPhysics_Base::SetWaterLevelf
 
-	Returns 1.0f if the object is in a liquid, 0.0f otherwise.
+Returns 1.0f if the object is in a liquid, 0.0f otherwise.
 
-	If the object's not in a liquid it double checks to make sure it's really not.
-	Normally we only set this->water when an object collides with a water material but
-	what happens if an object spawns inside a liquid or something?  Nothing, it'll just sit
-	there.  This function sets the water level for an object that's already inside the water.
+If the object's not in a liquid it double checks to make sure it's really not.
+Normally we only set this->water when an object collides with a water material but
+what happens if an object spawns inside a liquid or something?  Nothing, it'll just sit
+there.  This function sets the water level for an object that's already inside the water.
 
-	This was most noticeable when I had monsters walking into the water and of course, they'd
-	sink to the bottom.  After I'd kill them they'd die normally and not float.  After adding
-	this function they float after they're killed.
+This was most noticeable when I had monsters walking into the water and of course, they'd
+sink to the bottom.  After I'd kill them they'd die normally and not float.  After adding
+this function they float after they're killed.
 
 ================
 */
@@ -904,7 +904,7 @@ float idPhysics_Base::SetWaterLevelf() {
 ================
 idPhysics_Base::GetWaterLevelf
 
-	The water level for this object, 0.0f if not in the water, 1.0f if in water
+The water level for this object, 0.0f if not in the water, 1.0f if in water
 ================
 */
 float idPhysics_Base::GetWaterLevelf() const {
